@@ -277,28 +277,15 @@ h1 {
   font-size: 0.9rem;
 }
 
+.local-trust-line {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
 .button-large {
   padding: 0.8rem 1.5rem;
   font-size: 1.05rem;
-}
-
-.proof-strip {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: color-mix(in oklab, var(--bg-alt) 86%, transparent);
-}
-
-.proof-strip .container {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.85rem 1rem;
-  padding: 0.9rem 0;
-}
-
-.proof-strip p {
-  margin: 0;
-  color: var(--text-muted);
 }
 
 .chip-list {
@@ -334,6 +321,10 @@ h1 {
   padding-bottom: 2rem;
 }
 
+.section-how {
+  padding-top: 2.4rem;
+}
+
 .pain-statements {
   list-style: none;
   margin: 0 0 1.6rem;
@@ -361,6 +352,23 @@ h1 {
   margin: 0;
   padding-left: 1.2rem;
   border-left: 3px solid var(--brand);
+}
+
+.how-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.step-kicker {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.18rem 0.52rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 650;
 }
 
 .audience-body {
@@ -417,6 +425,19 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
 
+.feature-primary-grid {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.feature-primary {
+  border-color: color-mix(in oklab, var(--brand) 40%, var(--line));
+  background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 88%, var(--bg-alt)), color-mix(in oklab, var(--surface) 78%, transparent));
+}
+
+.feature-secondary-grid {
+  margin-top: 1rem;
+}
+
 .card {
   margin: 0;
   padding: 1rem;
@@ -447,6 +468,43 @@ h2 {
   vertical-align: middle;
 }
 
+.mid-cta {
+  margin-top: 1.4rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.section-platforms {
+  margin-top: 2rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in oklab, var(--bg-alt) 86%, transparent);
+}
+
+.platform-group {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 1rem;
+  background: color-mix(in oklab, var(--surface) 84%, transparent);
+}
+
+.platform-group h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+.platform-chip-list li {
+  background: color-mix(in oklab, var(--surface-strong) 80%, transparent);
+}
+
+.platform-note {
+  margin: 0.8rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .section-privacy {
   margin-top: 2.2rem;
   padding: 3.5rem 0;
@@ -470,12 +528,6 @@ h2 {
   text-align: center;
 }
 
-.privacy-icon {
-  display: block;
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-}
-
 .privacy-card strong {
   display: block;
   margin-bottom: 0.25rem;
@@ -485,6 +537,12 @@ h2 {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.92rem;
+}
+
+.privacy-sensitive-line {
+  margin: -0.2rem 0 1rem;
+  color: var(--text-muted);
+  max-width: 58ch;
 }
 
 .permissions-details {
@@ -526,6 +584,32 @@ h2 {
   font-size: 0.88rem;
 }
 
+.section-performance {
+  padding-top: 3rem;
+}
+
+.performance-panel {
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--surface) 86%, transparent), var(--surface));
+}
+
+.performance-panel h2 {
+  margin-bottom: 0.5rem;
+}
+
+.performance-panel p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.performance-short {
+  margin-top: 0.55rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
 .browser-mock {
   margin: 0;
   border: 1px solid var(--line);
@@ -557,6 +641,7 @@ h2 {
 
 .quote p {
   font-size: 1rem;
+  color: var(--text);
 }
 
 .quote footer {
@@ -708,6 +793,10 @@ h2 {
   .hero-cta {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .mid-cta {
+    width: 100%;
   }
 
   .email-row {
