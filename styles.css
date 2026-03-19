@@ -639,6 +639,35 @@ h2 {
   color: var(--text-muted);
 }
 
+.demo-video {
+  margin: 0 0 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: clip;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.demo-video video {
+  width: 100%;
+  display: block;
+}
+
+.demo-video figcaption {
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.video-fallback {
+  margin: 0;
+  padding: 0.65rem 1rem 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
 .quote p {
   font-size: 1rem;
   color: var(--text);
@@ -695,25 +724,46 @@ h2 {
   margin-top: 0.5rem;
 }
 
-.email-form {
-  max-width: 620px;
+.section-contact {
+  padding-top: 3.2rem;
 }
 
-.email-row {
-  display: flex;
-  gap: 0.65rem;
-  margin: 0.42rem 0 0.35rem;
+.contact-form {
+  max-width: 720px;
+  display: grid;
+  gap: 0.85rem;
 }
 
-.email-row input {
-  flex: 1;
-  min-width: 180px;
+.form-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-row label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
   border: 1px solid var(--line);
   border-radius: 0.7rem;
   padding: 0.7rem 0.75rem;
   font: inherit;
   color: var(--text);
   background: var(--surface);
+}
+
+.form-row textarea {
+  resize: vertical;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -10000px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .fine-print {
@@ -799,13 +849,11 @@ h2 {
     width: 100%;
   }
 
-  .email-row {
-    flex-direction: column;
-  }
-
   .button,
-  .email-row input,
-  .email-row .button {
+  .form-row input,
+  .form-row select,
+  .form-row textarea,
+  .contact-form .button {
     width: 100%;
   }
 }
