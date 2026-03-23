@@ -1,45 +1,10 @@
 (function () {
-  var doc = document.documentElement;
   var navToggle = document.getElementById("nav-toggle");
   var nav = document.getElementById("primary-nav");
-  var themeToggle = document.getElementById("theme-toggle");
   var yearNode = document.getElementById("year");
   var contactForm = document.getElementById("contact-form");
   var contactMessage = document.getElementById("contact-form-message");
   var contactSubmit = document.getElementById("contact-submit");
-  var THEME_KEY = "llmnesia-theme";
-
-  function setTheme(theme) {
-    var isLight = theme === "light";
-    doc.classList.toggle("theme-light", isLight);
-    if (themeToggle) {
-      themeToggle.setAttribute("aria-pressed", String(isLight));
-      themeToggle.setAttribute("aria-label", isLight ? "Toggle dark mode" : "Toggle light mode");
-    }
-  }
-
-  try {
-    var savedTheme = localStorage.getItem(THEME_KEY);
-    if (savedTheme === "light") {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-  } catch (error) {
-    setTheme("dark");
-  }
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var nowLight = !doc.classList.contains("theme-light");
-      setTheme(nowLight ? "light" : "dark");
-      try {
-        localStorage.setItem(THEME_KEY, nowLight ? "light" : "dark");
-      } catch (error) {
-        /* localStorage may be unavailable in some privacy contexts */
-      }
-    });
-  }
 
   if (navToggle && nav) {
     navToggle.addEventListener("click", function () {
