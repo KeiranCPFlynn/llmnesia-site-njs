@@ -142,7 +142,7 @@ video {
   color: var(--text);
 }
 
-.nav a[href$="#updates"] {
+.nav .nav-cta {
   padding: 0.5rem 1rem;
   border-radius: var(--radius);
   background: var(--brand);
@@ -152,7 +152,7 @@ video {
   transition: opacity 0.2s;
 }
 
-.nav a[href$="#updates"]:hover {
+.nav .nav-cta:hover {
   color: var(--bg);
   opacity: 0.9;
 }
@@ -919,7 +919,7 @@ h1 {
     display: flex;
   }
 
-  .nav a[href$="#updates"] {
+  .nav .nav-cta {
     text-align: center;
   }
 

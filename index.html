@@ -1,418 +1,407 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LLMnesia | Stop losing answers in AI chats.</title>
-    <meta
-      name="description"
-      content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly."
-    >
-    <meta name="theme-color" content="#0d1117">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="LLMnesia | Stop losing your best AI work">
-    <meta
-      property="og:description"
-      content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly."
-    >
-    <meta property="og:image" content="assets/og.png">
-    <meta property="og:url" content="https://keirancpflynn.github.io/llmnesia-site/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LLMnesia | Stop losing your best AI work">
-    <meta
-      name="twitter:description"
-      content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly."
-    >
-    <meta name="twitter:image" content="assets/og.png">
-    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-    >
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="LLMnesia home">
-          <img src="assets/logo.svg" alt="" width="28" height="28">
-          <span>LLMnesia</span>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLMnesia | Stop losing answers in AI chats.</title>
+  <meta name="description"
+    content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly.">
+  <meta name="theme-color" content="#0d1117">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LLMnesia | Stop losing your best AI work">
+  <meta property="og:description"
+    content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly.">
+  <meta property="og:image" content="assets/og.png">
+  <meta property="og:url" content="https://keirancpflynn.github.io/llmnesia-site/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LLMnesia | Stop losing your best AI work">
+  <meta name="twitter:description"
+    content="Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly.">
+  <meta name="twitter:image" content="assets/og.png">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="LLMnesia home">
+        <img src="assets/logo.svg" alt="" width="28" height="28">
+        <span>LLMnesia</span>
+      </a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">
+        Menu
+      </button>
+
+      <nav class="nav" id="primary-nav" aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#demo">Demo</a>
+        <a href="#contact">Contact</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
+          target="_blank" rel="noopener noreferrer">Add to Chrome</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero container" id="top">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> Now available on the Chrome Web Store</p>
+      <h1>Stop losing answers<br><span class="text-gradient">in AI chats.</span></h1>
+      <p class="subheadline">
+        LLMnesia indexes your conversations across ChatGPT, Claude, Gemini and more, so you can instantly find old
+        prompts, answers, ideas, and decisions.
+      </p>
+      <div class="hero-cta">
+        <a class="button button-large"
+          href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" target="_blank"
+          rel="noopener noreferrer">
+          Add to Chrome — Free
         </a>
-
-        <button
-          class="nav-toggle"
-          id="nav-toggle"
-          aria-expanded="false"
-          aria-controls="primary-nav"
-          type="button"
-        >
-          Menu
-        </button>
-
-        <nav class="nav" id="primary-nav" aria-label="Main">
-          <a href="#features">Features</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#demo">Demo</a>
-          <a href="#contact">Contact</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#faq">FAQ</a>
-          <a href="#updates">Get Early Access</a>
-        </nav>
+        <span class="trust-note">100% private. Everything stays in your browser.</span>
       </div>
-    </header>
+      <p class="local-trust-line">Local-first. Your AI conversations never leave your browser.</p>
+    </section>
 
-    <main id="main-content">
-      <section class="hero container" id="top">
-        <p class="eyebrow"><span class="eyebrow-dot"></span> Now in early access</p>
-        <h1>Stop losing answers<br><span class="text-gradient">in AI chats.</span></h1>
-        <p class="subheadline">
-          LLMnesia indexes your conversations across ChatGPT, Claude, Gemini and more, so you can instantly find old prompts, answers, ideas, and decisions.
-        </p>
-        <div class="hero-cta">
-          <a
-            class="button button-large"
-            href="https://tally.so/r/448MDd"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Get Early Access
-          </a>
-          <span class="trust-note">100% private. Everything stays in your browser.</span>
+    <section class="section section-problem container" id="problem">
+      <h2>Sound familiar?</h2>
+      <p class="section-intro">If you use AI every day, this probably sounds familiar.</p>
+      <ul class="pain-statements">
+        <li>"I already solved this. Where was it?"</li>
+        <li>"Was that answer in ChatGPT or Claude?"</li>
+        <li>"I wrote the perfect prompt last week. Now it's gone."</li>
+        <li>"Why am I asking the same question again?"</li>
+      </ul>
+      <p class="problem-narrative">
+        Your AI chats already contain real work. LLMnesia helps you find it again.
+      </p>
+    </section>
+
+    <section class="section container" id="demo">
+      <h2>See it <span class="text-gradient">in action</span></h2>
+      <p class="section-intro">Open one search box. Type a few words. Instantly see matching results from ChatGPT,
+        Claude, Gemini and more, then jump straight to the exact message you need.</p>
+      <figure class="demo-video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZgLP7VGO7ss" title="LLMnesia Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </figure>
+      <figure class="browser-mock">
+        <div class="browser-bar" aria-hidden="true">
+          <span></span><span></span><span></span>
         </div>
-        <p class="local-trust-line">Local-first. Your AI conversations never leave your browser.</p>
-      </section>
+        <img src="assets/demo.png"
+          alt="LLMnesia search overlay showing results from multiple AI platforms in a single browser window"
+          width="2034" height="1242" loading="lazy">
+      </figure>
+      <p class="demo-caption">One search box. Every AI platform. The exact message.</p>
+    </section>
 
-      <section class="section section-problem container" id="problem">
-        <h2>Sound familiar?</h2>
-        <p class="section-intro">If you use AI every day, this probably sounds familiar.</p>
-        <ul class="pain-statements">
-          <li>"I already solved this. Where was it?"</li>
-          <li>"Was that answer in ChatGPT or Claude?"</li>
-          <li>"I wrote the perfect prompt last week. Now it's gone."</li>
-          <li>"Why am I asking the same question again?"</li>
+    <section class="section section-how container" id="how-it-works">
+      <h2>How it <span class="text-gradient">works</span></h2>
+      <p class="section-intro">LLMnesia indexes chats you open on supported platforms. Historical backfill for older
+        conversations may be added in a future release based on user demand.</p>
+      <div class="how-grid">
+        <article class="card">
+          <span class="step-kicker">Step 1</span>
+          <h3>Install the extension</h3>
+          <p>Takes a few seconds.</p>
+        </article>
+        <article class="card">
+          <span class="step-kicker">Step 2</span>
+          <h3>New chats are indexed locally</h3>
+          <p>As you use supported AI tools, LLMnesia indexes those conversations on your device, never on our servers.
+          </p>
+        </article>
+        <article class="card">
+          <span class="step-kicker">Step 3</span>
+          <h3>Search and jump back instantly</h3>
+          <p>Find the right conversation or exact message across supported AI platforms.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="audience">
+      <h2>Built for people who live in AI chats</h2>
+      <div class="audience-body">
+        <p>If you use multiple AI tools every week, your best work is probably scattered across dozens or hundreds of
+          conversations. LLMnesia turns that messy chat history into something you can actually search and use.</p>
+        <p>For founders, developers, researchers, writers, and anyone using AI as part of real work.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="features">
+      <h2>How LLMnesia <span class="text-gradient">saves you time</span></h2>
+      <p class="section-intro">You already solved this in AI. LLMnesia helps you find it again.</p>
+      <div class="card-grid feature-primary-grid">
+        <article class="card feature-primary">
+          <h3>Stop repeating yourself to AI</h3>
+          <p>Your old answers, prompts, and decisions are already there. LLMnesia helps you find them instead of
+            starting over.</p>
+        </article>
+        <article class="card feature-primary">
+          <h3>Recover ideas and decisions instantly</h3>
+          <p>Search across ChatGPT, Claude, Gemini and more from one place, with results stored locally for speed and
+            privacy.</p>
+        </article>
+        <article class="card feature-primary">
+          <h3>Land on the exact message</h3>
+          <p>Jump straight to the message you need, not just the conversation. No endless scrolling.</p>
+        </article>
+      </div>
+      <div class="card-grid feature-secondary-grid">
+        <article class="card">
+          <h3>Search without breaking your flow</h3>
+          <p>Open search with a shortcut, find what you need, and get back to work in seconds.</p>
+        </article>
+        <article class="card">
+          <h3>Own your knowledge</h3>
+          <p>Export and back up your conversation history so your AI work stays yours.</p>
+        </article>
+        <article class="card">
+          <h3>Private by default</h3>
+          <p>No accounts, no cloud sync, no data collection. Your archive stays on your device.</p>
+        </article>
+      </div>
+      <div class="mid-cta">
+        <a class="button" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
+          target="_blank" rel="noopener noreferrer">
+          Add to Chrome — Free
+        </a>
+        <p class="fine-print">Free to use. Install in seconds.</p>
+      </div>
+    </section>
+
+    <section class="section section-platforms container" id="platforms">
+      <h2>Works across the AI tools you actually use</h2>
+      <p class="section-intro">Search conversations across leading AI platforms from one place.</p>
+      <div class="platform-group">
+        <h3>Supported now</h3>
+        <ul class="chip-list platform-chip-list">
+          <li>ChatGPT</li>
+          <li>Claude</li>
+          <li>Gemini</li>
+          <li>Perplexity</li>
+          <li>DeepSeek</li>
+          <li>Grok</li>
+          <li>Mistral</li>
+          <li>Kimi</li>
+          <li>Qwen</li>
+          <li>Google AI Studio</li>
         </ul>
-        <p class="problem-narrative">
-          Your AI chats already contain real work. LLMnesia helps you find it again.
-        </p>
-      </section>
-
-      <section class="section container" id="demo">
-        <h2>See it <span class="text-gradient">in action</span></h2>
-        <p class="section-intro">Open one search box. Type a few words. Instantly see matching results from ChatGPT, Claude, Gemini and more, then jump straight to the exact message you need.</p>
-        <figure class="demo-video">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ZgLP7VGO7ss"
-            title="LLMnesia Demo"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </figure>
-        <figure class="browser-mock">
-          <div class="browser-bar" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
-          <img
-            src="assets/demo.png"
-            alt="LLMnesia search overlay showing results from multiple AI platforms in a single browser window"
-            width="2034"
-            height="1242"
-            loading="lazy"
-          >
-        </figure>
-        <p class="demo-caption">One search box. Every AI platform. The exact message.</p>
-      </section>
-
-      <section class="section section-how container" id="how-it-works">
-        <h2>How it <span class="text-gradient">works</span></h2>
-        <p class="section-intro"><strong>Current early-access behavior:</strong> LLMnesia indexes chats you open now on supported platforms. Historical backfill for older conversations may be added in a future release based on user demand.</p>
-        <div class="how-grid">
-          <article class="card">
-            <span class="step-kicker">Step 1</span>
-            <h3>Install the extension</h3>
-            <p>Takes a few seconds.</p>
-          </article>
-          <article class="card">
-            <span class="step-kicker">Step 2</span>
-            <h3>New chats are indexed locally</h3>
-            <p>As you use supported AI tools, LLMnesia indexes those conversations on your device, never on our servers.</p>
-          </article>
-          <article class="card">
-            <span class="step-kicker">Step 3</span>
-            <h3>Search and jump back instantly</h3>
-            <p>Find the right conversation or exact message across supported AI platforms.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section container" id="audience">
-        <h2>Built for people who live in AI chats</h2>
-        <div class="audience-body">
-          <p>If you use multiple AI tools every week, your best work is probably scattered across dozens or hundreds of conversations. LLMnesia turns that messy chat history into something you can actually search and use.</p>
-          <p>For founders, developers, researchers, writers, and anyone using AI as part of real work.</p>
-        </div>
-      </section>
-
-      <section class="section container" id="features">
-        <h2>How LLMnesia <span class="text-gradient">saves you time</span></h2>
-        <p class="section-intro">You already solved this in AI. LLMnesia helps you find it again.</p>
-        <div class="card-grid feature-primary-grid">
-          <article class="card feature-primary">
-            <h3>Stop repeating yourself to AI</h3>
-            <p>Your old answers, prompts, and decisions are already there. LLMnesia helps you find them instead of starting over.</p>
-          </article>
-          <article class="card feature-primary">
-            <h3>Recover ideas and decisions instantly</h3>
-            <p>Search across ChatGPT, Claude, Gemini and more from one place, with results stored locally for speed and privacy.</p>
-          </article>
-          <article class="card feature-primary">
-            <h3>Land on the exact message</h3>
-            <p>Jump straight to the message you need, not just the conversation. No endless scrolling.</p>
-          </article>
-        </div>
-        <div class="card-grid feature-secondary-grid">
-          <article class="card">
-            <h3>Search without breaking your flow</h3>
-            <p>Open search with a shortcut, find what you need, and get back to work in seconds.</p>
-          </article>
-          <article class="card">
-            <h3>Own your knowledge</h3>
-            <p>Export and back up your conversation history so your AI work stays yours.</p>
-          </article>
-          <article class="card">
-            <h3>Private by default</h3>
-            <p>No accounts, no cloud sync, no data collection. Your archive stays on your device.</p>
-          </article>
-        </div>
-        <div class="mid-cta">
-          <a
-            class="button"
-            href="https://tally.so/r/448MDd"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Get Early Access
-          </a>
-          <p class="fine-print">Free during early access.</p>
-        </div>
-      </section>
-
-      <section class="section section-platforms container" id="platforms">
-        <h2>Works across the AI tools you actually use</h2>
-        <p class="section-intro">Search conversations across leading AI platforms from one place.</p>
-        <div class="platform-group">
-          <h3>Supported now</h3>
-          <ul class="chip-list platform-chip-list">
-            <li>ChatGPT</li>
-            <li>Claude</li>
-            <li>Gemini</li>
-            <li>Perplexity</li>
-            <li>DeepSeek</li>
-            <li>Grok</li>
-            <li>Mistral</li>
-            <li>Kimi</li>
-            <li>Qwen</li>
-            <li>Google AI Studio</li>
-          </ul>
-          <p class="platform-note">More integrations are in progress based on early-access feedback.</p>
-        </div>
-      </section>
-
-      <section class="section section-privacy" id="privacy">
-        <div class="container">
-          <h2>Local-first. Private by design.</h2>
-          <p class="section-intro">LLMnesia stores your indexed conversations on your device, not on our servers.</p>
-          <div class="privacy-grid">
-            <div class="privacy-card">
-              <strong>Stored locally</strong>
-              <p>Your data lives in your browser.</p>
-            </div>
-            <div class="privacy-card">
-              <strong>No servers</strong>
-              <p>Nothing is uploaded, synced, or sent to the cloud.</p>
-            </div>
-            <div class="privacy-card">
-              <strong>You're in control</strong>
-              <p>Export or delete everything with one click.</p>
-            </div>
-          </div>
-          <p class="privacy-sensitive-line">Designed for people who cannot use cloud-based tools for sensitive work.</p>
-          <details class="permissions-details">
-            <summary>What each browser permission does</summary>
-            <ul class="permissions-list">
-              <li><strong>Storage</strong> - saves your index and settings locally in your browser</li>
-              <li><strong>Tabs</strong> - opens the right conversation when you click a search result</li>
-              <li><strong>Active tab</strong> - detects which AI platform you're currently visiting</li>
-              <li><strong>Scripting</strong> - adds the search bar and index indicator to AI chat pages</li>
-            </ul>
-            <p class="permissions-note">No permission is used to read data from any site other than the supported AI platforms.</p>
-          </details>
-        </div>
-      </section>
-
-      <section class="section section-performance container" id="performance">
-        <div class="performance-panel">
-          <h2>Built to stay out of your way</h2>
-          <p>LLMnesia is designed to be lightweight, fast, and unobtrusive while you work. Search appears when you need it, not as another bloated dashboard competing for attention.</p>
-          <p class="performance-short">Fast when you need it. Invisible when you don't.</p>
-        </div>
-      </section>
-
-      <section class="section container" id="differentiation">
-        <h2>Not another "second brain"</h2>
-        <div class="differentiation-body">
-          <p>Most knowledge tools ask you to save, tag, and organize things manually. Most people do not keep that up.</p>
-          <p>LLMnesia works differently. It indexes your AI conversations automatically in the background, so the useful stuff is already there when you need it.</p>
-          <p>No tagging. No organizing. No extra system to maintain.</p>
-        </div>
-      </section>
-
-      <section class="section container" id="testimonials">
-        <h2>Early tester feedback</h2>
-        <div class="card-grid">
-          <blockquote class="card quote">
-            <p>"I used to waste 10 to 15 minutes trying to remember which AI tool I'd used for something. Now I type a couple of words and it's there."</p>
-            <footer>Early access tester - Product Engineer</footer>
-          </blockquote>
-          <blockquote class="card quote">
-            <p>"I can't use cloud note tools for some of my work, so local-first mattered. This gives me search without sending anything anywhere."</p>
-            <footer>Early access tester - Security Consultant</footer>
-          </blockquote>
-          <blockquote class="card quote">
-            <p>"I jump between ChatGPT and Claude constantly. LLMnesia makes that feel like one searchable workspace instead of two separate histories."</p>
-            <footer>Early access tester - Startup Founder</footer>
-          </blockquote>
-        </div>
-      </section>
-
-      <section class="section container" id="founder">
-        <h2>Why I built this</h2>
-        <div class="founder-body">
-          <p>I use AI constantly across ChatGPT, Claude, Gemini and other tools. I kept having the same frustrating experience: I knew I'd already solved something, but I couldn't remember where. Useful prompts, answers, ideas, and decisions were disappearing into chat history. I built LLMnesia to fix that for myself. Now I'm opening it up to other people who work the same way.</p>
-          <p class="founder-attribution">- Keiran</p>
-        </div>
-      </section>
-
-      <section class="section container" id="faq">
-        <h2>Frequently asked <span class="text-gradient">questions</span></h2>
-        <div class="faq-list">
-          <details>
-            <summary>Is my data stored on your servers?</summary>
-            <p>No. Everything is stored locally in your browser. LLMnesia never sends your conversations, search queries, or personal data to external servers.</p>
-          </details>
-          <details>
-            <summary>How does local indexing actually work?</summary>
-            <p>When you visit a supported AI platform, LLMnesia indexes conversation content locally in your browser storage so it is searchable later. It runs automatically in the background.</p>
-          </details>
-          <details>
-            <summary>Will it index my older chat history too?</summary>
-            <p>Today, LLMnesia indexes chats as you browse supported platforms. Historical backfill for older conversations may be added in a future release based on user demand.</p>
-          </details>
-          <details>
-            <summary>Which AI platforms are supported today?</summary>
-            <p>Supported now: ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional integrations are in progress.</p>
-          </details>
-          <details>
-            <summary>Will it slow down my browser?</summary>
-            <p>LLMnesia is designed to stay lightweight. Indexing happens incrementally in the background while you work.</p>
-          </details>
-          <details>
-            <summary>Can I delete my indexed data?</summary>
-            <p>Yes. You can clear all indexed data with one click from the extension settings.</p>
-          </details>
-          <details>
-            <summary>Can I export my conversations?</summary>
-            <p>Yes. You can export and back up your conversation history in a portable format that you own.</p>
-          </details>
-          <details>
-            <summary>Does it require an account?</summary>
-            <p>No account is required for local indexing and search.</p>
-          </details>
-          <details>
-            <summary>Is it free during early access?</summary>
-            <p>Yes. LLMnesia is free during early access. Founding users get preferred pricing when paid plans launch.</p>
-          </details>
-        </div>
-      </section>
-
-      <section class="section section-contact container" id="contact">
-        <h2>Report bugs or ask a question</h2>
-        <p class="section-intro">Use this form for bugs, problems, or general queries. Your message goes to the founder inbox and your email address is never shown on the public page.</p>
-        <form
-          class="contact-form"
-          id="contact-form"
-          action="https://api.web3forms.com/submit"
-          method="post"
-          novalidate
-        >
-          <input type="hidden" name="access_key" value="a288370a-c02d-4e42-a3ab-77d5e1afe4c2">
-          <input type="hidden" name="subject" value="LLMnesia website contact">
-
-          <div class="form-row">
-            <label for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" required autocomplete="name">
-          </div>
-
-          <div class="form-row">
-            <label for="contact-email">Email</label>
-            <input id="contact-email" name="email" type="email" required autocomplete="email">
-          </div>
-
-          <div class="form-row">
-            <label for="contact-type">Type</label>
-            <select id="contact-type" name="type" required>
-              <option value="Bug">Bug</option>
-              <option value="Problem">Problem</option>
-              <option value="Query">Query</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="6" required></textarea>
-          </div>
-
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="form-honeypot" aria-hidden="true">
-          <button class="button" type="submit" id="contact-submit">Send message</button>
-          <p class="form-message" id="contact-form-message" role="status" aria-live="polite"></p>
-        </form>
-      </section>
-
-      <section class="section section-signup" id="updates">
-        <div class="container signup-inner">
-          <h2>Stop losing your <span class="text-gradient">best AI work</span></h2>
-          <p>Free during early access. Founding users get preferred pricing and direct input into what gets built next.</p>
-          <a
-            class="button button-large"
-            href="https://tally.so/r/448MDd"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Get Early Access
-          </a>
-          <p class="fine-print">No spam. Only early access and major updates.</p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <nav aria-label="Footer">
-          <a href="privacy-policy.html">Privacy Policy</a>
-          <a href="#features">Features</a>
-          <a href="#contact">Contact</a>
-          <a href="#faq">FAQ</a>
-          <a href="#updates">Get Early Access</a>
-        </nav>
-        <p>&copy; <span id="year"></span> LLMnesia</p>
+        <p class="platform-note">Are we missing your favourite LLM? Send us a message to let us know!</p>
       </div>
-    </footer>
-  </body>
+    </section>
+
+    <section class="section section-privacy" id="privacy">
+      <div class="container">
+        <h2>Local-first. Private by design.</h2>
+        <p class="section-intro">LLMnesia stores your indexed conversations on your device, not on our servers.</p>
+        <div class="privacy-grid">
+          <div class="privacy-card">
+            <strong>Stored locally</strong>
+            <p>Your data lives in your browser.</p>
+          </div>
+          <div class="privacy-card">
+            <strong>No servers</strong>
+            <p>Nothing is uploaded, synced, or sent to the cloud.</p>
+          </div>
+          <div class="privacy-card">
+            <strong>You're in control</strong>
+            <p>Export or delete everything with one click.</p>
+          </div>
+        </div>
+        <p class="privacy-sensitive-line">Designed for people who value privacy.</p>
+        <details class="permissions-details">
+          <summary>What each browser permission does</summary>
+          <ul class="permissions-list">
+            <li><strong>Storage</strong> - saves your index and settings locally in your browser</li>
+            <li><strong>Tabs</strong> - opens the right conversation when you click a search result</li>
+            <li><strong>Active tab</strong> - detects which AI platform you're currently visiting</li>
+            <li><strong>Scripting</strong> - adds the search bar and index indicator to AI chat pages</li>
+          </ul>
+          <p class="permissions-note">No permission is used to read data from any site other than the supported AI
+            platforms.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-performance container" id="performance">
+      <div class="performance-panel">
+        <h2>Built to stay out of your way</h2>
+        <p>LLMnesia is designed to be lightweight, fast, and unobtrusive while you work. Search appears when you need
+          it, not as another bloated dashboard competing for attention.</p>
+        <p class="performance-short">Fast when you need it. Invisible when you don't.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="differentiation">
+      <h2>Not another "second brain"</h2>
+      <div class="differentiation-body">
+        <p>Most knowledge tools ask you to save, tag, and organize things manually. Most people do not keep that up.</p>
+        <p>LLMnesia works differently. It indexes your AI conversations automatically in the background, so the useful
+          stuff is already there when you need it.</p>
+        <p>No tagging. No organizing. No extra system to maintain.</p>
+      </div>
+    </section>
+
+    <section class="section container" id="testimonials">
+      <h2>Early tester feedback</h2>
+      <div class="card-grid">
+        <blockquote class="card quote">
+          <p>"I used to waste 10 to 15 minutes trying to remember which AI tool I'd used for something. Now I type a
+            couple of words and it's there."</p>
+          <footer>Product Engineer</footer>
+        </blockquote>
+        <blockquote class="card quote">
+          <p>"I can't use cloud note tools for some of my work, so local-first mattered. This gives me search without
+            sending anything anywhere."</p>
+          <footer>Security Consultant</footer>
+        </blockquote>
+        <blockquote class="card quote">
+          <p>"I jump between ChatGPT and Claude constantly. LLMnesia makes that feel like one searchable workspace
+            instead of two separate histories."</p>
+          <footer>Startup Founder</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section container" id="founder">
+      <h2>Why I built this</h2>
+      <div class="founder-body">
+        <p>I use AI constantly across ChatGPT, Claude, Gemini and other tools. I kept having the same frustrating
+          experience: I knew I'd already solved something, but I couldn't remember where. Useful prompts, answers,
+          ideas, and decisions were disappearing into chat history. I built LLMnesia to fix that for myself. Now I'm
+          opening it up to other people who work the same way.</p>
+        <p class="founder-attribution">- Keiran</p>
+      </div>
+    </section>
+
+    <section class="section container" id="faq">
+      <h2>Frequently asked <span class="text-gradient">questions</span></h2>
+      <div class="faq-list">
+        <details>
+          <summary>Is my data stored on your servers?</summary>
+          <p>No. Everything is stored locally in your browser. LLMnesia never sends your conversations, search queries,
+            or personal data to external servers.</p>
+        </details>
+        <details>
+          <summary>How does local indexing actually work?</summary>
+          <p>When you visit a supported AI platform, LLMnesia indexes conversation content locally in your browser
+            storage so it is searchable later. It runs automatically in the background.</p>
+        </details>
+        <details>
+          <summary>Will it index my older chat history too?</summary>
+          <p>Today, LLMnesia indexes chats as you browse supported platforms. Historical backfill for older
+            conversations may be added in a future release based on user demand.</p>
+        </details>
+        <details>
+          <summary>Which AI platforms are supported today?</summary>
+          <p>Supported now: ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI
+            Studio. Additional integrations are in progress.</p>
+        </details>
+        <details>
+          <summary>Will it slow down my browser?</summary>
+          <p>LLMnesia is designed to stay lightweight. Indexing happens incrementally in the background while you work.
+          </p>
+        </details>
+        <details>
+          <summary>Can I delete my indexed data?</summary>
+          <p>Yes. You can clear all indexed data with one click from the extension settings.</p>
+        </details>
+        <details>
+          <summary>Can I export my conversations?</summary>
+          <p>Yes. You can export and back up your conversation history in a portable format that you own.</p>
+        </details>
+        <details>
+          <summary>Does it require an account?</summary>
+          <p>No account is required for local indexing and search.</p>
+        </details>
+        <details>
+          <summary>Is it free?</summary>
+          <p>Yes. LLMnesia is completely free to use.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-contact container" id="contact">
+      <h2>Report bugs or ask a question</h2>
+      <p class="section-intro">Use this form for bugs, problems, or general queries. Your message goes to the founder
+        inbox and your email address is never shown on the public page.</p>
+      <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="post" novalidate>
+        <input type="hidden" name="access_key" value="a288370a-c02d-4e42-a3ab-77d5e1afe4c2">
+        <input type="hidden" name="subject" value="LLMnesia website contact">
+
+        <div class="form-row">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" required autocomplete="name">
+        </div>
+
+        <div class="form-row">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" required autocomplete="email">
+        </div>
+
+        <div class="form-row">
+          <label for="contact-type">Type</label>
+          <select id="contact-type" name="type" required>
+            <option value="Bug">Bug</option>
+            <option value="Problem">Problem</option>
+            <option value="Query">Query</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="6" required></textarea>
+        </div>
+
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="form-honeypot"
+          aria-hidden="true">
+        <button class="button" type="submit" id="contact-submit">Send message</button>
+        <p class="form-message" id="contact-form-message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section section-signup" id="updates">
+      <div class="container signup-inner">
+        <h2>Stop losing your <span class="text-gradient">best AI work</span></h2>
+        <p>Free to use. Install from the Chrome Web Store and never lose an AI conversation again.</p>
+        <a class="button button-large"
+          href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" target="_blank"
+          rel="noopener noreferrer">
+          Add to Chrome — Free
+        </a>
+        <p class="fine-print">100% free. No account required.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav aria-label="Footer">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
+          target="_blank" rel="noopener noreferrer">Add to Chrome</a>
+      </nav>
+      <p>&copy; <span id="year"></span> LLMnesia</p>
+    </div>
+  </footer>
+</body>
+
 </html>
