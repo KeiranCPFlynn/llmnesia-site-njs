@@ -58,9 +58,10 @@ Validation runs during build via `lib/content.js`.
 ## Canonical and redirects
 
 - Canonical domain: `https://llmnesia.com`
-- `middleware.js` enforces host canonicalization and 301 redirects for:
+- `middleware.js` enforces 301 legacy path redirects:
   - `/index.html` -> `/`
   - `/privacy-policy.html` -> `/privacy-policy`
+- Host/domain canonicalization should be configured in Vercel domain settings.
 
 ## Analytics
 
