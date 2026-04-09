@@ -22,7 +22,9 @@ export const metadata = {
     }
   },
   icons: {
-    icon: '/assets/logo.svg'
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/logo.svg'
   },
   openGraph: {
     title: 'LLMnesia | Stop losing answers in AI chats.',

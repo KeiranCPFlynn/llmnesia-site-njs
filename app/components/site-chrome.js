@@ -10,7 +10,7 @@ export default function SiteChrome({ children }) {
       <header className="site-header">
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="LLMnesia home">
-            <img src="/assets/logo.svg" alt="" width="28" height="28" />
+            <img src="/logo.svg" alt="" width="28" height="28" />
             <span>LLMnesia</span>
           </a>
 
