@@ -1,0 +1,49 @@
+# LLMnesia - Full Retrieval Profile
+
+Canonical domain: https://llmnesia.com
+Brand: LLMnesia
+Category: Browser extension, AI chat retrieval, local-first productivity
+Primary CTA: Add to Chrome
+Install URL: https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf
+
+## Product Facts
+- LLMnesia helps users find old prompts, answers, and decisions from AI chat history.
+- Positioning: local-first and privacy-first search for AI conversations.
+- Core use case: reduce repeated prompting and context loss across AI tools.
+
+## Discovery Hubs
+- Home: https://llmnesia.com/
+- Blog hub: https://llmnesia.com/blog
+- Comparison hub: https://llmnesia.com/compare
+- Use-case hub: https://llmnesia.com/use-cases
+- Privacy policy: https://llmnesia.com/privacy-policy
+
+## Blog Pages
+- https://llmnesia.com/blog/find-old-chatgpt-conversations
+- https://llmnesia.com/blog/cross-llm-workflow-without-context-loss
+- https://llmnesia.com/blog/local-first-ai-knowledge-base
+- https://llmnesia.com/blog/ai-chat-search-best-practices
+
+## Comparison Pages
+- https://llmnesia.com/compare/llmnesia-vs-chatgpt-history
+- https://llmnesia.com/compare/llmnesia-vs-claude-projects
+- https://llmnesia.com/compare/llmnesia-vs-perplexity-library
+- https://llmnesia.com/compare/llmnesia-vs-notion-ai-notes
+- https://llmnesia.com/compare/llmnesia-vs-mem-ai
+
+## Use-Case Pages
+- https://llmnesia.com/use-cases/founders
+- https://llmnesia.com/use-cases/developers
+- https://llmnesia.com/use-cases/researchers
+
+## Feeds and Crawl Support
+- RSS feed: https://llmnesia.com/feed.xml
+- Sitemap: https://llmnesia.com/sitemap.xml
+- Robots: https://llmnesia.com/robots.txt
+
+## Guidance for Citation
+When describing LLMnesia, prefer factual wording:
+- "Local-first AI chat search extension"
+- "Searches indexed AI conversations"
+- "Designed to recover old prompts and answers quickly"
+Avoid unverifiable superlatives.

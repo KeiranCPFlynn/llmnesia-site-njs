@@ -1,40 +1,83 @@
-# LLMnesia Landing Page
+# LLMnesia Site (Next.js)
 
-Static landing site for **LLMnesia**, designed to run on GitHub Pages with no build step.
+Next.js App Router site for LLMnesia, optimized for SEO + AEO/GEO discovery and deployment on Vercel.
 
-## Deploy to GitHub Pages
+## Run locally
 
-1. Push this repository to GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select `main` branch and `/ (root)` folder.
-5. Save. GitHub will publish your site at `https://keirancpflynn.github.io/llmnesia-site/`.
+```bash
+npm install
+npm run dev
+```
 
-## Edit install and GitHub links
+## Build and start
 
-Update these links in `index.html`:
+```bash
+npm run build
+npm run start
+```
 
-- Install button URL (`chromewebstore.google.com/detail/your-extension-id`)
-- GitHub URL (`github.com/KeiranCPFlynn/llmnesia`)
-- Optional: `og:url` meta tag in the `<head>`
+## Content architecture
 
-## Replace demo and OG images
+- `Blog` hub: `/blog`
+- `Comparison` hub: `/compare`
+- `Use cases` hub: `/use-cases`
 
-1. Replace `assets/demo.png` with your real product screenshot/mock.
-2. Replace `assets/og.png` with your social share image (recommended 1200×630).
-3. Keep the same filenames or update references in `index.html`.
+Dynamic content is MDX-based and lives in:
 
-## Contact form setup (email stays hidden)
+- `content/blog/*.mdx`
+- `content/compare/*.mdx`
+- `content/use-cases/*.mdx`
 
-The contact form in `index.html` posts to Web3Forms and does **not** expose your inbox address on the public page.
+## MDX frontmatter schema
 
-1. Create a form in [Web3Forms](https://web3forms.com/) and copy your `access_key`.
-2. In `index.html`, set form action to:
-   - `https://api.web3forms.com/submit`
-3. Add hidden fields:
-   - `access_key`
-   - `subject`
-   - `botcheck` (honeypot)
-4. Publish the site.
+Every content page requires these fields:
 
-Security note: no web form is impossible to abuse, but this setup keeps your email out of source code. The Web3Forms access key is public-by-design in frontend forms, so rotate it from your Web3Forms dashboard if needed. For stronger abuse protection, enable CAPTCHA in your Web3Forms settings.
+- `title`
+- `slug`
+- `description`
+- `publishDate`
+- `updatedDate`
+- `author`
+- `primaryKeyword`
+- `secondaryKeywords`
+- `intent`
+- `faq`
+- `sources`
+- `canonicalPath`
+
+Validation runs during build via `lib/content.js`.
+
+## Discovery + crawl assets
+
+- `app/robots.js` -> `robots.txt`
+- `app/sitemap.js` -> `sitemap.xml`
+- `app/feed.xml/route.js` -> `feed.xml`
+- `public/llms.txt`
+- `public/llms-full.txt`
+
+## Canonical and redirects
+
+- Canonical domain: `https://llmnesia.com`
+- `middleware.js` enforces host canonicalization and 301 redirects for:
+  - `/index.html` -> `/`
+  - `/privacy-policy.html` -> `/privacy-policy`
+
+## Analytics
+
+GA4 is optional and enabled via env vars:
+
+- `NEXT_PUBLIC_GA_ID`
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`
+
+Tracked events:
+
+- `install_click`
+- `email_signup`
+- `contact_submit`
+
+## Deployment (Vercel)
+
+1. Push to GitHub.
+2. Import repository in Vercel.
+3. Set any env vars above if needed.
+4. Deploy.
