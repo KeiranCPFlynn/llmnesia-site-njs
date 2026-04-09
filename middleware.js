@@ -5,9 +5,17 @@ const LEGACY_PATH_REDIRECTS = {
   '/index.html': '/',
   '/privacy-policy.html': '/privacy-policy'
 };
+const ALLOWED_HOST_SUFFIXES = ['.vercel.app'];
 
 function isLocalHost(host = '') {
   return host.startsWith('localhost') || host.startsWith('127.0.0.1');
+}
+
+function isAllowedHost(host = '') {
+  if (!host) return false;
+  if (isLocalHost(host)) return true;
+  if (host === CANONICAL_HOST) return true;
+  return ALLOWED_HOST_SUFFIXES.some((suffix) => host.endsWith(suffix));
 }
 
 function shouldSkip(pathname = '') {
@@ -30,7 +38,7 @@ export function middleware(request) {
     return NextResponse.redirect(redirectUrl, 301);
   }
 
-  if (!isLocalHost(host) && host !== CANONICAL_HOST) {
+  if (!isAllowedHost(host)) {
     const canonicalUrl = new URL(request.url);
     canonicalUrl.protocol = 'https:';
     canonicalUrl.host = CANONICAL_HOST;
