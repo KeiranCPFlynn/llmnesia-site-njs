@@ -1111,6 +1111,26 @@ h1 {
   color: var(--text);
 }
 
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  line-height: 0;
+}
+
+.footer-badge img {
+  width: 195px;
+  max-width: 100%;
+  height: auto;
+  opacity: 0.92;
+  transition: opacity 0.2s ease;
+}
+
+.footer-badge:hover img {
+  opacity: 1;
+}
+
 .site-footer p {
   font-size: 0.875rem;
   color: var(--text-muted);
@@ -1298,6 +1318,10 @@ h1 {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .footer-badge {
+    align-self: center;
   }
 }
 

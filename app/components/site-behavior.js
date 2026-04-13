@@ -63,6 +63,31 @@ export default function SiteBehavior() {
 
     document.addEventListener('click', onDocumentClick);
 
+    // Pre-fill contact form from URL query params (e.g. from extension report button)
+    if (contactForm) {
+      const params = new URLSearchParams(window.location.search);
+      const prefillMessage = params.get('message');
+      const prefillSubject = params.get('subject');
+
+      if (prefillMessage) {
+        const textarea = document.getElementById('contact-message');
+        if (textarea) {
+          textarea.value = prefillMessage;
+        }
+      }
+
+      if (prefillSubject) {
+        const hiddenSubject = contactForm.querySelector('input[name="subject"]');
+        if (hiddenSubject) {
+          hiddenSubject.value = prefillSubject;
+        }
+      }
+
+      if (prefillMessage || prefillSubject) {
+        contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     let onContactSubmit = null;
 
     if (contactForm && contactMessage && contactSubmit) {

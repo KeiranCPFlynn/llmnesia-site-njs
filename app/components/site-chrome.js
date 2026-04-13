@@ -45,6 +45,23 @@ export default function SiteChrome({ children }) {
             <a href="/use-cases">Use Cases</a>
             <InstallLink className="nav-cta">Add to Chrome</InstallLink>
           </nav>
+          <a
+            className="footer-badge"
+            href="https://openhunts.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="OpenHunts Club"
+            aria-label="OpenHunts Club Member"
+          >
+            <img
+              alt="OpenHunts Club Member"
+              src="https://cdn.openhunts.com/badges/club.webp"
+              width="486"
+              height="105"
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
           <p>
             &copy; <span id="year"></span> LLMnesia
           </p>
