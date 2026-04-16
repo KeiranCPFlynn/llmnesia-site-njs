@@ -59,7 +59,7 @@ export default function ContentPage({ entry, body, breadcrumb, schemas, relatedL
               <span className="content-meta-sep" aria-hidden="true">·</span>
               <span>{mins} min read</span>
               <span className="content-meta-sep" aria-hidden="true">·</span>
-              <span>{entry.author}</span>
+              <a href="/about">{entry.author}</a>
             </div>
 
             <div>

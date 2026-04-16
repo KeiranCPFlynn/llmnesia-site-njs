@@ -6,7 +6,7 @@ import { buildPageMetadata } from '../../lib/metadata';
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Use Cases',
   description:
-    'Use-case guides for founders, developers, and researchers who need to recover old AI prompts, decisions, and outputs quickly.',
+    'Use-case guides for founders, developers, researchers, writers, and consultants who use AI tools daily and need fast retrieval of past conversations, decisions, and outputs.',
   canonicalPath: '/use-cases'
 });
 
@@ -19,8 +19,8 @@ export default function UseCasesIndexPage() {
         <header className="content-index-header">
           <h1>LLMnesia Use Cases</h1>
           <p>
-            Job-to-be-done playbooks for people who rely on AI every day and need consistent search
-            across tools.
+            Job-to-be-done guides for people who rely on AI tools daily. Find the patterns and
+            workflows that eliminate repeated prompting and keep prior AI work accessible.
           </p>
           <InstallLink className="button" />
         </header>

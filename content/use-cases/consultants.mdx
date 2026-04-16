@@ -1,0 +1,105 @@
+---
+title: "LLMnesia for Consultants: Reuse AI Work Across Client Engagements"
+slug: "consultants"
+description: "Consultants use AI tools daily for research, analysis, slide decks, client communications, and deliverable drafts. Two problems compound quickly: losing prior work within an engagement, and being unable to reuse frameworks across clients. LLMnesia indexes everything locally — with no client data leaving your device — so prior work stays accessible and billable thinking compounds."
+publishDate: "2026-04-16"
+updatedDate: "2026-04-16"
+author: "Keiran Flynn"
+primaryKeyword: "consultant ai workflow"
+secondaryKeywords:
+  - "knowledge worker ai tools"
+  - "consultant ai productivity"
+  - "client work ai history"
+  - "professional ai chat management"
+  - "confidential ai workflow"
+intent: "commercial"
+faq:
+  - question: "Is it safe to use LLMnesia with client-confidential AI conversations?"
+    answer: "LLMnesia is local-first — your conversation index is stored on your device using browser storage APIs and is never transmitted to external servers. Client names, project details, and sensitive analysis stay on your machine. This is the opposite of cloud-based tools that upload your conversation content to their servers."
+  - question: "How do I find AI work from a previous engagement that's relevant to a current client?"
+    answer: "Search by the concept, framework, or analysis type rather than by client name. A search for 'churn analysis framework' or 'market sizing assumptions' returns sessions where you developed those approaches, regardless of which client they were for."
+  - question: "I work across multiple clients weekly. Can LLMnesia keep these separate?"
+    answer: "LLMnesia is a search tool, not an organisational system. You search by content, and results include context to identify the session. You can use LLMnesia in combination with a project-named naming convention in your AI conversations to make client-specific retrieval easier."
+  - question: "What types of consulting work benefit most?"
+    answer: "Framework development, market sizing, competitive analysis, financial modelling approaches, slide structure patterns, and client communication templates. These are outputs that recur in similar form across engagements and compound in value when retrievable."
+  - question: "Does LLMnesia work with all the AI tools consultants use?"
+    answer: "LLMnesia supports ChatGPT, Claude, Gemini, Perplexity, and other browser-based AI platforms. Many consultants use Claude for long-document analysis and ChatGPT for rapid generation — both are covered simultaneously from one search."
+  - question: "My firm has a policy about AI and client data. Does LLMnesia comply?"
+    answer: "LLMnesia's local-first architecture means no conversation data is transmitted to external servers. Whether this satisfies your firm's specific AI policy depends on the policy's requirements — check with your compliance team. The key distinction is that LLMnesia doesn't create a cloud record of your conversations the way browser-based AI platforms themselves do."
+sources:
+  - label: "LLMnesia privacy policy"
+    url: "https://llmnesia.com/privacy-policy"
+  - label: "The privacy case for local-first AI tools"
+    url: "https://llmnesia.com/blog/local-first-ai-tools-privacy"
+  - label: "LLMnesia product overview"
+    url: "https://llmnesia.com/"
+canonicalPath: "/use-cases/consultants"
+---
+
+Consultants face two distinct AI retrieval problems that stack on each other.
+
+The first is within-engagement continuity: losing the AI-assisted analysis, framework draft, or messaging work from week three of an engagement when you need it in week seven. The same problem that affects anyone using AI tools at volume.
+
+The second is cross-engagement reuse: the market sizing approach you developed for Client A is directly applicable to Client B, but you can't find it without knowing which ChatGPT session it was in, six months ago.
+
+Both problems are solved by automatic conversation indexing. Neither requires any change to your prompting workflow.
+
+## The confidentiality constraint
+
+Consultants have a constraint that other AI power users don't: client confidentiality. The instinctive response to AI history management — cloud-based tools, synced search indexes, shared team databases — creates a problem. Any tool that uploads your AI conversation content to a server creates a cloud record of client names, project details, financial data, and strategic information.
+
+LLMnesia's architecture addresses this directly. The conversation index is stored locally in your browser using standard storage APIs (`IndexedDB`, `chrome.storage.local`). Nothing is transmitted to `llmnesia.com` or any external server. The index is on your device, accessible only to you.
+
+You can verify this independently: open browser developer tools, watch the network tab while using a supported AI platform with LLMnesia active, and confirm no conversation content is sent externally.
+
+## Within-engagement retrieval
+
+A typical consulting engagement runs 8–12 weeks with multiple work streams. AI-assisted work accumulates throughout:
+
+- Week 2: market sizing methodology developed with ChatGPT
+- Week 4: competitive landscape synthesised with Perplexity + Claude
+- Week 6: financial model structure discussed with Claude, revised twice
+- Week 8: slide narrative drafted and iterated with GPT-4
+
+By week 8, finding the week 2 market sizing session requires navigating through six weeks of sessions, most with generic auto-generated titles. With LLMnesia, you search "market sizing assumptions" and jump back to the session.
+
+## Cross-engagement framework reuse
+
+The more valuable retrieval for experienced consultants is across engagements. Work products that recur across clients:
+
+**Market entry frameworks** — The assumptions, structure, and analytical approach for a market entry analysis are similar enough across clients that prior sessions have direct reuse value. Search the framework name rather than a client name.
+
+**Pricing structure approaches** — Pricing architecture discussions often follow similar patterns: value metrics, willingness-to-pay assumptions, competitive anchoring. Prior sessions are starting points for new engagements.
+
+**Slide structure patterns** — A narrative structure that worked well for a strategy deck in Q1 is applicable to a similar deck in Q3. Search "executive summary structure" or "strategic options framing" to find the session where you developed it.
+
+**Communication templates** — Client-facing communication formats — update emails, issue escalation structures, meeting prep frameworks — recur across engagements. Prior AI sessions that produced good templates are worth recovering.
+
+## Concrete consultant tasks and what to search
+
+| Task | Example search |
+|------|---------------|
+| Market sizing | "TAM SAM SOM" or specific industry term |
+| Competitive positioning | "competitive moat" or competitor name |
+| Financial model structure | "unit economics" or "three-statement model" |
+| Slide narrative | "recommendation structure" or "storyline" |
+| Client communication | "status update" or "issue escalation" |
+| Interview guide | "discovery questions" or function area |
+
+## Before and after workflow comparison
+
+| Without retrieval | With retrieval |
+|-------------------|----------------|
+| Rebuild market sizing approach from scratch | Search methodology → recover prior session |
+| Re-derive competitive framework | Search framework type → find development session |
+| Forget which session had the working narrative | Search phrase from narrative → jump back |
+| Re-explain engagement context at start of new sessions | Find prior context → paste as system prompt |
+| Lose cross-engagement frameworks | Searchable by concept across all prior engagements |
+
+## A note on AI policies
+
+Firm AI policies vary. Some firms prohibit entering client names or sensitive data into AI tools entirely. Others permit AI use with certain data-handling conditions. LLMnesia's local-first architecture changes one variable: unlike the AI platform itself (which stores your conversations on their servers), LLMnesia's index of those conversations stays on your device.
+
+If your firm permits AI platform use but has concerns about third-party tools processing conversation content, LLMnesia's architecture — verifiable via network inspection — may address those concerns. Check with your compliance team.
+
+See also: [the privacy case for local-first AI tools](/blog/local-first-ai-tools-privacy) for a detailed technical explanation of how local-first storage works and how to verify it.

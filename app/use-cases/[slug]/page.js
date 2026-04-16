@@ -6,7 +6,7 @@ import {
   getStaticParamsForType,
   renderMdx
 } from '../../../lib/content';
-import { buildPageMetadata } from '../../../lib/metadata';
+import { buildPageMetadata, buildOgImageUrl } from '../../../lib/metadata';
 import { articleSchema, breadcrumbSchema } from '../../../lib/schema';
 
 export function generateStaticParams() {
@@ -24,7 +24,8 @@ export function generateMetadata({ params }) {
     title: entry.title,
     description: entry.description,
     canonicalPath: entry.canonicalPath,
-    ogType: 'article'
+    ogType: 'article',
+    ogImage: buildOgImageUrl(entry.title, entry.description)
   });
 }
 

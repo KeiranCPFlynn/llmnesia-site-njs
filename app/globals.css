@@ -1391,8 +1391,7 @@ h1 {
 }
 
 .content-index-kicker {
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   padding: 0.2rem 0.6rem;
   border-radius: 9999px;
   background: hsla(193, 55%, 44%, 0.1);
@@ -1403,6 +1402,11 @@ h1 {
   text-transform: uppercase;
   color: var(--brand);
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  vertical-align: middle;
 }
 
 .intent-badge {
@@ -1432,6 +1436,7 @@ h1 {
   margin: 0;
   font-size: 1.125rem;
   line-height: 1.35;
+  text-wrap: balance;
 }
 
 .content-index-card h2 a {

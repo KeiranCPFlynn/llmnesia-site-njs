@@ -1,0 +1,108 @@
+---
+title: "What is LLMnesia? How the Extension Indexes and Searches AI Conversations"
+slug: "what-is-llmnesia"
+description: "LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. It stores everything on your device and lets you search old prompts, answers, and decisions in seconds."
+publishDate: "2026-04-16"
+updatedDate: "2026-04-16"
+author: "Keiran Flynn"
+primaryKeyword: "what is llmnesia"
+secondaryKeywords:
+  - "llmnesia review"
+  - "llmnesia how it works"
+  - "ai conversation indexing extension"
+  - "local first ai search"
+  - "llmnesia chrome extension"
+intent: "informational"
+faq:
+  - question: "Is LLMnesia free?"
+    answer: "Yes. LLMnesia is completely free to install and use. There is no paid tier, no subscription, and no account required."
+  - question: "Does LLMnesia store data in the cloud?"
+    answer: "No. LLMnesia stores your conversation index locally in your browser using IndexedDB and chrome.storage.local. Your data never leaves your device."
+  - question: "What AI platforms does LLMnesia support?"
+    answer: "LLMnesia currently supports ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional platforms are in progress."
+  - question: "Does LLMnesia require setup or manual tagging?"
+    answer: "No. LLMnesia runs automatically in the background as you browse supported AI platforms. There is no manual tagging, exporting, or configuration required."
+  - question: "Will LLMnesia slow down my browser?"
+    answer: "LLMnesia is designed to stay lightweight. Indexing happens incrementally in the background while you work and has no measurable impact on browsing performance."
+  - question: "Can I delete the data LLMnesia has indexed?"
+    answer: "Yes. You can clear all indexed data at any time from the extension settings. You can also export the index in a portable format."
+sources:
+  - label: "LLMnesia Chrome Web Store listing"
+    url: "https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
+  - label: "LLMnesia privacy policy"
+    url: "https://llmnesia.com/privacy-policy"
+  - label: "Chrome extension storage APIs — Chrome Developers"
+    url: "https://developer.chrome.com/docs/extensions/reference/api/storage"
+canonicalPath: "/blog/what-is-llmnesia"
+---
+
+LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. It stores the index on your device. No cloud sync or account required. When you need to find something you discussed in an AI chat — a prompt you wrote, an answer you received, a decision you documented — you search and it appears instantly.
+
+## The problem LLMnesia solves
+
+AI tools answer questions well. They are poor at helping you find those answers again.
+
+Native chat history on most AI platforms searches by conversation title only — not by the content inside the conversation. If you didn't rename the chat, or the auto-generated title doesn't match what you're searching for, the answer is effectively lost. Add in the fact that most people use two or three AI tools regularly, and the retrieval problem compounds: you have to remember which platform you used before you can even start looking.
+
+LLMnesia adds a retrieval layer that sits on top of all your AI tools simultaneously. One search covers everything.
+
+## How LLMnesia works
+
+When you visit a supported AI platform, LLMnesia runs a content script that reads your conversation and writes a structured index entry to your local browser storage. This happens automatically — no export, no setup, no manual steps.
+
+The index is stored using the browser's `IndexedDB` and `chrome.storage.local` APIs. These are standard browser storage APIs that keep all data on your device. LLMnesia makes no network requests to external servers during indexing or search.
+
+When you open the LLMnesia search interface (via the extension popup or keyboard shortcut), it queries that local index and returns results in milliseconds. Each result includes a jump-back link to the original conversation on the original platform.
+
+## Supported platforms
+
+LLMnesia currently indexes conversations from:
+
+- **ChatGPT** (chat.openai.com)
+- **Claude** (claude.ai)
+- **Gemini** (gemini.google.com)
+- **Perplexity** (perplexity.ai)
+- **DeepSeek** (chat.deepseek.com)
+- **Grok** (x.com/grok and grok.com)
+- **Mistral** (chat.mistral.ai)
+- **Kimi** (kimi.moonshot.cn)
+- **Qwen** (tongyi.aliyun.com)
+- **Google AI Studio** (aistudio.google.com)
+
+Additional integrations are in progress.
+
+## Who it's for
+
+LLMnesia is built for people who use AI tools heavily — multiple sessions per day, often across more than one platform.
+
+**Founders** who switch between strategy, product, and hiring conversations and can't afford to re-solve decisions they've already worked through.
+
+**Developers** who ask AI assistants to debug code, generate boilerplate, or explain architecture — then need to find that solution three weeks later when the same problem comes up.
+
+**Researchers** who use AI to synthesise sources, draft arguments, or explore hypotheses — and need to cross-reference their own past work.
+
+**Writers** who use AI for brainstorming, editing, and rewriting — and want to pull back drafts, iterations, and feedback without searching manually.
+
+Anyone who has said "I already figured this out — where was it?" is the target audience.
+
+## Privacy model
+
+LLMnesia's privacy guarantee is architectural, not a policy. There is no server that receives your conversations because the extension never makes outbound requests with conversation data. The entire index lives in your browser.
+
+You can verify this yourself: open your browser's developer tools while using a supported AI platform, filter network requests to those made by the LLMnesia extension, and observe that no conversation data is transmitted anywhere.
+
+You can clear your entire index at any time from the extension settings panel, or export it as a portable file you own.
+
+## How it compares to alternatives
+
+The main alternatives to LLMnesia are:
+
+**Native platform history** — works for single-platform, recent searches. Degrades at volume and doesn't cover other tools.
+
+**Manual note-taking (Notion, Obsidian)** — works if you maintain the discipline. Requires active effort for every conversation worth keeping.
+
+**Clipboard savers and read-later tools** — capture individual snippets but don't build a searchable index across sessions.
+
+**Cloud-based AI memory tools** — send your conversations to external servers for indexing. Unsuitable for anyone with privacy constraints.
+
+LLMnesia is designed for the user who wants the benefit of automatic indexing without the privacy trade-off that cloud-based alternatives require.

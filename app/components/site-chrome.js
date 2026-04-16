@@ -28,6 +28,7 @@ export default function SiteChrome({ children }) {
             <a href="/blog">Blog</a>
             <a href="/compare">Compare</a>
             <a href="/use-cases">Use Cases</a>
+            <a href="/about">About</a>
             <a href="/privacy-policy">Privacy</a>
             <InstallLink className="nav-cta">Add to Chrome</InstallLink>
           </nav>
@@ -39,6 +40,7 @@ export default function SiteChrome({ children }) {
       <footer className="site-footer">
         <div className="container footer-inner">
           <nav aria-label="Footer">
+            <a href="/about">About</a>
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/blog">Blog</a>
             <a href="/compare">Compare</a>

@@ -1,23 +1,31 @@
 ---
-title: "Use Case: Researchers Tracking AI-Assisted Analysis"
+title: "LLMnesia for Researchers: Maintain Continuity Across Long AI-Assisted Projects"
 slug: "researchers"
-description: "Researchers working with AI generate many partial analyses, hypothesis drafts, and synthesis attempts across sessions. Without retrieval discipline, useful reasoning gets buried and duplicated. A searchable AI conversation layer helps researchers recover prior lines of thought and maintain higher continuity across long projects."
+description: "Research projects span weeks or months. AI-assisted analysis accumulates across many sessions — hypothesis drafts, source synthesis, argument chains, methodology discussions. Without retrieval, useful reasoning gets buried and duplicated. LLMnesia makes every AI-assisted research session searchable, so you build forward instead of rebuilding from scratch."
 publishDate: "2026-04-20"
 updatedDate: "2026-04-20"
-author: "LLMnesia Team"
+author: "Keiran Flynn"
 primaryKeyword: "research ai workflow"
 secondaryKeywords:
   - "ai research retrieval"
   - "find prior analysis ai"
   - "long horizon ai projects"
+  - "ai assisted research tools"
+  - "perplexity conversation history"
 intent: "commercial"
 faq:
-  - question: "Why is retrieval critical for research workflows?"
-    answer: "Research has long time horizons, so losing intermediate reasoning creates avoidable duplication and weakens synthesis quality."
-  - question: "Can retrieval improve source quality?"
-    answer: "It helps preserve prior source trails and reasoning chains, which can improve consistency in later synthesis steps."
-  - question: "What is a good minimum practice?"
-    answer: "Attach one retrieval anchor and one source anchor to each significant AI-assisted analysis checkpoint."
+  - question: "How do I recover a specific analysis thread from three weeks ago?"
+    answer: "With LLMnesia, search a keyword from that analysis — a hypothesis you were testing, a source you cited, a concept you were exploring. LLMnesia indexes the full text of AI conversations, so a phrase like 'confounding variable' or 'RCT methodology' will surface the relevant session with a direct link back."
+  - question: "Why is retrieval especially critical for long-horizon research?"
+    answer: "Research projects evolve over months. Without retrieval, reasoning paths that were explored and abandoned are invisible — which means they get re-explored, conclusions get re-derived, and the same dead ends get revisited. Retrieval makes the project's full AI-assisted history accessible, reducing duplication and improving synthesis quality."
+  - question: "Does LLMnesia work with Perplexity?"
+    answer: "Yes. LLMnesia indexes Perplexity conversations alongside ChatGPT, Claude, Gemini, and other platforms. For research workflows that use Perplexity for source discovery alongside Claude or ChatGPT for synthesis, LLMnesia covers all of them in a single search."
+  - question: "Can retrieval improve the quality of my research sources?"
+    answer: "Retrieval helps preserve prior source trails and citation context from AI conversations. When you find a session where Perplexity surfaced a relevant paper, or Claude synthesised a set of sources, you recover the full reasoning chain — not just the conclusion."
+  - question: "How does this fit alongside research tools like Zotero or citation managers?"
+    answer: "LLMnesia covers AI conversation history — the process of thinking through your research with AI tools. Zotero and citation managers cover the formal literature. They are complementary: use a citation manager for formal sources, LLMnesia for the AI-assisted reasoning about those sources."
+  - question: "What is the minimum practice for maintaining research continuity?"
+    answer: "Search LLMnesia before opening a new AI session on a topic you've explored before. Check whether you've already worked through the question. If you have, build from that session rather than restarting."
 sources:
   - label: "Google Scholar"
     url: "https://scholar.google.com/"
@@ -27,16 +35,59 @@ sources:
     url: "https://llmnesia.com/"
 canonicalPath: "/use-cases/researchers"
 ---
-## Research continuity problem
 
-In long projects, the issue is rarely "no ideas." The issue is losing track of which reasoning path already worked.
+Research projects have long time horizons. A single project might span three months of AI-assisted sessions — literature synthesis, hypothesis refinement, methodology review, argument construction, draft feedback. Over that time, hundreds of conversations accumulate across ChatGPT, Claude, and Perplexity.
 
-## Retrieval-first pattern
+The retrieval problem in research is different from the developer or founder problem. It's not that you've forgotten the answer — it's that the reasoning path that led to the answer has gone cold, and rebuilding it takes almost as long as the original exploration.
 
-- Keep AI-assisted reasoning searchable.
-- Reopen old argument chains before drafting new ones.
-- Reuse prior synthesis blocks when still valid.
+## The hypothesis drift problem
 
-## Outcome
+Researchers working with AI accumulate partial analyses: a hypothesis explored and rejected, a framing tried and abandoned, a methodology considered and deferred. Without retrieval, this work is invisible at the start of the next session.
 
-Researchers spend more time refining insight quality and less time rebuilding prior reasoning from memory.
+The result is not wasted sessions — the sessions were valuable when they happened. The result is that each new session starts from a reconstructed mental model rather than the actual prior work. The reconstruction is imprecise. The same reasoning paths get re-explored. The same dead ends get revisited.
+
+LLMnesia makes prior AI-assisted reasoning accessible. Before starting a new session on a topic you've explored before, you search what you already have.
+
+## Concrete research tasks where retrieval matters
+
+**1. Hypothesis iteration tracking**
+Research hypotheses evolve through many versions. When you work through hypothesis variants with Claude — testing assumptions, checking for confounds, refining scope — each variant is a session. Without retrieval, only the most recent version is accessible by memory. Search "hypothesis version" or the specific variable you were testing to pull back the full iteration history.
+
+**2. Methodology discussions**
+Methodology decisions often involve long AI-assisted deliberations: why this statistical method over that one, which data collection approach, what sampling strategy. These discussions are valuable to recover when you're writing the methodology section or defending choices to a supervisor or peer reviewer. Search the method name to find the reasoning session.
+
+**3. Literature synthesis sessions**
+AI-assisted literature synthesis — using Claude or Perplexity to summarise and connect sources — produces valuable output that's easy to lose. A session where Perplexity surfaced five relevant papers and Claude synthesised the connections across them is a significant research asset. Search the paper title, author name, or topic to recover it.
+
+**4. Counter-argument exploration**
+Researchers often use AI to pressure-test arguments by generating opposing views. These sessions are valuable when writing discussion sections or responding to reviews. Search the argument you were testing to find the counter-argument session.
+
+**5. Writing feedback iterations**
+Draft sections reviewed and rewritten with AI assistance accumulate over the writing phase of a project. Finding the version where Claude suggested a specific structural change — or identified the flaw in a particular paragraph — is useful when revising. Search a distinctive phrase from the draft to find the relevant feedback session.
+
+## The multi-platform research workflow
+
+Researchers typically use different AI tools for different tasks:
+
+- **Perplexity** for source discovery and literature overview (cited sources, recent papers)
+- **Claude** for long-form analysis, synthesis, and argument review
+- **ChatGPT** for general reasoning, statistical method guidance, data interpretation
+- **Gemini** for cross-referencing with Google Scholar results
+
+Each platform has a separate history. LLMnesia covers all of them with a single search. A query for a specific research topic returns results from Perplexity source sessions, Claude synthesis sessions, and ChatGPT reasoning sessions simultaneously — the full picture of your AI-assisted work on that topic.
+
+## Before and after workflow comparison
+
+| Without retrieval | With retrieval |
+|-------------------|----------------|
+| Rebuild hypothesis context from memory | Search topic → recover full prior reasoning |
+| Re-explore methodology options | Search method name → find prior deliberation |
+| Re-derive literature connections | Search paper title or author → recover synthesis session |
+| Start new AI session from blank context | Find prior session → continue from where you left off |
+| Lose rejected framings entirely | Searchable history of what you tried and abandoned |
+
+## Research privacy
+
+Research often involves unpublished findings, confidential data, grant-related information, and pre-publication arguments. LLMnesia is local-first — your conversation index is stored on your device using browser storage APIs, not synced to any cloud service. Research conversations never leave your machine.
+
+See also: [AI knowledge base vs chat history](/blog/ai-knowledge-base-vs-chat-history) for context on how AI conversation retrieval differs from document-based knowledge management tools like Zotero or Notion.
