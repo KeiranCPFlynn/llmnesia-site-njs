@@ -1325,6 +1325,66 @@ h1 {
   }
 }
 
+/* ===== CHANGELOG ===== */
+.changelog-main {
+  display: grid;
+  gap: 3rem;
+  padding: 3rem 0 5rem;
+}
+
+.changelog-list {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 52rem;
+}
+
+.changelog-entry {
+  border: 1px solid var(--color-border, #e2e8e0);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  background: #fff;
+}
+
+.changelog-entry-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.changelog-version {
+  font-weight: 700;
+  font-size: 0.8rem;
+  background: #edfaf3;
+  color: #1a4d35;
+  border: 1px solid #c3e8d4;
+  border-radius: 6px;
+  padding: 2px 8px;
+  letter-spacing: 0.03em;
+}
+
+.changelog-date {
+  font-size: 0.85rem;
+  color: #6b8a9e;
+}
+
+.changelog-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #153147;
+  margin: 0 0 0.85rem;
+}
+
+.changelog-highlights {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.4rem;
+  color: #355068;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
 /* ===== CONTENT HUBS ===== */
 .content-index-main {
   display: grid;

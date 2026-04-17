@@ -1,0 +1,41 @@
+[
+  {
+    "version": "0.1.4",
+    "date": "2026-04-17",
+    "title": "Search history, onboarding & reliability fixes",
+    "highlights": [
+      "↑/↓ arrow keys cycle through previous search queries from the search palette",
+      "History dropdown: click the clock icon to browse and re-run previous searches, with per-item removal",
+      "Guided onboarding flow for new installs",
+      "\"Continue In\" tooltip now has a clearer label",
+      "Fixed: search terms now save to history when the overlay closes before the debounce fires",
+      "Fixed: snippet save popup no longer reappears immediately after clicking ✕",
+      "Fixed: switching tabs in the palette now correctly filters/re-runs search",
+      "Fixed: search palette no longer stays open when clicking outside in Chrome",
+      "Fixed: Kimi, Qwen, and Mistral adapter reliability improvements",
+      "Fixed: email capture prompt no longer reappears on every overlay open after install",
+      "Beta: snippet saving — highlight text in any AI chat to save it for later"
+    ]
+  },
+  {
+    "version": "0.1.3",
+    "date": "2026-03-25",
+    "title": "Search result & popup improvements",
+    "highlights": [
+      "Search results display improvements",
+      "Popup layout adjustments"
+    ]
+  },
+  {
+    "version": "0.1.2",
+    "date": "2026-01-01",
+    "title": "Initial release",
+    "highlights": [
+      "Local-first full-text search across AI chat conversations",
+      "Support for ChatGPT, Claude, Gemini, Deepseek, Perplexity, Grok, Mistral, Kimi, Qwen, AI Studio",
+      "Keyboard shortcut to open search palette (Cmd/Ctrl+Shift+9, customisable)",
+      "\"Continue In\" — open any indexed chat in a different AI platform",
+      "Snippet highlight — jump from search result directly to the source message"
+    ]
+  }
+]
