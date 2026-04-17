@@ -1,0 +1,128 @@
+---
+title: "How to Search Poe Conversation History (All Bots)"
+slug: "search-poe-conversation-history"
+description: "Poe, Quora's multi-model AI platform, saves your conversations with ChatGPT, Claude, Gemini, and dozens of custom bots. Finding a specific past answer across multiple bots and sessions requires more than scrolling. This guide covers how to search Poe conversation history effectively."
+publishDate: "2026-04-17"
+updatedDate: "2026-04-17"
+author: "Keiran Flynn"
+primaryKeyword: "search poe conversation history"
+secondaryKeywords:
+  - "poe ai chat history"
+  - "find old poe conversations"
+  - "poe history search"
+  - "quora poe conversation archive"
+  - "poe bot chat history"
+intent: "informational"
+faq:
+  - question: "Does Poe save my conversation history?"
+    answer: "Yes. Poe saves your conversations with all bots when you're signed into a Poe account at poe.com. Each bot has a separate conversation thread. Conversations are accessible across devices. Without an account, conversations are not saved."
+  - question: "Can I search Poe conversation history by content?"
+    answer: "Poe does not offer native full-text search of conversation content. You can browse recent conversations per bot from the sidebar, but there is no search across all conversations or across all bots simultaneously. A browser extension like LLMnesia provides cross-bot content search."
+  - question: "How is Poe's history organised differently from ChatGPT?"
+    answer: "Unlike ChatGPT's unified sidebar, Poe organises history per-bot. To find an old conversation, you need to navigate to the specific bot you used and access that bot's history. If you're unsure which bot you used, you'd need to check multiple bots, which makes retrieval harder."
+  - question: "Can I export Poe conversation history?"
+    answer: "Poe does not currently offer a bulk conversation export feature. Individual conversations can be copied manually. For a persistent local archive, a browser extension that indexes conversations automatically is the practical alternative."
+  - question: "Does LLMnesia support Poe?"
+    answer: "Yes. LLMnesia indexes Poe conversations at poe.com as you use them, across all bots. The index is stored locally on your device and lets you search across all your Poe conversations by keyword — regardless of which bot the conversation was with."
+sources:
+  - label: "Poe by Quora"
+    url: "https://poe.com/"
+  - label: "Poe help centre"
+    url: "https://poe.com/about"
+  - label: "LLMnesia — multi-platform AI search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/search-poe-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "find-old-chatgpt-conversations"
+  - "cross-llm-workflow-without-context-loss"
+  - "best-chrome-extensions-save-ai-conversations"
+---
+
+Poe is Quora's multi-model AI platform — it provides access to ChatGPT, Claude, Gemini, Llama, and dozens of custom community-built bots from a single interface. For users who've accumulated significant conversation history across multiple bots, retrieving a specific past answer presents a unique challenge: the per-bot history organisation means you need to know which bot you used before you can start looking.
+
+## How Poe organises conversation history
+
+Unlike ChatGPT or Claude where all conversations appear in one unified sidebar, Poe organises history per-bot:
+
+- Each bot maintains its own conversation history
+- To see your conversations with ChatGPT on Poe, navigate to the ChatGPT bot and access its history
+- To see conversations with Claude, navigate to the Claude bot, and so on
+- There is no single "all conversations" view that shows everything across all bots
+
+This architecture reflects Poe's identity as a platform that hosts multiple models. It's logical from an organisation standpoint but makes cross-bot retrieval difficult.
+
+**Practical implication:** If you don't remember whether you had a conversation on Poe with Claude or with GPT-4, you need to check both bot histories separately. If you've used many different bots over time, finding one specific conversation could mean checking many individual bot histories.
+
+## Method 1: Navigate to the specific bot's history
+
+If you remember which bot you used:
+
+1. Sign in to poe.com
+2. Find the bot in your sidebar or through the bot directory
+3. Open a chat with that bot
+4. Browse the conversation history for that bot (usually accessible from within the chat interface)
+
+For users with a small number of bots they regularly use, this is the most direct approach.
+
+## Method 2: Check recent conversations from the sidebar
+
+Poe shows recently accessed conversations (across all bots) in the main sidebar:
+
+1. Sign in to poe.com
+2. Look at the left sidebar which shows recent conversations
+3. Scroll to find the conversation by title or recency
+
+This is the closest thing to a unified history view — it shows recent activity across all bots, not just one. The limitation is that it's sorted by recency, so older conversations may require scrolling past many newer ones.
+
+## Method 3: Browser history
+
+For conversations accessed recently:
+
+1. Open browser history (Ctrl+H)
+2. Search for "poe.com"
+3. Look for conversation URLs — Poe URLs often include bot names, making them more scannable than platforms with opaque IDs
+
+Browser history is often the fastest path for conversations within the last few weeks, especially if you can associate the conversation with a specific date or project.
+
+## Method 4: Browser Ctrl+F inside an open conversation
+
+For finding a specific phrase within a conversation you've located:
+
+1. Open the conversation
+2. Use Ctrl+F to search within the visible content
+
+For long conversations, this is the fastest way to jump to a specific section.
+
+## Method 5: Cross-bot content search with LLMnesia
+
+The fundamental limitation of Poe's history is that there's no way to search across all bots and all conversations simultaneously. If you've used 10 different bots over the past year, finding a specific answer requires knowing (or guessing) which bot it came from.
+
+LLMnesia resolves this by indexing Poe conversations across all bots into a unified local search index:
+
+1. Install LLMnesia
+2. Browse your Poe conversations (across different bots) — LLMnesia indexes them as you visit
+3. Search from LLMnesia's interface using keywords
+4. Results appear from all indexed bots in one list — no need to know which bot the answer came from
+
+This is particularly valuable for Poe's use case, since the platform's strength (access to many different models) also creates the per-bot history fragmentation problem.
+
+## Poe-specific considerations
+
+**Custom bots:** Poe allows creating and using custom bots (user-created bots with specific prompting). Conversations with custom bots are saved per-bot like any other. If the custom bot you used was later deleted (by its creator or yourself), you may not be able to access that bot's interface to view history — though the conversation itself may still be accessible via URL.
+
+**Subscription limits:** Poe free tier limits usage of premium models (GPT-4, Claude 3 Opus, etc.). If you've used multiple models across different subscription periods, your history may span model versions that you no longer have access to use, but can still read.
+
+**Cross-platform confusion:** Users who access Claude or ChatGPT both directly and via Poe can find their history split across platforms. Searching on Claude.ai won't find conversations you had with Claude on Poe. LLMnesia unifies both into one searchable index.
+
+## Poe vs direct platform access: which history is better?
+
+| Feature | Poe history | Direct platform history |
+|---------|-------------|------------------------|
+| Unified view across models | Partial (recent) | No (by definition) |
+| Per-model organisation | Yes (per-bot) | Yes (single model) |
+| Full-text search | No | No (native) |
+| Export | No | Depends on platform |
+| Access to all model versions | Yes | Limited to current version |
+
+For users who primarily use Poe as their AI interface, the lack of cross-bot search is the most significant history limitation. Browser extension indexing is currently the only solution for this.

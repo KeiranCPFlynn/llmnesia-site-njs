@@ -1,0 +1,147 @@
+---
+title: "How to Export Your Gemini Conversation History (Google Takeout)"
+slug: "how-to-export-gemini-conversation-history"
+description: "Gemini conversation history is tied to your Google account and can be exported through Google Takeout. This guide explains where Gemini data lives, how to export it, what format you receive, and how to search the exported conversations."
+publishDate: "2026-04-17"
+updatedDate: "2026-04-17"
+author: "Keiran Flynn"
+primaryKeyword: "export gemini conversation history"
+secondaryKeywords:
+  - "download gemini chat history"
+  - "google gemini data export"
+  - "gemini takeout export"
+  - "backup gemini conversations"
+  - "save google gemini chats"
+intent: "informational"
+faq:
+  - question: "How do I export my Gemini conversations?"
+    answer: "Gemini conversation data is included in Google Takeout. Go to takeout.google.com, sign in with your Google account, deselect all data, then specifically select 'Gemini Apps' (it may be listed under 'Google Gemini' or 'Bard'). Choose your export format and frequency, then click 'Create export'. Google will email you a download link."
+  - question: "What format does Gemini export conversations in?"
+    answer: "Google Takeout exports Gemini data in JSON format inside a zip archive. The file contains your conversation history including your prompts, Gemini's responses, and timestamps. The exact structure depends on the Takeout version."
+  - question: "Is Gemini conversation history the same as Google My Activity?"
+    answer: "Related but different. Google My Activity (myactivity.google.com) shows a log of your Gemini interactions as activity events. Takeout provides the actual conversation content. Both can be used to access your Gemini history, but Takeout gives you the more complete data for the actual text of exchanges."
+  - question: "Can I delete my Gemini conversation history?"
+    answer: "Yes. Go to myactivity.google.com, filter by Gemini, and delete specific activities or clear a date range. You can also pause Gemini Apps Activity from Google Account settings — this stops future conversations from being saved. Note that pausing activity will prevent history from syncing."
+  - question: "Does LLMnesia support Gemini?"
+    answer: "Yes. LLMnesia indexes Gemini conversations at gemini.google.com as you use them. The index is stored locally on your device, separate from your Google account, giving you searchable access to Gemini history without going through Google Takeout."
+sources:
+  - label: "Google Takeout"
+    url: "https://takeout.google.com/"
+  - label: "Google My Activity"
+    url: "https://myactivity.google.com/"
+  - label: "LLMnesia — Gemini search guide"
+    url: "https://llmnesia.com/blog/search-gemini-conversation-history"
+canonicalPath: "/blog/how-to-export-gemini-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "search-gemini-conversation-history"
+  - "how-to-export-chatgpt-conversation-history"
+  - "how-to-backup-ai-conversations"
+---
+
+Gemini's conversation data is part of your Google account ecosystem. Unlike ChatGPT or Claude which have dedicated export features in their settings, getting a full Gemini export requires going through Google Takeout — Google's unified data download tool.
+
+The process is a few steps longer than ChatGPT's export, but the result is the same: a portable copy of your conversation history you can browse and search independently of your Google account.
+
+## Where Gemini stores your data
+
+Gemini conversations are linked to your Google account in two ways:
+
+**1. Gemini Apps Activity:** The conversation itself is logged as an activity event in your Google account. This is visible at myactivity.google.com. Your Gemini Apps Activity setting controls whether conversations are saved and how long they're retained.
+
+**2. Conversation interface:** The conversation UI at gemini.google.com shows your conversation history in the sidebar. This syncs across devices where you're signed in to the same Google account.
+
+If you have **Gemini Apps Activity** turned off in your Google account settings, conversations are not saved to your account and will not be accessible across devices or through Takeout.
+
+## Requesting the Gemini export through Google Takeout
+
+1. Go to **takeout.google.com** and sign in
+2. Click **Deselect all** to uncheck all Google products (there are many)
+3. Scroll down to find **Gemini Apps** (it may also appear as "Google Gemini" or previously "Bard")
+4. Check the box next to Gemini Apps
+5. Scroll to the bottom and click **Next step**
+6. Choose your delivery method:
+   - **Send download link via email** (recommended for most users)
+   - **Add to Drive, Dropbox, OneDrive, or Box** if you prefer cloud storage
+7. Choose export frequency: **Export once** for a single snapshot
+8. Choose file type (zip) and maximum size
+9. Click **Create export**
+
+Google will process the export and send you a download link via email. Processing time varies: small accounts receive the link within minutes, large accounts may take up to 24 hours.
+
+## What's in the Gemini Takeout export
+
+The downloaded zip archive contains a folder for Gemini Apps. Inside you'll find:
+
+**JSON files containing your conversations:** Each includes your prompts, Gemini's responses, timestamps, and conversation identifiers.
+
+**Metadata:** Information about the data structure and any included files.
+
+The exact structure varies based on how long you've been using Gemini and which features you've used. Extensions, the Workspace integration, and the mobile app may store data slightly differently.
+
+## How to search the exported data
+
+### Option 1: Text editor keyword search
+
+1. Extract the zip archive
+2. Open the JSON conversation file in a text editor (VS Code handles large files well)
+3. Use Ctrl+F to search for keywords
+
+JSON is plain text — keyword search works directly on the content. You'll see your prompt and Gemini's response for each match.
+
+### Option 2: Python script for readable output
+
+For a cleaner reading experience:
+
+```python
+import json
+
+with open('Gemini Apps/gemini_conversations.json') as f:
+    data = json.load(f)
+
+search_term = "your keyword"
+for convo in data.get('conversations', []):
+    for turn in convo.get('turns', []):
+        content = turn.get('content', '')
+        if search_term.lower() in content.lower():
+            print(f"Conversation: {convo.get('title', 'Untitled')}")
+            print(content[:500])
+            print("---")
+```
+
+Adjust the field names based on the actual structure in your export — open the JSON file and look at the top-level keys to confirm.
+
+### Option 3: Import into Obsidian or similar
+
+Convert the JSON to markdown files and import into a searchable personal knowledge base. This creates a permanently searchable archive that's human-readable and doesn't require scripting for ongoing use.
+
+## Google My Activity vs Takeout: which to use
+
+| Use case | Google My Activity | Google Takeout |
+|----------|-------------------|----------------|
+| Check if a conversation was saved | ✓ | |
+| Delete specific conversations | ✓ | |
+| Pause future conversation saving | ✓ | |
+| Read conversation text | Partial | ✓ |
+| Export portable copy | | ✓ |
+| Searchable archive | | ✓ |
+
+Use Google My Activity for **managing** your Gemini history. Use Google Takeout for **exporting** it.
+
+## Privacy considerations unique to Gemini
+
+Gemini's data lives within Google's broader data ecosystem. Some implications:
+
+**Data use by Google:** Unless you opt out, Gemini conversations may be reviewed by human reviewers to improve the product. This is disclosed in Google's policies. If this concerns you, review the "Gemini Apps Activity" settings in your Google Account to understand and adjust your data use preferences.
+
+**Google Account dependency:** Unlike ChatGPT or Claude where the AI account is separate from other services, Gemini is part of your Google account. Changing Google account settings can affect Gemini history retention.
+
+**Workspace vs personal:** If you use Gemini through Google Workspace (a business or school account), your administrator may control data retention and export settings. Contact your IT administrator for export assistance in this case.
+
+## Alternatives to periodic Takeout exports
+
+Google Takeout exports are useful for point-in-time snapshots but require manual initiation. For ongoing access to Gemini conversation content:
+
+**LLMnesia** indexes Gemini conversations automatically as you use them at gemini.google.com. The index is stored locally on your device — independent of your Google account and separate from Google's data systems. You can search Gemini history alongside ChatGPT, Claude, and other platforms without going through Takeout.
+
+The two approaches complement each other: Takeout for a complete historical backup, browser extension for active ongoing indexing.

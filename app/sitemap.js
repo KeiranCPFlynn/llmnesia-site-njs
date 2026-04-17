@@ -1,4 +1,4 @@
-import { getAllContent } from '../lib/content';
+import { getAllContent, getAllCategories } from '../lib/content';
 import { absoluteUrl } from '../lib/site';
 
 export default function sitemap() {
@@ -11,6 +11,12 @@ export default function sitemap() {
     { path: '/use-cases', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/changelog', priority: 0.7, changeFrequency: 'monthly' }
   ];
+
+  const categoryRoutes = getAllCategories('blog').map((cat) => ({
+    path: `/blog/category/${cat}`,
+    priority: 0.7,
+    changeFrequency: 'weekly'
+  }));
 
   const dynamicRoutes = [
     ...getAllContent('blog').map((entry) => ({
@@ -33,7 +39,7 @@ export default function sitemap() {
     }))
   ];
 
-  return [...staticRoutes, ...dynamicRoutes].map((route) => ({
+  return [...staticRoutes, ...categoryRoutes, ...dynamicRoutes].map((route) => ({
     url: absoluteUrl(route.path),
     lastModified: route.lastModified || new Date().toISOString(),
     changeFrequency: route.changeFrequency,

@@ -1,0 +1,156 @@
+---
+title: "How to Search Microsoft Copilot Conversation History"
+slug: "search-microsoft-copilot-conversation-history"
+description: "Microsoft Copilot's conversation history behaviour varies significantly depending on which version you're using — web, Windows, Edge sidebar, or Microsoft 365. This guide explains what each version saves, how to find old Copilot conversations, and how to search across them."
+publishDate: "2026-04-17"
+updatedDate: "2026-04-17"
+author: "Keiran Flynn"
+primaryKeyword: "microsoft copilot conversation history"
+secondaryKeywords:
+  - "search copilot chat history"
+  - "find old copilot conversations"
+  - "copilot history not saving"
+  - "bing chat history search"
+  - "microsoft 365 copilot history"
+intent: "informational"
+faq:
+  - question: "Does Microsoft Copilot save conversation history?"
+    answer: "It depends on which version you're using. Copilot on the web (copilot.microsoft.com) saves recent conversations when you're signed into a Microsoft account. The Edge sidebar Copilot saves limited history. Microsoft 365 Copilot (in Teams, Word, etc.) keeps records in your Microsoft 365 activity log. Some modes do not retain history between sessions."
+  - question: "Where can I find my old Copilot conversations?"
+    answer: "For web Copilot: the left sidebar on copilot.microsoft.com shows recent conversations when signed in. For Microsoft 365 Copilot: history may appear in the specific app where it was used (e.g., Teams chat history). For Edge sidebar: limited history is accessible in the sidebar panel."
+  - question: "Why did my Copilot conversation history disappear?"
+    answer: "Copilot does not retain all conversations indefinitely. Some conversation modes (like certain quick-answer formats) do not create a persistent history entry. Signing out resets the visible history for unauthenticated sessions. Microsoft's data retention policies apply to signed-in history."
+  - question: "Can I search the content of old Copilot conversations?"
+    answer: "Not natively. Copilot's conversation history is navigable but not full-text searchable through the interface. To search the content of past Copilot conversations, you need a browser extension that indexes the conversation text — such as LLMnesia."
+  - question: "Does LLMnesia work with Microsoft Copilot?"
+    answer: "Yes. LLMnesia indexes conversations at copilot.microsoft.com as you use them. The index is stored locally and lets you search Copilot conversation content alongside ChatGPT, Claude, Gemini, and other platforms from one search interface."
+sources:
+  - label: "Microsoft Copilot support"
+    url: "https://support.microsoft.com/en-us/copilot"
+  - label: "Microsoft privacy dashboard"
+    url: "https://account.microsoft.com/privacy"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/search-microsoft-copilot-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "find-old-chatgpt-conversations"
+  - "search-claude-conversation-history"
+  - "ai-chat-history-broken-native-search"
+---
+
+Microsoft Copilot is actually several different products that share a brand name. The conversation history experience varies considerably depending on which version you're using. Before looking for old conversations, it helps to understand which Copilot you've been using.
+
+## Which Copilot are you using?
+
+**Copilot on the web (copilot.microsoft.com):** The standalone web product, accessible in any browser. Previously called Bing Chat. This version saves conversation history when you're signed into a Microsoft account.
+
+**Copilot in Microsoft Edge sidebar:** The AI assistant built into the Edge browser. Accessible via the sidebar icon or Alt+/ shortcut. History persistence here is more limited than the standalone web product.
+
+**Microsoft 365 Copilot:** The paid enterprise version integrated into Teams, Word, Excel, Outlook, and other Microsoft 365 apps. This operates separately from the consumer Copilot and logs activity differently.
+
+**Copilot in Windows:** The system-level assistant accessible from the taskbar. This version has the least persistent history.
+
+This guide focuses primarily on the web version at copilot.microsoft.com, which is what most individual users interact with most.
+
+## How Copilot web stores conversation history
+
+When you use Copilot on the web while signed into a Microsoft account:
+
+- Each conversation session is stored as a separate history entry
+- The sidebar shows recent conversations, accessible on return visits
+- History is account-linked, so it syncs across devices where you sign in with the same account
+
+The web version supports three response styles: Balanced, Creative, and Precise (or the more direct "Chat" mode in newer versions). All of these create history entries when you're signed in.
+
+**Important:** If you use Copilot without signing in (as a guest), conversations are not saved. There is no way to retrieve a conversation started without an account.
+
+## Method 1: Browse the conversation sidebar
+
+On copilot.microsoft.com:
+
+1. Sign in with your Microsoft account
+2. Look for the conversation history panel — typically accessible from the left sidebar or a history icon
+3. Scroll to find the conversation you're looking for — entries are displayed with the first query as the title
+
+The interface has changed several times since Bing Chat became Copilot. If you don't see a history panel, look for a clock or history icon near the top of the page, or check the sidebar menu.
+
+## Method 2: Search in Microsoft account activity
+
+Microsoft logs Copilot activity in your Microsoft account:
+
+1. Go to account.microsoft.com/privacy
+2. Navigate to **Activity history**
+3. Filter by Cortana/Copilot activity or search by date
+
+This shows a log of your Copilot interactions. The level of detail stored depends on your privacy settings. If you've turned off activity tracking, this log may be empty or partial.
+
+Note: the activity log is different from the conversation view. It shows that interactions happened but may not give you the full conversation content.
+
+## Method 3: Check browser history
+
+For recent conversations, your browser history retains the URLs of Copilot sessions:
+
+1. Open browser history (Ctrl+H)
+2. Search for "copilot.microsoft.com"
+3. Conversation URLs include IDs that link back to specific sessions
+
+This works for conversations accessed within your browser's history retention period (typically 30–90 days). For incognito sessions, no history is retained.
+
+## Method 4: Use browser Ctrl+F inside an open conversation
+
+If you've found the right conversation and need to locate a specific section within it:
+
+1. Open the conversation from history
+2. Press Ctrl+F (Windows) or Cmd+F (Mac)
+3. Search for the phrase you remember
+
+This is useful for long conversations with many exchanges. Copilot conversations can extend over many messages, and browser find-in-page is the fastest way to jump to a specific section within an open conversation.
+
+## Method 5: A cross-platform search extension (LLMnesia)
+
+For users who have extensive Copilot history and need to find specific answers from past sessions, LLMnesia provides full-text content search.
+
+LLMnesia indexes the content of your Copilot conversations at copilot.microsoft.com as you use them. The index is stored locally on your device — nothing is uploaded to external servers.
+
+After installation, you can search Copilot history by any keyword from any conversation — not just titles. Results are returned alongside history from any other AI platforms you've indexed.
+
+## Microsoft 365 Copilot: a different story
+
+If you use Microsoft 365 Copilot (the paid enterprise product), the history experience is different:
+
+- **In Teams:** Copilot interactions in Teams chats and meetings appear in the Teams chat history. You can search Teams chat history using Teams' standard search (Ctrl+F in Teams).
+- **In Word/Excel/PowerPoint:** Copilot interactions appear in the document chat panel. They are associated with the document, not stored in a central history.
+- **In Outlook:** Copilot-drafted emails are visible in your Sent folder and Draft history.
+
+Microsoft 365 Copilot activity is also logged in the Microsoft 365 admin console, visible to IT administrators in enterprise accounts.
+
+## Copilot vs ChatGPT: history management comparison
+
+| Feature | Microsoft Copilot (web) | ChatGPT |
+|---------|------------------------|---------|
+| History requires sign-in | Yes | Yes |
+| Title search | Limited | Yes |
+| Full-text search | No | No (native) |
+| Export conversations | No (standard) | Yes (data export) |
+| Cross-device sync | Yes | Yes |
+| History retention | Variable | Indefinite (while account active) |
+| API access to history | No | No |
+
+One notable gap: unlike ChatGPT, Copilot does not currently offer a data export function for your conversation history. If you want a persistent backup of important Copilot conversations, you need to copy the content manually or use a browser extension that captures it locally.
+
+## Why Copilot history is more fragmented than other AI tools
+
+Microsoft Copilot's history complexity reflects its origin as a web-embedded version of Bing's search AI, then rebranded and expanded across the Microsoft product suite. Each product surface (web, Edge, Windows, 365) evolved its own history approach. The result is inconsistent behaviour that confuses users who expect one unified history.
+
+Microsoft has indicated ongoing development of Copilot's memory and history features, but as of 2026, the experience remains more fragmented than ChatGPT's centralised conversation history.
+
+## Tips for keeping Copilot conversations findable
+
+**Always sign in.** Unsigned sessions leave no persistent history. The single most important thing you can do to avoid losing Copilot conversations is ensure you're signed in with a Microsoft account before starting.
+
+**Keep conversation threads open.** Rather than starting a new conversation each time, continue an existing thread when returning to the same topic. This keeps related exchanges in one history entry and makes retrieval easier.
+
+**Copy important outputs immediately.** For any Copilot response you'll need to reference later — a drafted document, a complex calculation, a code snippet — copy the output to your notes immediately. Don't rely on being able to find it in history later.
+
+**Use browser extensions for automatic indexing.** LLMnesia captures conversation content automatically without any manual steps, building a searchable local archive of everything you've generated through Copilot.

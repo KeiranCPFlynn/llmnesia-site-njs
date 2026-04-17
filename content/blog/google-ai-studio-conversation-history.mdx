@@ -1,0 +1,129 @@
+---
+title: "Google AI Studio Conversation History: What's Saved and How to Find It"
+slug: "google-ai-studio-conversation-history"
+description: "Google AI Studio (formerly MakerSuite) is a developer platform for experimenting with Gemini models. Unlike Gemini's consumer product, AI Studio's history handling is distinct — understanding what it saves, how to navigate it, and how to retrieve past prompts matters for users who rely on it for prompt development."
+publishDate: "2026-04-17"
+updatedDate: "2026-04-17"
+author: "Keiran Flynn"
+primaryKeyword: "google ai studio conversation history"
+secondaryKeywords:
+  - "google ai studio history"
+  - "gemini api prompt history"
+  - "makersuite history search"
+  - "google ai studio saved prompts"
+  - "find old google ai studio conversations"
+intent: "informational"
+faq:
+  - question: "Does Google AI Studio save conversation history?"
+    answer: "Yes. Google AI Studio saves your prompts and chats in a library accessible from the left panel. Saved items are tied to your Google account. However, not all interactions are automatically saved — you may need to explicitly save a prompt in some views."
+  - question: "How do I find old prompts in Google AI Studio?"
+    answer: "From the Google AI Studio interface at aistudio.google.com, look for the 'Library' section in the left navigation. This shows your saved prompts and chats. You can browse and search within the library. For more systematic full-text search, a browser extension like LLMnesia can index your AI Studio sessions."
+  - question: "What's the difference between Google AI Studio and Gemini.google.com for history purposes?"
+    answer: "They are separate products with separate history systems. Gemini at gemini.google.com is the consumer product — its history is accessible via the Gemini sidebar and Google Takeout. Google AI Studio at aistudio.google.com is a developer platform — its history is in AI Studio's library and is not part of standard Gemini history."
+  - question: "Can I export my Google AI Studio prompt history?"
+    answer: "You can export individual prompts from within Google AI Studio. Bulk history export through AI Studio itself is limited. Some AI Studio data may be included in a Google Takeout export. For programmatic access to your prompt history, the Google AI API includes tools for managing saved prompts."
+  - question: "Does LLMnesia support Google AI Studio?"
+    answer: "Yes. LLMnesia indexes Google AI Studio conversations at aistudio.google.com as you use them, storing the index locally on your device. This gives you searchable access to your AI Studio prompt history alongside other AI platforms."
+sources:
+  - label: "Google AI Studio"
+    url: "https://aistudio.google.com/"
+  - label: "Google AI Studio documentation"
+    url: "https://ai.google.dev/aistudio"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/google-ai-studio-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "search-gemini-conversation-history"
+  - "how-to-export-gemini-conversation-history"
+  - "searchable-ai-prompt-library"
+---
+
+Google AI Studio (aistudio.google.com) sits at an interesting intersection: it's a developer-facing product, but many non-developers use it for prompt engineering, model experimentation, and accessing features not available in the consumer Gemini product. If you're in that category, understanding how its history and library system work is worth a few minutes.
+
+## AI Studio vs Gemini: different products, different history
+
+Before covering AI Studio's history, it's important to clarify what it is relative to Gemini's consumer product:
+
+**Gemini (gemini.google.com):** The consumer AI assistant. Conversation history in the sidebar. Accessible via Google Takeout.
+
+**Google AI Studio (aistudio.google.com):** A developer-oriented platform for experimenting with Gemini models, running prompts, testing configurations, and building prototype applications. Intended primarily for developers and advanced users.
+
+These are **separate products with separate history systems**. Conversations in AI Studio are not the same as Gemini conversations in your history, and vice versa.
+
+## How AI Studio handles saved prompts and history
+
+Google AI Studio organises work around prompts and chats:
+
+**Chats:** Multi-turn conversations similar to the Gemini consumer product. These appear in your library.
+
+**Prompts:** Single-turn or structured prompts (Freeform, Structured, or Chat type). These can be explicitly saved and appear in the library.
+
+**Library:** The central history and organisation area. Accessible from the left navigation panel.
+
+Key nuance: AI Studio may not automatically save every session. Unlike Gemini's consumer product which logs all conversations, some AI Studio interactions may require explicit saving. The behaviour may vary based on which mode or feature you're using.
+
+## Method 1: Browse the Library
+
+1. Open aistudio.google.com and sign in with your Google account
+2. Find the **Library** in the left navigation
+3. Browse or search your saved prompts and chats
+
+The Library shows saved prompts with their names, types, and last modified dates. You can rename prompts for better organisation.
+
+## Method 2: Search within the Library
+
+AI Studio's Library includes a search function:
+
+1. Open the Library
+2. Use the search bar to filter by prompt name
+
+Note: this searches names/titles, not the content of the prompts or responses. For content search, see Method 4.
+
+## Method 3: Browser history
+
+For sessions you accessed recently that may or may not have been saved:
+
+1. Open browser history (Ctrl+H)
+2. Search for "aistudio.google.com"
+3. AI Studio URLs include prompt IDs — clicking a URL may take you back to a saved prompt
+
+This only works for explicitly saved prompts that have persistent URLs. Unsaved sessions may not have addressable URLs.
+
+## Method 4: LLMnesia for full-text content search
+
+For developers and advanced users who do significant prompt engineering in AI Studio and want to find past prompts by content — not just title — LLMnesia indexes AI Studio conversations as you use them:
+
+1. Install LLMnesia
+2. Browse your AI Studio library to trigger indexing of past sessions
+3. Search by keyword from LLMnesia's interface
+
+This is particularly useful for finding prompts where you know something about the prompt *content* (a specific instruction, a parameter you used, part of the output you remember) but don't remember what you named the prompt.
+
+## AI Studio-specific features relevant to history
+
+**System instructions:** AI Studio allows setting system-level instructions that persist across a session. These are worth saving explicitly if you've developed effective system prompts for specific use cases.
+
+**Tuned models:** If you've fine-tuned a Gemini model in AI Studio, the training data and parameters are stored under your project — these are separate from conversation history.
+
+**Project organisation:** AI Studio uses Google Cloud projects for billing and organisation. Saved prompts are associated with a project. If you work across multiple projects, note that library contents may differ by project context.
+
+**Temperature and parameter settings:** AI Studio allows adjusting model parameters (temperature, top-P, top-K) alongside prompts. When saving prompts, the parameter settings are often saved alongside the prompt text — useful for recreating outputs with the same configuration.
+
+## Exporting from Google AI Studio
+
+For individual prompts: AI Studio allows copying or exporting prompts from within the interface. Look for export or copy options within the prompt view.
+
+For bulk history: Standard Google Takeout may include some AI Studio data, but AI Studio's library is more developer-tool oriented and may not be fully included in consumer data exports. Check your specific Takeout output to see what AI Studio data, if any, is included.
+
+For API-based prompt management: The Gemini API and AI Studio's REST API include endpoints for managing tuned models and some prompt types. Developers building systematic prompt libraries may prefer programmatic access.
+
+## Tips for AI Studio users
+
+**Name every saved prompt descriptively.** AI Studio's library search is name-based. "Gemini function calling test v3" is findable. "New chat" is not.
+
+**Save intentionally.** Unlike some consumer products that auto-save, AI Studio may require you to explicitly save work. Develop a habit of saving before closing any session that produced a useful prompt or result.
+
+**Use projects for organisation.** Google Cloud projects provide a natural segregation layer. If you work on multiple distinct use cases in AI Studio, consider separate projects to keep library organisation clean.
+
+**Document parameter configurations.** When you find parameter settings that work well for a specific task, document them alongside the prompt. The combination of prompt + parameters is the reusable artifact, not just the prompt text.

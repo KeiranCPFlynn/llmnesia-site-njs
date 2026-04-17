@@ -1,0 +1,162 @@
+---
+title: "How to Export Your Claude Conversation History"
+slug: "how-to-export-claude-conversation-history"
+description: "Claude's data export gives you a downloadable archive of your conversation history. This guide walks through requesting the export, understanding what Anthropic includes, and how to search and use the exported data for your past conversations."
+publishDate: "2026-04-17"
+updatedDate: "2026-04-17"
+author: "Keiran Flynn"
+primaryKeyword: "export claude conversation history"
+secondaryKeywords:
+  - "download claude chat history"
+  - "claude data export"
+  - "backup claude conversations"
+  - "anthropic data export"
+  - "save claude conversations"
+intent: "informational"
+faq:
+  - question: "How do I export my Claude conversation history?"
+    answer: "Go to claude.ai, click your profile icon, select Settings, then navigate to Privacy. Look for the 'Export data' option and submit the request. Anthropic will send an email to your account address with a download link. The link typically arrives within a few minutes."
+  - question: "What format does Claude export conversations in?"
+    answer: "Claude's data export includes your conversations in JSON format. The export contains your messages, Claude's responses, conversation titles, and timestamps. The specific file structure may vary — check the included README or index file in the downloaded archive for details."
+  - question: "Does the Claude export include all conversations?"
+    answer: "The export includes your conversation history from your account. Conversations you deleted before exporting are not included — deleted data is not recovered through the export. Very old conversations from before Anthropic implemented persistent history may also not be present."
+  - question: "How do I search the exported Claude data?"
+    answer: "Open the exported JSON or HTML file in a text editor or browser and use find-in-page (Ctrl+F) to search by keyword. For more systematic search, you can parse the JSON with a script or import it into a note-taking tool. LLMnesia also provides automatic ongoing indexing of Claude conversations without requiring manual exports."
+  - question: "Can I use the Claude export to restore conversations I deleted?"
+    answer: "No. The export only contains conversations that exist in your account at the time of the export request. Conversations deleted prior to the export are not included and cannot be recovered through this method."
+sources:
+  - label: "Anthropic privacy policy"
+    url: "https://www.anthropic.com/privacy"
+  - label: "Anthropic support"
+    url: "https://support.anthropic.com/"
+  - label: "Claude"
+    url: "https://claude.ai/"
+canonicalPath: "/blog/how-to-export-claude-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "search-claude-conversation-history"
+  - "how-to-export-chatgpt-conversation-history"
+  - "how-to-backup-ai-conversations"
+---
+
+Claude's data export is the most complete way to create a portable backup of your conversation history with Anthropic's AI. It gives you access to the full text of every conversation from your account — useful for creating a permanent archive, searching history that predates browser extensions, or simply having a local copy independent of your Claude account.
+
+## Requesting the Claude data export
+
+The process is straightforward:
+
+1. Go to claude.ai and sign in
+2. Click your profile icon (top right or bottom left, depending on your interface version)
+3. Select **Settings**
+4. Navigate to the **Privacy** section
+5. Find the **Export data** option and click it
+6. Confirm your request
+
+Anthropic sends an email to your registered account email address. The email contains a secure download link. Download the archive promptly — the link has an expiry period, after which you'll need to request a new export.
+
+## What's in the Claude export
+
+The downloaded archive is a zip file. When extracted, it typically contains:
+
+**Conversation data:** Your conversations in JSON format, including:
+- The full text of every message you sent
+- Claude's complete responses
+- Conversation titles and identifiers
+- Message timestamps
+- Which Claude model version responded (Claude 2, Claude 3 Haiku/Sonnet/Opus, etc.)
+
+**Account information:** Your profile data, account creation date, and settings.
+
+**README or index:** Instructions for navigating the export data.
+
+The specific file names and structure may differ across export versions — Anthropic has updated the format over time. Check the README included in your archive for the current structure.
+
+## How to search the exported data
+
+### Option 1: Text search in JSON files
+
+1. Open the conversations JSON file in a text editor (VS Code, Notepad++, Sublime Text)
+2. Use Ctrl+F to search for keywords
+3. The context around a match shows the full exchange
+
+JSON exports are plain text, so keyword search finds exact matches. The density of JSON formatting requires some tolerance for reading around the syntax, but it works well for finding specific phrases.
+
+### Option 2: Browser-based search
+
+If the export includes an HTML file (some versions do, some don't):
+
+1. Open the HTML file in a browser
+2. Use Ctrl+F to search across all conversations
+
+If no HTML is included, you can convert the JSON to a readable format using free online JSON viewers, or a simple script:
+
+```python
+import json
+
+with open('conversations.json') as f:
+    data = json.load(f)
+
+# Iterate conversations and print matching exchanges
+query = "your search term"
+for conversation in data:
+    for message in conversation.get('messages', []):
+        if query.lower() in message.get('content', '').lower():
+            print(f"Found in: {conversation.get('title', 'Untitled')}")
+            print(message['content'][:500])
+            print("---")
+```
+
+This is a basic approach — adjust based on the exact structure in your export.
+
+### Option 3: Note-taking tool import
+
+For users who want a more permanent searchable archive:
+
+- **Obsidian:** Convert JSON to markdown files (one per conversation) and import into an Obsidian vault. The vault's full-text search then covers all converted conversations.
+- **Notion:** Import converted markdown files into a Notion database with search enabled.
+
+This requires some scripting to convert the JSON format, but creates a searchable, organizable long-term archive.
+
+## Claude-specific features in the export
+
+Claude's responses tend to be longer and more structured than other AI platforms — detailed analysis, multi-part answers, extensive code blocks. This makes the export particularly valuable compared to shorter-response platforms, since there's more content per conversation to potentially retrieve.
+
+**Artifacts:** If you've used Claude's Artifacts feature (the in-interface document/code editor), check whether artifact content is included in your export. This may vary by export version.
+
+**Projects:** If you use Claude Projects (the feature for organising conversations with persistent context), check whether project-level context and conversation groupings are preserved in the export.
+
+## Differences between Claude and ChatGPT exports
+
+| Feature | Claude export | ChatGPT export |
+|---------|--------------|----------------|
+| Format | JSON | JSON + HTML |
+| Images included | Limited | No |
+| HTML readable format | Sometimes | Always |
+| Memory/system context | Varies | Separate export |
+| Model version per message | Yes | Yes |
+
+ChatGPT's export is slightly more user-friendly because it always includes an HTML version for easy browsing. Claude's JSON-only export is more amenable to programmatic processing but requires more setup for casual use.
+
+## Timing and frequency
+
+**When to export:**
+- Before making account changes (email update, subscription changes)
+- Before potential account closure
+- As a periodic backup (monthly for heavy users)
+- Before switching to a different AI tool
+
+There is no limit on how often you can request an export — though OpenAI and Anthropic may rate-limit requests if you submit too many in a short period.
+
+**What the export doesn't protect against:**
+
+The export is a point-in-time snapshot. Conversations after the export date are not included until you run another export. For continuous access to recent conversations, a browser indexing extension complements the periodic export.
+
+## Using the export alongside LLMnesia
+
+If you're using LLMnesia for ongoing indexing of active Claude conversations:
+
+- The LLMnesia index covers conversations you've had since installation
+- The Claude export covers all historical conversations, including before installation
+- Browsing older conversations in the Claude interface after installing LLMnesia will index them into your LLMnesia search
+
+For comprehensive coverage — all historical conversations searchable, plus automatic indexing of new ones — use both: export for history, browser extension for ongoing capture.
