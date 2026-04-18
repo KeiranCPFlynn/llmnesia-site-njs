@@ -1,4 +1,5 @@
 import './globals.css';
+import { Suspense } from 'react';
 import Script from 'next/script';
 import Analytics from './components/analytics';
 import SiteBehavior from './components/site-behavior';
@@ -83,7 +84,9 @@ export default function RootLayout({ children }) {
                 gtag('config', '${gaId}', { send_page_view: false });
               `}
             </Script>
-            <Analytics gaId={gaId} />
+            <Suspense fallback={null}>
+              <Analytics gaId={gaId} />
+            </Suspense>
           </>
         ) : null}
       </body>
