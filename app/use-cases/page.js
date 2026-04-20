@@ -17,7 +17,7 @@ export default function UseCasesIndexPage() {
     <SiteChrome>
       <main id="main-content" className="section container content-index-main">
         <header className="content-index-header">
-          <h1>LLMnesia Use Cases</h1>
+          <h1>LLMnesia <span className="text-gradient">Use Cases</span></h1>
           <p>
             Job-to-be-done guides for people who rely on AI tools daily. Find the patterns and
             workflows that eliminate repeated prompting and keep prior AI work accessible.

@@ -43,7 +43,7 @@ export default function AboutPage() {
             <div className="content-type-badges">
               <span className="content-type-badge">About</span>
             </div>
-            <h1>About LLMnesia</h1>
+            <h1>About <span className="text-gradient">LLMnesia</span></h1>
             <p className="answer-first">
               LLMnesia is a free Chrome extension that automatically indexes AI conversations
               from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser.
