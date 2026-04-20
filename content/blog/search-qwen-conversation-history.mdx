@@ -1,0 +1,144 @@
+---
+title: "How to Search Qwen Conversation History (Alibaba AI)"
+slug: "search-qwen-conversation-history"
+description: "Qwen — Alibaba's AI assistant — saves your conversations but offers no native full-text search. This guide covers every method for finding old Qwen chats, from sidebar browsing to automatic local indexing with LLMnesia."
+publishDate: "2026-04-19"
+updatedDate: "2026-04-19"
+author: "Keiran Flynn"
+primaryKeyword: "search qwen conversation history"
+secondaryKeywords:
+  - "qwen chat history"
+  - "find old qwen conversations"
+  - "qwen ai history search"
+  - "alibaba qwen chat history"
+  - "qwen2 conversation archive"
+intent: "informational"
+faq:
+  - question: "Does Qwen save my conversation history?"
+    answer: "Yes. Qwen saves your conversations when you're signed into an account at chat.qwen.ai. Past conversations appear in the left sidebar ordered by recency and are accessible across devices."
+  - question: "Can I search Qwen conversations by content?"
+    answer: "Not natively. Qwen does not offer full-text search of conversation content — the sidebar shows auto-generated titles only. To search the actual text of past Qwen conversations, you can use LLMnesia, which indexes conversations locally as you browse them."
+  - question: "How do I delete a Qwen conversation?"
+    answer: "In the Qwen sidebar, hover over the conversation you want to remove and look for the options menu (three dots or trash icon). Deleted conversations cannot be recovered."
+  - question: "Can I export my Qwen conversation history?"
+    answer: "Qwen does not currently offer a bulk export of conversation history. Individual conversations can be copied manually. LLMnesia's local index functions as a practical archive, storing indexed conversations on your device independently of your Qwen account."
+  - question: "Does LLMnesia support Qwen?"
+    answer: "Yes. LLMnesia indexes Qwen conversations at chat.qwen.ai as you browse them. The index is stored locally on your device and lets you search past Qwen conversation content — alongside any other AI platforms you use — from a single search."
+sources:
+  - label: "Qwen — Alibaba AI"
+    url: "https://chat.qwen.ai/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "How to find old ChatGPT conversations"
+    url: "https://llmnesia.com/blog/find-old-chatgpt-conversations"
+canonicalPath: "/blog/search-qwen-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "find-old-chatgpt-conversations"
+  - "search-claude-conversation-history"
+  - "deepseek-grok-mistral-chat-history"
+---
+
+Qwen is Alibaba's AI assistant — one of the most capable publicly available large language models, with strong performance in reasoning, coding, mathematics, and multilingual tasks. For users who reach for Qwen regularly, conversation history accumulates fast: code solutions, multilingual drafts, research summaries, long analytical threads.
+
+Finding something specific in that history is a different challenge. Qwen's sidebar shows auto-generated titles — a short summary derived from your first message. When that title doesn't match the keyword you're searching for, the conversation doesn't surface.
+
+## How Qwen handles conversation history
+
+At chat.qwen.ai, conversations are stored against your account:
+
+- **Sidebar navigation:** Past conversations appear in the left sidebar, ordered by most recent first
+- **Auto-generated titles:** The title is derived from the opening message of each conversation
+- **No folders or labels:** History is a flat chronological list — no grouping by project or topic
+- **Cross-device sync:** History syncs across devices tied to the same account
+- **No native content search:** There is no search bar that queries the text inside conversations
+
+The result is a history system that works well when you have a small number of recent conversations to browse, and degrades quickly as volume grows.
+
+## Method 1: Scroll and scan the sidebar
+
+The most direct approach for recent or memorable conversations:
+
+1. Sign in to chat.qwen.ai
+2. Look at the left sidebar
+3. Scroll to find the conversation by its auto-generated title or estimated date
+
+Qwen auto-generates titles from your opening message, so they're often specific enough to be useful — if you remember roughly what you asked first. For example, "Refactor this Python function to use async/await" produces a title you can scan for. "Hi, can you help with something?" does not.
+
+**Works best when:** You remember the topic clearly, the conversation was recent, and your opening message was specific.
+
+## Method 2: Browser history
+
+For conversations accessed in the last few weeks:
+
+1. Open your browser history (Ctrl+H on Windows, Cmd+Y on Mac)
+2. Search for "chat.qwen.ai"
+3. Look for conversation URLs — Qwen conversation URLs contain unique identifiers that link directly back to the session
+
+Clicking a conversation URL from browser history drops you directly into that session in the Qwen interface. This is often the fastest path to a conversation you accessed recently but can no longer find in the sidebar.
+
+## Method 3: Browser Ctrl+F inside an open conversation
+
+Once you've navigated to a conversation you think contains what you're looking for:
+
+1. Open the conversation from the sidebar
+2. Press Ctrl+F (Windows) or Cmd+F (Mac)
+3. Search for a keyword, phrase, or code snippet you remember from the response
+
+Qwen's responses are often structured and detailed — in coding conversations especially, searching for a function name or error message will jump directly to the relevant exchange within a long thread.
+
+## Method 4: Rename important conversations after use
+
+Qwen allows you to rename conversations after the fact. If you come across a conversation that you know you'll want to retrieve later, renaming it with a descriptive title takes seconds and pays off significantly:
+
+- Before: "How can I help you today?" → unsearchable
+- After: "Redis caching layer — async Python implementation" → instantly scannable in the sidebar
+
+This doesn't help retroactively, but as a going-forward habit it transforms Qwen's sidebar from a list of opaque summaries into a genuinely navigable archive.
+
+## Method 5: Use LLMnesia for automatic full-text indexing
+
+The methods above require either good memory, recent browser history, or upfront organisation. For users who use Qwen heavily, none of these scale to months of accumulated conversations.
+
+LLMnesia indexes Qwen conversations at chat.qwen.ai as you browse them. As you open and review conversations, LLMnesia builds a full-text searchable local index on your device. When you need to find something:
+
+1. Install LLMnesia from the Chrome Web Store
+2. Browse through your Qwen conversations (past and future sessions are indexed as you visit them)
+3. Search from LLMnesia using any keyword — a function name, a concept, a phrase from an answer
+4. Results surface the relevant Qwen conversation with a direct link back to it
+
+The index is stored on your device. Your conversations are never sent to external servers.
+
+If you use Qwen alongside other AI platforms — ChatGPT, Claude, Gemini, Perplexity — LLMnesia indexes all of them simultaneously. A single search returns results across every platform you use.
+
+## Why Qwen history is worth managing
+
+Qwen's model capabilities make it particularly valuable for specific use cases where retrieval matters:
+
+**Reasoning and mathematics.** QwQ (Qwen's reasoning-focused variant) produces detailed step-by-step derivations. A mathematical proof or logical argument that Qwen worked through in detail is hard to reconstruct — worth finding again rather than regenerating.
+
+**Code generation.** Qwen's coding performance is strong across many languages. A specific implementation — a regex pattern, an API integration, an optimised query — often took several exchanges to refine. Retrieving it is faster than starting over.
+
+**Multilingual content.** Qwen performs well in Chinese, Japanese, Arabic, and other non-English languages. Users working across languages accumulate valuable translated content, phrasing decisions, and terminology choices that are worth referencing again.
+
+**Long analytical threads.** Qwen handles complex multi-step analysis well. A research thread that explored a topic in depth has compounding value — each exchange built on previous context that took time to establish.
+
+## Qwen vs other AI platforms: history comparison
+
+| Feature | Qwen (chat.qwen.ai) | ChatGPT | Claude |
+|---------|---------------------|---------|--------|
+| History requires sign-in | Yes | Yes | Yes |
+| Sidebar navigation | Yes | Yes | Yes |
+| Title search | No | Basic | Basic |
+| Full-text search | No | No (native) | No (native) |
+| Folders / organisation | No | Yes (paid) | No |
+| Export | No | Yes | Yes |
+| Cross-device sync | Yes | Yes | Yes |
+
+Qwen currently lacks even the basic title search that ChatGPT provides. For regular users, automatic indexing is the most practical solution.
+
+## Qwen model variants and history
+
+Qwen offers multiple model variants accessible from the same chat interface — including the base Qwen models, QwQ (reasoning), and Qwen-Coder (coding-focused). Conversations with different model variants appear in the same sidebar without a way to filter by model.
+
+If you use different Qwen variants for different tasks, this means your coding conversations, reasoning threads, and general conversations are all mixed in the same flat list. Renaming conversations with the task type included (e.g., "QwQ — proof of X", "Coder — Python auth module") is currently the only native way to distinguish them at a glance.

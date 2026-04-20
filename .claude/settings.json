@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gunzip)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

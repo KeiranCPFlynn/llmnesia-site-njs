@@ -1,0 +1,143 @@
+---
+title: "How to Search NotebookLM Conversation History"
+slug: "search-notebooklm-conversation-history"
+description: "NotebookLM added chat history in late 2025. But with history tied to individual notebooks and no cross-notebook search, finding a specific past answer takes more than scrolling. This guide covers all methods for searching NotebookLM conversation history."
+publishDate: "2026-04-19"
+updatedDate: "2026-04-19"
+author: "Keiran Flynn"
+primaryKeyword: "search notebooklm conversation history"
+secondaryKeywords:
+  - "notebooklm chat history"
+  - "find old notebooklm conversations"
+  - "notebooklm history search"
+  - "notebooklm conversation search"
+  - "google notebooklm history"
+intent: "informational"
+faq:
+  - question: "Does NotebookLM save conversation history?"
+    answer: "Yes, since late 2025. NotebookLM rolled out chat history in December 2025, allowing you to resume conversations within a notebook after ending a session. History is stored per-notebook — each notebook maintains its own separate conversation record."
+  - question: "Can I search NotebookLM chat history by content?"
+    answer: "Not with a dedicated search feature. NotebookLM's history is tied to individual notebooks, and there is no keyword search across conversation history. Within an open notebook, you can use browser Ctrl+F to search the visible chat content, and you can search your uploaded source documents using the notebook's native source search."
+  - question: "How do I delete NotebookLM chat history?"
+    answer: "Within a notebook's chat panel, click the three dots menu and select 'Delete Chat History'. This clears the conversation record for that notebook. Individual message deletion is not available — deletion clears the full chat history for the notebook."
+  - question: "Can I export my NotebookLM conversations?"
+    answer: "NotebookLM does not offer a dedicated conversation export. You can copy conversation text manually from the chat panel. For a structured export of your data, Google Takeout may include NotebookLM data depending on your account settings. Individual notebook notes and sources can be saved separately."
+  - question: "Does LLMnesia support NotebookLM?"
+    answer: "LLMnesia does not currently support NotebookLM. If you use ChatGPT, Claude, Gemini, Perplexity, or other supported platforms alongside NotebookLM, LLMnesia indexes those conversations and lets you search across all of them from one place."
+sources:
+  - label: "NotebookLM"
+    url: "https://notebooklm.google.com/"
+  - label: "NotebookLM chat history announcement"
+    url: "https://9to5google.com/2025/12/16/notebooklm-chat-history/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/search-notebooklm-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "search-gemini-conversation-history"
+  - "ai-knowledge-base-vs-chat-history"
+  - "ai-chat-retrieval-explained"
+---
+
+NotebookLM is Google's AI research assistant that works with your own documents — PDFs, Google Docs, web articles, YouTube transcripts. You upload sources, and NotebookLM answers questions about them, finds connections, and generates summaries grounded in your specific material rather than general training data.
+
+In December 2025, Google added chat history to NotebookLM, letting you resume past conversations rather than starting fresh each session. If you've been using NotebookLM for research and wondering where your past conversation went, the answer is: it's stored per notebook, and finding it requires knowing where to look.
+
+## How NotebookLM's history works differently
+
+NotebookLM's history model is fundamentally different from ChatGPT or Claude, because NotebookLM isn't a general-purpose chatbot — it's a notebook-centric research tool. This shapes how history is stored and retrieved.
+
+**History is per-notebook, not global.** Each notebook maintains its own conversation record. A conversation about a research project in Notebook A is not visible from Notebook B. There is no view that shows conversations across all your notebooks simultaneously.
+
+**Conversations are contextual to sources.** NotebookLM conversations are tied to the specific documents you uploaded to each notebook. The AI's answers reference those sources directly. This means the history is only meaningful in the context of the notebook it belongs to — unlike ChatGPT conversations, which make sense independent of any particular dataset.
+
+**Timestamps but no search.** NotebookLM timestamps each response with the date it was generated. You can scan by date, but there's no keyword search across the conversation history within a notebook.
+
+**1 million token context.** NotebookLM supports Gemini's 1 million token context window, which means conversations within a notebook can be extremely long. Long conversations make scroll-based retrieval impractical.
+
+## Method 1: Resume a conversation from the notebook
+
+The most direct path — if you know which notebook contains the conversation:
+
+1. Go to [notebooklm.google.com](https://notebooklm.google.com/)
+2. Open the relevant notebook from your notebooks list
+3. The chat panel on the right shows your conversation history with timestamped responses
+4. Scroll through the chat panel to find the exchange you're looking for
+
+For users with a small number of notebooks dedicated to specific projects, this is often the fastest approach. If you keep separate notebooks for separate research areas, the notebook itself is your first filter.
+
+## Method 2: Browser Ctrl+F within the chat panel
+
+Once you've opened a notebook, your browser's find-in-page works within the visible chat content:
+
+1. Open the relevant notebook
+2. Click into the chat panel area to make sure it's in focus
+3. Press Ctrl+F (Windows) or Cmd+F (Mac)
+4. Search for a specific phrase, term, or concept you remember from the conversation
+
+The limitation is that browser find-in-page only searches what's currently loaded in the viewport. If your conversation history is very long, you may need to scroll to load older sections before Ctrl+F can find content in them.
+
+## Method 3: Search your source documents
+
+NotebookLM has a native search for the source documents you've uploaded — this is separate from conversation history but often gets you to the same underlying information:
+
+1. Open the notebook
+2. Use the search function in the Sources panel (the left side of the interface)
+3. Search for a keyword related to what you're trying to find
+4. NotebookLM will highlight the relevant sections in your source documents
+
+If you remember the *topic* you discussed but not the specific conversation, searching your sources can surface the underlying information even when you can't find the exact chat. You can then re-ask the question to recreate the context.
+
+## Method 4: Organise by notebook to reduce search scope
+
+NotebookLM works best when notebooks are used thematically. If you have all your research in one giant notebook versus multiple purpose-specific notebooks, retrieval difficulty scales with conversation volume.
+
+Practical organisation that helps with retrieval:
+- One notebook per project or research area
+- Descriptive notebook titles ("Q2 market research", "Dissertation chapter 3", "Client project — tech audit")
+- Note panel for saving key answers you want to reference later (NotebookLM has a notes feature in the left panel)
+
+The notes panel is particularly useful for capturing conclusions and answers you'll want to retrieve: instead of scrolling conversation history later, you paste the key answer into a note at the time of the conversation.
+
+## Method 5: Use Google Takeout for a data export
+
+For comprehensive historical access:
+
+1. Go to [takeout.google.com](https://takeout.google.com/)
+2. Select the data you want to export — check if NotebookLM data is available under Google products
+3. Request the archive
+
+Availability varies depending on account type and Google's current export options. If included, the exported data gives you a searchable file of your notebook content and potentially conversation history.
+
+Individual notebook content can also be copied manually — selecting text in the chat panel and pasting it into a document you can search later.
+
+## The notebook-chat architecture and why it matters for retrieval
+
+Most AI tools treat history as a list of conversations in chronological order. NotebookLM treats history as *conversations about specific documents*. This is intentional — the value of a NotebookLM conversation is inseparable from the sources it's grounded in.
+
+This means retrieval should start from the research question, not the conversation:
+
+- What project was this for? → Find the notebook
+- What documents was I working from? → Find the notebook with those sources
+- What did the AI say about X? → Search within that notebook
+
+If you can't answer "which notebook?" the retrieval challenge is significantly harder — you may need to check multiple notebooks manually.
+
+## For users who also use other AI tools
+
+Many NotebookLM users run parallel workflows: NotebookLM for source-grounded research, and ChatGPT, Claude, or Gemini for general reasoning, writing, or coding tasks.
+
+If you find yourself losing answers from that general AI workflow — the ChatGPT response about an analysis approach, the Claude draft you can't find, the Gemini explanation you wish you'd saved — LLMnesia provides full-text search across those platforms. It doesn't cover NotebookLM directly, but it addresses the retrieval problem for the other half of a typical research workflow.
+
+## NotebookLM vs general AI tools: history comparison
+
+| Feature | NotebookLM | ChatGPT | Claude |
+|---------|------------|---------|--------|
+| Conversation history | Yes (per-notebook) | Yes (unified) | Yes (unified) |
+| Global history view | No | Yes | Yes |
+| Full-text content search | No | No (native) | No (native) |
+| Source document search | Yes (within notebook) | No | No |
+| Export | Limited | Yes | Yes |
+| History tied to context | Yes (per-notebook sources) | No | No |
+
+NotebookLM's per-notebook history is appropriate for its use case but creates real friction for users who want to find a specific past answer without remembering which notebook it came from.

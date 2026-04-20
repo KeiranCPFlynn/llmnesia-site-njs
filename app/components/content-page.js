@@ -8,6 +8,15 @@ const TYPE_LABELS = {
   'use-cases': 'Use Case'
 };
 
+const CATEGORY_LABELS = {
+  'platform-guides': 'Platform Guides',
+  'persona-guides': 'Persona Guides',
+  comparisons: 'Comparisons',
+  workflows: 'Workflows',
+  foundational: 'Foundational',
+  'problem-solving': 'Problem Solving',
+};
+
 function readingTime(content) {
   const words = content.trim().split(/\s+/).length;
   return Math.max(1, Math.round(words / 200));
@@ -21,9 +30,17 @@ function formatDate(iso) {
   });
 }
 
+function stripTypePrefix(label) {
+  return label.replace(/^[^:]+:\s*/, '');
+}
+
 export default function ContentPage({ entry, body, breadcrumb, schemas, relatedLinks }) {
   const typeLabel = TYPE_LABELS[entry.type] || entry.type;
+  const categoryLabel = entry.category ? (CATEGORY_LABELS[entry.category] || entry.category) : null;
   const mins = readingTime(entry.content);
+
+  const readNext = relatedLinks[0] || null;
+  const otherLinks = relatedLinks.slice(1);
 
   return (
     <SiteChrome>
@@ -45,21 +62,27 @@ export default function ContentPage({ entry, body, breadcrumb, schemas, relatedL
           <header className="content-header">
             <div className="content-type-badges">
               <span className="content-type-badge">{typeLabel}</span>
-              <span className={`intent-badge intent-badge-${entry.intent}`}>
-                {entry.intent}
-              </span>
+              {categoryLabel && (
+                <span className="content-type-badge content-type-badge-cat">{categoryLabel}</span>
+              )}
             </div>
 
             <h1>{entry.title}</h1>
 
             <p className="answer-first">{entry.description}</p>
 
-            <div className="content-meta">
-              <span>{formatDate(entry.publishDate)}</span>
-              <span className="content-meta-sep" aria-hidden="true">·</span>
-              <span>{mins} min read</span>
-              <span className="content-meta-sep" aria-hidden="true">·</span>
-              <a href="/about">{entry.author}</a>
+            <div className="content-meta-labeled">
+              <span><strong>{entry.author}</strong></span>
+              <span className="content-meta-sep">·</span>
+              <span>Published <strong>{formatDate(entry.publishDate)}</strong></span>
+              {entry.updatedDate !== entry.publishDate && (
+                <>
+                  <span className="content-meta-sep">·</span>
+                  <span>Updated {formatDate(entry.updatedDate)}</span>
+                </>
+              )}
+              <span className="content-meta-sep">·</span>
+              <span><strong>{mins} min</strong> read</span>
             </div>
 
             <div>
@@ -106,14 +129,29 @@ export default function ContentPage({ entry, body, breadcrumb, schemas, relatedL
 
           <section className="content-section content-related" aria-label="Related reading">
             <p className="content-section-label">Related reading</p>
-            <div className="content-related-list">
-              {relatedLinks.map((link) => (
-                <a key={link.href} href={link.href} className="related-link">
-                  <span>{link.label}</span>
-                  <span className="related-link-arrow" aria-hidden="true">→</span>
+
+            {readNext && (
+              <div className="content-read-next">
+                <p className="content-read-next-label">Read next</p>
+                <p className="content-read-next-title">
+                  <a href={readNext.href}>{stripTypePrefix(readNext.label)}</a>
+                </p>
+                <a href={readNext.href} className="content-read-next-cta">
+                  Continue reading →
                 </a>
-              ))}
-            </div>
+              </div>
+            )}
+
+            {otherLinks.length > 0 && (
+              <div className="content-related-list">
+                {otherLinks.map((link) => (
+                  <a key={link.href} href={link.href} className="related-link">
+                    <span>{link.label}</span>
+                    <span className="related-link-arrow" aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </section>
 
           <div className="content-bottom-cta">
