@@ -1,0 +1,107 @@
+---
+title: "Microsoft Copilot Conversation History: Limits, Retention, and What Gets Deleted"
+slug: "microsoft-copilot-conversation-history-limits"
+description: "Microsoft Copilot conversation history behaves differently across consumer and enterprise versions, and Microsoft does not publish clear retention limits. This guide covers what Copilot saves, how long it keeps it, and what you can do about it."
+publishDate: "2026-04-21"
+updatedDate: "2026-04-21"
+author: "Keiran Flynn"
+primaryKeyword: "microsoft copilot conversation history limits"
+secondaryKeywords:
+  - "how long does copilot keep history"
+  - "copilot chat history retention"
+  - "copilot conversation disappears"
+  - "microsoft copilot history policy"
+  - "copilot history deleted"
+intent: "informational"
+faq:
+  - question: "How long does Microsoft Copilot keep conversation history?"
+    answer: "Microsoft does not publish a specific retention period for consumer Copilot conversation history at copilot.microsoft.com. In practice, many users report that consumer Copilot history is not retained indefinitely and may be cleared after a period of inactivity or when sessions expire. For Microsoft 365 Copilot in enterprise environments, retention is governed by your organisation's Microsoft 365 data retention policies."
+  - question: "Why did my Copilot conversation history disappear?"
+    answer: "Copilot consumer history is session-based and does not have the same persistent history system as ChatGPT or Claude. Conversations may not persist between browser sessions, after clearing cookies, or after a period of inactivity. Microsoft 365 Copilot in enterprise contexts has more persistent history, governed by your organisation's settings."
+  - question: "Does Microsoft Copilot save my conversation history to my Microsoft account?"
+    answer: "Consumer Copilot saves recent conversations within a session but the persistence to your Microsoft account is limited compared to other AI platforms. Microsoft 365 Copilot interaction data is governed by your organisation's Microsoft 365 configuration and may be retained in compliance with your organisation's data policies."
+  - question: "Can I export Microsoft Copilot conversation history?"
+    answer: "There is no native export feature for consumer Microsoft Copilot. Microsoft 365 Copilot interactions may be accessible via Microsoft Purview for compliance purposes in enterprise environments. For consumer users, manual copy-paste, saving as PDF, or using LLMnesia to index conversations locally are the available options."
+  - question: "How does Copilot history compare to ChatGPT and Claude history?"
+    answer: "ChatGPT and Claude both maintain persistent conversation history tied to your account, retain it indefinitely while your account is active, and offer full data export. Microsoft Copilot consumer has more limited history persistence, no native export, and less transparency about retention policies."
+sources:
+  - label: "Microsoft Privacy Statement"
+    url: "https://privacy.microsoft.com/"
+  - label: "Microsoft Copilot"
+    url: "https://copilot.microsoft.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/microsoft-copilot-conversation-history-limits"
+category: "platform-guides"
+relatedSlugs:
+  - "search-microsoft-copilot-conversation-history"
+  - "how-to-export-microsoft-copilot-conversation-history"
+  - "chatgpt-conversation-history-limits"
+---
+
+Microsoft Copilot has a history problem that's different from ChatGPT or Claude: it's not just that history is hard to search — it's that history persistence itself is unreliable and poorly documented. Users regularly discover that conversations they expected to find are gone, and Microsoft's documentation on how long Copilot retains history is sparse.
+
+This guide explains what's known about Copilot history retention, why conversations disappear, and what you can do about it.
+
+## The two very different versions of Copilot
+
+Microsoft has multiple products under the "Copilot" name that behave quite differently:
+
+**Consumer Copilot (copilot.microsoft.com):** The free and paid consumer AI assistant. This version has limited history persistence. The conversation interface shows recent sessions, but history is not backed by the same kind of account-level storage as ChatGPT or Claude.
+
+**Microsoft 365 Copilot (workplace):** Available as an add-on to Microsoft 365 business subscriptions. This version integrates with Microsoft 365 apps (Teams, Outlook, Word, etc.) and is governed by your organisation's Microsoft 365 data retention policies. History from M365 Copilot interactions may be stored in Microsoft's compliance infrastructure.
+
+**Copilot in Windows:** The built-in Windows AI assistant. Interactions here are further separated from browser-based Copilot history.
+
+Most conversation history complaints apply to the consumer version. Enterprise users in managed Microsoft 365 environments have different (and often more robust) history behaviour governed by their IT administrator's settings.
+
+## Consumer Copilot: why history disappears
+
+Consumer Copilot's history persistence is session-based, meaning conversations may not reliably persist across the following events:
+
+**Browser cookie clear:** If you clear cookies for microsoft.com or copilot.microsoft.com, your conversation history will typically be removed. Unlike ChatGPT and Claude (which store history server-side tied to a login), consumer Copilot history is more tightly coupled to local browser state.
+
+**Signing in and out:** If you use Copilot without signing in to a Microsoft account, conversations are definitely not retained between sessions. Even with a Microsoft account sign-in, consumer Copilot's server-side history retention is less robust than competing platforms.
+
+**Inactivity:** There is no published inactivity threshold after which Microsoft clears consumer Copilot history, but user reports suggest history does not persist indefinitely the way ChatGPT's does.
+
+**Device changes:** Conversations accessed on one device may not appear on another, which suggests the history is more browser-session-coupled than fully account-synced.
+
+## Microsoft 365 Copilot history retention (enterprise)
+
+For organisations using Microsoft 365 Copilot as part of a business subscription:
+
+**Interaction logs exist.** M365 Copilot interactions are typically retained as part of your organisation's Microsoft 365 data. The exact retention period depends on your organisation's retention policies configured in Microsoft Purview.
+
+**Admin access.** Your organisation's IT or compliance team can access Copilot interaction logs through Microsoft Purview's eDiscovery and compliance tools. Individual users generally can't export this data directly — it's available to compliance administrators.
+
+**User-facing history.** The conversation history visible to individual M365 Copilot users in the interface is separate from the compliance log. The user-facing history may be limited in the same ways as consumer Copilot history.
+
+## How Copilot history compares to other platforms
+
+| Feature | ChatGPT | Claude | Microsoft Copilot (consumer) |
+|---------|---------|--------|------------------------------|
+| Persistent account history | Yes | Yes | Limited |
+| History survives cookie clear | Yes | Yes | No |
+| History syncs across devices | Yes | Yes | Inconsistent |
+| Native data export | Yes | Yes | No |
+| Published retention policy | Indefinite (active account) | Indefinite (active account) | Not published |
+| Full-text search | No (title only, Plus) | No | No |
+
+## What to do given these limitations
+
+**Don't rely on Copilot history for important conversations.** Unlike ChatGPT and Claude where history is reliably persistent, Copilot conversations should be treated as ephemeral unless you take steps to preserve them.
+
+**Save important conversations immediately.** After any Copilot conversation you'll need to reference, either copy-paste the content into a document or use browser print-to-PDF (Ctrl+P → Save as PDF). Don't assume you'll be able to find it in Copilot's history later.
+
+**Use LLMnesia to index Copilot conversations as you have them.** LLMnesia builds a local index of your conversations as you browse Copilot at copilot.microsoft.com. The index is stored on your device and remains accessible regardless of what happens to Copilot's server-side history. This is the most sustainable approach to maintaining a searchable archive of your Copilot work.
+
+**Sign in to a Microsoft account when using Copilot.** Anonymous or guest Copilot sessions have zero persistence. Signing in with a Microsoft account at least gives your history the best chance of persisting within a session.
+
+**For enterprise users:** Work with your IT administrator to understand your organisation's M365 Copilot retention policies and whether your compliance team can provide historical conversation logs if needed.
+
+## Microsoft's history transparency gap
+
+One notable difference between Copilot and its competitors: ChatGPT and Claude both have well-documented history retention policies. OpenAI and Anthropic both publish clear guidance on how long they retain conversations and what their export options are.
+
+Microsoft has not published equivalent documentation for consumer Copilot history retention. This makes it harder for users to make informed decisions about what they can rely on Copilot to retain and what they need to preserve themselves. Until that gap is closed, treating Copilot history as potentially ephemeral is the safe default.

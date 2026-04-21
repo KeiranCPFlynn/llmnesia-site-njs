@@ -1,0 +1,176 @@
+---
+title: "Claude History Not Loading: Causes and Fixes"
+slug: "claude-history-not-loading-fix"
+description: "Claude conversation history sometimes fails to load — showing a blank sidebar, missing conversations, or a spinner that never resolves. This guide covers every known cause and the specific fix for each."
+publishDate: "2026-04-21"
+updatedDate: "2026-04-21"
+author: "Keiran Flynn"
+primaryKeyword: "claude history not loading"
+secondaryKeywords:
+  - "claude conversations not showing"
+  - "claude chat history missing"
+  - "claude sidebar blank"
+  - "fix claude history"
+  - "claude conversations disappeared"
+intent: "informational"
+faq:
+  - question: "Why is my Claude history not loading?"
+    answer: "Claude history loading failures most commonly result from browser extension conflicts, cached session data corruption, Anthropic service outages, or being silently logged out. The fastest first steps are a hard browser refresh (Ctrl+Shift+R / Cmd+Shift+R), checking claude.ai in an incognito window, and verifying there are no active Anthropic service incidents at status.anthropic.com."
+  - question: "Did Anthropic delete my Claude conversations?"
+    answer: "Unlikely. Anthropic retains conversation history while your account is active. If history appears to be gone, the cause is almost always a display or loading error rather than actual deletion. Work through the troubleshooting steps in this guide before concluding any conversations are lost."
+  - question: "Why does Claude history load on mobile but not on my desktop browser?"
+    answer: "Cross-device discrepancies almost always indicate a browser-specific issue: a cached session problem, extension conflict, or corrupted site data on the desktop. Clear Claude's site data in your desktop browser settings and log back in. This resolves the problem in most cases."
+  - question: "Can a browser extension break Claude history?"
+    answer: "Yes. Ad blockers, privacy tools, and script blockers can interfere with the requests Claude's interface needs to load history. Open Claude in an incognito window — which disables extensions by default — and check whether history loads. If it does, one of your extensions is the cause."
+  - question: "Does LLMnesia work as a fallback if Claude history fails to load?"
+    answer: "Yes. LLMnesia maintains a locally indexed copy of your Claude conversations, built as you browse them. If Claude's history fails to load in the web interface, you can search your indexed conversations through LLMnesia's popup without depending on Claude's server-side history. The local index is stored on your device and remains accessible independently."
+sources:
+  - label: "Anthropic status page"
+    url: "https://status.anthropic.com/"
+  - label: "Claude Help Center"
+    url: "https://support.anthropic.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/claude-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-claude-conversation-history"
+  - "how-to-find-old-claude-conversations"
+  - "chatgpt-history-not-loading-fix"
+---
+
+A blank sidebar where your Claude conversations should be — or a spinner that keeps going without ever loading — is disorienting if you rely on that history for ongoing work. In the vast majority of cases, your conversations are not gone. The history is failing to load due to a technical issue, not a data loss event.
+
+This guide covers every known cause and how to fix it.
+
+## Step 1: Check for an Anthropic service outage
+
+Before troubleshooting your own setup, confirm the issue isn't on Anthropic's side:
+
+1. Go to **status.anthropic.com** in a separate tab
+2. Check whether Claude is listed as having an active incident or degraded performance
+3. Check Anthropic's social channels for real-time updates during significant outages
+
+If there's an active incident, your history will return once Anthropic resolves it. Nothing on your end needs fixing.
+
+## Step 2: Hard refresh the page
+
+The most common fix for intermittent Claude history loading failures:
+
+- **Windows/Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+A hard refresh bypasses your browser's cached version of Claude and forces a fresh load from Anthropic's servers. This resolves many cases where the history appeared blank or partially loaded due to a stale cache.
+
+## Step 3: Check your login status
+
+Claude occasionally signs users out silently — particularly after password changes, long periods of inactivity, or account session expiry.
+
+1. Look for a login prompt or "Sign in" button at claude.ai
+2. If you're logged in but seeing a blank history, try logging out and back in
+3. Wait 10–15 seconds after logging in for the conversation sidebar to populate
+
+A forced re-authentication refreshes the session token, which often resolves history loading failures.
+
+## Step 4: Test in an incognito window
+
+Browser extensions are one of the most frequent causes of Claude history loading failures. Incognito mode disables extensions by default:
+
+1. Open a new incognito window (Ctrl+Shift+N in Chrome, Ctrl+Shift+P in Firefox)
+2. Go to claude.ai and log in
+3. Check whether your conversation history loads
+
+**If history loads in incognito:** An extension is interfering. Proceed to the extension isolation step below.
+
+**If history doesn't load in incognito either:** The issue is not extension-related. Continue to the next steps.
+
+## Step 5: Isolate the conflicting extension
+
+If incognito confirmed an extension is responsible:
+
+1. Go to your extension manager (chrome://extensions in Chrome)
+2. Disable all extensions
+3. Reload Claude and confirm history loads
+4. Re-enable extensions one at a time, reloading Claude after each
+5. The last extension you enabled before history stopped loading is the conflict
+
+Common extension categories that cause Claude loading issues:
+- **Ad blockers** (uBlock Origin, AdGuard) — can block requests that Claude's history loading depends on
+- **Privacy extensions** (Privacy Badger, Ghostery) — may block tracking requests the Claude interface uses
+- **Script blockers** (NoScript) — can block JavaScript required for sidebar rendering
+- **VPN browser extensions** — can create authentication state issues
+
+For ad blockers, adding an exception for claude.ai usually resolves the conflict without fully disabling the extension.
+
+## Step 6: Clear Claude's site data
+
+Corrupted cached data can prevent the history sidebar from loading correctly. Clearing site data forces Claude to re-fetch everything fresh:
+
+**Chrome:**
+1. Click the padlock icon in the address bar on claude.ai
+2. Select "Site settings" or "Cookies and site data"
+3. Click "Clear data"
+4. Refresh and log back in
+
+**Firefox:**
+1. Click the padlock icon on claude.ai
+2. Select "Clear cookies and site data"
+3. Confirm, then log back in
+
+**Safari:**
+1. Go to Safari → Settings → Privacy → Manage Website Data
+2. Search for "anthropic" or "claude"
+3. Remove stored data, then log back in
+
+After clearing, you'll need to log in again. Wait for the sidebar to populate before concluding it hasn't worked.
+
+## Step 7: Check your browser's local storage limits
+
+On some systems — particularly ChromeOS or devices with limited storage — browsers can approach storage limits that prevent Claude from saving and loading session data correctly.
+
+**Chrome:**
+1. Go to chrome://settings/content/all
+2. Search for "anthropic.com" or "claude.ai"
+3. If storage usage appears unusually high, clear it and reload
+
+This is uncommon but occurs more often on shared or managed devices.
+
+## Step 8: Try a different browser
+
+If none of the above steps resolved the issue:
+
+1. Open a different browser (if you normally use Chrome, try Firefox or Edge)
+2. Go to claude.ai and log in
+3. Check whether history loads
+
+If history loads in the alternate browser, the problem is specific to your primary browser's installation or configuration. Resetting your primary browser to default settings, or reinstalling it, typically resolves this.
+
+## Step 9: Verify the sidebar isn't hidden
+
+Claude's interface has a sidebar toggle. If the sidebar is collapsed, your history is still there — it's just not visible:
+
+- Look for a sidebar icon or toggle in the upper-left corner of the Claude interface
+- Clicking it should expand the conversation list
+- Anthropic occasionally updates the interface, which can move this control
+
+This is responsible for more "missing history" reports than expected, particularly after UI updates.
+
+## Step 10: Contact Anthropic support
+
+If history still isn't loading after all of the above:
+
+1. Go to support.anthropic.com
+2. Submit a support request describing the issue, your browser, OS, and the steps you've already tried
+3. Note whether history loads on mobile (Claude app or mobile browser) vs. your desktop browser
+
+Anthropic support can investigate account-level issues that aren't resolvable through the interface.
+
+## Preventing Claude history loading issues
+
+**Maintain a local index:** LLMnesia indexes your Claude conversations as you browse them, storing the index on your device. If Claude's native history fails to load, you can search your indexed conversations without depending on Anthropic's servers. The local copy acts as an independent fallback.
+
+**Keep your browser and extensions up to date:** Many extension conflicts arise from outdated versions that haven't adapted to Claude's interface changes. Keeping extensions current reduces the frequency of conflicts.
+
+**Export your conversations periodically:** Claude offers a data export option in your account settings. A periodic export gives you a local copy of your full conversation history that's accessible even when the web interface isn't.
+
+**Use the hard refresh habit:** When Claude's history appears blank after navigation, Ctrl+Shift+R is usually the fastest fix before escalating to deeper troubleshooting.

@@ -1,0 +1,113 @@
+---
+title: "ChatGPT Projects vs Conversation History: What's the Difference?"
+slug: "chatgpt-projects-vs-conversation-history"
+description: "ChatGPT Projects and conversation history are both ways of organising your ChatGPT use, but they work very differently. This guide explains what each does, how they interact, and when to use which."
+publishDate: "2026-04-21"
+updatedDate: "2026-04-21"
+author: "Keiran Flynn"
+primaryKeyword: "chatgpt projects vs conversation history"
+secondaryKeywords:
+  - "chatgpt projects explained"
+  - "how chatgpt projects work"
+  - "chatgpt projects vs folders"
+  - "organize chatgpt with projects"
+  - "chatgpt project history"
+intent: "informational"
+faq:
+  - question: "What is the difference between ChatGPT Projects and conversation history?"
+    answer: "Conversation history is a flat, chronological archive of all your ChatGPT conversations. Projects are a way to organise conversations around a topic, add shared instructions, and attach files that persist across all conversations within that project. Conversation history stores everything automatically. Projects are opt-in — you have to create them and move conversations into them."
+  - question: "Do ChatGPT Projects replace conversation history?"
+    answer: "No. Conversations inside a project still appear in your conversation history. Projects add organisation and shared context on top of the existing history system. They do not change how the history is stored or how you access individual conversations."
+  - question: "Are ChatGPT Projects available on the free tier?"
+    answer: "ChatGPT Projects are a Plus feature and above. Free-tier users have access to conversation history but not Projects."
+  - question: "Can I move existing conversations into a ChatGPT Project?"
+    answer: "Yes. You can move existing conversations from your general history into a project. Open the conversation in the sidebar, look for the move or organise option, and select a project. Note that once moved, the conversation's context from before the move is visible but does not benefit retroactively from the project's shared instructions."
+  - question: "Does a ChatGPT Project share context between conversations?"
+    answer: "Partially. Files and custom instructions attached to a project are available across all new conversations within that project. However, ChatGPT does not automatically read your other project conversations to build context — each new conversation within a project still starts fresh, with only the shared files and instructions as persistent context."
+sources:
+  - label: "OpenAI Help Center"
+    url: "https://help.openai.com/"
+  - label: "ChatGPT Projects documentation"
+    url: "https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/chatgpt-projects-vs-conversation-history"
+category: "explainer"
+relatedSlugs:
+  - "how-to-organize-chatgpt-conversation-history"
+  - "chatgpt-memory-vs-conversation-history"
+  - "find-old-chatgpt-conversations"
+---
+
+ChatGPT Projects launched in late 2024, and since then a lot of users have been confused about how they relate to the existing conversation history system. They're not alternatives — they work together at different levels of the same history system.
+
+Here's how to think about each.
+
+## Conversation history: the complete archive
+
+Conversation history is ChatGPT's base layer. Every conversation you have — whether inside a project or in the general history — is recorded here. The sidebar shows them in reverse chronological order with auto-generated titles.
+
+**Key characteristics:**
+- Automatic: everything is saved without any action from you
+- Flat: no inherent organisation beyond chronological order
+- Universal: covers all conversations regardless of whether you use Projects
+- Accessible: click any conversation to return to its full transcript
+
+Conversation history has one significant limitation: it's not searchable by content. You can see conversation titles, and Plus users have limited title search, but there's no way to search for a phrase or keyword across all your conversations through the native interface.
+
+## ChatGPT Projects: organised context with shared memory
+
+Projects sit on top of conversation history. When you create a project and add conversations to it, those conversations still exist in history — they're now also accessible from the project view.
+
+What Projects add beyond organisation:
+
+**Shared custom instructions:** Each project can have its own instructions that apply to every new conversation started within it. A "Marketing copy" project might have instructions like "Always write in a casual, direct tone. Our audience is SMB owners." Starting a conversation within that project means you don't have to repeat this context every time.
+
+**Persistent file attachments:** You can attach files — documents, data, reference materials — to a project. Those files are available as context across all new conversations within the project. A "Research synthesis" project with a literature review PDF means ChatGPT can reference that document in any new conversation without you re-uploading it.
+
+**Visual organisation:** Projects appear as named groups in the sidebar, separate from the general conversation list. If you have active work across multiple distinct areas — a client project, a personal learning track, a product launch — Projects give each a dedicated space in the interface.
+
+## Side-by-side comparison
+
+| Aspect | Conversation History | Projects |
+|--------|---------------------|---------|
+| Setup required | None — automatic | Must create project manually |
+| Organises conversations | No (flat list) | Yes (by project) |
+| Shared instructions | No | Yes (per project) |
+| Shared file attachments | No | Yes (per project) |
+| Persists context between conversations | No | Partially (files + instructions only) |
+| Searchable | Titles only | Titles only |
+| Available on free tier | Yes | No (Plus+) |
+| All conversations included | Yes | Only conversations you move in |
+
+## What Projects don't do (a common misconception)
+
+Projects do not make ChatGPT aware of your other conversations within the project. Starting a new conversation inside a "Software project X" project does not give ChatGPT knowledge of what you discussed in the previous 50 conversations within that project.
+
+What persists across project conversations is limited to:
+- The project's custom instructions
+- The files attached to the project
+
+ChatGPT still starts each new conversation with a blank context in terms of what was said in previous conversations. The project gives it a standing brief, not memory of your full project history.
+
+This is a significant limitation for users who expect Projects to function like a shared-context workspace. For that kind of cross-conversation awareness, you'd need to manually summarise relevant past conversations into a project document that ChatGPT can reference.
+
+## How to use Projects effectively given these constraints
+
+**Put standing context in project instructions, not in every conversation.** The recurring information you'd normally type at the start of each conversation — your role, your writing style preferences, your audience, your tech stack — belongs in the project's custom instructions. This is where Projects deliver the most immediate value.
+
+**Attach reference documents to the project.** If there's a document, spec, or dataset you return to regularly, attaching it to the project means it's always available. You don't need to re-upload it.
+
+**Use Projects for organisation, not cross-conversation memory.** Think of Projects as a labelled folder plus a standing brief. They're not a shared context that grows with every conversation.
+
+**Combine with a conversation indexing tool for actual search.** Neither Projects nor general history provide full-text search. LLMnesia indexes your ChatGPT conversations locally — including those within Projects — making all past conversation content searchable by keyword. This is the closest available approach to actually finding what was said across all your project conversations.
+
+## ChatGPT's three persistence layers together
+
+For a complete picture of what "persists" in ChatGPT:
+
+1. **Conversation history** — the full archive. Everything is recorded. Nothing is searched automatically.
+2. **Projects** — organisation + standing context. Groups conversations with shared instructions and files.
+3. **Memory** — learned facts about you that surface across all conversations, inside or outside projects.
+
+Each layer handles a different kind of persistence. History records. Projects organise and brief. Memory personalises. The retrieval problem — "find what ChatGPT told me about X three months ago" — is not solved natively by any of them.
