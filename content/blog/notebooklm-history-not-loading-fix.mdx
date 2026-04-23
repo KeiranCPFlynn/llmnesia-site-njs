@@ -1,0 +1,185 @@
+---
+title: "NotebookLM History Not Loading: Causes and Fixes"
+slug: "notebooklm-history-not-loading-fix"
+description: "NotebookLM conversation history sometimes fails to load — showing a blank chat panel, missing past conversations, or errors when trying to resume chats. This guide covers every known cause of NotebookLM history loading problems and the fix for each."
+publishDate: "2026-04-23"
+updatedDate: "2026-04-23"
+author: "Keiran Flynn"
+primaryKeyword: "notebooklm history not loading"
+secondaryKeywords:
+  - "notebooklm conversation history not showing"
+  - "notebooklm history disappeared"
+  - "notebooklm chat not loading"
+  - "notebooklm conversations missing"
+  - "fix notebooklm history"
+intent: "informational"
+faq:
+  - question: "Why is my NotebookLM history not loading?"
+    answer: "NotebookLM history loading failures have several common causes: browser extension conflicts, cached data corruption, Google account session issues, NotebookLM service outages, browser storage limits, or notebook-specific sync problems. The most effective first steps are a hard browser refresh (Ctrl+Shift+R), disabling extensions temporarily, and clearing NotebookLM cookies."
+  - question: "Did NotebookLM delete my conversation history?"
+    answer: "Rarely, but it can happen. Accidental deletion, notebook deletion, account issues, or data policy enforcement can result in history loss. More often, history appears missing due to a loading error rather than actual deletion. Before concluding your history is gone, try the fixes in this article to rule out display issues."
+  - question: "Does NotebookLM history reset or clear automatically?"
+    answer: "NotebookLM does not automatically delete conversation history while your notebook exists. Your history persists with the notebook unless you manually delete the chat history or delete the notebook itself. If history appears to have cleared, it is most likely a display or sync issue rather than an actual deletion."
+  - question: "Can a browser extension cause NotebookLM history to not load?"
+    answer: "Yes. Extensions that modify page behaviour — ad blockers, privacy tools, script blockers, and some AI extensions — can interfere with NotebookLM's history loading. The fix is to open NotebookLM in a new incognito/private window (which disables extensions by default) and check if history loads."
+  - question: "My NotebookLM history is loading in one notebook but not another — what's wrong?"
+    answer: "This indicates a notebook-specific issue rather than a global problem. Try opening the notebook in a different browser, check if you have the correct permissions for that notebook, or try duplicating the notebook to see if history loads in the copy. Notebook-specific corruption can occur."
+sources:
+  - label: "NotebookLM Help Center"
+    url: "https://support.google.com/notebooklm"
+  - label: "Google Workspace Status"
+    url: "https://www.google.com/appsstatus"
+  - label: "NotebookLM"
+    url: "https://notebooklm.google.com/"
+canonicalPath: "/blog/notebooklm-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-notebooklm-conversation-history"
+  - "ai-chat-history-broken-native-search"
+  - "how-to-backup-ai-conversations"
+---
+
+Seeing a blank chat panel where your NotebookLM history should be — or an error when trying to resume a past conversation — disrupts research workflows built around NotebookLM's document-grounded AI. The good news is that in most cases, the conversations are not actually gone. The history is failing to load due to a technical issue, not a data loss event.
+
+This guide covers every known cause and the specific fix for each.
+
+## Step 1: Check if it's a global Google/NotebookLM outage
+
+Before troubleshooting your own setup, confirm the problem isn't on Google's side:
+
+1. Go to **www.google.com/appsstatus** in a separate tab
+2. Check if NotebookLM or Google Workspace is listed as having an incident or degraded performance
+3. Also check the @GoogleWorkspace Twitter/X account for real-time updates
+
+If there's an active incident, wait for Google to resolve it. There's nothing to fix on your end — the history will return once the service is restored.
+
+## Step 2: Hard refresh the page
+
+The most common fix for intermittent history loading issues:
+
+- **Windows/Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+A hard refresh bypasses the browser's cached version of the page and forces a fresh load. This resolves many cases where the history appeared blank or partially loaded.
+
+## Step 3: Check your Google account login status
+
+NotebookLM sometimes signs you out silently — particularly after password changes, long periods of inactivity, or session token expiry.
+
+1. Look for a login prompt or "Sign in" button
+2. If you're logged in but still seeing blank history, try logging out and back in
+3. Ensure you're using the same Google account that owns the notebook
+
+After re-logging in, wait 10–20 seconds for the history to populate.
+
+## Step 4: Test in incognito mode
+
+Browser extensions are a common culprit for NotebookLM loading failures. Opening incognito/private mode temporarily disables all extensions:
+
+1. Open a new incognito window (Ctrl+Shift+N in Chrome, Ctrl+Shift+P in Firefox)
+2. Navigate to notebooklm.google.com and log in
+3. Open the notebook with the missing history
+4. Check if your history loads
+
+**If history loads in incognito:** An extension is interfering. The next step is to identify which one (see below).
+
+**If history doesn't load in incognito either:** The issue is not extension-related. Continue to the next steps.
+
+## Step 5: Identify conflicting extensions
+
+If incognito confirmed an extension is causing the issue:
+
+1. Go to your browser's extension manager (chrome://extensions in Chrome)
+2. Temporarily disable extensions one by one, refreshing NotebookLM after each
+3. The last extension you disabled before history loaded is the cause
+
+Common extension categories that cause conflicts:
+- **Ad blockers** (uBlock Origin, AdGuard) — may block script requests needed for history loading
+- **Privacy extensions** (Privacy Badger, Ghostery) — may block tracking requests that NotebookLM's history relies on
+- **Script blockers** (NoScript, uMatrix) — may block JavaScript needed for the chat panel
+- **Google Docs/Workspace extensions** — can interfere with NotebookLM's document integration
+
+For ad blockers, adding an exception for notebooklm.google.com usually resolves the conflict without fully disabling the extension.
+
+## Step 6: Clear NotebookLM site data
+
+Corrupted cached data can prevent history from loading. Clearing site data forces NotebookLM to re-fetch everything fresh:
+
+**Chrome:**
+1. Click the padlock icon in the address bar when on notebooklm.google.com
+2. Select "Site settings" or "Cookies and site data"
+3. Click "Clear data" or "Delete data"
+4. Refresh and log back in
+
+**Firefox:**
+1. Click the padlock icon
+2. Click "Clear cookies and site data"
+3. Confirm and log back in
+
+**Note:** This logs you out and clears any locally cached data, including some extension data stored for notebooklm.google.com. You'll need to log back in after clearing.
+
+## Step 7: Check notebook permissions and sharing
+
+NotebookLM history is tied to individual notebooks. If you're not seeing history for a specific notebook:
+
+1. Verify you have access to the notebook (check the sharing settings)
+2. Ensure you're the owner or have edit permissions
+3. Try duplicating the notebook (File → Make a copy) to see if history loads in the copy
+
+Notebook-specific permission issues can prevent history from loading even when you can see the notebook itself.
+
+## Step 8: Check browser storage limits
+
+On some systems, browsers approach storage limits that can prevent NotebookLM from saving and loading session data correctly.
+
+**Chrome:**
+1. Go to chrome://settings/content/all
+2. Search for "notebooklm.google.com"
+3. Check the storage usage
+4. If it's unusually high, clearing and reloading can resolve it
+
+This is uncommon but occurs more frequently on devices with limited storage or ChromeOS systems.
+
+## Step 9: Try a different browser
+
+If the above steps haven't resolved the issue, try a completely different browser (if you normally use Chrome, try Firefox or Edge):
+
+1. Install or open an alternative browser
+2. Navigate to notebooklm.google.com and log in
+3. Open the notebook and check if history loads
+
+If history loads in the alternative browser, the issue is specific to your primary browser's installation. This suggests a deeper browser configuration issue — reinstalling or resetting your primary browser to defaults may be necessary.
+
+## Step 10: Check if the notebook itself is corrupted
+
+NotebookLM notebooks can become corrupted, particularly if they contain many sources or extensive chat history:
+
+1. Create a new notebook
+2. Add one test source document
+3. Have a brief conversation
+4. Close and reopen the notebook
+5. Check if history loads in the new notebook
+
+If history loads in a new notebook but not the problematic one, the original notebook may be corrupted. Contact Google support for notebook recovery options.
+
+## Step 11: Contact Google support
+
+If you've exhausted the above steps and history is genuinely not loading:
+
+1. Go to support.google.com/notebooklm
+2. Submit a support request describing the issue, your browser, notebook details, and the steps you've already tried
+3. Include whether the issue affects one notebook or all notebooks
+
+Google support can investigate notebook-level issues that aren't resolvable through the interface.
+
+## Preventing history loading issues
+
+**Keep extensions updated:** Outdated extensions are a common source of conflicts after NotebookLM updates. Check that all your browser extensions are on their current versions.
+
+**Clear site data periodically:** A monthly clear of notebooklm.google.com's site data (step 6) prevents corruption buildup.
+
+**Duplicate important notebooks:** Before making major changes to a notebook with valuable history, create a duplicate copy. This provides a backup if the original notebook becomes corrupted.
+
+**Export important conversations manually:** Since NotebookLM doesn't have built-in conversation export, manually copy critical conversation text to a Google Doc or other document for safekeeping.
+
+**Use multi-platform indexing for cross-notebook search:** While LLMnesia doesn't currently support NotebookLM, if you use ChatGPT, Claude, Gemini, or other supported platforms alongside NotebookLM, LLMnesia indexes those conversations and lets you search across all of them from one place, reducing dependency on any single platform's history loading.
