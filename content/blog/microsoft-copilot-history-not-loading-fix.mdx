@@ -1,0 +1,164 @@
+---
+title: "Microsoft Copilot History Not Loading: Causes and Fixes"
+slug: "microsoft-copilot-history-not-loading-fix"
+description: "Microsoft Copilot conversation history sometimes fails to load — showing a blank activity pane, missing conversations, or a sidebar that never renders. This guide covers every known cause and fix for Copilot history loading problems."
+publishDate: "2026-04-23"
+updatedDate: "2026-04-23"
+author: "Keiran Flynn"
+primaryKeyword: "microsoft copilot history not loading"
+secondaryKeywords:
+  - "copilot conversation history not showing"
+  - "copilot history disappeared"
+  - "microsoft copilot chats missing"
+  - "copilot activity not loading"
+  - "fix copilot history"
+intent: "informational"
+faq:
+  - question: "Why is my Microsoft Copilot history not loading?"
+    answer: "Copilot history loading failures are commonly caused by Microsoft account sign-in issues, browser extension conflicts, cached session problems, or a Microsoft service outage. Start with a hard browser refresh, test in incognito mode to rule out extensions, and check the Microsoft service status page."
+  - question: "Does Microsoft Copilot save conversation history?"
+    answer: "Yes, Copilot saves recent conversation history to your Microsoft account. However, history retention is limited — Copilot does not maintain a permanent searchable archive of all past conversations. Older conversations may no longer be accessible even on paid plans. For long-term retention, export important conversations or use a browser extension like LLMnesia to index them locally."
+  - question: "Does Copilot history work differently on work and personal accounts?"
+    answer: "Yes. Microsoft Copilot behaves differently depending on whether you're using a personal Microsoft account or a Microsoft 365 work/school account. Work accounts have IT-managed policies that may limit history access or retention. Personal accounts access Copilot at copilot.microsoft.com with standard history. If history is missing on a work account, check with your IT admin."
+  - question: "Can a browser extension cause Microsoft Copilot history to not load?"
+    answer: "Yes. Ad blockers, privacy extensions, and tracking blockers can interfere with Copilot's dynamic page loading. Copilot is built on Microsoft's platform and uses Microsoft-specific scripts that some extensions block. Test in incognito mode to rule this out."
+  - question: "My Copilot history loads on Edge but not Chrome — what's wrong?"
+    answer: "Copilot is optimised for Microsoft Edge and works most reliably there. If history loads in Edge but not Chrome, the issue may be a browser-specific extension, a missing cookie, or Chrome's handling of Microsoft account sign-in. Try clearing Copilot site data in Chrome and signing back in."
+sources:
+  - label: "Microsoft Copilot"
+    url: "https://copilot.microsoft.com/"
+  - label: "Microsoft Support"
+    url: "https://support.microsoft.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/microsoft-copilot-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-microsoft-copilot-conversation-history"
+  - "how-to-export-microsoft-copilot-conversation-history"
+  - "ai-chat-history-broken-native-search"
+---
+
+Microsoft Copilot's conversation history can fail to display — showing a blank pane, missing recent conversations, or a sidebar that spins without loading. In most cases the conversations are not lost; there's a loading or authentication issue that can be resolved.
+
+This guide covers every known cause and the specific fix for each.
+
+## Step 1: Check if Microsoft services are down
+
+Before troubleshooting locally, confirm the problem isn't on Microsoft's side.
+
+1. Go to **status.microsoft.com** or the **Microsoft 365 Service Health** dashboard
+2. Check if Copilot or related services show any incidents or degraded performance
+3. On the Microsoft Edge browser, the Copilot icon in the toolbar may show a status indicator if there's a known issue
+
+If Microsoft's services are degraded, wait for the incident to resolve. History will return once service is restored.
+
+## Step 2: Hard refresh the page
+
+The simplest fix for intermittent loading problems:
+
+- **Windows/Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+This forces the browser to reload the page without using cached assets. A large percentage of loading issues resolve with this single step.
+
+## Step 3: Test in incognito mode
+
+Open a new incognito/private window, go to **copilot.microsoft.com**, and sign in:
+
+- **Chrome:** Ctrl+Shift+N / Cmd+Shift+N
+- **Firefox:** Ctrl+Shift+P / Cmd+Shift+P
+- **Edge:** Ctrl+Shift+N / Cmd+Shift+N (InPrivate mode)
+
+Incognito disables extensions by default. If history loads in incognito but not your regular window, a browser extension is causing the problem.
+
+**Common culprits for Copilot specifically:**
+- Ad blockers that include Microsoft or Bing domains in their block lists
+- Tracking blockers that block Microsoft analytics scripts
+- Privacy extensions that restrict cookie storage
+- Other AI-related browser extensions
+
+**To identify the extension causing the issue:**
+1. Re-enable extensions one at a time in a regular window
+2. Reload Copilot after enabling each
+3. When history stops loading, the last extension you enabled is the cause
+4. Add copilot.microsoft.com and microsoft.com to that extension's allowlist
+
+## Step 4: Clear site data for Copilot
+
+Corrupted session data or an expired authentication token can prevent history from loading.
+
+**In Chrome:**
+1. Navigate to copilot.microsoft.com
+2. Click the padlock or tune icon in the address bar
+3. Select "Site settings" or "Cookies and site data"
+4. Click "Delete data" or "Clear data"
+5. Reload the page and sign back in with your Microsoft account
+
+**In Edge:**
+1. Navigate to copilot.microsoft.com
+2. Click the padlock icon in the address bar
+3. Select "Cookies and site permissions" → "Manage and delete cookies and site data"
+4. Clear data for microsoft.com
+
+After clearing site data and signing back in, a fresh authentication session is established and history loading typically resumes.
+
+## Step 5: Verify Microsoft account sign-in
+
+Copilot history is tied to your Microsoft account. A common cause of missing history is an account session issue or being signed into the wrong account.
+
+**Check your current account:**
+1. Go to copilot.microsoft.com
+2. Click your account icon in the top right
+3. Verify the email address shown is the one you expected
+
+**Sign out and sign back in:**
+1. Click your account icon → Sign out
+2. Close the browser tab
+3. Reopen copilot.microsoft.com
+4. Sign in fresh
+
+A fresh sign-in resolves token expiry issues that can cause the history pane to appear empty.
+
+## Step 6: Personal vs work account differences
+
+Microsoft Copilot behaves differently on personal Microsoft accounts versus Microsoft 365 work or school accounts.
+
+**Personal accounts (copilot.microsoft.com):** History is tied to your personal Microsoft account. Standard troubleshooting steps apply.
+
+**Work/school accounts (Microsoft 365 Copilot):** Your organisation's IT policies govern history access, retention, and display. If Copilot is deployed through a work account:
+- History may be managed or limited by IT policy
+- Some history features may be disabled by your organisation's admin settings
+- Contact your IT helpdesk if history is consistently not loading — it may be a configuration issue rather than a browser problem
+
+**Switching between accounts:** If you use both a personal and work Microsoft account in the same browser, you may be inadvertently viewing Copilot on one account while your history is on the other. Check which account is active before concluding that history is missing.
+
+## Step 7: Try Microsoft Edge
+
+Copilot is developed by Microsoft and is most deeply integrated into the Edge browser. If you're using Chrome or another browser and experiencing persistent loading issues, testing in Edge can help determine if the problem is browser-specific.
+
+If history loads in Edge but not Chrome:
+- The issue is Chrome-specific
+- Try updating Chrome to the latest version
+- Clear Chrome's stored data for Microsoft domains
+- Check Chrome's extension list for any extensions that might interfere with Microsoft's services
+
+## Copilot history retention limits
+
+Unlike some AI platforms that maintain indefinitely growing history, Microsoft Copilot has more limited conversation history retention. This is separate from a loading error.
+
+If you're looking for conversations from months ago and they're simply not present in the history pane, Copilot may not retain conversations that old — particularly on the free tier.
+
+For important Copilot conversations, the practical prevention is:
+- Export conversations you want to keep (use the share or copy functionality within the conversation)
+- Install LLMnesia, which indexes Copilot conversations locally as you have them — the local index persists regardless of Copilot's server-side retention
+
+## Still not resolved?
+
+If none of the above steps fix the issue:
+
+1. Try accessing Copilot through the Microsoft 365 portal (office.com) if you have a work account
+2. Clear all Microsoft-related cookies in your browser using the browser's full history clearing tools
+3. Contact Microsoft Support — for persistent account-specific issues, Microsoft's support team can check account status
+
+Most history loading issues are resolved by the incognito test and site data clear. If those don't work, the issue is typically account-specific or related to an active service incident.

@@ -1,0 +1,140 @@
+---
+title: "Grok History Not Loading: Causes and Fixes"
+slug: "grok-history-not-loading-fix"
+description: "Grok conversation history sometimes fails to load — showing an empty sidebar, missing conversations, or a page that never fully renders. This guide covers every known cause of Grok history loading problems and the fix for each."
+publishDate: "2026-04-23"
+updatedDate: "2026-04-23"
+author: "Keiran Flynn"
+primaryKeyword: "grok history not loading"
+secondaryKeywords:
+  - "grok conversation history not showing"
+  - "grok history disappeared"
+  - "grok chats missing"
+  - "grok sidebar not loading"
+  - "fix grok history"
+intent: "informational"
+faq:
+  - question: "Why is my Grok history not loading?"
+    answer: "Grok history loading problems are most commonly caused by browser extension conflicts, cached session data, an X/Twitter account sign-in issue, or a temporary Grok service outage. Start with a hard browser refresh (Ctrl+Shift+R), then test in incognito mode to rule out extension interference."
+  - question: "Did Grok delete my conversation history?"
+    answer: "Grok does not automatically delete conversation history from active accounts. If history appears to be gone, it is almost always a loading or display issue rather than deletion. Work through the troubleshooting steps in this guide to confirm whether conversations are actually missing or just failing to display."
+  - question: "Can a browser extension cause Grok history to not load?"
+    answer: "Yes. Ad blockers, privacy tools, and script blockers are common causes of Grok loading issues because Grok is built into the X platform, and extensions that block X-related scripts can interfere with Grok's interface. Test in incognito mode — if history loads there, an extension is the cause."
+  - question: "Does Grok history work the same on x.com and grok.com?"
+    answer: "Grok is accessible both through x.com (the X/Twitter platform) and grok.com (the standalone interface). Your conversation history should be consistent across both since it's tied to your xAI/X account. If history loads on one but not the other, try the interface where it works while troubleshooting the other."
+  - question: "My Grok history is showing on mobile but not desktop — what do I do?"
+    answer: "This points to a browser-specific issue on your desktop. Clear Grok/X site data in your browser settings, then sign back in. Also try a different desktop browser to determine whether the problem is isolated to one browser."
+sources:
+  - label: "Grok — xAI"
+    url: "https://grok.com/"
+  - label: "X Help Center"
+    url: "https://help.twitter.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/grok-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-grok-conversation-history"
+  - "how-to-export-grok-conversation-history"
+  - "ai-chat-history-broken-native-search"
+---
+
+Grok's conversation sidebar sometimes loads blank, shows an infinite spinner, or displays conversations from a different time period than expected. In most cases the conversations are still there — the issue is a loading failure, not a data loss event.
+
+This guide walks through every known cause and fix.
+
+## Step 1: Check if Grok is having a service issue
+
+Before troubleshooting your local setup, confirm the problem isn't on xAI's side.
+
+1. Try loading **grok.com** directly in a new tab — if the interface doesn't load at all, it's likely a platform-side issue
+2. Check the X/Twitter account for @grok or @xAI for service announcements
+3. Search "Grok down" on X or in a search engine to see if others are reporting the same issue
+
+If there's an active outage, the history will return once the service is restored.
+
+## Step 2: Hard refresh the page
+
+A hard refresh forces the browser to reload everything fresh without using the cache:
+
+- **Windows/Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+This resolves a large proportion of intermittent loading issues and should always be the first thing you try.
+
+## Step 3: Test in incognito mode
+
+Open a new incognito/private window, navigate to grok.com, and sign in:
+
+- **Chrome:** Ctrl+Shift+N / Cmd+Shift+N
+- **Firefox:** Ctrl+Shift+P / Cmd+Shift+P
+
+Incognito mode disables browser extensions by default. If history loads in incognito but not your regular window, an extension is interfering with Grok's page loading.
+
+**Grok is built on the X platform,** which means any extension that blocks X scripts, X analytics, or Twitter-related network requests may inadvertently break Grok's functionality. Common culprits:
+
+- Ad blockers (uBlock Origin, AdBlock Plus) — X/Twitter domains are often in blocklists
+- Privacy extensions (Privacy Badger, Ghostery)
+- X/Twitter-specific extensions
+- VPN browser extensions
+
+**To find which extension is causing the problem:**
+1. Enable extensions one at a time in a regular window
+2. Reload Grok after each one
+3. When history stops loading, the last extension you enabled is the cause
+4. Add grok.com and x.com to that extension's allowlist
+
+## Step 4: Clear site data for Grok and X
+
+Corrupted cached data or an expired session token can prevent history from loading. Clear all stored data for Grok's domains.
+
+**In Chrome:**
+1. While on grok.com, click the padlock/tune icon in the address bar
+2. Select "Site settings"
+3. Click "Delete data" to clear all stored data for that domain
+4. Repeat for x.com if needed (Grok is linked to your X account)
+5. Reload grok.com and sign back in
+
+After clearing site data and signing back in, the history should load from a clean session.
+
+## Step 5: Verify your account sign-in
+
+Grok requires an X (Twitter) account or an xAI account. A common cause of missing history is being signed in with a different account than you used previously.
+
+**Check which account is active:**
+1. Click your profile icon on grok.com
+2. Verify the email or username displayed matches the account you expect
+3. If not, sign out and sign in with the correct account
+
+If you've used Grok through x.com and through grok.com with different sign-in methods, your history may be split across two accounts.
+
+## Step 6: Try a different browser
+
+If the issue persists, test in a different browser to determine if it's browser-specific.
+
+If Grok history loads in one browser but not another:
+- The issue is isolated to your primary browser
+- Try updating the browser to the latest version
+- If the problem persists after updating, clearing browser profile data may resolve it
+
+If history doesn't load in any browser, the issue is likely account-related or a platform-side incident.
+
+## Grok through x.com vs grok.com
+
+Grok is accessible through two interfaces:
+- **grok.com** — the standalone Grok interface
+- **x.com** — via the Grok tab within the X/Twitter platform
+
+Both use the same conversation history tied to your account. If one interface shows history correctly and the other doesn't, this helps narrow down whether the issue is interface-specific or account-wide.
+
+Some browser extensions block X-related domains more aggressively than a standalone domain. If history loads on grok.com but not through x.com, an extension configured to block X is likely the cause.
+
+## Prevent loss with local indexing
+
+Regardless of Grok's server-side state, LLMnesia indexes Grok conversations locally as you have them. The local index is stored on your device and isn't affected by Grok history loading issues.
+
+If history fails to load in the Grok interface, past conversations that were indexed by LLMnesia before the issue occurred are still accessible through LLMnesia's search. This is a useful backstop for important Grok conversations — particularly analysis threads and extended research sessions.
+
+## Still not resolved?
+
+If none of the above steps fix the problem, it's likely an account-specific issue. Contact xAI support through the feedback mechanism within the Grok interface or through X's help channels. Provide the approximate time the history disappeared and the account email for faster resolution.

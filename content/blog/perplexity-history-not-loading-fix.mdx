@@ -1,0 +1,148 @@
+---
+title: "Perplexity History Not Loading: Causes and Fixes"
+slug: "perplexity-history-not-loading-fix"
+description: "Perplexity conversation history sometimes fails to load — showing a blank Library, missing threads, or a spinner that doesn't resolve. This guide covers every known cause of Perplexity history loading problems and the fix for each."
+publishDate: "2026-04-23"
+updatedDate: "2026-04-23"
+author: "Keiran Flynn"
+primaryKeyword: "perplexity history not loading"
+secondaryKeywords:
+  - "perplexity library not showing"
+  - "perplexity conversations missing"
+  - "perplexity history disappeared"
+  - "perplexity threads not loading"
+  - "fix perplexity history"
+intent: "informational"
+faq:
+  - question: "Why is my Perplexity history not loading?"
+    answer: "Perplexity history loading failures have several common causes: browser extension conflicts, cached data issues, account session problems, a Perplexity service outage, or being signed into the wrong account. Start with a hard browser refresh (Ctrl+Shift+R), try opening Perplexity in incognito mode, and check Perplexity's status page for any active incidents."
+  - question: "Did Perplexity delete my conversation history?"
+    answer: "Perplexity's free tier does not retain full conversation history indefinitely — threads are accessible in the Library but retention policies vary. If you're on the free tier and history from months ago is missing, it may have expired. Pro users have longer history retention. More commonly, missing history is a loading issue rather than deletion — try the fixes in this guide first."
+  - question: "Does Perplexity history work differently on free vs Pro?"
+    answer: "Yes. Perplexity Pro users have full Library access with extended history retention. Free tier users can access recent threads but may find that older history is not retained. If threads are missing and you're on the free tier, the history may have expired rather than failed to load."
+  - question: "Can a browser extension cause Perplexity history to not load?"
+    answer: "Yes. Ad blockers, privacy extensions, and script blockers can interfere with Perplexity's dynamic page loading. The fastest way to test this is to open Perplexity in an incognito/private window, which disables extensions by default. If history loads in incognito but not your normal window, an extension is the cause."
+  - question: "My Perplexity history loads on mobile but not on my computer — what's wrong?"
+    answer: "This indicates a device or browser-specific issue. Try clearing Perplexity's site data in your browser settings (different from just clearing cookies — you want to clear all site data for perplexity.ai), then sign back in. Also test in a different browser on the same computer to narrow down whether the issue is browser-specific."
+sources:
+  - label: "Perplexity AI"
+    url: "https://www.perplexity.ai/"
+  - label: "Perplexity Help Center"
+    url: "https://www.perplexity.ai/hub/faq"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/perplexity-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-perplexity-conversation-history"
+  - "how-to-export-perplexity-conversation-history"
+  - "ai-chat-history-broken-native-search"
+---
+
+Perplexity's Library should list all your past threads and pages, but it sometimes loads blank, shows a spinner that never resolves, or appears to be missing conversations you know you had. In most cases, the threads are not actually gone — there's a loading issue that can be resolved.
+
+This guide covers every known cause and the specific fix.
+
+## Step 1: Check Perplexity's status
+
+Before troubleshooting your local setup, confirm the problem isn't on Perplexity's side.
+
+1. Go to **perplexity.ai** in a separate tab and check if the main interface loads
+2. Search for "Perplexity down" or "Perplexity status" — the company posts updates on their social channels and sometimes a separate status page
+3. Check the Perplexity subreddit or X/Twitter for reports from other users
+
+If there's an active outage, your history will return once the service is restored. There is nothing to troubleshoot locally during a platform-side incident.
+
+## Step 2: Hard refresh the page
+
+The simplest fix for intermittent loading issues:
+
+- **Windows/Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+This bypasses the browser cache and forces a fresh load. If the history was failing to load due to a stale cached state, this resolves it.
+
+## Step 3: Test in incognito mode
+
+Open a new incognito or private window and sign into Perplexity:
+
+- **Chrome:** Ctrl+Shift+N (Windows/Linux) or Cmd+Shift+N (Mac)
+- **Firefox:** Ctrl+Shift+P / Cmd+Shift+P
+- **Edge:** Ctrl+Shift+N / Cmd+Shift+N
+
+Incognito windows disable all browser extensions by default. If the Library loads in incognito but not your regular window, a browser extension is interfering with Perplexity's page loading. The most common culprits are:
+
+- Ad blockers (uBlock Origin, AdBlock Plus)
+- Privacy extensions (Privacy Badger, Ghostery)
+- Cookie managers
+- VPN browser extensions
+- Other AI productivity extensions
+
+**To identify the specific extension:**
+1. Re-enable your extensions one at a time in a regular browser window
+2. Reload Perplexity after enabling each one
+3. When history stops loading, the most recently enabled extension is the cause
+4. Disable or configure that extension to allow perplexity.ai
+
+## Step 4: Clear Perplexity site data
+
+Corrupted cached data can prevent the Library from loading correctly. Clearing site data for Perplexity specifically forces a clean session.
+
+**In Chrome:**
+1. Click the padlock or tune icon in the address bar while on perplexity.ai
+2. Select "Site settings" or "Cookies and site data"
+3. Click "Delete data" or "Clear data"
+4. Reload perplexity.ai and sign back in
+
+**Alternatively:**
+1. Chrome Settings → Privacy and security → Site settings
+2. View permissions and data stored across sites
+3. Search for "perplexity.ai"
+4. Delete stored data
+
+This logs you out and clears Perplexity's locally stored data. After signing back in, the Library should load a fresh state.
+
+## Step 5: Check account and sign-in
+
+If Perplexity shows a Library page but it appears empty:
+
+**Verify you're signed into the correct account.** If you have multiple email addresses, you may be looking at a Perplexity account with no history while your actual history is on a different account. Click your profile icon and check which email is active.
+
+**Sign out and sign back in.** Sometimes the session token expires or becomes corrupted, causing the Library to load in a partially authenticated state that shows no history. Sign out completely, close the browser tab, reopen perplexity.ai, and sign in fresh.
+
+## Step 6: Try a different browser
+
+If the issue persists after the above steps, test in a different browser (Chrome, Firefox, Edge, Safari).
+
+If history loads in one browser but not another, the issue is specific to your browser installation. Common causes:
+- Browser storage is full (check your device storage and browser storage settings)
+- Browser has a corrupted profile
+- Browser version is outdated
+
+Updating your browser to the latest version often resolves unexplained loading issues.
+
+## Free tier vs Pro: history retention differences
+
+Perplexity's free tier has more limited history retention than the Pro tier. If you're on the free tier and you're looking for threads from several months ago, they may not be missing due to a loading error — they may have been removed by Perplexity's retention policy.
+
+If history from recent sessions (within the past few weeks) is missing, that's a loading issue. If old history is missing and you're on the free tier, the threads may no longer be retained.
+
+Perplexity Pro users have extended history and full Library functionality. If history persistence is important to your workflow, this is one of the practical differences between tiers.
+
+## Prevent history loss with LLMnesia
+
+Regardless of what Perplexity retains on its servers, LLMnesia indexes your Perplexity conversations locally as you have them. The local index is stored on your device and persists independently of Perplexity's history retention policies.
+
+If a thread disappears from the Library — whether due to a loading issue, free-tier retention, or accidental deletion — the content is still searchable in LLMnesia if it was indexed before it disappeared.
+
+This is particularly useful for Perplexity users because of the cited-research nature of Perplexity's output: the specific sources, quotes, and summaries in a Perplexity thread are harder to re-derive than general AI responses. Having a persistent local copy means losing access to the Library doesn't mean losing the research.
+
+## Still not loading?
+
+If none of the above steps resolve the issue:
+
+1. Check Perplexity's help documentation or support for any known issues
+2. Contact Perplexity support — they occasionally push fixes for user-specific account issues
+3. Report the issue via the feedback button in the Perplexity interface
+
+Most history loading problems are resolved by the hard refresh, incognito test, and site data clear. If those don't work, the issue is likely account-specific or a platform-side incident.
