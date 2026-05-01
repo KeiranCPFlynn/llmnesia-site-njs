@@ -1,0 +1,184 @@
+---
+title: "Claude Projects vs Conversation History: What's the Difference?"
+slug: "claude-projects-vs-conversation-history"
+description: "Claude has two overlapping systems for organising your AI work: Projects and conversation history. They serve different purposes and have different capabilities. This guide explains how each works, how to set up Projects effectively, and how to use them together."
+publishDate: "2026-05-01"
+updatedDate: "2026-05-01"
+author: "Keiran Flynn"
+primaryKeyword: "claude projects vs conversation history"
+secondaryKeywords:
+  - "claude projects explained"
+  - "how claude projects work"
+  - "claude projects vs folders"
+  - "organize claude with projects"
+  - "claude project context"
+intent: "informational"
+faq:
+  - question: "What is the difference between Claude Projects and conversation history?"
+    answer: "Conversation history is a complete, chronological archive of every conversation you've had with Claude. Projects are an organisational layer that groups conversations around a topic and adds shared instructions and documents that persist across all conversations within that project. History is automatic and passive. Projects are opt-in and require setup."
+  - question: "Do Claude Projects replace conversation history?"
+    answer: "No. Conversations inside a project still appear in your conversation history. Projects add shared context and organisation on top of the existing history system — they don't replace it. You can access project conversations from either the project view or the general history."
+  - question: "Does Claude read my previous project conversations automatically?"
+    answer: "No. Each new conversation within a Claude project starts with a blank context in terms of what was said in previous conversations. What persists across project conversations is the project's custom instructions and any documents you've attached to the project — not the transcript of past conversations."
+  - question: "Are Claude Projects available on the free tier?"
+    answer: "Claude Projects are available on Claude Pro and above. Free-tier users have access to conversation history but not Projects."
+  - question: "Can I search inside my Claude conversation history?"
+    answer: "Claude's native interface doesn't offer full-text search across conversation content. You can see conversation titles in the sidebar, but searching the text within past conversations requires a third-party tool. LLMnesia indexes your Claude conversations locally on your device and makes all of that content searchable — including conversations within Projects."
+  - question: "How is Claude Projects different from ChatGPT Projects?"
+    answer: "Both serve similar organisational purposes — grouping conversations and providing shared instructions and file attachments. Claude Projects supports larger document uploads and Claude's models have a larger context window (up to 200k tokens), making it possible to attach longer documents as project context. ChatGPT Projects has tighter integration with OpenAI's memory and tool ecosystem. The core organisational logic is the same in both."
+  - question: "What should I put in Claude Project instructions?"
+    answer: "Project instructions should contain context that applies to every conversation in that project: your role and the project's purpose, your preferred output format (bullet points vs prose, response length), your audience, any standing constraints ('always cite sources', 'prefer Python'), and recurring factual context (your tech stack, company background, client preferences). Don't put instructions that only apply to one conversation — those belong in the conversation itself."
+sources:
+  - label: "Anthropic — Claude Projects documentation"
+    url: "https://support.anthropic.com/en/articles/9517075-what-are-projects"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "How to organise Claude conversation history"
+    url: "https://llmnesia.com/blog/how-to-organize-claude-conversation-history"
+canonicalPath: "/blog/claude-projects-vs-conversation-history"
+category: "explainer"
+relatedSlugs:
+  - "how-to-organize-claude-conversation-history"
+  - "search-claude-conversation-history"
+  - "how-to-find-old-claude-conversations"
+---
+
+Claude Projects launched as part of Claude's push toward persistent, organised workspaces. Since then, many users have been confused about how Projects relate to the existing conversation history — especially since both involve "keeping" Claude conversations. They're not alternatives. They work at different levels of the same system.
+
+Here's a precise breakdown of what each does and how to use them together.
+
+## Conversation history: the complete archive
+
+Conversation history is Claude's base layer. Every conversation you have — whether inside a project or in general use — is recorded here. The sidebar shows them in reverse chronological order with auto-generated titles.
+
+**What conversation history does:**
+- Records every conversation automatically, with no setup required
+- Provides a flat, chronological list of all past conversations
+- Lets you return to any previous conversation and continue from where you left off
+- Gives you access to the full transcript of every exchange
+
+**What conversation history doesn't do:**
+- Carry context from past conversations into new ones (each conversation starts fresh)
+- Organise conversations by topic, project, or purpose
+- Allow full-text search across conversation content
+- Apply standing instructions automatically
+
+Conversation history is a reliable archive. It records everything. But it doesn't help Claude know what to do with that archive, or help you find something specific within it. In active use, it becomes a scrolling list of hundreds of conversations with auto-generated titles like "Code help", "Email draft", and "Research question" — technically complete but practically unsearchable.
+
+## Claude Projects: organised context with shared resources
+
+Projects sit on top of conversation history. When you create a project and move conversations into it, those conversations still exist in history — they're now also accessible from the project view with additional context applied.
+
+**What Projects add:**
+
+**Custom instructions per project.** Each project can have its own instructions that apply to every new conversation started within it. A "Technical writing" project might have instructions: "My audience is senior engineers. Avoid marketing language. Prefer technical precision over accessibility." Starting any conversation within that project means Claude applies this brief automatically without you repeating it.
+
+**Persistent document attachments.** You can attach files — documents, code files, reference materials, specs — to a project. Those files remain available across all new conversations within the project. A "Product X" project with the product spec, design guidelines, and a user research summary means Claude can reference all of those in any project conversation without re-uploading.
+
+**Visual organisation.** Projects appear as named groups in the sidebar, separate from the general history list. If you have distinct areas of ongoing work — a client engagement, a personal project, a research thread — Projects give each a dedicated space rather than letting them blur together in a single chronological list.
+
+## Setting up a Claude Project: a practical walkthrough
+
+Creating a Project in Claude is straightforward, but getting value from it depends on the quality of the setup.
+
+**Step 1: Create the project.** In the Claude sidebar, look for the Projects section and click to create a new project. Give it a specific name that describes the work area — "Backend API project", "Acme client", "Marketing content" rather than "My project" or "Work".
+
+**Step 2: Write the project instructions.** This is the most important step and worth taking time on. Good project instructions include:
+
+- **Role context:** "I'm a senior product manager at a B2B SaaS company with 500 employees."
+- **Project context:** "This project is about the redesign of our onboarding flow. The goal is to reduce time-to-value from 14 days to 7 days."
+- **Output preferences:** "Respond in bullet points unless I ask for prose. Keep responses concise. When giving recommendations, lead with the recommendation before the rationale."
+- **Standing constraints:** "Our tech stack is React frontend, Python/Django backend, PostgreSQL. Don't suggest alternatives unless I ask."
+- **Audience context:** "When writing for external communications, assume the reader is a non-technical decision-maker."
+
+**Step 3: Attach reference documents.** Claude's Projects support document attachments that remain available throughout the project. Good candidates:
+- Product specs or requirements documents
+- Brand or style guidelines
+- Research reports or datasets
+- Code files or architecture diagrams
+- Client briefs or background documents
+
+**Step 4: Move existing relevant conversations into the project.** If you have past conversations related to this project's topic, you can move them into the project view for organisational purposes. Note that moving a past conversation doesn't retroactively apply the project's instructions to it.
+
+## Side-by-side comparison
+
+| Aspect | Conversation History | Projects |
+|--------|---------------------|---------|
+| Setup required | None — automatic | Must create project manually |
+| Organises conversations | No (flat list) | Yes (by project) |
+| Shared instructions | No | Yes (per project) |
+| Shared document attachments | No | Yes (per project) |
+| Persists context between conversations | No | Partially (instructions + docs only) |
+| Searchable | Titles only | Titles only |
+| Available on free tier | Yes | No (Pro+) |
+| All conversations included | Yes | Only conversations you add |
+| Max document size | N/A | Varies by plan |
+
+## The critical limitation: Projects don't give Claude cross-conversation memory
+
+The most important thing to understand about Claude Projects is what they *don't* do.
+
+Starting a new conversation inside a project does not give Claude awareness of what was said in your previous conversations within that project. If you've had 40 conversations in a "Research project" Claude project, conversation 41 starts without Claude having read conversations 1 through 40.
+
+What does persist:
+- The project's custom instructions
+- The files attached to the project
+
+What does not persist:
+- The transcripts of previous conversations
+- Insights, conclusions, or decisions made in earlier sessions
+- Anything that wasn't explicitly added to the project's instructions or attached as a document
+
+This surprises many users who assume Projects create an accumulating shared memory. They don't. They create a standing brief. The distinction matters when planning how to use Projects effectively.
+
+## Workarounds for the cross-conversation memory gap
+
+Since Projects don't give Claude automatic access to past conversation content, users who need continuity across sessions use a few workarounds:
+
+**The living summary document approach.** Create a document — a text file, a Notion page, a Google Doc — that you keep updated with key decisions, findings, and conclusions from each session. Attach this document to the project. At the start of any new session that needs historical context, Claude can reference this summary. You update it periodically as the project evolves.
+
+**The context paste approach.** For sessions where specific past context is critical, copy the relevant excerpt from a past conversation and paste it into the new conversation with a note: "For context, here's the conclusion from our last session on this topic: [paste]." This is more manual but precisely targeted.
+
+**The conversation thread approach.** For ongoing work where continuity is important, continue in the same conversation rather than starting new ones. Claude's 200k token context window means very long conversations are possible within a single thread. The limitation: the sidebar becomes a single long conversation rather than organised by sub-topic.
+
+## How to get the most from Claude Projects
+
+**Put recurring context in project instructions, not in individual conversations.** Your role, your audience, your preferred output format, your constraints — anything you'd normally type at the start of every conversation belongs in the project's instructions. This is where Projects deliver immediate, compounding value.
+
+**Attach all relevant reference material.** Specs, style guides, datasets, research papers, code files — if you return to it regularly, it belongs in the project attachment. Claude can then reference it in any conversation without re-uploading.
+
+**Treat the project document set as a living knowledge base.** The files attached to a project should evolve as the project evolves. When a spec changes, update the attached spec. When research conclusions solidify, add them to the summary document. The project's document set is the primary mechanism for giving Claude ongoing context.
+
+**Name conversations within projects specifically.** Even within a well-organised project, conversation titles matter. "Homepage copy — v3 — shortened for mobile" is findable within a project; "Chat about the website" is not.
+
+**Create one project per active work area, not per task.** Three to five active projects is typically right. More than ten becomes its own navigation problem. Group by sustained work area (client, product, research domain) rather than by individual task.
+
+## Claude's three persistence layers
+
+For a complete picture of what "persists" in Claude:
+
+1. **Conversation history** — the full archive. Everything is recorded. Nothing is searched automatically. Context doesn't carry across conversations.
+2. **Projects** — organisation plus standing context. Groups conversations with shared instructions and attached documents.
+3. **Claude Memory** (where available in specific contexts) — learned preferences that may apply across sessions.
+
+Each layer handles a different kind of persistence. History records everything. Projects organise and brief. The retrieval problem — "find what Claude told me about X six weeks ago" — is not solved natively by any of these layers.
+
+## Searching across Claude history and Projects
+
+Neither conversation history nor Projects provide full-text search across conversation content. Claude's sidebar search covers titles, not the text within past conversations.
+
+For actual search — finding the specific response, analysis, or draft from a past session — you need a tool that indexes conversation content. LLMnesia indexes your Claude conversations locally on your device, including conversations within Projects, and makes all of that content searchable by keyword. The index is stored on your device and never transmitted externally.
+
+If you use Claude and other AI platforms (ChatGPT, Gemini, Perplexity), LLMnesia searches across all of them in a single query — so switching platforms for different tasks doesn't fragment your searchable history.
+
+## Migrating from unorganised to project-based use
+
+If you've been using Claude without Projects and want to transition to a more organised system, you don't need to retroactively organise everything. A practical transition:
+
+1. Create projects for your current active work areas only
+2. Start all new conversations within the appropriate project from today forward
+3. Move the three to five most recently relevant past conversations into each project
+4. Write project instructions that reflect the current state of each work area
+5. Leave older, closed-out conversations in general history — don't invest time organising work that's finished
+
+The value of Projects compounds forward. The investment in organising the past has diminishing returns compared to the investment in good project instructions that improve every future conversation.

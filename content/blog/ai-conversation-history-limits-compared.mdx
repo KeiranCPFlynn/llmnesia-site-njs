@@ -1,0 +1,222 @@
+---
+title: "AI Conversation History Limits Compared: ChatGPT, Claude, Gemini, and More"
+slug: "ai-conversation-history-limits-compared"
+description: "How long do different AI platforms keep your conversation history? What are the storage and access limits? This guide compares conversation history retention, auto-deletion policies, context window limits, and search capabilities across ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, and more."
+publishDate: "2026-05-01"
+updatedDate: "2026-05-01"
+author: "Keiran Flynn"
+primaryKeyword: "ai conversation history limits"
+secondaryKeywords:
+  - "how long does chatgpt keep history"
+  - "does claude delete conversation history"
+  - "gemini conversation history retention"
+  - "ai chat history storage limits"
+  - "perplexity history limit"
+intent: "informational"
+faq:
+  - question: "Does ChatGPT delete old conversations?"
+    answer: "ChatGPT does not automatically delete conversations based on age. Your conversation history persists indefinitely while your account is active, subject to OpenAI's data retention policies. There are no storage caps that remove old conversations. However, manually deleting conversations or closing your account removes them permanently."
+  - question: "How long does Claude keep my conversation history?"
+    answer: "Claude retains your conversation history indefinitely while your account is active. Anthropic's data retention policies apply, and you can delete individual conversations or export your data from account settings. There is no automatic time-based deletion as of 2026."
+  - question: "Does Gemini have a conversation history auto-delete?"
+    answer: "Yes — this is the most important retention difference among major platforms. Gemini Apps Activity defaults to an 18-month auto-delete on most personal Google accounts. After 18 months, conversations may be automatically removed. You can change this to 3 months, 18 months, or 'keep until manually deleted' at myactivity.google.com. This is a critical setting to check if you want to retain your Gemini history long-term."
+  - question: "What is the difference between context length limits and history retention limits?"
+    answer: "Context length is how much text the AI model can process within a single active conversation (measured in tokens). History retention is how long the platform keeps your past conversation transcripts accessible. Both can cause the experience of the AI 'forgetting' things — but they operate at different scales. Context limits affect very long single conversations. Retention limits affect old conversations from previous sessions."
+  - question: "Can I get my conversation history back after deleting it?"
+    answer: "Generally, no. Deleted conversations are permanently removed on most platforms. ChatGPT, Claude, and Gemini don't provide recovery mechanisms for deleted conversations. This is why local indexing tools like LLMnesia — which build an index on your device before deletion occurs — are the only way to retain searchable access to content from deleted conversations."
+  - question: "Which AI platform has the most conversation history?"
+    answer: "ChatGPT and Claude both retain history indefinitely while your account is active and have no automatic deletion — making them the most permissive for long-term history retention. Gemini has the most aggressive default auto-delete (18 months). Platforms like DeepSeek and Mistral's Le Chat retain history without documented auto-delete policies, but also without data export options."
+  - question: "What happens to conversation history if an AI platform shuts down?"
+    answer: "If a platform shuts down, your conversation history is typically lost unless you've exported it or indexed it locally before shutdown. This is an argument for periodic exports (available on ChatGPT and Claude) and for local indexing tools that create a device-side copy of your conversation content. Platform risk is real for newer or less established AI services."
+sources:
+  - label: "OpenAI Privacy Policy"
+    url: "https://openai.com/policies/privacy-policy"
+  - label: "Anthropic Privacy Policy"
+    url: "https://www.anthropic.com/legal/privacy"
+  - label: "Google — Manage Gemini Apps Activity"
+    url: "https://support.google.com/gemini/answer/13278668"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/ai-conversation-history-limits-compared"
+category: "explainer"
+relatedSlugs:
+  - "why-ai-chatbots-dont-remember-conversations"
+  - "how-to-backup-ai-conversations"
+  - "ai-chat-history-broken-native-search"
+---
+
+AI conversation history works differently across platforms — in terms of how long it's kept, whether it gets auto-deleted, how much of it is searchable, and what happens if you need to export or move it. Understanding these differences matters for anyone who relies on AI conversation history as a record of their work.
+
+This guide covers the major platforms with specific, factual comparisons.
+
+## Two types of limits to understand first
+
+Before comparing platforms, it's worth being precise about two things users commonly conflate:
+
+**History retention** — how long the platform keeps your past conversation transcripts accessible. This determines whether a conversation from six months ago is still there when you look for it.
+
+**Context length** — how much text the AI model can process within a single active conversation, measured in tokens. A long conversation may exceed the model's context window, causing it to deprioritise or lose track of early parts of that same conversation.
+
+Both can cause the experience of the AI "forgetting" — but they happen at completely different scales. History retention affects conversations from days, weeks, or months ago. Context limits affect very long single sessions running to tens of thousands of words.
+
+This guide focuses on history retention — what happens to conversations after they end.
+
+## ChatGPT conversation history
+
+**Retention policy:** Indefinite while your account is active. OpenAI does not automatically delete conversations based on age. Your history accumulates until you delete it manually, turn off history saving, or close your account.
+
+**History saving toggle:** ChatGPT has a setting (Settings → Data controls) to turn off conversation history saving. When off, new conversations are not saved to the sidebar and not used for training. This is useful for sensitive sessions but means you lose access to those conversations after the session ends.
+
+**Free vs paid retention:** Both free and paid users get the same indefinite history retention. Plus users get title-based search in the sidebar; free users get the sidebar list without search.
+
+**Context window:** GPT-4o and other current GPT models have large context windows (128k tokens). Very long conversations are possible before context limits cause the model to lose track of early content.
+
+**Data export:** ChatGPT offers a complete data export (Settings → Data controls → Export data) producing a ZIP file with all conversations in JSON and HTML format. This is the most complete data portability option among major platforms.
+
+**What gets lost:** Conversations you manually delete, conversations created while history saving was off, and all history if your account is deleted or banned.
+
+**Storage limit:** No documented per-conversation or total history storage cap. The practical limit is your patience for navigating a long sidebar.
+
+## Claude conversation history
+
+**Retention policy:** Indefinite while your Anthropic account is active. No automatic time-based deletion. Claude stores conversation transcripts on Anthropic's servers accessible from the sidebar.
+
+**Free vs paid retention:** Both free and Pro users have conversation history. Claude Projects (which adds organisational structure) requires a Pro subscription.
+
+**Context window:** Claude's context window is among the largest available (up to 200k tokens on Claude 3 models). Extremely long single-session conversations are possible.
+
+**Data export:** Claude offers data export through account settings. The export includes conversation history in a portable format.
+
+**What gets lost:** Manually deleted conversations and conversations from deleted accounts.
+
+**Storage limit:** No documented storage limit. Indefinite accumulation.
+
+## Gemini conversation history
+
+**Retention policy:** This is the most important difference among major platforms. Gemini Apps Activity — where your Gemini conversations are stored — has **auto-deletion enabled by default**.
+
+Default setting: **18 months** on most personal Google accounts. Conversations older than 18 months may be automatically deleted without notification.
+
+You can change this at myactivity.google.com → Gemini Apps Activity → Auto-delete:
+- 3 months
+- 18 months (default)
+- Keep until I delete manually
+
+**This is a setting most users have never checked.** If you've been using Gemini for more than 18 months and haven't changed this setting, conversations from the earliest period may already be gone.
+
+**Free vs paid retention:** The same auto-delete behaviour applies to both free and Gemini Advanced accounts. The auto-delete is a Google account-level setting, not a plan feature.
+
+**Google Workspace:** Workspace accounts have different, admin-controlled retention policies. They may be stricter or more flexible depending on your organisation's settings.
+
+**Context window:** Gemini 1.5 Pro and Gemini 2.0 models have very large context windows (up to 1 million tokens for some configurations, though standard Gemini usage has lower limits).
+
+**Data export:** Via Google Takeout (takeout.google.com). Select "Gemini Apps" in the Takeout configuration. This exports your conversation history as JSON.
+
+**What gets lost:** Auto-deleted conversations (after the retention period), manually deleted conversations, conversations from deleted Google accounts.
+
+## Perplexity conversation history
+
+**Retention policy:** Perplexity retains your thread history (called Library) while your account is active. No documented automatic time-based deletion policy as of 2026.
+
+**Free vs paid:** Both tiers have Library access. Spaces (the organisational workspace feature with file attachments and team sharing) requires Pro.
+
+**Context within threads:** Perplexity is designed for research threads — typically shorter individual exchanges than general-purpose chat. Context limits are less commonly encountered than on platforms optimised for extended dialogue.
+
+**Data export:** No documented bulk export option for Perplexity conversation history as of 2026.
+
+**What gets lost:** Manually deleted threads, history from deleted accounts.
+
+**Storage limit:** No documented limit.
+
+## Grok conversation history
+
+**Retention policy:** Grok (on the X/Twitter platform) stores your conversation history on X's servers, subject to X's broader data policies. No documented automatic deletion by age as of 2026.
+
+**Platform dependency:** Grok is tied to your X account. X account suspension or deletion affects Grok history access. Given X's history of policy changes and moderation actions, Grok users may face different risks than users of standalone AI platforms.
+
+**Data export:** Limited. X's data download feature may include some Grok activity but a complete, clean conversation export is not well-documented.
+
+**What gets lost:** History from suspended or deleted X accounts. Policy-based removal if X's terms change.
+
+## DeepSeek conversation history
+
+**Retention policy:** DeepSeek saves conversations to your account while it's active. The specific retention policy is less publicly documented than US-based platforms.
+
+**Data residency:** DeepSeek processes and stores data on servers in China, which has implications for users with data residency requirements or sensitive professional information.
+
+**Data export:** No native export functionality as of 2026. This is a significant gap — see our [dedicated DeepSeek export guide](/blog/how-to-export-deepseek-conversation-history) for workarounds.
+
+**What gets lost:** All conversations if you delete your account, with no way to export them beforehand.
+
+## Mistral (Le Chat) conversation history
+
+**Retention policy:** Le Chat saves conversations to your account while active. No documented automatic deletion by age as of 2026.
+
+**Data export:** No native export functionality as of 2026 — see our [dedicated Mistral export guide](/blog/how-to-export-mistral-conversation-history) for workarounds.
+
+**Data residency:** Mistral is a French company; data is processed under EU data protection frameworks, which generally offer stronger user rights than non-EU platforms.
+
+## Microsoft Copilot conversation history
+
+**Retention policy:** Varies significantly by account type and organisational configuration:
+- **Consumer accounts:** Conversation history available while account is active
+- **Microsoft 365 / Copilot for Work accounts:** Subject to your organisation's Microsoft 365 data retention and compliance policies, which may be as short as 30–90 days depending on configuration
+- **Copilot in Windows:** Different from Copilot for Work; stores history locally and in Microsoft account
+
+**Context window:** Copilot has a shorter context window than ChatGPT, Claude, or Gemini, making long-conversation context loss more likely.
+
+**Enterprise variability:** If you use Copilot through a work account, your IT team's settings determine retention. Many organisations set 90-day retention on conversation logs for compliance reasons.
+
+## Character.AI conversation history
+
+**Retention policy:** Character.AI saves your conversation history with each character on their servers while your account is active. No documented automatic deletion.
+
+**Export:** No native export functionality. Manual copy-paste is the only option.
+
+**What gets lost:** History from deleted accounts; conversations with characters that are removed from the platform.
+
+## NotebookLM conversation history
+
+**Retention policy:** NotebookLM is a document-based AI tool (not a general-purpose chat interface). "Conversations" are tied to specific notebooks you create. History persists as part of the notebook.
+
+**Different model:** NotebookLM sessions are grounded in documents you upload — conversation context is tied to those documents, not to a general ongoing history.
+
+**Export:** Notebooks can be exported; the conversation history within them is part of the notebook data.
+
+## Summary comparison table
+
+| Platform | Auto-deletion | Indefinite retention | Data export | Default retention |
+|----------|--------------|---------------------|-------------|------------------|
+| ChatGPT | No | Yes | Yes (ZIP/JSON) | Indefinite |
+| Claude | No | Yes | Yes | Indefinite |
+| Gemini | Yes | No (unless changed) | Yes (Takeout) | 18 months |
+| Perplexity | No (documented) | Yes | No | Indefinite |
+| Grok | No (documented) | Yes* | Limited | Indefinite* |
+| DeepSeek | Undocumented | Unknown | No | Unknown |
+| Mistral Le Chat | No (documented) | Yes | No | Indefinite |
+| Microsoft Copilot | Varies | Varies | Varies | Org-dependent |
+| Character.AI | No (documented) | Yes | No | Indefinite |
+
+*Subject to X platform policy changes
+
+## The across-the-board gap: no platform offers full-text content search
+
+Despite different retention policies, every major platform shares one fundamental limitation: **conversation history is not full-text searchable by content**. You can browse by date, search by title on some platforms, or scroll through the sidebar — but you cannot search for a keyword or phrase across the body of all your past conversations.
+
+This is the gap LLMnesia addresses. The Chrome extension indexes conversation content from ChatGPT, Claude, Gemini, Perplexity, Grok, DeepSeek, Mistral, and other platforms locally on your device. The index makes full conversation content searchable across all platforms simultaneously — without the content leaving your device.
+
+The local indexing also provides a degree of insurance against platform retention policies. If Gemini auto-deletes conversations after 18 months, LLMnesia's local index retains the indexed content of those conversations — giving you search access even after the platform has removed the originals. The same applies to platform shutdowns, account bans, or any other event that terminates your access to the platform-side history.
+
+## What to do about each platform's limits
+
+**ChatGPT:** Check your data export settings. Do a full export periodically (annually at minimum) to have a portable backup. No auto-delete risk, but export protects against account loss.
+
+**Claude:** Similar to ChatGPT. Export periodically. No auto-delete risk.
+
+**Gemini:** **Go to myactivity.google.com right now and check your auto-delete setting.** If it's set to 18 months or 3 months and you've been using Gemini, some history may already be gone. Change to "Keep until I delete manually" if you want long-term retention. Set up Google Takeout exports periodically.
+
+**Perplexity:** No immediate action required for retention. The bigger gap is lack of bulk export — use LLMnesia for searchable indexing.
+
+**DeepSeek/Mistral:** No export available. Manually save important conversations and use LLMnesia for ongoing capture.
+
+**Microsoft Copilot:** If you use Copilot through a work account, ask your IT team what the conversation retention policy is. It may be shorter than you expect.

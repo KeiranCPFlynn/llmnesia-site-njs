@@ -1,0 +1,191 @@
+---
+title: "Gemini Memory vs Conversation History: What's the Difference?"
+slug: "gemini-memory-vs-conversation-history"
+description: "Google Gemini has two systems that both involve retaining information: Gemini Apps Activity (conversation history) and personalised memory. They work very differently. This guide explains what each does, how to find and control your history, and what neither system does."
+publishDate: "2026-05-01"
+updatedDate: "2026-05-01"
+author: "Keiran Flynn"
+primaryKeyword: "gemini memory vs conversation history"
+secondaryKeywords:
+  - "gemini apps activity explained"
+  - "how gemini memory works"
+  - "gemini conversation history vs memory"
+  - "google gemini history controls"
+  - "gemini personalisation settings"
+intent: "informational"
+faq:
+  - question: "What is the difference between Gemini memory and conversation history?"
+    answer: "Conversation history (stored via Gemini Apps Activity) records the full transcript of every conversation you have with Gemini. Memory refers to Gemini's ability to carry personalised context — learned facts about your preferences and background — across conversations. History is a passive archive. Memory is an active context layer applied in new conversations."
+  - question: "Does Gemini memory replace conversation history?"
+    answer: "No. They are separate systems controlled independently. Conversation history is managed through your Google Account's Gemini Apps Activity settings. Memory — to the extent Gemini applies personalised context — is part of how Gemini uses your history to personalise responses. Turning one off does not turn off the other."
+  - question: "Can Gemini search my conversation history?"
+    answer: "Gemini's native interface doesn't offer full-text search across conversation content. You can see past conversations in the Gemini sidebar, but searching within conversation content requires a third-party tool. LLMnesia indexes your Gemini conversations locally on your device and makes them full-text searchable."
+  - question: "How do I turn off Gemini conversation history?"
+    answer: "Go to myactivity.google.com, find 'Gemini Apps Activity', and click 'Turn off' to pause saving new activity. Alternatively, access history controls from within the Gemini settings panel. Pausing Gemini Apps Activity stops new conversations from being saved but does not delete existing history."
+  - question: "Does Gemini automatically delete old conversations?"
+    answer: "Yes — unlike ChatGPT or Claude. Gemini Apps Activity has an auto-delete setting that defaults to 18 months on most personal Google accounts. You can change it to 3 months, 18 months, or 'Keep until I delete manually' at myactivity.google.com. This means conversations older than your retention setting may be automatically removed without warning."
+  - question: "How is Gemini memory different from ChatGPT Memory?"
+    answer: "ChatGPT has an explicit Memory feature: it stores discrete, reviewable facts about you ('You're a software engineer', 'You prefer concise answers') that you can see and delete in Settings → Personalization → Memory. Gemini's personalisation is less visible and less granular — it's inferred from your Gemini Apps Activity rather than stored as a reviewable fact list. You can't see a list of 'things Gemini remembers about you' in the same way you can with ChatGPT."
+  - question: "What happens to Gemini history when I delete my Google account?"
+    answer: "Deleting your Google account removes all associated data, including Gemini Apps Activity. There is no recovery mechanism. Before deleting a Google account, use Google Takeout (takeout.google.com) to export your Gemini history as part of a full account data export."
+sources:
+  - label: "Google — Gemini Apps Activity Help"
+    url: "https://support.google.com/gemini/answer/13278668"
+  - label: "Google — Manage your Gemini Apps Activity"
+    url: "https://myactivity.google.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/gemini-memory-vs-conversation-history"
+category: "explainer"
+relatedSlugs:
+  - "search-gemini-conversation-history"
+  - "how-to-find-old-gemini-conversations"
+  - "how-to-organize-gemini-conversation-history"
+---
+
+Gemini's approach to "remembering" your conversations is more layered than it appears — and controlled through different places than most users expect. Understanding the distinction between Gemini's conversation history and its personalisation layer matters for both productivity and privacy.
+
+Here's a precise breakdown of how each system works, how to control them, and what they don't do.
+
+## Gemini conversation history: Gemini Apps Activity
+
+When you have a conversation with Gemini at gemini.google.com (or through the Gemini app), those conversations are saved to your Google Account under a feature called **Gemini Apps Activity**.
+
+**What it contains:**
+- The full transcript of every Gemini conversation linked to your account
+- Timestamps for each conversation
+- All conversation types — whether from the web, Android, or iOS Gemini apps
+
+**What it's for:**
+- Returning to a previous conversation in the sidebar
+- Referencing past research or outputs
+- Google potentially using your activity data to personalise and improve responses
+
+**How to find it:**
+Gemini conversations appear in the left sidebar on gemini.google.com, organised by date. You can also access your full Gemini Apps Activity at myactivity.google.com — this gives you a view of all your past Gemini interactions, filterable by date.
+
+**The limitation:** Conversation history is not full-text searchable from within Gemini. The sidebar shows conversations by date with auto-generated titles. If you're looking for a specific piece of content from a conversation weeks ago, native Gemini gives you no effective way to find it.
+
+## How to navigate and manage your Gemini history
+
+**From the Gemini interface (gemini.google.com):**
+1. The left sidebar shows recent conversations by date
+2. Click any conversation to reopen and continue it
+3. Hover over a conversation to see the delete option
+4. The sidebar search (if available) covers titles only
+
+**From myactivity.google.com (more complete view):**
+1. Go to myactivity.google.com
+2. Find "Gemini Apps Activity" in the product list (you may need to filter by product)
+3. This shows all your Gemini interactions chronologically
+4. You can search by date range, delete individual interactions, or delete all history
+
+**To change your auto-delete settings:**
+1. Go to myactivity.google.com
+2. Click "Gemini Apps Activity"
+3. Find "Activity controls" or "Auto-delete"
+4. Choose 3 months, 18 months, or "Keep until I delete manually"
+
+This last step is important: **Gemini's default 18-month auto-delete means that if you never change this setting, all your Gemini conversations older than 18 months will be automatically deleted.** This is a significant difference from ChatGPT and Claude, which retain history indefinitely while your account is active.
+
+## Gemini personalisation: using history to improve responses
+
+Gemini's "memory" in the personalisation sense works differently from what you might expect. Unlike ChatGPT's explicit Memory feature (which stores discrete, reviewable facts about you), Gemini's personalisation is less visible — it's built into how Gemini Apps Activity data is used.
+
+**How Google describes it:**
+Google states that when Gemini Apps Activity is on, your conversations may be used to:
+- Personalise and improve Gemini's responses to you
+- Inform Google's AI model development
+
+This is distinct from an explicit "Gemini remembers that you're a software engineer and applies that in every conversation." Gemini doesn't surface a list of stored facts about you in the same way ChatGPT Memory does. The personalisation is less granular and less user-visible.
+
+**The practical difference you might notice:** Gemini may adjust its tone, vocabulary, and response style based on patterns in your conversation history — but you can't inspect exactly what it's using or edit it. It's a black-box personalisation rather than an explicit, reviewable memory system.
+
+## How Gemini personalisation compares to ChatGPT Memory
+
+| Aspect | Gemini personalisation | ChatGPT Memory |
+|--------|----------------------|----------------|
+| Stored as reviewable fact list | No | Yes |
+| User can see exactly what's stored | No | Yes |
+| User can edit or delete specific memories | No (delete all or nothing) | Yes (individual entries) |
+| Applied in new conversations | Indirectly via activity | Yes, explicitly |
+| Can turn off independently of history | Via Activity controls | Yes, separate toggle |
+| Source | Inferred from history | Inferred + explicitly told |
+
+If explicit, controllable memory is important to your workflow, ChatGPT Memory is more transparent. Gemini's personalisation is more passive and opaque.
+
+## Google Workspace vs personal account behaviour
+
+The data handling differences between personal Google accounts and Workspace accounts are significant — especially for professional users.
+
+**Personal accounts:**
+- Gemini Apps Activity is on by default
+- Data may be reviewed by human reviewers (with controls available in settings)
+- Data may be used for model training
+- Auto-delete defaults to 18 months but is user-adjustable
+
+**Google Workspace accounts (work/school):**
+- Data handling depends on your administrator's settings
+- By default, Workspace data is **not** used for model training
+- Admins can restrict or disable Gemini Apps Activity entirely
+- Conversations are subject to your organisation's data retention policies, not Google's consumer defaults
+
+**The implication for work users:** If you use Gemini through a Workspace account, your conversation history and data handling may be more restricted than you'd experience with a personal account — both offering stronger privacy protections and potentially reducing Gemini's ability to personalise based on your history.
+
+If you're using a personal Google account for work-related AI tasks, the consumer data handling policies apply — a relevant consideration for sensitive professional use.
+
+## Side-by-side summary
+
+| Aspect | Gemini Apps Activity (History) | Personalisation / Memory |
+|--------|-------------------------------|--------------------------|
+| What it stores | Full conversation transcripts | Inferred preferences |
+| Visible to user | Yes, via sidebar and myactivity.google.com | Indirectly — no dedicated review panel |
+| Used in new conversations? | No (each conversation starts fresh) | Potentially, via Google's personalisation |
+| Searchable | By date only, not by content | N/A |
+| Privacy control | Pause or delete via myactivity.google.com | Control via Gemini Apps Activity settings |
+| Auto-deletion | Yes (18 months default) | N/A |
+| Data retention | Per your Google Account settings | Per Google's data use policies |
+
+## Does Gemini use past conversations in new ones?
+
+In the direct sense: **no.** Starting a new conversation with Gemini does not give it awareness of what was discussed in previous conversations. Each session begins fresh without knowledge of prior transcript content.
+
+In the indirect sense: Google may use your Gemini Apps Activity data to personalise and improve Gemini's responses over time — but this is more analogous to how search history improves search results than to a memory system that recites specific facts from past conversations.
+
+This is an important distinction from ChatGPT's explicit Memory feature.
+
+## Exporting your Gemini history
+
+Gemini Apps Activity can be exported through **Google Takeout** (takeout.google.com):
+
+1. Go to takeout.google.com
+2. Click "Deselect all"
+3. Find and check "Gemini Apps" (or "Gemini Apps Activity")
+4. Click "Next step" and choose export format (JSON or HTML) and delivery method
+5. Google will email you a download link
+
+The export contains your conversation history as structured data. It's not a convenient format for browsing, but it's a complete archive that's independent of Google's retention policies.
+
+**When to export:** Before deleting your account, before changing to an account with stricter data policies, or as a periodic backup if you generate Gemini conversations you want to keep long-term.
+
+## The search gap neither system fills
+
+Like ChatGPT's Memory and history, neither Gemini's conversation history nor its personalisation provides what power users typically want most: **full-text search across past conversation content**.
+
+You can find conversation titles in the sidebar and browse by date in myactivity.google.com — but there's no way to search for a keyword or phrase across all your Gemini conversations from within the native interface.
+
+LLMnesia addresses this. The extension indexes your Gemini conversations locally on your device as you use Gemini in Chrome. The resulting index is stored on your device and is full-text searchable without sending your conversation content externally.
+
+The local indexing also provides insurance against Gemini's auto-delete: if Gemini Apps Activity auto-deletes conversations after 18 months, LLMnesia's local index retains the indexed content of those conversations — giving you search access even after the platform has deleted the originals.
+
+If you also use ChatGPT, Claude, or Perplexity, LLMnesia searches across all platforms simultaneously — one search box, all your AI conversations.
+
+## Practical recommendations
+
+**Check your auto-delete settings now.** If you've been using Gemini without checking, your default is likely 18-month auto-delete. Go to myactivity.google.com and change it to "Keep until I delete manually" if you want to retain your full history.
+
+**Use Google Takeout periodically.** An annual export of your Gemini history is a prudent backup, especially if you use Gemini for work-related research or content that has long-term value.
+
+**Understand the account type you're using.** If you're a Workspace user doing sensitive professional work, verify your organisation's Gemini data policy — it may be more restrictive than you assume, for better or worse.
+
+**Don't rely on Gemini's personalisation for explicit context.** Unlike ChatGPT Memory, Gemini's personalisation can't be directed or corrected. If you need Claude or ChatGPT to know something specific about your preferences, you can tell it explicitly and it will remember. With Gemini, you're working with inferred patterns, not an explicit memory store.
