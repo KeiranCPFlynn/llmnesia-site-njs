@@ -1674,7 +1674,7 @@ h1 {
 }
 
 .content-body p {
-  color: var(--text-muted);
+  color: hsl(200, 10%, 72%);
   line-height: 1.85;
   margin: 0 0 1.1rem;
 }
@@ -1698,7 +1698,7 @@ h1 {
 }
 
 .content-body li {
-  color: var(--text-muted);
+  color: hsl(200, 10%, 72%);
   line-height: 1.75;
   padding-left: 1.375rem;
   position: relative;
@@ -1767,7 +1767,7 @@ h1 {
 .content-body .table-wrapper td {
   padding: 0.625rem 0.875rem;
   border-bottom: 1px solid var(--glass-border);
-  color: var(--text-muted);
+  color: hsl(200, 10%, 72%);
   vertical-align: top;
   line-height: 1.5;
 }
@@ -1778,6 +1778,29 @@ h1 {
 
 .content-body .table-wrapper tbody tr:hover td {
   background: hsla(200, 18%, 12%, 0.6);
+}
+
+/* Images */
+.content-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px hsla(0, 0%, 0%, 0.35);
+}
+
+.content-body figure {
+  margin: 2rem 0;
+}
+
+.content-body figcaption {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.625rem;
+  font-style: italic;
 }
 
 /* Inline code */
