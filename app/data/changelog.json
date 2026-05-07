@@ -1,5 +1,23 @@
 [
   {
+    "version": "0.1.5",
+    "date": "2026-05-04",
+    "title": "Welcome screen, Indexing activation badge & 9 fixes",
+    "highlights": [
+      "Welcome screen — opens automatically on first install",
+      "Indexing activation badge — once 10 conversations are indexed the extension badge shows \"NEW\"",
+      "Analytics: zero_results_returned ghost-fires — search_performed and zero_results_returned now fire after a 400ms quiet period rather than on every settled 120ms search, eliminating same-millisecond timestamp collisions and intermediate zero-result events fired while the user is mid-keystroke",
+      "Analytics: result_count property — search_performed now includes a result_count integer property, making zero-result queries queryable directly without correlating two separate events",
+      "Analytics: identity not attached on second install — identified distinct ID is now mirrored to chrome.storage.sync on email submit and read back on init, so a second browser install (e.g. Chrome after Firefox) picks up the user's email automatically without requiring a separate email submission",
+      "Continue-chat cross-tab injection — each \"Open in\" action now generates a unique request ID embedded in the target URL",
+      "Continue-chat empty conversation guard — \"Open in\" now detects when there are no indexable user/assistant messages and shows a hint instead of opening a blank target tab",
+      "Continue-chat message quality — conversation text sent to the target platform is now filtered: thinking-duration strings removed, data dumps skipped, code-heavy turns trimmed, max 16 turns kept",
+      "AI Studio \"Continue in\" disabled — right-click \"Open in\" context menu is suppressed on AI Studio",
+      "AI Studio manual-save UX — pill click now always saves",
+      "Continue-chat missing assistant messages — \"Continue in\" was only carrying user messages when a platform's assistant responses had an unresolved unknown role (common for DeepSeek). A new middle pass now detects this case (user turns present, no assistant turns) and re-runs with unknown roles treated as assistant, restoring full conversation export for all platforms."
+    ]
+  },
+  {
     "version": "0.1.4",
     "date": "2026-04-17",
     "title": "Search history, onboarding & reliability fixes",

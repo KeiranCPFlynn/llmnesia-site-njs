@@ -16,6 +16,13 @@ export function middleware(request) {
     return NextResponse.next();
   }
 
+  // Enforce www as canonical domain
+  if (nextUrl.hostname === 'llmnesia.com') {
+    const wwwUrl = new URL(request.url);
+    wwwUrl.hostname = 'www.llmnesia.com';
+    return NextResponse.redirect(wwwUrl, 301);
+  }
+
   const legacyTarget = LEGACY_PATH_REDIRECTS[nextUrl.pathname];
   if (legacyTarget) {
     const redirectUrl = new URL(request.url);
