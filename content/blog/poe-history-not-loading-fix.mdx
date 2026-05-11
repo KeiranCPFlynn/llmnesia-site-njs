@@ -1,0 +1,165 @@
+---
+title: "Poe History Not Loading: How to Fix It"
+slug: "poe-history-not-loading-fix"
+description: "Poe conversation history not showing or failing to load? This guide covers the specific causes and fixes for Poe history loading problems, from cache issues to account sync and subscription-related history access."
+publishDate: "2026-05-11"
+updatedDate: "2026-05-11"
+author: "Keiran Flynn"
+primaryKeyword: "poe history not loading"
+secondaryKeywords:
+  - "poe conversation history missing"
+  - "poe ai chats not showing"
+  - "fix poe history"
+  - "poe past conversations gone"
+  - "poe chat history disappeared"
+intent: "informational"
+faq:
+  - question: "Why is my Poe history not loading?"
+    answer: "The most common causes are: a stale browser session or cache, a temporary Poe server issue, being signed into the wrong account, or a subscription lapse affecting history access. Start with a hard refresh and cache clear, then sign out and back in before trying anything more involved."
+  - question: "Did Poe delete my conversation history?"
+    answer: "Poe does not automatically delete conversation history on active accounts. If history appears missing, it is almost always an authentication or display issue. Verify you're on the correct account, then try the cache and session fixes in this guide."
+  - question: "Does Poe limit how much conversation history you can access?"
+    answer: "Poe may limit conversation history access for free accounts. If you've downgraded from a paid subscription, some history features may be restricted. Check whether signing into a paid account restores the history, or contact Poe support to clarify what history is retained after a subscription change."
+  - question: "My Poe history disappeared after switching devices — what happened?"
+    answer: "Poe history is tied to your account, not your device. If you're seeing different history on different devices, you're likely signed into different accounts. Sign out on the new device and sign back in with the same credentials you use on the device where history is working."
+  - question: "How do I search my Poe conversation history?"
+    answer: "Poe does not provide built-in full-text search for conversation history across all your conversations. You can use Ctrl+F within an open conversation to search its content. For searchable indexing of Poe conversations, LLMnesia provides a local search index that covers Poe."
+sources:
+  - label: "Poe — Quora"
+    url: "https://poe.com/"
+  - label: "Poe Help Centre"
+    url: "https://help.poe.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/poe-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-poe-conversation-history"
+  - "how-to-backup-ai-conversations"
+  - "ai-chat-history-broken-native-search"
+---
+
+Poe, Quora's multi-model AI platform at poe.com, stores your conversation history in your account. When that history fails to load — blank chat list, partial history, loading errors, or conversations that appear to have disappeared — it's almost always a solvable technical issue rather than actual data loss.
+
+Work through these fixes in order. Most cases resolve within the first few steps.
+
+## Fix 1: Hard refresh the page
+
+Start with the simplest fix:
+
+- **Windows/Linux:** Ctrl+Shift+R or Ctrl+F5
+- **Mac:** Cmd+Shift+R
+
+A hard refresh reloads the page directly from the server rather than from cached resources. If the issue was a stale cached state, this resolves it in seconds.
+
+## Fix 2: Clear browser cache and cookies for Poe
+
+Cached data that's become outdated or corrupted can cause Poe's interface to fail to load history correctly. Clearing Poe's site data specifically is faster and less disruptive than clearing all browser data:
+
+**Chrome:**
+1. Click the padlock or info icon in the address bar while on poe.com
+2. Click "Cookies and site data"
+3. Click "Delete data"
+4. Reload the page
+5. Sign back in with your Poe credentials
+
+**Firefox:**
+1. Go to Settings → Privacy & Security → Manage Data
+2. Search for "poe.com" and remove its entries
+3. Reload and sign back in
+
+After clearing site data you'll need to sign in again. Check whether your conversation history loads after re-authentication.
+
+## Fix 3: Sign out and sign back in completely
+
+A session that's become invalid will often show you the interface in a logged-in state but fail to load account data:
+
+1. Click your profile or account icon in Poe
+2. Sign out
+3. Close the browser tab completely (or force-close the app on mobile)
+4. Reopen Poe and sign back in
+
+A fresh authentication session often resolves history loading failures caused by expired tokens or account sync issues.
+
+## Fix 4: Verify you're on the correct account
+
+Poe supports sign-in via multiple methods — Google, Apple, email, phone number. If you use different sign-in methods across devices, you may have created multiple Poe accounts, each with its own separate conversation history.
+
+1. Go to your Poe profile settings
+2. Check the email address or phone number associated with the account
+3. Confirm this matches the account you used when the conversations you're looking for were created
+
+If you suspect you have multiple accounts, try each sign-in method you use to see which one has your conversation history.
+
+## Fix 5: Check subscription status for history access
+
+Poe has a freemium model. If you recently downgraded from a paid Poe subscription or your subscription lapsed:
+
+1. Check your current subscription status in Poe account settings
+2. If you've gone from paid to free, some history features may be restricted
+3. Contact Poe support to clarify what history is retained after a subscription downgrade
+
+This is less common as a cause of complete history loss, but if you recently changed subscription tiers and the problem started around the same time, it's worth checking.
+
+## Fix 6: Try a different browser or device
+
+If the issue persists in your primary browser, try a clean environment:
+
+1. Open Poe in a different browser
+2. Sign in with the same account
+3. Check whether history loads
+
+If history loads in the other browser, the issue is specific to your primary browser — likely a browser extension interfering with Poe's JavaScript, a deeper cache problem, or a conflicting setting. Try disabling browser extensions one at a time in your primary browser to identify the conflict.
+
+**Common conflicting extensions:** Ad blockers (uBlock Origin, AdBlock Plus), privacy extensions (Privacy Badger), and anti-tracking tools can block JavaScript requests that Poe uses to load conversation history.
+
+## Fix 7: Check for a Poe service outage
+
+Poe occasionally has service disruptions. If the loading problem is sudden and widespread:
+
+1. Check Poe's status page or their official social media (X/Twitter)
+2. Search for current reports of the same issue from other users
+3. Check relevant subreddits or online communities for Poe users
+
+Platform-side outages typically resolve within hours. If there's a known outage, the fix is to wait.
+
+## Fix 8: Update the mobile app
+
+For mobile users, an outdated Poe app can cause history loading failures:
+
+1. Open your device's app store (App Store or Google Play)
+2. Check for a Poe update and install if available
+3. Open the updated app and sign in
+
+App updates often include bug fixes for known loading issues. Keeping the app current reduces the frequency of these problems.
+
+## Fix 9: Disable VPN or proxy
+
+VPN services and proxies can interfere with authentication and data retrieval for web applications. If you're using a VPN:
+
+1. Temporarily disable the VPN
+2. Open Poe and check whether history loads
+3. If it does, the VPN was interfering — try a different VPN server location or add poe.com to your VPN's bypass/split-tunnel list
+
+## Fix 10: Contact Poe support
+
+If none of the above resolves the issue, it may be account-specific. Contact Poe support at help.poe.com with:
+
+- A description of what you see (blank history, partial loading, error message)
+- Your browser, operating system, and app version if using mobile
+- When the problem started
+- What you've already tried
+
+Account-specific sync issues require support access to diagnose and fix.
+
+## Searching Poe conversation history
+
+Once history is loading, the next issue users commonly encounter is the lack of full-text search. Poe's interface doesn't provide a way to search across conversation content — you can browse your chat list and use Ctrl+F within an open conversation, but there's no built-in cross-conversation search.
+
+LLMnesia is a browser extension that indexes Poe conversations locally as you browse them. Install it from the Chrome Web Store, visit your Poe conversations to build the index, and search by keyword through the extension popup. Results come from inside your conversation content, not just from conversation titles.
+
+LLMnesia also covers other AI platforms you may use alongside Poe — ChatGPT, Claude, Gemini, Perplexity, and others — so a single search covers your entire multi-platform conversation history.
+
+## Backing up Poe conversations
+
+For conversations you want to preserve regardless of platform changes, copy important content to a separate document. Poe doesn't offer a bulk conversation export as of 2026. LLMnesia's local index provides a secondary layer of backup — conversations indexed before any issue occurs are preserved locally on your device, independently of what Poe's servers hold.
