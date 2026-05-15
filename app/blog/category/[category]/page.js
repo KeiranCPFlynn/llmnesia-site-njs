@@ -10,7 +10,10 @@ const CATEGORY_LABELS = {
   comparisons: 'Comparisons',
   workflows: 'Workflows',
   foundational: 'Foundational',
-  'problem-solving': 'Problem Solving'
+  'problem-solving': 'Problem Solving',
+  'use-cases': 'Use Cases',
+  'how-to': 'How-To',
+  explainer: 'Explainers'
 };
 
 const CATEGORY_DESCRIPTIONS = {
@@ -19,7 +22,10 @@ const CATEGORY_DESCRIPTIONS = {
   comparisons: 'Side-by-side comparisons of AI tools, browser extensions, and approaches to saving and searching AI conversations.',
   workflows: 'Practical workflows for building prompt libraries, knowledge bases, and searchable AI archives.',
   foundational: 'Core concepts behind AI conversation retrieval, local-first privacy, and how AI chat history works.',
-  'problem-solving': 'Fixes and explanations for common problems with AI chat history — missing conversations, broken search, lost answers.'
+  'problem-solving': 'Fixes and explanations for common problems with AI chat history — missing conversations, broken search, lost answers.',
+  'use-cases': 'Real-world use cases for managing AI conversation history across roles and industries — from students to executives.',
+  'how-to': 'Step-by-step instructions for finding, organising, exporting, and searching your AI conversation history.',
+  explainer: 'Plain-language explainers covering how AI memory, conversation limits, and chat history features actually work.'
 };
 
 export function generateStaticParams() {

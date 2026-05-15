@@ -16,6 +16,9 @@ const CATEGORY_LABELS = {
   workflows: 'Workflows',
   foundational: 'Foundational',
   'problem-solving': 'Problem Solving',
+  'use-cases': 'Use Cases',
+  'how-to': 'How-To',
+  explainer: 'Explainers'
 };
 
 function readingTime(content) {
