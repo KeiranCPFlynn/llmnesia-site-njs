@@ -15,15 +15,15 @@ secondaryKeywords:
 intent: "how-to"
 faq:
   - question: "Can you export Microsoft Copilot conversation history?"
-    answer: "Not natively. Microsoft Copilot does not currently offer a built-in data export for conversation history the way ChatGPT and Claude do. Your options are manual copying, browser-based tools that save individual conversations, or a browser extension like LLMnesia that indexes conversations locally as you use them."
+    answer: "Not natively. Microsoft Copilot does not currently offer a built-in data export for conversation history the way ChatGPT and Claude do. Your options are manual copying, the built-in export button on individual responses (Word or PDF), or using browser print-to-PDF to save a full conversation."
   - question: "How long does Microsoft Copilot keep conversation history?"
     answer: "Microsoft Copilot's retention policies depend on which version you're using. Consumer Copilot (copilot.microsoft.com) has limited history that does not persist indefinitely. Microsoft 365 Copilot for enterprise users is governed by your organisation's Microsoft 365 data retention policies. The exact retention period for consumer accounts is not publicly specified by Microsoft."
   - question: "Does Microsoft keep a record of my Copilot conversations?"
     answer: "Yes. Microsoft processes Copilot conversations on its servers. For consumer accounts, data handling is governed by Microsoft's privacy policy. For Microsoft 365 Copilot in enterprise contexts, data handling is governed by your organisation's Microsoft 365 agreement and applicable compliance settings."
   - question: "Is there a way to search Copilot conversation history?"
-    answer: "Not within the Copilot interface itself. Copilot does not offer content search for past conversations. LLMnesia indexes Copilot conversations locally as you browse them, making the content full-text searchable."
+    answer: "Not effectively. Copilot does not offer content search for past conversations, and there is currently no third-party extension with Copilot indexing support. The best approach is to export important conversations to Word or OneNote so they can be searched there."
   - question: "Does LLMnesia support Microsoft Copilot?"
-    answer: "Yes. LLMnesia indexes Microsoft Copilot conversations at copilot.microsoft.com as you use them. The index is stored locally on your device and makes your Copilot conversation content searchable alongside other AI platforms."
+    answer: "No. LLMnesia does not currently support Microsoft Copilot. It indexes conversations from ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio."
 sources:
   - label: "Microsoft Copilot"
     url: "https://copilot.microsoft.com/"
@@ -101,21 +101,16 @@ Several browser extensions offer page-capture features:
 
 These are useful if you're already using a note-taking system and want to integrate Copilot conversations into it, but they don't produce structured, searchable exports.
 
-## Method 5: Index conversations locally with LLMnesia
+## Method 5: Save conversations via OneNote or Word integration
 
-Rather than exporting retroactively, LLMnesia builds a continuously updated local index of your Copilot conversations as you use them:
+Microsoft 365 users have a natural landing spot for Copilot content: OneNote and Word are directly accessible from the Copilot export button and provide full-text search within them.
 
-1. Install LLMnesia from the Chrome Web Store
-2. Use Copilot normally at copilot.microsoft.com — conversations are indexed automatically as you open them
-3. Use LLMnesia's search popup to find content across all your indexed conversations
+1. After a valuable Copilot conversation, click the **Export** button on the response (the share/download icon)
+2. Choose **Copy to Word** or copy the text manually
+3. Save the document in a clearly labelled OneDrive folder
+4. In OneNote or Word, you can use Ctrl+F to search the content you've saved
 
-**Advantages over manual export methods:**
-- No manual effort per conversation — indexing happens automatically as you browse
-- Full-text searchable — find any phrase, code snippet, or topic across all indexed conversations
-- Cross-platform — the same search covers ChatGPT, Claude, Gemini, and other platforms simultaneously
-- Local storage — the index never leaves your device
-
-**Limitation:** LLMnesia indexes conversations as you visit them. If you want older conversations indexed, you'll need to open each one to trigger indexing. The extension doesn't retrospectively index conversations you haven't visited since installation.
+If you use other AI platforms alongside Copilot — ChatGPT, Claude, or Gemini — a browser extension like **LLMnesia** provides automatic local indexing for those platforms (note: LLMnesia does not currently support Copilot). For multi-platform users, this combination covers the majority of your AI work.
 
 ## Method 6: Microsoft 365 Copilot compliance export (enterprise only)
 
@@ -127,7 +122,7 @@ If you're in a Microsoft 365 environment and need historical Copilot conversatio
 
 Given the current lack of native export:
 
-- **For ongoing conversations you care about:** Install LLMnesia and let it build an index automatically as you use Copilot. This is the lowest-friction approach.
+- **For ongoing conversations you care about:** Develop the habit of exporting to Word or OneNote immediately after each valuable conversation — this is the lowest-friction approach available for Copilot.
 - **For a one-time important conversation:** Save as PDF (Method 2) immediately — don't rely on Copilot's history to retain it.
 - **For enterprise compliance needs:** Work with your IT team and Microsoft 365 admin tools.
 

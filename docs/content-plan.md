@@ -10,7 +10,7 @@
 | Phase | Status | Notes |
 |-------|--------|-------|
 | 1 — Technical SEO foundations | ✅ DONE | Completed 2026-04-16 |
-| 2 — Blog content velocity | ✅ DONE | 3 → 64 posts |
+| 2 — Blog content velocity | ✅ DONE | 3 → 74 posts |
 | 3 — GEO-specific content | ✅ DONE | Definitional post, FAQ JSON-LD, llms.txt |
 | 4 — Use-case page expansion | ✅ DONE | 3 → 5 pages, all rewritten to 700-900 words |
 | 5 — Distribution & authority | ⬜ NOT STARTED | ProductHunt, CWS audit, Show HN |
@@ -32,7 +32,7 @@
 
 ---
 
-## Phase 2 — Blog Content (DONE, 64 posts)
+## Phase 2 — Blog Content (DONE, 74 posts)
 
 ### Definitional / GEO anchors
 - `what-is-llmnesia`
@@ -55,6 +55,7 @@
 - `search-poe-conversation-history`
 - `search-qwen-conversation-history`
 - `search-kimi-conversation-history`
+- `search-chatgpt-conversation-history`
 - `deepseek-grok-mistral-chat-history`
 
 ### Platform-specific: how to export
@@ -70,6 +71,7 @@
 - `how-to-find-old-claude-conversations`
 - `how-to-find-old-gemini-conversations`
 - `how-to-find-old-perplexity-conversations`
+- `how-to-find-old-microsoft-copilot-conversations`
 
 ### Platform-specific: history not loading (fix posts)
 - `chatgpt-history-not-loading-fix`
@@ -84,11 +86,13 @@
 - `recover-deleted-claude-conversation`
 - `recover-deleted-gemini-conversation`
 - `recover-deleted-perplexity-conversation`
+- `recover-deleted-microsoft-copilot-conversation`
 
 ### Platform-specific: organise conversation history
 - `how-to-organize-chatgpt-conversation-history`
 - `how-to-organize-claude-conversation-history`
 - `how-to-organize-gemini-conversation-history`
+- `how-to-organize-microsoft-copilot-conversation-history`
 
 ### Platform-specific: limits & comparisons
 - `chatgpt-conversation-history-limits`
@@ -98,12 +102,14 @@
 - `chatgpt-vs-claude-conversation-history`
 - `google-ai-studio-conversation-history`
 - `pi-ai-conversation-history`
+- `claude-artifacts-vs-conversation-history`
 
 ### Problem-aware / pain-point posts
 - `ai-chat-history-broken-native-search`
 - `how-to-backup-ai-conversations`
 - `cross-llm-workflow-without-context-loss`
 - `best-chrome-extensions-save-ai-conversations`
+- `how-to-search-multiple-ai-chatbots-at-once`
 
 ### Profession-specific use cases (blog)
 - `ai-chat-history-for-lawyers`
@@ -114,6 +120,10 @@
 - `ai-chat-history-for-researchers`
 - `ai-conversation-history-for-writers`
 - `developer-ai-coding-assistant-history`
+- `ai-chat-history-for-engineers`
+- `ai-chat-history-for-hr-professionals`
+- `ai-chat-history-for-data-scientists`
+- `ai-chat-history-for-customer-support`
 
 ### Informational / commercial
 - `local-first-ai-tools-privacy`
@@ -200,12 +210,9 @@ All at `/compare/[slug]`:
 ### Profession-specific (new audiences)
 - `ai-chat-history-for-healthcare` — strong local-first/privacy angle
 - `ai-chat-history-for-sales-teams` — CRM context, cross-platform
-- `ai-chat-history-for-engineers` — distinct from developer post; focus on design/architecture decisions
-- `ai-chat-history-for-hr-professionals` — privacy-sensitive audience
 
 ### How-to (extend the pattern)
 - `how-to-find-old-grok-conversations`
-- `how-to-find-old-microsoft-copilot-conversations`
 
 ### Informational / GEO
 - `llmnesia-launch-update` — verifiable milestones post (publish once real user numbers exist)

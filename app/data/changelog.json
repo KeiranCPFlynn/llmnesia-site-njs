@@ -1,5 +1,26 @@
 [
   {
+    "version": "0.1.6",
+    "date": "2026-05-15",
+    "title": "Index older chats, What's new strip in popup & 11 fixes",
+    "highlights": [
+      "Index older chats — one-click indexing of your existing ChatGPT and Claude history into the search index. Runs invisibly in the background",
+      "What's new strip in popup — appears once after each extension update, links to llmnesia.com/changelog",
+      "Backup & Restore moved to full settings — export and import are now in the Settings page instead of the popup, giving them more room and removing the popup scrollbar",
+      "Backfill: progress pill now clears on completion — the pill's progress bar and count (e.g. \"156/157\") no longer stay stuck after a backfill finishes",
+      "Backfill nudge no longer fires while a run is in progress — the \"index older chats\" prompt now re-checks whether backfill started during the API sampling window before showing, preventing it from appearing mid-run",
+      "Backfill: Cancel button — popup and options now show a Cancel button alongside Pause/Resume when a backfill run is active, stopping the run entirely rather than just pausing it",
+      "Backfill progress in the pill — while a backfill run is active, the pill shows live progress (\"Backfilling 42/150\") with a fill bar",
+      "Backfill: stale chats get refreshed — conversations already in the index are now re-fetched during backfill if the platform API reports a newer modification date, so chats you've continued using since LLMnesia first indexed them get their updated content and correct dates",
+      "Backfill: imported chats now show their original dates — ChatGPT and Claude conversations indexed via backfill now carry the original creation and last-update dates from the platform API rather than today's date, so the search index reflects when chats actually happened",
+      "Backfill: conversations now actually get indexed on ChatGPT — three root causes fixed: (1) history discovery skipped the first batch of conversations (ChatGPT server-side renders the first page and returns empty for API offset=0)",
+      "Backup export saves as a single file — export now produces one .jsonl.gz file with a single save dialog instead of multiple small chunks",
+      "Backup export works reliably on large indexes — fixed a silent failure where exporting after a backfill run would error mid-way",
+      "Popup layout stable on open — conversation and message counts now render immediately as placeholders, preventing the Indexer Status panel from jumping once async data arrives",
+      "Popup search hint streamlined — replaced the three-line shortcut reminder box with a compact single-line hint, reducing popup height"
+    ]
+  },
+  {
     "version": "0.1.5",
     "date": "2026-05-04",
     "title": "Welcome screen, activation badge & reliability fixes",
