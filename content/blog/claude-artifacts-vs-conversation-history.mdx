@@ -85,3 +85,51 @@ Later, if you search LLMnesia for a specific phrase or variable name, it will fi
 ## Summary: Process vs. Product
 
 Think of your Conversation History as your rough draft and your Artifacts as the final deliverable. While Anthropic has made the creation of these deliverables beautiful, the responsibility of organizing and retrieving them still falls largely on the user. Utilize aggressive exporting, Claude Projects, or local search tools to keep your digital workspace organized.
+
+## A Deep Dive into Artifact Types and Their Retrieval Implications
+
+Not all Artifacts are equally easy to retrieve or as valuable to archive. Understanding the types helps prioritize where your organization effort goes:
+
+**Code artifacts** are the most commonly created and most commonly needed later. A Python script, a JavaScript function, a SQL query — these have obvious reuse value. Code artifacts should be exported to your codebase or IDE immediately after finalization. Don't rely on finding them in conversation history a month later.
+
+**Document artifacts** (markdown documents, reports, structured writing) are the second most common. These often represent significant drafting work. If a document artifact represents final or near-final content, export it to Word, Notion, or whatever your document management system is. If it's a draft, rename the parent conversation to reflect the document so you can find it again.
+
+**Diagram and visualization artifacts** (Mermaid diagrams, SVG graphics, flowcharts) are frequently created once and revisited rarely — until they're suddenly needed for a presentation or onboarding document. Because these are hardest to recreate from scratch, export them promptly. The SVG download button in the Artifact panel makes this easy.
+
+**Interactive artifacts** (React components, HTML pages with JavaScript) are the most ephemeral in terms of retrieval. They often exist as proof-of-concept explorations. If an interactive artifact proves its concept, extract the relevant code immediately. If it was exploratory, don't worry about retrieving it.
+
+## Claude Artifacts vs ChatGPT Canvas: A Comparison
+
+Anthropic's Artifacts and OpenAI's Canvas (previously called collaborative editing mode) solve a similar problem — separating substantial outputs from the chat flow — but with different approaches:
+
+| Feature | Claude Artifacts | ChatGPT Canvas |
+|---------|-----------------|----------------|
+| Triggered by | Claude's judgment on content size/type | User toggle or Claude judgment |
+| Appears as | Right-hand panel alongside chat | Full-screen editing mode |
+| Versioning | Yes — toggle between versions | Yes — revision history |
+| Export options | Copy, download (where applicable) | Copy, download |
+| Integration with Projects | Yes (can pin to Project) | Limited |
+| Searchable by platform | Title search only | Full-text search |
+| Third-party indexing | Possible via conversation indexing | Possible via conversation indexing |
+
+The practical difference: Canvas replaces the chat view, which can feel disruptive if you're in the middle of a dialogue. Artifacts run alongside the chat, which many users find less jarring for iterative work. For history and retrieval, both share the same limitation — the artifact is embedded in a conversation and only as findable as the conversation itself.
+
+## Advanced Artifact Workflows for Power Users
+
+Once you're comfortable with basic Artifact creation, several advanced patterns significantly increase their value:
+
+**The Iteration Chain:** Rather than starting a new conversation each time you revise a document or piece of code, keep iterating in the same Artifact conversation. Claude tracks version history within the Artifact panel — you can click the arrows to see previous versions. This means your entire revision history for a document lives in one conversation, making the naming and retrieval of that single conversation much higher stakes.
+
+**Artifact as Specification:** Use an Artifact to maintain a live specification document that Claude references across a long conversation. As requirements change, ask Claude to update the Artifact (not the chat). At the end of the session, the Artifact is your up-to-date spec and the chat is the discussion log — two distinct records with different archive strategies.
+
+**Multi-Artifact Sessions:** Claude can create multiple Artifacts in one conversation — a code file and a companion documentation file, for example. When renaming the conversation, make the title comprehensive enough to surface both Artifacts in future searches (e.g., "React Auth Component + Documentation").
+
+## Team Collaboration with Claude Artifacts
+
+Artifacts add a collaboration dimension to Claude that conversation history alone doesn't provide:
+
+**Shared links for review:** Claude's share conversation feature lets you share a link to any conversation including its Artifacts. This means you can share a Claude-generated spec, diagram, or code snippet with a teammate who doesn't have Claude — they see a read-only view of the conversation and can request their own access if needed.
+
+**Artifacts as team deliverables:** In teams where multiple members use Claude Pro or Team plans, Artifacts shared via link or within a Project can serve as collaborative starting points. One team member creates an Artifact (a system design doc, a test plan outline), shares it, and colleagues iterate from that starting point in their own conversations.
+
+**Knowledge base seeding:** High-quality Artifacts — a particularly well-structured technical explanation, a reusable prompt template, a reference architecture diagram — can be exported and added to a team's shared knowledge base (Notion, Confluence, internal wiki). This transforms a transient Claude output into a permanent, findable team resource that outlasts any individual's Claude conversation history.

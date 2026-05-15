@@ -88,3 +88,68 @@ LLMnesia runs entirely in your browser. As you chat with ChatGPT, Claude, Gemini
 - **Privacy-Preserving:** The index never leaves your device. This is crucial for engineers who are dealing with proprietary code but are permitted to use standard AI tools.
 
 By treating your AI interactions as a persistent, searchable knowledge base, you stop solving the same engineering problems twice and start building a compounding technical advantage.
+
+## Integrating AI Conversations with Version Control
+
+One of the most powerful — and underused — practices for engineers is linking AI conversations to code commits and pull requests. This turns AI history from a personal scratchpad into a team-accessible record of technical decisions.
+
+**Linking AI sessions in PR descriptions:** When a pull request implements a non-obvious architectural decision that was shaped by an AI conversation, include the conversation URL in the PR description. Future reviewers and future-you will have the full context for why a particular approach was chosen over alternatives.
+
+**Commit message context:** For complex refactors where AI reasoning was central to the approach, a note in the commit body (not the subject line) can point to the relevant session: "Approach discussed with Claude — see [conversation link]." This creates a searchable trail in `git log` that connects your codebase to the reasoning behind it.
+
+**ADR templates with AI links:** If your team maintains Architecture Decision Records in a `docs/adr/` directory, include an "AI-assisted" field that links to any significant AI conversations that informed the decision. An ADR template might look like:
+
+```markdown
+## Status
+Accepted
+
+## Context
+[Problem description]
+
+## Decision
+[What was decided]
+
+## AI-assisted research
+[Link to relevant AI conversation(s)]
+
+## Consequences
+[Trade-offs and implications]
+```
+
+This practice scales the value of individual engineers' AI sessions to the entire team and preserves institutional knowledge through staff changes.
+
+## AI Platforms Compared for Engineering Workflows
+
+Different AI tools have different strengths for engineering use cases, and understanding this helps explain why engineers' histories become fragmented across platforms:
+
+| Platform | Engineering strengths | Native history search |
+|----------|----------------------|----------------------|
+| ChatGPT | Code generation, debugging, broad coverage | Full-text (good) |
+| Claude | Long-context review, complex reasoning, system design | Title search only |
+| Gemini | GCP and Firebase integration, Google ecosystem | Moderate |
+| GitHub Copilot | In-IDE autocomplete and suggestions | None (IDE tool) |
+| DeepSeek | Technical reasoning, math-heavy problems | Minimal |
+
+The split most common among senior engineers is: Claude for architecture and design conversations (long context, deeper reasoning), ChatGPT for quick code generation and debugging (faster iteration, better search). This two-platform workflow creates exactly the cross-platform retrieval problem that makes unified search tools valuable.
+
+## Security Best Practices for Engineers Using AI
+
+Engineers face specific security considerations that other AI users often don't:
+
+**Proprietary code and IP:** Sharing internal code with public AI tools creates potential IP exposure. The calculus varies by organization — some companies prohibit it outright, others allow it for non-production utility code. Know your organization's policy and apply it consistently. When in doubt, abstract the specific business logic out and share only the structural pattern.
+
+**Infrastructure and credentials:** Never share actual credentials, API keys, connection strings, or internal hostnames with AI tools. Abstract these to placeholders: instead of sharing `DATABASE_URL=postgres://admin:password@internal.db.example.com/prod`, share the pattern `DATABASE_URL=<connection string>`. The AI can help with connection handling logic without needing the actual values.
+
+**Security review for AI-generated code:** AI-generated code should be reviewed for security issues with the same scrutiny as human-written code — and arguably more, since AI models can produce code with subtle vulnerabilities like SQL injection, unvalidated inputs, or insecure defaults. Never deploy AI-generated security-sensitive code (authentication, authorization, cryptography, input validation) without deliberate security review.
+
+**The history audit consideration:** If you use AI for work that involves sensitive infrastructure details, periodically review your AI history to confirm that no sensitive specifics (internal hostnames, system architecture details, non-public API behavior) have accumulated in your chat history. Most major platforms allow you to delete specific conversations.
+
+## Building a Team Knowledge Base from AI Conversations
+
+Individual engineers building private AI knowledge bases creates silos. Teams that share high-value AI interactions multiply the benefit across the team:
+
+**Engineering Slack channel for AI wins:** A dedicated `#ai-solutions` or `#engineering-ai` channel where engineers share particularly useful AI interactions normalizes knowledge sharing without requiring documentation overhead. Shared chat links from ChatGPT and Claude let teammates view the original conversation and continue it in their own account.
+
+**Curated snippet libraries:** For solutions that come up repeatedly — deployment configuration patterns, common data transformation snippets, boilerplate for specific frameworks — a curated team repository (GitHub repo, Confluence space, or Notion database) of AI-derived snippets provides immediate value. Each entry should include the original use case, the working code, and notes on limitations.
+
+**Onboarding AI history:** New engineers who can search a team's shared AI knowledge base get up to speed faster on common patterns, existing architectural decisions, and the reasoning behind them. This is one of the highest-leverage applications of treating AI history as a team asset rather than a personal one.

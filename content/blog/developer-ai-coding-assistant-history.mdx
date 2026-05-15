@@ -107,3 +107,44 @@ Many developers use different AI tools for different purposes. Claude for comple
 When a debugging solution could be in any of three chat histories, the cost of retrieval triples. LLMnesia covers all platforms from a single search — you don't need to guess where you asked.
 
 See also the [developers use case guide](/use-cases/developers) for a broader overview of how developers use LLMnesia across their workflow.
+
+## What Makes a Coding Session Worth Keeping
+
+Not all AI coding sessions have equal retrieval value. Before building habits around saving everything, it's useful to know which session types are most worth recovering:
+
+**High retrieval value:**
+- Debugging sessions that reached a working solution after significant iteration — the final fix plus the failed attempts have diagnostic value
+- Architecture or design discussions where alternatives were explored and ruled out — the reasoning is as valuable as the conclusion
+- Explanations of non-obvious behavior (race conditions, edge cases in external APIs, library-specific quirks) — this type of knowledge degrades if you have to reconstruct it
+
+**Moderate retrieval value:**
+- Boilerplate generation for patterns you use infrequently — Terraform modules, CI/CD configs, database migration patterns
+- Sessions where you asked for an explanation of a concept — useful to reference again, but often re-derivable from documentation
+
+**Low retrieval value:**
+- Simple one-shot code generation that worked first try — the output is in your codebase; you don't need the session
+- Exploratory conversations that reached no conclusion — save the codebase state instead
+- Sessions covering well-documented behavior — you'll find the documentation faster than the old conversation
+
+Focusing your retrieval system on high-value sessions reduces noise and makes searches more useful.
+
+## The Specific Failure Mode: Remembering You Solved It But Not Where
+
+There's a particular failure mode that experienced AI users recognize: you know you solved a problem before, you remember the rough shape of the solution, but you can't find it. This is worse than not having solved it before — you're spending time searching rather than re-deriving.
+
+This failure mode is almost entirely caused by two factors:
+
+1. **Platform uncertainty:** You can't remember whether the session was in Claude, ChatGPT, or somewhere else — so you're searching multiple interfaces sequentially
+2. **Title mismatch:** The conversation title (auto-generated from your first message) doesn't contain the search terms you're now using
+
+Both factors collapse with unified local indexing. Cross-platform search eliminates the "which tool did I use?" uncertainty. Full-text indexing eliminates the title mismatch problem by searching the content of every message, not just the conversation name.
+
+## Keeping the Index Healthy Over Time
+
+A local conversation index becomes more useful as it grows — but only if the signal-to-noise ratio stays good. A few practices keep the index working for you rather than against you:
+
+**Periodically delete low-value conversations from the source platform.** If you delete a conversation from ChatGPT or Claude, LLMnesia's index entry for it typically becomes a dead link. A periodic cleanup of abandoned, concluded, or outdated conversations — especially those with no useful output — keeps the search results relevant.
+
+**Don't fight the index with manual workarounds.** If you have a local index, you don't need aggressive manual naming conventions. Rename conversations when it's natural, but don't spend time on elaborate naming schemes — the full-text index will find the content regardless of title.
+
+**Trust search over memory.** Once you have reliable unified search, trust it. Before re-deriving or re-asking a question you might have covered before, do a quick search first. The habit of checking before re-asking is what transforms the index from a theoretical backup into a practical time-saver.

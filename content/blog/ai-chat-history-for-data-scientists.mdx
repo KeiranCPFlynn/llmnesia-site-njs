@@ -88,3 +88,53 @@ This is the primary use case for local indexing extensions like **LLMnesia**.
 - **Why it matters for Data Science:** You can open LLMnesia and search for `pd.to_datetime(errors='coerce')`. It will instantly scan your entire AI history across all platforms and highlight the exact message where that syntax was discussed, without your search query ever leaving your computer.
 
 By systematically documenting AI interactions and utilizing robust search tools, data scientists can turn ephemeral AI chats into a permanent, searchable library of statistical and programmatic knowledge.
+
+## AI Tools Compared for Data Science Workflows
+
+Not all AI platforms are equal for data science tasks. Understanding where each platform excels helps you decide which conversations to search when you need to retrieve past work:
+
+| Platform | Data science strengths | History searchability |
+|----------|----------------------|----------------------|
+| ChatGPT (with Advanced Data Analysis) | File uploads, code execution, charts | Full-text native search |
+| Claude | Long-context analysis, complex code reasoning | Title search only |
+| Gemini | Google Sheets/BigQuery integration | Moderate |
+| Perplexity | Citing research papers and methodologies | Limited |
+| Local LLMs | Sensitive data processing (no upload risk) | Typically none |
+
+The key finding: ChatGPT's Advanced Data Analysis is often the most productive environment for hands-on data work (it can execute code in a sandbox), but Claude's longer context window makes it better for reasoning through complex statistical methodology. Many data scientists end up with history split across both — making cross-platform search a genuine practical need.
+
+## Connecting AI History to Your MLOps Pipeline
+
+For data scientists working in production ML environments, AI conversation history can serve as a valuable but underutilized form of experiment documentation.
+
+**AI conversations as decision logs:** When you use AI to reason through model architecture choices — why you chose a gradient boosting approach over a neural network for a particular dataset, why you selected a specific feature engineering strategy — that conversation is effectively a decision log. It explains the *why* behind a model decision in a way that code comments rarely capture.
+
+**Linking conversations to MLflow experiments:** A simple practice is to include the URL of the relevant AI conversation in the MLflow (or Weights & Biases) experiment description. Future team members reviewing experiment history can follow the link to see the full reasoning context, not just the metrics.
+
+**Using AI for post-hoc explanation:** After a model is deployed, AI conversations that explain how specific features influence predictions — or that reason through why a model fails on certain edge cases — are worth preserving as part of the model card documentation.
+
+## Building a Team AI Snippet Library for Data Science
+
+Individual data scientists building personal AI history management systems is useful. Teams that extend this to a shared knowledge base multiply the value.
+
+**The problem with individual silos:** A junior data scientist spends an hour working through a complex Pandas multi-index reshaping problem with ChatGPT. A senior colleague solved the same problem six months ago in a different AI session. Without a shared system, the junior scientist reinvents the wheel.
+
+**A practical shared library approach:**
+
+1. Create a team-accessible repository (GitHub, Confluence, Notion) with a folder structure organized by domain (e.g., `data-cleaning/`, `model-evaluation/`, `visualization/`, `SQL/`).
+2. When a team member generates a highly reusable snippet or a genuinely novel solution to a common problem, they open a PR (or add a page) with the AI session link, the key prompt, and the extracted code.
+3. Maintain a convention: snippets in the library should include the actual code plus a one-paragraph explanation of when to use it and what edge cases it handles.
+
+This doesn't need to be comprehensive. A library of fifty well-chosen entries — covering the problems the team encounters repeatedly — is worth far more than an ambitious library that no one maintains.
+
+## Data Security Considerations for AI History
+
+Data scientists work with sensitive data more than almost any other role. The AI history management considerations for data science carry specific security implications:
+
+**Never store real data in AI conversations.** Even if you use an enterprise AI tier with no-training data retention, the habit of working with synthetic data preserves clean professional practices and ensures safety regardless of which AI tools you or your team use in the future.
+
+**Be careful with schema information.** Even without actual data rows, sharing your full database schema with a public AI tool may expose sensitive business logic or PII field names. Abstract schemas to the relevant tables and columns for the specific question.
+
+**Audit your AI conversation history periodically.** Especially if you work on regulated data (financial, healthcare, government), it is worth periodically reviewing your AI history to confirm that no sensitive information slipped in. Most AI platforms provide a data export that makes this audit feasible.
+
+**Consider your employer's AI policy.** Many organizations have policies about which AI tools can be used for work involving certain data classifications. If your organization has an approved AI tool list, ensure your work history practices align with it. Using an approved enterprise tier (e.g., ChatGPT Enterprise or Claude for Work) typically provides stronger data protection guarantees than the standard free tiers.

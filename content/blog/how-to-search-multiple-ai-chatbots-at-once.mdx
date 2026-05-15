@@ -96,3 +96,53 @@ A unified search tool is only as good as its coverage. LLMnesia typically suppor
 When merging data from multiple AI platforms, privacy is paramount. You are aggregating your most complex professional problems into one database. 
 
 You should never use a cross-platform search tool that uploads your history to their own cloud servers. LLMnesia uses a **local-first architecture**. The index is built and stored entirely within your browser's local storage. Your multi-platform AI history remains on your device, ensuring maximum privacy while providing the ultimate retrieval experience.
+
+## Which AI Tool Is Best for What?
+
+Understanding why professionals use multiple AI tools helps explain why unified search matters so much. The fragmentation isn't arbitrary — different platforms genuinely excel at different things:
+
+| Platform | Strongest use case | Native search quality |
+|----------|-------------------|----------------------|
+| ChatGPT | Data analysis, broad generation, plugins | Full-text search (good) |
+| Claude | Long documents, nuanced writing, deep reasoning | Title search only (limited) |
+| Gemini | Google Workspace integration, real-time web | Moderate |
+| Perplexity | Cited web research, source-backed answers | Limited |
+| Grok | Real-time social and news events | Limited |
+| DeepSeek | Technical/code tasks, reasoning | Minimal |
+
+A researcher using Perplexity for sources, Claude for synthesis, and ChatGPT for structuring outputs is making rational choices. But that workflow creates three separate history silos — and "which tool did I use for that?" becomes a real question under deadline pressure.
+
+## The Real Cost of Fragmented AI History
+
+It is tempting to think of the search problem as a minor inconvenience. In practice, the costs are more significant:
+
+**Duplicated effort.** Without cross-platform search, professionals often re-ask questions they've already answered because finding the previous answer takes longer than starting over. A five-minute re-query is cheap; the same answer re-derived fifty times per year is not.
+
+**Lost context.** AI conversations contain the *reasoning process*, not just the output. When you lose a session on a complex problem, you lose the dead ends that were ruled out, the alternative approaches considered, and the specific constraints that shaped the final answer. Starting fresh means starting over from zero.
+
+**Inconsistency.** Teams that can't retrieve past AI outputs tend to produce inconsistent results — two people asking the same question get slightly different answers on different days and have no way to reconcile them. Retrievable history enables institutional consistency.
+
+## How to Set Up Unified AI Search Step by Step
+
+If you decide to implement cross-platform search, here is a practical setup process:
+
+**Step 1 — Identify which platforms you actually use.** Audit your history across ChatGPT, Claude, Gemini, Perplexity, and any others. This tells you which platforms your indexing tool needs to cover.
+
+**Step 2 — Choose a local-first tool.** The non-negotiable requirement for a professional tool is local-first architecture: the index must be built and stored on your device, not uploaded to a third-party server. LLMnesia is purpose-built for this use case, covering all major browser-based AI platforms.
+
+**Step 3 — Install and let it run passively.** The best unified search tools require no change to your existing workflow. Install the extension and continue using AI tools normally. The index grows automatically as you work.
+
+**Step 4 — Establish a search habit.** The tool is only useful if you reach for it before re-asking a question. Build the habit of doing a quick search in LLMnesia before starting any AI session on a topic you may have explored before.
+
+**Step 5 — Archive your most-used outputs elsewhere.** Unified search covers the "long tail" of past conversations — sessions you might want again but aren't sure. For the small set of outputs you use constantly (a prompt template, a recurring script), still keep those in a dedicated notes app or code repo where they're immediately accessible without search.
+
+## Privacy Checklist for Cross-Platform Search Tools
+
+Before installing any tool that touches your AI conversation history, verify these points:
+
+- **Is the index stored locally?** The index should live in your browser's local storage or on your device — not on a company's server.
+- **Is any data transmitted over the network?** Some tools send query text or conversation snippets to cloud services for processing. A genuine local-first tool does all indexing and searching on your device.
+- **What permissions does the extension request?** A cross-platform indexing tool needs to read page content on the AI platforms it supports. It should not request permission to read all websites or access data unrelated to AI platforms.
+- **Is there a clear privacy policy?** A credible local-first tool will have a policy that explicitly states what is and isn't collected. The answer for your conversations should be: nothing is collected, everything stays on your device.
+
+LLMnesia is built on these principles — the index is entirely local and your conversation content is never transmitted to LLMnesia's servers. This is the baseline you should expect from any tool you use to search sensitive professional AI history.

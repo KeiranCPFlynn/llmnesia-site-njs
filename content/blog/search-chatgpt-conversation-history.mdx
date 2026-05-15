@@ -88,3 +88,70 @@ Regardless of which tool you use to search, you can make your life easier by pra
 - **One Topic Per Chat:** Don't ask for a recipe in the same chat where you are debugging server architecture. Keep contexts clean.
 - **Rename Chats Promptly:** Don't rely on the auto-generated titles. Rename the chat to something highly specific (e.g., "Python Regex - Extracting Email Addresses").
 - **Summarize Before Closing:** Ask the AI to summarize the key takeaways of a long chat in the final prompt. This concentrates the keywords, making it much easier for any search tool to find the core value of the conversation later.
+
+## Understanding How ChatGPT's Native Search Actually Works
+
+The native search is more powerful than many users realize — and more limited than some expect. Knowing what it does under the hood helps you use it more effectively.
+
+ChatGPT's native search indexes both the conversation title and the full text of your messages and ChatGPT's responses. When you type a search query, it's running a keyword match against that indexed content. It is not semantic search — it won't find conceptually related conversations that don't share your exact terminology. If you searched for "machine learning classification" it might not surface a conversation you titled "ML tutorial" where you discussed decision trees.
+
+**What searches well:**
+- Specific error messages or stack traces (highly unique strings)
+- Function names, library names, framework-specific terms
+- Quoted exact phrases from responses you remember
+- Proper nouns (tool names, project names, company names)
+
+**What searches poorly:**
+- Vague concepts ("that chart I made", "my logo design")
+- Common words that appear in thousands of conversations
+- Content from conversations before the search feature was rolled out (older history may have indexing gaps)
+
+**Tip:** If an initial search returns too many results, try adding a second specific term. "Python" alone will return hundreds of results; "Python asyncio timeout" narrows it dramatically.
+
+## Advanced Search Techniques
+
+Beyond basic keyword search, there are several tactics that improve retrieval within ChatGPT:
+
+**Search by the ChatGPT tool used:** If you used a specific ChatGPT capability, that context often appears in the conversation. Searching "code interpreter" or "DALL-E" or "canvas" can filter results toward sessions where those tools were active.
+
+**Search for the exact error message:** When looking for a debugging session, searching the exact error text (e.g., `TypeError: Cannot read properties of undefined`) is far more precise than searching the general topic. Error strings are unique and won't appear in unrelated conversations.
+
+**Search for the follow-up question you asked:** Often the most memorable part of a conversation isn't ChatGPT's answer — it's the clarifying question you typed. Search for phrases you specifically remember writing, not phrases you remember reading.
+
+**Combine a platform name with a concept:** If you remember using a specific service during the conversation, include it: "Vercel deployment" or "Stripe webhooks" or "AWS Lambda" narrows results significantly.
+
+## How ChatGPT Search Compares to Other Platforms
+
+ChatGPT's native full-text search is genuinely the best native history search among the major AI platforms:
+
+| Platform | Native search type | Full-text inside messages | Export for offline search |
+|----------|-------------------|--------------------------|--------------------------|
+| ChatGPT | Full-text | Yes | Yes (JSON + HTML) |
+| Claude | Title search | No | Yes (JSON) |
+| Gemini | Limited | Partial | Yes (Google Takeout) |
+| Perplexity | Thread titles | No | Partial |
+| Microsoft Copilot | No native search | No | No |
+| DeepSeek | Limited | Limited | No |
+
+The gap between ChatGPT and Claude on this dimension is meaningful. Claude's search only covers titles, which means without deliberate renaming, most Claude conversations are effectively unsearchable. If you rely heavily on Claude and need to find specific content, a local indexing tool like LLMnesia compensates for this gap — it provides full-text search across Claude (and other platforms) in the same way ChatGPT provides natively.
+
+## When to Archive Instead of Search
+
+Not every conversation belongs in your searchable history. A mental framework for when to archive versus simply search:
+
+**Archive to a permanent location when:**
+- You reached a definitive, reusable answer (a working script, a finalized document, a specific explanation you'll teach to others)
+- The conversation contains a critical decision with rationale you may need to explain later
+- You know you'll need this content even if you switch AI platforms
+
+**Let search handle it when:**
+- You might want to reference the conversation but aren't certain
+- The content is useful as context but not as a standalone artifact
+- You'd use LLMnesia or ChatGPT's native search to find it, but don't need it immediately accessible
+
+**Delete it when:**
+- The conversation was entirely exploratory and reached no useful conclusion
+- The information is outdated and would be misleading to find later
+- The conversation contained sensitive information that you don't want persisting
+
+Keeping your ChatGPT history intentionally curated — archiving what matters, deleting what doesn't — means search results stay relevant. A history bloated with thousands of abandoned one-off conversations gradually erodes the signal-to-noise ratio of any search, native or third-party.
