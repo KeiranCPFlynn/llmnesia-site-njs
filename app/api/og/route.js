@@ -2,13 +2,15 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import { ImageResponse } from 'next/og';
 
-const BG = '#0c1416';
-const CARD = '#131b1e';
-const BORDER = '#1c2a2e';
-const TEXT = '#e6eef0';
-const TEXT_MUTED = '#7a9aa5';
-const BRAND = '#339eb5';
-const ACCENT = '#5dd694';
+const BG = '#fffef8';
+const PAPER_ALT = '#faf6e4';
+const CARD = '#ffffff';
+const BORDER = '#d9decb';
+const TEXT = '#142430';
+const TEXT_MUTED = '#5b6b74';
+const BRAND = '#2f7f99';
+const ACCENT = '#9ab458';
+const RUST = '#c6572f';
 
 function loadFont(filename) {
   return readFileSync(path.join(process.cwd(), 'public', 'fonts', filename));
@@ -67,13 +69,13 @@ export async function GET(request) {
               width: '36px',
               height: '36px',
               borderRadius: '8px',
-              background: `linear-gradient(135deg, ${BRAND}, ${ACCENT})`,
+              background: `linear-gradient(135deg, ${BRAND}, #23687d)`,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '18px',
               fontWeight: 700,
-              color: BG
+              color: '#ffffff'
             }}
           >
             L
@@ -143,7 +145,7 @@ export async function GET(request) {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              background: CARD,
+              background: PAPER_ALT,
               border: `1px solid ${BORDER}`,
               borderRadius: '8px',
               padding: '10px 20px'

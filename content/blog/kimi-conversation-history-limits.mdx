@@ -1,0 +1,134 @@
+---
+title: "Kimi Conversation History: Limits, Long-Context Retention, and Search"
+slug: "kimi-conversation-history-limits"
+description: "Kimi by Moonshot is built around very long context windows, which changes the dynamics of how conversation history works. This guide covers what Kimi stores, how long-context affects history, and how to find old Kimi conversations efficiently."
+publishDate: "2026-05-21"
+updatedDate: "2026-05-21"
+author: "Keiran Flynn"
+primaryKeyword: "kimi conversation history limits"
+secondaryKeywords:
+  - "kimi chat history retention"
+  - "kimi long context history"
+  - "kimi moonshot history search"
+  - "how long does kimi keep history"
+  - "kimi history not showing"
+intent: "informational"
+faq:
+  - question: "How long does Kimi keep your conversation history?"
+    answer: "Kimi has not published a fixed retention window for chat history on active accounts. Conversations remain in the sidebar while the account is in good standing. Deleted conversations are removed from the visible list and from active storage under Moonshot's broader data retention policy."
+  - question: "Does Kimi's long context window mean conversations stay coherent indefinitely?"
+    answer: "The long context window means Kimi can attend to far more of a single conversation than most competitors before older turns drop out of its attention. It does not mean the conversation is stored forever — context window and conversation history retention are separate things. A long-context conversation that you cannot find later is still effectively lost."
+  - question: "Can I search inside Kimi conversations?"
+    answer: "Kimi's built-in search on the consumer surface is limited and mainly title-oriented. Full-text search over the body of past conversations is not the strength of the chat sidebar. For full-text retrieval across Kimi and other AI platforms, a local indexing extension such as LLMnesia is the most reliable approach."
+  - question: "Why are some Kimi conversations missing from the sidebar?"
+    answer: "Common causes include signing in under a different account, conversations conducted without logging in (which are not persisted), browser session glitches, or manual deletion. Hard-refreshing and verifying the signed-in account is usually the first step."
+  - question: "Does Kimi use my conversations to train models?"
+    answer: "Moonshot's policies cover use of user inputs and the controls available to opt out where applicable. Specifics vary by region and account type. Review the current policy before sending sensitive content and keep a local archive of anything you cannot afford to lose."
+sources:
+  - label: "Kimi by Moonshot AI"
+    url: "https://kimi.moonshot.cn/"
+  - label: "Moonshot AI"
+    url: "https://www.moonshot.cn/"
+  - label: "Search Kimi conversation history"
+    url: "https://llmnesia.com/blog/search-kimi-conversation-history"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/kimi-conversation-history-limits"
+category: "platform-guides"
+relatedSlugs:
+  - "search-kimi-conversation-history"
+  - "ai-chat-retrieval-explained"
+  - "how-to-search-multiple-ai-chatbots-at-once"
+---
+
+Kimi, the conversational AI from Moonshot, made its name in the long-context category. Its models have shipped with context windows that, at various points, have been among the largest available on a consumer product — the kind of capacity that lets you paste an entire book or a long codebase into a single thread and reason about it without truncation.
+
+That capability changes how people use the product. It does not change how the product stores the resulting conversations. This guide separates the two, walks through what Kimi keeps, and explains how to make a growing Kimi history searchable.
+
+## What Kimi stores
+
+For each conversation tied to your Kimi account, the product retains:
+
+- An auto-generated title derived from your opening message
+- The full sequence of your messages and Kimi's responses, including any long-context input you provided
+- The timestamp of each turn
+- The model variant used (Kimi's lineup evolves; recent releases are tracked individually)
+- Attached files or documents, subject to Moonshot's file handling policies for your tier
+
+The sidebar lists conversations chronologically by title. There is no folder or project layer on the consumer surface.
+
+## Long context vs long retention: do not confuse them
+
+This distinction matters more on Kimi than on most products, because the long-context feature is so prominent in how it is marketed.
+
+**Context window** is what the model can attend to within a single conversation. Kimi's headline figures here are substantial — far larger than typical chat products. This is the right metric if you are asking "can I paste this entire document and ask questions about it."
+
+**Conversation history retention** is how long the conversation, once finished, remains available in your account. This is bounded by Moonshot's storage and retention policies, not by the model's context window.
+
+A long-context model with limited retrieval is a paradox in slow motion: you can have richer, deeper conversations than ever — and lose them just as easily as you would on a small-context product, because the retrieval surface is the same.
+
+This is the structural argument for taking Kimi history management seriously. The more context you put into a conversation, the more valuable it is to be able to find that conversation again later.
+
+## Retention: no published cap, account-active
+
+Moonshot has not published a numerical retention window for Kimi conversations on active accounts. Observed behaviour:
+
+- Conversations created weeks or months ago remain in the sidebar
+- Deletion from the sidebar removes the conversation from the visible list
+- Account-level deletion follows the broader policy
+
+The published privacy and terms documents are the authoritative source. For sensitive work, do not assume sidebar permanence — export.
+
+## Conversation count and the search gap
+
+There is no published per-account ceiling on Kimi conversation count. As with other consumer AI products, the binding limit is retrieval: the sidebar is a flat chronological list and the in-product search is limited to titles.
+
+For users who routinely paste book-length or codebase-length context into Kimi conversations, the search gap is more painful than average. Each long-context conversation represents a non-trivial investment of setup time and the value of being able to return to it months later is high — and the title alone is rarely enough to find it.
+
+## Long-context conversations are exactly the ones to index
+
+If you only treat one type of conversation as worth retrieving, treat the long-context ones as the priority. Reasons:
+
+1. **Setup cost** — Long-context conversations cost real time to set up. Reproducing one from scratch is not a thirty-second affair.
+2. **Reasoning content** — Long-context conversations often include sustained analysis built on the pasted material. That analysis is not in the pasted material itself; it is generated within the conversation, and lives nowhere else.
+3. **Title under-specification** — Auto-generated titles for long-context sessions are unusually unhelpful, because the opening message is often a large dump of pasted content followed by a short instruction. The resulting title rarely reflects what made the conversation valuable.
+
+The implication: of all the AI platforms where a full-text local index is a multiplier, Kimi is high on the list.
+
+## "Kimi history not showing" — common causes
+
+If conversations are missing or the sidebar is empty:
+
+1. **Account mismatch** — verify the signed-in account.
+2. **Logged-out usage** — Kimi conversations conducted without authentication are not persisted server-side.
+3. **Browser session issue** — hard refresh, sign out and back in.
+4. **Regional access** — Kimi's access surface varies by region; what is reachable from one network may differ from another.
+5. **Manual deletion** — irreversible from the UI once it has propagated.
+
+## Strategies for managing Kimi history at scale
+
+### Front-load distinct context in your opening message
+
+Because the sidebar title comes from your opening message, the auto-generation is most useful when the opening message includes a short distinctive description of what the conversation is about, not just a paste-and-ask. Something like "Analysing Q3 industry report for talent strategy implications — pasting full PDF below" produces a usable title; pasting the PDF first and asking "what's interesting here" does not.
+
+### Export periodically
+
+Moonshot supports user data export through account settings. Use it as a backup, not just a one-time investigation tool. Long-context conversations are exactly the type of content where a local copy is most valuable.
+
+### Add a local full-text index
+
+The single biggest improvement to Kimi retrieval is making the body of conversations searchable, not just titles.
+
+**LLMnesia** indexes Kimi conversations locally on your device as you use the platform. The index covers the full text of your messages and Kimi's responses, including the long pasted context you provided. A search for any phrase from the conversation — including phrases inside the pasted material — returns the matching thread directly.
+
+For Kimi's signature long-context workflows, full-text indexing is what makes the historical archive actually usable as a knowledge base.
+
+### Cross-platform search
+
+Many Kimi users also use Claude, ChatGPT, Gemini, or DeepSeek depending on the job. A cross-platform local index returns results from every platform in a single search, ranked by relevance — so you do not have to remember which AI tool you used for which long-context analysis.
+
+## The bottom line
+
+Kimi's long-context capability creates more valuable conversations and increases the cost of losing track of them. The platform's history surface, like most consumer AI products, was designed around short interactions and flat sidebar navigation — it was not designed to be the retrieval system for hundreds of long, dense reasoning threads.
+
+That gap is closed by an external full-text index. Keep using Kimi for the long-context work that makes it distinctive, export periodically as a backup, and run a local index across your AI stack so the value of any past Kimi conversation does not depend on whether you can remember its auto-generated title.

@@ -51,7 +51,7 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0d1117'
+  themeColor: '#fffef8'
 };
 
 export default function RootLayout({ children }) {
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
         <link rel="alternate" type="application/rss+xml" title="LLMnesia Blog Feed" href="/feed.xml" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
         />
       </head>
       <body>

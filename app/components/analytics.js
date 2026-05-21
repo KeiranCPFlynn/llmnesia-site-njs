@@ -16,7 +16,7 @@ export default function Analytics({ gaId }) {
     const queryString = searchParams?.toString();
     const pagePath = queryString ? `${pathname}?${queryString}` : pathname;
 
-    window.gtag('config', gaId, {
+    window.gtag('event', 'page_view', {
       page_path: pagePath,
       content_group: contentGroupFromPath(pathname || '/')
     });

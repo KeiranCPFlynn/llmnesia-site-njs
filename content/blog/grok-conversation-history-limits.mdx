@@ -1,0 +1,133 @@
+---
+title: "Grok Conversation History: Limits, Retention, and Search on X and Grok.com"
+slug: "grok-conversation-history-limits"
+description: "Grok stores conversation history across both the X app and grok.com, with different surfaces and slightly different behaviour. This guide covers what Grok retains, how the history interacts with X account changes, and how to find old conversations efficiently."
+publishDate: "2026-05-21"
+updatedDate: "2026-05-21"
+author: "Keiran Flynn"
+primaryKeyword: "grok conversation history limits"
+secondaryKeywords:
+  - "grok chat history storage"
+  - "how long does grok keep history"
+  - "grok ai history retention"
+  - "grok conversation search"
+  - "grok history not showing"
+intent: "informational"
+faq:
+  - question: "How long does Grok keep your conversation history?"
+    answer: "Grok has not published a fixed retention window for chats on active accounts. Conversations remain accessible in the chat list indefinitely while the linked X account is in good standing. Deleted conversations are removed from the visible list and follow xAI's broader data deletion timelines for residual copies."
+  - question: "Is there a difference between Grok history on X and on grok.com?"
+    answer: "Yes. Grok inside the X app and grok.com share the same underlying account and conversation store, but each surface has its own UI for browsing chats. New users sometimes see fewer conversations on one surface than the other because of cached state — a refresh or sign-out cycle usually reconciles them."
+  - question: "Can I search inside Grok conversations?"
+    answer: "Grok's built-in chat list provides limited search at best, primarily matching titles. There is no robust full-text search across the body of past conversations. For full-text search across Grok and other AI chat platforms, a local indexing extension such as LLMnesia is the most reliable approach."
+  - question: "What happens to my Grok history if my X account is suspended or deleted?"
+    answer: "Grok is bound to your X account. Loss of access to X — through suspension, deletion, or account change — also removes access to the Grok history attached to that account. If long-term retention matters, periodic export is the only safe path."
+  - question: "Does Grok use my conversations to train models?"
+    answer: "xAI's policies describe use of inputs to improve services. Specifics, including any user-facing opt-out, vary by region and account type. Review the current xAI privacy controls if training-on-input is a concern for your workflow."
+sources:
+  - label: "Grok"
+    url: "https://grok.com/"
+  - label: "xAI"
+    url: "https://x.ai/"
+  - label: "How to find old Grok conversations"
+    url: "https://llmnesia.com/blog/how-to-find-old-grok-conversations"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/grok-conversation-history-limits"
+category: "platform-guides"
+relatedSlugs:
+  - "how-to-find-old-grok-conversations"
+  - "search-grok-conversation-history"
+  - "how-to-export-grok-conversation-history"
+---
+
+Grok is unusual among major AI chat products because it lives in two places at once: as a tab inside the X app, and as a standalone web app at grok.com. Both share an account and a conversation store, but each presents history slightly differently. That, plus the fact that Grok's product documentation is comparatively sparse, leaves users guessing about what is actually retained and what the practical limits look like.
+
+This guide pulls together what is published, what is observable in the product, and what to do about the gaps.
+
+## What Grok stores
+
+For each conversation tied to your X / Grok account, the platform retains:
+
+- An auto-generated title (typically derived from your opening question)
+- The full sequence of your messages and Grok's responses
+- The timestamp of each turn
+- Whether the conversation used the standard model or a reasoning-tier model
+- Whether the conversation included X-feed context or web search
+- Any images you uploaded or that Grok generated within the thread (subject to image retention policies)
+
+Both grok.com and the X-embedded Grok pull from the same account-level history. If you start a conversation on one surface, it should appear on the other after the UI refreshes.
+
+## Retention: no published cap, account-coupled
+
+xAI has not published a numerical retention window for Grok conversations on active accounts. Behaviour observed:
+
+- Old conversations remain available in the list as long as the account is active
+- Manually deleted conversations disappear from the list immediately
+- Account deletion removes access to the associated chat history
+
+The critical coupling is to the X account. This is more consequential than most users realise — see the section below on account risk.
+
+## The X account coupling matters
+
+Most AI chat products are tied to an email-based account. If you change your password, lose access, or close the account, you have established paths to recover or export data.
+
+Grok is tied to X. If your X account is suspended, restricted, or deleted, the Grok history riding on top of it is affected in the same ways. The reasons your X account might change status are also wider than the reasons your, say, Anthropic account might — X policy enforcement, account hijack recovery, or jurisdiction-specific access changes can all gate Grok history.
+
+The practical implication is that "Grok history" is less durable as a long-term archive than other platforms simply because the underlying account has more failure modes. If a Grok conversation matters to you in six months, export it now, do not assume it will be there.
+
+## Conversation count and the search gap
+
+There is no published per-account cap on Grok conversation count. The user-facing limit is the same as on most chat products: at scale, scrolling and title-matching break down as retrieval mechanisms.
+
+Grok's chat list is a flat, chronological listing. The built-in search is at best title-based — there is no full-text search over the body of conversations. After a hundred or so chats, the question shifts from "is the conversation still there" to "can I actually find it."
+
+## Reasoning mode conversations are especially worth keeping
+
+Grok's reasoning-tier models produce long, structured derivations — the kind of output where the value compounds over time if you can find it again. A reasoning-mode session that worked through a tricky proof, derived a non-obvious algorithm, or analysed a complex argument is exactly the kind of conversation you will want to return to.
+
+It is also exactly the kind of conversation whose title — auto-generated from your opening prompt — will not help you find it weeks later. "Help me think through this" generates a title that says nothing about the conclusion.
+
+For users running Grok's reasoning models seriously, retrieval is not a nice-to-have; it is what makes the historical archive useful.
+
+## "Grok history not showing" — common causes
+
+If conversations are missing or the list is empty:
+
+1. **Surface mismatch** — verify you are looking at the right surface. The X app and grok.com share storage but their UIs can lag.
+2. **Account check** — confirm the signed-in X account is the one whose conversations you expect to see.
+3. **Logged-out usage** — Grok conversations had to be associated with an account to be saved; ephemeral or unsigned-in usage is not persisted.
+4. **Browser session or cache** — a hard refresh or sign-out / sign-in cycle clears stale UI state.
+5. **Manual deletion or account-level data clearance** — irreversible if it has propagated.
+
+See the [Grok history not loading fix guide](/blog/grok-history-not-loading-fix) for the full troubleshooting sequence.
+
+## Strategies for managing Grok history at scale
+
+### Treat the opening message as a title
+
+Grok generates titles from your opening message. That makes the opening message a retrieval decision, not just a question. A specific, distinctive first message produces a title you can find by scanning. A vague first message produces a title that disappears into the list.
+
+### Export regularly given the account coupling
+
+Because Grok history depends on continued X account access, the value of a local export is higher than it would be on a more stable account base. Treat the export as a backup, not a one-off curiosity.
+
+For the procedure, see [how to export Grok conversation history](/blog/how-to-export-grok-conversation-history).
+
+### Add a full-text index
+
+The biggest single improvement to Grok retrieval is making the body of conversations searchable, not the title alone.
+
+**LLMnesia** indexes Grok conversations locally as you use the platform — both on grok.com and within the X app where the interface is web-based. The index is full-text, covers your messages and Grok's responses, and lives entirely on your device. A search for any keyword or phrase from a past conversation returns the matching thread directly, regardless of what the title says.
+
+For users who rely on Grok for reasoning work, real-time information augmented by X-feed context, or long-running research threads, full-text retrieval is what turns the history from a passive archive into an actual working asset.
+
+### Cross-platform users: one search beats five
+
+If you use Grok alongside ChatGPT, Claude, Gemini, DeepSeek, or others, the per-platform sidebar problem multiplies. A cross-platform local index returns results from every platform you use in one search, ranked by relevance. The conversation you are looking for is found whether it lived in Grok or anywhere else.
+
+## The bottom line
+
+Grok's history works well for recent conversations on a stable X account. It scales poorly across two dimensions: title-only search becomes brittle as the archive grows, and the account coupling adds a durability risk that other AI chat products do not have.
+
+Both gaps have the same answer: keep using Grok normally, but do not rely solely on Grok to retrieve Grok. Export periodically, and run a full-text index on top — so the value of a conversation does not depend on whether you can remember its title or whether your X account is still in good standing six months from now.
