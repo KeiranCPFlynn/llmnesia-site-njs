@@ -1,0 +1,137 @@
+---
+title: "Gemini Conversation History: Limits, Retention, and What Google Keeps"
+slug: "gemini-conversation-history-limits"
+description: "Gemini stores your conversation history with Google account activity controls, but it has no native full-text search. This guide explains how long Gemini keeps your history, what it stores, and how to manage large archives."
+publishDate: "2026-05-19"
+updatedDate: "2026-05-19"
+author: "Keiran Flynn"
+primaryKeyword: "gemini conversation history limits"
+secondaryKeywords:
+  - "how long does gemini keep history"
+  - "gemini history storage limit"
+  - "google gemini conversation retention"
+  - "gemini activity auto-delete"
+  - "gemini history not showing"
+intent: "informational"
+faq:
+  - question: "How long does Gemini keep your conversation history?"
+    answer: "When Gemini Apps Activity / Keep Activity is enabled, Gemini saves conversation history to your Google account. Google says Gemini activity is set by default to auto-delete after 18 months, and users can change the auto-delete period in account activity controls. Depending on account type and settings, available choices can include shorter or longer retention periods."
+  - question: "Can I turn off Gemini conversation history?"
+    answer: "Yes. You can pause Gemini Apps Activity in your Google Account settings, which stops new conversations from being saved. Conversations stored while activity was on remain in your history. You can also delete all history from the My Activity page."
+  - question: "Does Gemini have a limit on how many conversations I can store?"
+    answer: "Google has not published a maximum conversation count for Gemini. In practice, history is stored in your Google account and the limiting factor is usability — Gemini has no native content search, so large archives become increasingly difficult to navigate."
+  - question: "What is Gemini's context window limit?"
+    answer: "Gemini context windows depend on model, product surface, and plan. In Google's Gemini API model documentation, Gemini 2.5 Pro and Gemini 2.5 Flash list input token limits of 1,048,576 tokens. This is an active-processing limit, separate from how long conversation history is stored in your account."
+  - question: "Why has my Gemini history disappeared?"
+    answer: "Common causes: Gemini Apps Activity was paused or disabled in your Google account settings, you set an auto-delete period that has now applied, or you're signed into a different Google account. Check your Google Account's My Activity to verify your current history settings."
+sources:
+  - label: "Google Gemini"
+    url: "https://gemini.google.com/"
+  - label: "Google Gemini Apps Privacy Hub"
+    url: "https://support.google.com/gemini/answer/13594961"
+  - label: "Google Gemini API model documentation"
+    url: "https://ai.google.dev/gemini-api/docs/models"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/gemini-conversation-history-limits"
+category: "problem-solving"
+relatedSlugs:
+  - "how-to-find-old-gemini-conversations"
+  - "gemini-history-not-loading-fix"
+  - "how-to-export-gemini-conversation-history"
+---
+
+Gemini's conversation history is managed through your Google account, which gives it properties different from most other AI platforms. Your retention settings are controlled by Google's activity system rather than a dedicated Gemini preference — understanding that system is the key to understanding what gets kept, what gets deleted, and why history sometimes disappears unexpectedly.
+
+## What Gemini stores
+
+For each conversation, Gemini stores:
+- The conversation title (auto-generated from the session content)
+- Your messages and Gemini's responses
+- Any images or files you shared in the conversation
+- Timestamps
+
+Conversations are listed in the sidebar in reverse chronological order. There's no folder system or tagging within Gemini's native interface.
+
+## The Google Account Activity connection
+
+Unlike ChatGPT or Claude, which have their own history systems, Gemini history is governed by Google Account activity settings.
+
+When **Gemini Apps Activity is enabled** (the default for most users), your conversations are saved to your Google account and appear in your Gemini history. This data is also visible in Google's My Activity dashboard.
+
+When **Gemini Apps Activity is paused or disabled**, new conversations are not saved. Existing conversations remain until you delete them. New sessions start fresh and don't appear in history.
+
+You can check and change this setting at myactivity.google.com or in your Google Account settings under "Data and Privacy."
+
+## Auto-delete: the retention setting that catches people off guard
+
+Google's activity controls include an **auto-delete** option. This is one of the most common reasons users discover older Gemini history has disappeared:
+
+- **Default auto-delete:** Google's Gemini privacy materials say Gemini activity is set by default to auto-delete after 18 months
+- **Auto-delete off:** Conversations are kept until you delete them or change the setting
+- **Auto-delete after 3 months:** Any Gemini conversation older than 3 months is automatically deleted
+- **Auto-delete after 18 months:** Conversations older than 18 months are automatically deleted
+- **Other account-managed periods:** Some Google account types or activity settings can also expose longer auto-delete periods, such as 36 months
+
+If you've been using Gemini for more than three months and notice that older conversations are missing, check your auto-delete setting. If it was set to 3 months, those conversations are gone — not recoverable from the Gemini interface.
+
+This is a property Gemini inherits from Google's broader data controls. Many users set an auto-delete preference years ago for web search or YouTube activity and forgot it applies to Gemini conversations too.
+
+## Context window vs history storage (different limits)
+
+**Context window:** How much content Gemini processes in a single active session. Google's Gemini API documentation lists Gemini 2.5 Pro and Gemini 2.5 Flash with 1,048,576-token input limits. The consumer Gemini app may expose different practical limits depending on model, plan, attachments, feature surface, and safety systems. In normal conversation use, most users hit usability and retrieval limits long before they hit a model context ceiling.
+
+**History storage:** How many conversations are saved to your account. This is governed by your activity settings and auto-delete preferences, not a technical cap on conversation count.
+
+These are separate. You could have years of conversations in storage while Gemini processes each new session with its full context window, and vice versa.
+
+## Native search limitations
+
+Gemini's sidebar search matches conversation titles. It does not search conversation content.
+
+If you search "supply chain analysis" in the Gemini sidebar, you'll find conversations where that phrase appears in the auto-generated title. You won't find conversations where you discussed supply chain analysis at length under a title like "Strategy brainstorm" or "Help me with this."
+
+This is the practical retrieval limit for most users — not storage capacity, but searchability.
+
+## Managing large Gemini conversation archives
+
+### Check your activity settings first
+
+Before anything else, verify your current Gemini Apps Activity settings:
+
+1. Go to myactivity.google.com
+2. Filter by "Gemini Apps"
+3. Check the "Auto-delete" setting for this activity
+
+If auto-delete is on, decide whether you want to change it before it removes conversations you might need later.
+
+### Export your Gemini history
+
+Google Takeout (takeout.google.com) includes Gemini conversation history. To export:
+
+1. Go to takeout.google.com
+2. Select "Gemini Apps" from the product list (deselect everything else unless you want a full Google export)
+3. Choose your format and delivery method
+4. Download and extract the archive
+
+The exported data is in JSON format. You can search through it with a text editor or JSON viewer, or use `grep` from a command line.
+
+This is the most reliable option for a one-time complete search through your history.
+
+### Full-text indexing with LLMnesia
+
+LLMnesia indexes your Gemini conversations locally as you browse them. The index is built on your device and is never sent to external servers.
+
+Once indexed, you can search across full conversation content — not just titles. Search for any word or phrase you remember from a conversation, and LLMnesia returns the matching thread regardless of what it was titled or when it happened.
+
+For users who cross between Gemini and other platforms (ChatGPT, Claude, Perplexity), LLMnesia's cross-platform search is particularly useful. A single query covers all platforms at once.
+
+## What the Google integration means practically
+
+Gemini's history management has more moving parts than most platforms because it inherits from Google's account-wide activity system. The upshot:
+
+- History persistence depends on account activity settings that may have been configured long before you started using Gemini
+- Auto-delete runs silently — there's no notification before it removes conversations
+- The My Activity dashboard gives you the most complete view of what's stored and what the retention settings are
+
+If your Gemini history seems incomplete, the first thing to check is the activity settings rather than assuming a Gemini-specific bug.

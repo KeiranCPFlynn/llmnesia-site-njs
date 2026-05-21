@@ -1,0 +1,125 @@
+---
+title: "How to Find Old Poe Conversations"
+slug: "how-to-find-old-poe-conversations"
+description: "Poe stores your conversation history per bot with no native full-text search. This guide covers every method for finding a specific old Poe conversation, from profile history to local indexing."
+publishDate: "2026-05-19"
+updatedDate: "2026-05-19"
+author: "Keiran Flynn"
+primaryKeyword: "find old poe conversations"
+secondaryKeywords:
+  - "poe conversation history"
+  - "poe chat history"
+  - "search poe history"
+  - "retrieve old poe chat"
+  - "poe ai past conversations"
+intent: "informational"
+faq:
+  - question: "How do I find an old Poe conversation?"
+    answer: "Poe stores conversation history per bot in the sidebar under that bot's name. To find an old conversation, navigate to the bot you were using and scroll back through your conversation history with it, or check the 'Chats' section in your Poe profile for a recent activity list."
+  - question: "Does Poe save all your conversations?"
+    answer: "Yes, Poe saves your conversation history. Chats are stored per bot and remain accessible while your account is active. Poe does not publish a specific retention period for conversations on active accounts."
+  - question: "Can I search inside Poe conversations?"
+    answer: "Poe does not have native full-text search for conversation history. You can use browser find-in-page (Ctrl+F) within an open conversation. For searching across all Poe conversations, LLMnesia indexes Poe chat content locally on your device."
+  - question: "Why did my Poe conversation disappear?"
+    answer: "Common causes: the conversation is stored under the specific bot rather than in a general history view, you're signed into a different account, or the conversation was manually deleted. Check the bot's conversation thread directly, or look in your profile's chat history for recent activity."
+  - question: "Can I export my Poe conversation history?"
+    answer: "Poe has limited native export options. The most reliable way to preserve conversations long-term is to use LLMnesia for automatic local indexing as you use Poe, or to manually save important conversation content."
+sources:
+  - label: "Poe — Quora"
+    url: "https://poe.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/how-to-find-old-poe-conversations"
+category: "how-to"
+relatedSlugs:
+  - "search-poe-conversation-history"
+  - "poe-history-not-loading-fix"
+  - "ai-chat-history-broken-native-search"
+---
+
+Poe (made by Quora) gives you access to many different AI models — ChatGPT, Claude, Gemini, Llama, Mixtral, and many others — through a single interface. Your conversation history is saved per bot, which is logical when you're actively using a specific model but becomes complex when you're trying to find something and can't remember which model you used.
+
+## How Poe organises conversation history
+
+When you chat with a bot on Poe, that conversation is saved under that specific bot. The next time you open that bot, you can continue the conversation or start a new thread. Over time, you build up a history of conversations with each bot you've used.
+
+There's no single flat list of all Poe conversations across all bots. History is navigated bot-by-bot. This differs from platforms like ChatGPT or Claude that show all conversations in one sidebar regardless of which model was used.
+
+## Method 1: Navigate to the specific bot
+
+If you remember which bot you were using:
+
+1. Open poe.com and sign in
+2. Find the bot in your recently used list or search for it by name
+3. Open the bot's conversation thread
+4. Scroll back through your conversation history with it
+
+Poe's left sidebar typically shows your recently active bots. If the conversation was recent, the bot should appear near the top of that list.
+
+**Works well for:** Recent conversations where you remember which bot (or type of bot) you were using.
+
+**Breaks down when:** You're not sure which bot you used, or you have many active bots and can't narrow it down.
+
+## Method 2: Check the Chats view
+
+Poe has a "Chats" section accessible from the profile or navigation menu that shows recent conversation activity across bots:
+
+1. Click on your profile or navigate to the Chats section
+2. Look for a list of recently active conversations across all bots
+3. Scan for the conversation you're looking for by title and timestamp
+
+This view gives a broader cross-bot perspective than navigating to individual bots. It's particularly helpful when you don't remember which specific model you were using.
+
+## Method 3: Check your browser history
+
+Poe conversations have unique URLs. If you accessed the conversation at any point from your current browser:
+
+1. Open your browser history (Ctrl+H on Windows/Linux, Cmd+Y on Mac)
+2. Search for "poe.com"
+3. Look through the results for entries from the time period you're interested in
+4. Click the URL to open the conversation directly
+
+Browser history is useful when you remember roughly when the conversation occurred even if you don't remember the bot name. The URL sometimes contains identifiers that help confirm which conversation it is.
+
+**Works well for:** Conversations from the past few weeks accessed on the same device.
+
+**Breaks down when:** You use private browsing, regularly clear history, or the conversation is several months old.
+
+## Method 4: Search within an open conversation
+
+Once you've identified a candidate conversation, browser find-in-page searches the loaded content:
+
+1. Open the conversation in Poe
+2. Press Ctrl+F (Windows/Linux) or Cmd+F (Mac)
+3. Type a keyword or phrase from the conversation
+
+This is particularly useful for finding a specific section in a long conversation — a piece of code, a particular recommendation, or a specific term the bot used.
+
+## Method 5: Full-text search with LLMnesia
+
+LLMnesia indexes your Poe conversations as you browse them, storing the full-text index on your device.
+
+**Setup:**
+1. Install LLMnesia from the Chrome Web Store
+2. Browse through your Poe conversation threads — LLMnesia indexes conversations as you visit them
+3. Open the LLMnesia popup and search for any keyword or phrase
+
+Unlike Poe's own navigation, LLMnesia searches across conversation content regardless of which bot it was, and regardless of what the conversation was titled. A search for "gradient descent explanation" returns the conversation where that was discussed, whether it was with Claude-3.5, GPT-4o, or any other bot you've used on Poe.
+
+For users who try different bots on Poe for the same types of tasks, cross-bot search is especially useful. You're not trying to remember which model you used for a particular research session — you just search for what was discussed.
+
+**Cross-platform coverage:** LLMnesia also indexes ChatGPT, Claude, Gemini, Perplexity, and other platforms. If you use Poe alongside direct access to other AI tools, a single search covers your entire history.
+
+## Why Poe history is particularly tricky to retrieve
+
+Poe's multi-model structure creates an additional variable in retrieval: not only do you need to remember the topic and rough timing, you also need to remember which of potentially dozens of bots you were using. For casual exploration — testing different models, trying new bots — this variable is easy to lose track of.
+
+The practical solution is either consistent bot choice for types of work (always use Claude for writing tasks, always use GPT-4o for coding) which makes the bot question answerable, or full-text indexing which makes the bot question irrelevant.
+
+## Preventing the retrieval problem going forward
+
+**Be consistent about which bots you use for which tasks.** If you use the same two or three bots for serious work, "which bot was this?" becomes a much smaller search space.
+
+**Rename or bookmark important conversations.** If a Poe conversation produced something genuinely valuable — a framework, a piece of code, a well-worked argument — rename it immediately and/or bookmark the URL so you can return directly.
+
+**Index proactively.** With LLMnesia running, every Poe conversation you visit gets indexed automatically. The next time you need to find something, keyword search works regardless of which bot you used or when the conversation happened.

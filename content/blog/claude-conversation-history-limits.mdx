@@ -1,0 +1,121 @@
+---
+title: "Claude Conversation History: Limits, Context Windows, and What Gets Lost"
+slug: "claude-conversation-history-limits"
+description: "Claude stores your conversation history, but each conversation has a context window limit that affects what the model can see mid-session. This guide explains what Claude keeps, what it can't access, and how to manage large archives."
+publishDate: "2026-05-19"
+updatedDate: "2026-05-19"
+author: "Keiran Flynn"
+primaryKeyword: "claude conversation history limits"
+secondaryKeywords:
+  - "how long does claude keep history"
+  - "claude history storage limit"
+  - "claude context window limit"
+  - "claude conversation retention"
+  - "claude max conversation length"
+intent: "informational"
+faq:
+  - question: "Does Claude delete old conversations?"
+    answer: "Claude keeps conversations in your account history while your account is active unless you delete them or your account is removed. Anthropic does not publish a simple consumer-facing conversation count cap, so the practical problem for most users is retrieval rather than storage."
+  - question: "What is Claude's context window limit?"
+    answer: "Current Claude models vary by model and plan. Some Claude models use a 200,000-token context window, while newer Opus and Sonnet models support up to 1 million tokens in supported contexts. This is a per-session working-memory limit, separate from whether the conversation remains saved in your account history."
+  - question: "Does Claude have a limit on how many conversations I can have?"
+    answer: "Anthropic has not published a maximum conversation count. Users with thousands of conversations report no storage cap. The practical limitation is the native search, which is title-only and degrades in usefulness as volume grows."
+  - question: "Can I search inside Claude conversations?"
+    answer: "Claude's native search matches conversation titles only, not the content within them. To search the full text of past conversations, you need a third-party tool like LLMnesia, which indexes conversation content locally on your device."
+  - question: "What happens to Claude history if I cancel my subscription?"
+    answer: "Claude.ai has a free tier. If you downgrade from a paid plan (Claude Pro) to free, your conversation history remains accessible. History is tied to your account, not your subscription level. Deleting your account removes your history."
+sources:
+  - label: "Anthropic — Claude model overview"
+    url: "https://docs.anthropic.com/en/docs/about-claude/models/overview"
+  - label: "Anthropic — context windows"
+    url: "https://docs.anthropic.com/en/docs/build-with-claude/context-windows"
+  - label: "Anthropic — export Claude data"
+    url: "https://support.anthropic.com/en/articles/9450526-how-can-i-export-my-claude-data"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/claude-conversation-history-limits"
+category: "problem-solving"
+relatedSlugs:
+  - "how-to-find-old-claude-conversations"
+  - "ai-chat-history-broken-native-search"
+  - "how-to-export-claude-conversation-history"
+---
+
+Claude keeps your conversation history in your account. There's no published conversation-count cap that most users will ever approach. But the way history works in Claude — and particularly the difference between *conversation history* and *context window* — creates practical limitations that affect how useful that history is.
+
+## What Claude stores
+
+For each conversation, Claude stores:
+- The conversation title (auto-generated or renamed by you)
+- Every message — your inputs and Claude's responses
+- Any files you uploaded during the conversation
+- The timestamp of the conversation
+
+The sidebar lists conversations in reverse chronological order. Older conversations are accessible by scrolling down or, on Claude.ai, through the search bar in the sidebar.
+
+## The context window limit (different from history storage)
+
+The most commonly misunderstood limit in Claude isn't about storage — it's about context.
+
+**Context window:** How much text Claude can actively work with in a single conversation. Anthropic's current model lineup varies: some models use a 200,000-token context window, while newer Opus and Sonnet models support up to 1 million tokens in supported contexts. This is a per-session working-memory limit, not a promise that every Claude plan or feature always exposes the same context size.
+
+When a conversation exceeds the active context window, Claude has to manage what remains in working context. Depending on the product surface and settings, older content may be summarized, compressed, or no longer considered directly. The conversation still *exists* in your history — you can scroll back and read it — but the model may not be using every earlier message as active context when generating new responses.
+
+In practice, most users never approach these limits in ordinary chat. But for extended research sessions, long document analysis threads, or conversations you keep returning to over weeks, context limit behavior is worth understanding.
+
+**This is not a history limit.** Claude isn't deleting old messages. They're in your history and still readable. The limit is on how much Claude can process in one active session.
+
+## Native search: title-only
+
+Claude's sidebar search matches conversation titles, not conversation content.
+
+If you search "regulatory framework" in Claude's sidebar, you'll see conversations with that phrase in the title — but not conversations where you discussed regulatory frameworks at length under a generic title like "Monday research" or "Help with report."
+
+This is the most significant practical limitation for users with large history archives. The titles Claude generates automatically often describe the topic at a surface level. Over hundreds of conversations, title search becomes less reliable as a retrieval method.
+
+## How many conversations can you have?
+
+Anthropic has not published a conversation count cap for Claude.ai. Users with thousands of conversations report no technical lockout. The practical degradation happens well before any technical limit:
+
+**Under 200 conversations:** The sidebar is browsable. Title search covers most cases.
+
+**200–500 conversations:** Scrolling becomes impractical for anything older than a few weeks. Title search misses conversations with vague auto-titles.
+
+**500+ conversations:** The history is functionally unnavigable without external search. The conversations are all there — you just can't find them efficiently.
+
+## Claude Pro vs free tier history
+
+Claude's free and paid tiers both preserve conversation history in the account interface. The differences that affect history management:
+
+- **Usage limits:** Free tier has message limits per day. More constrained usage means fewer conversations accumulating, which makes the scale problem less acute.
+- **Model access:** Paid plans provide higher usage and access to more capable models or features. The conversation history problem is similar: the more you use Claude, the harder retrieval becomes without consistent naming or search.
+- **Export access:** Claude provides account data export, which is useful for one-time archival search but still behaves like a snapshot rather than a live full-text index.
+
+## Managing large Claude conversation archives
+
+### Rename conversations after important sessions
+
+Claude allows manual conversation renaming. After any substantive session — research, analysis, a draft you spent time on — rename the conversation with a specific title that captures the content. "Contractor agreements — IP clause analysis — May 2026" is findable. "Help with contracts" is not.
+
+### Export your history
+
+Claude provides a full data export through Settings → Privacy → Export data. The export contains all your conversations in a structured format. For a one-time deep search through all history, this is the most reliable option — download the export and search the files with a text editor or command-line tool.
+
+For regular exports, the limitation is that you'd need to re-export periodically. It's a snapshot, not a live index.
+
+### Full-text search with LLMnesia
+
+LLMnesia is a Chrome extension that indexes your Claude conversations locally as you browse them. The index is stored on your device and is never transmitted externally.
+
+Once conversations are indexed, searching by any word or phrase from inside the conversation returns results in under a second. The index covers conversation content — not just titles — so a search for "indemnification clause" finds the thread where that topic was discussed regardless of what the conversation was titled.
+
+LLMnesia also covers your other AI platforms. If you use Claude alongside ChatGPT, Gemini, or Perplexity, a single search covers all platforms simultaneously.
+
+## The key distinction to carry forward
+
+When someone asks "does Claude have history limits," there are two different answers:
+
+1. **Storage limits:** No published conversation-count cap that most users are likely to hit. Claude keeps account history unless you delete conversations or the account.
+2. **Context window limits:** Yes — current Claude models range from 200K tokens to 1M tokens depending on model and context. Long conversations may have earlier messages summarized or fall outside active working context, though the full conversation can remain in your history.
+
+The problem most users actually experience isn't either of these — it's that finding a specific conversation from two months ago is harder than it should be, because the search is title-only and the titles weren't written to be findable.

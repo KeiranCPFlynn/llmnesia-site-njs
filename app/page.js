@@ -24,7 +24,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Will it index my older chat history too?',
     answer:
-      "Today, LLMnesia indexes chats as you browse supported platforms. Historical backfill for older conversations may be added in a future release based on user demand."
+      'Yes. One-click import brings in your existing ChatGPT and Claude history. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
   },
   {
     question: 'Which AI platforms are supported today?',

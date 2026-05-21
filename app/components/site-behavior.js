@@ -45,11 +45,18 @@ export default function SiteBehavior() {
       }
 
       const installLink = target.closest(`a[href="${CHROME_WEB_STORE_URL}"]`);
-      if (!installLink) {
+      if (installLink) {
+        trackEvent('install_click');
         return;
       }
 
-      trackEvent('install_click');
+      const trackedLink = target.closest('a[data-analytics]');
+      if (trackedLink) {
+        const eventName = trackedLink.getAttribute('data-analytics');
+        if (eventName) {
+          trackEvent(eventName);
+        }
+      }
     };
 
     if (navToggle && nav) {

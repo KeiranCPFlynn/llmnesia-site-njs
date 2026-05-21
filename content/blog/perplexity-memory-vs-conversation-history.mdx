@@ -1,0 +1,127 @@
+---
+title: "Perplexity Memory vs Conversation History: What's the Difference?"
+slug: "perplexity-memory-vs-conversation-history"
+description: "Perplexity has two systems that involve storing information about you: Memory (facts about your preferences and context) and conversation history (the Library of past searches). This guide explains how each works, what it stores, and how to control both."
+publishDate: "2026-05-19"
+updatedDate: "2026-05-19"
+author: "Keiran Flynn"
+primaryKeyword: "perplexity memory vs conversation history"
+secondaryKeywords:
+  - "perplexity memory feature"
+  - "how perplexity memory works"
+  - "perplexity personalization vs history"
+  - "perplexity library vs memory"
+  - "perplexity ai memory explained"
+intent: "informational"
+faq:
+  - question: "What is the difference between Perplexity Memory and conversation history?"
+    answer: "Perplexity's conversation history (your Library) stores the full text of search and answer threads you've had. Memory stores compact personalization facts about you — preferences, background, recurring topics — and Perplexity can also use previous searches for personalization when enabled. Library is the archive. Memory is the preference/profile layer. They have different controls and different retrieval value."
+  - question: "Does Perplexity Memory replace conversation history?"
+    answer: "No. They are separate systems that serve different purposes. Memory makes Perplexity's answers more personalised and relevant to you over time. Your Library stores the complete record of past conversations. Turning off one does not affect the other."
+  - question: "How do I see what Perplexity remembers about me?"
+    answer: "Go to your Perplexity profile settings and look for the Memory section. This shows the facts Perplexity has stored about you. You can review and delete individual memory entries, or clear all memories."
+  - question: "How do I turn off Perplexity Memory?"
+    answer: "Memory can be disabled in your Perplexity account settings under Profile or Personalisation. Disabling memory stops Perplexity from applying stored personal facts to future answers. Your Library (conversation history) is unaffected."
+  - question: "Can I search inside my Perplexity conversation history?"
+    answer: "Perplexity gives you useful history navigation, and Spaces add stronger project-level organisation and search. But if you want one full-text search across all indexed Perplexity conversations plus ChatGPT, Claude, Gemini, and other AI platforms, LLMnesia indexes conversation content locally on your device and searches across platforms."
+sources:
+  - label: "Perplexity AI"
+    url: "https://www.perplexity.ai/"
+  - label: "Perplexity Help Center — Spaces"
+    url: "https://www.perplexity.ai/help-center/en/articles/10352961-what-are-spaces/"
+  - label: "Perplexity Help Center — Memory"
+    url: "https://www.perplexity.ai/help-center/en/articles/10968016-memory"
+  - label: "Perplexity privacy policy"
+    url: "https://www.perplexity.ai/hub/legal/privacy-policy"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/perplexity-memory-vs-conversation-history"
+category: "explainer"
+relatedSlugs:
+  - "perplexity-spaces-vs-conversation-history"
+  - "how-to-find-old-perplexity-conversations"
+  - "perplexity-conversation-history-limits"
+---
+
+Perplexity has two distinct systems for storing information about you. They're different enough that confusing them leads to either privacy concerns you don't need to have or limitations you could work around. Here's the clear breakdown.
+
+## Conversation history: the Library
+
+Your Perplexity Library is a complete log of every search thread you've run — your questions, Perplexity's answers, the source citations, and follow-up exchanges. It's a transcript archive, not a preferences store.
+
+**What the Library contains:**
+- Every question and thread you've started
+- The full text of Perplexity's responses
+- Source citations and links from each answer
+- Timestamps for each session
+- Follow-up questions and continuations within each thread
+
+The Library is accessible from the Perplexity sidebar. It is useful for returning to recent threads, but it should not be treated as a perfectly structured, full-text research database across every conversation you've ever had.
+
+**What it's for:** Returning to a previous research session, reviewing what sources were cited, building on past work, or maintaining a record of your AI research activity.
+
+**How to control it:**
+- Review Perplexity's account and data settings for history, data retention, and AI data use controls
+- Delete individual conversations from the Library
+- Delete your entire Library through account settings
+
+## Memory: personalisation facts
+
+Perplexity Memory is a separate personalisation layer that stores specific facts about you — your background, preferences, recurring interests, or context you've shared — and uses those facts to make future answers more relevant.
+
+**What Memory might store:**
+- Your professional background ("works in software engineering")
+- Stated preferences ("prefers concise answers with bullet points")
+- Recurring topics or interests ("researches climate policy regularly")
+- Context you've shared explicitly ("based in the UK")
+
+Unlike your Library, Memory is selective — it doesn't record everything you say, but specific facts that improve personalisation. The AI identifies and stores these, or you can explicitly tell Perplexity to remember something.
+
+**What it's for:** Making Perplexity's answers more relevant without you having to re-state your context every session. If you've told Perplexity you're a mechanical engineer, it can tailor technical explanations appropriately in future sessions without prompting.
+
+**How to control it:**
+- Review stored memories in your account settings under Memory or Personalisation
+- Delete individual memory entries
+- Disable Memory entirely to stop Perplexity from using stored personal facts
+
+## The key differences
+
+| | Library (History) | Memory |
+|---|---|---|
+| What it stores | Full conversation transcripts | Specific personal facts |
+| Volume | Every conversation | Small curated set |
+| Applied when | You access your Library | Every new conversation |
+| Privacy concern | Mass of detailed conversation data | Selected personal attributes |
+| Searchable | Navigable in Library; stronger inside Spaces | N/A — not a searchable record |
+
+## How they interact (and where they don't)
+
+The two systems are related but not interchangeable. Perplexity's Memory help describes two personalization sources: stored Memories and previous searches. Stored Memories are the compact preference/profile facts; previous searches are historical activity that can sometimes help Perplexity personalize a future answer.
+
+That does not mean Memory is a full transcript search feature. If Perplexity uses prior searches to personalize an answer, it is deciding what is relevant for the current response. It is not giving you a reliable way to ask "find the thread where I compared three vendors last April" and inspect the exact original conversation.
+
+The practical distinction: Memory and previous-search personalization affect future answers. Conversation history is the archive you return to when you need the original thread, sources, wording, or reasoning.
+
+## Controlling each system
+
+For most users, the relevant decisions are:
+
+**For the Library:**
+- Do you want a history of your AI research? If yes, keep history available and manage it through naming conventions and Spaces organisation.
+- Are you concerned about your search history being stored on Perplexity's servers? Review Perplexity's account, privacy, and data retention settings, and use a local-first retrieval layer when appropriate. LLMnesia indexes your Library locally as you browse it.
+
+**For Memory:**
+- Do you want Perplexity to personalise answers using facts about you? If yes, leave Memory enabled and review stored facts periodically to ensure they're accurate.
+- Do you prefer clean, non-personalised answers each session? Disable Memory and review the separate setting for whether previous searches can be used for personalization.
+
+These decisions are related but controlled separately. You can keep a history archive while disabling Memory, or use Memory while being more selective about what you save and share.
+
+## Searching your Library effectively
+
+Perplexity's history works best when you make the structure explicit: clear opening questions, descriptive thread titles, and Spaces for projects that will generate multiple related threads. A Space can group threads and files under a topic, give them custom instructions, and provide a project-specific search surface. That is better than leaving every thread in one broad Library.
+
+The remaining gap is cross-platform retrieval. Perplexity Spaces help inside Perplexity; they do not find the Claude thread where you synthesized the research, the ChatGPT thread where you turned it into a memo, or the Gemini thread where you asked a follow-up weeks later.
+
+For full-text search across your Perplexity conversations and other AI tools, LLMnesia provides a separate local index. It indexes conversations locally on your device as you browse them, making conversation content searchable without sending the index to LLMnesia's servers. That matters if you use Perplexity for sensitive professional or personal research and want retrieval without creating another cloud copy of your archive.
+
+For more on how Perplexity manages conversation retention and storage, see the guide to [Perplexity conversation history limits](/blog/perplexity-conversation-history-limits).

@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.1.7",
+    "date": "2026-05-19",
+    "title": "Welcome page on install, Guided first search & 5 fixes",
+    "highlights": [
+      "Welcome page on install — installing the extension now opens a welcome page that helps you import your existing ChatGPT and Claude history so search works right away, instead of waiting for new chats to be indexed",
+      "Guided first search — the welcome page now opens with a 3-step checklist: step 1 brings in your history (ChatGPT/Claude one-click import, or automatic indexing on other supported sites), step 2 explains local on-device indexing, and step 3 shows how to search with a \"Try a search\" button. Import is now the primary action up front so your first search isn't run against an empty index, with a clear reminder that indexing stays on your device and no conversation data is uploaded",
+      "Catch up across devices — after your first backfill, LLMnesia notices when recent ChatGPT or Claude chats started on another device, browser, or profile aren't searchable here yet, and offers to pull them in",
+      "Welcome page: can now import from both ChatGPT and Claude — starting a ChatGPT import no longer greys out the Claude button (and vice versa), and the page no longer jumps to a \"you can close this tab\" state after the first import",
+      "Continue in: formatting is now preserved — continuing a conversation into another AI keeps paragraph breaks, bullet/numbered lists and code blocks instead of pasting one unbroken wall of text",
+      "Cleaner captured text — no \"Show more/Show less\" noise — ChatGPT's collapsible long-message toggle no longer leaks \"Show moreShow less\" into indexed messages or into conversations you continue elsewhere",
+      "Continue in: more conversation context reaches the target — per-turn text limits have been tripled (15 k for regular turns, 8 k for code-heavy turns) and the most recent turn now gets up to 50 k characters, so the last assistant response is no longer truncated mid-answer",
+      "Popup: clearer message on platform home screens — opening the popup on any supported site's home or new-chat page (Gemini, ChatGPT, Claude, Perplexity, etc.) now shows \"Open a conversation to start indexing\" instead of misleading \"Indexed OK\" or \"Indexing failed\" labels"
+    ]
+  },
+  {
     "version": "0.1.6",
     "date": "2026-05-15",
     "title": "Index older chats, What's new strip in popup & 11 fixes",
