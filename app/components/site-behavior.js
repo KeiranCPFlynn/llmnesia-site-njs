@@ -12,6 +12,269 @@ export default function SiteBehavior() {
     const contactForm = document.getElementById('contact-form');
     const contactMessage = document.getElementById('contact-form-message');
     const contactSubmit = document.getElementById('contact-submit');
+    const revealNodes = Array.from(document.querySelectorAll('[data-reveal], [data-reveal-stagger]'));
+    const kineticPanel = document.querySelector('.kinetic-panel');
+    const kineticInput = document.querySelector('[data-kp-input]');
+    const kineticInputWrap = document.querySelector('[data-kp-input-wrap]');
+    const kineticResults = document.querySelector('[data-kp-results]');
+    const kineticCount = document.querySelector('[data-kp-count]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timeouts = [];
+    let revealObserver = null;
+
+    document.documentElement.classList.add('reveal-ready');
+
+    if (revealNodes.length > 0) {
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add('is-in');
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.12 }
+        );
+
+        revealNodes.forEach((node) => revealObserver.observe(node));
+      } else {
+        revealNodes.forEach((node) => node.classList.add('is-in'));
+      }
+    }
+
+    if (kineticPanel && kineticInput && kineticResults && kineticCount) {
+      const setTimer = (callback, delay) => {
+        const id = window.setTimeout(callback, delay);
+        timeouts.push(id);
+        return id;
+      };
+
+      const labels = {
+        chatgpt: 'ChatGPT',
+        claude: 'Claude',
+        gemini: 'Gemini',
+        perplexity: 'Perplexity',
+        deepseek: 'DeepSeek'
+      };
+
+      const data = [
+        {
+          query: 'useReducer typing',
+          rows: [
+            {
+              platform: 'chatgpt',
+              title: 'React useReducer typing pattern',
+              snippet: 'Use a discriminated union for the action type, then tighten the reducer return.',
+              date: '3 days ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Generic useReducer with discriminated unions',
+              snippet: 'type State = { ... }; type Action handles the useReducer typing safely.',
+              date: '1 week ago'
+            },
+            {
+              platform: 'gemini',
+              title: 'When useReducer typing beats useState',
+              snippet: 'Reach for useReducer when typed updates depend on prior state.',
+              date: '2 weeks ago'
+            }
+          ]
+        },
+        {
+          query: 'subgrid safari',
+          rows: [
+            {
+              platform: 'claude',
+              title: 'CSS subgrid Safari support timeline',
+              snippet: 'Subgrid landed in Safari 16; iOS shipped support a few months later.',
+              date: '5 days ago'
+            },
+            {
+              platform: 'chatgpt',
+              title: 'Polyfill subgrid for older Safari',
+              snippet: 'Fall back from subgrid to explicit tracks for older Safari versions.',
+              date: '3 weeks ago'
+            }
+          ]
+        },
+        {
+          query: 'rate limit node api',
+          rows: [
+            {
+              platform: 'chatgpt',
+              title: 'Rate limit Node API endpoints with Redis',
+              snippet: 'A token-bucket rate limit for a Node API can use INCR and EXPIRE.',
+              date: '6 days ago'
+            },
+            {
+              platform: 'perplexity',
+              title: 'Node API rate limit middleware comparison',
+              snippet: 'Compare express-rate-limit, rate-limiter-flexible, and Bottleneck.',
+              date: '1 week ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Sliding-window rate limit in Node',
+              snippet: 'A sliding rate limit in Node avoids fixed-window edge bursts.',
+              date: '2 weeks ago'
+            },
+            {
+              platform: 'gemini',
+              title: 'Cloudflare WAF rate limit rules for a Node API',
+              snippet: 'Configure rate limit thresholds before traffic reaches the Node API.',
+              date: '4 weeks ago'
+            }
+          ]
+        },
+        {
+          query: 'founder update may',
+          rows: [
+            {
+              platform: 'claude',
+              title: 'Founder update for May with a calmer tone',
+              snippet: 'The May founder update should lead with activation, then explain why.',
+              date: '2 days ago'
+            },
+            {
+              platform: 'chatgpt',
+              title: 'Tighten this founder update intro',
+              snippet: 'For a May founder update, open with the new MAU number.',
+              date: '4 days ago'
+            }
+          ]
+        }
+      ];
+
+      let paused = false;
+
+      const setHasQuery = (value) => {
+        if (kineticInputWrap) {
+          kineticInputWrap.classList.toggle('has-query', value);
+        }
+      };
+
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+
+      const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+      const highlight = (text, query) => {
+        const words = query.split(/\s+/).filter((word) => word.length > 1);
+        const escapedText = escapeHtml(text);
+
+        if (words.length === 0) {
+          return escapedText;
+        }
+
+        const matcher = new RegExp(`(${words.map(escapeRegExp).join('|')})`, 'gi');
+        return escapedText.replace(matcher, '<mark>$1</mark>');
+      };
+
+      const renderEmpty = () => {
+        kineticResults.innerHTML = '<div class="kp-empty" data-kp-empty>Type to search across your AI history.</div>';
+        kineticCount.textContent = '—';
+        setHasQuery(false);
+      };
+
+      const renderResults = (query, rows) => {
+        kineticResults.innerHTML = '';
+
+        rows.forEach((row, index) => {
+          const node = document.createElement('div');
+          node.className = 'kp-res';
+          node.setAttribute('data-p', row.platform);
+          node.innerHTML = `
+            <div class="kp-title">${highlight(row.title, query)}</div>
+            <div class="kp-snippet">${highlight(row.snippet, query)}</div>
+            <div class="kp-meta">
+              <span class="kp-pill">${labels[row.platform] || row.platform}</span>
+              <span class="kp-date">${escapeHtml(row.date)}</span>
+            </div>
+          `;
+          kineticResults.appendChild(node);
+          setTimer(() => {
+            node.classList.add('on');
+          }, 60 + index * 90);
+        });
+
+        kineticCount.textContent = `${rows.length} result${rows.length === 1 ? '' : 's'}`;
+      };
+
+      const typeQuery = (query, done) => {
+        let charIndex = 0;
+        kineticInput.textContent = '';
+
+        const step = () => {
+          if (paused) {
+            setTimer(step, 200);
+            return;
+          }
+
+          charIndex += 1;
+          kineticInput.textContent = query.slice(0, charIndex);
+
+          if (charIndex === 1) {
+            setHasQuery(true);
+          }
+
+          if (charIndex < query.length) {
+            setTimer(step, 38 + Math.random() * 42);
+            return;
+          }
+
+          done();
+        };
+
+        step();
+      };
+
+      if (prefersReducedMotion) {
+        kineticInput.textContent = data[0].query;
+        setHasQuery(true);
+        renderResults(data[0].query, data[0].rows);
+      } else {
+        let queryIndex = 0;
+
+        const onMouseEnter = () => {
+          paused = true;
+        };
+
+        const onMouseLeave = () => {
+          paused = false;
+        };
+
+        kineticPanel.addEventListener('mouseenter', onMouseEnter);
+        kineticPanel.addEventListener('mouseleave', onMouseLeave);
+        kineticPanel.__llmnesiaKineticCleanup = () => {
+          kineticPanel.removeEventListener('mouseenter', onMouseEnter);
+          kineticPanel.removeEventListener('mouseleave', onMouseLeave);
+        };
+
+        const cycle = () => {
+          renderEmpty();
+          const item = data[queryIndex % data.length];
+          queryIndex += 1;
+          typeQuery(item.query, () => {
+            setTimer(() => {
+              renderResults(item.query, item.rows);
+            }, 180);
+            setTimer(cycle, 5200);
+          });
+        };
+
+        setTimer(cycle, 700);
+      }
+    }
 
     const onNavToggle = () => {
       if (!navToggle || !nav) {
@@ -255,6 +518,17 @@ export default function SiteBehavior() {
       if (emailCaptureForm && onEmailCaptureSubmit) {
         emailCaptureForm.removeEventListener('submit', onEmailCaptureSubmit);
       }
+
+      if (revealObserver) {
+        revealObserver.disconnect();
+      }
+
+      if (kineticPanel && typeof kineticPanel.__llmnesiaKineticCleanup === 'function') {
+        kineticPanel.__llmnesiaKineticCleanup();
+      }
+
+      timeouts.forEach((id) => window.clearTimeout(id));
+      document.documentElement.classList.remove('reveal-ready');
     };
   }, []);
 
