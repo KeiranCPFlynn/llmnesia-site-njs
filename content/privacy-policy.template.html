@@ -57,17 +57,23 @@
       <section class="section container">
         <div class="policy-content">
           <h1>Privacy Policy</h1>
-          <p class="policy-date">Last updated: 19 March 2026</p>
+          <p class="policy-date">Last updated: 22 May 2026</p>
+
           <h2>Overview</h2>
           <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. It is built with a local-first, privacy-by-design architecture. We do not collect, transmit, or store any of your data on external servers.</p>
 
-          <h2>Information we collect</h2>
-          <p><strong>We do not collect any personal information.</strong></p>
-          <p>LLMnesia does not collect, transmit, or have access to:</p>
+          <h2>Information we collect and how it is used</h2>
+          <p>LLMnesia processes the following data <strong>locally on your device</strong> to provide its core search functionality:</p>
+          <ul>
+            <li><strong>Conversation metadata</strong> &mdash; titles, URLs, and timestamps from supported AI chat platforms, used to build your searchable conversation index.</li>
+            <li><strong>Conversation content</strong> &mdash; text from your AI conversations on supported platforms, indexed locally to enable full-text search.</li>
+            <li><strong>Extension settings</strong> &mdash; your preferences and configuration, stored locally.</li>
+          </ul>
+          <p>This data is processed and stored entirely on your device using the Chrome Storage API (<code>chrome.storage.local</code>). It is never transmitted to any external server, and LLMnesia makes no network requests of any kind.</p>
+          <p>LLMnesia does <strong>not</strong> collect or have access to:</p>
           <ul>
             <li>Your name, email address, or account details</li>
             <li>Your browsing history outside of supported AI platforms</li>
-            <li>Your AI conversation content &mdash; it is indexed and stored locally on your device only and is never transmitted to any external server</li>
             <li>Analytics, telemetry, or usage tracking data</li>
             <li>Cookies or tracking identifiers</li>
           </ul>
@@ -75,6 +81,9 @@
           <h2>How your data is stored</h2>
           <p>All data created by LLMnesia, including your conversation index and extension settings, is stored locally in your browser using the Chrome Storage API (<code>chrome.storage.local</code>). This data never leaves your device.</p>
           <p>You can view, export, or delete all stored data at any time through the extension's settings.</p>
+
+          <h2>Data handling</h2>
+          <p>All data processing happens locally within your browser. When you visit a supported AI chat platform, LLMnesia reads conversation titles and content from the page and saves them to a local index on your device. When you search, the extension queries this local index and displays results. At no point is any data sent to, or received from, any external server or API.</p>
 
           <h2>Browser permissions</h2>
           <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
@@ -105,10 +114,13 @@
           <p>LLMnesia does not use any third-party services, analytics platforms, advertising networks, or external APIs. There are no network requests made by the extension.</p>
 
           <h2>Data sharing</h2>
-          <p>We do not sell, transfer, or share any user data with third parties. Since no data is collected or transmitted, there is nothing to share.</p>
+          <p>We do not sell, transfer, or share any user data with third parties for any purpose. Since no data is transmitted from your device, there is nothing to share.</p>
+
+          <h2>Data security</h2>
+          <p>All data is stored locally on your device and LLMnesia makes no network requests. Your data is protected by your device's own security measures. No data is transmitted over the internet, eliminating the risk of interception or server-side breaches. Access to your stored data is limited to the extension running within your browser.</p>
 
           <h2>Data retention and deletion</h2>
-          <p>All data is stored locally on your device. You can delete your data at any time by:</p>
+          <p>All data is stored locally on your device for as long as the extension is installed. You can delete your data at any time by:</p>
           <ul>
             <li>Using the export/delete controls within the extension's settings</li>
             <li>Uninstalling the extension (this removes all stored data)</li>
@@ -116,13 +128,13 @@
           </ul>
 
           <h2>Children's privacy</h2>
-          <p>LLMnesia does not knowingly collect any information from anyone, including children under 13. The extension does not collect personal information from any user.</p>
+          <p>LLMnesia does not knowingly collect any information from anyone, including children under 13. The extension does not collect or transmit personal information from any user.</p>
 
           <h2>Changes to this policy</h2>
           <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
 
           <h2>Contact</h2>
-          <p>If you have questions about this privacy policy, please reach out via the <a href="/#contact">contact form</a> on our website.</p>
+          <p>If you have questions about this privacy policy, please contact us at <a href="mailto:freelymoving@gmail.com">freelymoving@gmail.com</a> or via the <a href="/#contact">contact form</a> on our website.</p>
         </div>
       </section>
     </main>
