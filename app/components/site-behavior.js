@@ -63,6 +63,127 @@ export default function SiteBehavior() {
 
       const data = [
         {
+          query: 'mediterranean diet inflammation',
+          rows: [
+            {
+              platform: 'perplexity',
+              title: 'Mediterranean diet effects on chronic inflammation markers',
+              snippet: 'Multiple cohorts show a mediterranean diet lowers CRP and other inflammation markers.',
+              date: '6 days ago'
+            },
+            {
+              platform: 'chatgpt',
+              title: 'Build a mediterranean diet meal plan low in inflammation triggers',
+              snippet: 'A mediterranean diet built on olive oil, fish, and greens limits inflammation triggers.',
+              date: '2 weeks ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Summarise this paper on mediterranean diet and inflammation',
+              snippet: 'The paper finds mediterranean diet adherence correlates with reduced systemic inflammation.',
+              date: '3 weeks ago'
+            },
+            {
+              platform: 'gemini',
+              title: 'Track inflammation markers while shifting to a mediterranean diet',
+              snippet: 'Check CRP and ESR before and after twelve weeks on a mediterranean diet to see real inflammation change.',
+              date: '1 month ago'
+            }
+          ]
+        },
+        {
+          query: 'wedding speech for my brother',
+          rows: [
+            {
+              platform: 'chatgpt',
+              title: 'Wedding speech for my brother — warm, short, a little funny',
+              snippet: 'A wedding speech for your brother lands best when one specific memory does the heavy lifting.',
+              date: '2 days ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Trim this wedding speech for my brother',
+              snippet: 'The wedding speech for my brother is sweet but loses energy in the middle paragraph.',
+              date: '6 days ago'
+            }
+          ]
+        },
+        {
+          query: 'Q3 pricing rationale',
+          rows: [
+            {
+              platform: 'chatgpt',
+              title: 'Q3 pricing rationale memo for the board',
+              snippet: 'The Q3 pricing rationale leans on retention, not net new ARR.',
+              date: '2 days ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Pressure-test the Q3 pricing rationale',
+              snippet: 'The weakest part of the Q3 pricing rationale is the assumed annual mix.',
+              date: '5 days ago'
+            },
+            {
+              platform: 'gemini',
+              title: 'Compare Q3 pricing rationale against last year',
+              snippet: 'Last year the pricing rationale ignored geographic split — Q3 should fix that.',
+              date: '2 weeks ago'
+            }
+          ]
+        },
+        {
+          query: 'kyoto itinerary 5 days',
+          rows: [
+            {
+              platform: 'chatgpt',
+              title: 'Kyoto itinerary 5 days with a side trip to Nara',
+              snippet: 'A Kyoto itinerary of 5 days fits Higashiyama, Arashiyama, Fushimi, Nara, and a slow day.',
+              date: '3 days ago'
+            },
+            {
+              platform: 'perplexity',
+              title: 'Kyoto itinerary 5 days for autumn maple season',
+              snippet: 'Time a Kyoto itinerary of 5 days to mid-November for peak maples in the eastern hills.',
+              date: '1 week ago'
+            },
+            {
+              platform: 'claude',
+              title: 'Cut my Kyoto itinerary from 7 days down to 5',
+              snippet: 'A 5-day Kyoto itinerary should drop the far day trip and double up Arashiyama in the morning.',
+              date: '3 weeks ago'
+            },
+            {
+              platform: 'gemini',
+              title: 'Vegetarian food picks for a Kyoto itinerary of 5 days',
+              snippet: 'A Kyoto itinerary of 5 days has strong vegetarian options around Daitoku-ji and Nishiki Market.',
+              date: '1 month ago'
+            }
+          ]
+        },
+        {
+          query: 'interview quotes onboarding friction',
+          rows: [
+            {
+              platform: 'claude',
+              title: 'Interview quotes about onboarding friction from week 3',
+              snippet: 'Three users described onboarding friction around the first import step.',
+              date: '4 days ago'
+            },
+            {
+              platform: 'chatgpt',
+              title: 'Cluster these interview quotes by friction theme',
+              snippet: 'Group the interview quotes so onboarding friction patterns surface clearly.',
+              date: '1 week ago'
+            },
+            {
+              platform: 'perplexity',
+              title: 'Onboarding friction benchmarks for browser extensions',
+              snippet: 'Typical onboarding friction shows up in install, permission, and first-value moments.',
+              date: '3 weeks ago'
+            }
+          ]
+        },
+        {
           query: 'useReducer typing',
           rows: [
             {
@@ -82,69 +203,6 @@ export default function SiteBehavior() {
               title: 'When useReducer typing beats useState',
               snippet: 'Reach for useReducer when typed updates depend on prior state.',
               date: '2 weeks ago'
-            }
-          ]
-        },
-        {
-          query: 'subgrid safari',
-          rows: [
-            {
-              platform: 'claude',
-              title: 'CSS subgrid Safari support timeline',
-              snippet: 'Subgrid landed in Safari 16; iOS shipped support a few months later.',
-              date: '5 days ago'
-            },
-            {
-              platform: 'chatgpt',
-              title: 'Polyfill subgrid for older Safari',
-              snippet: 'Fall back from subgrid to explicit tracks for older Safari versions.',
-              date: '3 weeks ago'
-            }
-          ]
-        },
-        {
-          query: 'rate limit node api',
-          rows: [
-            {
-              platform: 'chatgpt',
-              title: 'Rate limit Node API endpoints with Redis',
-              snippet: 'A token-bucket rate limit for a Node API can use INCR and EXPIRE.',
-              date: '6 days ago'
-            },
-            {
-              platform: 'perplexity',
-              title: 'Node API rate limit middleware comparison',
-              snippet: 'Compare express-rate-limit, rate-limiter-flexible, and Bottleneck.',
-              date: '1 week ago'
-            },
-            {
-              platform: 'claude',
-              title: 'Sliding-window rate limit in Node',
-              snippet: 'A sliding rate limit in Node avoids fixed-window edge bursts.',
-              date: '2 weeks ago'
-            },
-            {
-              platform: 'gemini',
-              title: 'Cloudflare WAF rate limit rules for a Node API',
-              snippet: 'Configure rate limit thresholds before traffic reaches the Node API.',
-              date: '4 weeks ago'
-            }
-          ]
-        },
-        {
-          query: 'founder update may',
-          rows: [
-            {
-              platform: 'claude',
-              title: 'Founder update for May with a calmer tone',
-              snippet: 'The May founder update should lead with activation, then explain why.',
-              date: '2 days ago'
-            },
-            {
-              platform: 'chatgpt',
-              title: 'Tighten this founder update intro',
-              snippet: 'For a May founder update, open with the new MAU number.',
-              date: '4 days ago'
             }
           ]
         }

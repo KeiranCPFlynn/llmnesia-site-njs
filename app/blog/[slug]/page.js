@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import ContentPage from '../../components/content-page';
+import BlogPost from '../../components/blog-post';
 import {
   getContentBySlug,
   getRelatedLinks,
@@ -46,7 +46,7 @@ export default async function BlogArticlePage({ params }) {
   const schemas = [articleSchema(entry), breadcrumbSchema(breadcrumb)];
 
   return (
-    <ContentPage
+    <BlogPost
       entry={entry}
       body={body}
       breadcrumb={breadcrumb}
