@@ -1765,6 +1765,12 @@ h1 {
   margin-bottom: 0;
 }
 
+.content-inline-cta {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 0;
+}
+
 .content-body strong {
   color: var(--text);
   font-weight: 600;
