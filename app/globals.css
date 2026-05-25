@@ -344,15 +344,59 @@ h1 {
   font-weight: 600;
 }
 
-.hero-shortcut {
-  margin: 1.25rem auto 0;
-  max-width: 36rem;
-  color: var(--text-muted);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+.hero-setup-panel {
+  width: 100%;
+  max-width: 40rem;
+  margin: 1rem auto 0;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+  text-align: left;
 }
 
-.hero-shortcut kbd,
+.hero-copy .hero-setup-panel {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hero-setup-kicker {
+  margin: 0 0 0.625rem;
+  color: var(--brand);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero-setup-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--t-ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.hero-setup-list li + li {
+  margin-top: 0.25rem;
+}
+
+.hero-setup-list li::marker {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.hero-setup-privacy {
+  margin: 0.625rem 0 0;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.hero-setup-panel kbd,
 .demo-caption kbd,
 .how-grid kbd {
   display: inline-block;
