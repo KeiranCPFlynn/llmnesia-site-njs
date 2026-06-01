@@ -6,7 +6,7 @@
     <title>Privacy Policy | LLMnesia</title>
     <meta
       name="description"
-      content="LLMnesia privacy policy. Local-first, no data collection, no servers. Your AI conversation index stays on your device."
+      content="LLMnesia privacy policy. Local-first AI conversation indexing, anonymous analytics, optional email signup, and no conversation content uploaded."
     >
     <meta name="theme-color" content="#0d1117">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -57,24 +57,42 @@
       <section class="section container">
         <div class="policy-content">
           <h1>Privacy Policy</h1>
-          <p class="policy-date">Last updated: 19 March 2026</p>
-          <h2>Overview</h2>
-          <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. It is built with a local-first, privacy-by-design architecture. We do not collect, transmit, or store any of your data on external servers.</p>
+          <p class="policy-date">Last updated: 1 June 2026</p>
 
-          <h2>Information we collect</h2>
-          <p><strong>We do not collect any personal information.</strong></p>
-          <p>LLMnesia does not collect, transmit, or have access to:</p>
+          <h2>Overview</h2>
+          <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. Your conversation content, search queries, conversation URLs, and titles stay in your browser and are not sent to LLMnesia servers.</p>
+          <p>We collect limited anonymous analytics to understand product usage, and we collect email addresses only when someone explicitly opts in for updates or contact.</p>
+
+          <h2>Information the extension collects</h2>
+          <p><strong>Your AI conversation content stays local.</strong> The extension stores the conversation index and settings in your browser using IndexedDB and <code>chrome.storage.local</code>.</p>
+          <p>The extension sends anonymous product analytics through PostHog's EU ingestion endpoint. These analytics include only:</p>
           <ul>
-            <li>Your name, email address, or account details</li>
-            <li>Your browsing history outside of supported AI platforms</li>
-            <li>Your AI conversation content &mdash; it is indexed and stored locally on your device only and is never transmitted to any external server</li>
-            <li>Analytics, telemetry, or usage tracking data</li>
-            <li>Cookies or tracking identifiers</li>
+            <li>Anonymous install ID</li>
+            <li>Event names such as <code>extension_opened</code>, <code>search_performed</code>, and <code>result_opened</code></li>
+            <li>Extension version</li>
+            <li>Platform source such as <code>chatgpt</code>, <code>claude</code>, or <code>gemini</code></li>
+            <li>Timestamps and basic numeric counts or status values</li>
+          </ul>
+          <p>PostHog analytics are anonymous only. If you opt in with an email address in the extension, that email is used for the update list and is not sent to PostHog. Extension analytics events include PostHog's GeoIP disable flag so they are not enriched with IP-derived location properties.</p>
+
+          <h2>Information the website collects</h2>
+          <p>The LLMnesia website uses Google Analytics when a Google Analytics ID is configured. Website analytics may include page views, page paths, content groups, and simple events such as an email signup event. Email addresses are not sent to Google Analytics by LLMnesia.</p>
+          <p>If you submit an email address through the website email signup form, the email is sent to a Google Apps Script endpoint and stored in a Google Sheet used for product updates.</p>
+          <p>If you use the contact form, your submitted name, email address, message, and selected contact type are sent through Web3Forms so we can receive and respond to your message.</p>
+
+          <h2>What we do not collect</h2>
+          <ul>
+            <li>No chat content or message text is sent to LLMnesia analytics</li>
+            <li>No search query text is sent to LLMnesia analytics</li>
+            <li>No conversation URLs or titles are sent to LLMnesia analytics</li>
+            <li>No email addresses are sent to PostHog analytics</li>
+            <li>No browser fingerprinting or advertising tracking is used by the extension</li>
+            <li>No LLMnesia account is required</li>
           </ul>
 
-          <h2>How your data is stored</h2>
-          <p>All data created by LLMnesia, including your conversation index and extension settings, is stored locally in your browser using the Chrome Storage API (<code>chrome.storage.local</code>). This data never leaves your device.</p>
-          <p>You can view, export, or delete all stored data at any time through the extension's settings.</p>
+          <h2>How your extension data is stored</h2>
+          <p>All data created by the extension, including your conversation index and extension settings, is stored locally in your browser using IndexedDB and Chrome extension storage. This data remains on your device unless you export it yourself.</p>
+          <p>You can view, export, or delete all stored extension data at any time through the extension's settings.</p>
 
           <h2>Browser permissions</h2>
           <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
@@ -86,7 +104,7 @@
           </ul>
 
           <h3>Host permissions</h3>
-          <p>LLMnesia requests host permissions for the following AI platforms only:</p>
+          <p>LLMnesia requests host permissions for supported AI platforms only:</p>
           <ul>
             <li>ChatGPT (chatgpt.com, chat.openai.com)</li>
             <li>Claude (claude.ai)</li>
@@ -99,27 +117,58 @@
             <li>Qwen (qwen.ai, chat.qwen.ai)</li>
             <li>Google AI Studio (aistudio.google.com)</li>
           </ul>
-          <p>No permission is used to read, collect, or transmit data from any site other than the supported AI platforms listed above. These permissions are used exclusively to index conversation content locally on your device.</p>
+          <p>These permissions are used to index conversation content locally on your device and to open conversations when you select search results.</p>
 
           <h2>Third-party services</h2>
-          <p>LLMnesia does not use any third-party services, analytics platforms, advertising networks, or external APIs. There are no network requests made by the extension.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Purpose</th>
+                <th>Data sent</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PostHog (EU)</td>
+                <td>Extension product analytics</td>
+                <td>Anonymous install ID, event names, extension version, platform source, timestamps, and basic counts/statuses</td>
+              </tr>
+              <tr>
+                <td>Google Analytics</td>
+                <td>Website analytics</td>
+                <td>Page views, page paths, content groups, and simple website events</td>
+              </tr>
+              <tr>
+                <td>Google Apps Script / Google Sheets</td>
+                <td>Email signup and update list management</td>
+                <td>Email addresses submitted through extension or website opt-in forms</td>
+              </tr>
+              <tr>
+                <td>Web3Forms</td>
+                <td>Website contact form delivery</td>
+                <td>Name, email address, contact type, and message submitted through the contact form</td>
+              </tr>
+            </tbody>
+          </table>
 
           <h2>Data sharing</h2>
-          <p>We do not sell, transfer, or share any user data with third parties. Since no data is collected or transmitted, there is nothing to share.</p>
+          <p>We do not sell user data. We use the third-party services listed above only to operate analytics, email signup, and contact/update workflows.</p>
 
           <h2>Data retention and deletion</h2>
-          <p>All data is stored locally on your device. You can delete your data at any time by:</p>
+          <p>Extension data is stored locally on your device. You can delete it by:</p>
           <ul>
             <li>Using the export/delete controls within the extension's settings</li>
-            <li>Uninstalling the extension (this removes all stored data)</li>
+            <li>Uninstalling the extension</li>
             <li>Clearing your browser's extension storage</li>
           </ul>
+          <p>To request deletion of analytics or email signup records held by third-party services, contact us through the website contact form.</p>
 
           <h2>Children's privacy</h2>
-          <p>LLMnesia does not knowingly collect any information from anyone, including children under 13. The extension does not collect personal information from any user.</p>
+          <p>LLMnesia is not directed to children under 13, and we do not knowingly collect personal information from children under 13.</p>
 
           <h2>Changes to this policy</h2>
-          <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+          <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued use of the extension or website after changes constitutes acceptance of the updated policy.</p>
 
           <h2>Contact</h2>
           <p>If you have questions about this privacy policy, please reach out via the <a href="/#contact">contact form</a> on our website.</p>

@@ -55,7 +55,7 @@ LLMnesia adds a retrieval layer that sits on top of all your AI tools simultaneo
 
 When you visit a supported AI platform, LLMnesia runs a content script that reads your conversation and writes a structured index entry to your local browser storage. This happens automatically — no export, no setup, no manual steps.
 
-The index is stored using the browser's `IndexedDB` and `chrome.storage.local` APIs. These are standard browser storage APIs that keep all data on your device. LLMnesia makes no network requests to external servers during indexing or search.
+The index is stored using the browser's `IndexedDB` and `chrome.storage.local` APIs. These are standard browser storage APIs that keep conversation content on your device. LLMnesia does not upload your conversation text, search queries, conversation URLs, or titles for indexing or search.
 
 When you open the LLMnesia search interface (via the extension popup or keyboard shortcut), it queries that local index and returns results in milliseconds. Each result includes a jump-back link to the original conversation on the original platform.
 
