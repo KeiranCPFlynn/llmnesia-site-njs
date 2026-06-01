@@ -46,6 +46,7 @@ export default function SiteChrome({ children }) {
             <a href="/blog">Blog</a>
             <a href="/compare">Compare</a>
             <a href="/use-cases">Use Cases</a>
+            <a href="/changelog">Changelog</a>
             <InstallLink className="nav-cta">Add to Chrome</InstallLink>
           </nav>
           <a

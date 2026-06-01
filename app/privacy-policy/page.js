@@ -4,7 +4,7 @@ import { buildPageMetadata } from '../../lib/metadata';
 export const metadata = buildPageMetadata({
   title: 'Privacy Policy',
   description:
-    'LLMnesia privacy policy. Local-first, no data collection, no servers. Your AI conversation index stays on your device.',
+    'LLMnesia privacy policy. Local-first AI conversation indexing, anonymous analytics, optional email signup, and no conversation content uploaded.',
   canonicalPath: '/privacy-policy'
 });
 

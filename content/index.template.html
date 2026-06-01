@@ -49,6 +49,7 @@
         <a href="#contact">Contact</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#faq">FAQ</a>
+        <a href="/changelog">Changelog</a>
         <a class="nav-cta" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
           target="_blank" rel="noopener noreferrer">Add to Chrome</a>
       </nav>
@@ -57,77 +58,93 @@
 
   <main id="main-content">
     <section class="hero container" id="top">
-      <p class="eyebrow"><span class="eyebrow-dot"></span> Free Chrome extension — local-first</p>
-      <h1>Stop losing answers<br><span class="text-gradient">in AI chats.</span></h1>
-      <p class="subheadline">
-        LLMnesia is a free Chrome extension that privately indexes your AI chats on this device, so you can instantly
-        find past answers from ChatGPT, Claude, Gemini, Perplexity, and more.
-      </p>
-      <div class="hero-cta">
-        <a class="button button-large"
-          href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" target="_blank"
-          rel="noopener noreferrer">
-          Add to Chrome — Free
-        </a>
-        <span class="trust-note">No account. No cloud upload. Your conversations stay on this device.</span>
-      </div>
-      <div class="hero-setup-panel" aria-label="After installing LLMnesia">
-        <p class="hero-setup-kicker">After installing</p>
-        <ol class="hero-setup-list">
-          <li>Open/pin LLMnesia from the Chrome extensions puzzle icon.</li>
-          <li>Let it backfill your AI chat history locally.</li>
-          <li>Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd> and search across your chats.</li>
-        </ol>
-        <p class="hero-setup-privacy">Your conversations stay on this device.</p>
-      </div>
-      <div class="hero-works-with" aria-label="Works with these AI tools">
-        <span class="hero-works-with-label">Works with</span>
-        <ul class="chip-list hero-works-with-list">
-          <li>ChatGPT</li>
-          <li>Claude</li>
-          <li>Gemini</li>
-          <li>Perplexity</li>
-          <li>DeepSeek</li>
-          <li>Grok</li>
-          <li>Mistral</li>
-          <li>Kimi</li>
-          <li>Qwen</li>
-          <li>AI Studio</li>
-        </ul>
-      </div>
-      <p class="hero-secondary-cta">
-        <a class="hero-secondary-link" href="#how-it-works" data-analytics="how_it_works_click">See how it works</a>
-      </p>
-      <div class="email-capture-divider"><span>or</span></div>
-      <div class="hero-email-capture">
-        <div id="email-capture-fields">
-          <p class="hero-email-label">Get tips, updates &amp; new features</p>
-          <form class="email-capture-form" id="email-capture-form" novalidate>
-            <input type="email" name="email" id="email-capture-input"
-                   placeholder="you@example.com" required autocomplete="email"
-                   aria-label="Email address">
-            <input type="checkbox" name="botcheck" tabindex="-1"
-                   autocomplete="off" class="form-honeypot" aria-hidden="true">
-            <button class="button button-small" type="submit" id="email-capture-submit">Stay updated</button>
-          </form>
-          <p class="hero-email-fine-print" id="email-capture-message"
-             role="status" aria-live="polite">No spam. Unsubscribe any time.</p>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> Free Chrome extension — local-first</p>
+          <h1>Stop losing answers <span class="text-gradient">in AI chats.</span></h1>
+          <p class="subheadline">
+            LLMnesia is a free Chrome extension that privately indexes your AI chats on this device, so you can
+            instantly find past answers from ChatGPT, Claude, Gemini, Perplexity, and more.
+          </p>
+          <div class="hero-cta">
+            <a class="button button-large"
+              href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" target="_blank"
+              rel="noopener noreferrer">
+              Add to Chrome — Free
+            </a>
+            <a class="hero-secondary-link" href="#how-it-works" data-analytics="how_it_works_click">See how it works</a>
+          </div>
+          <div class="hero-setup-panel" aria-label="After installing LLMnesia">
+            <p class="hero-setup-kicker">After installing</p>
+            <ol class="hero-setup-list">
+              <li>Open/pin LLMnesia from the Chrome extensions puzzle icon.</li>
+              <li>Let it backfill your AI chat history locally.</li>
+              <li>Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd> and search across your chats.</li>
+            </ol>
+            <p class="hero-setup-privacy">Your conversations stay on this device.</p>
+          </div>
+          <p class="hero-works-line">
+            <span class="hero-works-label">Works with</span>
+            <span>ChatGPT</span>
+            <span>Claude</span>
+            <span>Gemini</span>
+            <span>Perplexity</span>
+            <a href="#platforms" class="hero-works-more">+ 6</a>
+          </p>
+          <p class="hero-meta-line">
+            No account. No cloud upload. Your conversations stay on this device.
+          </p>
         </div>
-        <div class="email-capture-success" id="email-capture-success" hidden>
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true" flex-shrink="0">
-            <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M9 14l3.5 3.5L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div>
-            <strong>You're in!</strong>
-            <p>We'll keep you posted on tips, updates &amp; new features.</p>
+
+        <div class="hero-demo" aria-hidden="true">
+          <div class="kinetic-panel">
+            <div class="kp-header">
+              <span class="kp-dot"></span>
+              <span class="kp-brand">LLMnesia</span>
+              <span class="kp-kbd">⌘ ⇧ 9</span>
+            </div>
+            <div class="kp-input-wrap" data-kp-input-wrap>
+              <div class="kp-input-row">
+                <div class="kp-input" data-kp-input data-placeholder="Search your AI history..."></div>
+                <div class="kp-tools">
+                  <button class="kp-tool" type="button" aria-label="History" title="Recent searches">
+                    <svg viewBox="0 0 16 16" width="13" height="13" stroke-width="1.5" aria-hidden="true">
+                      <circle cx="8" cy="8" r="6.25" />
+                      <path d="M8 4.25v4L10.75 9.5" stroke-linecap="round" />
+                    </svg>
+                  </button>
+                  <button class="kp-tool" type="button" aria-label="Filters" title="Filters">
+                    <svg viewBox="0 0 16 16" width="13" height="13" stroke-width="1.5" stroke-linecap="round"
+                      aria-hidden="true">
+                      <line x1="3" y1="4.5" x2="13" y2="4.5" />
+                      <line x1="4.75" y1="8" x2="11.25" y2="8" />
+                      <line x1="6.25" y1="11.5" x2="9.75" y2="11.5" />
+                    </svg>
+                  </button>
+                  <button class="kp-tool kp-tool-clear" type="button" aria-label="Clear search" title="Clear">
+                    <svg viewBox="0 0 16 16" width="12" height="12" stroke-width="1.6" stroke-linecap="round"
+                      aria-hidden="true">
+                      <path d="M4.25 4.25l7.5 7.5M11.75 4.25l-7.5 7.5" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="kp-hint">30 indexed <span class="dot-sep">·</span> <kbd>↑</kbd> for previous</div>
+            </div>
+            <div class="kp-results" data-kp-results>
+              <div class="kp-empty" data-kp-empty>Type to search across your AI history.</div>
+            </div>
+            <div class="kp-footer">
+              <span class="kp-count" data-kp-count>—</span>
+              <span><kbd>↵</kbd> to open</span>
+            </div>
           </div>
         </div>
       </div>
-      <p class="local-trust-line">Local-first. Your AI conversations never leave your browser.</p>
     </section>
 
-    <section class="section section-problem container" id="problem">
+    <section class="section section-problem container" id="problem" data-reveal>
+      <p class="section-eyebrow">01 — the problem</p>
       <h2>Sound familiar?</h2>
       <p class="section-intro">If you use AI every day, this probably sounds familiar.</p>
       <ul class="pain-statements">
@@ -141,7 +158,8 @@
       </p>
     </section>
 
-    <section class="section container" id="demo">
+    <section class="section container" id="demo" data-reveal>
+      <p class="section-eyebrow">02 — demo</p>
       <h2>See it <span class="text-gradient">in action</span></h2>
       <p class="section-intro">Open one search box. Type a few words. Instantly see matching results from ChatGPT,
         Claude, Gemini and more, then jump straight to the exact message you need.</p>
@@ -162,32 +180,37 @@
       <p class="demo-caption">Search across supported AI chat history with <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd>.</p>
     </section>
 
-    <section class="section section-how container" id="how-it-works">
+    <section class="section section-how container" id="how-it-works" data-reveal>
+      <p class="section-eyebrow">03 — how</p>
       <h2>How it <span class="text-gradient">works</span></h2>
-      <p class="section-intro">One-click import of your existing ChatGPT and Claude history, and automatic local
-        indexing as you use other supported AI tools.</p>
-      <div class="how-grid">
-        <article class="card">
-          <span class="step-kicker">Step 1</span>
+      <p class="section-intro">One-click import for your ChatGPT and Claude history. After that, LLMnesia indexes
+        supported tools automatically as you work.</p>
+      <div class="how-grid" data-reveal-stagger>
+        <div class="how-line" aria-hidden="true"></div>
+        <article class="how-step">
+          <div class="how-num">1</div>
           <h3>Install the Chrome extension</h3>
           <p>Free, takes a few seconds. No account required.</p>
+          <p class="how-meta">~10s · <b>once</b></p>
         </article>
-        <article class="card">
-          <span class="step-kicker">Step 2</span>
+        <article class="how-step">
+          <div class="how-num">2</div>
           <h3>Import your history, then keep chatting</h3>
-          <p>One-click import pulls in your existing ChatGPT and Claude conversations. Other supported tools
-            (Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, AI Studio) index automatically as you use them.</p>
+          <p>Bring in existing conversations, then let supported tools index automatically as you use them.</p>
+          <p class="how-meta">automatic · <b>local</b></p>
         </article>
-        <article class="card">
-          <span class="step-kicker">Step 3</span>
+        <article class="how-step">
+          <div class="how-num">3</div>
           <h3>Press <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd> to search</h3>
-          <p>Or click the extension icon. Search your AI chat history locally and jump straight to the exact message.</p>
+          <p>Search your AI chat history locally and jump straight to the exact message.</p>
+          <p class="how-meta">instant · <b>private</b></p>
         </article>
       </div>
     </section>
 
-    <section class="section section-audience" id="audience">
+    <section class="section section-audience" id="audience" data-reveal>
       <div class="container">
+        <p class="section-eyebrow">04 — audience</p>
         <h2>Built for people who live in AI chats</h2>
         <p class="section-intro">If you use multiple AI tools every week, your best work is probably scattered across dozens or hundreds of conversations. LLMnesia turns that messy chat history into something you can actually search and use.</p>
         <ul class="audience-chips">
@@ -201,10 +224,11 @@
       </div>
     </section>
 
-    <section class="section container" id="features">
+    <section class="section container" id="features" data-reveal>
+      <p class="section-eyebrow">05 — features</p>
       <h2>How LLMnesia <span class="text-gradient">saves you time</span></h2>
       <p class="section-intro">You already solved this in AI. LLMnesia helps you find it again.</p>
-      <div class="card-grid feature-primary-grid">
+      <div class="card-grid feature-primary-grid" data-reveal-stagger>
         <article class="card feature-primary">
           <h3>Stop repeating yourself to AI</h3>
           <p>Your old answers, prompts, and decisions are already there. LLMnesia helps you find them instead of
@@ -220,7 +244,7 @@
           <p>Jump straight to the message you need, not just the conversation. No endless scrolling.</p>
         </article>
       </div>
-      <div class="card-grid feature-secondary-grid">
+      <div class="card-grid feature-secondary-grid" data-reveal-stagger>
         <article class="card">
           <h3>Search without breaking your flow</h3>
           <p>Open search with a shortcut, find what you need, and get back to work in seconds.</p>
@@ -231,7 +255,7 @@
         </article>
         <article class="card">
           <h3>Private by default</h3>
-          <p>No accounts, no cloud sync, no data collection. Your archive stays on your device.</p>
+          <p>No accounts, no cloud sync, no conversation uploads. Your archive stays on your device.</p>
         </article>
       </div>
       <div class="mid-cta">
@@ -243,7 +267,8 @@
       </div>
     </section>
 
-    <section class="section section-platforms container" id="platforms">
+    <section class="section section-platforms container" id="platforms" data-reveal>
+      <p class="section-eyebrow">06 — platforms</p>
       <h2>Works across the AI tools you actually use</h2>
       <p class="section-intro">Search conversations across leading AI platforms from one place.</p>
       <div class="platform-group">
@@ -264,11 +289,12 @@
       </div>
     </section>
 
-    <section class="section section-privacy" id="privacy">
+    <section class="section section-privacy" id="privacy" data-reveal>
       <div class="container">
+        <p class="section-eyebrow">07 — privacy</p>
         <h2>Local-first. Private by design.</h2>
         <p class="section-intro">LLMnesia stores your indexed conversations on your device, not on our servers.</p>
-        <div class="privacy-grid">
+        <div class="privacy-grid" data-reveal-stagger>
           <div class="privacy-card">
             <strong>Stored locally</strong>
             <p>Your data lives in your browser.</p>
@@ -297,8 +323,9 @@
       </div>
     </section>
 
-    <section class="section section-performance container" id="performance">
+    <section class="section section-performance container" id="performance" data-reveal>
       <div class="performance-panel">
+        <p class="section-eyebrow">08 — performance</p>
         <h2>Built to stay out of your way</h2>
         <p>LLMnesia is designed to be lightweight, fast, and unobtrusive while you work. Search appears when you need
           it, not as another bloated dashboard competing for attention.</p>
@@ -319,35 +346,45 @@
       </div>
     </section>
 
-    <section class="section section-differentiation" id="differentiation">
+    <section class="section section-differentiation" id="differentiation" data-reveal>
       <div class="container">
+        <p class="section-eyebrow">09 — vs second brains</p>
         <h2>Not another "second brain"</h2>
-        <div class="differentiation-compare">
-          <div class="compare-col compare-old">
-            <span class="compare-label">Other tools</span>
-            <ul class="compare-list">
-              <li>Ask you to save things manually</li>
-              <li>Require tagging and organizing</li>
-              <li>Become another system to maintain</li>
-              <li>Most people stop keeping them up to date</li>
-            </ul>
+        <p class="section-intro">Other tools ask you to save things. LLMnesia is already where you save things.</p>
+        <div class="vs-table">
+          <div class="vs-hd">
+            <div></div>
+            <div>Other tools</div>
+            <div class="vs-h-new">LLMnesia</div>
           </div>
-          <div class="compare-col compare-new">
-            <span class="compare-label">LLMnesia</span>
-            <ul class="compare-list">
-              <li>Indexes your AI conversations automatically</li>
-              <li>No tagging or organizing required</li>
-              <li>Nothing extra to maintain</li>
-              <li>The useful stuff is already there when you need it</li>
-            </ul>
+          <div class="vs-row">
+            <div>Capture</div>
+            <div>Ask you to save things manually</div>
+            <div class="vs-cell-new">Indexes your AI chats as you use them</div>
+          </div>
+          <div class="vs-row">
+            <div>Setup</div>
+            <div>Require tagging and organizing</div>
+            <div class="vs-cell-new">Zero — opens to your history</div>
+          </div>
+          <div class="vs-row">
+            <div>Maintenance</div>
+            <div>Become another system to maintain</div>
+            <div class="vs-cell-new">Nothing to keep up</div>
+          </div>
+          <div class="vs-row">
+            <div>Where it lives</div>
+            <div>Outside the chat tools you use</div>
+            <div class="vs-cell-new">Where you already work</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section container" id="testimonials">
+    <section class="section container" id="testimonials" data-reveal>
+      <p class="section-eyebrow">10 — feedback</p>
       <h2>Early tester feedback</h2>
-      <div class="card-grid">
+      <div class="card-grid" data-reveal-stagger>
         <blockquote class="card quote">
           <p>"I used to waste 10 to 15 minutes trying to remember which AI tool I'd used for something. Now I type a
             couple of words and it's there."</p>
@@ -366,8 +403,9 @@
       </div>
     </section>
 
-    <section class="section section-founder container" id="founder">
+    <section class="section section-founder container" id="founder" data-reveal>
       <blockquote class="founder-card">
+        <p class="section-eyebrow">11 — founder note</p>
         <h2>Why I built this</h2>
         <p>I use AI constantly across ChatGPT, Claude, Gemini and other tools. I kept having the same frustrating
           experience: I knew I'd already solved something, but I couldn't remember where. Useful prompts, answers,
@@ -377,7 +415,8 @@
       </blockquote>
     </section>
 
-    <section class="section container" id="faq">
+    <section class="section container" id="faq" data-reveal>
+      <p class="section-eyebrow">12 — answers</p>
       <h2>Frequently asked <span class="text-gradient">questions</span></h2>
       <div class="faq-list">
         <details>
@@ -424,7 +463,8 @@
       </div>
     </section>
 
-    <section class="section section-contact container" id="contact">
+    <section class="section section-contact container" id="contact" data-reveal>
+      <p class="section-eyebrow">13 — contact</p>
       <h2>Report bugs or ask a question</h2>
       <p class="section-intro">Use this form for bugs, problems, or general queries. Your message goes to the founder
         inbox and your email address is never shown on the public page.</p>
@@ -472,6 +512,31 @@
           rel="noopener noreferrer">
           Add to Chrome — Free
         </a>
+        <div class="hero-email-capture">
+          <div id="email-capture-fields">
+            <p class="hero-email-label">Get tips, updates &amp; new features</p>
+            <form class="email-capture-form" id="email-capture-form" novalidate>
+              <input type="email" name="email" id="email-capture-input" placeholder="you@example.com" required
+                autocomplete="email" aria-label="Email address">
+              <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="form-honeypot"
+                aria-hidden="true">
+              <button class="button button-small" type="submit" id="email-capture-submit">Stay updated</button>
+            </form>
+            <p class="hero-email-fine-print" id="email-capture-message" role="status" aria-live="polite">No spam.
+              Unsubscribe any time.</p>
+          </div>
+          <div class="email-capture-success" id="email-capture-success" hidden>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <circle cx="14" cy="14" r="13" stroke="currentColor" stroke-width="1.5" />
+              <path d="M9 14l3.5 3.5L19 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <div>
+              <strong>You're in!</strong>
+              <p>We'll keep you posted on tips, updates &amp; new features.</p>
+            </div>
+          </div>
+        </div>
         <p class="fine-print">100% free. No account required.</p>
       </div>
     </section>
@@ -484,6 +549,7 @@
         <a href="/blog">Blog</a>
         <a href="/compare">Compare</a>
         <a href="/use-cases">Use Cases</a>
+        <a href="/changelog">Changelog</a>
         <a href="#features">Features</a>
         <a href="#contact">Contact</a>
         <a href="#faq">FAQ</a>

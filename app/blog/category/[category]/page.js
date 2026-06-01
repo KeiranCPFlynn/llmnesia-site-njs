@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import SiteChrome from '../../../components/site-chrome';
-import InstallLink from '../../../components/install-link';
 import { getAllCategories, getContentByCategory } from '../../../../lib/content';
 import { buildPageMetadata } from '../../../../lib/metadata';
 
@@ -27,6 +26,14 @@ const CATEGORY_DESCRIPTIONS = {
   'how-to': 'Step-by-step instructions for finding, organising, exporting, and searching your AI conversation history.',
   explainer: 'Plain-language explainers covering how AI memory, conversation limits, and chat history features actually work.'
 };
+
+function formatPostDate(iso) {
+  return new Date(iso).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  });
+}
 
 export function generateStaticParams() {
   return getAllCategories('blog').map((category) => ({ category }));
@@ -57,42 +64,34 @@ export default function BlogCategoryPage({ params }) {
 
   return (
     <SiteChrome>
-      <main id="main-content" className="section container content-index-main">
-        <header className="content-index-header">
-          <p className="content-index-kicker">
-            <a href="/blog">Blog</a> › {label}
+      <main id="main-content" className="blog-index">
+        <header className="blog-index__head">
+          <p className="eyebrow">
+            <span className="eyebrow-dot" />
+            <a href="/blog" className="blog-index__cat-back">Field notes</a>
+            <span aria-hidden="true">›</span>
+            {label}
           </p>
           <h1>
             <span className="text-gradient">{label}</span>
           </h1>
-          {description && <p>{description}</p>}
-          <div className="content-index-actions">
-            <InstallLink className="button" />
-            <span className="content-index-count">{posts.length} articles</span>
-          </div>
+          {description && <p className="blog-index__lede">{description}</p>}
+          <p className="blog-index__count">{posts.length} {posts.length === 1 ? 'article' : 'articles'}</p>
         </header>
 
-        <div className="card-grid content-index-grid">
+        <ol className="post-list">
           {posts.map((post) => (
-            <article className="card content-index-card" key={post.slug}>
-              <div className="content-index-card-top">
-                <p className="content-index-kicker">{post.primaryKeyword}</p>
-                <span className={`intent-badge intent-badge-${post.intent}`}>
-                  {post.intent}
-                </span>
-              </div>
-              <h2>
-                <a href={`/blog/${post.slug}`}>{post.title}</a>
-              </h2>
-              <p>{post.description}</p>
-              <div className="content-index-card-footer">
-                <a className="text-link" href={`/blog/${post.slug}`}>
-                  Read article
-                </a>
-              </div>
-            </article>
+            <li key={post.slug} className="post-list__item">
+              <a href={`/blog/${post.slug}`} className="post-list__link">
+                <div className="post-list__top">
+                  <time dateTime={post.publishDate}>{formatPostDate(post.publishDate)}</time>
+                </div>
+                <h2>{post.title}</h2>
+                <p>{post.dek || post.description}</p>
+              </a>
+            </li>
           ))}
-        </div>
+        </ol>
       </main>
     </SiteChrome>
   );
