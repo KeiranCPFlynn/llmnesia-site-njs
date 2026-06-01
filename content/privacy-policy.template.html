@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,7 +7,7 @@
     <title>Privacy Policy | LLMnesia</title>
     <meta
       name="description"
-      content="LLMnesia privacy policy. Local-first, no data collection, no servers. Your AI conversation index stays on your device."
+      content="LLMnesia privacy policy. Local-first AI conversation indexing with limited product analytics. Your AI conversation content and searchable index stay on your device."
     >
     <meta name="theme-color" content="#0d1117">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -57,41 +58,65 @@
       <section class="section container">
         <div class="policy-content">
           <h1>Privacy Policy</h1>
-          <p class="policy-date">Last updated: 22 May 2026</p>
+          <p class="policy-date">Last updated: 1 June 2026</p>
 
           <h2>Overview</h2>
-          <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. It is built with a local-first, privacy-by-design architecture. We do not collect, transmit, or store any of your data on external servers.</p>
+          <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. It is built with a local-first, privacy-by-design architecture.</p>
+          <p>Your AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries, extension settings, and searchable index are stored locally on your device using the Chrome Storage API (<code>chrome.storage.local</code>).</p>
+          <p>LLMnesia uses limited product analytics through PostHog to understand feature usage, diagnose problems, and improve the extension. LLMnesia does not send AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data to PostHog or any other external analytics service.</p>
 
-          <h2>Information we collect and how it is used</h2>
+          <h2>Information processed locally by the extension</h2>
           <p>LLMnesia processes the following data <strong>locally on your device</strong> to provide its core search functionality:</p>
           <ul>
-            <li><strong>Conversation metadata</strong> &mdash; titles, URLs, and timestamps from supported AI chat platforms, used to build your searchable conversation index.</li>
-            <li><strong>Conversation content</strong> &mdash; text from your AI conversations on supported platforms, indexed locally to enable full-text search.</li>
-            <li><strong>Extension settings</strong> &mdash; your preferences and configuration, stored locally.</li>
+            <li><strong>Conversation metadata</strong> such as titles, URLs, and timestamps from supported AI chat platforms, used to build your searchable conversation index.</li>
+            <li><strong>Conversation content</strong> such as text from your AI conversations on supported platforms, indexed locally to enable full-text search.</li>
+            <li><strong>Search queries</strong> entered into LLMnesia, used locally to search your on-device index.</li>
+            <li><strong>Extension settings</strong> such as your preferences and configuration, stored locally in your browser.</li>
           </ul>
-          <p>This data is processed and stored entirely on your device using the Chrome Storage API (<code>chrome.storage.local</code>). It is never transmitted to any external server, and LLMnesia makes no network requests of any kind.</p>
-          <p>LLMnesia does <strong>not</strong> collect or have access to:</p>
+          <p>This data is processed and stored on your device using the Chrome Storage API (<code>chrome.storage.local</code>). It is not transmitted to LLMnesia servers, PostHog, or other third parties.</p>
+
+          <h2>Product analytics</h2>
+          <p>LLMnesia uses PostHog to collect limited product analytics from the browser extension. This helps us understand which features are used, diagnose errors, improve reliability, and make better product decisions.</p>
+          <p>Analytics events may include limited technical and usage information such as:</p>
           <ul>
-            <li>Your name, email address, or account details</li>
-            <li>Your browsing history outside of supported AI platforms</li>
-            <li>Analytics, telemetry, or usage tracking data</li>
-            <li>Cookies or tracking identifiers</li>
+            <li>Extension version</li>
+            <li>Browser type and operating system</li>
+            <li>Supported AI platform name, such as ChatGPT, Claude, Gemini, or Perplexity</li>
+            <li>Feature interactions, such as opening the extension, starting indexing, completing indexing, or using a settings control</li>
+            <li>Error categories or failure states</li>
+            <li>Aggregate counts, such as the number of conversations indexed</li>
+            <li>An anonymous extension install identifier used to understand product usage without requiring an account</li>
           </ul>
+          <p>LLMnesia does <strong>not</strong> send any of the following to PostHog or any other external analytics service:</p>
+          <ul>
+            <li>AI conversation content</li>
+            <li>Conversation titles</li>
+            <li>Conversation URLs</li>
+            <li>Prompts or responses</li>
+            <li>Search queries</li>
+            <li>Conversation snippets or page text</li>
+            <li>Cookies or authentication tokens</li>
+            <li>Your local search index</li>
+            <li>Your name, email address, or AI platform account details</li>
+          </ul>
+          <p>PostHog analytics are used only to operate, debug, and improve LLMnesia. They are not sold, used for advertising, transferred to data brokers, or used to determine creditworthiness or for lending purposes.</p>
 
           <h2>How your data is stored</h2>
-          <p>All data created by LLMnesia, including your conversation index and extension settings, is stored locally in your browser using the Chrome Storage API (<code>chrome.storage.local</code>). This data never leaves your device.</p>
-          <p>You can view, export, or delete all stored data at any time through the extension's settings.</p>
+          <p>All AI conversation data created or processed by LLMnesia, including your conversation index, conversation metadata, search data, and extension settings, is stored locally in your browser using the Chrome Storage API (<code>chrome.storage.local</code>).</p>
+          <p>You can view, export, or delete your locally stored LLMnesia data at any time through the extension's settings.</p>
 
           <h2>Data handling</h2>
-          <p>All data processing happens locally within your browser. When you visit a supported AI chat platform, LLMnesia reads conversation titles and content from the page and saves them to a local index on your device. When you search, the extension queries this local index and displays results. At no point is any data sent to, or received from, any external server or API.</p>
+          <p>When you visit a supported AI chat platform, LLMnesia reads conversation titles and content from the page and saves them to a local index on your device. When you search, the extension queries this local index and displays results in your browser.</p>
+          <p>AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries, extension settings, and local index data are not sent to LLMnesia servers, PostHog, or other third parties.</p>
+          <p>Limited product analytics are sent to PostHog as described in the Product analytics section above.</p>
 
           <h2>Browser permissions</h2>
           <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
           <ul>
-            <li><strong>Storage</strong> &mdash; saves your conversation index and extension settings locally in your browser.</li>
-            <li><strong>Tabs</strong> &mdash; opens the correct conversation when you click a search result.</li>
-            <li><strong>Active Tab</strong> &mdash; detects which supported AI platform you are currently visiting.</li>
-            <li><strong>Scripting</strong> &mdash; injects the search overlay and indexing scripts into supported AI chat pages.</li>
+            <li><strong>Storage</strong> saves your conversation index and extension settings locally in your browser.</li>
+            <li><strong>Tabs</strong> opens the correct conversation when you click a search result.</li>
+            <li><strong>Active Tab</strong> detects which supported AI platform you are currently visiting.</li>
+            <li><strong>Scripting</strong> injects the search overlay and indexing scripts into supported AI chat pages.</li>
           </ul>
 
           <h3>Host permissions</h3>
@@ -108,27 +133,38 @@
             <li>Qwen (qwen.ai, chat.qwen.ai)</li>
             <li>Google AI Studio (aistudio.google.com)</li>
           </ul>
-          <p>No permission is used to read, collect, or transmit data from any site other than the supported AI platforms listed above. These permissions are used exclusively to index conversation content locally on your device.</p>
+          <p>These permissions are used to index supported AI conversation content locally on your device and to provide LLMnesia's search functionality. LLMnesia does not use these permissions to transmit AI conversation content, search queries, cookies, authentication tokens, or local index data to external servers.</p>
 
           <h2>Third-party services</h2>
-          <p>LLMnesia does not use any third-party services, analytics platforms, advertising networks, or external APIs. There are no network requests made by the extension.</p>
+          <p>LLMnesia uses PostHog for limited product analytics as described above. PostHog may receive limited technical and product usage events, but it does not receive AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
+          <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>
 
           <h2>Data sharing</h2>
-          <p>We do not sell, transfer, or share any user data with third parties for any purpose. Since no data is transmitted from your device, there is nothing to share.</p>
+          <p>We do not sell user data. We do not share user data with advertisers, data brokers, or information resellers.</p>
+          <p>Limited product analytics are processed by PostHog only to help us operate, debug, and improve LLMnesia. AI conversation content and local index data are not shared with PostHog or any other third party.</p>
+
+          <h2>Chrome Web Store Limited Use disclosure</h2>
+          <p>LLMnesia's use of information received from Chrome APIs and supported AI chat pages is limited to providing and improving its single purpose: local indexing and search of the user's AI conversations.</p>
+          <p>LLMnesia does not sell user data, does not use user data for advertising, does not transfer user data to data brokers or information resellers, and does not use user data to determine creditworthiness or for lending purposes.</p>
+          <p>Human access to AI conversation content is not possible through LLMnesia because AI conversation content and the searchable index are stored locally on the user's device and are not transmitted to LLMnesia servers, PostHog, or other third parties.</p>
 
           <h2>Data security</h2>
-          <p>All data is stored locally on your device and LLMnesia makes no network requests. Your data is protected by your device's own security measures. No data is transmitted over the internet, eliminating the risk of interception or server-side breaches. Access to your stored data is limited to the extension running within your browser.</p>
+          <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are stored locally on your device. This data is protected by your device's own security measures and your browser's extension storage protections.</p>
+          <p>Because AI conversation content and local index data are not transmitted to external servers, LLMnesia reduces the risk of server-side breaches involving that content.</p>
 
           <h2>Data retention and deletion</h2>
-          <p>All data is stored locally on your device for as long as the extension is installed. You can delete your data at any time by:</p>
+          <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are stored locally on your device for as long as the extension is installed, unless you delete them earlier.</p>
+          <p>You can delete your locally stored LLMnesia data at any time by:</p>
           <ul>
             <li>Using the export/delete controls within the extension's settings</li>
-            <li>Uninstalling the extension (this removes all stored data)</li>
+            <li>Uninstalling the extension, which removes the extension's local storage</li>
             <li>Clearing your browser's extension storage</li>
           </ul>
+          <p>Limited analytics data processed by PostHog may be retained for product analytics, debugging, and improvement purposes. This analytics data does not include AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
 
           <h2>Children's privacy</h2>
-          <p>LLMnesia does not knowingly collect any information from anyone, including children under 13. The extension does not collect or transmit personal information from any user.</p>
+          <p>LLMnesia is not directed to children under 13. LLMnesia does not knowingly collect personal information from children under 13.</p>
+          <p>The extension processes supported AI conversation data locally on the user's device solely to provide indexing and search. LLMnesia does not transmit AI conversation content, prompts, responses, search queries, or local index data from any user, including children, to LLMnesia servers, PostHog, or other third parties.</p>
 
           <h2>Changes to this policy</h2>
           <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
@@ -156,3 +192,4 @@
     </footer>
   </body>
 </html>
+```
