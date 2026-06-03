@@ -1,0 +1,129 @@
+---
+title: "Qwen History Not Loading: Causes and Fixes"
+slug: "qwen-history-not-loading-fix"
+description: "Qwen conversation history not showing up at chat.qwen.ai, with a blank sidebar or missing conversations? This guide covers every known cause of Qwen history loading problems and the specific fix for each."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "qwen history not loading"
+secondaryKeywords:
+  - "qwen sidebar not showing"
+  - "qwen conversations missing"
+  - "qwen chat history disappeared"
+  - "fix qwen history"
+  - "chat.qwen.ai history blank"
+intent: "informational"
+faq:
+  - question: "Why is my Qwen history not loading?"
+    answer: "Qwen history loading failures usually come from a stale browser session, a cache issue, a browser extension interfering with page loading, being signed into the wrong account, or a temporary Qwen service problem. Start with a hard refresh (Ctrl+Shift+R), test in an incognito window to rule out extensions, and confirm you are signed into the correct account."
+  - question: "Did Qwen delete my conversation history?"
+    answer: "Qwen does not routinely delete conversation history on active accounts. Missing history is far more often a loading or account issue than deletion. The main way conversations disappear permanently is if you deleted them yourself, which is not recoverable, or if they were never saved because you were not signed in."
+  - question: "Can a browser extension stop Qwen history from loading?"
+    answer: "Yes. Ad blockers, privacy extensions, and script blockers can interfere with the dynamic loading that chat.qwen.ai relies on. Open Qwen in an incognito window, which disables extensions by default. If history loads there but not in your normal window, an extension is the cause."
+  - question: "Why does my Qwen history load on one device but not another?"
+    answer: "This points to a device or browser-specific problem rather than data loss. Clear the site data for chat.qwen.ai in the affected browser and sign back in, update the browser to the latest version, and test in a different browser on the same device to narrow down whether the issue is browser-specific."
+  - question: "How do I avoid losing access to Qwen conversations?"
+    answer: "Because Qwen has no native export and deleted chats are unrecoverable, the safest approach is to index conversations locally. LLMnesia indexes Qwen conversations at chat.qwen.ai as you browse them, storing a searchable copy on your device that persists even if a conversation later disappears from the sidebar."
+sources:
+  - label: "Qwen — Alibaba AI"
+    url: "https://chat.qwen.ai/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "Search Qwen conversation history"
+    url: "https://llmnesia.com/blog/search-qwen-conversation-history"
+canonicalPath: "/blog/qwen-history-not-loading-fix"
+category: "problem-solving"
+relatedSlugs:
+  - "search-qwen-conversation-history"
+  - "how-to-find-old-qwen-conversations"
+  - "qwen-conversation-history-limits"
+---
+
+When Qwen's sidebar at chat.qwen.ai loads blank, shows a spinner that never resolves, or is missing conversations you know you had, the conversations are usually not gone. In most cases this is a loading or account issue that clears with a few standard steps.
+
+Work through the fixes below in order. Most Qwen history loading problems resolve in the first few.
+
+## Step 1: Check whether Qwen itself is up
+
+Before troubleshooting your own setup, rule out a problem on Qwen's side.
+
+1. Open chat.qwen.ai in a separate tab and see whether the main interface loads at all
+2. Try sending a new message; if that also fails, the issue may be platform-wide
+3. Search for reports of a Qwen or Alibaba AI outage
+
+If there is an active outage, your history returns once the service recovers. There is nothing to fix locally during a platform-side incident.
+
+## Step 2: Hard refresh the page
+
+The simplest fix for an intermittent loading failure is to bypass the cache and force a fresh load.
+
+- **Windows or Linux:** Ctrl + Shift + R
+- **Mac:** Cmd + Shift + R
+
+If the sidebar was failing to load because of a stale cached state, this often resolves it on its own.
+
+## Step 3: Test in incognito to rule out extensions
+
+Browser extensions are one of the most common causes of a chat app failing to load history.
+
+1. Open an incognito or private window (Ctrl+Shift+N on Chrome or Edge, Cmd+Shift+N on Mac; Ctrl+Shift+P on Firefox)
+2. Sign into chat.qwen.ai
+3. If the sidebar loads in incognito but not your normal window, an extension is interfering
+
+Incognito disables extensions by default. The usual culprits are ad blockers, privacy extensions, script blockers, and VPN browser extensions. To find the specific one:
+
+1. Re-enable your extensions one at a time in a normal window
+2. Reload Qwen after enabling each
+3. When history stops loading, the last extension you enabled is the cause
+4. Disable it or allow chat.qwen.ai in its settings
+
+## Step 4: Clear Qwen site data
+
+Corrupted local data can stop the sidebar from loading correctly. Clearing site data for Qwen specifically forces a clean session.
+
+1. While on chat.qwen.ai, open the site information menu in the address bar (the icon next to the URL)
+2. Open the cookies and site data, or site settings, option
+3. Clear or delete the stored data for the site
+4. Reload chat.qwen.ai and sign back in
+
+This logs you out and removes Qwen's locally stored state. After signing back in, the sidebar should rebuild from a clean state.
+
+## Step 5: Check your account and sign-in
+
+If Qwen loads but the sidebar is empty:
+
+- **Confirm the correct account.** If you use more than one Qwen or Alibaba account, you may be looking at one with no history while your conversations sit on another. Check which account is active.
+- **Sign out and back in.** A session token can expire or become corrupted, leaving the interface partially authenticated and the sidebar empty. Sign out completely, close the tab, reopen chat.qwen.ai, and sign in fresh.
+
+Remember that conversations held while signed out are not saved to your account, so they will not appear in the sidebar later.
+
+## Step 6: Try a different browser
+
+If the issue persists, test in a different browser (Chrome, Firefox, Edge, Safari).
+
+- If history loads in one browser but not another, the problem is specific to your original browser installation.
+- Common causes are full browser storage, a corrupted profile, or an outdated browser version.
+
+Updating the browser to the latest version often resolves unexplained loading issues.
+
+## Quick reference
+
+| Symptom | Likely cause | First fix |
+|---|---|---|
+| Sidebar blank, spinner never resolves | Stale cache | Hard refresh |
+| Loads in incognito but not normally | Extension conflict | Disable or allow in the extension |
+| Loads but sidebar empty | Wrong account or session | Confirm account, sign out and in |
+| Works on one device, not another | Browser-specific issue | Clear site data, update browser |
+| Everything fails at once | Possible Qwen outage | Check status, wait it out |
+
+## Protect Qwen history with a local index
+
+Whatever Qwen retains on its servers, you can keep your own searchable copy. Qwen has no native export, and deleted conversations are not recoverable, so a local index is the most reliable safeguard against any future loss.
+
+[LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes Qwen conversations at chat.qwen.ai as you browse them. The index is stored on your device and persists independently of Qwen's sidebar, so if a conversation disappears due to a loading issue or accidental deletion, the content is still searchable if it was indexed beforehand. [Install LLMnesia from the Chrome Web Store](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf) and browse Qwen as normal.
+
+## Still not loading?
+
+If none of the steps above resolve the issue, the problem is likely account-specific or a platform-side incident. Confirm Qwen is otherwise working, check for any known issues, and try again after a short wait.
+
+For finding a specific conversation once the sidebar is back, see [how to find old Qwen conversations](/blog/how-to-find-old-qwen-conversations), and for how Qwen handles history and retention overall, see [how to search Qwen conversation history](/blog/search-qwen-conversation-history). Most history loading problems clear with the hard refresh, incognito test, and site-data reset.

@@ -60,7 +60,7 @@ One file per run. Finish it completely. New MDX auto-propagates to sitemap, RSS 
 | Phase | Status | Notes |
 |---|---|---|
 | 1 — Technical SEO foundations | Done | OG image route, metadata helpers, JSON-LD (article, org, software, person, FAQ), dynamic llms.txt/llms-full.txt, related-links scoring |
-| 2 — Blog content velocity | Done (ongoing) | 122 posts live |
+| 2 — Blog content velocity | Done (ongoing) | 132 posts live |
 | 3 — GEO content | Done (ongoing) | Definitional posts, homepage FAQ JSON-LD, llms-full.txt with install URL + FAQ |
 | 4 — Use-case pages | Done (ongoing) | 5 pages live |
 | 5 — Distribution & authority | Not started | See Section 11 |
@@ -69,7 +69,7 @@ Content production (Phases 2-4) is never "finished"; it is driven by the grids i
 
 ## 4. Current inventory
 
-- Blog: 122 posts in `content/blog/`.
+- Blog: 132 posts in `content/blog/`.
 - Compare: 13 pages in `content/compare/`.
 - Use-cases: 5 pages in `content/use-cases/` (consultants, developers, founders, researchers, writers).
 
@@ -98,17 +98,19 @@ This is the primary gap engine. Rows are platforms; columns are the repeatable b
 | DeepSeek | Done | Done | Done | Done | Done | Done | Done |
 | Perplexity | Done | Done | Done | Done | Done | Done | Done |
 | Microsoft Copilot | Done | Done | Done | Done | Done | Done | Done |
-| Mistral | Done | Done | Done | **Gap** | Done | **Gap** | Done |
+| Mistral | Done | Done | Done | Done | Done | Done | Done |
 | NotebookLM | Done | n/a | **Gap** | Done | n/a | n/a | **Gap** |
-| Meta AI | Done | **Gap** | **Gap** | **Gap** | n/a | n/a | **Gap** |
-| Character.AI | Done | n/a | Done | Done | **Gap** | n/a | **Gap** |
-| Poe | Done | **Gap** | Done | Done | n/a | n/a | **Gap** |
-| Qwen | Done | **Gap** | **Gap** | **Gap** | n/a | n/a | Done |
-| Kimi | Done | n/a | **Gap** | **Gap** | n/a | n/a | Done |
+| Meta AI | Done | Done | **Gap** | Done | n/a | n/a | Done |
+| Character.AI | Done | n/a | Done | Done | Done | n/a | Done |
+| Poe | obsolete | obsolete | obsolete | obsolete | obsolete | obsolete | obsolete |
+| Qwen | Done | **Gap** | Done | Done | n/a | n/a | Done |
+| Kimi | Done | n/a | Done | Done | n/a | n/a | Done |
 | Pi | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
 | Google AI Studio | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
 
 `*` Pi and Google AI Studio are covered by single posts (`pi-ai-conversation-history`, `google-ai-studio-conversation-history`) rather than the search-prefixed slug.
+
+Notes: Poe is considered obsolete and is no longer a content target; do not write new Poe posts. Meta AI "Find old" stays a Gap on paper but is effectively covered by `search-meta-ai-conversation-history` (titled "How to Find Old Meta AI Conversations"); a separate `how-to-find-old-meta-ai-conversations` slug would cannibalise it, so leave it unless that post is repositioned.
 
 When adding a new platform (e.g. a newly popular LLM), add a row and treat every column as a `Gap` to evaluate against the guardrail.
 

@@ -1,0 +1,125 @@
+---
+title: "How to Find Old Kimi Conversations (Moonshot AI)"
+slug: "how-to-find-old-kimi-conversations"
+description: "Kimi, Moonshot AI's long-context assistant, saves conversations in a sidebar but offers no full-text search. This guide covers every method for finding a specific old Kimi conversation, including why long-context chats make content search especially valuable."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "find old kimi conversations"
+secondaryKeywords:
+  - "retrieve kimi chat history"
+  - "kimi past conversations"
+  - "moonshot ai history search"
+  - "find kimi conversation by content"
+  - "old kimi chat retrieval"
+intent: "informational"
+faq:
+  - question: "How do I find a specific old Kimi conversation?"
+    answer: "Kimi has no full-text search, so the reliable methods are: scroll the sidebar for the conversation title, open it and use Ctrl+F to find text within it, look up the conversation URL in your browser history, and use LLMnesia if installed, which indexes Kimi conversation content locally and makes it searchable by any keyword."
+  - question: "Does Kimi have a search function for conversation history?"
+    answer: "No. Kimi at kimi.ai shows conversations in a sidebar but does not offer a search bar that queries the text inside past conversations. Because Kimi supports very long conversations, the inability to search their content is a particularly noticeable gap. A local indexing tool such as LLMnesia adds the missing full-text search."
+  - question: "Why is content search so important for Kimi specifically?"
+    answer: "Kimi is built around a very large context window, so individual conversations can be extremely long, often containing analysis of long documents or extended research. A single Kimi conversation can hold more retrievable detail than several shorter chats on other platforms, which makes being able to search inside it far more valuable than on assistants with shorter chats."
+  - question: "Why can't I find a Kimi conversation I know I had?"
+    answer: "Common reasons: the conversation was not saved because you were not signed in, you are signed into a different account, the title does not match what you are searching for, or the chat was deleted. If the entire sidebar is blank rather than one chat missing, it is more likely a loading issue than a missing conversation."
+  - question: "Does LLMnesia work with Kimi?"
+    answer: "Yes. LLMnesia indexes Kimi conversations at kimi.ai as you browse them. The index is stored locally on your device and lets you search Kimi conversation content by any keyword, alongside other AI platforms you use, from a single search."
+sources:
+  - label: "Kimi AI"
+    url: "https://kimi.ai/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "Search Kimi conversation history"
+    url: "https://llmnesia.com/blog/search-kimi-conversation-history"
+canonicalPath: "/blog/how-to-find-old-kimi-conversations"
+category: "how-to"
+relatedSlugs:
+  - "search-kimi-conversation-history"
+  - "search-deepseek-conversation-history"
+  - "local-first-ai-tools-privacy"
+---
+
+Kimi, Moonshot AI's long-context assistant at kimi.ai, saves your conversations against your account, but finding a specific old one is harder than it looks. The sidebar lists conversations by title, and there is no search bar that queries the text inside past conversations. When the title does not match the keyword you have in mind, the conversation does not surface.
+
+This gap matters more on Kimi than on most platforms. Kimi is built around a very large context window, so individual conversations can be extremely long, holding extended analysis, long-document summaries, and detailed research. Losing track of one of those is losing more than a single answer.
+
+This guide covers every method for finding a specific old Kimi conversation, in the order to try them.
+
+## Method 1: Scroll and scan the sidebar
+
+The most direct approach for recent or memorable conversations.
+
+1. Sign in to kimi.ai
+2. Open the conversation list in the sidebar
+3. Find the conversation by its title or estimated date
+
+Titles are typically derived from the start of the conversation, so a specific opening message gives you a title you can scan for. A vague opener gives you a title you will struggle to recognise later.
+
+**Works best when:** the conversation was recent and started with a distinctive message.
+
+## Method 2: Browser history
+
+For conversations you opened in the last few weeks, browser history is often the fastest route.
+
+1. Open browser history: Ctrl+H (Windows or Linux) or Cmd+Y (Mac)
+2. Search for "kimi.ai"
+3. Find the conversation URL from the relevant date range
+
+Kimi conversation URLs link back to a specific session, so clicking one drops you straight into that conversation even when the sidebar title is not helping you find it.
+
+## Method 3: Ctrl+F inside an open conversation
+
+Once you have opened a conversation you think contains what you need, the browser's find tool jumps you to the exact spot, which is especially useful given how long Kimi conversations can run.
+
+1. Open the conversation
+2. Press Ctrl+F (Windows or Linux) or Cmd+F (Mac)
+3. Search for a keyword, phrase, or detail you remember from the exchange
+
+In a very long Kimi thread, this is the difference between reading thousands of words and landing on the one paragraph you need.
+
+## Method 4: Rename conversations you will need again
+
+If Kimi lets you rename a conversation, do it for the threads you know you will return to. This does not help retroactively, but as a habit it turns a list of generic titles into a navigable archive.
+
+- Before: a generic opener title that means nothing weeks later
+- After: "Q2 market report, key findings summary" that you can spot at a glance
+
+For long, high-value Kimi conversations, a few seconds of renaming saves minutes of searching later.
+
+## Method 5: LLMnesia local full-text index
+
+The methods above depend on memory, recent browser history, or upfront organisation. None of them let you search the content of past conversations, which is exactly what Kimi's long chats most need.
+
+[LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes Kimi conversations at kimi.ai as you browse them. It builds a full-text searchable index on your device, so you can find a conversation by any word inside it, not just its title.
+
+1. [Install LLMnesia from the Chrome Web Store](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf)
+2. Browse your Kimi conversations as normal; they are indexed in the background
+3. Search from LLMnesia using any keyword, such as a topic, a source name, or a phrase from an answer
+4. Results surface the matching conversation with a direct link back to it
+
+The index stays on your device and your conversations are never sent to external servers, which suits Kimi users who care about where their data lives. If you use Kimi alongside DeepSeek, ChatGPT, Claude, or other supported platforms, one search returns results across all of them.
+
+## Comparing the methods
+
+| Method | Finds by content | Works for old chats | Setup |
+|---|---|---|---|
+| Sidebar scan | No (title only) | Slow at scale | None |
+| Browser history | No (URL or date) | Recent weeks | None |
+| Ctrl+F in a chat | Yes (one chat) | Only once opened | None |
+| Rename habit | No (improves titles) | Going forward only | Per chat |
+| LLMnesia index | Yes (all chats) | Yes | Install once |
+
+For a one-off search of a recent conversation, browser history plus Ctrl+F is usually enough. For reliably finding anything across a large Kimi history, a local full-text index is the only method that scales, and it matters more here precisely because each Kimi conversation can hold so much.
+
+## When a Kimi conversation seems genuinely missing
+
+If scanning, browser history, and search all fail, consider whether the conversation still exists:
+
+- **Not signed in:** Conversations held without signing in are not saved to your account.
+- **Different account:** You may have used a different Kimi account.
+- **Deleted:** A deleted conversation is not recoverable from the interface.
+- **Loading issue:** If the whole sidebar is blank rather than one chat missing, it is likely a loading problem rather than a deletion.
+
+A note on data handling: Kimi is operated by Moonshot AI, a Chinese company, so conversations are stored on servers subject to Chinese jurisdiction. Many organisations restrict use of such tools for confidential work; review your employer's policy before using Kimi for sensitive content, and see [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy) for why keeping a local index can help.
+
+For the broader overview of how Kimi handles history, see [how to search Kimi conversation history](/blog/search-kimi-conversation-history). The most dependable long-term fix for Kimi's missing content search is to index conversations locally as you have them, so retrieval never depends on remembering the title of a conversation that may run to tens of thousands of words.

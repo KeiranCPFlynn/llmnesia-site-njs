@@ -1,0 +1,127 @@
+---
+title: "Meta AI Conversation History: Limits, Retention, and Search"
+slug: "meta-ai-conversation-history-limits"
+description: "Meta AI stores conversation history separately on meta.ai, WhatsApp, Instagram, and Facebook, with no unified view and no full-text search. This guide covers what Meta AI retains, the limits that matter, and how to make older conversations findable."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "meta ai conversation history limits"
+secondaryKeywords:
+  - "meta ai history retention"
+  - "how long does meta ai keep history"
+  - "meta ai chat history storage"
+  - "meta ai history search"
+  - "meta ai memory vs history"
+intent: "informational"
+faq:
+  - question: "How long does Meta AI keep conversation history?"
+    answer: "Meta has not published a single fixed retention window that applies uniformly across every Meta AI surface. Conversations on meta.ai remain in your History view while the account is active, and WhatsApp, Instagram, and Facebook retain Meta AI threads as part of those products' normal message storage. Retention is governed by Meta's privacy policies, which vary by region and account type, so check the current policy for specifics."
+  - question: "Is there a limit on how many Meta AI conversations are saved?"
+    answer: "Meta has not published a hard cap on the number of saved Meta AI conversations. The practical limit is retrieval, not storage: because each surface keeps a separate history and none offers full-text search, finding a specific old conversation gets harder as volume grows, well before any storage ceiling becomes relevant."
+  - question: "Can I search inside Meta AI conversation history?"
+    answer: "Not by content, natively. meta.ai lets you browse past conversations by recency but does not offer keyword search of conversation text. WhatsApp's in-chat search can find text within the Meta AI thread on that surface only. There is no native full-text search across all your Meta AI conversations on every surface at once."
+  - question: "What is the difference between Meta AI memory and history?"
+    answer: "Memory is a set of facts Meta AI has learned about you (such as preferences or projects) that it can apply in future conversations. History is the full record of past exchanges you can browse. Memory may surface relevant context proactively, but it is selective and is not a substitute for being able to search the actual content of past conversations."
+  - question: "How do I keep long-term access to Meta AI conversations?"
+    answer: "Export the conversations that matter, because Meta AI's split history and lack of unified search make long-term retrieval unreliable. Use Facebook's Download your information tool for an account-wide archive, WhatsApp's per-chat export for that thread, and manual copy-paste for important meta.ai exchanges."
+sources:
+  - label: "Meta AI"
+    url: "https://www.meta.ai/"
+  - label: "Meta AI Help Center"
+    url: "https://www.meta.com/help/artificial-intelligence/"
+  - label: "Meta Privacy Center"
+    url: "https://www.facebook.com/privacy/center/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/meta-ai-conversation-history-limits"
+category: "platform-guides"
+relatedSlugs:
+  - "search-meta-ai-conversation-history"
+  - "how-to-export-meta-ai-conversation-history"
+  - "ai-conversation-history-limits-compared"
+---
+
+Meta AI is one of the most widely distributed AI assistants in the world, available at meta.ai, inside WhatsApp, Instagram, and Facebook, and on Meta's hardware. That reach shapes how its conversation history works, and where the limits are. The binding constraint with Meta AI is not how much it stores but how fragmented and unsearchable that storage is.
+
+This guide consolidates what Meta AI retains, the limits that actually affect everyday use, and how to fill the retrieval gap.
+
+## How Meta AI stores history: separate per surface
+
+The defining characteristic of Meta AI history is fragmentation. Unlike ChatGPT or Claude, where every conversation lands in one unified history, Meta AI keeps a separate history on each surface:
+
+- **meta.ai:** Standalone conversations in a History view
+- **WhatsApp:** A Meta AI chat thread alongside your other chats
+- **Instagram:** Meta AI conversations in the messaging interface
+- **Facebook:** Meta AI chats in the Facebook interface
+
+A conversation on one surface does not appear on the others. There is no unified view that shows everything you have ever asked Meta AI in one list.
+
+## Retention: no single published window
+
+Meta has not published one fixed retention period that applies identically across every Meta AI surface. What is observable and policy-driven:
+
+- Conversations on meta.ai remain in your History view while the account is active
+- WhatsApp, Instagram, and Facebook retain Meta AI threads as part of those products' normal message storage
+- Retention and data use are governed by Meta's privacy policies, which differ by region and account type
+
+If durability of a specific conversation matters, the authoritative source is Meta's current privacy documentation for your region, and exporting locally is the safe path regardless of what the policy promises on paper.
+
+## The real limit is retrieval, not storage
+
+Meta has not published a hard cap on conversation count, and for practical purposes storage is not the wall most users hit. The wall is finding things.
+
+Two structural facts make retrieval the operative limit:
+
+1. **No unified view.** You have to know which surface a conversation happened on before you can even start looking.
+2. **No full-text search.** meta.ai lets you browse by recency but not search conversation text. WhatsApp's in-chat search works within the Meta AI thread on that surface only. Nothing searches across all surfaces at once.
+
+After a few dozen scattered conversations, "find the Meta AI chat where it drafted that message" becomes a guessing game about which app you used and how far to scroll.
+
+## Memory vs history
+
+Meta AI has a memory feature that is easy to confuse with history:
+
+- **Memory:** Facts Meta AI has learned about you (your name, preferences, recurring projects) that it applies in future conversations. You can view and manage what it remembers from your account settings.
+- **History:** The full record of past exchanges you can browse on each surface.
+
+Memory can surface relevant context without you searching for it, but it is selective and unpredictable. It is not a replacement for being able to search the actual content of past conversations yourself.
+
+## Context window vs conversation history
+
+Two more ideas worth separating:
+
+- **Context window** is how much of the current conversation the underlying model can attend to at once. When a single long chat exceeds it, older turns drop out of what the model can use, even though they remain stored.
+- **Conversation history** is the archive of past chats. It is not constrained by the context window.
+
+If Meta AI loses the thread mid-conversation, that is a context limit; start a fresh chat. If you cannot find an old conversation, that is a retrieval limit; you need a way to search by content.
+
+## Meta AI history compared to other assistants
+
+| Feature | Meta AI | ChatGPT | Claude |
+|---|---|---|---|
+| Unified history across surfaces | No | Yes | Yes |
+| Web interface history | Yes (meta.ai History) | Yes | Yes |
+| Native full-text content search | No | No | No |
+| In-thread platform search | WhatsApp only | No | No |
+| Export | Yes (data download, per-chat on WhatsApp) | Yes | Yes |
+| Memory across conversations | Yes (opt-in) | Yes (opt-in) | Yes (Projects) |
+
+Meta AI's standout gap is not the lack of full-text search, which it shares with most platforms, but the lack of a unified history. Knowing where to look is a prerequisite to finding anything.
+
+## Working within and around the limits
+
+Because Meta AI does not give you durable, searchable, unified history, the practical strategy is to save what matters externally:
+
+- **Export account-wide** with Facebook's Download your information tool for a complete archive
+- **Export the WhatsApp thread** with the per-chat Export chat option if that is where your important work lives
+- **Copy-paste important meta.ai exchanges** into a Markdown editor or note before they get buried
+
+The step-by-step versions are in [how to export Meta AI conversation history](/blog/how-to-export-meta-ai-conversation-history) and [how to find old Meta AI conversations](/blog/search-meta-ai-conversation-history).
+
+## How Meta AI fits a multi-tool workflow
+
+Most people who use Meta AI also use other assistants for focused work. For those platforms, the retrieval gap has a cleaner fix.
+
+[LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes your AI conversations locally and makes them full-text searchable across ChatGPT, Claude, Gemini, Perplexity, Grok, and more. It does not currently support Meta AI, so it does not cover that part of your history, but it removes the same retrieval problem for the rest of your stack with one search box. For a broader comparison of how different platforms handle history limits, see [AI conversation history limits compared](/blog/ai-conversation-history-limits-compared).
+
+The honest summary for Meta AI: storage is generous and largely invisible as a limit, but the fragmented, unsearchable history is the real constraint. Treat the conversations you care about as things to export, not as things the platform will reliably hand back to you later.
