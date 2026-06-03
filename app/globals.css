@@ -45,6 +45,7 @@
   --danger:       hsl(0, 70%, 45%);
   --on-cta:       #ffffff;
 
+  --radius-sm: 5px;
   --radius: 8px;
   --radius-lg: 12px;
 
@@ -269,8 +270,8 @@ video {
 .hero {
   position: relative;
   isolation: isolate;
-  padding-top: 8rem;
-  padding-bottom: 5rem;
+  padding-top: 5rem;
+  padding-bottom: 4rem;
 }
 
 .hero::before {
@@ -288,7 +289,7 @@ video {
 
 .hero-grid {
   display: grid;
-  gap: clamp(2.5rem, 7vw, 6rem);
+  gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
 }
 
@@ -305,24 +306,25 @@ video {
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
   margin: 0 0 var(--s-3);
-  padding: 0.4rem 0.875rem;
-  border-radius: 9999px;
-  background: var(--t-paper-2);
-  border: 1px solid var(--t-rule);
+  padding: 0;
+  border: none;
+  background: none;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--t-ink-2);
 }
 
 .eyebrow-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--t-on-edge);
+  flex: none;
+  width: 1.75rem;
+  height: 2px;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--brand), color-mix(in srgb, var(--brand) 25%, transparent));
 }
 
 .text-gradient {
@@ -347,6 +349,7 @@ h1 {
 
 .hero h1 {
   max-width: 11ch;
+  font-size: clamp(2.5rem, 5.2vw, 4.5rem);
 }
 
 .hero h1 .text-gradient {
@@ -2351,7 +2354,7 @@ main > section:nth-of-type(even) .how-num {
   color: var(--text-muted);
   background: var(--muted);
   border: 1px solid var(--border);
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   padding: 0.3rem 0.75rem;
 }
 
@@ -2378,7 +2381,7 @@ main > section:nth-of-type(even) .how-num {
 .content-index-kicker {
   display: inline-block;
   padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   background: var(--t-teal-soft);
   border: 1px solid var(--t-teal-edge);
   font-family: var(--font-mono);
@@ -2398,7 +2401,7 @@ main > section:nth-of-type(even) .how-num {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.6rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -2475,6 +2478,14 @@ main > section:nth-of-type(even) .how-num {
   padding: 2.5rem 0 6rem;
 }
 
+/* Content pages borrow the .section utility for layout, but its marketing
+   heading constraints (the tight 12ch max-width meant for centered hero-style
+   titles) must not leak into long-form prose or card titles. */
+.content-main :is(h1, h2, h3),
+.content-index-main :is(h1, h2, h3) {
+  max-width: none;
+}
+
 .content-breadcrumb {
   display: flex;
   align-items: center;
@@ -2514,7 +2525,7 @@ main > section:nth-of-type(even) .how-num {
   display: inline-flex;
   align-items: center;
   padding: 0.2rem 0.625rem;
-  border-radius: 9999px;
+  border-radius: var(--radius-sm);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.06em;
@@ -3033,7 +3044,7 @@ main > section:nth-of-type(even) .how-num {
   gap: 6px;
   padding: 5px 11px;
   border: 1px solid var(--t-rule);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--t-paper-2);
   color: var(--t-ink-2);
   font-family: var(--font-mono);
@@ -3497,7 +3508,7 @@ main > section:nth-of-type(even) .how-num {
   letter-spacing: 0.04em;
   padding: 6px 10px;
   border: 1px solid var(--t-rule);
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   color: var(--t-ink-2);
   text-decoration: none;
   background: var(--t-paper-2);

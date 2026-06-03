@@ -1,269 +1,268 @@
-# LLMnesia Content Plan — SEO & GEO Strategy
+# LLMnesia Content System: SEO + GEO Master Plan
 
-**Goal:** Drive Chrome Web Store installs via organic search and LLM discovery (GEO).  
-**Primary approach:** Topical authority through content volume, structured FAQs in JSON-LD, declarative GEO-optimised copy, and the local-first privacy angle as a differentiator.
+This is the operating system for content on llmnesia.com. It exists so that any capable model can read this one document, see the full content universe as a set of grids, identify which cells are empty, and produce a publishable MDX file that fills a real gap.
 
----
+**Product:** LLMnesia, a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms.
+**Goal:** Chrome Web Store installs via organic search and LLM discovery (GEO).
+**Approach:** Topical authority through patterned content volume, structured FAQ JSON-LD, declarative GEO-citable copy, and the local-first privacy angle as the differentiator.
 
-## Phase Status
+## 1. How to use this plan
+
+This document is built to be handed directly to an AI. The loop is:
+
+1. Read Section 5 (the content grids). Each cell is `Done`, `Gap`, or `n/a`.
+2. Pick the highest-priority `Gap`. Priority order: core-platform matrix gaps first, then compare gaps, then persona/use-case gaps, then informational/GEO gaps.
+3. Confirm it is genuinely missing by checking the inventory in Section 4 (or the live `content/` directory).
+4. Apply the judgment guardrail: only create a cell if that platform actually has the feature and the query has real search demand. If not, mark it `n/a` here instead of writing it.
+5. Write the file using the Content Standard (Section 7), GEO Standard (Section 8) and the generation prompt in `docs/mdx-post-generation-prompt.md`.
+6. Run the Per-Post Quality Bar (Section 9) and Technical Checklist (Section 10).
+7. Save to `content/<type>/<slug>.mdx`, update the cell to `Done` here, and add the slug to Section 4.
+
+One file per run. Finish it completely. New MDX auto-propagates to sitemap, RSS and llms.txt on deploy, so there is no manual record to sync beyond this plan.
+
+**Two hand-off modes:**
+
+- **Coding agent** (has repo access): runs the full loop, saves the `.mdx`, updates this plan. Use `docs/mdx-post-generation-prompt.md`.
+- **One-off chat AI** (no repo access, cannot update records): paste `docs/standalone-content-prompt.md` as-is. It self-selects a gap by fetching the live `llms.txt` / `sitemap.xml` and diffing against the embedded pattern universe (falling back to an embedded snapshot if it cannot browse), then returns only MDX. You save the file and flip the cell yourself. Use a browsing-enabled model for best results.
+
+> The build is strict. `lib/content.js` throws if any required field is missing or if `faq` or `sources` is empty. Every generated file must include all required frontmatter, a non-empty `faq`, and a non-empty `sources` array with real URLs. A post that omits these will fail the build.
+
+## 2. Positioning and audience
+
+**What LLMnesia is:** a browser extension that indexes your AI conversations locally as you browse, then lets you search the full text across every platform from one place. Nothing leaves your device.
+
+**Differentiators to lead with (state concretely, never invent metrics):**
+
+- Local-first: conversations are indexed in the browser, not uploaded to a server.
+- Cross-platform: one search across ChatGPT, Claude, Gemini, Grok, DeepSeek, Perplexity, Copilot, Mistral and more.
+- Full-text: searches message content, not just conversation titles (which is the native limitation on most platforms).
+- Free Chrome extension; works across account tiers.
+
+**Canonical facts:**
+
+- Site: https://www.llmnesia.com
+- Install: https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf
+- Author byline: Keiran Flynn (https://www.llmnesia.com/about)
+
+**Readers / search intents:**
+
+| Reader | Typical query |
+|---|---|
+| Someone who lost a specific AI conversation | "find old ChatGPT conversation", "claude history not loading" |
+| Someone hitting native history limits | "chatgpt conversation history limits" |
+| Someone wanting to export or back up chats | "how to export claude conversation history" |
+| A professional who relies on AI daily | "ai chat history for lawyers" |
+| Someone comparing tools | "llmnesia vs superpower chatgpt" |
+| Someone researching the category | "what is ai chat retrieval", "local-first ai tools" |
+
+## 3. Phase status
 
 | Phase | Status | Notes |
-|-------|--------|-------|
-| 1 — Technical SEO foundations | ✅ DONE | Completed 2026-04-16 |
-| 2 — Blog content velocity | ✅ DONE | 3 → 74 posts |
-| 3 — GEO-specific content | ✅ DONE | Definitional post, FAQ JSON-LD, llms.txt |
-| 4 — Use-case page expansion | ✅ DONE | 3 → 5 pages, all rewritten to 700-900 words |
-| 5 — Distribution & authority | ⬜ NOT STARTED | ProductHunt, CWS audit, Show HN |
+|---|---|---|
+| 1 — Technical SEO foundations | Done | OG image route, metadata helpers, JSON-LD (article, org, software, person, FAQ), dynamic llms.txt/llms-full.txt, related-links scoring |
+| 2 — Blog content velocity | Done (ongoing) | 122 posts live |
+| 3 — GEO content | Done (ongoing) | Definitional posts, homepage FAQ JSON-LD, llms-full.txt with install URL + FAQ |
+| 4 — Use-case pages | Done (ongoing) | 5 pages live |
+| 5 — Distribution & authority | Not started | See Section 11 |
 
----
+Content production (Phases 2-4) is never "finished"; it is driven by the grids in Section 5.
 
-## Phase 1 — Technical Foundations (DONE)
+## 4. Current inventory
 
-- `/app/api/og/route.js` — dynamic per-post OG image generator (`next/og` + Inter WOFF fonts)
-- `lib/metadata.js` — `buildPageMetadata()` accepts optional `ogImage`; `buildOgImageUrl()` helper
-- All MDX files updated: `author: "LLMnesia Team"` → `author: "Keiran Flynn"`
-- `/app/about/page.js` — founder/product page with `Person` + `Organization` JSON-LD; linked from author byline
-- `/app/llms.txt/route.js` + `/app/llms-full.txt/route.js` — dynamic routes, auto-sync as MDX content is added
-- `lib/content.js` — `getRelatedLinks()` uses keyword-overlap scoring; `relatedSlugs[]` frontmatter field added
-- `lib/schema.js` — upgraded: `articleSchema` adds `keywords`, `wordCount`, `publisher`; `organizationSchema` adds `foundingDate`, `founder`; `softwareApplicationSchema` adds `screenshot`; new `homepageFaqSchema()` and `personSchema()`
-- `/app/page.js` — homepage FAQ included as JSON-LD
-- `/app/sitemap.js` — `/about` added at priority 0.6
-- `app/components/site-chrome.js` — "About" link in header and footer nav
+- Blog: 122 posts in `content/blog/`.
+- Compare: 13 pages in `content/compare/`.
+- Use-cases: 5 pages in `content/use-cases/` (consultants, developers, founders, researchers, writers).
 
----
+Treat the live `content/` directory as the source of truth; this number is a snapshot. When you publish, add the slug under the right grid in Section 5 and flip its cell to `Done`.
 
-## Phase 2 — Blog Content (DONE, 74 posts)
+## 5. The content grids (gap engine)
 
-### Definitional / GEO anchors
-- `what-is-llmnesia`
-- `ai-chat-retrieval-explained`
-- `ai-knowledge-base-vs-chat-history`
-- `why-ai-chatbots-dont-remember-conversations`
-- `ai-second-brain-chat-history`
+### 5a. Platform × Action matrix (blog)
 
-### Platform-specific: search history
-- `search-claude-conversation-history`
-- `search-gemini-conversation-history`
-- `search-grok-conversation-history`
-- `search-deepseek-conversation-history`
-- `search-perplexity-conversation-history`
-- `search-microsoft-copilot-conversation-history`
-- `search-mistral-conversation-history`
-- `search-notebooklm-conversation-history`
-- `search-meta-ai-conversation-history`
-- `search-character-ai-conversation-history`
-- `search-poe-conversation-history`
-- `search-qwen-conversation-history`
-- `search-kimi-conversation-history`
-- `search-chatgpt-conversation-history`
-- `deepseek-grok-mistral-chat-history`
+This is the primary gap engine. Rows are platforms; columns are the repeatable blog patterns. `Done` = published, `Gap` = worth writing, `n/a` = the platform lacks that feature or the query has no demand. Slug patterns:
 
-### Platform-specific: how to export
-- `how-to-export-chatgpt-conversation-history`
-- `how-to-export-claude-conversation-history`
-- `how-to-export-gemini-conversation-history`
-- `how-to-export-grok-conversation-history`
-- `how-to-export-microsoft-copilot-conversation-history`
-- `how-to-export-perplexity-conversation-history`
+- Search: `search-{platform}-conversation-history`
+- Export: `how-to-export-{platform}-conversation-history`
+- Find old: `how-to-find-old-{platform}-conversations`
+- Fix: `{platform}-history-not-loading-fix`
+- Recover: `recover-deleted-{platform}-conversation`
+- Organize: `how-to-organize-{platform}-conversation-history`
+- Limits: `{platform}-conversation-history-limits`
 
-### Platform-specific: find old conversations
-- `find-old-chatgpt-conversations`
-- `how-to-find-old-claude-conversations`
-- `how-to-find-old-gemini-conversations`
-- `how-to-find-old-perplexity-conversations`
-- `how-to-find-old-microsoft-copilot-conversations`
+| Platform | Search | Export | Find old | Fix | Recover | Organize | Limits |
+|---|---|---|---|---|---|---|---|
+| ChatGPT | Done | Done | Done | Done | Done | Done | Done |
+| Claude | Done | Done | Done | Done | Done | Done | Done |
+| Gemini | Done | Done | Done | Done | Done | Done | Done |
+| Grok | Done | Done | Done | Done | Done | Done | Done |
+| DeepSeek | Done | Done | Done | Done | Done | Done | Done |
+| Perplexity | Done | Done | Done | Done | Done | Done | Done |
+| Microsoft Copilot | Done | Done | Done | Done | Done | Done | Done |
+| Mistral | Done | Done | Done | **Gap** | Done | **Gap** | Done |
+| NotebookLM | Done | n/a | **Gap** | Done | n/a | n/a | **Gap** |
+| Meta AI | Done | **Gap** | **Gap** | **Gap** | n/a | n/a | **Gap** |
+| Character.AI | Done | n/a | Done | Done | **Gap** | n/a | **Gap** |
+| Poe | Done | **Gap** | Done | Done | n/a | n/a | **Gap** |
+| Qwen | Done | **Gap** | **Gap** | **Gap** | n/a | n/a | Done |
+| Kimi | Done | n/a | **Gap** | **Gap** | n/a | n/a | Done |
+| Pi | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
+| Google AI Studio | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
 
-### Platform-specific: history not loading (fix posts)
-- `chatgpt-history-not-loading-fix`
-- `claude-history-not-loading-fix`
-- `gemini-history-not-loading-fix`
-- `grok-history-not-loading-fix`
-- `perplexity-history-not-loading-fix`
-- `microsoft-copilot-history-not-loading-fix`
+`*` Pi and Google AI Studio are covered by single posts (`pi-ai-conversation-history`, `google-ai-studio-conversation-history`) rather than the search-prefixed slug.
 
-### Platform-specific: recover deleted conversations
-- `recover-deleted-chatgpt-conversation`
-- `recover-deleted-claude-conversation`
-- `recover-deleted-gemini-conversation`
-- `recover-deleted-perplexity-conversation`
-- `recover-deleted-microsoft-copilot-conversation`
+When adding a new platform (e.g. a newly popular LLM), add a row and treat every column as a `Gap` to evaluate against the guardrail.
 
-### Platform-specific: organise conversation history
-- `how-to-organize-chatgpt-conversation-history`
-- `how-to-organize-claude-conversation-history`
-- `how-to-organize-gemini-conversation-history`
-- `how-to-organize-microsoft-copilot-conversation-history`
+### 5b. Cross-platform and "vs" posts (blog)
 
-### Platform-specific: limits & comparisons
-- `chatgpt-conversation-history-limits`
-- `microsoft-copilot-conversation-history-limits`
-- `chatgpt-memory-vs-conversation-history`
-- `chatgpt-projects-vs-conversation-history`
-- `chatgpt-vs-claude-conversation-history`
-- `google-ai-studio-conversation-history`
-- `pi-ai-conversation-history`
-- `claude-artifacts-vs-conversation-history`
+| Type | Examples present | Gaps to consider |
+|---|---|---|
+| Memory vs history | chatgpt, gemini, perplexity | claude-memory-vs-conversation-history (if Claude memory ships) |
+| Projects/Spaces vs history | chatgpt-projects, claude-projects, perplexity-spaces, claude-artifacts | grok-vs equivalents only if a real feature exists |
+| Head-to-head | chatgpt-vs-claude-conversation-history, deepseek-grok-mistral-chat-history | gemini-vs-chatgpt-conversation-history |
 
-### Problem-aware / pain-point posts
-- `ai-chat-history-broken-native-search`
-- `how-to-backup-ai-conversations`
-- `cross-llm-workflow-without-context-loss`
-- `best-chrome-extensions-save-ai-conversations`
-- `how-to-search-multiple-ai-chatbots-at-once`
+### 5c. Persona / profession posts (blog)
 
-### Profession-specific use cases (blog)
-- `ai-chat-history-for-lawyers`
-- `ai-chat-history-for-marketers`
-- `ai-chat-history-for-product-managers`
-- `ai-chat-history-for-students`
-- `ai-chat-history-for-teachers`
-- `ai-chat-history-for-researchers`
-- `ai-conversation-history-for-writers`
-- `developer-ai-coding-assistant-history`
-- `ai-chat-history-for-engineers`
-- `ai-chat-history-for-hr-professionals`
-- `ai-chat-history-for-data-scientists`
-- `ai-chat-history-for-customer-support`
+Pattern: `ai-chat-history-for-{profession}`. Present (22): accountants, content-creators, customer-support, data-scientists, designers, engineers, executives, finance-professionals, healthcare-professionals, hr-professionals, journalists, lawyers, marketers, product-managers, project-managers, real-estate-agents, recruiters, researchers, sales-teams, students, teachers, writers.
 
-### Informational / commercial
-- `local-first-ai-tools-privacy`
-- `searchable-ai-prompt-library`
-- `what-is-a-prompt-library`
+Gaps to consider (only where the audience genuinely relies on AI chat and would search this): analysts, consultants (currently a use-case page), virtual assistants, startup teams, academics, therapists/coaches, translators, paralegals, UX researchers.
 
----
+### 5d. Informational / GEO anchors (blog)
 
-## Phase 3 — GEO Content (DONE)
+Present: what-is-llmnesia, ai-chat-retrieval-explained, ai-knowledge-base-vs-chat-history, why-ai-chatbots-dont-remember-conversations, ai-second-brain-chat-history, ai-conversation-privacy-explained, local-first-ai-tools-privacy, ai-conversation-history-limits-compared, what-is-a-prompt-library, searchable-ai-prompt-library, how-to-backup-ai-conversations, ai-chat-history-backup-strategy, cross-llm-workflow-without-context-loss, how-to-search-multiple-ai-chatbots-at-once, team-ai-conversation-sharing, how-to-cite-ai-conversations-academic, how-to-organize-ai-conversations-for-work, best-chrome-extensions-save-ai-conversations.
 
-- `what-is-llmnesia` — declarative first paragraph, LLM-citable definition
-- Homepage FAQ in `homepageFaqSchema()` JSON-LD
-- `/app/llms-full.txt/route.js` — includes install URL, platform list, local-first explanation, inline FAQ items
+Gaps to consider: are-ai-conversations-private, do-ai-chats-get-deleted, what-is-local-first-software, how-long-do-ai-platforms-keep-history, ai-chat-history-and-gdpr.
 
----
+### 5e. Compare pages
 
-## Phase 4 — Use-Case Pages (DONE)
+Pattern: `llmnesia-vs-{competitor}`. Present (13): browser-bookmarks, chat-lens, chat-memo, chatgpt-history, chathub, claude-projects, mem-ai, notion-ai-notes, obsidian-ai-notes, perplexity-library, promptly, readwise, superpower-chatgpt.
 
-All pages at `/use-cases/[slug]`:
+Gaps to consider (verify the competitor is real and still active before writing): chatgpt-exporter, typingmind, pieces, recall-ai, glasp, saner-ai, msty, sider.
 
-| Slug | Audience | Status |
-|------|----------|--------|
-| `developers` | Software engineers | ✅ Rewritten (700-900w) |
-| `founders` | Startup founders | ✅ Rewritten (700-900w) |
-| `researchers` | Academic/independent researchers | ✅ Rewritten (700-900w) |
-| `writers` | Writers & content creators | ✅ New |
-| `consultants` | Consultants & freelancers | ✅ New |
+### 5f. Use-case pages
 
----
+Pattern: `/use-cases/{audience}`, 700-900 words, deeper than a persona blog post. Present (5): consultants, developers, founders, researchers, writers.
 
-## Phase 5 — Distribution (NOT STARTED)
+Gaps to consider (promote the strongest persona-blog audiences into full use-case pages): students, lawyers, sales-teams, marketers, product-managers, customer-support.
 
-### Chrome Web Store listing audit
-- Audit the extension description to match `softwareApplicationSchema` language exactly
-- Add screenshots showing multi-platform search results
-- CWS listing is indexed by Google and cited by AI assistants — treat it as a landing page
+## 6. Source principles
 
-### ProductHunt launch
-- Tagline: "LLMnesia — free Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. Local-first."
-- Request reviewers mention "multi-platform" and "local-first" — these are the citation triggers LLMs extract from review aggregations
+Operate from published guidance, not folklore:
 
-### Hacker News "Show HN"
-- Technical framing: local indexing architecture, IndexedDB approach, why local-first matters at scale
-- HN threads are indexed by AI crawlers and generate authoritative inbound links
+- Google helpful content: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
+- Google AI features: https://developers.google.com/search/docs/appearance/ai-overviews
+- Google structured data: https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
+- OpenAI crawlers: https://platform.openai.com/docs/bots
+- Bing Webmaster Guidelines: https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a
 
-### AI productivity newsletters
-- Ben's Bites, The Rundown AI, TLDR AI — a feature mention is sufficient
+The same fundamentals drive both classic search and AI answers: crawlability, snippet eligibility, helpful content, accurate structured data. There is no separate trick for AI Overviews. FAQ JSON-LD and declarative definitions make passages easy for answer engines to extract and cite.
 
----
+## 7. Content standard
 
-## Compare Pages (13 pages)
+Write to satisfy one real query per page. Depth comes from answering it better than competing pages, not from a word count.
 
-All at `/compare/[slug]`:
+**Depth guide:** platform/how-to posts 700-1,100 words; informational/explainer 900-1,400; compare and use-case pages 700-900.
 
-- `llmnesia-vs-chatgpt-history`
-- `llmnesia-vs-claude-projects`
-- `llmnesia-vs-obsidian-ai-notes`
-- `llmnesia-vs-notion-ai-notes`
-- `llmnesia-vs-readwise`
-- `llmnesia-vs-mem-ai`
-- `llmnesia-vs-promptly`
-- `llmnesia-vs-browser-bookmarks`
-- `llmnesia-vs-superpower-chatgpt`
-- `llmnesia-vs-chathub`
-- `llmnesia-vs-chat-lens`
-- `llmnesia-vs-chat-memo`
-- `llmnesia-vs-perplexity-library`
-
----
-
-## Remaining Content Opportunities
-
-### Fix posts (extend the pattern)
-- `deepseek-history-not-loading-fix`
-- `notebooklm-history-not-loading-fix`
-
-### Recover deleted (extend the pattern)
-- `recover-deleted-grok-conversation`
-- `recover-deleted-chatgpt-project`
-
-### Organise history (extend the pattern)
-- `how-to-organize-perplexity-conversation-history`
-
-### Profession-specific (new audiences)
-- `ai-chat-history-for-healthcare` — strong local-first/privacy angle
-- `ai-chat-history-for-sales-teams` — CRM context, cross-platform
-
-### How-to (extend the pattern)
-- `how-to-find-old-grok-conversations`
-
-### Informational / GEO
-- `llmnesia-launch-update` — verifiable milestones post (publish once real user numbers exist)
-- `ai-tools-for-academic-research` — broader informational, links to researchers use-case
-
----
-
-## Weekly Cadence (ongoing)
-
-- **Monday:** Publish one blog post
-- **Thursday:** Publish second blog post or update an existing use-case/compare page (`updatedDate` + new FAQ or data point)
-- **After each batch:** Verify new content appears in `https://llmnesia.com/sitemap.xml` and `https://llmnesia.com/llms.txt`
-
----
-
-## Verification Checklist (per batch)
-
-1. New posts appear in `https://llmnesia.com/sitemap.xml`
-2. New posts appear in `https://llmnesia.com/llms.txt`
-3. Per-post OG images render via `https://llmnesia.com/api/og?title=...`
-4. JSON-LD validates in Google's Rich Results Test for at least one new post
-5. Submit updated sitemap in Google Search Console
-6. Check Perplexity: search "what is llmnesia" — verify definitional post is being cited
-
----
-
-## Content Frontmatter Reference
-
-Every MDX file requires these fields:
+**Canonical frontmatter** (every field below except `relatedSlugs` and `category` is required; the build fails without them):
 
 ```yaml
-title: ""
-slug: ""
-description: ""
+---
+title: "Specific, search-friendly title"
+slug: "url-slug"
+description: "One to two sentences that state the core answer for searchers and humans."
 publishDate: "YYYY-MM-DD"
 updatedDate: "YYYY-MM-DD"
 author: "Keiran Flynn"
-primaryKeyword: ""
+primaryKeyword: "primary keyword"
 secondaryKeywords:
-  - ""
-intent: "informational" # or "how-to" or "commercial"
+  - "related query"
+  - "related query"
+intent: "informational"   # informational | how-to | commercial
 faq:
-  - question: ""
-    answer: ""
+  - question: "A real question people search?"
+    answer: "Self-contained, citable answer."
 sources:
-  - label: ""
-    url: ""
-canonicalPath: "/blog/slug"
-category: "" # problem-solving | how-to | use-cases | informational
+  - label: "Source name"
+    url: "https://..."
+canonicalPath: "/blog/url-slug"   # must match type and slug
+category: "platform-guides"        # see vocabulary below
 relatedSlugs:
-  - "slug-without-type-prefix"
+  - "a-related-slug"
+---
 ```
 
-New MDX files auto-propagate to sitemap, RSS, and llms.txt on next deploy — no manual updates needed.
+- `intent` vocabulary: `informational`, `how-to`, `commercial`.
+- `category` vocabulary in use: `platform-guides`, `how-to`, `problem-solving`, `use-cases`, `explainer`, `foundational`, `comparisons`, `persona-guides`, `workflows`.
+- `canonicalPath` is `/{type}/{slug}` and must match the file's location and slug.
+- `faq` and `sources` must be non-empty. Use real, relevant sources (the platform's own help centre, the LLMnesia site, a related on-site post).
+- `relatedSlugs` are bare slugs (optionally `type/slug`); they drive the related-links module.
+
+**Body structure** (the page template renders the title, so no top-level H1):
+
+1. Open with the direct answer in the first paragraph (declarative, citable). For platform posts, name the native limitation up front.
+2. 4-7 descriptive H2s matching how people search.
+3. At least one comparison table or numbered method list.
+4. Position LLMnesia as the cross-platform, local-first, full-text solution where it genuinely fits, without overselling.
+5. Internal links: 2-4 to related posts, plus the install link where natural.
+6. The FAQ from frontmatter is rendered as JSON-LD; questions should be ones people actually search.
+
+**Voice:**
+
+- Plain, practical, accurate. Explain the real native limitation before pitching the fix.
+- No fabricated metrics or stories.
+- No em dashes or en dashes. Use periods, commas, colons, semicolons or parentheses.
+- Avoid filler: "unlock", "game-changer", "seamless", "in today's fast-paced world", "delve", "the bottom line".
+
+## 8. GEO and LLM extraction standard
+
+- Lead each post with a declarative definition or direct answer that can be quoted alone with attribution (e.g. "LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms.").
+- Keep the FAQ answers self-contained; they feed JSON-LD and are prime citation targets.
+- Use the exact product description consistently so answer engines learn a stable definition.
+- Update `llms.txt` / `llms-full.txt` only happens automatically via the dynamic routes; no manual edit needed, but verify after a pillar post.
+
+## 9. Per-post quality bar
+
+A file is ready when:
+
+- It answers one specific query a reader from Section 2 would type.
+- The first paragraph states the answer declaratively.
+- It names the real native limitation (for platform posts) before positioning LLMnesia.
+- It has all required frontmatter, a non-empty `faq` (4-6 questions), and a non-empty `sources` array with real URLs.
+- `canonicalPath` matches the type and slug.
+- It includes 2-4 internal links and the install link where natural.
+- It has at least one comparison table or numbered method list.
+- It carries no fabricated claims and no filler phrases.
+
+## 10. Technical checklist (per file)
+
+- [ ] Slug is short, descriptive, follows the relevant pattern in Section 5.
+- [ ] All required frontmatter present; `faq` and `sources` non-empty.
+- [ ] `canonicalPath` equals `/{type}/{slug}`.
+- [ ] `publishDate` and `updatedDate` set (same date on first publish).
+- [ ] `category` and `intent` use the allowed vocabulary.
+- [ ] 2-4 internal links plus install link where natural.
+- [ ] Builds cleanly (no thrown validation errors).
+- [ ] After deploy: appears in `/sitemap.xml`, `/llms.txt`, and OG image renders via `/api/og?title=...`.
+
+## 11. Phase 5 — Distribution and authority (not started)
+
+- **Chrome Web Store listing:** align the description with `softwareApplicationSchema` language; add multi-platform search screenshots. The CWS page is indexed and cited by AI assistants; treat it as a landing page.
+- **Product Hunt:** tagline leads with "free", "multi-platform", "local-first" (the citation triggers LLMs lift from review aggregations).
+- **Hacker News Show HN:** technical framing of the local indexing / IndexedDB architecture and why local-first matters.
+- **AI newsletters:** Ben's Bites, The Rundown AI, TLDR AI; a feature mention suffices.
+
+## 12. Cadence and verification
+
+**Weekly cadence:**
+
+- Monday: publish one blog post (top `Gap` in Section 5).
+- Thursday: publish a second post, or refresh an existing use-case/compare page (`updatedDate` + a new FAQ or data point).
+- After each batch: confirm new content in `/sitemap.xml` and `/llms.txt`.
+
+**Verification per batch:**
+
+1. New posts appear in `https://www.llmnesia.com/sitemap.xml`.
+2. New posts appear in `https://www.llmnesia.com/llms.txt`.
+3. OG images render via `https://www.llmnesia.com/api/og?title=...`.
+4. JSON-LD validates in Google's Rich Results Test for at least one new post.
+5. Submit the updated sitemap in Google Search Console.
+6. Spot-check an answer engine (e.g. "what is llmnesia") to confirm the definitional post is cited.

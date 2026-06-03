@@ -1,9 +1,9 @@
 ---
 title: "LLMnesia vs Claude Projects for Retrieval"
 slug: "llmnesia-vs-claude-projects"
-description: "Claude Projects organises context, files, and instructions for ongoing work inside the Claude interface. LLMnesia is a retrieval layer that works across Claude, ChatGPT, Gemini, and others. They address different problems: Projects help you manage active work in Claude; LLMnesia helps you find answers across everything you have done in any AI tool."
+description: "Claude Projects organises files, instructions, and context for ongoing work inside Claude. LLMnesia is a free, local-first Chrome extension that searches your conversations across Claude, ChatGPT, Gemini and 10+ platforms. Projects help you manage active work in one tool; LLMnesia helps you find answers across everything you have done in any AI tool."
 publishDate: "2026-04-10"
-updatedDate: "2026-04-10"
+updatedDate: "2026-06-03"
 author: "Keiran Flynn"
 primaryKeyword: "llmnesia vs claude projects"
 secondaryKeywords:
@@ -11,68 +11,96 @@ secondaryKeywords:
   - "search claude and chatgpt history"
   - "ai context retrieval tool"
   - "claude history search extension"
+  - "find old claude conversations"
 intent: "commercial"
+category: "comparisons"
+relatedSlugs:
+  - "compare/llmnesia-vs-chatgpt-history"
+  - "use-cases/developers"
+  - "blog/cross-llm-workflow-without-context-loss"
 faq:
   - question: "Is Claude Projects still useful with LLMnesia?"
-    answer: "Yes — they serve different purposes. Claude Projects is an in-Claude workspace for active, ongoing work. LLMnesia is a retrieval layer for recovering past answers across any AI platform."
-  - question: "Does Claude Projects save my conversation history?"
-    answer: "Claude Projects keeps conversations and uploaded files within a project context window. It is designed to maintain context for active work, not to index all of your Claude conversations for cross-session keyword search."
+    answer: "Yes, they serve different purposes. Claude Projects is an in-Claude workspace for active, ongoing work with shared files and instructions. LLMnesia is a retrieval layer for recovering past answers across any AI platform, including conversations outside any project."
+  - question: "Does Claude Projects let me search all my Claude history?"
+    answer: "Claude Projects keeps conversations and uploaded files within a project's context. It is built to maintain context for active work, not to index every Claude conversation you have ever had for cross-session keyword search across the whole account."
   - question: "What if I only use Claude?"
-    answer: "If you only use Claude and your workflow is organised into well-defined projects, Claude Projects may cover your retrieval needs within Claude. LLMnesia is strongest when your work crosses tool boundaries or when you need to search all past conversations."
-  - question: "Can LLMnesia search inside my Claude Projects?"
-    answer: "LLMnesia indexes conversations from your Claude sessions automatically. Conversations you have within Claude Projects are indexed as you have them."
+    answer: "If you only use Claude and your work is organised into well-defined projects, Claude Projects may cover your needs within Claude. LLMnesia is strongest when your work crosses tool boundaries or when you need to search all past conversations, including ones that predate or sit outside a project."
+  - question: "Can LLMnesia search inside my Claude Projects conversations?"
+    answer: "LLMnesia indexes your Claude sessions automatically as you have them, including conversations inside a Project. It then makes that text searchable alongside your ChatGPT, Gemini, and other platform history."
+  - question: "Is LLMnesia free, and does it need a Claude paid plan?"
+    answer: "LLMnesia is a free Chrome extension and does not require any specific Claude tier. Claude Projects is a feature of Claude's paid plans. The two are independent."
+  - question: "Where does LLMnesia store my data?"
+    answer: "LLMnesia is local-first. Your conversation index is stored on your device rather than uploaded to an external server, which keeps client work and sensitive discussions on your machine."
 sources:
   - label: "Anthropic Claude product page"
     url: "https://www.anthropic.com/claude"
   - label: "Claude app"
     url: "https://claude.ai/"
   - label: "LLMnesia product overview"
-    url: "https://llmnesia.com/"
+    url: "https://www.llmnesia.com/"
 canonicalPath: "/compare/llmnesia-vs-claude-projects"
 ---
+Claude Projects and LLMnesia solve different problems. Claude Projects is an in-Claude workspace that keeps files, instructions, and context together for ongoing work. LLMnesia is a free, local-first Chrome extension that searches the full text of your conversations across Claude, ChatGPT, Gemini and 10+ platforms, and links you back to the exact session. Projects manage active work in one tool; LLMnesia retrieves past answers across all of them.
+
+## LLMnesia vs Claude Projects at a glance
+
+| | Claude Projects | LLMnesia |
+|---|---|---|
+| Primary job | Organise active work in Claude | Find past answers across tools |
+| Platforms covered | Claude only | Claude, ChatGPT, Gemini, and 10+ more |
+| Retrospective search | Within a project's context | Full text across all past sessions |
+| Setup per topic | Create and maintain a project | None, indexing is automatic |
+| Jump-back to original chat | Inside Claude | Direct link, any platform |
+| Where your data lives | Your Claude account | Local-first, on your device |
+| Price | Claude paid tiers | Free |
+
 ## What Claude Projects actually does
 
-Claude Projects is a feature in Claude's paid tiers that lets you create persistent workspaces. Inside a Project, you can:
+Claude Projects lets you create persistent workspaces inside Claude. Within a Project you can:
 
 - Upload files and documents that Claude references across conversations.
 - Set custom instructions that apply to every conversation in the project.
 - Keep a shared conversation history within the project scope.
-- Collaborate with team members on the same project context.
+- Collaborate with teammates on the same project context.
 
-It is an excellent tool for structured, ongoing work — a coding project, a research brief, a long-term client engagement. The value is that Claude remembers the project context without you having to re-explain it every session.
+It is an excellent tool for structured, ongoing work: a coding effort, a research brief, a long-term client engagement. The value is that Claude holds the project context without you re-explaining it every session.
 
 ## Where Claude Projects ends
 
-Projects are designed for work you are actively doing. They are not designed for retrospective retrieval — going back weeks or months to find a specific answer, prompt, or decision from any conversation you have had across all your AI tools.
-
-If you ask "what did I decide about the API design three weeks ago, and was it in Claude or ChatGPT?" — Claude Projects cannot answer that. It only knows its own project contents.
+Projects are designed for work you are actively doing. They are not built for retrospective retrieval, going back weeks or months to find a specific answer, prompt, or decision from any conversation across all your AI tools. If you ask "what did I decide about the API design three weeks ago, and was it in Claude or ChatGPT?", Claude Projects cannot answer. It only knows its own project contents.
 
 ## What LLMnesia does differently
 
 LLMnesia is not a workspace organiser. It is a search layer that runs in the background across Claude, ChatGPT, Gemini, and other platforms.
 
-- **Cross-platform search** — one index covers Claude, ChatGPT, Gemini, and more simultaneously.
-- **Retrospective retrieval** — search anything from any past session, not just active project files.
-- **Jump-back links** — results return you to the original conversation with a direct link.
-- **Local-first** — your conversation index stays on your device.
-- **Automatic** — no manual file upload or project setup required.
+- **Cross-platform search:** one index covers Claude, ChatGPT, Gemini, and more at once.
+- **Retrospective retrieval:** search anything from any past session, not just active project files.
+- **Jump-back links:** results return you to the original conversation with a direct link.
+- **Local-first:** your conversation index stays on your device.
+- **Automatic:** no manual file upload or project setup required.
+
+## A concrete example
+
+You scoped a database schema with Claude inside a Project last month, then later pressure-tested an edge case in a quick ChatGPT chat outside any project. Today you need both. The Project holds the schema, but it has no idea the ChatGPT conversation ever happened. With LLMnesia you search `schema migration nullable` and see results from both the Claude Project session and the standalone ChatGPT chat in one list, each with a link back to the original. This cross-tool continuity is the focus of the [cross-LLM workflow guide](/blog/cross-llm-workflow-without-context-loss).
 
 ## The overlap and the gap
 
-Both tools help you maintain context over time. The assumptions differ significantly:
+Both tools help you keep context over time, but their assumptions differ. Claude Projects assumes you know which project work belongs to, you are working in Claude, and you want Claude to maintain that context proactively. LLMnesia assumes you may not remember which tool you used or when, you need to search across everything, and retrieval has to be fast regardless of platform.
 
-**Claude Projects** assumes you know what project work belongs to, you are working in Claude, and you want Claude to maintain that context proactively for ongoing structured work.
+## Can you use both together?
 
-**LLMnesia** assumes you may not remember which tool you used or when, you need to search across everything, and retrieval must be fast regardless of platform.
+Yes, and it is a strong setup. Run your structured, ongoing work in Claude Projects, and let LLMnesia index every session (inside and outside projects, across every platform) so nothing is stranded when you need it later. LLMnesia indexes your Claude conversations as you have them, so adopting it adds no extra steps to your Project workflow.
 
 ## Practical choice
 
 **Use Claude Projects if:**
-- Your team is Claude-centric with clearly-defined ongoing projects.
-- You want Claude to maintain shared file context across team members.
-- Your retrieval needs are within-project and within-Claude.
+- Your team is Claude-centric with clearly defined ongoing projects.
+- You want Claude to maintain shared file context across teammates.
+- Your retrieval needs stay within a project and within Claude.
 
 **Use LLMnesia if:**
-- Your work spans multiple AI tools — Claude, ChatGPT, Gemini, others.
-- You need to find past answers that exist outside any Project or predate it.
-- You want automatic, cross-platform retrieval with no setup per project.
+- Your work spans multiple AI tools: Claude, ChatGPT, Gemini, others.
+- You need past answers that exist outside any Project or predate it.
+- You want automatic, cross-platform retrieval with no per-project setup.
+
+Want one search across Claude and everything else? [Install LLMnesia free](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf).
