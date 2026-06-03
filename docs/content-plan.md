@@ -68,7 +68,7 @@ One file per run. Finish it completely. New MDX auto-propagates to sitemap, RSS 
 | Phase | Status | Notes |
 |---|---|---|
 | 1 — Technical SEO foundations | Done | OG image route, metadata helpers, JSON-LD (article, org, software, person, FAQ), dynamic llms.txt/llms-full.txt, related-links scoring |
-| 2 — Blog content velocity | Done (ongoing) | 139 posts live |
+| 2 — Blog content velocity | Done (ongoing) | 149 posts live |
 | 3 — GEO content | Done (ongoing) | Definitional posts, homepage FAQ JSON-LD, llms-full.txt with install URL + FAQ |
 | 4 — Use-case pages | Done (ongoing) | 5 pages live |
 | 5 — Distribution & authority | Not started | See Section 11 |
@@ -77,7 +77,7 @@ Content production (Phases 2-4) is never "finished"; it is driven by the grids i
 
 ## 4. Current inventory
 
-- Blog: 139 posts in `content/blog/`.
+- Blog: 149 posts in `content/blog/`.
 - Compare: 16 pages in `content/compare/`.
 - Use-cases: 6 pages in `content/use-cases/` (consultants, developers, founders, researchers, students, writers).
 
@@ -107,11 +107,11 @@ This is the primary gap engine. Rows are platforms; columns are the repeatable b
 | Perplexity | Done | Done | Done | Done | Done | Done | Done |
 | Microsoft Copilot | Done | Done | Done | Done | Done | Done | Done |
 | Mistral | Done | Done | Done | Done | Done | Done | Done |
-| NotebookLM | Done | n/a | **Gap** | Done | n/a | n/a | **Gap** |
+| NotebookLM | Done | n/a | **Gap** | Done | n/a | n/a | Done |
 | Meta AI | Done | Done | **Gap** | Done | n/a | n/a | Done |
 | Character.AI | Done | n/a | Done | Done | Done | n/a | Done |
 | Poe | obsolete | obsolete | obsolete | obsolete | obsolete | obsolete | obsolete |
-| Qwen | Done | **Gap** | Done | Done | n/a | n/a | Done |
+| Qwen | Done | Done | Done | Done | n/a | n/a | Done |
 | Kimi | Done | n/a | Done | Done | n/a | n/a | Done |
 | Pi | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
 | Google AI Studio | Done* | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -132,15 +132,15 @@ When adding a new platform (e.g. a newly popular LLM), add a row and treat every
 
 ### 5c. Persona / profession posts (blog)
 
-Pattern: `ai-chat-history-for-{profession}`. Present (22): accountants, content-creators, customer-support, data-scientists, designers, engineers, executives, finance-professionals, healthcare-professionals, hr-professionals, journalists, lawyers, marketers, product-managers, project-managers, real-estate-agents, recruiters, researchers, sales-teams, students, teachers, writers.
+Pattern: `ai-chat-history-for-{profession}`. Present (28): academics, accountants, analysts, content-creators, customer-support, data-scientists, designers, engineers, executives, finance-professionals, healthcare-professionals, hr-professionals, journalists, lawyers, marketers, paralegals, product-managers, project-managers, real-estate-agents, recruiters, researchers, sales-teams, students, teachers, translators, ux-researchers, virtual-assistants, writers.
 
-Gaps to consider (only where the audience genuinely relies on AI chat and would search this): analysts, consultants (currently a use-case page), virtual assistants, startup teams, academics, therapists/coaches, translators, paralegals, UX researchers.
+Gaps to consider (only where the audience genuinely relies on AI chat and would search this): consultants (currently a use-case page), startup teams, therapists/coaches.
 
 ### 5d. Informational / GEO anchors (blog)
 
-Present: what-is-llmnesia, ai-chat-retrieval-explained, ai-knowledge-base-vs-chat-history, why-ai-chatbots-dont-remember-conversations, ai-second-brain-chat-history, ai-conversation-privacy-explained, local-first-ai-tools-privacy, ai-conversation-history-limits-compared, what-is-a-prompt-library, searchable-ai-prompt-library, how-to-backup-ai-conversations, ai-chat-history-backup-strategy, cross-llm-workflow-without-context-loss, how-to-search-multiple-ai-chatbots-at-once, team-ai-conversation-sharing, how-to-cite-ai-conversations-academic, how-to-organize-ai-conversations-for-work, best-chrome-extensions-save-ai-conversations, are-ai-conversations-private, how-long-do-ai-platforms-keep-history, ai-chat-history-and-gdpr, where-is-chatgpt-history-stored, does-chatgpt-keep-deleted-conversations.
+Present: what-is-llmnesia, ai-chat-retrieval-explained, ai-knowledge-base-vs-chat-history, why-ai-chatbots-dont-remember-conversations, ai-second-brain-chat-history, ai-conversation-privacy-explained, local-first-ai-tools-privacy, what-is-local-first-software, ai-conversation-history-limits-compared, what-is-a-prompt-library, searchable-ai-prompt-library, how-to-backup-ai-conversations, ai-chat-history-backup-strategy, cross-llm-workflow-without-context-loss, how-to-search-multiple-ai-chatbots-at-once, team-ai-conversation-sharing, how-to-cite-ai-conversations-academic, how-to-organize-ai-conversations-for-work, best-chrome-extensions-save-ai-conversations, are-ai-conversations-private, how-long-do-ai-platforms-keep-history, ai-chat-history-and-gdpr, where-is-chatgpt-history-stored, does-chatgpt-keep-deleted-conversations, do-ai-chats-get-deleted.
 
-Gaps to consider: do-ai-chats-get-deleted (largely covered by does-chatgpt-keep-deleted-conversations; only write a platform-agnostic version if demand warrants), what-is-local-first-software.
+Gaps to consider: most high-value informational anchors are now covered; add new ones only as new category-level questions emerge.
 
 ### 5e. Compare pages
 

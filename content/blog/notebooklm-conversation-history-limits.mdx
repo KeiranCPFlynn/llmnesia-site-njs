@@ -1,0 +1,119 @@
+---
+title: "NotebookLM Chat History: Limits, Retention, and Search Gaps"
+slug: "notebooklm-conversation-history-limits"
+description: "NotebookLM added chat history in late 2025, but it is stored per-notebook with no cross-notebook search and limited export. This guide explains what NotebookLM retains, how its notebook-bound model limits retrieval, and how to handle the rest of your AI history."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "notebooklm conversation history limits"
+secondaryKeywords:
+  - "notebooklm chat history retention"
+  - "notebooklm history limits"
+  - "how long does notebooklm keep history"
+  - "notebooklm chat search"
+  - "google notebooklm history"
+intent: "informational"
+faq:
+  - question: "Does NotebookLM keep conversation history?"
+    answer: "Yes, since late 2025. NotebookLM added chat history in December 2025, letting you resume a conversation within a notebook after ending a session. History is stored per-notebook: each notebook keeps its own separate conversation record, and there is no single view across all notebooks."
+  - question: "How long does NotebookLM keep chat history?"
+    answer: "Google has not published a fixed retention window for NotebookLM chat history on active accounts. Conversation history remains attached to its notebook while the notebook and account exist. Deleting the chat history for a notebook, or deleting the notebook itself, removes it. Data handling follows Google's broader privacy and Workspace policies depending on your account type."
+  - question: "Can you search NotebookLM conversation history?"
+    answer: "Not with a dedicated cross-notebook search. NotebookLM has no keyword search across the conversation history of all notebooks. Within an open notebook you can scroll the chat panel or use browser Ctrl+F on the visible content, and you can search your uploaded source documents, but you cannot search the body of past conversations across notebooks."
+  - question: "Can you export NotebookLM conversations?"
+    answer: "NotebookLM does not offer a dedicated conversation export. You can copy conversation text manually from the chat panel, and Google Takeout may include some NotebookLM data depending on your account and Google's current options. There is no simple one-click export of full conversation history."
+  - question: "Does LLMnesia support NotebookLM?"
+    answer: "LLMnesia does not currently support NotebookLM. If you use ChatGPT, Claude, Gemini, Perplexity, or other supported platforms alongside NotebookLM, LLMnesia indexes those conversations locally on your device and lets you search across all of them from one place, which covers the general-purpose half of a typical research workflow."
+sources:
+  - label: "NotebookLM"
+    url: "https://notebooklm.google.com/"
+  - label: "NotebookLM chat history announcement"
+    url: "https://9to5google.com/2025/12/16/notebooklm-chat-history/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "Search NotebookLM conversation history"
+    url: "https://llmnesia.com/blog/search-notebooklm-conversation-history"
+canonicalPath: "/blog/notebooklm-conversation-history-limits"
+category: "platform-guides"
+relatedSlugs:
+  - "search-notebooklm-conversation-history"
+  - "ai-knowledge-base-vs-chat-history"
+  - "ai-conversation-history-limits-compared"
+---
+
+NotebookLM, Google's source-grounded research assistant, added chat history in December 2025, but its history model is more limited than a general-purpose chatbot's. History is stored per-notebook rather than in one unified list, there is no keyword search across the conversation history of all your notebooks, and there is no dedicated conversation export. Those three constraints, not a retention clock, are the limits that actually shape how you work with NotebookLM history.
+
+This guide consolidates what NotebookLM retains, why its notebook-bound design makes retrieval harder than on ChatGPT or Claude, and what to do about the gaps, including the rest of your AI stack.
+
+## What NotebookLM stores
+
+NotebookLM is built around notebooks, each holding a set of sources you uploaded (PDFs, Google Docs, web pages, transcripts) and a chat panel for asking questions grounded in those sources. For each notebook, it retains:
+
+- The uploaded source documents
+- The chat history for that notebook, added in the December 2025 update, with timestamped responses
+- Saved notes you created in the notebook's note panel
+- The generated outputs you produced, such as summaries
+
+The defining structural fact is that all of this is scoped to the individual notebook. A conversation in one notebook is invisible from another, and there is no global view that shows your conversations across every notebook at once.
+
+## Retention: no published cap, notebook-bound
+
+Google has not published a fixed retention window for NotebookLM chat history on active accounts. Observed behaviour and the structure of the product point to a simple model:
+
+- Chat history stays attached to its notebook while the notebook and account exist
+- Deleting a notebook's chat history clears that record
+- Deleting the notebook removes its history along with it
+- Data handling otherwise follows Google's broader privacy and, for Workspace accounts, organisational policies
+
+As with any platform, the presence of history in a notebook is not a guaranteed permanent archive. If a conversation matters, do not rely on it staying available indefinitely.
+
+## The real limits are structural, not temporal
+
+For most users, the binding constraints are not how long history lasts but three design choices.
+
+| Limit | What it means | Consequence |
+|---|---|---|
+| Per-notebook history | Each notebook keeps its own record | No way to see all conversations at once |
+| No cross-notebook search | No keyword search across notebooks | You must know which notebook held the answer |
+| No conversation export | No one-click export of chats | Backups are manual |
+| Long contexts | NotebookLM supports very large context windows | Single conversations get long and hard to scroll |
+
+The combined effect is that retrieval in NotebookLM starts from the notebook, not from the question. If you can answer "which notebook was this in?" you can usually find the conversation. If you cannot, you may have to open notebooks one by one, because there is no search that spans them.
+
+## Context window vs history retention
+
+The standard distinction applies on NotebookLM too:
+
+**Context window** is how much the model can attend to within a single conversation. NotebookLM supports a large context window, which is why conversations and source sets can be substantial.
+
+**History retention** is how long a finished conversation stays in its notebook. This is not bounded by the context window; it is governed by whether the notebook and its chat history still exist.
+
+If NotebookLM seems to lose track of earlier turns mid-conversation, that is a context matter. If you cannot find an old conversation at all, that is the structural retrieval limit described above.
+
+## Working around the search gap
+
+Within NotebookLM, the practical methods are limited but real:
+
+1. **Organise by notebook thematically,** one notebook per project or research area, so the notebook itself narrows the search.
+2. **Use descriptive notebook titles** so you can identify the right notebook quickly.
+3. **Save key answers to the notes panel** at the time, so the conclusions you will want later are captured outside the scrolling chat.
+4. **Use browser Ctrl+F inside an open notebook** to jump to text in the currently loaded chat.
+5. **Check Google Takeout** for whatever NotebookLM data it exposes for your account, as a partial backup.
+
+For the full method walkthrough, see [how to search NotebookLM conversation history](/blog/search-notebooklm-conversation-history).
+
+## The rest of your AI workflow
+
+Most NotebookLM users do not use it alone. NotebookLM handles source-grounded research; ChatGPT, Claude, Gemini, or Perplexity handle general reasoning, drafting, and coding. The retrieval problem for that second group is the same title-only search limitation NotebookLM has, just across more platforms.
+
+[LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes those general-purpose AI conversations on your device and makes them full-text searchable from one place. It does not currently support NotebookLM, so it does not solve NotebookLM's own search gap, but it does cover the general-purpose half of a typical research workflow.
+
+- **Local-first:** the index lives on your device, not uploaded to a server.
+- **Full-text:** find a conversation by any word inside it, not just its title.
+- **Cross-platform:** one search across ChatGPT, Claude, Gemini, Perplexity, and other supported tools.
+
+[Install LLMnesia from the Chrome Web Store](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf) to make the non-NotebookLM part of your AI history searchable. For how source-grounded tools differ from chat history generally, see [AI knowledge base vs chat history](/blog/ai-knowledge-base-vs-chat-history).
+
+## In summary
+
+NotebookLM keeps chat history, but per-notebook, with no cross-notebook search and no dedicated export, and Google has not published a fixed retention window. The limits that matter are structural: retrieval starts from the notebook, not the question. Organise notebooks thematically, save key answers to notes, and use Takeout as a partial backup. For the general-purpose AI tools you use alongside NotebookLM, a local-first full-text index keeps that side of your history searchable and under your control.

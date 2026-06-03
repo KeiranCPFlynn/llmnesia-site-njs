@@ -1,0 +1,122 @@
+---
+title: "AI Chat History for Translators: Terminology, Style, and Reusable Context"
+slug: "ai-chat-history-for-translators"
+description: "Translators use AI for terminology research, style decisions, draft translation, and localisation context. Those conversations build a personal terminology and style memory, but only if they are searchable. This guide covers what to keep, how to handle client text, and how to make AI history retrievable."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "ai chat history for translators"
+secondaryKeywords:
+  - "translator ai conversation history"
+  - "ai for translation workflow"
+  - "terminology research ai history"
+  - "translator chatgpt prompts"
+  - "localisation ai history"
+intent: "informational"
+faq:
+  - question: "What translator AI conversations are worth keeping?"
+    answer: "Terminology research that settled a difficult term, style and register decisions for a client or domain, localisation and cultural-adaptation discussions, and the reasoning behind choices you may need to defend later. These build into a personal terminology and style memory that is reusable across jobs for the same client or subject area."
+  - question: "Is it safe to paste client text into ChatGPT or Claude?"
+    answer: "Client source material is often confidential or under an NDA, and data sent to a third-party AI service is processed under that provider's policies. Check your client agreement before using AI on their text, prefer enterprise tools where confidentiality is required, work with excerpts rather than whole documents where possible, and keep the searchable record of those conversations on your device rather than synced to additional cloud surfaces."
+  - question: "How should translators organise AI conversations?"
+    answer: "Organise by client or language pair, and within each by domain or project. Put a distinctive context line in the opening message, such as the language pair and subject, so the auto-generated title is findable. A local full-text index lets you search the body of conversations, which matters when you need the term or phrasing you settled on months ago."
+  - question: "Can AI replace a translator's terminology database?"
+    answer: "No. A termbase or CAT tool glossary is the canonical, controlled record of approved terms. AI conversation history is the workshop where you reasoned toward a term, including the options you rejected and why. The two complement each other: the AI history captures the thinking, the termbase captures the decision."
+  - question: "Does LLMnesia work for translators?"
+    answer: "Yes. LLMnesia indexes translator AI conversations locally on your device across ChatGPT, Claude, Gemini, Perplexity, and others, so terminology and style decisions from past jobs are searchable as one corpus. The index stays on your machine, which matters when conversations include client source text."
+sources:
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+  - label: "AI conversation history for writers"
+    url: "https://llmnesia.com/blog/ai-conversation-history-for-writers"
+  - label: "Searchable AI prompt library"
+    url: "https://llmnesia.com/blog/searchable-ai-prompt-library"
+canonicalPath: "/blog/ai-chat-history-for-translators"
+category: "persona-guides"
+relatedSlugs:
+  - "ai-conversation-history-for-writers"
+  - "searchable-ai-prompt-library"
+  - "local-first-ai-tools-privacy"
+---
+
+Translation is detailed, decision-heavy work, and AI tools have become a regular part of how translators research terms, test register, and reason through ambiguous source text. A single job can produce a string of AI conversations: the terminology research that finally settled a contested term, the discussion of which register fit a client's brand, the cultural-adaptation question for a localised campaign, the draft you refined before it went into the CAT tool. Each of those is part of a personal terminology and style memory, and most of them vanish into a chronological sidebar with a title that says nothing about the language pair or client they belonged to.
+
+This guide covers what translator AI work is worth retaining, how to handle client text responsibly, and how to make AI conversation history searchable so your past decisions stay available across jobs.
+
+## The categories of translator AI work worth keeping
+
+The conversations worth returning to cluster by the decisions they capture.
+
+**Terminology research.** A thread where you weighed options for a difficult term, checked usage, and settled on a rendering. The decision and the reasoning behind it are both reusable, especially for repeat clients in the same domain.
+
+**Style and register.** Discussions about formal versus informal address, brand voice, sentence rhythm, and audience expectations. The register decision for a client is reusable across every future job for that client.
+
+**Localisation and cultural adaptation.** Conversations about adapting idioms, references, units, and culturally specific content. The reasoning travels to the next similar project.
+
+**Ambiguity resolution.** Threads where you worked through an unclear source passage. If a client later queries a choice, the conversation is the record of why you rendered it that way.
+
+**Reusable prompts.** The instructions that reliably produced a usable draft or a clean back-translation for checking. These become a personal prompt set.
+
+Across all of these, each conversation is a one-off in isolation but accumulates into a translation memory of reasoning, distinct from but complementary to your CAT tool's termbase.
+
+## AI history and the termbase are different tools
+
+It is worth being precise about how AI history relates to the terminology database in a CAT tool.
+
+| | Termbase / CAT glossary | AI conversation history |
+|---|---|---|
+| Holds | Approved, canonical terms | The reasoning toward a term |
+| Includes rejected options | No | Yes, with the why |
+| Controlled and curated | Yes | No, it is a working trail |
+| Best for | Consistency at translation time | Recalling how a decision was made |
+
+The termbase is the system of record for approved terminology. AI conversation history is the workshop. When a client asks why you chose a particular term, or when a similar but not identical case comes up, the workshop is what you want to revisit. The two work together; neither replaces the other.
+
+## The client confidentiality question
+
+Client source material is frequently confidential or under an NDA, so the data question is central.
+
+A sensible posture:
+
+1. **For general terminology and style questions** with no client-specific content, standard AI tools are generally fine.
+2. **For client source text,** check your client agreement first. Where confidentiality is required, prefer enterprise tools, work with excerpts rather than whole documents where possible, and anonymise client-identifying detail.
+3. **Keep the searchable record local.** The conversation history holds whatever source text you pasted, so keeping the index on your device rather than synced to extra cloud surfaces limits how far client material travels.
+
+Treat anything you send to a third-party AI service as leaving your control under that provider's policies. Your client agreements are the operative source. For the privacy reasoning, see [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+## Why native search fails translators
+
+A translator's value lives in the body of conversations: the term you settled on, the register decision, the cultural note. Most AI platforms only search titles, so a conversation titled "translation question" can hold the exact rendering you need for a repeat client and never surface in a title search. Since the biggest payoff is reusing a past decision for the same client or domain, content search is exactly what you need and exactly what native history does not provide.
+
+## A practical workflow
+
+A working pattern for a freelance or in-house translator:
+
+**Per client or language pair:** start a context conversation describing the client, domain, and register expectations. Tag the opening message with a client code and language pair.
+
+**For terminology:** a separate conversation per difficult term cluster, tagged `CLIENT term : [topic]`. Record the decision and the rejected options.
+
+**For style:** tag with `CLIENT style : [register]`. Reuse across every job for that client.
+
+**For localisation:** tag with `CLIENT localisation : [campaign]`. The cultural reasoning transfers.
+
+**Per job close:** push approved terms into your termbase, mark the AI conversations worth keeping, and delete dead ends.
+
+A light naming convention makes the sidebar scannable; a local index makes the body of every conversation searchable, including across jobs for the same client.
+
+## Where LLMnesia fits
+
+[LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes AI conversations on your device across ChatGPT, Claude, Gemini, Perplexity, and others, and gives you full-text search across them.
+
+For translators specifically:
+
+- **One search across every AI tool** you use for terminology and style.
+- **Search the body, not just titles,** so the term or register decision from a past job surfaces when the same client returns.
+- **Local-first,** which matters when conversations include client source text: the index stays on your machine.
+- **A personal reasoning memory** that complements your CAT tool's termbase rather than competing with it.
+
+[Install LLMnesia from the Chrome Web Store](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf). For the adjacent writing workflow, see [AI conversation history for writers](/blog/ai-conversation-history-for-writers), and for prompt reuse, [searchable AI prompt library](/blog/searchable-ai-prompt-library).
+
+## In summary
+
+For translators, AI chat history is a personal memory of terminology and style decisions, distinct from the controlled termbase but just as worth keeping. The reasoning behind a term, the register chosen for a client, the cultural adaptation that worked: these all repeat across jobs. Keep that history deliberately: name conversations by client and language pair, handle client source text per your agreements, and add a local full-text index so the body of every conversation is searchable and stays under your control.
