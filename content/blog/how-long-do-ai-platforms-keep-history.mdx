@@ -1,0 +1,96 @@
+---
+title: "How Long Do AI Platforms Keep Your Conversation History?"
+slug: "how-long-do-ai-platforms-keep-history"
+description: "Retention varies by platform: ChatGPT keeps chats until you delete them, Gemini auto-deletes activity after a set period, and others differ by tier. This guide compares how long ChatGPT, Gemini, Claude, Perplexity and more keep your conversation history."
+publishDate: "2026-06-03"
+updatedDate: "2026-06-03"
+author: "Keiran Flynn"
+primaryKeyword: "how long do ai platforms keep history"
+secondaryKeywords:
+  - "ai chat history retention"
+  - "how long does chatgpt keep history"
+  - "gemini history retention period"
+  - "ai conversation retention policy"
+  - "do ai chats get deleted automatically"
+intent: "informational"
+faq:
+  - question: "How long do AI platforms keep your conversation history?"
+    answer: "It varies by platform and tier. ChatGPT keeps conversations until you delete them, then removes deleted chats from its systems within about 30 days. Gemini auto-deletes Apps Activity older than 18 months by default, configurable to 3 or 36 months or off. Claude retains conversations in your account until you delete them, per Anthropic's policy. Perplexity retention differs between free and Pro tiers. Always check the current policy, because defaults change."
+  - question: "Does ChatGPT delete history automatically?"
+    answer: "No, ChatGPT does not auto-delete your conversation history on a schedule. Conversations stay until you delete them. Once you delete a conversation, or use Temporary Chat, OpenAI removes it from its systems within about 30 days under standard practice, subject to legal or security exceptions."
+  - question: "How long does Gemini keep conversations?"
+    answer: "Gemini auto-deletes Apps Activity older than 18 months by default. You can change the auto-delete window to 3 or 36 months, or turn auto-delete off entirely. If you turn Keep Activity off, conversations are still kept for up to 72 hours to provide the service but are not added to your activity history."
+  - question: "Why does retention differ between free and paid tiers?"
+    answer: "Paid and enterprise tiers often come with different data handling commitments. Enterprise and business plans frequently exclude conversations from model training and may offer stricter or configurable retention, while free tiers may have shorter history availability or fewer controls. Perplexity, for instance, gives Pro users longer history retention than free users."
+  - question: "How do I keep conversation history longer than a platform retains it?"
+    answer: "Export your data periodically for a portable backup, and use a local-first tool that indexes conversations on your device. LLMnesia keeps a searchable local index of your conversations that persists regardless of a platform's retention window, so an auto-deleted or expired conversation remains searchable if it was indexed beforehand."
+sources:
+  - label: "Chat and file retention policies in ChatGPT (OpenAI)"
+    url: "https://help.openai.com/en/articles/8983778-chat-and-file-retention-policies-in-chatgpt"
+  - label: "Manage & delete your activity in Gemini Apps (Google)"
+    url: "https://support.google.com/gemini/answer/13278892"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/how-long-do-ai-platforms-keep-history"
+category: "explainer"
+relatedSlugs:
+  - "ai-conversation-history-limits-compared"
+  - "does-chatgpt-keep-deleted-conversations"
+  - "how-to-backup-ai-conversations"
+---
+
+How long an AI platform keeps your conversation history depends on the platform, your tier, and your settings, and the models differ more than most people expect. ChatGPT keeps your conversations until you delete them. Gemini auto-deletes activity after a configurable period. Others vary by free versus paid tier. There is no single industry rule, so "how long is my history kept" only has a useful answer platform by platform.
+
+This guide compares the major platforms and explains how to keep history longer than any of them retain it.
+
+## Two different retention models
+
+Across the market, retention falls into two broad patterns:
+
+- **Keep until deleted.** The platform stores everything indefinitely while your account is active, and only removes a conversation when you delete it. ChatGPT and Claude work this way.
+- **Auto-delete on a schedule.** The platform removes activity after a set age unless you change the setting. Gemini works this way, built on Google's activity controls.
+
+Knowing which model a platform uses tells you whether your old history will still be there next year by default.
+
+## Retention by platform
+
+The table below summarises the general retention behaviour of major platforms. Treat it as a starting point and confirm against each platform's current policy, since these change.
+
+| Platform | Default retention | Notable controls |
+|---|---|---|
+| ChatGPT | Kept until you delete it | Deleted chats and Temporary Chats removed within about 30 days |
+| Gemini | Auto-deletes activity older than 18 months | Change to 3 or 36 months, or off; 72 hours kept when Keep Activity is off |
+| Claude | Kept in your account until you delete it | Deletion and account controls per Anthropic's policy |
+| Perplexity | Varies by tier | Pro has longer history retention than free |
+| Most enterprise/business tiers | Configurable, often excluded from training | Contractual data handling and retention terms |
+
+The two extremes are worth noting. ChatGPT keeps everything by default, so your oldest chat is still there unless you removed it. Gemini deletes by default after 18 months, so an old conversation may simply be gone, not lost to a bug. For a deeper side-by-side on history features and limits, see [AI conversation history limits compared](/blog/ai-conversation-history-limits-compared).
+
+## Deletion windows: removed from view vs removed from servers
+
+Retention has a second layer that is easy to miss: when you delete something, how long does the provider keep it after that?
+
+Deleting a conversation removes it from your account immediately, but providers commonly retain it on their servers for a window to allow for system recovery, abuse review, and similar needs. ChatGPT's standard practice is removal within about 30 days, and legal holds can extend that, as a 2025 court order showed. The practical reading: "deleted" means removed from your account now, and removed from the provider's systems somewhat later. See [does ChatGPT keep deleted conversations](/blog/does-chatgpt-keep-deleted-conversations) for the full explanation.
+
+## Why tier matters
+
+Retention and data handling often differ between free, paid, and enterprise plans:
+
+- **Free tiers** may offer shorter history availability or fewer controls.
+- **Paid consumer tiers** sometimes add longer retention or extra features (Perplexity Pro's longer history, for example).
+- **Enterprise and business tiers** typically come with contractual commitments: data frequently excluded from training, with stricter or configurable retention.
+
+If durable history matters to your work, the tier you are on is part of the answer, not just the platform.
+
+## Keeping history longer than the platform does
+
+Whatever a platform retains, you can keep your own copy that outlives its retention window. Two approaches, best used together:
+
+1. **Export periodically.** Most platforms offer a data export. An export is a point-in-time backup you fully control. See [how to back up AI conversations](/blog/how-to-backup-ai-conversations).
+2. **Index locally.** [LLMnesia](https://llmnesia.com/) is a free, local-first Chrome extension that indexes your conversations across ChatGPT, Claude, Gemini, Perplexity, and 10+ platforms on your device as you browse them. The local index persists regardless of any platform's retention rules, so a conversation that auto-deletes on Gemini or expires on a free tier remains searchable on your machine if it was indexed beforehand.
+
+Because the index is local-first, it also sidesteps the privacy questions that come with server-side retention: your searchable copy stays on your device. [Install LLMnesia from the Chrome Web Store](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf).
+
+## In summary
+
+There is no universal retention period. ChatGPT and Claude keep conversations until you delete them; Gemini auto-deletes activity after 18 months by default with configurable options; Perplexity and others vary by tier; deleted data lingers on servers for a window after you remove it. If you need history to last on your terms rather than the platform's, export periodically and keep a local searchable index, so retention is your decision instead of a setting buried in someone else's product.
