@@ -19,11 +19,11 @@ faq:
   - question: "Does Character.AI save all your conversations?"
     answer: "Yes, Character.AI saves your conversation history with each character. Chats persist in your account and are accessible from each character's profile. Character.AI does not publish a specific retention period for active accounts."
   - question: "Can I search inside Character.AI conversations?"
-    answer: "Character.AI does not provide native full-text search for conversation history. You can use browser find-in-page (Ctrl+F) within an open conversation to search the loaded text. For indexing and searching across multiple conversations, LLMnesia provides full-text search of Character.AI chats."
+    answer: "Character.AI does not provide native full-text search for conversation history. You can use browser find-in-page (Ctrl+F) within an open conversation to search the loaded text, or export/copy chats you want to search locally. LLMnesia does not currently support Character.AI."
   - question: "Why can't I find an old Character.AI conversation?"
     answer: "Most commonly: the conversation is stored under the character's profile rather than in a global history list, you're logged into a different account, or the conversation was deleted. Navigate to the specific character and check for previous chat history there rather than looking in a general history view."
   - question: "Can I export Character.AI conversation history?"
-    answer: "Yes. Character.AI documents an Export data option under Profile Settings → Account → Manage Account & Data on web, and Export my data in the mobile app settings. For day-to-day retrieval, export is still a snapshot; LLMnesia is more useful as an ongoing local search index as you browse conversations."
+    answer: "Yes. Character.AI documents an Export data option under Profile Settings → Account → Manage Account & Data on web, and Export my data in the mobile app settings. For day-to-day retrieval, export is still a snapshot, but it is the most useful searchable archive path because LLMnesia does not currently support Character.AI."
 sources:
   - label: "Character.AI"
     url: "https://character.ai/"
@@ -101,22 +101,19 @@ Character.AI's profile section sometimes includes a broader view of your recent 
 
 The exact interface varies by platform version (web vs mobile app). The profile history view may show your most recently active conversations across characters, which can help identify which character you were talking to even if you don't remember the name.
 
-## Method 5: Full-text search with LLMnesia
+## Method 5: Export or copy chats for local search
 
-LLMnesia indexes your Character.AI conversations as you browse them, storing the index locally on your device.
+LLMnesia does not currently support Character.AI, so it cannot index your Character.AI conversations as you browse them.
 
-**How to set it up:**
-1. Install LLMnesia from the Chrome Web Store
-2. Browse through your Character.AI conversations — visit the characters and chats you want indexed
-3. Open the LLMnesia popup and search for any keyword or phrase
+For conversations you need to search reliably:
 
-LLMnesia indexes conversation content, so a search for any word or phrase you remember from a session returns the matching conversation. This bypasses the per-character structure entirely — you're searching across content rather than navigating through the character tree.
+1. Use Character.AI's account data export for a broader archive
+2. Copy important conversation sections into a document or notes app
+3. Search the exported files or notes locally with your editor's search
 
-For users with many characters and long conversation histories, this is the only method that scales to find something specific quickly without already knowing which character it was.
+This is less automatic than a live index, but it is the reliable path for Character.AI specifically.
 
 ## Preventing the retrieval problem going forward
-
-**Visit conversations proactively for indexing.** With LLMnesia installed, simply browsing through your active Character.AI conversations indexes them. Make a habit of opening your recent character chats periodically, even briefly — each visit adds that conversation to your searchable local index.
 
 **Use Character.AI's export for periodic backups.** Character.AI provides an account data export path in profile/account settings. Use it periodically if your chats matter to you, but treat it as a backup snapshot rather than a live retrieval tool.
 

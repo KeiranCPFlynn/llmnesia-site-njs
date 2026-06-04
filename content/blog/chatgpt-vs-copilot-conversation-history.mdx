@@ -16,19 +16,19 @@ faq:
   - question: "Does ChatGPT or Microsoft Copilot have better conversation history?"
     answer: "ChatGPT has a dedicated history sidebar and Projects on paid plans. Microsoft Copilot ties history to your Microsoft account and integrates with the Microsoft 365 ecosystem, with behaviour that can differ between consumer Copilot and work or school accounts. Neither offers strong full-text search of message content, so finding a specific past answer is hard on either."
   - question: "Can I search inside Microsoft Copilot conversations?"
-    answer: "Copilot keeps recent conversations tied to your Microsoft account, but searching the full text of past messages is limited compared with a dedicated index, and behaviour can differ between personal and work or school accounts. The browser's Ctrl+F works within an open conversation. A tool that indexes content is needed to search across all your Copilot chats at once."
+    answer: "Copilot keeps recent conversations tied to your Microsoft account, but searching the full text of past messages is limited, and behaviour can differ between personal and work or school accounts. The browser's Ctrl+F works within an open conversation. LLMnesia does not currently support Microsoft Copilot, so Copilot-specific retrieval still depends on Microsoft's interface, browser history, and manual exports."
   - question: "Can I search inside ChatGPT conversations?"
     answer: "ChatGPT's native history search matches conversation titles, not the content of messages. You can use Ctrl+F inside an open chat, export your data and search the files, or use LLMnesia to index conversation content automatically."
   - question: "Does my organisation affect Copilot history?"
     answer: "It can. Microsoft Copilot behaves differently on a work or school account managed by an organisation than on a personal Microsoft account. On managed accounts, administrators and the organisation's policies govern data handling and retention. Check whether your Copilot is a personal or organisational account before assuming how history and privacy work."
   - question: "Can I use ChatGPT and Copilot together and search both?"
-    answer: "Yes. The retrieval gap is that each platform only knows its own conversations. LLMnesia indexes both as you browse and searches across them from one place, so you do not have to remember which tool held an answer, while your index stays on your own device."
+    answer: "Not with LLMnesia today. LLMnesia can index ChatGPT and other supported AI platforms, but it does not currently support Microsoft Copilot. For Copilot, keep important chats findable with manual export, OneNote, Word, browser bookmarks, or Microsoft 365 retention tools."
 sources:
   - label: "Microsoft Copilot"
     url: "https://copilot.microsoft.com/"
   - label: "OpenAI ChatGPT"
     url: "https://openai.com/chatgpt"
-  - label: "LLMnesia: search Microsoft Copilot conversation history"
+  - label: "LLMnesia: Microsoft Copilot conversation history guide"
     url: "https://www.llmnesia.com/blog/search-microsoft-copilot-conversation-history"
   - label: "LLMnesia: search ChatGPT conversation history"
     url: "https://www.llmnesia.com/blog/search-chatgpt-conversation-history"
@@ -70,18 +70,18 @@ Both let you browse past conversations and match titles. Neither lets you reliab
 
 Say last month you asked Copilot to summarise a document in your Microsoft 365 workspace, and ChatGPT to turn that summary into a client-facing draft. Today you need the original summary's key figure. With native tools you would hunt through Copilot's history, then check the ChatGPT draft, two interfaces, two manual searches, neither searching content directly.
 
-## Using both together, with one search across them
+## Using both together without losing retrieval
 
-If you use Copilot inside Microsoft 365 and ChatGPT for broader tasks, each only knows its own conversations. A cross-platform layer solves retrieval.
+If you use Copilot inside Microsoft 365 and ChatGPT for broader tasks, each only knows its own conversations. The practical answer is split retrieval: use automatic local indexing where it is supported, and manual archiving where it is not.
 
-LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms, including Microsoft Copilot. It indexes your conversations on your own device as you browse, so one search returns results from both by content, not just titles, and links straight back to the original. The index stays on your device and is never uploaded to LLMnesia's servers. See [how to search Microsoft Copilot conversation history](/blog/search-microsoft-copilot-conversation-history) and [how to search ChatGPT conversation history](/blog/search-chatgpt-conversation-history).
+LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, and other supported platforms. It does not currently support Microsoft Copilot. If you use both, let LLMnesia cover the supported part of your AI history, and save important Copilot work to Word, OneNote, PDF, or a browser bookmark. See [how to search Microsoft Copilot conversation history](/blog/search-microsoft-copilot-conversation-history) and [how to search ChatGPT conversation history](/blog/search-chatgpt-conversation-history).
 
 ## Which should you choose?
 
 - Choose **Microsoft Copilot** if you work inside Microsoft 365 and want AI integrated with your documents and account.
 - Choose **ChatGPT** for broader tasks, drafting, reasoning, and its wider ecosystem.
-- For finding past answers in either, add a full-text, cross-platform search layer, because neither solves content retrieval on its own.
+- For finding past ChatGPT answers, use native search, export, or LLMnesia. For Copilot, rely on export, OneNote, Word, bookmarks, or Microsoft 365 records because LLMnesia does not currently support it.
 
 <div className="content-inline-cta">
-  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: Search ChatGPT and Copilot at Once</a>
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia for supported AI platforms</a>
 </div>

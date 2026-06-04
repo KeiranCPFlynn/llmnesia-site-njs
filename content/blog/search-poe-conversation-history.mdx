@@ -17,11 +17,11 @@ faq:
   - question: "Does Poe save my conversation history?"
     answer: "Yes. Poe saves your conversations with all bots when you're signed into a Poe account at poe.com. Each bot has a separate conversation thread. Conversations are accessible across devices. Without an account, conversations are not saved."
   - question: "Can I search Poe conversation history by content?"
-    answer: "Poe does not offer native full-text search of conversation content. You can browse recent conversations per bot from the sidebar, but there is no search across all conversations or across all bots simultaneously. A browser extension like LLMnesia provides cross-bot content search."
+    answer: "Poe does not offer native full-text search of conversation content. You can browse recent conversations per bot from the sidebar, but there is no search across all conversations or across all bots simultaneously. LLMnesia does not currently support Poe, so Poe-specific search depends on browser find-in-page, browser history, bookmarks, and manually saved transcripts."
   - question: "How is Poe's history organised differently from ChatGPT?"
     answer: "Unlike ChatGPT's unified sidebar, Poe organises history per-bot. To find an old conversation, you need to navigate to the specific bot you used and access that bot's history. If you're unsure which bot you used, you'd need to check multiple bots, which makes retrieval harder."
   - question: "Can I export Poe conversation history?"
-    answer: "Poe does not currently offer a bulk conversation export feature. Individual conversations can be copied manually. For a persistent local archive, a browser extension that indexes conversations automatically is the practical alternative."
+    answer: "Poe does not currently offer a bulk conversation export feature. Individual conversations can be copied manually. For a persistent local archive, copy important transcripts into a searchable local notes system and bookmark valuable Poe URLs."
   - question: "Does LLMnesia support Poe?"
     answer: "LLMnesia does not currently support Poe. If you also access models directly — through ChatGPT, Claude, Gemini, or Perplexity — LLMnesia indexes those conversations and lets you search across all of them from one place."
 sources:
@@ -109,7 +109,7 @@ For users who access ChatGPT, Claude, Gemini, or Perplexity both through Poe and
 
 **Subscription limits:** Poe free tier limits usage of premium models (GPT-4, Claude 3 Opus, etc.). If you've used multiple models across different subscription periods, your history may span model versions that you no longer have access to use, but can still read.
 
-**Cross-platform confusion:** Users who access Claude or ChatGPT both directly and via Poe can find their history split across platforms. Searching on Claude.ai won't find conversations you had with Claude on Poe. LLMnesia unifies both into one searchable index.
+**Cross-platform confusion:** Users who access Claude or ChatGPT both directly and via Poe can find their history split across platforms. Searching on Claude.ai won't find conversations you had with Claude on Poe. LLMnesia can search direct Claude, ChatGPT, Gemini, Perplexity, and other supported-platform conversations, but it does not currently include Poe chats.
 
 ## Poe vs direct platform access: which history is better?
 
@@ -121,4 +121,4 @@ For users who access ChatGPT, Claude, Gemini, or Perplexity both through Poe and
 | Export | No | Depends on platform |
 | Access to all model versions | Yes | Limited to current version |
 
-For users who primarily use Poe as their AI interface, the lack of cross-bot search is the most significant history limitation. Browser extension indexing is currently the only solution for this.
+For users who primarily use Poe as their AI interface, the lack of cross-bot search is the most significant history limitation. Since LLMnesia does not currently support Poe, the dependable workaround is to save and bookmark important conversations outside Poe as you go.

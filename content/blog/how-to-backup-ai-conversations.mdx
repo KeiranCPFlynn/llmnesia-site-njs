@@ -17,9 +17,9 @@ faq:
   - question: "Why should I backup my AI conversations?"
     answer: "AI conversations accumulate decisions, debugging solutions, research summaries, drafts, and analysis that took time to generate. Backing them up protects against account loss, platform shutdowns, accidental deletion, and the inability to find specific answers in a growing archive of native history."
   - question: "Which AI platforms offer official data exports?"
-    answer: "ChatGPT (via OpenAI Settings → Data controls → Export data), Claude (via Anthropic Settings → Privacy → Export data), and Gemini (via Google Takeout) all offer official exports. Most other platforms — Grok, Mistral, DeepSeek, Perplexity, Character.AI — do not currently offer official export features."
+    answer: "ChatGPT (via OpenAI Settings → Data controls → Export data), Claude (via Anthropic Settings → Privacy → Export data), Gemini (via Google Takeout), and Character.AI (via account data export request) offer export paths. Most other platforms — Grok, Mistral, DeepSeek, and Perplexity — do not currently offer official bulk conversation exports."
   - question: "What's the best way to backup conversations from platforms without export features?"
-    answer: "For platforms without official exports (Grok, Mistral, DeepSeek, Perplexity), the most practical approach is a browser extension like LLMnesia that indexes conversations locally as you have them. This creates a searchable local archive that doesn't depend on the platform's export functionality."
+    answer: "For supported platforms without official exports (Grok, Mistral, DeepSeek, Perplexity), the most practical approach is a browser extension like LLMnesia that indexes conversations locally as you have them. This creates a searchable local archive that doesn't depend on the platform's export functionality."
   - question: "How often should I backup my AI conversations?"
     answer: "For critical work conversations, once a month is a reasonable baseline for platforms with export features. For platforms without exports, ongoing indexing via a browser extension provides continuous backup without manual steps. Always export before any account changes."
   - question: "If an AI platform shuts down, will I lose my conversations?"
@@ -169,7 +169,7 @@ The export includes your conversation history. However, the format and completen
 
 ## The universal backup option: browser extension indexing
 
-For platforms without official exports — Grok, Mistral, DeepSeek, Perplexity, and others — a browser extension that indexes conversations locally provides automatic, continuous backup.
+For supported platforms without official exports — Grok, Mistral, DeepSeek, Perplexity, and others LLMnesia supports — a browser extension that indexes conversations locally provides automatic, continuous backup.
 
 **How it works:**
 - LLMnesia runs in the background as you use AI platforms

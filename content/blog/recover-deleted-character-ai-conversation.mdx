@@ -15,7 +15,7 @@ secondaryKeywords:
 intent: "informational"
 faq:
   - question: "Can you recover a deleted Character.AI conversation?"
-    answer: "Not directly. Once a Character.AI chat is deleted, there is no undo button or trash bin in the interface to restore it. The only real options are a very narrow browser-cache window immediately after deletion, or a backup you made beforehand. If you had LLMnesia installed and the conversation was indexed before deletion, the content is still in your local index."
+    answer: "Not directly. Once a Character.AI chat is deleted, there is no undo button or trash bin in the interface to restore it. The only real options are a very narrow browser-cache window immediately after deletion, or a backup you made beforehand, such as a copied transcript, PDF, screenshot, or Character.AI data export."
   - question: "Does Character.AI have a trash or undo for deleted chats?"
     answer: "No. Character.AI does not provide a recycle bin or an undo option for deleted conversations. Deletion is treated as a deliberate user action, and the chat is removed from your history without a built-in recovery path."
   - question: "Will Character.AI support restore my deleted conversation?"
@@ -23,7 +23,7 @@ faq:
   - question: "I just deleted a Character.AI chat by accident. What do I do?"
     answer: "Act immediately. Press your browser's back button, reopen the last closed tab (Ctrl+Shift+T or Cmd+Shift+T), or open the chat URL from your browser history. These only work in the short window before the browser updates its cached state. If that fails and you had no backup, the chat is gone."
   - question: "How do I stop losing Character.AI conversations in future?"
-    answer: "Save the chats that matter before you need to. Install LLMnesia to index Character.AI conversations locally as you read them, copy important roleplay or story threads into a document, and screenshot or print to PDF anything you want to keep. A local index persists even if the original chat is deleted."
+    answer: "Save the chats that matter before you need to. LLMnesia does not currently support Character.AI, so use Character.AI's data export, copy important roleplay or story threads into a document, and screenshot or print to PDF anything you want to keep."
 sources:
   - label: "Character.AI"
     url: "https://character.ai/"
@@ -90,18 +90,17 @@ The URL only loads if the page is still cached. Once Character.AI's servers no l
 
 These browser methods recover a view of the page, which you can then copy or screenshot. They are not a true restore, and the window is usually minutes, not hours.
 
-## LLMnesia local index
+## Local backups and exports
 
-If LLMnesia was installed and had indexed the conversation before you deleted it, the content is still in your local index.
+LLMnesia does not currently support Character.AI, so it cannot be used as a Character.AI recovery layer.
 
-LLMnesia indexes Character.AI conversations as you read them. The index is stored on your device and is not affected by what happens on Character.AI's servers, so deleting a chat from your history does not delete it from your LLMnesia index.
+If you made a separate backup before deletion, check that first:
 
-**To check:**
-1. Open the LLMnesia extension
-2. Search for a phrase, character name, or detail you remember from the deleted chat
-3. If it was indexed, the content appears from your local store
+1. Search your Character.AI data export if you requested one before the deletion
+2. Check documents, notes, PDFs, screenshots, or copied transcripts
+3. Search browser history for the chat URL in case the page is still cached
 
-This is the most reliable recovery option, and the only one that works after the browser-cache window has closed. It only helps if LLMnesia was installed before the deletion.
+After the browser-cache window has closed, a pre-existing export or manual saved copy is the only practical recovery path.
 
 ## Why Character.AI deletions are especially costly
 
@@ -113,13 +112,13 @@ Recovery after deletion is always harder than preventing the loss. A light backu
 
 | Method | What it protects | Effort |
 |---|---|---|
-| LLMnesia local index | Full text of chats you have read, searchable, persists after deletion | Install once, then automatic |
+| Character.AI data export | Account-level snapshot you can search locally | Manual, periodic |
 | Copy-paste to a document | Specific chats you choose to keep | Manual, per chat |
 | Print to PDF or screenshot | A visual snapshot of a chat or scene | Manual, per chat |
 
 **Recommended setup:**
 
-1. [Install the LLMnesia Chrome extension](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf) so conversations are indexed locally as you read them, before any future deletion can occur.
+1. Request Character.AI data exports periodically if your chats matter to you.
 2. Copy genuinely important threads into a Markdown editor or document.
 3. For favourite scenes, a print to PDF or a screenshot preserves the exact wording.
 
@@ -127,4 +126,4 @@ For finding and browsing your existing chats, see [how to search Character.AI co
 
 ## The honest recovery reality
 
-For Character.AI, as for every AI platform, recovery after deletion is only possible in the narrow window right after it happens (browser cache), or if a backup was already in place (LLMnesia, a saved copy). There is no support ticket that brings back a single deleted chat. The reliable answer is prevention: index and save the conversations you would hate to lose, before the accidental delete ever happens.
+For Character.AI, as for every AI platform, recovery after deletion is only possible in the narrow window right after it happens (browser cache), or if a backup was already in place (export, PDF, screenshot, or saved copy). There is no support ticket that brings back a single deleted chat. The reliable answer is prevention: save the conversations you would hate to lose, before the accidental delete ever happens.

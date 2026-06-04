@@ -52,7 +52,7 @@ async function readJson(request) {
 }
 
 async function forwardLead(payload) {
-  const webhookUrl = process.env.LEADS_WEBHOOK_URL || '';
+  const webhookUrl = (process.env.LEADS_WEBHOOK_URL || '').trim();
   if (!webhookUrl) {
     return { submitted: false, reason: 'missing_webhook' };
   }
@@ -60,7 +60,7 @@ async function forwardLead(payload) {
   const headers = {
     'Content-Type': 'text/plain;charset=utf-8'
   };
-  const webhookKey = process.env.LEADS_WEBHOOK_KEY || '';
+  const webhookKey = (process.env.LEADS_WEBHOOK_KEY || '').trim();
   if (webhookKey) {
     headers['x-llmnesia-key'] = webhookKey;
   }
