@@ -1,0 +1,94 @@
+---
+title: "How to Stop AI From Training on Your Data (Every Major Platform)"
+slug: "how-to-stop-ai-from-training-on-your-data"
+description: "You can stop ChatGPT, Claude, Gemini, and Grok from training on your conversations, but the steps differ on each. Here is the opt-out for every major platform in one place."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "how to stop ai from training on your data"
+secondaryKeywords:
+  - "opt out of ai training"
+  - "stop chatgpt training on my data"
+  - "ai data training opt out guide"
+  - "turn off ai model training"
+intent: "how-to"
+faq:
+  - question: "Can I stop AI from training on my conversations?"
+    answer: "Yes, on the major consumer platforms. ChatGPT, Claude, Gemini, and Grok all let you opt out of having your conversations used to train their models, though the setting lives in a different place on each. Business tiers and APIs are generally not used for training by default. All opt-outs are forward-looking and do not remove data already used."
+  - question: "Does opting out delete my conversation history?"
+    answer: "Usually no, but it depends on the platform. On ChatGPT, turning off training is separate from history, so your chats stay saved. On Gemini, history and training are bundled into one activity setting, so turning it off also stops chats being saved to your activity. Check each platform's behaviour before assuming."
+  - question: "If I opt out, is my old data removed from the model?"
+    answer: "No. Every platform's opt-out is forward-looking. Data already included in a completed training run cannot be retroactively removed. The sooner you opt out, the less of your history is ever eligible, but anything already used stays in the model."
+  - question: "Which is the safest option if I do not want any training at all?"
+    answer: "Use a business tier or API, which are generally not used for training by default, or keep sensitive material out of consumer chats entirely. For a personal record that no platform can train on, keep your own local-first index of conversations on your own device rather than relying solely on platform storage."
+  - question: "How do I keep a private record while opting out of training?"
+    answer: "Use a local-first tool. LLMnesia is a free Chrome extension that indexes your AI conversations on your own device as you browse, across many platforms, so your searchable record stays local and is never uploaded. You can opt out of training on each platform and still keep a full-text archive you control."
+sources:
+  - label: "OpenAI Help Center: Data Controls FAQ"
+    url: "https://help.openai.com/en/articles/7730893-data-controls-faq"
+  - label: "Anthropic Privacy Center: Is my data used for model training?"
+    url: "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training"
+  - label: "Gemini Apps Privacy Hub (Google)"
+    url: "https://support.google.com/gemini/answer/13594961?hl=en"
+canonicalPath: "/blog/how-to-stop-ai-from-training-on-your-data"
+category: "how-to"
+relatedSlugs:
+  - "does-chatgpt-train-on-your-conversations"
+  - "does-claude-train-on-your-conversations"
+  - "does-gemini-train-on-your-conversations"
+---
+
+You can stop ChatGPT, Claude, Gemini, and Grok from training on your conversations, but the setting lives in a different place on each, and the side effects differ. On most platforms the opt-out is a single toggle; on one it is bundled with your history. This guide gives you the exact steps for every major platform in one place, plus the two rules that apply to all of them.
+
+## The two rules that apply everywhere
+
+Before the per-platform steps, understand what an opt-out can and cannot do:
+
+1. **Opt-outs are forward-looking.** Data already used in a completed training run cannot be removed. The sooner you opt out, the less of your history is ever eligible.
+2. **Training is not the same as storage.** Opting out stops the platform learning from your chats; it usually does not delete your history. On some platforms the two are linked, on others they are separate.
+
+## The opt-out for every major platform
+
+| Platform | Where to opt out | Side effect |
+|---|---|---|
+| ChatGPT | Settings, Data Controls, "Improve the model for everyone" off | None; history stays on |
+| Claude | Claude settings, data/privacy controls | Opting out keeps retention at 30 days |
+| Gemini | Google Account, Gemini Apps Activity off | Also stops chats being saved to activity |
+| Grok | X settings, Privacy and safety, Grok and third-party collaborators | Also covers public X posts (non-EU) |
+
+## ChatGPT
+
+Open **Settings**, go to **Data Controls**, and turn off **Improve the model for everyone**. The setting is account-wide and forward-looking. Importantly, training and history are separate on ChatGPT, so you can keep your conversation history saved while opting out of training. For sensitive one-offs, use Temporary Chat, which is not used for training. Full detail: [does ChatGPT train on your conversations?](/blog/does-chatgpt-train-on-your-conversations).
+
+## Claude
+
+In your Claude account settings, find the data and privacy controls and turn off the option that allows your data to improve Claude. Two things to know: the change applies to new or resumed chats, and opting out keeps your data retention at 30 days rather than the longer window that applies if you allow training. Full detail: [does Claude train on your conversations?](/blog/does-claude-train-on-your-conversations).
+
+## Gemini
+
+Go to **myaccount.google.com**, open **Data and Privacy**, find **Gemini Apps Activity**, and turn it off. On Gemini, history and training are bundled into this one activity setting, so turning it off also stops conversations being saved to your activity and stops them being sent for human review. Even off, chats may be kept briefly for service delivery. Full detail: [does Gemini train on your conversations?](/blog/does-gemini-train-on-your-conversations).
+
+## Grok
+
+In X, open **Settings and privacy**, then **Privacy and safety**, then **Grok and third-party collaborators**, and turn off the option allowing your public data and interactions to be used for training. Note this covers both your Grok conversations and, for non-EU users, your public X posts. EU users can additionally object under Article 21 of the GDPR.
+
+## Business tiers and APIs
+
+If avoiding training entirely is a firm requirement, the strongest move is not a toggle but a tier change. Business products (ChatGPT Team and Enterprise, Claude for Work, Gemini in Google Workspace) and the APIs are generally not used for training by default. For teams handling sensitive data regularly, that default difference is a firmer guarantee than a per-account setting that can be reset.
+
+## Keep a private record that no platform can train on
+
+Opting out controls what platforms learn from you. It does not give you a private, searchable archive of your own work, and native history only searches conversation titles, not content.
+
+LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your conversations on your own device as you browse them, so your searchable record lives on your machine and is never uploaded to LLMnesia's servers. You can opt out of training everywhere and still keep a full-text archive you control. See [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+## Quick checklist
+
+1. Opt out on each platform you use, using the steps above.
+2. Remember opt-outs are forward-looking, so do it sooner rather than later.
+3. For sensitive work, prefer a business tier or keep the data out of consumer chats.
+4. Keep a local-first record so your archive is private and searchable by content.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: A Private Archive No One Can Train On</a>
+</div>

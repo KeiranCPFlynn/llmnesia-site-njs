@@ -68,7 +68,7 @@ One file per run. Finish it completely. New MDX auto-propagates to sitemap, RSS 
 | Phase | Status | Notes |
 |---|---|---|
 | 1 — Technical SEO foundations | Done | OG image route, metadata helpers, JSON-LD (article, org, software, person, FAQ), dynamic llms.txt/llms-full.txt, related-links scoring |
-| 2 — Blog content velocity | Done (ongoing) | 149 posts live |
+| 2 — Blog content velocity | Done (ongoing) | 179 posts live |
 | 3 — GEO content | Done (ongoing) | Definitional posts, homepage FAQ JSON-LD, llms-full.txt with install URL + FAQ |
 | 4 — Use-case pages | Done (ongoing) | 5 pages live |
 | 5 — Distribution & authority | Not started | See Section 11 |
@@ -77,7 +77,7 @@ Content production (Phases 2-4) is never "finished"; it is driven by the grids i
 
 ## 4. Current inventory
 
-- Blog: 149 posts in `content/blog/`.
+- Blog: 179 posts in `content/blog/`.
 - Compare: 16 pages in `content/compare/`.
 - Use-cases: 6 pages in `content/use-cases/` (consultants, developers, founders, researchers, students, writers).
 
@@ -128,19 +128,19 @@ When adding a new platform (e.g. a newly popular LLM), add a row and treat every
 |---|---|---|
 | Memory vs history | chatgpt, gemini, perplexity | claude-memory-vs-conversation-history (if Claude memory ships) |
 | Projects/Spaces vs history | chatgpt-projects, claude-projects, perplexity-spaces, claude-artifacts | grok-vs equivalents only if a real feature exists |
-| Head-to-head | chatgpt-vs-claude-conversation-history, deepseek-grok-mistral-chat-history, gemini-vs-chatgpt-conversation-history | (none high-priority; add more head-to-heads only for high-volume platform pairs) |
+| Head-to-head | chatgpt-vs-claude-conversation-history, deepseek-grok-mistral-chat-history, gemini-vs-chatgpt-conversation-history, claude-vs-gemini-conversation-history, perplexity-vs-chatgpt-conversation-history, grok-vs-chatgpt-conversation-history, deepseek-vs-chatgpt-conversation-history, chatgpt-vs-copilot-conversation-history, best-ai-for-conversation-history (roundup) | (most high-volume pairs vs ChatGPT now covered; add others only for high-volume pairs) |
 
 ### 5c. Persona / profession posts (blog)
 
-Pattern: `ai-chat-history-for-{profession}`. Present (28): academics, accountants, analysts, content-creators, customer-support, data-scientists, designers, engineers, executives, finance-professionals, healthcare-professionals, hr-professionals, journalists, lawyers, marketers, paralegals, product-managers, project-managers, real-estate-agents, recruiters, researchers, sales-teams, students, teachers, translators, ux-researchers, virtual-assistants, writers.
+Pattern: `ai-chat-history-for-{profession}`. Present (34): academics, accountants, analysts, coaches, content-creators, customer-support, data-scientists, designers, engineers, executives, finance-professionals, freelancers, healthcare-professionals, hr-professionals, journalists, lawyers, marketers, paralegals, product-managers, project-managers, real-estate-agents, recruiters, researchers, sales-teams, seo-specialists, small-business-owners, social-media-managers, startup-teams, students, teachers, translators, ux-researchers, virtual-assistants, writers.
 
-Gaps to consider (only where the audience genuinely relies on AI chat and would search this): consultants (currently a use-case page), startup teams, therapists/coaches.
+Gaps to consider (only where the audience genuinely relies on AI chat and would search this): consultants (currently a use-case page), therapists (left as `n/a`; clinical-advice content is out of scope, coaches covers the adjacent audience). Most high-volume professions are now covered.
 
 ### 5d. Informational / GEO anchors (blog)
 
-Present: what-is-llmnesia, ai-chat-retrieval-explained, ai-knowledge-base-vs-chat-history, why-ai-chatbots-dont-remember-conversations, ai-second-brain-chat-history, ai-conversation-privacy-explained, local-first-ai-tools-privacy, what-is-local-first-software, ai-conversation-history-limits-compared, what-is-a-prompt-library, searchable-ai-prompt-library, how-to-backup-ai-conversations, ai-chat-history-backup-strategy, cross-llm-workflow-without-context-loss, how-to-search-multiple-ai-chatbots-at-once, team-ai-conversation-sharing, how-to-cite-ai-conversations-academic, how-to-organize-ai-conversations-for-work, best-chrome-extensions-save-ai-conversations, are-ai-conversations-private, how-long-do-ai-platforms-keep-history, ai-chat-history-and-gdpr, where-is-chatgpt-history-stored, does-chatgpt-keep-deleted-conversations, do-ai-chats-get-deleted.
+Present: what-is-llmnesia, ai-chat-retrieval-explained, ai-knowledge-base-vs-chat-history, why-ai-chatbots-dont-remember-conversations, ai-second-brain-chat-history, ai-conversation-privacy-explained, local-first-ai-tools-privacy, what-is-local-first-software, ai-conversation-history-limits-compared, what-is-a-prompt-library, searchable-ai-prompt-library, how-to-backup-ai-conversations, ai-chat-history-backup-strategy, cross-llm-workflow-without-context-loss, how-to-search-multiple-ai-chatbots-at-once, team-ai-conversation-sharing, how-to-cite-ai-conversations-academic, how-to-organize-ai-conversations-for-work, best-chrome-extensions-save-ai-conversations, are-ai-conversations-private, how-long-do-ai-platforms-keep-history, ai-chat-history-and-gdpr, where-is-chatgpt-history-stored, does-chatgpt-keep-deleted-conversations, do-ai-chats-get-deleted, does-chatgpt-train-on-your-conversations, does-claude-train-on-your-conversations, does-gemini-train-on-your-conversations, why-cant-i-find-my-old-ai-conversations, how-to-resume-an-old-ai-conversation, how-to-move-ai-chat-history-to-a-new-computer, how-to-share-a-chatgpt-conversation, chatgpt-conversation-disappeared, gemini-conversation-disappeared, can-my-employer-see-my-chatgpt-conversations, is-it-safe-to-use-chatgpt-for-work, how-to-delete-all-chatgpt-conversations, how-to-use-chatgpt-without-saving-history, best-ai-for-conversation-history, is-deepseek-safe, does-grok-train-on-your-conversations, how-to-stop-ai-from-training-on-your-data, chatgpt-memory-full-what-to-do, why-is-chatgpt-not-saving-conversations.
 
-Gaps to consider: most high-value informational anchors are now covered; add new ones only as new category-level questions emerge.
+Gaps to consider: most high-value informational anchors are now covered; add new ones only as new category-level questions emerge. (does-{platform}-train-on-your-conversations now covers ChatGPT, Claude, Gemini, and Grok, each web-verified; how-to-stop-ai-from-training-on-your-data is the cross-platform pillar. is-deepseek-safe covers the DeepSeek privacy/jurisdiction angle. "conversation-disappeared" exists for ChatGPT and Gemini. Verify any platform policy claims before writing, since these shift.)
 
 ### 5e. Compare pages
 

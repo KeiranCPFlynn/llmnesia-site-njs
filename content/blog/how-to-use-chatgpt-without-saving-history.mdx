@@ -1,0 +1,103 @@
+---
+title: "How to Use ChatGPT Without Saving History"
+slug: "how-to-use-chatgpt-without-saving-history"
+description: "You can use ChatGPT without saving conversations using Temporary Chat or by turning history off. Here is how each option works, the trade-offs, and how to keep a private record when you need one."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "how to use chatgpt without saving history"
+secondaryKeywords:
+  - "chatgpt without saving conversations"
+  - "chatgpt temporary chat"
+  - "turn off chatgpt history"
+  - "use chatgpt privately"
+intent: "how-to"
+faq:
+  - question: "How do I use ChatGPT without it saving my conversation?"
+    answer: "Use Temporary Chat. A Temporary Chat does not appear in your history, does not create or use memories, and is not used to train OpenAI's models. It is the simplest way to have a one-off conversation that leaves no saved record. Start a Temporary Chat for the discussion, and it disappears when you are done."
+  - question: "What is the difference between Temporary Chat and turning off model training?"
+    answer: "They solve different problems. Temporary Chat means a single conversation is not saved to your history at all. Turning off model training in Data Controls keeps your conversations saved for you but stops them being used to improve OpenAI's models. Use Temporary Chat to leave no record; use the training toggle to keep history while opting out of training."
+  - question: "Does Temporary Chat mean nobody can ever see the conversation?"
+    answer: "Not entirely. Temporary Chat keeps a conversation out of your saved history and out of training, but providers can still retain content briefly for safety and abuse-prevention reasons. And if you are on a work device or network, monitoring at those layers is unaffected by Temporary Chat. It controls saving and training, not every form of visibility."
+  - question: "If I use ChatGPT without saving history, how do I find the answer later?"
+    answer: "You cannot, because nothing was saved. That is the trade-off. If you want privacy from training but still need to find answers later, keep history on, opt out of training, and use a local-first tool that indexes your conversations on your own device so the record stays with you rather than on a server."
+  - question: "Can I keep a private record without ChatGPT saving it on their servers?"
+    answer: "Yes. LLMnesia is a free, local-first Chrome extension that indexes your AI conversations on your own device as you browse, then lets you search the full text. The index is stored locally and never uploaded to LLMnesia's servers, so you can keep a searchable archive that lives on your machine rather than on the platform."
+sources:
+  - label: "OpenAI Help Center: Data Controls FAQ"
+    url: "https://help.openai.com/en/articles/7730893-data-controls-faq"
+  - label: "OpenAI Help Center: keep history on but disable model training"
+    url: "https://help.openai.com/en/articles/8983130-what-if-i-want-to-keep-my-history-on-but-disable-model-training"
+  - label: "LLMnesia: local-first AI tools and privacy"
+    url: "https://www.llmnesia.com/blog/local-first-ai-tools-privacy"
+canonicalPath: "/blog/how-to-use-chatgpt-without-saving-history"
+category: "how-to"
+relatedSlugs:
+  - "how-to-stop-ai-from-training-on-your-data"
+  - "does-chatgpt-train-on-your-conversations"
+  - "how-to-delete-all-chatgpt-conversations"
+  - "local-first-ai-tools-privacy"
+---
+
+You can use ChatGPT without saving conversations in two ways: start a Temporary Chat, which leaves no record at all, or turn off model training, which keeps your history for you while stopping OpenAI from learning from it. These solve different problems, and people often pick the wrong one. This post explains how each works, the trade-offs, and how to keep a private record when you do want to find answers later.
+
+## Two different goals, two different settings
+
+Before changing anything, decide what you actually want.
+
+| Your goal | Use | Result |
+|---|---|---|
+| Leave no saved record of this chat | Temporary Chat | Not saved, not trained on, gone after |
+| Keep history for yourself but not feed training | Turn off model training | Saved for you, excluded from training |
+| Remove chats you already had | Delete conversations | Cleared from your account |
+
+Mixing these up is the most common mistake. Temporary Chat is for "I do not want this saved." The training toggle is for "save it for me, just do not learn from it."
+
+## Option 1: Temporary Chat (leave no record)
+
+Temporary Chat is the simplest way to use ChatGPT without saving a conversation. According to OpenAI, a Temporary Chat does not appear in your history, does not create or use memories, and is not used to train models.
+
+To use it, start a Temporary Chat and have your conversation as normal. When you finish, it is not added to your history.
+
+The trade-off is total: because nothing is saved, you cannot return to it later. Temporary Chat is ideal for a sensitive one-off question and unsuitable for anything you might need to reference again.
+
+## Option 2: turn off model training (keep history, stop training)
+
+If you want to keep your conversations for your own retrieval but not have them used to improve OpenAI's models:
+
+1. Open **Settings**, then **Data Controls**.
+2. Turn off **Improve the model for everyone**.
+
+Your history stays on and your conversations remain available to you, but new conversations are not used for training. This is the right choice for regular work where you want a record but not the training. See [does ChatGPT train on your conversations?](/blog/does-chatgpt-train-on-your-conversations) for the full detail.
+
+## What "without saving" does and does not protect
+
+Be realistic about the boundary of these settings:
+
+- **Temporary Chat** keeps a conversation out of your history and out of training. It does not guarantee no copy exists anywhere; providers can retain content briefly for safety and abuse-prevention.
+- Neither option affects **device or network monitoring**. On a work computer or corporate network, those layers still see your activity. See [can my employer see my ChatGPT conversations?](/blog/can-my-employer-see-my-chatgpt-conversations).
+- Using ChatGPT "without saving" is about your account record and training, not about being invisible at every layer.
+
+## The retrieval trade-off, and how to solve it
+
+The catch with not saving history is obvious in hindsight: you lose the ability to find anything later. For a one-off question that is fine. For ongoing work it is a problem, because the value of AI conversations compounds when you can reuse past answers.
+
+The better setup for most people who care about privacy but still need their history:
+
+1. Keep history on.
+2. Turn off model training so OpenAI does not learn from your chats.
+3. Use a local-first tool so your searchable record lives on your device, not just on the platform.
+
+LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your conversations on your own device as you browse them, so you keep a full-text searchable archive locally while staying opted out of training. The index is never uploaded to LLMnesia's servers. See [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+If instead you want to remove conversations you already have, see [how to delete all ChatGPT conversations](/blog/how-to-delete-all-chatgpt-conversations).
+
+## Quick recommendation
+
+- For a single sensitive question: use **Temporary Chat**.
+- For ongoing work where you want privacy but also a record: keep history on, **turn off training**, and index locally.
+- Remember neither setting hides activity from a work device or network.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: A Private, Local Record of Your Chats</a>
+</div>

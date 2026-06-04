@@ -528,14 +528,20 @@ export default function SiteBehavior() {
 
         const emailInput = document.getElementById('email-capture-input');
         try {
-          const ecResponse = await fetch(
-            'https://script.google.com/macros/s/AKfycbxmUkdHDfvKH5818w3WfioWp0ALK3NvrzU_tz_8FXE4PjgyG1rdpoc13vIz18P-PGLo/exec',
-            {
-              method: 'POST',
-              body: JSON.stringify({ email: emailInput ? emailInput.value.trim() : '' }),
-              headers: { 'Content-Type': 'text/plain' }
-            }
-          );
+          const params = new URLSearchParams(window.location.search);
+          const leadSource = params.get('lead_source') || 'website_homepage';
+          const leadContext = params.get('lead_context') || 'homepage_updates';
+          const ecResponse = await fetch('/api/leads', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: emailInput ? emailInput.value.trim() : '',
+              source: leadSource,
+              context: leadContext,
+              captured_at: new Date().toISOString(),
+              page_path: window.location.pathname
+            }),
+            headers: { 'Content-Type': 'application/json' }
+          });
           let ecData = null;
           try {
             ecData = await ecResponse.json();

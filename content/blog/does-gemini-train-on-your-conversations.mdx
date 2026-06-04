@@ -1,0 +1,124 @@
+---
+title: "Does Gemini Train on Your Conversations? How Google Uses Your Chats"
+slug: "does-gemini-train-on-your-conversations"
+description: "By default, Google can use Gemini Apps conversations to improve and train its AI, including human review. Here is exactly what happens, how to turn it off, and how to keep a private record."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "does gemini train on your conversations"
+secondaryKeywords:
+  - "does google use gemini chats for training"
+  - "gemini apps activity privacy"
+  - "how to turn off gemini training"
+  - "is gemini private"
+intent: "informational"
+faq:
+  - question: "Does Google use my Gemini conversations to train its AI?"
+    answer: "By default, yes for consumer Gemini Apps. With Gemini Apps Activity on, a subset of your chats can be reviewed by human reviewers and used to improve and train Google's AI models. You can turn this off in your Google Account settings, after which future conversations are not sent for human review or used for training."
+  - question: "Are humans reading my Gemini chats?"
+    answer: "A subset can be. Google states that some conversations are reviewed by human reviewers, including trained service providers, to assess response quality and suggest improvements. According to Google, reviewed chats are disconnected from your account before review and are retained for up to three years. Do not enter information you would not want a reviewer to see while activity is on."
+  - question: "How do I stop Gemini from training on my conversations?"
+    answer: "Go to myaccount.google.com, open Data and Privacy, find Gemini Apps Activity, and turn it off. With activity off, future conversations are not sent for human review and are not used to train Google's models. Conversations may still be kept briefly, up to around 72 hours, to deliver the service and process feedback."
+  - question: "Do Gemini temporary chats get used for training?"
+    answer: "No. Google states that temporary chats are not used to train its AI models. As with other platforms, the trade-off is that a temporary chat is not saved to your history, so you cannot return to it later to find what you discussed."
+  - question: "How can I keep a private, searchable copy of my Gemini chats?"
+    answer: "Use a local-first tool. LLMnesia is a free Chrome extension that indexes your Gemini conversations on your own device as you browse, so you keep a full-text searchable record locally. The index is never uploaded to LLMnesia's servers, which keeps your archive independent of Google's activity and retention settings."
+sources:
+  - label: "Gemini Apps Privacy Hub (Google)"
+    url: "https://support.google.com/gemini/answer/13594961?hl=en"
+  - label: "Google Account: Data and Privacy"
+    url: "https://myaccount.google.com/data-and-privacy"
+  - label: "Google Gemini"
+    url: "https://gemini.google.com/"
+canonicalPath: "/blog/does-gemini-train-on-your-conversations"
+category: "explainer"
+relatedSlugs:
+  - "how-to-stop-ai-from-training-on-your-data"
+  - "does-chatgpt-train-on-your-conversations"
+  - "does-claude-train-on-your-conversations"
+  - "local-first-ai-tools-privacy"
+---
+
+By default, Google can use your consumer Gemini Apps conversations to improve and train its AI. With Gemini Apps Activity turned on, a subset of your chats may be reviewed by human reviewers and used to help train Google's models. You can turn this off in your Google Account, after which future conversations are not sent for human review or used for training. This post explains exactly what happens to your chats, how human review works, how to opt out, and how to keep a private record.
+
+## The short answer
+
+Gemini is tied to your Google Account, and its data handling runs through a setting called Gemini Apps Activity. While it is on, your conversations can be used to improve Google's services, including the models behind Gemini, and a subset can be seen by human reviewers. While it is off, future conversations are excluded from both.
+
+| Setting | Used to train models? | Human review? | Saved to your activity? |
+|---|---|---|---|
+| Gemini Apps Activity on | Yes (a subset) | Yes (a subset) | Yes |
+| Gemini Apps Activity off | No (future chats) | No (future chats) | No (kept briefly for service delivery) |
+| Temporary chat | No | No | No |
+
+## How human review actually works
+
+This is the part that surprises people. Google states that a subset of conversations are reviewed by human reviewers, including trained service providers, to judge whether responses were low quality, inaccurate, or harmful, and to suggest better responses that help the models improve.
+
+Two facts matter for your privacy:
+
+- Reviewed chats are disconnected from your Google Account before they are sent for review.
+- Reviewed chats can be retained for up to three years, and that retention is separate from your normal activity history.
+
+The practical implication: while activity is on, treat anything you type as something a reviewer could read. Do not paste confidential, personal, or client information into Gemini in that state.
+
+## How to turn off training and human review
+
+To stop future conversations being used for training or sent for human review:
+
+1. Go to **myaccount.google.com**.
+2. Open **Data and Privacy**.
+3. Find **Gemini Apps Activity**.
+4. Turn it off.
+
+With activity off, future conversations are not sent for human review and are not used to train Google's models. One nuance to understand: even with activity off, conversations can still be stored briefly, up to around 72 hours, to deliver the service and process feedback, though they will not appear in your Gemini Apps activity. Turning activity off is forward-looking; it does not retroactively pull back data already used.
+
+## Activity, history, and training are different things
+
+As with ChatGPT and Claude, do not confuse three separate ideas:
+
+- **Training and review:** whether Google learns from your chats and whether reviewers see them. Controlled by Gemini Apps Activity.
+- **Activity history:** the record of past conversations you can browse, which is also affected by the activity setting.
+- **Account-level controls:** Gemini lives inside your Google Account, so deletion and retention can be managed alongside your other Google data.
+
+Because history and training are bundled into one activity setting on Gemini, turning training off also changes whether your chats are saved for you. That is the trade-off to plan around.
+
+## How Gemini compares to ChatGPT and Claude
+
+All three major assistants now default to using consumer conversations to improve their models unless you opt out, but the mechanics differ.
+
+| Platform | Default | Opt-out location | Notable detail |
+|---|---|---|---|
+| Gemini | Used unless off | Google Account, Gemini Apps Activity | Human review; bundled with history |
+| ChatGPT | Used unless off | Settings, Data Controls | History and training are separate toggles |
+| Claude | Used unless off (since Aug 2025) | Claude settings | 5-year vs 30-day retention by choice |
+
+For the full breakdown on the other two, see [does ChatGPT train on your conversations?](/blog/does-chatgpt-train-on-your-conversations) and [does Claude train on your conversations?](/blog/does-claude-train-on-your-conversations).
+
+## Consumer Gemini versus Gemini in Google Workspace
+
+There is an important distinction that determines your real exposure. The behaviour above applies to consumer Gemini Apps tied to a personal Google Account. Gemini provided through a paid Google Workspace or business account is governed by Workspace terms, which include stronger data protections, and is administered by your organisation rather than by the consumer activity setting.
+
+| If you use... | Governed by | Training default |
+|---|---|---|
+| Consumer Gemini (personal Google Account) | Gemini Apps Activity | Used unless you turn activity off |
+| Gemini in Google Workspace (business) | Workspace terms and admin controls | Enterprise data protections apply |
+
+The practical takeaway mirrors ChatGPT and Claude: if avoiding training is a firm requirement, the business or Workspace route changes the default itself, which is a stronger guarantee than a personal-account toggle. If you are using a work Google Account, your administrator, not the consumer setting, governs the data handling.
+
+## Keeping a private, searchable record
+
+Turning off Gemini Apps Activity protects your privacy, but it also stops your conversations being saved to your activity, which means losing the record you might want for your own work. And even with activity on, finding a specific past answer is hard, because browsing your history is not the same as searching the content of your messages.
+
+A local-first tool solves both. LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your Gemini conversations on your own device as you browse them, so you keep a full-text searchable archive locally, independent of Google's activity setting, and nothing is uploaded to LLMnesia's servers. See [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy) for how this storage model works.
+
+## Practical recommendation
+
+1. Decide your Gemini Apps Activity setting deliberately rather than leaving the default.
+2. If you turn it off for privacy, keep your own local record so you do not lose access to past chats.
+3. Use temporary chats for genuinely sensitive one-off questions.
+4. Add a local-first indexer so your Gemini history is both private and searchable by content.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: Keep a Private, Searchable Gemini Archive</a>
+</div>

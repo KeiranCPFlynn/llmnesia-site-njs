@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.1.8",
+    "date": "2026-06-01",
+    "title": "Import older Gemini chats, more private analytics & fixes",
+    "highlights": [
+      "Import older Gemini chats — Gemini now supports importing your existing chat history, so older conversations become searchable without opening them one by one",
+      "Helpful search reminders after import — after importing older chats, LLMnesia now gently reminds you to try search so you can check that your new index is useful. The reminder stops once you search",
+      "Clearer sign-in guidance — if you try to import ChatGPT history while signed out, LLMnesia now tells you to sign in and try again instead of looking like nothing happened",
+      "No duplicate Gemini results after import — imported Gemini chats and chats you later open normally now stay merged into one searchable conversation",
+      "Gemini chat dates stay accurate — imported Gemini conversations now keep their original dates instead of appearing as if they were created today",
+      "Search reminders work after partial imports — if an import stops early but still brings in chats, LLMnesia now treats it as successful enough to prompt you to try search. Empty draft chats no longer make the import look like it failed",
+      "More private analytics — optional email signups no longer connect your email to product analytics, and analytics events are filtered to keep conversation text, titles, URLs, and other personal details out",
+      "A more consistent interface — the popup and search palette now share the same calmer visual style, so moving between them feels like one product"
+    ]
+  },
+  {
     "version": "0.1.7",
     "date": "2026-05-19",
     "title": "Welcome page on install, Guided first search & 5 fixes",

@@ -1,0 +1,139 @@
+---
+title: "Does Claude Train on Your Conversations? Anthropic's 2025 Policy Change Explained"
+slug: "does-claude-train-on-your-conversations"
+description: "Since August 2025, Anthropic may use consumer Claude conversations for model training unless you opt out. Here is what changed, how the setting works, and how to keep a private record of your chats."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "does claude train on your conversations"
+secondaryKeywords:
+  - "does anthropic use my chats for training"
+  - "claude data training opt out"
+  - "claude privacy policy 2025"
+  - "is claude private"
+intent: "informational"
+faq:
+  - question: "Does Claude use my conversations to train models?"
+    answer: "For consumer accounts (Claude Free, Pro, and Max), yes unless you opt out. Anthropic updated its consumer terms in August 2025 so that new or resumed chats and coding sessions can be used for model training unless you turn the setting off. Commercial products such as Claude for Work and the API are not used for training under those agreements."
+  - question: "When did Anthropic start training on Claude conversations?"
+    answer: "Anthropic announced the change to its consumer terms and privacy policy in August 2025. Existing users were given until October 8, 2025 to accept the updated terms and make their choice. Before this change, consumer Claude conversations were not used for training by default."
+  - question: "How do I opt out of Claude training?"
+    answer: "In your Claude account settings, find the data and privacy controls and turn off the option that allows your data to be used to improve Claude. The choice applies to new or resumed chats. Previous chats with no further activity are not used for training. You can change the setting at any time."
+  - question: "How long does Anthropic keep my Claude data?"
+    answer: "Retention depends on your choice. According to Anthropic, allowing your data to be used for training extends retention to up to five years, while opting out keeps the retention period at 30 days for consumer accounts. Deleting your account or changing the setting excludes your data from future training."
+  - question: "How can I keep a private copy of my Claude conversations?"
+    answer: "Use a local-first tool. LLMnesia is a free Chrome extension that indexes your Claude conversations on your own device as you browse, so the searchable record stays local and is never uploaded to LLMnesia's servers. That gives you a personal archive independent of Anthropic's training and retention settings."
+sources:
+  - label: "Anthropic: Updates to Consumer Terms and Privacy Policy"
+    url: "https://www.anthropic.com/news/updates-to-our-consumer-terms"
+  - label: "Anthropic Privacy Center: Is my data used for model training?"
+    url: "https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training"
+  - label: "TechCrunch: Anthropic users face a new choice"
+    url: "https://techcrunch.com/2025/08/28/anthropic-users-face-a-new-choice-opt-out-or-share-your-data-for-ai-training/"
+canonicalPath: "/blog/does-claude-train-on-your-conversations"
+category: "explainer"
+relatedSlugs:
+  - "how-to-stop-ai-from-training-on-your-data"
+  - "does-chatgpt-train-on-your-conversations"
+  - "are-ai-conversations-private"
+  - "local-first-ai-tools-privacy"
+---
+
+For consumer Claude accounts (Free, Pro, and Max), Anthropic may use your conversations to train its models unless you opt out. This is a change from how Claude used to work. In August 2025 Anthropic updated its consumer terms so that new or resumed chats and coding sessions can be used for model training by default. Commercial products such as Claude for Work and the API are not covered by that change. This post explains what changed, how the setting works, and how to keep your own private record.
+
+## What changed in August 2025
+
+Before the update, consumer Claude conversations were not used to train models by default. Anthropic then announced updated consumer terms and a revised privacy policy that flipped the default for consumer plans. Existing users were prompted to make a choice and had until October 8, 2025 to accept the updated terms.
+
+The key facts of the change:
+
+| Item | Detail |
+|---|---|
+| Who it affects | Claude Free, Pro, and Max (consumer accounts) |
+| Who it does not affect | Claude for Work, Enterprise, and API (commercial terms) |
+| What gets used | New or resumed chats and coding sessions |
+| What is excluded | Previous chats with no further activity |
+| Decision deadline for existing users | October 8, 2025 |
+
+If you signed up or accepted terms after that window, the choice was presented during onboarding.
+
+## How retention differs based on your choice
+
+Your training choice also affects how long Anthropic keeps your data:
+
+- **If you allow training:** contributed data can be retained for up to five years.
+- **If you opt out:** the retention period stays at 30 days for consumer accounts.
+
+The change is forward-looking. Conversations already used in a completed training run, or one in progress, are not pulled back out. As with most platforms, the sooner you set your preference, the less of your history is ever eligible.
+
+## Why the policy changed, and what it means in practice
+
+The shift reflects a wider industry pattern: real conversations are valuable training data, and most consumer AI products now use them by default unless the user opts out. The practical takeaway is not that Claude became less safe to use, but that the default flipped. Where consumer Claude conversations were previously excluded from training, the burden is now on you to set the preference if you want them excluded.
+
+For day-to-day use this changes two things:
+
+- **You have to make an active choice.** Leaving the default in place means new and resumed chats can be used for training.
+- **Your retention window depends on that choice.** Allowing training extends retention to up to five years; opting out keeps it at 30 days. So the setting controls both whether your data trains models and how long it is kept.
+
+## How to opt out
+
+The control lives in your Claude account settings under data and privacy. Look for the option that allows your data to be used to help improve Claude and turn it off.
+
+A few details to keep in mind:
+
+1. The setting applies to new or resumed chats and coding sessions, not to old chats you never reopen.
+2. You can change it at any time, and the change applies going forward.
+3. Opting out reduces retention to 30 days, so it affects how long your data is stored as well as whether it trains models.
+
+## Training, history, and memory are different things
+
+As with other platforms, do not confuse three separate concepts:
+
+- **Training:** whether Anthropic learns from your chats. Controlled by the data setting above.
+- **History:** whether your conversations are saved for you to revisit in the sidebar.
+- **Project context:** features that carry context within a Project, which is about usefulness in your own workflow, not training.
+
+Opting out of training does not delete your saved conversations. It changes what Anthropic does with them.
+
+## How to check and confirm your setting
+
+Because the default now allows training on consumer plans, verifying your setting matters more than it used to.
+
+1. Open your Claude account settings and find the privacy or data controls.
+2. Locate the option about using your data to improve Claude and confirm it is in the state you want.
+3. Remember the scope: the choice applies to new or resumed chats and coding sessions. An old chat you never reopen is not used regardless.
+4. If you change it, the change is forward-looking. Anthropic excludes your data from future training when you opt out or delete your account, but does not pull back data already used.
+
+A practical note for coding sessions: if you use Claude through tools that resume or continue earlier sessions, those resumed sessions count as activity, so they fall under the current setting at the time you resume them.
+
+## Consumer plans versus commercial products
+
+As with most providers, the strongest way to avoid training on your content is to use the commercial route rather than relying on a consumer toggle.
+
+| If you use... | Default training behaviour |
+|---|---|
+| Claude Free / Pro / Max (consumer) | New or resumed chats used unless you opt out |
+| Claude for Work / Enterprise | Governed by commercial terms, not the consumer change |
+| Claude API | Not used for training under the API terms |
+
+For teams handling sensitive material, the commercial tiers and the API change the default itself, which is a firmer guarantee than a per-account setting that can be reset.
+
+## Keeping a private, searchable record
+
+Claude's native history, like most platforms, only searches conversation titles, not the full text of your messages. So even when your chats are saved, finding a specific answer from weeks ago is hard. Combine that with a 30-day retention window if you opt out, and a long-term personal archive is something you have to maintain yourself.
+
+A local-first tool solves both problems. LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your Claude conversations on your own device as you browse them, so the searchable record stays with you regardless of Anthropic's retention setting, and you get full-text search instead of title-only search.
+
+For the equivalent breakdown on the other major assistant, see [does ChatGPT train on your conversations?](/blog/does-chatgpt-train-on-your-conversations). For the broader picture, read [are AI conversations private?](/blog/are-ai-conversations-private) and [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+## Practical recommendation
+
+For consumer Claude users doing real work:
+
+1. Decide your training preference deliberately rather than leaving the default.
+2. Remember that opting out also shortens retention to 30 days, so keep your own archive if you need long-term access.
+3. Use a local-first indexer so your record survives the retention window and is actually searchable by content.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: Search Your Claude Chats Locally</a>
+</div>

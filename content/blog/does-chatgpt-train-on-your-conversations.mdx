@@ -1,0 +1,148 @@
+---
+title: "Does ChatGPT Train on Your Conversations? What OpenAI Does With Your Chats"
+slug: "does-chatgpt-train-on-your-conversations"
+description: "Yes, by default OpenAI may use personal ChatGPT conversations to improve its models. Here is exactly when that happens, how to opt out, and how to keep a private record of your chats."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "does chatgpt train on your conversations"
+secondaryKeywords:
+  - "does openai use my chats for training"
+  - "how to opt out of chatgpt training"
+  - "chatgpt data controls"
+  - "is chatgpt private"
+intent: "informational"
+faq:
+  - question: "Does ChatGPT use my conversations to train its models?"
+    answer: "By default, yes for personal accounts. OpenAI may use conversations from Free, Plus, and Pro personal accounts to improve its models unless you turn off model training in Data Controls. Business tiers (ChatGPT Team, ChatGPT Enterprise) and the API are not used for training by default."
+  - question: "How do I stop ChatGPT from training on my chats?"
+    answer: "Open Settings, go to Data Controls, and turn off the 'Improve the model for everyone' toggle. The setting applies to your whole account regardless of which device you use. It is forward-looking: new conversations are excluded after you opt out, but data already included in a completed training run cannot be removed retroactively."
+  - question: "Does Temporary Chat get used for training?"
+    answer: "No. According to OpenAI, Temporary Chat conversations do not appear in your history, do not create or use memories, and are not used to train models. Temporary Chat is the option to use for one-off sensitive discussions, though it also means there is no saved record to search later."
+  - question: "If I opt out, does ChatGPT still save my history?"
+    answer: "Yes. Turning off model training is separate from your conversation history. You can keep history on for your own retrieval while still opting out of training. Opting out changes whether OpenAI learns from your chats, not whether they are stored in your account."
+  - question: "How can I keep a private, searchable copy of my ChatGPT conversations?"
+    answer: "Use a local-first tool. LLMnesia is a free Chrome extension that indexes your ChatGPT conversations on your own device as you browse them, so you can search the full text later. The index stays local and is never uploaded to LLMnesia's servers, which keeps your record independent of OpenAI's settings."
+sources:
+  - label: "OpenAI Help Center: How do I turn off model training"
+    url: "https://help.openai.com/en/articles/8983082-how-do-i-turn-off-model-training-to-stop-openai-training-models-on-my-conversations"
+  - label: "OpenAI: How your data is used to improve model performance"
+    url: "https://openai.com/policies/how-your-data-is-used-to-improve-model-performance/"
+  - label: "OpenAI Help Center: Data Controls FAQ"
+    url: "https://help.openai.com/en/articles/7730893-data-controls-faq"
+canonicalPath: "/blog/does-chatgpt-train-on-your-conversations"
+category: "explainer"
+relatedSlugs:
+  - "how-to-stop-ai-from-training-on-your-data"
+  - "are-ai-conversations-private"
+  - "local-first-ai-tools-privacy"
+  - "does-chatgpt-keep-deleted-conversations"
+---
+
+By default, OpenAI may use your personal ChatGPT conversations to improve its models. For Free, Plus, and Pro personal accounts, model training is on unless you turn it off in Data Controls. Business products (ChatGPT Team and ChatGPT Enterprise) and the API are not used for training by default. This post explains exactly when your chats are used, how to opt out, and how to keep a private record of what you discuss.
+
+## The short answer, by account type
+
+What happens to your conversations depends on which kind of account you use.
+
+| Account type | Used for training by default? | How to change it |
+|---|---|---|
+| Free / Plus / Pro (personal) | Yes | Turn off model training in Data Controls |
+| Temporary Chat (any plan) | No | Already excluded; not saved to history |
+| ChatGPT Team | No | Not trained on by default |
+| ChatGPT Enterprise | No | Governed by the enterprise agreement |
+| API | No | Not trained on by default |
+
+The headline point: if you use a normal personal account and have not changed any settings, your conversations may be used to help train future models.
+
+## How to opt out of model training
+
+OpenAI provides a single account-level toggle. To turn off training:
+
+1. Open ChatGPT and go to **Settings**.
+2. Select **Data Controls**.
+3. Find **Improve the model for everyone** and switch it off.
+
+Once it is off, new conversations are not used to train OpenAI's models. The setting applies to your entire account, so it does not matter which device or browser you sign in from.
+
+Two limits are worth understanding. First, it is forward-looking: data that was already part of a completed training run cannot be pulled back out. The earlier you opt out, the less of your history is ever eligible. Second, opting out of training is not the same as deleting your history. Your conversations can still be stored in your account for your own use.
+
+## Training is separate from conversation history
+
+People often conflate three different things:
+
+- **Model training:** whether OpenAI learns from your chats. Controlled by the Data Controls toggle above.
+- **Conversation history:** whether your chats are saved in the sidebar for you to revisit. You can keep this on while training is off.
+- **Memory:** whether ChatGPT carries facts about you into new chats. A separate feature with its own setting.
+
+You can keep history on, keep your own searchable record, and still opt out of training. These choices are independent.
+
+## What Temporary Chat does and does not do
+
+Temporary Chat is OpenAI's option for conversations you do not want retained. Per OpenAI, a Temporary Chat does not appear in your history, does not create or use memories, and is not used to train models.
+
+The trade-off is retrieval. Because nothing is saved, you cannot go back later and find what you discussed. Temporary Chat is good for a sensitive one-off question and bad for any conversation you might need again.
+
+## What is and is not used for training
+
+The model-training toggle governs whether the content of your conversations can be used to improve OpenAI's models. It is worth being precise about scope, because people conflate training with every other way data is processed.
+
+What the setting covers:
+
+- The text you type and the responses you receive in standard saved conversations on a personal account.
+- This applies across your account regardless of device, because the setting is account-level.
+
+What the setting does not change:
+
+- **Abuse and safety review.** Turning off training does not mean nobody can ever access content. Providers retain the ability to review conversations for safety, legal, and abuse-prevention reasons, which is separate from model training.
+- **Storage.** Your conversations are still stored in your account so you can revisit them. Opting out of training is not the same as deleting history or stopping storage.
+- **Memory.** ChatGPT's Memory feature is governed by its own setting. It affects what the assistant carries into new chats, not whether OpenAI trains on you.
+
+The single most useful mental model: the toggle answers "can OpenAI learn from my chats," not "is my data stored" or "can anyone ever see it." Those are three different questions with three different controls.
+
+## How to confirm your opt-out actually took effect
+
+Toggles get reset by account changes, new sign-ins, or simply being missed, so it is worth verifying rather than assuming.
+
+1. Open **Settings**, then **Data Controls**.
+2. Confirm **Improve the model for everyone** is switched off.
+3. Check the same setting on each device or browser you use; because the control is account-level, it should read the same everywhere once synced.
+4. If you manage more than one ChatGPT account (personal and work), set it on each account separately. The choice does not carry across accounts.
+
+Remember the timing rule: opting out is forward-looking. Conversations from before you opted out that were already included in a completed training run cannot be retroactively removed, so the sooner you set this, the less of your history is ever eligible.
+
+## Personal accounts versus business tiers and the API
+
+If training on your content is a hard requirement to avoid, the account type matters more than any single toggle.
+
+| If you use... | Default training behaviour | Notes |
+|---|---|---|
+| Personal Free / Plus / Pro | On unless you opt out | Toggle in Data Controls |
+| ChatGPT Team | Not used for training | Business product |
+| ChatGPT Enterprise | Not used for training | Governed by the enterprise agreement |
+| API | Not used for training | Common choice for building on top of the models |
+
+For individuals and teams handling sensitive material regularly, moving the work to a business tier or the API is a stronger guarantee than relying on a per-account toggle, because the default itself is different.
+
+## Keeping a private, searchable record of your chats
+
+If you rely on ChatGPT for real work, you face two pressures at once: you want a record you can search, and you may not want everything you type feeding a training pipeline. Opting out of training handles the second. The first is a retrieval problem, and ChatGPT's native history only searches conversation titles, not the text inside your messages.
+
+A local-first approach solves both without compromise. LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your conversations on your own device as you browse them, so the searchable record lives with you, not on an external server. You can opt out of OpenAI's training, keep your own full-text archive, and search across every platform from one place.
+
+To go deeper on the privacy side, see [are AI conversations private?](/blog/are-ai-conversations-private) and [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy). If you are worried about losing chats you deleted, read [does ChatGPT keep deleted conversations?](/blog/does-chatgpt-keep-deleted-conversations).
+
+## Practical recommendation
+
+For most personal users who use ChatGPT for work or study:
+
+1. Turn off **Improve the model for everyone** in Data Controls.
+2. Keep conversation history on so you retain a record.
+3. Use Temporary Chat for genuinely sensitive one-off questions.
+4. Install a local-first indexer so you can actually find past answers, since native search only matches titles.
+
+That combination gives you the productivity of saved history with control over what OpenAI learns from you.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: Keep a Private, Searchable Chat Archive</a>
+</div>

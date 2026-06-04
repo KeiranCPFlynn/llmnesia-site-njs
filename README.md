@@ -69,6 +69,12 @@ GA4 is optional and enabled via env vars:
 
 - `NEXT_PUBLIC_GA_ID`
 - `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`
+- `LEADS_WEBHOOK_URL` server-side webhook for `/api/leads`
+- `LEADS_WEBHOOK_KEY` optional shared key for the leads webhook
+
+The `/api/leads` route accepts direct website and extension JSON payloads. The
+homepage signup can override attribution with `lead_source` and `lead_context`
+query params, for example links from the extension founding prompt.
 
 Tracked events:
 

@@ -3263,6 +3263,13 @@ main > section:nth-of-type(even) .how-num {
   text-decoration-thickness: 2px;
 }
 
+/* Inline CTA button: keep the button's own styling, not the prose link color */
+.post .prose a.button,
+.post .prose a.button:hover {
+  color: var(--on-cta);
+  text-decoration: none;
+}
+
 .post .prose strong {
   color: var(--text);
   font-weight: 600;

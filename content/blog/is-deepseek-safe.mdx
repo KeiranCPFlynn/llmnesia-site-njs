@@ -1,0 +1,122 @@
+---
+title: "Is DeepSeek Safe? Data Privacy, Storage, and Your Conversation History"
+slug: "is-deepseek-safe"
+description: "DeepSeek stores data in China and may use your conversations to train its models. Here is what its privacy policy says, the real risks, and how to keep a private record of your chats."
+publishDate: "2026-06-04"
+updatedDate: "2026-06-04"
+author: "Keiran Flynn"
+primaryKeyword: "is deepseek safe"
+secondaryKeywords:
+  - "deepseek data privacy"
+  - "does deepseek store your data"
+  - "is deepseek safe to use"
+  - "deepseek china data"
+intent: "informational"
+faq:
+  - question: "Is DeepSeek safe to use?"
+    answer: "DeepSeek is usable for general, non-sensitive tasks, but its privacy posture is weaker than the major Western assistants. DeepSeek is operated by a China-based company, stores data in China, and may use your conversations to train its models. Several governments and organisations have restricted it. For anything confidential, personal, or work-related, it is safer to avoid entering that information into DeepSeek."
+  - question: "Where does DeepSeek store my data?"
+    answer: "According to its privacy policy, DeepSeek is provided by a China-based company and stores personal data in China. Under Chinese law, companies operating there can be legally required to provide data to the government on request. This jurisdiction is the core of most concerns raised by governments and security researchers about DeepSeek."
+  - question: "Does DeepSeek use my conversations to train its AI?"
+    answer: "Yes. DeepSeek's privacy policy states it uses personal data, including what you type into the chat, to train and improve its technology. It also collects account details, IP address, device identifiers, and similar metadata. There is no specific retention period stated; the policy says data is kept as long as necessary for its purposes."
+  - question: "What should I never put into DeepSeek?"
+    answer: "Avoid entering confidential business information, client or customer data, credentials, financial details, or anything personally identifying. Given the data storage location and training use, treat DeepSeek as a public-facing service and keep sensitive material out of it entirely."
+  - question: "How can I keep a private record of my AI conversations?"
+    answer: "Use a local-first tool. LLMnesia is a free Chrome extension that indexes your AI conversations on your own device as you browse, across many platforms, so your searchable record stays local and is never uploaded to LLMnesia's servers. That keeps your retrieval layer on your machine regardless of where a given platform stores its own copy."
+sources:
+  - label: "DeepSeek Privacy Policy"
+    url: "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html"
+  - label: "IAPP: DeepSeek and the China data question"
+    url: "https://iapp.org/news/a/deepseek-and-the-china-data-question-direct-collection-open-source-and-the-limits-of-extraterritorial-enforcement"
+  - label: "LLMnesia: local-first AI tools and privacy"
+    url: "https://www.llmnesia.com/blog/local-first-ai-tools-privacy"
+canonicalPath: "/blog/is-deepseek-safe"
+category: "explainer"
+relatedSlugs:
+  - "how-to-stop-ai-from-training-on-your-data"
+  - "are-ai-conversations-private"
+  - "local-first-ai-tools-privacy"
+  - "does-grok-train-on-your-conversations"
+---
+
+DeepSeek is usable for general, non-sensitive tasks, but its privacy posture is weaker than the major Western assistants. According to its own privacy policy, DeepSeek is operated by a China-based company, stores personal data in China, and may use what you type to train its models. That combination, plus documented security incidents and a wave of government restrictions, is why "is DeepSeek safe" is one of the most searched questions about the tool. This post lays out what the policy actually says, the real risks, and how to keep a private record of your chats.
+
+## The short answer
+
+DeepSeek is not unsafe to open and use for low-stakes tasks. The concern is what happens to what you type. Because the company is based in China, stores data there, and uses conversations for training, sensitive information you enter carries more risk than it would on a platform with stronger data controls and a different jurisdiction.
+
+| Question | DeepSeek |
+|---|---|
+| Who operates it | A China-based company (Hangzhou DeepSeek) |
+| Where data is stored | In China |
+| Used for training | Yes, including what you type |
+| Stated retention | As long as "necessary"; no fixed period |
+| Safe for confidential data | No |
+
+## What DeepSeek's privacy policy says
+
+DeepSeek's privacy policy is explicit about collecting a broad set of data. It includes:
+
+- Account details such as email, phone number, and username.
+- The content of your chats: prompts, questions, and uploaded files or photos.
+- Technical metadata: IP address, device identifiers, operating system, and similar signals.
+
+The policy states this data is used to train and improve DeepSeek's technology, and that it is retained for as long as necessary for its business and legal purposes, without a specific timeframe. In short, what you type is both stored and used to make the model better.
+
+## Why the storage location matters
+
+The single most cited concern is jurisdiction. DeepSeek stores data in China, and under Chinese law, companies operating there can be legally required to provide data to the government, in some cases without the ability to refuse or challenge the request in an independent court. This is the basis on which multiple governments and organisations have restricted or banned DeepSeek on official devices.
+
+This is a structural concern, not a bug. It is about where the data lives and which laws apply to it, which no in-app setting changes.
+
+## Security track record
+
+Beyond policy, DeepSeek has faced documented security issues, including a reported exposure of a large internal database and vulnerabilities researchers have flagged. The relevant takeaway for an everyday user is not any single incident but the pattern: a younger platform with a weaker security and governance record than the established assistants warrants more caution with sensitive input.
+
+## How DeepSeek compares on privacy
+
+DeepSeek is not the only assistant that trains on conversations, but the jurisdiction and governance differences are real.
+
+| Platform | Trains on consumer chats by default | Data jurisdiction | Opt-out control |
+|---|---|---|---|
+| DeepSeek | Yes | China | Limited |
+| ChatGPT | Yes, unless you opt out | US-based | Data Controls toggle |
+| Claude | Yes, unless you opt out | US-based | Settings toggle |
+| Grok | Yes, unless you opt out | US-based | Settings toggle |
+
+For the others, see [does Grok train on your conversations?](/blog/does-grok-train-on-your-conversations) and [are AI conversations private?](/blog/are-ai-conversations-private).
+
+## Does using DeepSeek another way change the risk?
+
+A nuance worth understanding: most of the privacy concern is about DeepSeek's own app and website, where your data goes to the company's China-based infrastructure. DeepSeek also releases open-weight models, and the data picture is different depending on how you access them.
+
+| How you use DeepSeek | Where your data goes |
+|---|---|
+| DeepSeek app or website | DeepSeek's China-based servers |
+| DeepSeek models via a third-party host | That provider's infrastructure and terms |
+| DeepSeek models run locally | Stays on your own hardware |
+
+The takeaway: "is DeepSeek safe" depends partly on which DeepSeek you mean. The consumer app carries the concerns described above. The open models accessed through a trusted Western provider, or run locally, change where your data lives, though that is a more technical route most people will not take. For the typical user on the DeepSeek app, the cautions in this post apply.
+
+## How to use DeepSeek more safely
+
+If you want to use DeepSeek without taking on unnecessary risk:
+
+1. Treat it as a public service. Do not enter confidential, personal, financial, or client information.
+2. Use it for general, non-sensitive tasks where the input would be fine to share publicly.
+3. Keep work and regulated data on platforms with appropriate data handling agreements, or on local-first tools.
+4. Keep your own searchable record of useful answers so you are not dependent on DeepSeek's storage.
+
+## Keeping a private, searchable record
+
+A separate concern from safety is retrieval: like other platforms, DeepSeek's native history is not built for full-text search of your past messages, so finding an old answer is hard. And if you limit what you put into DeepSeek for privacy reasons, you will want your useful conversations from other tools kept somewhere private and searchable.
+
+LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your conversations on your own device as you browse them, so your searchable record stays local and is never uploaded to LLMnesia's servers. That keeps your retrieval layer on your own machine, independent of where any platform stores its copy. See [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+## The verdict
+
+DeepSeek is fine for casual, non-sensitive use, but its China-based storage, training use of your inputs, and governance record make it a poor choice for confidential, personal, or work data. Use it with that boundary in mind, keep sensitive material out, and maintain your own private record of the answers worth keeping.
+
+<div className="content-inline-cta">
+  <a href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf" className="button">Install LLMnesia: Keep a Private, Local Record of Your Chats</a>
+</div>
