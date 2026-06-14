@@ -2,10 +2,10 @@
   {
     "version": "0.1.9",
     "date": "2026-06-12",
-    "title": "Microsoft Copilot support, one-click Gemini & Perplexity import & 4 changes",
+    "title": "Microsoft Copilot support, import Gemini & Perplexity history from the welcome page & 4 changes",
     "highlights": [
       "Microsoft Copilot support — your Copilot conversations at copilot.microsoft.com now get indexed automatically as you browse, so they show up in search alongside your other chats. You can also continue a Copilot conversation in another assistant.",
-      "One-click Gemini and Perplexity import on the welcome page — the welcome screen now offers \"Import from Gemini\" and \"Import from Perplexity\" buttons alongside ChatGPT and Claude, so you can pull in your older history from all four right after installing.",
+      "Import Gemini and Perplexity history from the welcome page — the welcome screen now has \"Import from Gemini\" and \"Import from Perplexity\" buttons alongside ChatGPT and Claude. Each button opens that platform in a new tab, where you click \"Index older chats\" to pull your older history into search.",
       "Easier-to-tell-apart result colours — each AI platform now has its own distinct colour tint in search results, so you can spot at a glance which assistant a conversation came from. Several platforms that previously looked nearly identical (for example ChatGPT and Qwen) are now clearly different.",
       "More reliable first-run welcome — fixed a startup timing issue on brand-new installs that could make the very first session behave as if setup hadn't finished. The welcome page still opens exactly once after installing, and never again after updates.",
       "Readable Perplexity imports — imported Perplexity threads now show your actual question and the answer instead of raw behind-the-scenes data, so titles and previews read cleanly and search matches the real conversation.",
