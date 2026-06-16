@@ -24,12 +24,12 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Will it index my older chat history too?',
     answer:
-      'Yes. One-click import brings in your existing ChatGPT and Claude history. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
+      'Yes. You can import your existing history from ChatGPT, Claude, Gemini, and Perplexity in a few clicks. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
   },
   {
     question: 'Which AI platforms are supported today?',
     answer:
-      'Supported now: ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional integrations are in progress.'
+      'Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional integrations are in progress.'
   },
   {
     question: 'Will it slow down my browser?',

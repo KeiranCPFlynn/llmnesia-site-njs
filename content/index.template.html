@@ -88,6 +88,7 @@
             <span>Claude</span>
             <span>Gemini</span>
             <span>Perplexity</span>
+            <span>Copilot</span>
             <a href="#platforms" class="hero-works-more">+ 6</a>
           </p>
           <p class="hero-meta-line">
@@ -146,11 +147,23 @@
       <p class="section-eyebrow">01 — the problem</p>
       <h2>Sound familiar?</h2>
       <p class="section-intro">If you use AI every day, this probably sounds familiar.</p>
-      <ul class="pain-statements">
-        <li>"I already solved this. Where was it?"</li>
-        <li>"Was that answer in ChatGPT or Claude?"</li>
-        <li>"I wrote the perfect prompt last week. Now it's gone."</li>
-        <li>"Why am I asking the same question again?"</li>
+      <ul class="pain-grid" data-reveal-stagger>
+        <li class="pain-card">
+          <p class="pain-quote">"I already solved this. Where was it?"</p>
+          <p class="pain-fix"><svg class="pain-fix-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>Search once and land on the exact message — not just the chat.</p>
+        </li>
+        <li class="pain-card">
+          <p class="pain-quote">"Was that answer in ChatGPT or Claude?"</p>
+          <p class="pain-fix"><svg class="pain-fix-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>One search spans every connected assistant at once.</p>
+        </li>
+        <li class="pain-card">
+          <p class="pain-quote">"I wrote the perfect prompt last week. Now it's gone."</p>
+          <p class="pain-fix"><svg class="pain-fix-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>Your prompts stay indexed and reusable, never buried.</p>
+        </li>
+        <li class="pain-card">
+          <p class="pain-quote">"Why am I asking the same question again?"</p>
+          <p class="pain-fix"><svg class="pain-fix-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>Re-find the answer instead of re-prompting from scratch.</p>
+        </li>
       </ul>
       <p class="problem-narrative">
         Your AI chats already contain real work. LLMnesia helps you find it again.
@@ -182,8 +195,8 @@
     <section class="section section-how container" id="how-it-works" data-reveal>
       <p class="section-eyebrow">03 — how</p>
       <h2>How it <span class="text-gradient">works</span></h2>
-      <p class="section-intro">One-click import for your ChatGPT and Claude history. After that, LLMnesia indexes
-        supported tools automatically as you work.</p>
+      <p class="section-intro">Import your existing ChatGPT, Claude, Gemini, and Perplexity history in a few clicks.
+        After that, LLMnesia indexes supported tools automatically as you work.</p>
       <div class="how-grid" data-reveal-stagger>
         <div class="how-line" aria-hidden="true"></div>
         <article class="how-step">
@@ -212,13 +225,67 @@
         <p class="section-eyebrow">04 — audience</p>
         <h2>Built for people who live in AI chats</h2>
         <p class="section-intro">If you use multiple AI tools every week, your best work is probably scattered across dozens or hundreds of conversations. LLMnesia turns that messy chat history into something you can actually search and use.</p>
-        <ul class="audience-chips">
-          <li>Founders</li>
-          <li>Developers</li>
-          <li>Researchers</li>
-          <li>Writers</li>
-          <li>Analysts</li>
-          <li>Anyone using AI for real work</li>
+        <ul class="persona-grid" data-reveal-stagger>
+          <li class="persona-card">
+            <a href="/use-cases/founders">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="4 15 10 9 13 12 20 5" /><polyline points="15 5 20 5 20 10" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Founders</span>
+                <span class="persona-payoff">Every pricing, positioning, and strategy thread — searchable.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
+          <li class="persona-card">
+            <a href="/use-cases/developers">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 8 5 12 9 16" /><polyline points="15 8 19 12 15 16" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Developers</span>
+                <span class="persona-payoff">Re-find the fix or snippet Claude wrote last month in seconds.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
+          <li class="persona-card">
+            <a href="/use-cases/researchers">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v6l-4.8 8.4A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.3-2.6L14 9V3" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Researchers</span>
+                <span class="persona-payoff">Recover a source or summary buried across dozens of chats.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
+          <li class="persona-card">
+            <a href="/use-cases/writers">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z" /><line x1="13" y1="6" x2="17" y2="10" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Writers</span>
+                <span class="persona-payoff">Reuse the angle or draft that worked instead of rewriting it.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
+          <li class="persona-card">
+            <a href="/use-cases/students">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5z" /><path d="M6 11v4.5c0 1.1 2.7 2.5 6 2.5s6-1.4 6-2.5V11" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Students</span>
+                <span class="persona-payoff">Find the explanation that finally made a topic click.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
+          <li class="persona-card">
+            <a href="/use-cases/consultants">
+              <span class="persona-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5.5A2.5 2.5 0 0 1 10.5 3h3A2.5 2.5 0 0 1 16 5.5V7" /><line x1="3" y1="12.5" x2="21" y2="12.5" /></svg></span>
+              <span class="persona-body">
+                <span class="persona-name">Consultants</span>
+                <span class="persona-payoff">Pull up the framework you built for a past client.</span>
+              </span>
+              <span class="persona-arrow"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8 4l4 4-4 4" /></svg></span>
+            </a>
+          </li>
         </ul>
       </div>
     </section>
@@ -277,6 +344,7 @@
           <li>Claude</li>
           <li>Gemini</li>
           <li>Perplexity</li>
+          <li>Microsoft Copilot</li>
           <li>DeepSeek</li>
           <li>Grok</li>
           <li>Mistral</li>
@@ -295,18 +363,26 @@
         <p class="section-intro">LLMnesia stores your indexed conversations on your device, not on our servers.</p>
         <div class="privacy-grid" data-reveal-stagger>
           <div class="privacy-card">
+            <span class="privacy-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5" /><line x1="2" y1="20" x2="22" y2="20" /></svg></span>
             <strong>Stored locally</strong>
-            <p>Your data lives in your browser.</p>
+            <p>Your index lives in your browser's IndexedDB, on this device only.</p>
           </div>
           <div class="privacy-card">
+            <span class="privacy-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.3-8 5 5 0 0 1 9.4-1.4" /><path d="M14.5 18H17a3.5 3.5 0 0 0 1.1-6.8" /><line x1="3" y1="3" x2="21" y2="21" /></svg></span>
             <strong>No servers</strong>
-            <p>Nothing is uploaded, synced, or sent to the cloud.</p>
+            <p>Nothing is uploaded, synced, or sent to the cloud. Ever.</p>
           </div>
           <div class="privacy-card">
+            <span class="privacy-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="8" x2="20" y2="8" /><line x1="4" y1="16" x2="20" y2="16" /><circle cx="9" cy="8" r="2.4" /><circle cx="15" cy="16" r="2.4" /></svg></span>
             <strong>You're in control</strong>
-            <p>Export or delete everything with one click.</p>
+            <p>Export or wipe everything with one click. No account needed.</p>
           </div>
         </div>
+        <ul class="privacy-proof" aria-label="Privacy guarantees">
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>No account required</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>No conversation uploads</li>
+          <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8.5" /></svg>0 bytes leave your device</li>
+        </ul>
         <p class="privacy-sensitive-line">Designed for people who value privacy.</p>
         <details class="permissions-details">
           <summary>What each browser permission does</summary>
@@ -330,16 +406,20 @@
           it, not as another bloated dashboard competing for attention.</p>
         <div class="performance-stats">
           <div class="perf-stat">
-            <span class="perf-value">Local</span>
-            <span class="perf-label">Everything on your device</span>
+            <span class="perf-value">&lt;50ms</span>
+            <span class="perf-label">Typical search</span>
           </div>
           <div class="perf-stat">
-            <span class="perf-value">Instant</span>
-            <span class="perf-label">Millisecond search</span>
+            <span class="perf-value">0</span>
+            <span class="perf-label">Bytes uploaded</span>
           </div>
           <div class="perf-stat">
-            <span class="perf-value">Zero</span>
-            <span class="perf-label">Cloud servers</span>
+            <span class="perf-value">11</span>
+            <span class="perf-label">Platforms indexed</span>
+          </div>
+          <div class="perf-stat">
+            <span class="perf-value">~10s</span>
+            <span class="perf-label">To install</span>
           </div>
         </div>
       </div>
@@ -387,17 +467,17 @@
         <blockquote class="card quote">
           <p>"I used to waste 10 to 15 minutes trying to remember which AI tool I'd used for something. Now I type a
             couple of words and it's there."</p>
-          <footer>Product Engineer</footer>
+          <footer><span class="quote-avatar" aria-hidden="true">PE</span>Product Engineer</footer>
         </blockquote>
         <blockquote class="card quote">
           <p>"I can't use cloud note tools for some of my work, so local-first mattered. This gives me search without
             sending anything anywhere."</p>
-          <footer>Security Consultant</footer>
+          <footer><span class="quote-avatar" aria-hidden="true">SC</span>Security Consultant</footer>
         </blockquote>
         <blockquote class="card quote">
           <p>"I jump between ChatGPT and Claude constantly. LLMnesia makes that feel like one searchable workspace
             instead of two separate histories."</p>
-          <footer>Startup Founder</footer>
+          <footer><span class="quote-avatar" aria-hidden="true">SF</span>Startup Founder</footer>
         </blockquote>
       </div>
     </section>
@@ -430,13 +510,13 @@
         </details>
         <details>
           <summary>Will it index my older chat history too?</summary>
-          <p>Yes. One-click import brings in your existing ChatGPT and Claude history. For other supported
-            platforms, LLMnesia indexes conversations automatically as you open them.</p>
+          <p>Yes. You can import your existing history from ChatGPT, Claude, Gemini, and Perplexity in a few clicks.
+            For other supported platforms, LLMnesia indexes conversations automatically as you open them.</p>
         </details>
         <details>
           <summary>Which AI platforms are supported today?</summary>
-          <p>Supported now: ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI
-            Studio. Additional integrations are in progress.</p>
+          <p>Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi,
+            Qwen, and Google AI Studio. Additional integrations are in progress.</p>
         </details>
         <details>
           <summary>Will it slow down my browser?</summary>

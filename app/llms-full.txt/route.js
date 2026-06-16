@@ -12,7 +12,7 @@ const HOMEPAGE_FAQ = [
   {
     question: 'Which AI platforms are supported?',
     answer:
-      'ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional integrations are in progress.'
+      'ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio. Additional integrations are in progress.'
   },
   {
     question: 'Is it free?',
@@ -86,7 +86,7 @@ export function GET() {
     '## Product facts',
     '- LLMnesia is a free Chrome browser extension.',
     '- It automatically indexes AI conversations locally in the user\'s browser.',
-    '- Supported platforms: ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio.',
+    '- Supported platforms: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio.',
     '- No cloud sync. No account required. Data stays on the user\'s device.',
     '- Uses IndexedDB and chrome.storage.local APIs for local storage.',
     '- Core use case: find old prompts, answers, and decisions without re-prompting.',
