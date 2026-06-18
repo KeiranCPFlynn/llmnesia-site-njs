@@ -3,7 +3,7 @@ title: "How to Find Old Microsoft Copilot Conversations (Step-by-Step)"
 slug: "how-to-find-old-microsoft-copilot-conversations"
 description: "Having trouble locating a previous chat in Microsoft Copilot? Learn how Copilot manages history, how to navigate the recent activity tab, and strategies for permanent retrieval of your important Copilot conversations."
 publishDate: "2026-05-14"
-updatedDate: "2026-05-14"
+updatedDate: "2026-06-18"
 author: "Keiran Flynn"
 primaryKeyword: "how to find old microsoft copilot conversations"
 secondaryKeywords:
@@ -19,7 +19,7 @@ faq:
   - question: "Why can't I see my old Copilot conversations?"
     answer: "If you aren't signed in, your history isn't saved. If you are signed in, enterprise policies might clear history automatically, or you may be hitting the limit of how many recent chats the interface displays."
   - question: "Can I search the text inside past Copilot chats?"
-    answer: "Natively, Microsoft Copilot does not have a robust full-text search for past conversations. You generally have to rely on the titles in the 'Recent activity' sidebar, browser history, and manual exports to Word, OneNote, or PDF. LLMnesia does not currently support Microsoft Copilot."
+    answer: "Natively, Microsoft Copilot does not have a robust full-text search for past conversations. LLMnesia supports Copilot conversations at copilot.microsoft.com, indexing them locally as you browse so you can search their full text alongside your other supported AI chats."
 sources:
   - label: "Microsoft Copilot Support"
     url: "https://support.microsoft.com/"
@@ -77,13 +77,13 @@ When Copilot generates a valuable response:
 3. Choose to export to Word, PDF, or simply Copy the text.
 4. Save this file to your OneDrive or local machine with a descriptive filename.
 
-## Method 4: Switch to a Platform with Better Retrieval
+## Method 4: Index Copilot Conversations for Full-Text Search
 
-If finding old Copilot conversations is a recurring frustration, the most practical long-term solution is to route important research and work sessions through an AI platform with stronger native history management.
+If finding old Copilot conversations is a recurring frustration, use a local indexing tool to make the conversation content searchable rather than relying only on Copilot's generated titles.
 
-**ChatGPT** has a native full-text search bar that searches inside conversation content — not just titles. **Claude** lets you rename conversations and has Projects for grouping related chats.
+**LLMnesia** supports the web version at `copilot.microsoft.com`. As you open Copilot conversations, it indexes their content locally on your device. You can then search Copilot together with ChatGPT, Claude, Gemini, and other supported platforms from one search interface. This support applies to the standalone Copilot website, not Copilot interactions embedded inside Word, Teams, Outlook, Windows, or an IDE.
 
-If you regularly use these platforms alongside Copilot, a local indexing extension like **LLMnesia** can provide unified full-text search across ChatGPT, Claude, Gemini, and other supported platforms (note: LLMnesia does not currently support Microsoft Copilot). For the Copilot-specific conversations, the export-first habit from Method 3 remains the most reliable approach.
+For important work, continue exporting the final output as well. Local indexing improves retrieval, while Word, OneNote, or PDF provides a portable archive outside the chat interface.
 
 ## Method 5: Check the Microsoft Privacy Dashboard
 
@@ -125,7 +125,7 @@ Understanding how Copilot compares to other platforms puts its limitations in co
 | Browser history integration | Partial (Edge) | Standard |
 | Privacy dashboard log | Yes | No |
 | History disabled by enterprise | Common | Less common |
-| Third-party indexing support | No | Yes (LLMnesia + others) |
+| Third-party indexing support | Yes for copilot.microsoft.com (LLMnesia) | Yes (LLMnesia + others) |
 
 The gap in full-text search is the most significant practical difference. ChatGPT lets you type a keyword and instantly find which conversation contains it. With Copilot, you must visually scan titles or rely on your memory of when the conversation occurred.
 
@@ -139,4 +139,4 @@ The most practical response to Copilot's history limitations is developing a pro
 
 **Bookmark important Copilot conversations in your browser.** When a conversation is particularly valuable, copy its URL and bookmark it with a descriptive name. Copilot conversation URLs are persistent for signed-in sessions — a bookmarked URL will often return you to that specific conversation even weeks later.
 
-**Use one AI platform for work where retrieval matters most.** If you need searchable history for ongoing professional work, route those sessions through ChatGPT (with its native full-text search) or Claude, where tools like LLMnesia can automatically index your conversations locally as you work. Reserve Copilot for quick queries where retrieval isn't a priority.
+**Keep local indexing enabled for work where retrieval matters.** LLMnesia can automatically index conversations at `copilot.microsoft.com` as you browse, so you can retrieve them by content later. For work completed in Microsoft 365 Copilot surfaces such as Word or Teams, save the useful output in the relevant document or app because those embedded interactions are outside the standalone web integration.

@@ -3,7 +3,7 @@ title: "Export Microsoft Copilot Conversation History"
 slug: "how-to-export-microsoft-copilot-conversation-history"
 description: "Microsoft Copilot has no built-in export. Here are the methods that actually work to save your Copilot conversations, from manual copy to Word, OneNote, and PDF."
 publishDate: "2026-04-21"
-updatedDate: "2026-06-04"
+updatedDate: "2026-06-18"
 author: "Keiran Flynn"
 primaryKeyword: "export microsoft copilot conversation history"
 secondaryKeywords:
@@ -21,9 +21,9 @@ faq:
   - question: "Does Microsoft keep a record of my Copilot conversations?"
     answer: "Yes. Microsoft processes Copilot conversations on its servers. For consumer accounts, data handling is governed by Microsoft's privacy policy. For Microsoft 365 Copilot in enterprise contexts, data handling is governed by your organisation's Microsoft 365 agreement and applicable compliance settings."
   - question: "Is there a way to search Copilot conversation history?"
-    answer: "Not effectively. Copilot does not offer content search for past conversations, and there is currently no third-party extension with Copilot indexing support. The best approach is to export important conversations to Word or OneNote so they can be searched there."
+    answer: "Copilot's native content search is limited. LLMnesia supports conversations at copilot.microsoft.com and indexes them locally as you browse, making their full text searchable. Export important conversations to Word or OneNote when you also need a portable file."
   - question: "Does LLMnesia support Microsoft Copilot?"
-    answer: "No. LLMnesia does not currently support Microsoft Copilot. It indexes conversations from ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio."
+    answer: "Yes. LLMnesia supports Microsoft Copilot conversations at copilot.microsoft.com and indexes them locally as you browse. The integration does not cover Copilot interactions embedded inside Microsoft 365 apps, Windows, or IDEs."
 sources:
   - label: "Microsoft Copilot"
     url: "https://copilot.microsoft.com/"
@@ -110,7 +110,7 @@ Microsoft 365 users have a natural landing spot for Copilot content: OneNote and
 3. Save the document in a clearly labelled OneDrive folder
 4. In OneNote or Word, you can use Ctrl+F to search the content you've saved
 
-If you use other AI platforms alongside Copilot — ChatGPT, Claude, or Gemini — a browser extension like **LLMnesia** provides automatic local indexing for those platforms (note: LLMnesia does not currently support Copilot). For multi-platform users, this combination covers the majority of your AI work.
+For automatic retrieval without exporting every session, **LLMnesia** indexes conversations at `copilot.microsoft.com` locally as you browse. It also covers ChatGPT, Claude, Gemini, and other supported platforms, so one search can span your web-based AI history. This does not replace Word or OneNote exports when you need portable files.
 
 ## Method 6: Microsoft 365 Copilot compliance export (enterprise only)
 
@@ -164,7 +164,7 @@ The key capabilities Copilot lacks that other platforms offer:
 
 **Native full-text search (ChatGPT):** If you need to search inside your conversation history for a specific phrase or concept, ChatGPT's native search covers this directly. You don't need to export anything — the content is searchable in-platform.
 
-**Automatic local backup (LLMnesia + ChatGPT/Claude/Gemini):** A local indexing extension like LLMnesia indexes your conversations automatically as you work on ChatGPT, Claude, Gemini, and other supported platforms. Every session is immediately and privately searchable on your device — no export step required. Note that LLMnesia does not currently support Microsoft Copilot.
+**Automatic local indexing (LLMnesia + Copilot/ChatGPT/Claude/Gemini):** LLMnesia indexes conversations automatically as you browse `copilot.microsoft.com`, ChatGPT, Claude, Gemini, and other supported platforms. Indexed sessions are privately searchable on your device without a manual export step. Copilot interactions embedded in Microsoft 365 apps are not included.
 
 **Full JSON export for bulk archiving (ChatGPT, Claude, Gemini):** If you periodically want a complete backup of your AI conversation history, ChatGPT, Claude, and Gemini all offer this. Running a monthly export gives you a local archive of everything, searchable offline using standard text search tools.
 

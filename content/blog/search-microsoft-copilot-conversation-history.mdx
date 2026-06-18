@@ -3,7 +3,7 @@ title: "How to Search Microsoft Copilot Conversation History"
 slug: "search-microsoft-copilot-conversation-history"
 description: "Microsoft Copilot's conversation history behaviour varies significantly depending on which version you're using — web, Windows, Edge sidebar, or Microsoft 365. This guide explains what each version saves, how to find old Copilot conversations, and how to search across them."
 publishDate: "2026-04-17"
-updatedDate: "2026-04-17"
+updatedDate: "2026-06-18"
 author: "Keiran Flynn"
 primaryKeyword: "microsoft copilot conversation history"
 secondaryKeywords:
@@ -21,9 +21,9 @@ faq:
   - question: "Why did my Copilot conversation history disappear?"
     answer: "Copilot does not retain all conversations indefinitely. Some conversation modes (like certain quick-answer formats) do not create a persistent history entry. Signing out resets the visible history for unauthenticated sessions. Microsoft's data retention policies apply to signed-in history."
   - question: "Can I search the content of old Copilot conversations?"
-    answer: "Not natively. Copilot's conversation history is navigable but not full-text searchable through the interface. The best workaround is to export important conversations to Word or OneNote, where you can use those apps' own search. Copilot does not currently have robust third-party indexing support."
+    answer: "Not natively. Copilot's conversation history is navigable but not reliably full-text searchable through the interface. LLMnesia supports conversations at copilot.microsoft.com and indexes them locally as you browse, making their content searchable."
   - question: "Does LLMnesia work with Microsoft Copilot?"
-    answer: "No. LLMnesia does not currently support Microsoft Copilot. It indexes conversations from ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Mistral, Kimi, Qwen, and Google AI Studio."
+    answer: "Yes. LLMnesia supports Microsoft Copilot conversations at copilot.microsoft.com and indexes them locally as you browse. It does not index Copilot interactions embedded inside Microsoft 365 apps, Windows, or IDEs."
 sources:
   - label: "Microsoft Copilot support"
     url: "https://support.microsoft.com/en-us/copilot"
@@ -108,13 +108,13 @@ If you've found the right conversation and need to locate a specific section wit
 
 This is useful for long conversations with many exchanges. Copilot conversations can extend over many messages, and browser find-in-page is the fastest way to jump to a specific section within an open conversation.
 
-## Method 5: Switch to a platform with better search for important work
+## Method 5: Use LLMnesia for full-text Copilot search
 
-If you regularly need to retrieve specific information from past AI conversations, Microsoft Copilot's limited history management is a real constraint. The most effective long-term solution is to route work where retrieval matters through a platform with stronger search.
+If you regularly need to retrieve specific information from past conversations, LLMnesia can add full-text search to the web version of Microsoft Copilot.
 
-**ChatGPT** has a native full-text search bar that searches inside conversation content. **Claude** supports conversation renaming and Projects for grouping related work.
+Install the extension, then use Copilot normally at `copilot.microsoft.com`. As you open conversations, LLMnesia indexes their content locally on your device. A later search can return matching results from Copilot together with ChatGPT, Claude, Gemini, and other supported platforms.
 
-For those platforms, a local indexing extension like **LLMnesia** provides instant unified search across ChatGPT, Claude, Gemini, and more — all stored privately on your device. LLMnesia does not currently support Microsoft Copilot, but if you use multiple AI tools it may still be useful for the rest of your AI history.
+The scope matters: this covers the standalone Copilot website. Copilot interactions inside Word, Teams, Outlook, Windows, or an IDE are separate surfaces and are not indexed by this integration.
 
 ## Microsoft 365 Copilot: a different story
 
@@ -154,4 +154,4 @@ Microsoft has indicated ongoing development of Copilot's memory and history feat
 
 **Copy important outputs immediately.** For any Copilot response you'll need to reference later — a drafted document, a complex calculation, a code snippet — copy the output to your notes immediately. Don't rely on being able to find it in history later.
 
-**Copy important outputs immediately.** Since there is no third-party indexing tool with Copilot support, manual copy-paste into OneNote or a document remains the most reliable way to ensure you can find important responses later. If you use other AI platforms like ChatGPT, Claude, or Gemini, LLMnesia provides automatic local indexing for those — though not for Copilot.
+**Keep LLMnesia enabled while browsing Copilot.** Conversations at `copilot.microsoft.com` are indexed locally as you open them, making later full-text retrieval possible. For critical work, also copy or export the final output to OneNote or a document so you have a portable backup.
