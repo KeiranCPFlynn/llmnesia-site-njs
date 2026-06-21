@@ -45,6 +45,8 @@ If you ask Copilot to help draft an email, the chat title becomes "Draft Email."
 
 Furthermore, Copilot does not support folders, tags, or pinning chats to the top of your list.
 
+The reason this stings is retrieval: weeks later, finding a specific conversation means scrolling and guessing, because there is no way to search *inside* the text of past chats. The strategies below tackle that from two angles — better habits inside Copilot, and a local full-text search layer (Strategy 4) that makes the content of every Copilot conversation findable.
+
 ## Strategy 1: Aggressive Renaming
 
 Because you cannot group chats, your only native tool is the chat title. You must make titles work harder.
@@ -76,15 +78,13 @@ A common mistake is treating a single Copilot chat as a daily scratchpad. If you
 - **Start fresh frequently:** Use the "New Topic" (broom icon) button aggressively.
 - Keep conversations tightly scoped to one specific problem. This makes renaming (Strategy 1) much easier and ensures that if you export the chat (Strategy 2), it's coherent.
 
-## Strategy 4: Supplement Copilot with Platforms That Have Better Search
+## Strategy 4: Add Full-Text Search to Copilot with LLMnesia
 
-The desire to organize into folders usually stems from the inability to search effectively. Microsoft Copilot's native search is limited, but LLMnesia provides local full-text indexing for conversations at `copilot.microsoft.com`.
+The urge to organize into folders almost always comes down to one thing: being able to *find* a conversation again. That is a search problem, not a filing problem — and it is the gap Copilot's interface leaves widest. You can scan auto-generated titles, but you cannot search the actual words inside past conversations.
 
-If you regularly work on tasks where retrieval matters, consider routing those sessions through **ChatGPT** or **Claude** instead. Both have stronger conversation management, and ChatGPT offers a native full-text search bar that searches inside message content, not just titles.
+**LLMnesia** closes that gap without making you leave Copilot. It indexes your conversations at `copilot.microsoft.com` locally on your device as you browse, so you can run a full-text search across the real message content — not just titles. The same search also spans ChatGPT, Claude, Gemini, and other supported platforms, so one query covers every AI tool you use. The index never leaves your device. (This integration covers `copilot.microsoft.com`; Copilot interactions embedded in Microsoft 365 apps are handled differently — see the section below.)
 
-With **LLMnesia**, a single full-text search can cover Microsoft Copilot on the web together with ChatGPT, Claude, Gemini, and other supported platforms. The index stays on your device. This integration covers `copilot.microsoft.com`, not Copilot interactions embedded in Microsoft 365 apps.
-
-For Copilot specifically, Strategies 1–3 above (renaming, exporting to OneNote, and keeping chats tightly scoped) remain the most effective options available.
+If you happen to have a choice of assistant for a given task, ChatGPT and Claude also offer stronger native conversation management, and ChatGPT has a built-in full-text search bar. But for the Copilot work you are already doing, local indexing — combined with the renaming and export habits in Strategies 1–3 — gives you the most reliable retrieval available today.
 
 ## Strategy 5: Use Edge Favorites to Bookmark Key Sessions
 

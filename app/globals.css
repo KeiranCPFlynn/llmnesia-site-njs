@@ -3900,3 +3900,72 @@ main > section:nth-of-type(even) .how-num {
     grid-template-columns: 1fr;
   }
 }
+
+/* ===== INLINE INSTALL CTA (blog / use-case / compare articles) ===== */
+/* Reusable privacy-first banner placed after the article intro and again near
+   the end. Lives inside .prose / .content-body, so element rules use the
+   double-class form to win over inherited paragraph styling. */
+.inline-install-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+  padding: 1.75rem;
+  border: 1px solid var(--t-teal-edge);
+  border-radius: var(--radius-lg);
+  background: var(--t-teal-soft);
+}
+
+.inline-install-cta__body {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+.inline-install-cta .inline-install-cta__title {
+  margin: 0 0 0.4rem;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.inline-install-cta .inline-install-cta__text {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.inline-install-cta__action {
+  display: grid;
+  justify-items: start;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.inline-install-cta .inline-install-cta__note {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .inline-install-cta {
+    padding: 1.5rem 1.25rem;
+    gap: 1.1rem;
+  }
+
+  .inline-install-cta__action {
+    justify-items: stretch;
+    width: 100%;
+  }
+
+  .inline-install-cta__action .button {
+    width: 100%;
+  }
+}

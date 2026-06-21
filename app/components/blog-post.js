@@ -1,4 +1,4 @@
-import InstallLink from './install-link';
+import InlineInstallCta from './inline-install-cta';
 import SiteChrome from './site-chrome';
 import JsonLd from './json-ld';
 
@@ -31,7 +31,7 @@ function stripTypePrefix(label) {
   return label.replace(/^[^:]+:\s*/, '');
 }
 
-export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLinks }) {
+export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLinks, ctaProps = {} }) {
   const eyebrow = entry.category ? (CATEGORY_LABELS[entry.category] || entry.category) : 'Field notes';
   const mins = entry.readTime || readingTime(entry.content);
 
@@ -143,14 +143,7 @@ export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLink
           </section>
         )}
 
-        <div className="post__cta">
-          <h2>Stop losing AI answers</h2>
-          <p>
-            LLMnesia indexes your ChatGPT, Claude, and Gemini conversations automatically.
-            Search everything from one place — no copy-paste, no repeat prompting.
-          </p>
-          <InstallLink className="button button-large" />
-        </div>
+        <InlineInstallCta {...ctaProps} />
 
         <footer className="post__foot">
           <a href="/blog">← All field notes</a>

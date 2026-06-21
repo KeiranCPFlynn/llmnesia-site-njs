@@ -365,9 +365,21 @@ export default function SiteBehavior() {
         return;
       }
 
-      const installLink = target.closest(`a[href="${CHROME_WEB_STORE_URL}"]`);
+      // Prefix match so UTM-tagged CTA links (…?utm_content=copilot) are caught
+      // alongside plain install buttons. platform/placement come from the link's
+      // UTM params, defaulting to generic/other for untagged buttons.
+      const installLink = target.closest(`a[href^="${CHROME_WEB_STORE_URL}"]`);
       if (installLink) {
-        trackEvent('install_click');
+        let platform = 'generic';
+        let placement = 'other';
+        try {
+          const params = new URL(installLink.href).searchParams;
+          platform = params.get('utm_content') || platform;
+          placement = params.get('utm_medium') || placement;
+        } catch {
+          // Malformed href — fall back to defaults.
+        }
+        trackEvent('install_click', { platform, placement });
         return;
       }
 

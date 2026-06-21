@@ -1,4 +1,5 @@
 import InstallLink from './install-link';
+import InlineInstallCta from './inline-install-cta';
 import SiteChrome from './site-chrome';
 import JsonLd from './json-ld';
 
@@ -34,7 +35,7 @@ function stripTypePrefix(label) {
   return label.replace(/^[^:]+:\s*/, '');
 }
 
-export default function ContentPage({ entry, body, breadcrumb, schemas, relatedLinks }) {
+export default function ContentPage({ entry, body, breadcrumb, schemas, relatedLinks, ctaProps = {} }) {
   const typeLabel = TYPE_LABELS[entry.type] || entry.type;
   const categoryLabel = entry.category ? (CATEGORY_LABELS[entry.category] || entry.category) : null;
   const mins = readingTime(entry.content);
@@ -154,14 +155,7 @@ export default function ContentPage({ entry, body, breadcrumb, schemas, relatedL
             )}
           </section>
 
-          <div className="content-bottom-cta">
-            <h2>Stop losing AI answers</h2>
-            <p>
-              LLMnesia indexes your ChatGPT, Claude, and Gemini conversations automatically.
-              Search everything from one place — no copy-paste, no repeat prompting.
-            </p>
-            <InstallLink className="button button-large" />
-          </div>
+          <InlineInstallCta {...ctaProps} />
         </article>
       </main>
     </SiteChrome>

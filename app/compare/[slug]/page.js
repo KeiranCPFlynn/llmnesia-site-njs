@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation';
 import ContentPage from '../../components/content-page';
 import {
   getContentBySlug,
+  getCtaProps,
   getRelatedLinks,
   getStaticParamsForType,
-  renderMdx
+  renderMdxWithCta
 } from '../../../lib/content';
 import { buildPageMetadata, buildOgImageUrl } from '../../../lib/metadata';
 import { breadcrumbSchema, faqSchema, webPageSchema } from '../../../lib/schema';
@@ -35,7 +36,8 @@ export default async function ComparePage({ params }) {
     notFound();
   }
 
-  const body = await renderMdx(entry.content);
+  const ctaProps = getCtaProps(entry);
+  const body = await renderMdxWithCta(entry.content, ctaProps);
   const breadcrumb = [
     { name: 'Home', path: '/' },
     { name: 'Compare', path: '/compare' },
@@ -51,6 +53,7 @@ export default async function ComparePage({ params }) {
       breadcrumb={breadcrumb}
       schemas={schemas}
       relatedLinks={getRelatedLinks(entry)}
+      ctaProps={ctaProps}
     />
   );
 }

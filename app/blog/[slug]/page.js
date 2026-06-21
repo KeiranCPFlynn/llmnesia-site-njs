@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation';
 import BlogPost from '../../components/blog-post';
 import {
   getContentBySlug,
+  getCtaProps,
   getRelatedLinks,
   getStaticParamsForType,
-  renderMdx
+  renderMdxWithCta
 } from '../../../lib/content';
 import { buildPageMetadata, buildOgImageUrl } from '../../../lib/metadata';
 import { articleSchema, breadcrumbSchema } from '../../../lib/schema';
@@ -36,7 +37,8 @@ export default async function BlogArticlePage({ params }) {
     notFound();
   }
 
-  const body = await renderMdx(entry.content);
+  const ctaProps = getCtaProps(entry);
+  const body = await renderMdxWithCta(entry.content, ctaProps);
   const breadcrumb = [
     { name: 'Home', path: '/' },
     { name: 'Blog', path: '/blog' },
@@ -52,6 +54,7 @@ export default async function BlogArticlePage({ params }) {
       breadcrumb={breadcrumb}
       schemas={schemas}
       relatedLinks={getRelatedLinks(entry)}
+      ctaProps={ctaProps}
     />
   );
 }
