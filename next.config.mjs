@@ -20,6 +20,18 @@ const nextConfig = {
         source: '/privacy-policy.html',
         destination: '/privacy-policy',
         permanent: true
+      },
+      // Common mistyped / aliased paths that were 404ing (see GA page_not_found).
+      // Contact lives as an anchor on the homepage; privacy page is /privacy-policy.
+      {
+        source: '/contact',
+        destination: '/#contact',
+        permanent: true
+      },
+      {
+        source: '/privacy',
+        destination: '/privacy-policy',
+        permanent: true
       }
     ];
   }
