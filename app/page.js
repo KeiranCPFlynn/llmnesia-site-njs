@@ -24,7 +24,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Will it index my older chat history too?',
     answer:
-      'Yes. You can import your existing history from ChatGPT, Claude, Gemini, and Perplexity in a few clicks. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
+      'Yes. You can import your existing history from ChatGPT, Claude, Gemini, Perplexity, and Grok in a few clicks. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
   },
   {
     question: 'Which AI platforms are supported today?',

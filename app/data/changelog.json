@@ -1,5 +1,15 @@
 [
   {
+    "version": "0.1.10",
+    "date": "2026-06-22",
+    "title": "Index older Grok chats, See which assistants you use most & 1 fix",
+    "highlights": [
+      "Index older Grok chats — open grok.com and click \"Index older chats\" to pull your past Grok conversations into search, the same way ChatGPT, Claude, Gemini and Perplexity already work. It runs quietly in the background",
+      "See which assistants you use most — the Settings page now shows a \"Usage by platform\" breakdown under Indexing status, with a sorted bar for each assistant (ChatGPT, Claude, Gemini, and the rest) using that assistant's colour from search results. You can filter by how recently you used each one (last 7, 30, 90 days, or all time) and switch between counting whole chats or total messages, so you can answer questions like \"which did I lean on most this week?\" In the all-time view each row also shows when you last used that assistant, making it easy to spot ones you've drifted away from. Your most-used tools rise to the top and rarely-used ones fade at the bottom.",
+      "\"Usage by platform\" only lists assistants you actually use — the breakdown under Indexing status no longer shows an internal \"Anthropic Console\" entry that isn't a supported assistant, matching the rest of Settings."
+    ]
+  },
+  {
     "version": "0.1.9",
     "date": "2026-06-12",
     "title": "Microsoft Copilot support, import Gemini & Perplexity history from the welcome page & 4 changes",
