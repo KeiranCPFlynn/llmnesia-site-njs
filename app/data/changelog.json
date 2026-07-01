@@ -1,5 +1,23 @@
 [
   {
+    "version": "0.2.0",
+    "date": "2026-06-26",
+    "title": "Open several search results at once, A keyboard shortcut to drop in your context & 3 fixes",
+    "highlights": [
+      "Open several search results at once — Cmd-click (Ctrl-click on Windows/Linux) a search result to open it in a new background tab while the search box stays open, so you can fan out a handful of chats from a single search before switching away. A normal click still opens the result and closes the box as before.",
+      "A keyboard shortcut to drop in your context — press Alt+Shift+M on any chat to add your saved memory straight into the message box, without reaching for the \"Add my context\" prompt. It uses your starred memory by default, keeps anything you've already typed, and shows a small confirmation. Prefer a different key? Change it any time at chrome://extensions/shortcuts.",
+      "Carry your context to any AI — \"Memory\" — tell any assistant who you are and what you're working on, without re-explaining yourself every time you switch tools. In Settings → Memory, import what your AIs already know about you: pick the platform you're importing from, then paste it in. Claude lets you copy your memory straight from its settings",
+      "A guided welcome for Memory — the welcome screen now introduces the \"Add my context\" feature with a short, self-running animation showing the prompt being tapped and your context filling the message box, plus a \"Set up my memory\" button that takes you straight to where you paste it in. The first time the prompt appears on each platform, a short tip points it out so it's never a mystery chip you scroll past — capped at a few platforms, and stopped for good the moment you use it once. If you save a memory but haven't used it after a few new chats, a one-time reminder nudges you to give it a try.",
+      "See what each memory costs before you add it — memory sizes are now shown as an estimated token cost (e.g. \"~450 tokens\") instead of raw character counts, both in Settings and in the new-chat picker. The picker also totals up what your selection adds to the message, and gives a gentle heads-up when it's large for a small free-tier context window like Copilot or Perplexity — so a big memory doesn't quietly eat your context.",
+      "Add a memory straight from the popup — the extension popup now has a tuck-away \"Add a memory\" box, so you can jot down something you want every AI to know (and optionally star it to pre-select it on new chats) without opening full Settings. A \"Manage memories\" link jumps you straight to the right Settings section.",
+      "Rename and edit your memories — each memory in Settings → Memory now has an \"Edit\" button to change its label or text after saving.",
+      "Turn the memory prompt off if it's not for you — the popup now has a \"Memory pill\" on/off switch, so if you'd rather not see the \"Add my context\" prompt on new chats you can hide it entirely. It takes effect right away, and doesn't affect search or indexing.",
+      "Search keeps working after the extension updates — when LLMnesia updated (or was reloaded) while you had a ChatGPT or Claude tab open, the search pill could get stuck on \"Checking…\", open to an empty results box, or show a leftover empty box layered under the real one. Now, when that happens the pill switches to a clear \"Reload to update\" prompt — click it (or refresh the page) and search is back to normal, instead of silently breaking.",
+      "The search pill no longer hangs on \"Checking…\" — revisiting a chat you'd just left could leave the pill spinning indefinitely",
+      "The memory prompt lines up with your message box — it now sits centred under the message box and follows it when a site sidebar opens or closes, instead of drifting off to one side. It no longer flashes in the middle of the screen before settling, or jumps back to centre while the page is loading."
+    ]
+  },
+  {
     "version": "0.1.10",
     "date": "2026-06-22",
     "title": "Index older Grok chats & See which assistants you use most",

@@ -50,32 +50,33 @@ function buildCopy(platform, tone) {
   }
 
   return {
-    title: 'Searching for an old AI answer?',
-    text: `LLMnesia searches ${GENERIC_TOOLS} — privately on your device.`
+    title: 'Search all your AI chats in one place',
+    text: 'LLMnesia finds past ChatGPT, Claude, Gemini, Copilot, Perplexity and other AI conversations instantly — privately, on your device.'
   };
 }
 
-export default function InlineInstallCta({ platform = null, tone = 'default' }) {
+export default function InlineInstallCta({ platform = null, tone = 'default', placement = 'inline', slug = null }) {
   const copy = buildCopy(platform, tone);
   const utm = {
     utm_source: 'blog',
     utm_medium: 'inline_cta',
     utm_campaign: 'blog_install_cta',
     // Segments installs by which page's CTA converted (e.g. copilot vs generic).
-    utm_content: platform || 'generic'
+    utm_content: platform || 'generic',
+    ...(slug && { utm_term: slug })
   };
 
   return (
-    <aside className="inline-install-cta" aria-label="Install LLMnesia">
+    <aside className="inline-install-cta" aria-label="Install LLMnesia" data-cta-placement={placement}>
       <div className="inline-install-cta__body">
         <p className="inline-install-cta__title">{copy.title}</p>
         <p className="inline-install-cta__text">{copy.text}</p>
       </div>
       <div className="inline-install-cta__action">
         <InstallLink className="button button-large" utm={utm}>
-          Install free Chrome extension
+          Add to Chrome — free
         </InstallLink>
-        <p className="inline-install-cta__note">No account. No chat data leaves your device.</p>
+        <p className="inline-install-cta__note">No account. No cloud. Your chats stay local.</p>
       </div>
     </aside>
   );

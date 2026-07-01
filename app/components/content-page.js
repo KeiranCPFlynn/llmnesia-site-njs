@@ -155,7 +155,7 @@ export default function ContentPage({ entry, body, breadcrumb, schemas, relatedL
             )}
           </section>
 
-          <InlineInstallCta {...ctaProps} />
+          <InlineInstallCta {...ctaProps} placement="bottom" />
         </article>
       </main>
     </SiteChrome>

@@ -372,14 +372,23 @@ export default function SiteBehavior() {
       if (installLink) {
         let platform = 'generic';
         let placement = 'other';
+        let campaign = null;
+        let slug = null;
         try {
           const params = new URL(installLink.href).searchParams;
           platform = params.get('utm_content') || platform;
           placement = params.get('utm_medium') || placement;
+          campaign = params.get('utm_campaign') || null;
+          slug = params.get('utm_term') || null;
         } catch {
           // Malformed href — fall back to defaults.
         }
         trackEvent('install_click', { platform, placement });
+        if (campaign === 'blog_install_cta' && slug) {
+          const ctaEl = installLink.closest('[data-cta-placement]');
+          const ctaPlacement = ctaEl ? ctaEl.getAttribute('data-cta-placement') : 'other';
+          trackEvent('blog_install_cta_clicked', { slug, placement: ctaPlacement });
+        }
         return;
       }
 

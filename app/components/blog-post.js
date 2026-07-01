@@ -143,7 +143,13 @@ export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLink
           </section>
         )}
 
-        <InlineInstallCta {...ctaProps} />
+        <InlineInstallCta {...ctaProps} placement="bottom" />
+
+        <section className="post__section post__install-cta-alt" aria-label="Install LLMnesia">
+          <p>
+            <strong>Search all your AI conversations in one place</strong> — LLMnesia indexes your ChatGPT, Claude, Gemini, Grok, and 10+ other AI chats locally on your device. No account, no cloud, completely private. <a href="/">Install LLMnesia free →</a>
+          </p>
+        </section>
 
         <footer className="post__foot">
           <a href="/blog">← All field notes</a>
