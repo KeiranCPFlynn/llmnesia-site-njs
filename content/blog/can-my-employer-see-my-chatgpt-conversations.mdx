@@ -1,7 +1,7 @@
 ---
 title: "Can My Employer See My ChatGPT Conversations?"
 slug: "can-my-employer-see-my-chatgpt-conversations"
-description: "Whether your employer can see your ChatGPT chats depends on the account, the device, and the network. Here is what is visible in each case, and how to keep work AI private."
+description: "Whether your employer can see your ChatGPT chats depends on the account, the device, and the network. See what ChatGPT Workspace colleagues and admins can see, and how to keep work AI private."
 publishDate: "2026-06-04"
 updatedDate: "2026-06-04"
 author: "Keiran Flynn"
@@ -11,6 +11,7 @@ secondaryKeywords:
   - "is chatgpt private at work"
   - "does my company see my chatgpt prompts"
   - "chatgpt enterprise admin visibility"
+  - "can chatgpt workspace searches be seen by colleagues"
 intent: "informational"
 faq:
   - question: "Can my employer read my ChatGPT conversations?"
@@ -60,6 +61,19 @@ This is the layer people focus on, and the answer splits cleanly.
 **Personal ChatGPT account (Free, Plus, Pro):** your employer is not the administrator, so they have no direct way to read your conversations through OpenAI. Managers cannot view other people's chats unless those chats are intentionally shared.
 
 **Managed ChatGPT Enterprise or Team account:** the organisation administers the workspace. Admins can access conversation data through audit logs, admin export, or a compliance API. That can include conversation titles and, in many cases, full content. This access is generally reserved for litigation, investigations, and audits rather than routine monitoring, but the capability is built into business plans. If your company provisioned your ChatGPT login, assume it is a managed account.
+
+## Can ChatGPT Workspace colleagues see your searches or chats?
+
+Short answer: an ordinary colleague on the same ChatGPT Workspace generally cannot see your private chats or your search history unless you deliberately share them. But "workspace" changes the picture from a plain personal account, because a workspace has owners and admins who sit above regular members, and their level of access depends on the plan and how the workspace is configured.
+
+- **Ordinary colleague:** cannot browse your conversation history or see what you searched for. Chats, prompts, and your own search queries inside ChatGPT are scoped to your account, not visible to other members just because you share a workspace.
+- **Workspace admin/owner:** may have administrative controls that go beyond what a regular member sees, such as audit logs, compliance exports, or a compliance API, depending on the plan and configuration. This access is generally used for security, legal, and compliance purposes rather than casual browsing, but the technical capability can exist at the admin level even when no colleague can see it.
+- **Shared chat/link:** if you explicitly share a conversation (a shareable link, an exported chat, or a project you invite others into), anyone with that link or access can see its contents. That exposure comes from your own sharing action, not from workspace membership itself.
+- **Company-managed device/browser:** separate from the ChatGPT account layer entirely. If you're on a company-managed device or browser, endpoint monitoring or browser management tools can log activity regardless of what ChatGPT itself shows to colleagues or admins.
+
+The practical takeaway: colleagues are not admins, and being on the same workspace does not mean being able to see each other's chats or searches. Admin-level access is a plan and configuration question, not something every teammate gets by default.
+
+If you want a searchable record of your own ChatGPT history that stays fully under your control, [LLMnesia](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf) searches your conversations locally, on your own device. It does not send your conversation contents to a server, so your search index isn't something a colleague or admin could query even in principle.
 
 ## Layer 2: the device you use
 

@@ -41,6 +41,14 @@ relatedSlugs:
 
 By default, Grok can use your conversations with it, and for non-EU users your public X posts, to train xAI's models. The setting is opt-in by default, so this happens automatically unless you turn it off. What makes Grok different from a standalone assistant is its connection to X: the training data it can draw on is broader than just your chats. This post explains exactly what is used, how to opt out, and how to keep a private record.
 
+## Does Grok use user conversations for training?
+
+Yes. By default, Grok uses your conversations with it to train xAI's models, and for non-EU users it also draws on your public X posts. This is an opt-in-by-default setting, so unless you go into X's privacy settings and turn it off, both your chats and your public activity are eligible training data. You can disable this going forward at any time, but the change only affects future data, not conversations already used for training. For details on how long that conversation data sticks around before and after you opt out, see [Grok conversation history and retention limits](/blog/grok-conversation-history-limits).
+
+## Does xAI use Grok conversations for training?
+
+Yes — xAI is the company behind Grok, and "does xAI train on Grok conversations" and "does Grok train on your conversations" describe the same setting. xAI is the model developer, Grok is the assistant product, and X is the platform the data flows through. Whichever wording you search for, the answer and the opt-out steps below are identical.
+
 ## The short answer
 
 Grok is built by xAI and tied to the X platform. Two streams of your data can feed training:
@@ -95,6 +103,15 @@ These do not replace the opt-out; they reduce how much of your activity is eligi
 
 For users in the EU, there is an additional option beyond the in-app toggle. You can send a written objection to xAI stating that you object to your personal data being processed for the purpose of training Grok, under Article 21 of the GDPR. This reflects the stronger data rights that apply in the EU and is in addition to, not a replacement for, the setting above.
 
+## How to reduce Grok/X data sharing
+
+A short checklist for cutting down what Grok and X can use from you:
+
+- **Review your current X/Grok privacy settings.** Open Settings and privacy > Privacy and safety > Grok and third-party collaborators and check what's actually enabled today, since defaults and toggles can change.
+- **Turn off optional data sharing where available.** Disable the option that allows your public data and Grok interactions to be used for training.
+- **Avoid entering sensitive data into Grok.** Treat conversations as potentially eligible for training unless you've confirmed the opt-out is on.
+- **Use local search/history tools for private retrieval.** A local-first tool like LLMnesia lets you search your own Grok chat history on-device, without relying on xAI's retention or training settings.
+
 ## How Grok compares to other assistants
 
 Grok now follows the same default-on, opt-out pattern as the other major consumer assistants, with the X-posts twist.
@@ -110,9 +127,11 @@ For the full breakdown on the others, see [does ChatGPT train on your conversati
 
 ## Keeping a private, searchable record
 
-Opting out controls training, but it does not solve retrieval. Like other platforms, Grok's native history is not built for full-text search of your past messages, so finding an old answer later is hard.
+Opting out controls training, but it does not solve retrieval. Like other platforms, Grok's native history is not built for full-text search of your past messages, so finding an old answer later is hard — see how to [search your Grok conversation history](/blog/search-grok-conversation-history) for the methods that actually work today.
 
 LLMnesia is a free, local-first Chrome extension that searches your AI chat history across ChatGPT, Claude, Gemini and 10+ platforms. It indexes your conversations on your own device as you browse them, so you keep a full-text searchable archive locally, independent of xAI's settings, and nothing is uploaded to LLMnesia's servers. See [local-first AI tools and privacy](/blog/local-first-ai-tools-privacy).
+
+If a conversation you're trying to find was actually deleted rather than just hard to search, the training settings above won't help — see [recover deleted Grok conversations](/blog/recover-deleted-grok-conversation) for what's actually possible.
 
 For context on how long xAI retains data, see [Grok's full conversation history and retention policy](/blog/grok-conversation-history-limits). Or compare [how all AI platforms handle chat history](/blog/ai-conversation-history-limits-compared).
 

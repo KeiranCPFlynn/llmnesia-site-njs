@@ -1,7 +1,7 @@
 ---
 title: "DeepSeek Conversation History: Limits, Retention, and Search Gaps"
 slug: "deepseek-conversation-history-limits"
-description: "DeepSeek stores your chat history in the web app sidebar, but documentation on retention windows, storage caps, and search is sparse. This guide explains what DeepSeek keeps, how to navigate large histories, and how to make older conversations findable."
+description: "DeepSeek stores your chat history in the web app sidebar, but documentation on retention windows, storage caps, and search is sparse. This guide explains what DeepSeek keeps, whether DeepSeek has memory across chats, how to navigate large histories, and how to make older conversations findable."
 publishDate: "2026-05-21"
 updatedDate: "2026-05-21"
 author: "Keiran Flynn"
@@ -87,6 +87,17 @@ It is worth separating two ideas that often get conflated:
 **Conversation history** is the archive of past chats. This is not bound by the context window. A conversation that was once active and is now sitting in your sidebar consumes storage, not context.
 
 If DeepSeek "forgets" something mid-conversation, that is a context limit. If you cannot find an old chat, that is a history retrieval limit. The fixes are different.
+
+## Does DeepSeek have memory across chats?
+
+No — DeepSeek does not carry persistent memory between separate conversations the way some assistants now do. It's worth separating four things that get bundled together under "memory":
+
+- **Current-chat context:** within a single open conversation, DeepSeek's model can reference everything said earlier in that same thread, up to its context window limit. This is active, working memory for that one session only.
+- **Saved conversation history:** every past conversation is stored in your sidebar and remains fully readable if you reopen it. This is a record, not memory — DeepSeek isn't drawing on it automatically, you have to go back and open the thread yourself.
+- **Persistent memory across separate chats:** DeepSeek does not automatically carry facts, preferences, or context from one conversation into a new, unrelated one. Starting a new chat starts with a blank context; it does not "remember" what you discussed yesterday unless you paste it back in.
+- **Searching old chats:** finding something you said in a past conversation is a retrieval problem, not a memory feature. DeepSeek's built-in search only matches conversation titles, so if you need to search the actual body of old chats, that requires an external tool.
+
+This is where **LLMnesia** fits in: it helps you search previously indexed AI conversations locally, on your own device, across full message content rather than just titles. That solves the retrieval problem — finding what you already said — but it does not change DeepSeek's own memory behavior. LLMnesia doesn't feed old conversations back into a new chat's context or give DeepSeek persistent memory; it just makes your existing history findable.
 
 ## DeepSeek Pro / paid tiers and history
 
