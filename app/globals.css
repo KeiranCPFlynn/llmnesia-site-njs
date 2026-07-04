@@ -2242,6 +2242,86 @@ main > section:nth-of-type(even) .how-num {
   background: var(--t-teal);
 }
 
+/* ----- Major release ----- */
+.changelog-entry.is-major {
+  border-color: var(--t-teal-edge);
+  box-shadow: inset 3px 0 0 var(--t-teal);
+}
+
+.changelog-badge {
+  justify-self: start;
+  margin-top: 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--t-teal);
+  background: var(--t-teal-soft);
+  border: 1px solid var(--t-teal-edge);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+}
+
+.changelog-summary {
+  margin: 0;
+  max-width: 46rem;
+  color: var(--t-ink-2);
+  font-size: clamp(1.02rem, 1.6vw, 1.12rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.changelog-features {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 0.25rem;
+}
+
+.changelog-feature {
+  padding-left: 1rem;
+  border-left: 2px solid var(--t-teal-edge);
+}
+
+.changelog-feature h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--t-ink);
+}
+
+.changelog-feature p {
+  margin: 0;
+  max-width: 46rem;
+  color: var(--t-ink-2);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.changelog-more {
+  margin-top: 0.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--t-rule);
+}
+
+.changelog-more-label {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-ink-3);
+}
+
+.changelog-more .changelog-highlights {
+  color: var(--t-ink-3);
+  font-size: 0.92rem;
+}
+
+.changelog-more .changelog-highlights li::before {
+  background: var(--t-ink-3);
+}
+
 @media (max-width: 900px) {
   .changelog-main {
     padding-top: 3rem;

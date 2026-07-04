@@ -30,7 +30,10 @@ function releaseId(version) {
 }
 
 export default function ChangelogPage() {
-  const latestRelease = releases[0];
+  // Entries flagged `published: false` are staged but hidden — flip the flag
+  // (or delete it) in app/data/changelog.json to make a release public.
+  const published = releases.filter((release) => release.published !== false);
+  const latestRelease = published[0];
 
   return (
     <SiteChrome>
@@ -58,7 +61,7 @@ export default function ChangelogPage() {
           <aside className="changelog-rail" aria-label="Release index">
             <p className="changelog-rail-label">Releases</p>
             <ol>
-              {releases.map((release) => (
+              {published.map((release) => (
                 <li key={release.version}>
                   <a href={`#${releaseId(release.version)}`}>
                     <span>v{release.version}</span>
@@ -70,21 +73,53 @@ export default function ChangelogPage() {
           </aside>
 
           <div className="changelog-list">
-            {releases.map((release) => (
-              <article className="changelog-entry" id={releaseId(release.version)} key={release.version}>
+            {published.map((release) => (
+              <article
+                className={`changelog-entry${release.major ? ' is-major' : ''}`}
+                id={releaseId(release.version)}
+                key={release.version}
+              >
                 <div className="changelog-entry-meta">
                   <span className="changelog-version">v{release.version}</span>
                   <time className="changelog-date" dateTime={release.date}>
                     {formatDate(release.date)}
                   </time>
+                  {release.major && <span className="changelog-badge">Major release</span>}
                 </div>
                 <div className="changelog-entry-body">
                   <h2 className="changelog-title">{release.title}</h2>
-                  <ul className="changelog-highlights">
-                    {release.highlights.map((item, i) => (
-                      <li key={i}>{item}</li>
-                    ))}
-                  </ul>
+
+                  {release.summary && <p className="changelog-summary">{release.summary}</p>}
+
+                  {release.features && (
+                    <div className="changelog-features">
+                      {release.features.map((feature, i) => (
+                        <div className="changelog-feature" key={i}>
+                          <h3>{feature.name}</h3>
+                          <p>{feature.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {release.highlights && (
+                    <ul className="changelog-highlights">
+                      {release.highlights.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {release.more && (
+                    <div className="changelog-more">
+                      <p className="changelog-more-label">Also in this release</p>
+                      <ul className="changelog-highlights">
+                        {release.more.map((item, i) => (
+                          <li key={i}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
