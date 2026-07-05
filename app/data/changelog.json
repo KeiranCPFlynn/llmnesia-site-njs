@@ -2,7 +2,7 @@
   {
     "version": "0.2.0",
     "date": "2026-07-04",
-    "published": false,
+    "published": true,
     "major": true,
     "title": "The biggest LLMnesia update yet — Memory, and search by meaning",
     "summary": "0.2.0 is the largest release since launch. Two headline features change how you work across assistants: a portable Memory that carries your context into any AI, and semantic search that finds chats by meaning rather than exact words. Around them sit summarise-and-continue, starred chats, a built-in shortcuts sheet, and a wave of capture fixes — all still running entirely on your device.",
