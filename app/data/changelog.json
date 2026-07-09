@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.2.1",
+    "date": "2026-07-09",
+    "title": "A setup checklist in the popup, a \"Your year in AI\" snapshot & 4 more changes",
+    "highlights": [
+      "A setup checklist in the popup — a short three-step checklist (import your history, turn on memory, try a \"Continue in…\" handoff) guides you through the setup that makes LLMnesia useful, with each step linking straight to where you do it and ticking off once done.",
+      "Choose how many results you see — the result count at the bottom of the search palette is now clickable: pick 30, 50, 100, 250, or 500 to set both how many recent chats show when the box is empty and how many matches a search returns. Handy after importing hundreds of chats. Also in Settings, and the two stay in sync.",
+      "A one-click star filter in search — a ★ button in the search palette's toolbar shows just your starred chats in a single click, without opening the Filters panel. It stays in sync with the panel's \"Starred only\" switch.",
+      "Break your usage down by year — the \"Usage by platform\" chart in Settings → Indexing status now offers per-year views (2026, 2025, …) alongside the 7/30/90-day and all-time ranges.",
+      "A \"Your year in AI\" snapshot — Settings → Indexing status now opens with a recap of your year: how many chats and messages you've had, how many different AIs you used, and a month-by-month sparkline with your busiest month highlighted.",
+      "Fixes — the \"Import from…\" panel on the welcome screen now appears immediately and stays until you choose, and the popup no longer flashes a false \"couldn't index this site\" warning while a page is still loading."
+    ]
+  },
+  {
     "version": "0.2.0",
     "date": "2026-07-04",
     "published": true,
