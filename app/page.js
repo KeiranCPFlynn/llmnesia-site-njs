@@ -4,9 +4,9 @@ import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
 
 export const metadata = buildPageMetadata({
-  title: 'LLMnesia | Stop losing answers in AI chats.',
+  title: 'Search ChatGPT, Claude & Gemini History Privately | LLMnesia',
   description:
-    'Stop losing answers in AI chats. LLMnesia indexes conversations across ChatGPT, Claude, Gemini and more so you can find old prompts, answers, ideas, and decisions instantly.',
+    'LLMnesia is a free Chrome extension that searches your AI chat history across 11 AI tools. Local-first: your conversations stay on your device.',
   canonicalPath: '/'
 });
 
