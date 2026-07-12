@@ -23,8 +23,8 @@ export const metadata = {
     }
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
     apple: '/logo.svg'
   },
   openGraph: {
