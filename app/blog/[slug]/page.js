@@ -8,7 +8,13 @@ import {
   renderMdxWithCta
 } from '../../../lib/content';
 import { buildPageMetadata, buildOgImageUrl } from '../../../lib/metadata';
-import { articleSchema, breadcrumbSchema } from '../../../lib/schema';
+import {
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  softwareApplicationSchema,
+  howToSchema
+} from '../../../lib/schema';
 
 export function generateStaticParams() {
   return getStaticParamsForType('blog');
@@ -45,7 +51,20 @@ export default async function BlogArticlePage({ params }) {
     { name: entry.title, path: entry.canonicalPath }
   ];
 
-  const schemas = [articleSchema(entry), breadcrumbSchema(breadcrumb)];
+  const schemas = [
+    articleSchema(entry),
+    breadcrumbSchema(breadcrumb),
+    softwareApplicationSchema()
+  ];
+
+  if (Array.isArray(entry.faq) && entry.faq.length > 0) {
+    schemas.push(faqSchema(entry));
+  }
+
+  const howTo = howToSchema(entry);
+  if (howTo) {
+    schemas.push(howTo);
+  }
 
   return (
     <BlogPost
