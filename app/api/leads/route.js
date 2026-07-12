@@ -2,7 +2,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ALLOWED_SOURCES = new Set([
   'website_homepage',
   'extension_onboarding',
-  'extension_founding'
+  'extension_founding',
+  'extension_vault_waitlist'
 ]);
 
 function jsonResponse(body, status = 200) {
@@ -35,6 +36,8 @@ function normalizeLeadBody(body) {
     email: body.email,
     source: body.source,
     context: body.context,
+    variant: body.variant,
+    feedback: body.feedback,
     captured_at: body.captured_at,
     install_id: body.install_id,
     install_ts: body.install_ts,
@@ -129,6 +132,8 @@ export async function POST(request) {
     email,
     source: normalizeSource(lead.source),
     context: normalizeString(lead.context, 120),
+    variant: normalizeString(lead.variant, 40),
+    feedback: normalizeString(lead.feedback, 2000),
     captured_at: normalizeString(lead.captured_at, 80) || new Date().toISOString(),
     install_id: normalizeString(lead.install_id, 120),
     install_ts: Number.isFinite(Number(lead.install_ts)) ? Math.floor(Number(lead.install_ts)) : 0,
