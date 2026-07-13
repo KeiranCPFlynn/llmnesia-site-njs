@@ -29,11 +29,72 @@ function releaseId(version) {
   return `v-${version.replace(/\./g, '-')}`;
 }
 
+// Bucket the newest-first list into groups anchored by a `major` release.
+// Because minor releases are newer than the major they follow, they appear
+// *above* their anchor in a newest-first list — so we buffer non-major
+// entries and attach them to the next major we hit. Anything left over after
+// the last major (older releases with no headline anchor) becomes an
+// "Earlier releases" group at the bottom.
+function groupReleases(published) {
+  const groups = [];
+  let buffer = [];
+
+  for (const release of published) {
+    if (release.major) {
+      groups.push({ type: 'major', anchor: release, minors: buffer });
+      buffer = [];
+    } else {
+      buffer.push(release);
+    }
+  }
+
+  if (buffer.length) {
+    groups.push({ type: 'earlier', anchor: null, minors: buffer });
+  }
+
+  return groups;
+}
+
+function MinorEntry({ release }) {
+  return (
+    <details className="changelog-minor" id={releaseId(release.version)}>
+      <summary className="changelog-minor-summary">
+        <span className="changelog-minor-version">v{release.version}</span>
+        <time className="changelog-minor-date" dateTime={release.date}>
+          {formatShortDate(release.date)}
+        </time>
+        <span className="changelog-minor-title">{release.title}</span>
+        <span className="changelog-minor-chevron" aria-hidden="true" />
+      </summary>
+      <div className="changelog-minor-body">
+        {release.highlights && (
+          <ul className="changelog-highlights">
+            {release.highlights.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        )}
+        {release.more && (
+          <div className="changelog-more">
+            <p className="changelog-more-label">Also in this release</p>
+            <ul className="changelog-highlights">
+              {release.more.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </details>
+  );
+}
+
 export default function ChangelogPage() {
   // Entries flagged `published: false` are staged but hidden — flip the flag
   // (or delete it) in app/data/changelog.json to make a release public.
   const published = releases.filter((release) => release.published !== false);
   const latestRelease = published[0];
+  const groups = groupReleases(published);
 
   return (
     <SiteChrome>
@@ -60,68 +121,117 @@ export default function ChangelogPage() {
         <div className="changelog-layout">
           <aside className="changelog-rail" aria-label="Release index">
             <p className="changelog-rail-label">Releases</p>
-            <ol>
-              {published.map((release) => (
-                <li key={release.version}>
-                  <a href={`#${releaseId(release.version)}`}>
-                    <span>v{release.version}</span>
-                    <time dateTime={release.date}>{formatShortDate(release.date)}</time>
-                  </a>
+            <ol className="changelog-rail-groups">
+              {groups.map((group) => (
+                <li key={group.anchor ? group.anchor.version : 'earlier'}>
+                  {group.type === 'major' ? (
+                    <a
+                      href={`#${releaseId(group.anchor.version)}`}
+                      className="changelog-rail-anchor changelog-rail-anchor--major"
+                    >
+                      <span>v{group.anchor.version}</span>
+                      <time dateTime={group.anchor.date}>
+                        {formatShortDate(group.anchor.date)}
+                      </time>
+                    </a>
+                  ) : (
+                    <p className="changelog-rail-heading">Earlier releases</p>
+                  )}
+                  {group.minors.length > 0 && (
+                    <ol className="changelog-rail-minors">
+                      {group.minors.map((release) => (
+                        <li key={release.version}>
+                          <a
+                            href={`#${releaseId(release.version)}`}
+                            className="changelog-rail-anchor"
+                          >
+                            <span>v{release.version}</span>
+                            <time dateTime={release.date}>
+                              {formatShortDate(release.date)}
+                            </time>
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
                 </li>
               ))}
             </ol>
           </aside>
 
           <div className="changelog-list">
-            {published.map((release) => (
-              <article
-                className={`changelog-entry${release.major ? ' is-major' : ''}`}
-                id={releaseId(release.version)}
-                key={release.version}
+            {groups.map((group) => (
+              <section
+                className="changelog-group"
+                key={group.anchor ? group.anchor.version : 'earlier'}
               >
-                <div className="changelog-entry-meta">
-                  <span className="changelog-version">v{release.version}</span>
-                  <time className="changelog-date" dateTime={release.date}>
-                    {formatDate(release.date)}
-                  </time>
-                  {release.major && <span className="changelog-badge">Major release</span>}
-                </div>
-                <div className="changelog-entry-body">
-                  <h2 className="changelog-title">{release.title}</h2>
+                {group.type === 'major' ? (
+                  <article className="changelog-entry is-major" id={releaseId(group.anchor.version)}>
+                    <div className="changelog-entry-meta">
+                      <span className="changelog-version">v{group.anchor.version}</span>
+                      <time className="changelog-date" dateTime={group.anchor.date}>
+                        {formatDate(group.anchor.date)}
+                      </time>
+                      <span className="changelog-badge">Major release</span>
+                    </div>
+                    <div className="changelog-entry-body">
+                      <h2 className="changelog-title">{group.anchor.title}</h2>
 
-                  {release.summary && <p className="changelog-summary">{release.summary}</p>}
+                      {group.anchor.summary && (
+                        <p className="changelog-summary">{group.anchor.summary}</p>
+                      )}
 
-                  {release.features && (
-                    <div className="changelog-features">
-                      {release.features.map((feature, i) => (
-                        <div className="changelog-feature" key={i}>
-                          <h3>{feature.name}</h3>
-                          <p>{feature.description}</p>
+                      {group.anchor.features && (
+                        <div className="changelog-features">
+                          {group.anchor.features.map((feature, i) => (
+                            <div className="changelog-feature" key={i}>
+                              <h3>{feature.name}</h3>
+                              <p>{feature.description}</p>
+                            </div>
+                          ))}
                         </div>
+                      )}
+
+                      {group.anchor.highlights && (
+                        <ul className="changelog-highlights">
+                          {group.anchor.highlights.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
+
+                      {group.anchor.more && (
+                        <div className="changelog-more">
+                          <p className="changelog-more-label">Also in this release</p>
+                          <ul className="changelog-highlights">
+                            {group.anchor.more.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                ) : (
+                  <header className="changelog-group-header">
+                    <h2>Earlier releases</h2>
+                    <p>Incremental updates from the 0.1 series.</p>
+                  </header>
+                )}
+
+                {group.minors.length > 0 && (
+                  <div className="changelog-since">
+                    {group.type === 'major' && (
+                      <p className="changelog-since-label">Since this release</p>
+                    )}
+                    <div className="changelog-minor-list">
+                      {group.minors.map((release) => (
+                        <MinorEntry release={release} key={release.version} />
                       ))}
                     </div>
-                  )}
-
-                  {release.highlights && (
-                    <ul className="changelog-highlights">
-                      {release.highlights.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {release.more && (
-                    <div className="changelog-more">
-                      <p className="changelog-more-label">Also in this release</p>
-                      <ul className="changelog-highlights">
-                        {release.more.map((item, i) => (
-                          <li key={i}>{item}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </article>
+                  </div>
+                )}
+              </section>
             ))}
           </div>
         </div>

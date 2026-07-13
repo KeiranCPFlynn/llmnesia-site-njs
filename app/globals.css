@@ -539,7 +539,8 @@ h1 {
   justify-content: center;
 }
 
-.kinetic-panel {
+.kinetic-panel,
+.kd-panel {
   width: 100%;
   max-width: 380px;
   border: 1px solid var(--t-rule);
@@ -891,6 +892,65 @@ h1 {
   font-family: var(--font-mono);
   font-size: 0.59375rem;
   line-height: 1;
+}
+
+/* ===== KINETIC DEMO (embeddable in blog / content columns) =====
+   Reuses the .kp-* visual language from the hero, but stands alone: its own
+   .kd-panel wrapper and refs mean the global SiteBehavior script (which hooks
+   .kinetic-panel + data-kp-* on the homepage) never drives it. */
+.kd-demo {
+  width: 100%;
+  max-width: 46rem;
+  margin: 2.5rem auto;
+}
+
+.kd-frame {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .kd-frame {
+    aspect-ratio: 16 / 10;
+    max-height: 450px;
+    overflow: hidden;
+  }
+}
+
+.kd-panel {
+  max-width: 390px;
+}
+
+/* Demo-first experiment variant: the demo and the install CTA read as one
+   conversion unit, so the CTA lands right as the demo has built the desire. */
+.demo-cta-unit {
+  margin: 2.5rem 0;
+}
+
+.demo-cta-unit .kd-demo {
+  margin: 0 auto 0.75rem;
+}
+
+.demo-cta-unit .inline-install-cta {
+  margin-top: 0;
+}
+
+/* Clear button lights up when a query is present (the global rule keys off
+   [data-kp-input-wrap].has-query, which this component intentionally avoids). */
+.kd-has-query .kp-tool-clear {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.kd-has-query .kp-tool-clear:hover {
+  border-color: rgba(198, 87, 47, 0.25);
+  background: rgba(198, 87, 47, 0.06);
+  color: var(--rust);
 }
 
 /* ===== HERO EMAIL CAPTURE ===== */
@@ -2322,6 +2382,158 @@ main > section:nth-of-type(even) .how-num {
   background: var(--t-ink-3);
 }
 
+/* ----- Grouping: majors as landmarks, minors nested beneath ----- */
+.changelog-list {
+  gap: 2.75rem;
+}
+
+.changelog-group {
+  display: grid;
+  gap: 1rem;
+}
+
+.changelog-group-header {
+  display: grid;
+  gap: 0.3rem;
+  padding-top: 0.5rem;
+}
+
+.changelog-group-header h2 {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--t-ink);
+}
+
+.changelog-group-header p {
+  margin: 0;
+  color: var(--t-ink-3);
+  font-size: 0.9rem;
+}
+
+/* "Since this release" — the nested minor releases under a major */
+.changelog-since {
+  display: grid;
+  gap: 0.6rem;
+  margin-left: 1.25rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--t-rule);
+}
+
+.changelog-since-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-ink-3);
+}
+
+.changelog-minor-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.changelog-minor {
+  scroll-margin-top: 6rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius);
+  background: var(--t-card);
+}
+
+.changelog-minor[open] {
+  border-color: var(--t-teal-edge);
+}
+
+.changelog-minor-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.85rem 1.1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.changelog-minor-summary::-webkit-details-marker {
+  display: none;
+}
+
+.changelog-minor-version {
+  flex: none;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.78rem;
+  color: var(--t-ink);
+}
+
+.changelog-minor-date {
+  flex: none;
+  font-size: 0.8rem;
+  color: var(--t-ink-3);
+  white-space: nowrap;
+}
+
+.changelog-minor-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--t-ink-2);
+}
+
+.changelog-minor-chevron {
+  flex: none;
+  align-self: center;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--t-ink-3);
+  border-bottom: 2px solid var(--t-ink-3);
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.changelog-minor[open] .changelog-minor-chevron {
+  transform: rotate(-135deg);
+}
+
+.changelog-minor-body {
+  padding: 0 1.1rem 1.1rem;
+}
+
+/* Rail: majors top-level, minors indented under them */
+.changelog-rail-groups {
+  gap: 0.9rem !important;
+}
+
+.changelog-rail-heading {
+  margin: 0;
+  padding: 0.35rem 0.7rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-ink-3);
+}
+
+.changelog-rail-anchor--major {
+  border-color: var(--t-teal-edge);
+}
+
+.changelog-rail-anchor--major span {
+  color: var(--t-teal);
+}
+
+.changelog-rail-minors {
+  margin-top: 0.35rem !important;
+  padding-left: 0.7rem !important;
+  border-left: 1px solid var(--t-rule);
+}
+
+.changelog-rail-minors a {
+  padding-block: 0.4rem;
+  font-size: 0.8rem;
+}
+
 @media (max-width: 900px) {
   .changelog-main {
     padding-top: 3rem;
@@ -2341,8 +2553,13 @@ main > section:nth-of-type(even) .how-num {
     position: static;
   }
 
-  .changelog-rail ol {
+  .changelog-rail-minors {
     grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  }
+
+  .changelog-since {
+    margin-left: 0;
+    padding-left: 1rem;
   }
 }
 
