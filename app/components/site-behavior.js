@@ -384,9 +384,26 @@ export default function SiteBehavior() {
           // Malformed href — fall back to defaults.
         }
         trackEvent('install_click', { platform, placement });
+
+        const ctaEl = installLink.closest('[data-cta-placement]');
+        const ctaPlacement = ctaEl ? ctaEl.getAttribute('data-cta-placement') : 'other';
+
+        // New canonical article-CTA event carrying the intent family and the
+        // above/below-fold position. Fires alongside (does not replace) the
+        // existing events so current funnels keep working.
+        if (ctaEl) {
+          const position = ctaPlacement === 'inline' ? 'intro' : 'foot';
+          const family = ctaEl.getAttribute('data-cta-family') || 'unknown';
+          const ctaSlug = slug || ctaEl.getAttribute('data-cta-slug') || null;
+          trackEvent('cta_install_click', {
+            family,
+            position,
+            platform,
+            ...(ctaSlug && { slug: ctaSlug })
+          });
+        }
+
         if (campaign === 'blog_install_cta' && slug) {
-          const ctaEl = installLink.closest('[data-cta-placement]');
-          const ctaPlacement = ctaEl ? ctaEl.getAttribute('data-cta-placement') : 'other';
           trackEvent('blog_install_cta_clicked', { slug, placement: ctaPlacement });
         }
         return;
@@ -588,8 +605,104 @@ export default function SiteBehavior() {
       emailCaptureForm.addEventListener('submit', onEmailCaptureSubmit);
     }
 
+    // Delegated handler for the mobile-only email capture inside article CTAs.
+    // There can be two per page (intro + foot), so this is class-based rather
+    // than bound to a single id like the homepage capture above.
+    const onCtaEmailCaptureSubmit = async (event) => {
+      const form = event.target;
+      if (!(form instanceof HTMLFormElement) || !form.classList.contains('cta-email-capture__form')) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const wrap = form.closest('.cta-email-capture');
+      const cta = form.closest('[data-cta-placement]');
+      const message = form.querySelector('.cta-email-capture__msg');
+      const submit = form.querySelector('.cta-email-capture__submit');
+      const emailInput = form.querySelector('.cta-email-capture__input');
+      const lead = wrap ? wrap.querySelector('.cta-email-capture__lead') : null;
+      const success = wrap ? wrap.querySelector('.cta-email-capture__success') : null;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const honeypot = new FormData(form).get('botcheck');
+      const family = cta ? cta.getAttribute('data-cta-family') || 'unknown' : 'unknown';
+      const slug = cta ? cta.getAttribute('data-cta-slug') || '' : '';
+      const rawPlacement = cta ? cta.getAttribute('data-cta-placement') : null;
+      const position = rawPlacement === 'inline' ? 'intro' : rawPlacement === 'bottom' ? 'foot' : 'other';
+
+      const showSuccess = () => {
+        if (lead) lead.style.display = 'none';
+        form.style.display = 'none';
+        if (success) success.removeAttribute('hidden');
+      };
+
+      if (typeof honeypot === 'string' && honeypot.trim() !== '') {
+        showSuccess();
+        return;
+      }
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Sending...';
+      }
+      if (message) {
+        message.textContent = 'No spam. Just the install link.';
+        message.removeAttribute('data-state');
+      }
+
+      try {
+        const response = await fetch('/api/leads', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: emailInput ? emailInput.value.trim() : '',
+            source: 'blog_mobile_capture',
+            context: slug,
+            variant: family,
+            captured_at: new Date().toISOString(),
+            page_path: window.location.pathname
+          }),
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        let data = null;
+        try {
+          data = await response.json();
+        } catch {
+          data = null;
+        }
+
+        if (!response.ok || !data || data.success !== true) {
+          throw new Error('failed');
+        }
+
+        showSuccess();
+        trackEvent('mobile_email_capture', {
+          family,
+          position,
+          ...(slug && { slug })
+        });
+      } catch {
+        if (message) {
+          message.textContent = 'Something went wrong. Please try again.';
+          message.setAttribute('data-state', 'error');
+        }
+        if (submit) {
+          submit.disabled = false;
+          submit.textContent = 'Email me the link';
+        }
+      }
+    };
+
+    document.addEventListener('submit', onCtaEmailCaptureSubmit);
+
     return () => {
       document.removeEventListener('click', onDocumentClick);
+      document.removeEventListener('submit', onCtaEmailCaptureSubmit);
 
       if (navToggle && nav) {
         navToggle.removeEventListener('click', onNavToggle);

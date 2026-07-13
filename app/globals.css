@@ -3480,6 +3480,34 @@ main > section:nth-of-type(even) .how-num {
   }
 }
 
+/* Mobile: tighten the space above the first inline CTA so it sits as close to
+   the fold as possible (spacing only — no content is removed). Pairs with the
+   after-first-paragraph CTA placement in lib/content.js. */
+@media (max-width: 640px) {
+  .post {
+    padding-top: 2rem;
+  }
+
+  .post__crumb {
+    margin-bottom: 1rem;
+  }
+
+  .post__head {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .post__head h1 {
+    font-size: clamp(1.7rem, 6vw, 2rem);
+    margin: 0.5rem 0;
+  }
+
+  .post__lede {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
 /* Trailing sections (FAQ / sources / related / CTA / back) */
 .post__section {
   margin-top: 3.5rem;
@@ -4004,27 +4032,30 @@ main > section:nth-of-type(even) .how-num {
 }
 
 .inline-install-cta .inline-install-cta__title {
-  margin: 0 0 0.4rem;
+  margin: 0;
   font-family: var(--font);
-  font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
   color: var(--text);
 }
 
-.inline-install-cta .inline-install-cta__text {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-muted);
+.inline-install-cta__action {
+  flex: 0 0 auto;
 }
 
-.inline-install-cta__action {
+.inline-install-cta__desktop {
   display: grid;
   justify-items: start;
   gap: 0.5rem;
-  flex: 0 0 auto;
+}
+
+/* Mobile-only email capture. The extension is Chrome-desktop only, so on small
+   viewports the install button is a dead end — swapped for an email-the-link
+   form (see the media query below). */
+.inline-install-cta__mobile {
+  display: none;
 }
 
 .inline-install-cta .inline-install-cta__note {
@@ -4036,16 +4067,87 @@ main > section:nth-of-type(even) .how-num {
 
 @media (max-width: 640px) {
   .inline-install-cta {
-    padding: 1.5rem 1.25rem;
-    gap: 1.1rem;
+    /* Tighter margin/padding so the intro CTA sits as high as possible above
+       the fold on phones. */
+    margin: 1.5rem 0;
+    padding: 1.35rem 1.25rem;
+    gap: 1rem;
   }
 
   .inline-install-cta__action {
-    justify-items: stretch;
     width: 100%;
   }
 
-  .inline-install-cta__action .button {
+  .inline-install-cta__desktop {
+    display: none;
+  }
+
+  .inline-install-cta__desktop .button {
     width: 100%;
   }
+
+  .inline-install-cta__mobile {
+    display: block;
+  }
+}
+
+/* ===== MOBILE CTA EMAIL CAPTURE ===== */
+.cta-email-capture__lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.cta-email-capture__form {
+  margin: 0;
+}
+
+.cta-email-capture__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cta-email-capture__input {
+  width: 100%;
+  min-width: 0;
+  background: var(--t-paper);
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9375rem;
+  padding: 0.7rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cta-email-capture__input:focus {
+  border-color: var(--brand);
+}
+
+.cta-email-capture__input::placeholder {
+  color: var(--text-muted);
+}
+
+.cta-email-capture__submit {
+  width: 100%;
+}
+
+.cta-email-capture .cta-email-capture__msg {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.cta-email-capture .cta-email-capture__msg[data-state="error"] {
+  color: var(--danger);
+}
+
+.cta-email-capture__success {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--success);
 }

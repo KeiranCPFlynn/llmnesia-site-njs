@@ -1,7 +1,9 @@
 import InstallLink from './install-link';
 
-// Friendly display names for the platforms we publish guides about. Keys match
-// the tokens produced by detectPlatform() in lib/content.js.
+// Friendly display names for the 11 platforms LLMnesia supports. Keys match the
+// platform tokens produced by getCtaProps() in lib/content.js. Unsupported
+// platforms are intentionally absent so their pages get generic, non-committal
+// copy rather than a false "search your <platform>" claim.
 const PLATFORM_LABELS = {
   copilot: 'Microsoft Copilot',
   chatgpt: 'ChatGPT',
@@ -13,50 +15,47 @@ const PLATFORM_LABELS = {
   mistral: 'Mistral',
   qwen: 'Qwen',
   kimi: 'Kimi',
-  notebooklm: 'NotebookLM',
-  'character-ai': 'Character.AI',
-  meta: 'Meta AI',
-  'ai-studio': 'Google AI Studio',
-  poe: 'Poe'
+  'ai-studio': 'Google AI Studio'
 };
 
-const GENERIC_TOOLS = 'ChatGPT, Claude, Gemini, Copilot and 10+ tools';
-
-// Returns { title, text } tuned to the page's platform and intent so the CTA
-// speaks to why the reader is here. `tone` is 'recovery' for deleted/missing/
-// not-loading pages (loss-framed) and 'default' for find/search/organize pages
-// (retrieval-framed).
-function buildCopy(platform, tone) {
+// Returns a single framing sentence tuned to the page's intent family and, where
+// known, its platform — so the CTA speaks to why the reader is on this page.
+// Families come from getCtaFamily() in lib/content.js. Copy is plain and direct:
+// no em dashes, no hype words.
+function buildCopy(platform, family) {
   const label = PLATFORM_LABELS[platform];
 
-  if (tone === 'recovery') {
-    if (label) {
-      return {
-        title: `Don't lose another ${label} answer`,
-        text: `LLMnesia indexes your ${label} chats locally as you browse — so a deleted or vanished conversation stays searchable on your device, even after it's gone from ${label}.`
-      };
-    }
-    return {
-      title: "Don't lose another AI answer",
-      text: `LLMnesia indexes your AI chats locally as you browse, so a deleted or vanished conversation stays searchable on your device. Works across ${GENERIC_TOOLS}.`
-    };
+  if (family === 'loss') {
+    return label
+      ? `Install LLMnesia free so this never happens again. It keeps a local copy of every ${label} chat automatically, even after one is deleted.`
+      : `Install LLMnesia free so this never happens again. It keeps a local copy of every ChatGPT, Claude and Gemini chat automatically, even after one is deleted.`;
   }
 
-  if (label) {
-    return {
-      title: `Search your ${label} history instantly`,
-      text: `LLMnesia adds private, full-text search across your ${label} conversations — plus ChatGPT, Claude, Gemini and 10+ tools — all indexed locally on your device.`
-    };
+  if (family === 'export') {
+    return label
+      ? `Skip the manual export. LLMnesia saves and indexes every ${label} conversation locally as you go, so you always own a copy.`
+      : `Skip the manual export. LLMnesia saves and indexes every AI conversation locally as you go, so you always own a copy.`;
   }
 
-  return {
-    title: 'Search all your AI chats in one place',
-    text: 'LLMnesia finds past ChatGPT, Claude, Gemini, Copilot, Perplexity and other AI conversations instantly — privately, on your device.'
-  };
+  if (family === 'reliability') {
+    return label
+      ? `Never depend on ${label}'s servers for your history. LLMnesia keeps your own copy, indexed locally on your device.`
+      : `Never depend on their servers for your history. LLMnesia keeps your own copy, indexed locally on your device.`;
+  }
+
+  // capability (search / organize / general) — the default family.
+  return label
+    ? `Search every ${label} chat you have ever had, instantly and locally, alongside ChatGPT, Claude, Gemini and 10+ more.`
+    : `Search every ChatGPT, Claude and Gemini chat you have ever had, instantly and locally.`;
 }
 
-export default function InlineInstallCta({ platform = null, tone = 'default', placement = 'inline', slug = null }) {
-  const copy = buildCopy(platform, tone);
+export default function InlineInstallCta({
+  platform = null,
+  family = 'capability',
+  placement = 'inline',
+  slug = null
+}) {
+  const framing = buildCopy(platform, family);
   const utm = {
     utm_source: 'blog',
     utm_medium: 'inline_cta',
@@ -67,16 +66,64 @@ export default function InlineInstallCta({ platform = null, tone = 'default', pl
   };
 
   return (
-    <aside className="inline-install-cta" aria-label="Install LLMnesia" data-cta-placement={placement}>
+    <aside
+      className="inline-install-cta"
+      aria-label="Install LLMnesia"
+      data-cta-placement={placement}
+      data-cta-family={family}
+      {...(slug && { 'data-cta-slug': slug })}
+    >
       <div className="inline-install-cta__body">
-        <p className="inline-install-cta__title">{copy.title}</p>
-        <p className="inline-install-cta__text">{copy.text}</p>
+        <p className="inline-install-cta__title">{framing}</p>
       </div>
+
       <div className="inline-install-cta__action">
-        <InstallLink className="button button-large" utm={utm}>
-          Add to Chrome — free
-        </InstallLink>
-        <p className="inline-install-cta__note">No account. No cloud. Your chats stay local.</p>
+        {/* Desktop: the extension is Chrome-desktop only, so lead with install. */}
+        <div className="inline-install-cta__desktop">
+          <InstallLink className="button button-large" utm={utm}>
+            Add to Chrome — free
+          </InstallLink>
+          <p className="inline-install-cta__note">No account. No cloud. Your chats stay local.</p>
+        </div>
+
+        {/* Mobile: install is a dead end, so capture an email to send the link. */}
+        <div className="inline-install-cta__mobile cta-email-capture">
+          <p className="cta-email-capture__lead">
+            LLMnesia is a desktop Chrome extension. Email yourself the link for when you are at your
+            computer.
+          </p>
+          <form className="cta-email-capture__form" noValidate>
+            <div className="cta-email-capture__row">
+              <input
+                type="email"
+                name="email"
+                className="cta-email-capture__input"
+                placeholder="you@example.com"
+                required
+                autoComplete="email"
+                aria-label="Email address"
+              />
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                className="form-honeypot"
+                aria-hidden="true"
+              />
+              <button type="submit" className="button button-small cta-email-capture__submit">
+                Email me the link
+              </button>
+            </div>
+            <p className="cta-email-capture__msg" role="status" aria-live="polite">
+              No spam. Just the install link.
+            </p>
+          </form>
+          <div className="cta-email-capture__success" hidden>
+            Check your inbox. We sent the LLMnesia link so you can add it next time you are on your
+            computer.
+          </div>
+        </div>
       </div>
     </aside>
   );

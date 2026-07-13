@@ -3,7 +3,8 @@ const ALLOWED_SOURCES = new Set([
   'website_homepage',
   'extension_onboarding',
   'extension_founding',
-  'extension_vault_waitlist'
+  'extension_vault_waitlist',
+  'blog_mobile_capture'
 ]);
 
 function jsonResponse(body, status = 200) {
