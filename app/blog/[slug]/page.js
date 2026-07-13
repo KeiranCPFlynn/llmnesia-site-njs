@@ -3,6 +3,7 @@ import BlogPost from '../../components/blog-post';
 import {
   getContentBySlug,
   getCtaProps,
+  getDemoForEntry,
   getRelatedLinks,
   getStaticParamsForType,
   renderMdxWithCta
@@ -44,7 +45,10 @@ export default async function BlogArticlePage({ params }) {
   }
 
   const ctaProps = getCtaProps(entry);
-  const body = await renderMdxWithCta(entry.content, ctaProps);
+  const demo = getDemoForEntry(entry);
+  const body = await renderMdxWithCta(entry.content, ctaProps, {
+    demoScenes: demo ? demo.scenes : null
+  });
   const breadcrumb = [
     { name: 'Home', path: '/' },
     { name: 'Blog', path: '/blog' },

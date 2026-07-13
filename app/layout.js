@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Script from 'next/script';
 import Analytics from './components/analytics';
 import SiteBehavior from './components/site-behavior';
+import PostHogInit from './components/posthog-init';
 import { absoluteUrl, SITE_URL } from '../lib/site';
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <SiteBehavior />
+        <PostHogInit />
         {gaId ? (
           <>
             <Script
