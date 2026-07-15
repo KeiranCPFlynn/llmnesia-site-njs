@@ -1,5 +1,15 @@
 [
   {
+    "version": "0.2.2",
+    "date": "2026-07-11",
+    "title": "Add or edit a memory without leaving your chat & 2 fixes",
+    "highlights": [
+      "Add or edit a memory without leaving your chat — the context pill's picker now has a \"+ Add a memory\" option, and each saved memory has a small edit (✎) button, so you can jot a new memory or tweak an existing one right there in the chat instead of opening Settings. A memory you add from the pill is ticked and ready to drop into your message straight away.",
+      "Memories you add show up in Settings immediately — adding a memory from the popup or the chat pill now appears in an open Settings → Memory list right away, instead of only after you reloaded the page.",
+      "The context pill no longer drifts off-screen when you drag it to an edge — dropping the pill near the side of the screen and reopening it could push part of it past the edge"
+    ]
+  },
+  {
     "version": "0.2.1",
     "date": "2026-07-09",
     "title": "A setup checklist in the popup, a \"Your year in AI\" snapshot & 4 more changes",
