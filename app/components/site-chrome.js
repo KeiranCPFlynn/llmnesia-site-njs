@@ -25,6 +25,7 @@ export default function SiteChrome({ children }) {
           </button>
 
           <nav className="nav" id="primary-nav" aria-label="Main">
+            <a href="/vault">Vault</a>
             <a href="/blog">Blog</a>
             <a href="/compare">Compare</a>
             <a href="/use-cases">Use Cases</a>
@@ -41,6 +42,7 @@ export default function SiteChrome({ children }) {
       <footer className="site-footer">
         <div className="container footer-inner">
           <nav aria-label="Footer">
+            <a href="/vault">Vault</a>
             <a href="/about">About</a>
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/blog">Blog</a>

@@ -56,6 +56,10 @@ export default function InlineInstallCta({
   slug = null
 }) {
   const framing = buildCopy(platform, family);
+  // Readers on loss/export pages have the exact permanent-backup pain Vault
+  // solves, so surface a single subordinate teaser to them only. Other families
+  // stay untouched, keeping the demo/CTA-order experiment on capability pages clean.
+  const showVaultTeaser = family === 'loss' || family === 'export';
   const utm = {
     utm_source: 'blog',
     utm_medium: 'inline_cta',
@@ -125,6 +129,15 @@ export default function InlineInstallCta({
           </div>
         </div>
       </div>
+
+      {showVaultTeaser && (
+        <p className="inline-install-cta__vault" data-cta-vault={family}>
+          Want it backed up and synced everywhere, automatically?{' '}
+          <a href="/vault?utm_source=blog&utm_medium=inline_cta&utm_campaign=blog_vault_teaser">
+            See LLMnesia Vault →
+          </a>
+        </p>
+      )}
     </aside>
   );
 }

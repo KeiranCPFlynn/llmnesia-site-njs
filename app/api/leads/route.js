@@ -4,6 +4,7 @@ const ALLOWED_SOURCES = new Set([
   'extension_onboarding',
   'extension_founding',
   'extension_vault_waitlist',
+  'website_vault_waitlist',
   'blog_mobile_capture'
 ]);
 
