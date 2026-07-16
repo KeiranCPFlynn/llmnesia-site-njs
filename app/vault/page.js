@@ -8,7 +8,7 @@ import { homepageFaqSchema } from '../../lib/schema';
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
   description:
-    'Vault syncs, backs up, and unlocks your entire AI chat history — across ChatGPT, Claude, Gemini, Perplexity, Grok and every tool LLMnesia supports. Chat with your whole history via MCP, on any device, end-to-end encrypted. Founding members lock in 50% off for life.',
+    'Vault syncs, backs up, and unlocks your entire AI chat history — across ChatGPT, Claude, Gemini, Perplexity, Grok and every tool LLMnesia supports. Chat with your whole history via MCP on your desktop. Your archive synced and encrypted on every device. Founding members lock in 50% off for life.',
   canonicalPath: '/vault'
 });
 
@@ -50,7 +50,7 @@ const USE_CASES = [
 const FAQS = [
   {
     q: 'What does “chat with your history” actually mean?',
-    a: 'Vault can expose your indexed conversations to AI tools through MCP — the open standard Claude, Cursor and a growing list of apps already support. Your assistant can then answer using your own past conversations as source material, not just its training data.'
+    a: 'Vault can expose your indexed conversations to desktop AI tools through MCP — the open standard Claude, Cursor and a growing list of apps already support. Your assistant can then answer using your own past conversations as source material, not just its training data. This runs on your desktop, where your key lives: search happens on a device that can actually decrypt your archive, which is exactly what end-to-end encrypted means.'
   },
   {
     q: 'Which platforms does it cover?',
@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: 'Will it work on mobile?',
-    a: 'That’s a core part of the plan. Once your history is synced through Vault, it’s reachable from your phone — not just the browser where you first indexed it.'
+    a: 'Your archive does: once your history is synced through Vault, it’s backed up and reachable from your phone, not just the browser where you first indexed it. Chatting with your history through MCP is a desktop feature — MCP tools like Claude and Cursor run on the desktop, and search has to run where your key lives. So: sync, backup and lookup everywhere; MCP on your desktop.'
   },
   {
     q: 'Isn’t syncing the opposite of local-first?',
@@ -98,9 +98,9 @@ export default function VaultPage() {
             <p className="subheadline vault-hero-sub">
               LLMnesia already searches your chat history across every AI tool. Vault takes it
               further — one encrypted memory that syncs to all your devices, backs itself up
-              automatically, and plugs straight into your AI so it can draw on everything
-              you’ve ever worked through. The first 100 founding members lock in half price for
-              life.
+              automatically, and plugs straight into your AI on your desktop so it can draw on
+              everything you’ve ever worked through. The first 100 founding members lock in half
+              price for life.
             </p>
             <VaultWaitlistForm context="vault_hero" />
           </div>
@@ -113,11 +113,15 @@ export default function VaultPage() {
               <p className="section-eyebrow">The headline feature</p>
               <h2>Ask your entire history a question.</h2>
               <p className="section-intro">
-                Vault connects your conversations to Claude, Cursor, and any tool that speaks
-                MCP. Suddenly your AI can draw on everything you’ve already worked through —
-                every decision, every draft, every dead end — no matter which assistant you
-                used at the time. Your context stops being trapped in whichever tab you opened
-                it in.
+                Vault connects your conversations to Claude, Cursor, and any desktop tool that
+                speaks MCP. Suddenly your AI can draw on everything you’ve already worked
+                through — every decision, every draft, every dead end — no matter which
+                assistant you used at the time. Your context stops being trapped in whichever
+                tab you opened it in.
+              </p>
+              <p className="section-intro">
+                Search runs where your key lives. That’s what end-to-end encrypted means, and
+                it’s why we can’t read your conversations.
               </p>
             </div>
             <div className="vault-mock" aria-hidden="true">
@@ -140,7 +144,9 @@ export default function VaultPage() {
                   You traced it to a race condition in the token refresh. Mocking the clock
                   didn’t work — the fix was awaiting the refresh before the test’s first request.
                 </div>
-                <p className="vault-mock-caption">Answered from your own history, via MCP</p>
+                <p className="vault-mock-caption">
+                  Answered from your own history, via MCP on your desktop
+                </p>
               </div>
             </div>
           </div>
@@ -194,7 +200,10 @@ export default function VaultPage() {
                 who back it earliest.
               </p>
               <ul className="vault-pricing-points">
-                <li>Chat with your entire history from Claude, Cursor &amp; other MCP tools</li>
+                <li>
+                  Chat with your entire history from Claude, Cursor &amp; other MCP tools on your
+                  desktop
+                </li>
                 <li>Encrypted sync across every device, including mobile</li>
                 <li>Automatic, private backup of everything you’ve indexed</li>
                 <li>Founding-member pricing that never goes up on you</li>
