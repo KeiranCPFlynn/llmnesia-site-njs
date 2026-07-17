@@ -1,12 +1,67 @@
 [
   {
+    "version": "0.2.3",
+    "date": "2026-07-16",
+    "title": "It's now obvious when filters are hiding results, A redesigned viewer for your saved chats & 11 fixes",
+    "highlights": [
+      "It's now obvious when filters are hiding results — when a time range, platform, media, starred, or match filter is narrowing what you see, the search box shows a clear \"Filtered\" badge next to the result count instead of a small, easy-to-miss \"· filtered\" note. Clicking the badge opens the filters panel so you can see exactly what's active and clear it.",
+      "A redesigned viewer for your saved chats — the page that opens a stored conversation (handy when the original has been deleted or is offline) has been rebuilt to read like a real chat rather than a data dump. It now shows which AI the chat came from with that platform's colour, lays the messages out as a clean back-and-forth with proper headings, lists, and code blocks, and carries a quiet reassurance that this is your own copy, kept on your device and readable even if the original is gone. Your search words are highlighted, there's a one-click \"Copy transcript\", and the technical details are tucked behind a \"Details\" toggle instead of crowding the top. When a chat isn't saved, a friendly note explains why and how to capture it, rather than a bare error.",
+      "Landing on a deleted chat now explains itself — if you open a search result and the original has been removed from the AI's site, you're taken straight to your saved copy instead of a broken page. That copy now says up front why you're there (\"We couldn't find this on Claude — it may have been deleted or moved\"), so the switch reads as the product doing its job rather than a glitch.",
+      "Jump straight to your saved copy from search — hovering a result now reveals a small \"Open copy\" button alongside the star and delete actions, opening your instant local copy without waiting on the live page. Alt+Enter or Alt/Option-clicking a result does the same.",
+      "Gemini chats now save cleanly and in order — after a Gemini redesign, saved Gemini conversations came out jumbled: all your questions grouped first and then all of Gemini's replies (instead of the real back-and-forth), each reply stored twice, and stray \"You said\" / \"Gemini said\" labels mixed into the text. LLMnesia now reads Gemini's new layout turn by turn, so saved Gemini chats keep the right person on each message, in the right order, once each, without the leftover labels.",
+      "Gemini no longer reports a problem while a page is still loading — occasionally LLMnesia checked a Gemini conversation a split second too early, before the page had finished drawing, and left the site marked as \"couldn't read this chat\" even though it read fine moments later. It now re-checks once the page settles, so a normal load no longer shows a false error.",
+      "Pasted text in Claude chats is now searchable — when you paste a long block into Claude (a job posting, a CV, a chunk of code), Claude stores it as an attachment rather than as your typed message, and LLMnesia was skipping it — so a chat could be missing from search even when your search word was right there in the pasted text. That pasted and file-attached text is now saved and indexed along with the rest of the conversation. Your older Claude chats catch up on their own, too: while you're on Claude, LLMnesia quietly fills in the pasted text it missed before, a few chats at a time in the background — no re-import needed.",
+      "\"By meaning\" results no longer jump above chats that actually contain your words — with search-by-meaning on, a closely-related chat that didn't contain any of your search words could occasionally rank above one that did. Chats that literally contain a search word now always come first, with meaning-based matches kept below them as related results.",
+      "Long chats no longer go missing for a word buried deep inside them — to stay fast, LLMnesia keeps a capped list of words for each chat, and on a very long older conversation a distinctive word could fall off that list and become unsearchable. When a search comes up without a chat that matches all your words, LLMnesia now double-checks the full text of just those few long older chats and surfaces the one that genuinely contains them — without slowing down ordinary searches.",
+      "Kimi chats now save with the right speakers — Kimi conversations were being stored with every message labelled \"unknown\" and your own questions dropped entirely, leaving a one-sided transcript. LLMnesia now reads Kimi's turns correctly, so saved Kimi chats keep both sides of the conversation with the right person on each message.",
+      "Qwen chats now save with the right speakers and in order — Qwen conversations could land with turns mislabelled or out of sequence. LLMnesia now reads Qwen's turn markup directly, so saved Qwen chats keep the right person on each message in the order they were sent.",
+      "DeepSeek saved chats now keep the answer, not the model's \"thinking\" — for DeepSeek replies that show a \"Thought for…\" reasoning step, LLMnesia was saving the private reasoning text and dropping the actual answer. It now captures the answer itself.",
+      "Tables now display as tables in saved chats — a table in an AI's reply used to collapse into a run-on line of mashed-together cells. Tables are now kept intact and shown as proper rows and columns in the viewer (and when carried over via \"Continue in another AI\").",
+      "Copilot bullet-point labels no longer go missing — in Microsoft Copilot replies, the bold label that starts each bullet (e.g. \"Overall lifespan: 2–4 years…\") was being dropped when the chat was saved, leaving stray bullets that began with a colon and read as one jumbled block. Those labels are now kept, so saved Copilot chats show properly formed lists — and the labels are searchable too.",
+      "Search previews now show why a chat matched, not just your most common word. The one-line preview under each result picks the most relevant snippet from the chat, but on a word you use in nearly every conversation (say a project name that's everywhere in your history), it would land on a passage crammed with that word and miss the part that actually made the chat distinctive. So a chat you were sure you'd had could show up with a preview that gave you no way to recognise it. Previews now favour the rarer, more telling words in your search, so the snippet lands on the part that sets that chat apart."
+    ]
+  },
+  {
     "version": "0.2.2",
-    "date": "2026-07-11",
-    "title": "Add or edit a memory without leaving your chat & 2 fixes",
+    "date": "2026-07-13",
+    "title": "Add or edit a memory without leaving your chat, A setup checklist in the popup & 9 fixes",
     "highlights": [
       "Add or edit a memory without leaving your chat — the context pill's picker now has a \"+ Add a memory\" option, and each saved memory has a small edit (✎) button, so you can jot a new memory or tweak an existing one right there in the chat instead of opening Settings. A memory you add from the pill is ticked and ready to drop into your message straight away.",
+      "A setup checklist in the popup — a short three-step checklist (import your history, turn on memory, and try a \"Continue in…\" handoff) now guides you through the setup that makes LLMnesia genuinely useful, so the features that make search and memory worthwhile aren't left undiscovered. Each step links straight to where you do it and ticks itself off once done",
+      "A gentle nudge to leave a review — once you've been using LLMnesia for a while and opening the chats you search for, a one-line prompt occasionally asks whether you'd leave a quick Chrome Web Store review to help others find it. \"Leave a review\" opens the store page in a new tab",
+      "Choose how many results you see — the result count at the bottom of the search palette (e.g. \"50 recent\") is now clickable: tap it to pick 30, 50, 100, 250, or 500. It sets how many recent chats appear when the box is empty *and* how many matches a search returns — handy right after importing hundreds of chats, when the old cap of 100 made older ones impossible to reach. The same choice is available in Settings, and the two stay in sync.",
+      "A one-click star filter in search — the search palette now has a ★ button right in its toolbar, so you can show just your starred chats in a single click instead of opening the Filters panel to find \"Starred only\". It lights up gold while active, and stays in sync with the filter in the panel.",
+      "Break your usage down by year — the \"Usage by platform\" chart in Settings → Indexing status now offers per-year views (e.g. 2026, 2025) alongside the existing 7/30/90-day and all-time ranges, so you can see how your AI use shifted year over year.",
+      "A \"Your year in AI\" snapshot — Settings → Indexing status now opens with a quick recap of your total activity this year: how many chats and messages you've had, how many different AIs you used, and a month-by-month sparkline with your busiest month highlighted. It appears once you've had at least one chat this year.",
+      "A more helpful \"no results\" message — when a search genuinely finds nothing, the search box no longer just says results will appear here. It now tells you what actually happened right in the box — e.g. \"Searched all 1,240 indexed chats — nothing matched\", or \"Still importing your chats\" if an import is running — and suggests trying fewer or simpler words, so an empty search reads as \"looked everywhere\" rather than \"maybe it's broken\".",
+      "The context pill is now one compact shape everywhere — instead of a wide bar on new chats (which could stretch across your message box) plus a separate card in existing conversations, it's always the same small two-row card: centered just above the message box on a new chat, tucked into the corner during an ongoing conversation. You can still drag it out of the way, and it can no longer sprawl across what you're typing.",
+      "Clearer label on the popup's \"Add a memory\" box — the checkbox that used to read \"Star (pre-select on new chats)\" now reads \"Use by default on new chats\", which is what it actually does.",
+      "The Settings page is reordered so the things you actually touch come first — the day-to-day sections (Indexing status, Memory, Starred, Snippets) now sit up top, followed by preferences (Search results, Storage limits), then \"Report a Problem\" — which used to be buried near the bottom — moved up next to Backup. The rarely-needed and irreversible bits (technical error log, then the \"Danger Zone\" delete-everything section) now sit at the very bottom where they can't be hit by accident.",
+      "LLMnesia's occasional prompts no longer pile up — the handful of optional asks (stay in touch by email, support the project, leave a review) are now coordinated behind the scenes so only one can appear at a time and they're spaced several days apart, instead of potentially landing together over a busy week. Each still only shows when it's genuinely relevant",
+      "You're no longer asked for your email twice — the \"stay in touch\" email prompt on the welcome screen and the one in the search box were separate, so closing the welcome tab without answering meant getting the same question again on your first search. The welcome screen now settles it, so it's asked once — with a later, optional reminder only after you've searched a good number of chats.",
+      "The \"index older chats\" panel waits a beat — on a supported AI site it no longer springs up the instant the page loads",
+      "One import nudge in the popup, not two — while the setup checklist is still walking you through your first import, the separate \"Index older chats\" strip stays hidden, so the popup isn't pushing you toward the same action in two places at once.",
+      "A clearer, punchier welcome screen — the headline now reads \"Search every AI conversation you've ever had\", and the setup steps no longer contradict each other: step 1 is a straight one-click import of your history (no browsing needed), and step 2 explains that new chats index themselves automatically as you use AI. The stray \"Open search\" button — easy to click before anything was indexed, only to get no results — is gone",
+      "The welcome Memory demo now matches the real thing — the little animation showing \"Add my context\" now puts the pill below the message box, exactly where it appears in a real chat, and the shortcut note no longer tells you to set up a shortcut that's already there — it just shows the key (Alt+Shift+M) to press.",
+      "The welcome Memory demo is tidier — the \"Add my context\" pill no longer overlaps the message box, and the animation panel is shorter so it doesn't leave a band of empty space below.",
+      "\"Sync older chats\" in the popup now helps you get to a supported tab — when you're not on a supported AI site, the import panel used to dead-end on \"Open a supported AI tab to start.\" It now names which sites are supported and gives you a dropdown to pick one and open it in a new tab.",
+      "The welcome checklist now ticks itself off as you go — the \"Get your first search in 3 steps\" list no longer just sits there as instructions. As soon as anything is indexed, steps 1 and 2 check off and you see a live count (\"3 conversations indexed so far\") climbing as your chats come in",
+      "Clearer wording for the Memory step on the welcome screen — the button now reads \"Add your first memory\" instead of \"Set up my memory\", since Memory is already on by default — there's nothing to switch on, just your first memory to add.",
+      "The popup \"Get set up\" checklist now keeps you in the popup — its steps no longer send you in circles. \"Import your history\" used to open a fresh AI tab even though the \"Index older chats\" panel right below does the same job in place",
+      "A tidier \"Index older chats\" nudge — the reminder to import your history is now a single short line instead of two, so the popup reads faster.",
+      "\"Index older chats\" now sits at the top of the popup until you've done it — bringing in your existing history is the most useful first move, so the import panel rises above the indexer stats until you've run it at least once, then drops back down so your live stats lead.",
+      "A shorter, tidier popup — the three indexer controls (Indexing, Search pill, Memory pill) used to each take a full row with its own \"Toggle\" button. They're now compact chips on a single row — tap a chip to switch it on or off — so the popup is noticeably less tall.",
+      "Removed a stray placeholder in Settings — the indexing status area no longer shows a confusing \"No action yet.\" line before you've done anything",
+      "Importing a backup now shows live progress — restoring a large backup used to sit on \"Importing…\" for a minute or more with no sign of life, so it looked frozen. It now counts up as it goes (\"Importing … — 640 conversations so far…\"), so you can see it working.",
+      "The \"Reload to update\" note no longer spills out of its bubble — after LLMnesia updates itself, the little tooltip on the index pill asking you to reload the page now wraps neatly inside its box instead of running off the edge.",
       "Memories you add show up in Settings immediately — adding a memory from the popup or the chat pill now appears in an open Settings → Memory list right away, instead of only after you reloaded the page.",
-      "The context pill no longer drifts off-screen when you drag it to an edge — dropping the pill near the side of the screen and reopening it could push part of it past the edge"
+      "The context pill no longer drifts off-screen when you drag it to an edge — dropping the pill near the side of the screen and reopening it could push part of it past the edge",
+      "\"Import from …\" on the welcome screen now shows the import prompt right away — and it stays put — clicking, say, \"Import from Claude\" opened the site but the \"Index older chats\" panel arrived several seconds late and then vanished the moment the site finished loading (the site's own page navigation was tearing the panel down before you could click it). When you've explicitly asked to import, the panel now appears almost immediately and stays until you choose \"Start now\" or \"Not now\". (Passive visits to a supported site are unchanged — the panel still holds off a few seconds so it isn't the first thing that moves.)",
+      "No more false \"couldn't index this site\" warning while a chat is still loading — opening the popup on a ChatGPT tab that hadn't finished loading could flash a red \"this site couldn't be indexed\" message, which then cleared itself once the page settled. The extension now waits for a page to finish rendering before deciding it has no conversation, so the warning only appears when a site genuinely can't be read.",
+      "The popup's setup checklist now updates the moment you finish a step — saving your first memory or finishing an import used to leave the checklist looking un-done until you closed and reopened the popup (or visited Settings and came back). Both steps now tick off immediately.",
+      "The popup's \"Import your history\" step now ticks off however you import — it used to complete only after finishing an \"Index older chats\" backfill, so importing from a site you use (e.g. Claude) or restoring a backup could leave it stuck as incomplete even though your chats were clearly indexed. It now counts any searchable history — matching the welcome screen — so you never have to import from an AI you don't use just to advance setup. (The separate \"Index older chats\" nudge still encourages importing your older chats when only a handful are indexed.)",
+      "Fixed a fake-looking button in \"Index older chats\" — the panel used to show its title twice (once as a heading, once as a pill next to the Start button) and that pill was styled just like a button but did nothing when tapped. It's gone when idle",
+      "The search pill's status text now lines up with its dot, and only shows a progress bar while something's actually happening — the label used to sit slightly off-centre next to the dot, and the pill kept an empty sliver of space reserved for the progress bar even at rest. The pill now stays snug when idle, and only grows to show a slim progress bar during an active save."
     ]
   },
   {
@@ -61,16 +116,21 @@
   {
     "version": "0.1.10",
     "date": "2026-06-22",
-    "title": "Index older Grok chats & See which assistants you use most",
+    "title": "Index older Grok chats, See which assistants you use most & 1 fix",
     "highlights": [
       "Index older Grok chats — open grok.com and click \"Index older chats\" to pull your past Grok conversations into search, the same way ChatGPT, Claude, Gemini and Perplexity already work. It runs quietly in the background",
-      "See which assistants you use most — the Settings page now shows a \"Usage by platform\" breakdown under Indexing status, with a sorted bar for each assistant (ChatGPT, Claude, Gemini, and the rest) using that assistant's colour from search results. You can filter by how recently you used each one (last 7, 30, 90 days, or all time) and switch between counting whole chats or total messages, so you can answer questions like \"which did I lean on most this week?\" In the all-time view each row also shows when you last used that assistant, making it easy to spot ones you've drifted away from. Your most-used tools rise to the top and rarely-used ones fade at the bottom."
+      "See which assistants you use most — the Settings page now shows a \"Usage by platform\" breakdown under Indexing status, with a sorted bar for each assistant (ChatGPT, Claude, Gemini, and the rest) using that assistant's colour from search results. You can filter by how recently you used each one (last 7, 30, 90 days, or all time) and switch between counting whole chats or total messages, so you can answer questions like \"which did I lean on most this week?\" In the all-time view each row also shows when you last used that assistant, making it easy to spot ones you've drifted away from. Your most-used tools rise to the top and rarely-used ones fade at the bottom.",
+      "Less clutter under the Settings indexing card — the technical \"Last adapter errors\" list has moved down into the \"Technical error log\" troubleshooting section where it belongs, and the internal \"Migration status\" line is now hidden unless a migration is actually in progress (instead of permanently reading \"done\").",
+      "Clearer, livelier \"Usage by platform\" filters — the selected time range and metric are now highlighted in a bold blue so it's obvious which view you're looking at. Switching views smoothly re-ranks the platforms (most-used gliding to the top) while the bars grow or shrink and the counts tick up or down — no rows popping in or out. Platforms you didn't use in the chosen window dim down and settle at the bottom. Respects your system's reduced-motion setting.",
+      "Tidier Settings while you're not importing — the \"Index older chats\" box on the Settings page now only appears while an import is actually running, where it shows live progress. Starting and pausing imports already lives in the extension popup (on a supported AI tab), so the duplicate, mostly-idle controls in Settings are gone.",
+      "Search opens instantly from the shortcut anywhere — pressing the search shortcut on a non-AI page (any regular website) now pops the search box right there on the page, instead of waiting a couple of seconds and opening a separate search tab. The standalone search tab is still used on pages where Chrome doesn't allow it (its own settings pages, the Web Store, PDFs).",
+      "\"Usage by platform\" only lists assistants you actually use — the breakdown under Indexing status no longer shows an internal \"Anthropic Console\" entry that isn't a supported assistant, matching the rest of Settings."
     ]
   },
   {
     "version": "0.1.9",
     "date": "2026-06-12",
-    "title": "Microsoft Copilot support, import Gemini & Perplexity history from the welcome page & 4 changes",
+    "title": "Microsoft Copilot support, Import Gemini and Perplexity history from the welcome page & 3 fixes",
     "highlights": [
       "Microsoft Copilot support — your Copilot conversations at copilot.microsoft.com now get indexed automatically as you browse, so they show up in search alongside your other chats. You can also continue a Copilot conversation in another assistant.",
       "Import Gemini and Perplexity history from the welcome page — the welcome screen now has \"Import from Gemini\" and \"Import from Perplexity\" buttons alongside ChatGPT and Claude. Each button opens that platform in a new tab, where you click \"Index older chats\" to pull your older history into search.",
@@ -83,16 +143,16 @@
   {
     "version": "0.1.8",
     "date": "2026-06-01",
-    "title": "Import older Gemini chats, more private analytics & fixes",
+    "title": "Import older Gemini chats, Helpful search reminders after import & 3 fixes",
     "highlights": [
-      "Import older Gemini chats — Gemini now supports importing your existing chat history, so older conversations become searchable without opening them one by one",
-      "Helpful search reminders after import — after importing older chats, LLMnesia now gently reminds you to try search so you can check that your new index is useful. The reminder stops once you search",
-      "Clearer sign-in guidance — if you try to import ChatGPT history while signed out, LLMnesia now tells you to sign in and try again instead of looking like nothing happened",
-      "No duplicate Gemini results after import — imported Gemini chats and chats you later open normally now stay merged into one searchable conversation",
-      "Gemini chat dates stay accurate — imported Gemini conversations now keep their original dates instead of appearing as if they were created today",
-      "Search reminders work after partial imports — if an import stops early but still brings in chats, LLMnesia now treats it as successful enough to prompt you to try search. Empty draft chats no longer make the import look like it failed",
-      "More private analytics — optional email signups no longer connect your email to product analytics, and analytics events are filtered to keep conversation text, titles, URLs, and other personal details out",
-      "A more consistent interface — the popup and search palette now share the same calmer visual style, so moving between them feels like one product"
+      "Import older Gemini chats — Gemini now supports importing your existing chat history, so older conversations become searchable without opening them one by one.",
+      "Helpful search reminders after import — after importing older chats, LLMnesia now gently reminds you to try search so you can check that your new index is useful. The reminder stops once you search.",
+      "Clearer sign-in guidance — if you try to import ChatGPT history while signed out, LLMnesia now tells you to sign in and try again instead of looking like nothing happened.",
+      "More private analytics — optional email signups no longer connect your email to product analytics, and analytics events are filtered to keep conversation text, titles, URLs, and other personal details out.",
+      "A more consistent interface — the popup and search palette now share the same calmer visual style, so moving between them feels like one product.",
+      "No duplicate Gemini results after import — imported Gemini chats and chats you later open normally now stay merged into one searchable conversation.",
+      "Gemini chat dates stay accurate — imported Gemini conversations now keep their original dates instead of appearing as if they were created today.",
+      "Search reminders work after partial imports — if an import stops early but still brings in chats, LLMnesia now treats it as successful enough to prompt you to try search. Empty draft chats no longer make the import look like it failed."
     ]
   },
   {
@@ -134,16 +194,19 @@
   {
     "version": "0.1.5",
     "date": "2026-05-04",
-    "title": "Welcome screen, activation badge & reliability fixes",
+    "title": "Welcome screen, Indexing activation badge & 9 fixes",
     "highlights": [
-      "Welcome screen — a friendly intro opens automatically when you first install LLMnesia",
-      "Activation badge — the extension badge lights up once you've indexed 10 conversations, so you know it's ready to use",
-      "Your email is remembered if you install LLMnesia in a second browser — no need to enter it again",
-      "\"Open in\" now sends cleaner conversation text to the target AI — internal notes, raw data dumps, and oversized code blocks are trimmed automatically",
-      "\"Open in\" now shows a helpful message instead of opening a blank tab when a conversation has nothing to export",
-      "\"Open in\" is hidden on AI Studio (not supported on that platform)",
-      "Fixed: clicking the save button on AI Studio now reliably saves the conversation",
-      "Fixed: \"Open in\" was missing AI responses for some platforms (especially DeepSeek) — full conversations now export correctly"
+      "Welcome screen — opens automatically on first install",
+      "Indexing activation badge — once 10 conversations are indexed the extension badge shows \"NEW\"",
+      "Analytics: zero_results_returned ghost-fires — search_performed and zero_results_returned now fire after a 400ms quiet period rather than on every settled 120ms search, eliminating same-millisecond timestamp collisions and intermediate zero-result events fired while the user is mid-keystroke",
+      "Analytics: result_count property — search_performed now includes a result_count integer property, making zero-result queries queryable directly without correlating two separate events",
+      "Analytics: identity not attached on second install — identified distinct ID is now mirrored to chrome.storage.sync on email submit and read back on init, so a second browser install (e.g. Chrome after Firefox) picks up the user's email automatically without requiring a separate email submission",
+      "Continue-chat cross-tab injection — each \"Open in\" action now generates a unique request ID embedded in the target URL",
+      "Continue-chat empty conversation guard — \"Open in\" now detects when there are no indexable user/assistant messages and shows a hint instead of opening a blank target tab",
+      "Continue-chat message quality — conversation text sent to the target platform is now filtered: thinking-duration strings removed, data dumps skipped, code-heavy turns trimmed, max 16 turns kept",
+      "AI Studio \"Continue in\" disabled — right-click \"Open in\" context menu is suppressed on AI Studio",
+      "AI Studio manual-save UX — pill click now always saves",
+      "Continue-chat missing assistant messages — \"Continue in\" was only carrying user messages when a platform's assistant responses had an unresolved unknown role (common for DeepSeek). A new middle pass now detects this case and re-runs with unknown roles treated as assistant, restoring full conversation export for all platforms."
     ]
   },
   {
