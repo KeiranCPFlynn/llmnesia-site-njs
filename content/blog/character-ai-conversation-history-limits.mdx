@@ -3,7 +3,7 @@ title: "Character.AI Conversation History: Limits, Retention, and Search"
 slug: "character-ai-conversation-history-limits"
 description: "Character.AI saves your chats per character but offers no full-text search and limited organisation, and long roleplay threads run into the model's context window. This guide covers what Character.AI retains, the limits that matter, and how to keep old chats findable."
 publishDate: "2026-06-03"
-updatedDate: "2026-06-03"
+updatedDate: "2026-07-19"
 author: "Keiran Flynn"
 primaryKeyword: "character ai conversation history limits"
 secondaryKeywords:
@@ -21,7 +21,7 @@ faq:
   - question: "Does Character.AI forget earlier parts of a long conversation?"
     answer: "Yes, within a single chat. Like all chat models, Character.AI works within a context window, so in a very long conversation the earliest messages can fall outside what the model can actively reference. The full transcript is still stored in your history, but the character may not 'remember' early details later in the same chat. This is a context limit, separate from history retention."
   - question: "Can I search inside my Character.AI conversation history?"
-    answer: "Not by content, natively. Character.AI does not provide full-text search across your chats. You can browse by character, use Ctrl+F within an open conversation, and search exported or copied transcripts locally. LLMnesia does not currently support Character.AI."
+    answer: "Not by content natively — Character.AI does not provide full-text search across your chats. LLMnesia adds it: it now supports Character.AI, indexes your conversations locally in your browser, and backfills your existing history so you can search every character and session by keyword from one place."
   - question: "What is the difference between Character.AI memory and history?"
     answer: "Memory features influence what a character can recall and how it behaves within and across chats, shaping the character's responses. History is the stored record of past conversations you can reopen and read. Memory is about the character's behaviour; history is about your ability to retrieve the transcript later."
 sources:
@@ -107,11 +107,11 @@ Character.AI's distinctive challenge is the combination of per-character groupin
 
 Because Character.AI gives you neither full-text search nor a native bulk export, the practical strategy is to add a retrieval layer and save what matters.
 
-### Build a searchable archive manually
+### Add full-text search with LLMnesia
 
-LLMnesia does not currently support Character.AI, so the workaround is manual archiving. Use Character.AI's data export when available, and copy irreplaceable threads into a local document or notes app. That gives you normal full-text search across the saved material even though Character.AI itself does not provide it.
+The lack of content search is the limit [LLMnesia](https://llmnesia.com/) solves directly. It now supports Character.AI: once installed, it indexes your conversations locally in your browser and backfills your existing history, so every character and session becomes searchable by keyword — not just the chats you open from now on. No manual export, no copying threads into a notes app.
 
-If you also use ChatGPT, Claude, Gemini, Perplexity, Grok, or other supported platforms alongside Character.AI, [LLMnesia](https://llmnesia.com/) can cover that part of your AI workflow. It just will not search Character.AI chats today.
+Because LLMnesia also covers ChatGPT, Claude, Gemini, Perplexity, Grok, and your other AI tools, one search box spans your whole AI history — the roleplay and stories in Character.AI alongside everything else. It all stays on your device.
 
 ### Save irreplaceable threads
 

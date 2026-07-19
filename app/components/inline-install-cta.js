@@ -1,6 +1,6 @@
 import InstallLink from './install-link';
 
-// Friendly display names for the 11 platforms LLMnesia supports. Keys match the
+// Friendly display names for the 12 platforms LLMnesia supports. Keys match the
 // platform tokens produced by getCtaProps() in lib/content.js. Unsupported
 // platforms are intentionally absent so their pages get generic, non-committal
 // copy rather than a false "search your <platform>" claim.
@@ -15,7 +15,8 @@ const PLATFORM_LABELS = {
   mistral: 'Mistral',
   qwen: 'Qwen',
   kimi: 'Kimi',
-  'ai-studio': 'Google AI Studio'
+  'ai-studio': 'Google AI Studio',
+  'character-ai': 'Character.AI'
 };
 
 // Returns a single framing sentence tuned to the page's intent family and, where

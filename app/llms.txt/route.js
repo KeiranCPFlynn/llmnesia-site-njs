@@ -17,7 +17,7 @@ export function GET() {
     '',
     `> LLMnesia is a free Chrome extension that automatically indexes AI conversations from`,
     `> ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi,`,
-    `> Qwen, and Google AI Studio — locally in your browser. No cloud sync. No account required.`,
+    `> Qwen, Google AI Studio, and Character.AI — locally in your browser. No cloud sync. No account required.`,
     `> Search old prompts, answers, and decisions instantly.`,
     '',
     `Canonical: ${SITE_URL}`,
