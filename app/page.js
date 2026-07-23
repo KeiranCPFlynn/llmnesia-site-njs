@@ -29,7 +29,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Which AI platforms are supported today?',
     answer:
-      'Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, and Character.AI. Additional integrations are in progress.'
+      'Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, and Character.AI. You can also index your local Claude Code sessions — from the terminal, the VS Code extension, and the desktop app — into the same search. Additional integrations are in progress.'
   },
   {
     question: 'Will it slow down my browser?',

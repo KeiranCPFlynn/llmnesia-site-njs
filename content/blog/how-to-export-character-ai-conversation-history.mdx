@@ -1,0 +1,105 @@
+---
+title: "Export Character.AI Chat History, Step by Step"
+slug: "how-to-export-character-ai-conversation-history"
+description: "Character.AI has no per-chat export, only a full account data export. Here is where to find it on web and mobile, plus a free way to keep chats searchable."
+publishDate: "2026-07-22"
+updatedDate: "2026-07-22"
+author: "Keiran Flynn"
+primaryKeyword: "export character ai conversation history"
+secondaryKeywords:
+  - "save character ai chat history"
+  - "download character ai conversations"
+  - "character ai data export"
+  - "backup character ai chats"
+  - "character ai chat export"
+intent: "how-to"
+faq:
+  - question: "Can you export Character.AI conversation history?"
+    answer: "Yes. Character.AI provides an account-wide data export that includes your chats, requested from your profile settings on web or your app settings on mobile. It exports everything tied to your account at once rather than letting you pick a single conversation to download."
+  - question: "How do I export Character.AI chats on the web?"
+    answer: "Go to Profile Settings, then Account, then Manage Account & Data, and choose the export data option. This requests a full export of your account data, including your conversation history."
+  - question: "Can I export Character.AI conversations from the mobile app?"
+    answer: "Yes. In the mobile app, open your account settings and look for Export my data. It requests the same account-wide data export as the web version."
+  - question: "What format does the Character.AI export come in?"
+    answer: "Character.AI documents the export as a downloadable file of your account data. The exact file format and how long the request takes to arrive are covered in Character.AI's own help article, since export tooling like this can change over time — check the current details there before you rely on it."
+  - question: "Does exporting help with day-to-day search, or just backup?"
+    answer: "Just backup. The export is a point-in-time snapshot you request and wait for, not something you can search instantly. For ongoing retrieval, LLMnesia now supports Character.AI and keeps a searchable local index of your chats as you use them, so you are not stuck waiting on an export request every time you need to find something."
+sources:
+  - label: "Character.AI"
+    url: "https://character.ai/"
+  - label: "Character.AI Help Center — export data"
+    url: "https://support.character.ai/hc/en-us/articles/30299431702555-How-do-I-export-all-my-data-How-can-I-export-my-chats"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/how-to-export-character-ai-conversation-history"
+category: "how-to"
+howto:
+  name: "How to export your Character.AI conversation history"
+  steps:
+    - name: "Open Character.AI and go to Profile Settings"
+      text: "On the web, open Character.AI and go to your Profile Settings."
+    - name: "Go to Account, then Manage Account & Data"
+      text: "Navigate to the Account section, then Manage Account & Data."
+    - name: "Choose the export data option"
+      text: "Select the option to export your account data, which includes your conversation history."
+    - name: "Wait for the export and download the file"
+      text: "Character.AI prepares the export and makes it available to download; check the Help Center for current timing."
+relatedSlugs:
+  - "search-character-ai-conversation-history"
+  - "character-ai-conversation-history-limits"
+  - "recover-deleted-character-ai-conversation"
+  - "how-to-backup-ai-conversations"
+---
+
+**Character.AI does not have a per-conversation export button — instead, you request a full export of your account data, which includes every chat, from your settings.** On web that's Profile Settings → Account → Manage Account & Data → export data. On mobile it's Export my data in your app settings. Either way, it's a request-and-wait process, not an instant download.
+
+## Why this looks different from ChatGPT or Copilot
+
+Platforms like ChatGPT and Microsoft Copilot let you export or save individual conversations one at a time — copy a response, print to PDF, or download a single chat. Character.AI's export works at the account level instead: one request pulls your whole data set, chats included, rather than a single storyline you pick out.
+
+That makes it a good fit for a full backup, but a poor fit for grabbing one specific roleplay you want to keep. If it's a single thread you care about, copying the transcript or printing that conversation to PDF directly from the browser is faster than waiting on an account-wide export.
+
+## How to export on web
+
+1. Open Character.AI and sign in.
+2. Go to **Profile Settings**.
+3. Open **Account**, then **Manage Account & Data**.
+4. Choose the **export data** option to request your account data, including conversation history.
+
+Character.AI processes the request and makes a file available once it's ready. Because the exact timing and file format can change, the [Character.AI Help Centre article](https://support.character.ai/hc/en-us/articles/30299431702555-How-do-I-export-all-my-data-How-can-I-export-my-chats) is the source to check for the current specifics at the time you request it.
+
+## How to export on mobile
+
+In the Character.AI app, open your account settings and look for **Export my data**. It triggers the same account-wide export as the web version — there is no separate mobile-only export format.
+
+## Saving a single conversation instead
+
+If you only want one specific chat rather than your whole account, an account-wide export is overkill. For a single storyline you want to keep:
+
+- Open the conversation and use your browser's print function (Ctrl+P or Cmd+P), then save as PDF.
+- Or manually copy the transcript into a document if you want plain, editable text rather than a formatted PDF.
+
+Either is faster than a full data request when it's just one thread you care about.
+
+## Which method should you use?
+
+The right method depends on whether you want everything or one thing, and whether you need to read it or edit it.
+
+| You want... | Best method | Trade-off |
+|---|---|---|
+| A full backup of everything | Account data export | Request-and-wait; the file is a raw archive, not easy to browse |
+| One specific chat, kept as-is | Print to PDF (Ctrl+P) | Visual snapshot; not editable text |
+| One specific chat, as plain text | Copy the transcript | Manual; you paste into your own document |
+| To keep finding chats day to day | A local search index | Set up once, then automatic (see below) |
+
+For most people the account export is the "just in case" safety net, while print-to-PDF or copy-paste handles the handful of threads they actively want to keep. The one thing none of them do well is ongoing retrieval.
+
+## What an export does not solve
+
+An export is a snapshot of the moment you requested it, and the file itself is built for portability, not for reading. Opening it means digging through a raw archive of your account data, then using your text editor's find function to locate anything specific. It does not help you search or retrieve conversations day to day, and it does not update itself as you keep chatting, so every time your history moves on you would have to request a fresh one. If what you actually want is to find things inside your ongoing Character.AI history without repeating that whole process, that's a different problem, covered next.
+
+## Keep every future chat searchable with LLMnesia
+
+LLMnesia is a free Chrome extension that now supports Character.AI. Instead of a manual export you request occasionally, it indexes your conversations locally on your device as you chat, and backfills your existing history so it's searchable from day one. It captures your active chat with each character — the one that opens from your recent chats — so if you run several parallel storylines with the same character, the export above is still the way to reach the older ones; LLMnesia's strength is making your ongoing history instantly searchable, not replacing a full account export.
+
+Because LLMnesia also covers ChatGPT, Claude, Gemini, and your other AI tools, it's one search box across your whole AI history, not just Character.AI, and nothing leaves your device.

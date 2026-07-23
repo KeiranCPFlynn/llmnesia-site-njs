@@ -8,6 +8,7 @@ const PLATFORM_LABELS = {
   copilot: 'Microsoft Copilot',
   chatgpt: 'ChatGPT',
   claude: 'Claude',
+  'claude-code': 'Claude Code',
   gemini: 'Gemini',
   deepseek: 'DeepSeek',
   grok: 'Grok',
@@ -26,6 +27,17 @@ const PLATFORM_LABELS = {
 function buildCopy(platform, family) {
   const label = PLATFORM_LABELS[platform];
 
+  // Claude Code is a local source, not a website LLMnesia crawls, so the generic
+  // "chats" / "even after one is deleted" framing does not fit. Speak to sessions
+  // that live on the reader's own machine across the terminal, VS Code, and the
+  // desktop app.
+  if (platform === 'claude-code') {
+    if (family === 'loss') {
+      return `Install LLMnesia free so you never lose a Claude Code session again. It indexes your local sessions — from the terminal, the VS Code extension, and the desktop app — into one search, and lets you jump straight back into any of them.`;
+    }
+    return `Search every Claude Code session you have ever run — from the terminal, the VS Code extension, and the desktop app — from one box, indexed locally on your device alongside ChatGPT, Claude, Gemini and 10+ more.`;
+  }
+
   if (family === 'loss') {
     return label
       ? `Install LLMnesia free so this never happens again. It keeps a local copy of every ${label} chat automatically, even after one is deleted.`
@@ -42,6 +54,12 @@ function buildCopy(platform, family) {
     return label
       ? `Never depend on ${label}'s servers for your history. LLMnesia keeps your own copy, indexed locally on your device.`
       : `Never depend on their servers for your history. LLMnesia keeps your own copy, indexed locally on your device.`;
+  }
+
+  if (family === 'privacy') {
+    return label
+      ? `LLMnesia indexes your ${label} chats locally, on your own device. Nothing is uploaded, so there is nothing on a server for an employer, IT admin, or anyone else to pull.`
+      : `LLMnesia indexes your AI chats locally, on your own device. Nothing is uploaded, so there is nothing on a server for an employer, IT admin, or anyone else to pull.`;
   }
 
   // capability (search / organize / general) — the default family.

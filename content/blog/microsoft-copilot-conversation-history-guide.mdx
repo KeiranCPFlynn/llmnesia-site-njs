@@ -1,0 +1,81 @@
+---
+title: "Microsoft Copilot Conversation History: The Complete Guide"
+slug: "microsoft-copilot-conversation-history-guide"
+description: "Copilot has no native history search and no clear retention policy. This guide maps how to search, export, recover, and organize your Copilot chats."
+publishDate: "2026-07-22"
+updatedDate: "2026-07-22"
+author: "Keiran Flynn"
+primaryKeyword: "microsoft copilot conversation history guide"
+secondaryKeywords:
+  - "copilot chat history complete guide"
+  - "microsoft copilot history overview"
+  - "manage copilot conversation history"
+  - "copilot chat history resources"
+  - "microsoft copilot history hub"
+intent: "informational"
+faq:
+  - question: "Does Microsoft Copilot save your conversation history?"
+    answer: "It depends which Copilot you mean. The standalone web version at copilot.microsoft.com saves history when you're signed into a Microsoft account. The Edge sidebar and Windows taskbar versions persist history less reliably. Microsoft 365 Copilot, used inside Word, Teams, and Outlook, is governed separately by your organisation's Microsoft 365 policies."
+  - question: "Can I search past Microsoft Copilot conversations by keyword?"
+    answer: "Not natively in any meaningful way. Copilot's history panel is a scrollable list, not a search index. LLMnesia adds full-text search across your Copilot web conversations by indexing them locally as you browse, alongside ChatGPT, Claude, Gemini, and other supported platforms."
+  - question: "What should I do if a Copilot conversation is missing or was deleted?"
+    answer: "First check whether it's simply missing from the visible list (a loading or sync issue) rather than actually deleted. If it was deleted, Copilot has no recovery mechanism, but a browser cache or recent tab may briefly hold a copy. See the recovery and not-loading guides linked below for the specific steps."
+  - question: "How long does Microsoft Copilot keep conversation history?"
+    answer: "Microsoft does not publish a fixed retention period for consumer Copilot accounts. Retention varies by product version and account settings, and enterprise Microsoft 365 Copilot follows your organisation's own data retention policy rather than a consumer default."
+  - question: "Does LLMnesia support Microsoft Copilot?"
+    answer: "Yes. LLMnesia supports Microsoft Copilot conversations at copilot.microsoft.com and indexes them locally as you browse, making them fully searchable alongside your other AI tools. It does not cover Copilot inside Word, Teams, Outlook, Windows, or an IDE — those are separate surfaces."
+sources:
+  - label: "Microsoft Copilot"
+    url: "https://copilot.microsoft.com/"
+  - label: "Microsoft Privacy Statement"
+    url: "https://privacy.microsoft.com/"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/microsoft-copilot-conversation-history-guide"
+category: "platform-guides"
+relatedSlugs:
+  - "best-ai-for-conversation-history"
+  - "ai-chat-history-broken-native-search"
+  - "how-to-search-multiple-ai-chatbots-at-once"
+---
+
+**Microsoft Copilot's conversation history is scattered across several products, has no native search, and no published retention policy.** This page is the map: pick the task you actually have below, and it links straight to the specific guide, with a short overview of how storage, retention, and recovery work in between.
+
+## The complete Microsoft Copilot history guide
+
+| I want to... | Guide |
+|---|---|
+| Understand which Copilot I'm even using | [Which Copilot are you using?](#which-copilot-are-you-using) below |
+| Search past conversations by keyword | [Search Your Copilot Chat History Instantly](/blog/search-microsoft-copilot-conversation-history) |
+| Find a specific old conversation | [Find Old Copilot Conversations Fast](/blog/how-to-find-old-microsoft-copilot-conversations) |
+| Export a conversation to keep permanently | [Export Copilot Chat History, Step by Step](/blog/how-to-export-microsoft-copilot-conversation-history) |
+| Stop conversations piling up in a messy list | [Organize Copilot Chat History the Easy Way](/blog/how-to-organize-microsoft-copilot-conversation-history) |
+| Recover one I deleted by accident | [Recover a Deleted Copilot Conversation](/blog/recover-deleted-microsoft-copilot-conversation) |
+| Fix history that won't load or is stuck | [Copilot History Not Loading? Fixes That Work](/blog/microsoft-copilot-history-not-loading-fix) |
+| Understand retention limits and what gets deleted | [Microsoft Copilot Conversation History: Limits, Retention, and What Gets Deleted](/blog/microsoft-copilot-conversation-history-limits) |
+| Compare Copilot to ChatGPT for keeping history | [ChatGPT vs Microsoft Copilot Conversation History](/blog/chatgpt-vs-copilot-conversation-history) |
+
+## Which Copilot are you using?
+
+"Microsoft Copilot" is a brand name applied to several distinct products, and each one handles conversation history differently:
+
+- **Copilot on the web** (copilot.microsoft.com) — the standalone product, formerly Bing Chat. Saves history when you're signed into a Microsoft account. Most of the guides above assume this version.
+- **Copilot in the Edge sidebar** — built into the browser, accessed via the sidebar icon or Alt+/. History persistence here is more limited than the web version.
+- **Microsoft 365 Copilot** — the paid enterprise version inside Word, Excel, Teams, and Outlook. Governed by your organisation's Microsoft 365 data retention policy, not a personal setting.
+- **Copilot in Windows** — the system-level assistant in the taskbar. The least persistent history of the four.
+
+If you're not sure which one you've been using, it's almost always the web version if you access Copilot through a browser tab at copilot.microsoft.com rather than inside another Microsoft app.
+
+## How retention and deletion actually work
+
+Microsoft has not published a fixed retention window for consumer Copilot history the way some competitors do. In practice, history longevity depends on the product version, your account's activity and privacy settings, and whether you're signed in at all — guest sessions aren't saved anywhere. The [limits and retention guide](/blog/microsoft-copilot-conversation-history-limits) covers what's actually known account by account.
+
+Deletion is one-way. There's no "recently deleted" folder to restore from inside Copilot itself. If a conversation is gone, your realistic options are a browser cache from moments ago, a prior export, or a local index you'd set up in advance — covered in the [recovery guide](/blog/recover-deleted-microsoft-copilot-conversation).
+
+Separately, a conversation that seems to have vanished is often just failing to load rather than actually deleted — that's a more common, more fixable problem, and the [not-loading guide](/blog/microsoft-copilot-history-not-loading-fix) walks through the fixes before you assume the worst.
+
+## The gap across all of these
+
+None of the built-in tools solve the same problem: Copilot's own history view is a scrollable list with no keyword search, no cross-session search, and no export of the full archive at once — only individual conversations, one at a time. That's true whether your history is intact, thin on retention, or partially missing.
+
+LLMnesia is a free Chrome extension that closes that gap without changing how you use Copilot. It indexes your Copilot web conversations locally, on your own device, as you use them, and makes them instantly searchable by keyword — alongside ChatGPT, Claude, Gemini, and the other platforms it supports. Nothing is uploaded, so there's no account to lose access to and nothing depends on Microsoft's own retention window.

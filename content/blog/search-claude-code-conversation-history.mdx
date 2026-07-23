@@ -1,0 +1,101 @@
+---
+title: "How to Search Your Claude Code Conversation History"
+slug: "search-claude-code-conversation-history"
+description: "Claude Code has no search across your past sessions. Here is where they are stored, how to grep them, and a faster way to search every session by keyword."
+publishDate: "2026-07-23"
+updatedDate: "2026-07-23"
+author: "Keiran Flynn"
+primaryKeyword: "search claude code conversation history"
+secondaryKeywords:
+  - "claude code conversation history"
+  - "search claude code sessions"
+  - "claude code chat history"
+  - "find claude code session"
+  - "claude code history search"
+intent: "informational"
+faq:
+  - question: "Can you search Claude Code conversation history?"
+    answer: "Not the way you would search a document. Claude Code's resume picker (claude --resume) lets you filter your session list by a search term to pick one to reopen, but it is built for resuming a session, not for searching the full text of what was said inside your past conversations. You can grep the raw session files in ~/.claude/projects yourself, or use a tool like LLMnesia that indexes their content into one searchable box."
+  - question: "Where does Claude Code store its history?"
+    answer: "Claude Code writes each session to a .jsonl file under ~/.claude/projects, in a subfolder named after the project directory you ran it in. One file holds one session's messages. This is why history is scoped per project — the sessions for one repo live in that repo's folder."
+  - question: "Does claude --resume search old conversations?"
+    answer: "It opens a picker, not a search of your conversations. claude --resume (or -r) lists your saved sessions and lets you filter them with a search term, then reopen the one you pick — it is matching your session list to resume something, not searching the full text of what was said inside each conversation. To reopen the most recent session in the current directory without the picker, use claude --continue (or -c)."
+  - question: "How do I find a Claude Code session from a different project?"
+    answer: "Sessions are stored per project under ~/.claude/projects, and both claude --continue and claude --resume — even with a specific session ID — only see sessions for the directory you are currently in. To resume one from a different project, cd into that project first. If you don't know which project it was, search the files by content with ripgrep, or use LLMnesia, which indexes every session and hands you a command that resumes it in the right folder."
+  - question: "Does LLMnesia search Claude Code sessions?"
+    answer: "Yes. LLMnesia indexes your local Claude Code sessions — from the terminal, the VS Code extension, and the desktop app — into the same search as your ChatGPT, Claude, and Gemini chats. It indexes only your prompts and Claude's replies, not file reads, commands, or tool output, and it all stays on your device."
+sources:
+  - label: "Claude Code documentation"
+    url: "https://docs.claude.com/en/docs/claude-code/overview"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://llmnesia.com/"
+canonicalPath: "/blog/search-claude-code-conversation-history"
+category: "platform-guides"
+relatedSlugs:
+  - "where-does-claude-code-store-history"
+  - "how-to-find-an-old-claude-code-conversation"
+  - "how-to-resume-an-old-claude-code-session"
+  - "ai-chat-history-broken-native-search"
+  - "how-to-search-multiple-ai-chatbots-at-once"
+---
+
+**Claude Code keeps every session on your machine, but gives you no way to search across what's inside them.** You can pick a session from the resume picker and carry on, but there is no way to search the full text of your past conversations to find the one where you worked something out. This guide covers exactly where your sessions live, how to search them by hand, and the fastest way to search all of them at once.
+
+## Pick the task you actually have
+
+| I want to... | Guide |
+|---|---|
+| Understand where sessions are stored on disk | [Where Does Claude Code Store Conversation History?](/blog/where-does-claude-code-store-history) |
+| Resume a session I was working in | [How to Resume an Old Claude Code Session](/blog/how-to-resume-an-old-claude-code-session) |
+| Find one specific old session I can't place | [Find an Old Claude Code Conversation Fast](/blog/how-to-find-an-old-claude-code-conversation) |
+| Search across every session by keyword | [Search every session with LLMnesia](#method-3-search-every-session-with-llmnesia) below |
+
+## Why Claude Code history is hard to search
+
+Claude Code stores your work as sessions, one per conversation, written to disk as you go. That part is good — nothing is trapped on a server, and your history survives as long as the files do.
+
+The problem is retrieval. Claude Code's built-in tools are designed to *continue* work, not to *find* it:
+
+- `claude --resume` (or `-r`) opens a picker of your saved sessions — you can filter it by typing a search term — and lets you reopen one.
+- `claude --continue` (or `-c`) jumps straight back into the most recent session in the current directory.
+- `/resume` does the same from inside a running session.
+
+These help you *resume* a session, not find one by what's inside it. The picker lets you filter your session list by a search term, but it is matching sessions to reopen — not searching the full text of what was said in each one. If what you are after is a specific answer buried in a session from weeks ago, filtering a list of sessions will not surface the line you half-remember.
+
+## Method 1: Resume from the picker
+
+If you can recognise the session in the picker, this is the fastest path:
+
+1. Run `claude --resume` (or `claude --continue` to jump straight to the most recent session in the current directory).
+2. Filter the list with a search term if you need to.
+3. Pick the session and continue it.
+
+**Works well for:** sessions you can recognise at a glance.
+
+**Breaks down when:** you are looking for a session by something that was *said* inside it, rather than by the session itself.
+
+## Method 2: Search the session files with ripgrep
+
+Because every session is a plain `.jsonl` file under `~/.claude/projects`, you can search their contents directly. `ripgrep` (`rg`) is ideal because it reads nested folders fast:
+
+```bash
+rg -l "the phrase you remember" ~/.claude/projects
+```
+
+That returns the session files whose text contains your phrase. Add `-i` for case-insensitive matching, and drop the `-l` to see the matching lines in context. To find which project a file belongs to, look at its parent folder name — Claude Code names each project folder after the directory you ran it in.
+
+**Works well for:** a distinctive phrase you are sure appeared in the conversation.
+
+**Breaks down when:** you are matching against raw JSONL, so results are mixed in with tool calls, file contents, and metadata rather than a clean transcript — and you still have to open the file to read the exchange around your match.
+
+## Method 3: Search every session with LLMnesia
+
+Methods 1 and 2 make you either remember the project or wade through raw files. [LLMnesia](https://llmnesia.com/) removes both problems: it indexes your Claude Code sessions locally and makes them searchable by keyword from one box — no matter which project or which day they came from.
+
+Point it at your `~/.claude/projects` folder once, or install the optional background helper and it keeps your sessions in sync on its own: start a new Claude Code session and it turns up in search without you doing anything. Type a phrase you remember — a function name, an error message, a decision you talked through — and jump straight to that session. From a result you can reopen it in the Claude Desktop app, or copy a ready-to-run terminal command that resumes that exact session in the right project folder.
+
+Because the same index also covers ChatGPT, Claude, Gemini, and your other AI tools, one search spans your whole AI history — the web chats and the terminal sessions together. It indexes only your prompts and Claude's replies (not file reads, shell commands, or tool output), and everything stays on your device.
+
+## What to remember
+
+Claude Code's own tools are built to resume, not to find. For a session you can recognise in the picker, `claude --resume` is all you need. For one you can only recall by what was *said* inside it, you need real search — either `ripgrep` over `~/.claude/projects` when you know the exact phrase, or an index like LLMnesia when you don't.
