@@ -33,6 +33,16 @@ function normalizeSource(value) {
   return ALLOWED_SOURCES.has(source) ? source : 'website_homepage';
 }
 
+// The upstream Apps Script keeps its own source allowlist that lags behind
+// ALLOWED_SOURCES above — blog_mobile_capture is valid here but the script
+// rejects it with `invalid_source`, so every mobile lead was silently lost.
+// Until the script's allowlist is updated in the Google editor, forward these
+// sources under one it accepts; the true source is preserved in `variant` for
+// sheet-side segmentation. Remove an entry once the script accepts it.
+const WEBHOOK_SOURCE_FALLBACK = {
+  blog_mobile_capture: 'website_homepage'
+};
+
 function normalizeLeadBody(body) {
   return {
     email: body.email,
@@ -130,10 +140,18 @@ export async function POST(request) {
     return jsonResponse({ success: false, error: 'Please enter a valid email address.' }, 400);
   }
 
+  const requestedSource = normalizeSource(lead.source);
+  const fallbackSource = WEBHOOK_SOURCE_FALLBACK[requestedSource];
+  const requestedContext = normalizeString(lead.context, 120);
+
   const payload = {
     email,
-    source: normalizeSource(lead.source),
-    context: normalizeString(lead.context, 120),
+    source: fallbackSource || requestedSource,
+    // When we fall back the source, prefix the true source into context so the
+    // sheet can still identify mobile-capture leads; variant keeps the family.
+    context: fallbackSource
+      ? normalizeString(`${requestedSource}:${requestedContext}`, 120)
+      : requestedContext,
     variant: normalizeString(lead.variant, 40),
     feedback: normalizeString(lead.feedback, 2000),
     captured_at: normalizeString(lead.captured_at, 80) || new Date().toISOString(),
