@@ -2353,6 +2353,25 @@ main > section:nth-of-type(even) .how-num {
   padding: 0.22rem 0.55rem;
 }
 
+/* ----- Latest release (featured at top) ----- */
+.changelog-entry.is-latest {
+  border-color: var(--t-teal-edge);
+  background: linear-gradient(
+    165deg,
+    var(--t-teal-soft),
+    color-mix(in srgb, var(--t-rust) 6%, var(--t-card))
+  );
+  box-shadow:
+    inset 3px 0 0 var(--t-teal),
+    0 14px 34px -20px color-mix(in srgb, var(--t-teal) 65%, transparent);
+}
+
+.changelog-entry.is-latest .changelog-badge {
+  color: var(--t-rust);
+  background: color-mix(in srgb, var(--t-rust) 12%, var(--t-card));
+  border-color: color-mix(in srgb, var(--t-rust) 35%, transparent);
+}
+
 .changelog-summary {
   margin: 0;
   max-width: 46rem;

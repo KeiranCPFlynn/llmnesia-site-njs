@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Search ChatGPT, Claude & Gemini History Privately | LLMnesia</title>
   <meta name="description"
-    content="LLMnesia is a free Chrome extension that searches your AI chat history across 11 AI tools. Local-first: your conversations stay on your device.">
+    content="LLMnesia is a free Chrome extension that searches your AI chat history across {{PLATFORM_COUNT}} AI tools. Local-first: your conversations stay on your device.">
   <meta name="theme-color" content="#0d1117">
   <meta property="og:type" content="website">
   <meta property="og:title" content="LLMnesia | Stop losing your best AI work">
@@ -135,7 +135,7 @@
             <span>Gemini</span>
             <span>Perplexity</span>
             <span>Copilot</span>
-            <a href="#platforms" class="hero-works-more">+ 7</a>
+            <a href="#platforms" class="hero-works-more">+ {{PLATFORM_OVERFLOW}}</a>
           </p>
           <p class="hero-meta-line">
             No account. No cloud upload. Your conversations stay on this device.
@@ -349,20 +349,7 @@
       <p class="section-intro">Search conversations across leading AI platforms from one place.</p>
       <div class="platform-group">
         <h3>Supported now</h3>
-        <ul class="chip-list platform-chip-list">
-          <li>ChatGPT</li>
-          <li>Claude</li>
-          <li>Gemini</li>
-          <li>Perplexity</li>
-          <li>Microsoft Copilot</li>
-          <li>DeepSeek</li>
-          <li>Grok</li>
-          <li>Mistral</li>
-          <li>Kimi</li>
-          <li>Qwen</li>
-          <li>Google AI Studio</li>
-          <li>Character.AI</li>
-        </ul>
+        <ul class="chip-list platform-chip-list">{{PLATFORM_CHIPS}}</ul>
         <p class="platform-note">Are we missing your favourite LLM? Send us a message to let us know!</p>
       </div>
       <div class="platform-group">
@@ -446,7 +433,7 @@
             <span class="perf-label">Bytes uploaded</span>
           </div>
           <div class="perf-stat">
-            <span class="perf-value">11</span>
+            <span class="perf-value">{{PLATFORM_COUNT}}</span>
             <span class="perf-label">Platforms indexed</span>
           </div>
           <div class="perf-stat">
@@ -547,8 +534,7 @@
         </details>
         <details>
           <summary>Which AI platforms are supported today?</summary>
-          <p>Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi,
-            Qwen, Google AI Studio, and Character.AI. You can also index your local Claude Code sessions — from the terminal,
+          <p>Supported now: {{PLATFORM_LIST}}. You can also index your local Claude Code sessions — from the terminal,
             the VS Code extension, and the desktop app — into the same search. Additional integrations are in progress.</p>
         </details>
         <details>

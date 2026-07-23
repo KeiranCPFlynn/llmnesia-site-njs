@@ -73,8 +73,10 @@ export default function AboutPage() {
               <strong>Claude</strong>, <strong>Gemini</strong>, <strong>Perplexity</strong>,{' '}
               <strong>Microsoft Copilot</strong>, <strong>DeepSeek</strong>, <strong>Grok</strong>,{' '}
               <strong>Mistral</strong>, <strong>Kimi</strong>, <strong>Qwen</strong>,{' '}
-              <strong>Google AI Studio</strong>, and <strong>Character.AI</strong>. Additional
-              integrations are in progress.
+              <strong>Google AI Studio</strong>, and <strong>Character.AI</strong>. You can also
+              index your local <strong>Claude Code</strong> sessions — from the terminal, the VS Code
+              extension, and the desktop app — into the same search. Additional integrations are in
+              progress.
             </p>
 
             <h2>How it works</h2>

@@ -2,11 +2,16 @@ import { getTemplateBody } from '../lib/template-page';
 import JsonLd from './components/json-ld';
 import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
+import {
+  SUPPORTED_PLATFORMS,
+  PLATFORM_COUNT,
+  HERO_OVERFLOW,
+  platformListSentence
+} from '../lib/platforms';
 
 export const metadata = buildPageMetadata({
   title: 'Search ChatGPT, Claude & Gemini History Privately | LLMnesia',
-  description:
-    'LLMnesia is a free Chrome extension that searches your AI chat history across 12 AI tools. Local-first: your conversations stay on your device.',
+  description: `LLMnesia is a free Chrome extension that searches your AI chat history across ${PLATFORM_COUNT} AI tools. Local-first: your conversations stay on your device.`,
   canonicalPath: '/'
 });
 
@@ -28,8 +33,7 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Which AI platforms are supported today?',
-    answer:
-      'Supported now: ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, and Character.AI. You can also index your local Claude Code sessions — from the terminal, the VS Code extension, and the desktop app — into the same search. Additional integrations are in progress.'
+    answer: `Supported now: ${platformListSentence()}. You can also index your local Claude Code sessions — from the terminal, the VS Code extension, and the desktop app — into the same search. Additional integrations are in progress.`
   },
   {
     question: 'Will it slow down my browser?',
@@ -56,7 +60,12 @@ const HOMEPAGE_FAQS = [
 ];
 
 export default function HomePage() {
-  const bodyMarkup = getTemplateBody('index.template.html');
+  const platformChips = SUPPORTED_PLATFORMS.map((name) => `<li>${name}</li>`).join('');
+  const bodyMarkup = getTemplateBody('index.template.html')
+    .replaceAll('{{PLATFORM_COUNT}}', String(PLATFORM_COUNT))
+    .replaceAll('{{PLATFORM_OVERFLOW}}', String(HERO_OVERFLOW))
+    .replaceAll('{{PLATFORM_LIST}}', platformListSentence())
+    .replaceAll('{{PLATFORM_CHIPS}}', platformChips);
 
   return (
     <>
