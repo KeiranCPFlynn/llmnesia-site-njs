@@ -39,7 +39,12 @@ const FAQS = [
   },
   {
     q: 'What exactly gets indexed?',
-    a: 'Only your prompts and Claude’s replies. File reads, shell commands, and tool output are left out, so search results read like a clean transcript, not raw logs. Everything is indexed locally on your device — nothing is uploaded.'
+    a: 'Only your prompts and Claude’s replies. File reads, shell commands, and tool output are left out, so search results read like a clean transcript, not raw logs. That index lives in your browser’s local storage and is never uploaded anywhere.'
+  },
+  {
+    q: 'Does anything leave my device?',
+    a: 'Your sessions, prompts, replies, and search index never do — they stay in local browser storage, full stop. LLMnesia does send limited, anonymized product analytics to PostHog (extension version, which features you use, error categories, an anonymous install ID) so we can fix bugs and see what’s useful. It never includes conversation content, prompts, replies, or search queries. Full detail in the',
+    aLink: { text: 'privacy policy', href: '/privacy-policy' }
   },
   {
     q: 'Does it work with my web AI chats too?',
@@ -52,7 +57,12 @@ export default function ClaudeCodePage() {
     <SiteChrome minimalHeader headerCtaUtm={{ ...CTA_UTM, utm_medium: 'header_cta' }}>
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd
-        data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))}
+        data={homepageFaqSchema(
+          FAQS.map((item) => ({
+            question: item.q,
+            answer: item.aLink ? `${item.a} ${item.aLink.text}.` : item.a
+          }))
+        )}
       />
       <main id="main-content" className="cc-page">
         {/* Hero — what it does, in one line, with the install right there */}
@@ -144,7 +154,7 @@ export default function ClaudeCodePage() {
                   </div>
                   <div className="cc-mock-cmd">
                     <span className="cc-mock-cmd-label">Resume</span>
-                    <code>cd ~/projects/api-server &amp;&amp; claude --resume 7f3a1c</code>
+                    <code>cd ~/projects/api-server &amp;&amp; claude --resume e44171ac-b4be-4426-b9b6-c15435a0aca1</code>
                     <span className="cc-mock-copy" aria-hidden="true">Copy</span>
                   </div>
                 </article>
@@ -162,7 +172,15 @@ export default function ClaudeCodePage() {
               {FAQS.map((item) => (
                 <details key={item.q}>
                   <summary>{item.q}</summary>
-                  <p>{item.a}</p>
+                  <p>
+                    {item.a}
+                    {item.aLink ? (
+                      <>
+                        {' '}
+                        <a href={item.aLink.href}>{item.aLink.text}</a>.
+                      </>
+                    ) : null}
+                  </p>
                 </details>
               ))}
             </div>
