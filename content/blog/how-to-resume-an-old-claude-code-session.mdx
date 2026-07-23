@@ -28,7 +28,7 @@ sources:
   - label: "Claude Code documentation"
     url: "https://docs.claude.com/en/docs/claude-code/overview"
   - label: "LLMnesia — AI conversation search"
-    url: "https://llmnesia.com/"
+    url: "https://www.llmnesia.com/"
 canonicalPath: "/blog/how-to-resume-an-old-claude-code-session"
 category: "how-to"
 howto:
@@ -74,7 +74,7 @@ The built-in tools assume you can recognise the session yourself — by its entr
 Two ways through it:
 
 - **Search the files by content.** Every session is a plain file under `~/.claude/projects`, named by its session ID. `rg -i "something you remember" ~/.claude/projects` will point you at the file — its parent folder is the project, and the filename (minus `.jsonl`) is the ID. `cd` into that folder and run `claude --resume <that-id>` to reopen it.
-- **Let a tool find it and hand you the command.** [LLMnesia](https://llmnesia.com/) indexes your Claude Code sessions and makes them searchable by keyword across every project. Find the session by a phrase you remember, and it either reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command — for the right folder — that resumes that exact session.
+- **Let a tool find it and hand you the command.** [LLMnesia](https://www.llmnesia.com/) indexes your Claude Code sessions and makes them searchable by keyword across every project. Find the session by a phrase you remember, and it either reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command — for the right folder — that resumes that exact session.
 
 ## Keeping sessions easy to return to
 

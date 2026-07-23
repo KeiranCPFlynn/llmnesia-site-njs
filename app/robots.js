@@ -6,7 +6,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/'
     },
-    sitemap: absoluteUrl('/sitemap.xml'),
-    host: 'llmnesia.com'
+    sitemap: absoluteUrl('/sitemap.xml')
   };
 }

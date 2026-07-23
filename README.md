@@ -57,11 +57,17 @@ Validation runs during build via `lib/content.js`.
 
 ## Canonical and redirects
 
-- Canonical domain: `https://llmnesia.com`
-- `middleware.js` enforces 301 legacy path redirects:
-  - `/index.html` -> `/`
-  - `/privacy-policy.html` -> `/privacy-policy`
-- Host/domain canonicalization should be configured in Vercel domain settings.
+- Canonical domain: `https://www.llmnesia.com` (www, not apex).
+  **Do not flip this to apex.** The canonical host was flip-flopped apex<->www
+  multiple times historically, which stalled Google's host consolidation and
+  produced a large "Page with redirect" tail in Search Console. It is settled on
+  www: `SITE_URL` in `lib/site.js`, all canonicals, the sitemap, and the
+  apex->www redirect must all stay on www. Any new absolute link (code or
+  `content/`) must use `https://www.llmnesia.com`.
+- `next.config.mjs` `redirects()` enforces:
+  - apex -> www (`llmnesia.com` -> `www.llmnesia.com`, 308)
+  - `/index.html` -> `/`, `/privacy-policy.html` -> `/privacy-policy`
+  - `/contact` -> `/#contact`, `/privacy` -> `/privacy-policy`
 
 ## Analytics
 
