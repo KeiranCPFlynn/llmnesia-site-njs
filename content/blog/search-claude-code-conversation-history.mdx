@@ -1,7 +1,7 @@
 ---
 title: "How to Search Your Claude Code Conversation History"
 slug: "search-claude-code-conversation-history"
-description: "Claude Code has no search across your past sessions. Here is where they are stored, how to grep them, and a faster way to search every session by keyword."
+description: "Claude Code splits your history across the terminal, VS Code, and the desktop app. Here is where sessions are stored, how to search them, and a faster way to search every one by keyword."
 publishDate: "2026-07-23"
 updatedDate: "2026-07-23"
 author: "Keiran Flynn"
@@ -15,7 +15,7 @@ secondaryKeywords:
 intent: "informational"
 faq:
   - question: "Can you search Claude Code conversation history?"
-    answer: "Not the way you would search a document. Claude Code's resume picker (claude --resume) lets you filter your session list by a search term to pick one to reopen, but it is built for resuming a session, not for searching the full text of what was said inside your past conversations. You can grep the raw session files in ~/.claude/projects yourself, or use a tool like LLMnesia that indexes their content into one searchable box."
+    answer: "Yes, but within each app separately. The CLI resume picker (claude --resume) has a search mode that filters your session list, the VS Code extension and the desktop app each let you search their own session history, and you can grep the raw session files in ~/.claude/projects yourself. What none of them do is search across all three surfaces at once, or alongside the AI chats you have in your browser. A tool like LLMnesia indexes every Claude Code session and your web chats into one searchable box."
   - question: "Where does Claude Code store its history?"
     answer: "Claude Code writes each session to a .jsonl file under ~/.claude/projects, in a subfolder named after the project directory you ran it in. One file holds one session's messages. This is why history is scoped per project — the sessions for one repo live in that repo's folder."
   - question: "Does claude --resume search old conversations?"
@@ -39,7 +39,7 @@ relatedSlugs:
   - "how-to-search-multiple-ai-chatbots-at-once"
 ---
 
-**Claude Code keeps every session on your machine, but gives you no way to search across what's inside them.** You can pick a session from the resume picker and carry on, but there is no way to search the full text of your past conversations to find the one where you worked something out. This guide covers exactly where your sessions live, how to search them by hand, and the fastest way to search all of them at once.
+**Claude Code keeps every session on your machine, but your history is split up — the terminal, the VS Code extension, and the desktop app each keep their own, and every session is scoped to the project folder you ran it in.** Each of those apps lets you search and resume its own sessions, so the friction is not that search is missing — it is that no single search spans all three surfaces, let alone the AI chats you have in your browser. This guide covers exactly where your sessions live, how to search them, and the fastest way to search all of them — and your web chats — from one place.
 
 ## Pick the task you actually have
 
@@ -50,17 +50,17 @@ relatedSlugs:
 | Find one specific old session I can't place | [Find an Old Claude Code Conversation Fast](/blog/how-to-find-an-old-claude-code-conversation) |
 | Search across every session by keyword | [Search every session with LLMnesia](#method-3-search-every-session-with-llmnesia) below |
 
-## Why Claude Code history is hard to search
+## Why Claude Code history is scattered
 
 Claude Code stores your work as sessions, one per conversation, written to disk as you go. That part is good — nothing is trapped on a server, and your history survives as long as the files do.
 
-The problem is retrieval. Claude Code's built-in tools are designed to *continue* work, not to *find* it:
+The catch is that your history is fragmented. The terminal CLI, the VS Code extension, and the desktop app each keep their *own* session history, and every session is filed under the project folder you ran it in. Each app gives you tools to search and reopen its own sessions:
 
-- `claude --resume` (or `-r`) opens a picker of your saved sessions — you can filter it by typing a search term — and lets you reopen one.
+- `claude --resume` (or `-r`) opens a picker of your saved sessions with a search mode to filter the list — press `Ctrl+A` to widen it to every project on the machine — and lets you reopen one.
 - `claude --continue` (or `-c`) jumps straight back into the most recent session in the current directory.
-- `/resume` does the same from inside a running session.
+- `/resume` does the same from inside a running session, and the desktop app lists your sessions in a sidebar you can search.
 
-These help you *resume* a session, not find one by what's inside it. The picker lets you filter your session list by a search term, but it is matching sessions to reopen — not searching the full text of what was said in each one. If what you are after is a specific answer buried in a session from weeks ago, filtering a list of sessions will not surface the line you half-remember.
+So each surface *can* search its own history. What none of them do is pull the terminal, VS Code, and the desktop app into one search — and none of them reach the AI chats you have in your browser. If the session you want is in a different app, or you are not sure which one you used, you are back to checking each place in turn.
 
 ## Method 1: Resume from the picker
 
@@ -98,4 +98,4 @@ Because the same index also covers ChatGPT, Claude, Gemini, and your other AI to
 
 ## What to remember
 
-Claude Code's own tools are built to resume, not to find. For a session you can recognise in the picker, `claude --resume` is all you need. For one you can only recall by what was *said* inside it, you need real search — either `ripgrep` over `~/.claude/projects` when you know the exact phrase, or an index like LLMnesia when you don't.
+Claude Code's own search stops at the edge of each app — the terminal, VS Code, and the desktop app each search only their own sessions, and none of them see your web chats. For a session you can place in one app's picker, that is all you need. To search across every surface at once — or to match a session by a phrase from it alongside your ChatGPT and Claude web chats — you need one index over all of it: `ripgrep` over `~/.claude/projects` when you know the exact phrase and the project, or a tool like LLMnesia when you don't.

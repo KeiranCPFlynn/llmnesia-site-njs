@@ -191,6 +191,22 @@ video {
   opacity: 0.9;
 }
 
+/* Minimal header (landing pages): the install button sits directly in the
+   header, outside .nav, so mirror the CTA styling onto it. */
+.site-header--minimal .nav-cta {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  background: var(--brand);
+  color: var(--on-cta);
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.site-header--minimal .nav-cta:hover {
+  color: var(--on-cta);
+  opacity: 0.9;
+}
+
 .nav-toggle {
   display: none;
   border: 1px solid var(--border);
@@ -3402,6 +3418,104 @@ main > section:nth-of-type(even) .how-num {
   color: var(--rust);
 }
 
+/* ───── Blog search ───── */
+.blog-search {
+  margin: 0;
+}
+
+.blog-search__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius);
+  background: var(--t-card);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.blog-search__field:focus-within {
+  border-color: var(--t-ink-3);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--t-teal) 18%, transparent);
+}
+
+.blog-search__icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.blog-search__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.blog-search__input:focus {
+  outline: none;
+}
+
+.blog-search__input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Hide the native clear affordance so our own "Clear" button is the only one. */
+.blog-search__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.blog-search__clear {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-sm);
+  background: var(--t-paper-2);
+  color: var(--t-ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.blog-search__clear:hover {
+  color: var(--text);
+  border-color: var(--t-ink-3);
+}
+
+.blog-search__count {
+  margin: 0.9rem 0 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.blog-search__empty {
+  margin: 1.5rem 0 0;
+  padding: 1.5rem;
+  border: 1px dashed var(--t-rule);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
 .post-list {
   list-style: none;
   padding: 0;
@@ -5137,4 +5251,283 @@ main > section:nth-of-type(even) .how-num {
   justify-content: center;
   gap: 1.25rem;
   flex-wrap: wrap;
+}
+
+/* ============================================================
+   Claude Code product page (/claude-code)
+   ============================================================ */
+.cc-hero {
+  padding-top: 4.5rem;
+  text-align: center;
+}
+
+.cc-hero-inner {
+  max-width: 780px;
+}
+
+.cc-hero .eyebrow {
+  justify-content: center;
+}
+
+.cc-hero h1 {
+  margin: 0.75rem 0 1rem;
+}
+
+.cc-hero-sub {
+  max-width: 60ch;
+  margin: 0 auto 1.75rem;
+}
+
+.cc-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.cc-hero-guide {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.cc-hero-guide:hover {
+  color: var(--rust);
+  border-color: color-mix(in srgb, var(--rust) 40%, transparent);
+}
+
+.cc-hero-note {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+/* --- Setup --- */
+.cc-setup-grid {
+  margin-top: var(--s-4);
+}
+
+.cc-setup-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cc-setup-kicker {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+.cc-setup-note {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* --- Result mockup --- */
+.cc-result-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  align-items: center;
+}
+
+.cc-result-copy .section-intro {
+  margin-bottom: 0;
+}
+
+.cc-mock {
+  position: relative;
+  border: 1px solid var(--t-rule);
+  border-radius: 16px;
+  background: var(--t-card);
+  overflow: hidden;
+  box-shadow:
+    0 40px 70px -30px rgba(20, 36, 48, 0.35),
+    0 12px 28px -16px rgba(20, 36, 48, 0.18);
+}
+
+.cc-mock::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: radial-gradient(45% 40% at 70% 0%, color-mix(in srgb, var(--t-rust) 22%, transparent), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cc-mock-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1rem;
+  background: var(--t-paper-2);
+  border-bottom: 1px solid var(--t-rule-soft);
+}
+
+.cc-mock-dots {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.cc-mock-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--t-rule);
+}
+
+.cc-mock-dot:nth-child(1) { background: color-mix(in srgb, var(--t-rust) 70%, #d9985f); }
+.cc-mock-dot:nth-child(2) { background: #e3b341; }
+.cc-mock-dot:nth-child(3) { background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f); }
+
+.cc-mock-search {
+  flex: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--t-card);
+  border: 1px solid var(--t-rule-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--t-ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-mock-body {
+  padding: var(--s-3);
+}
+
+.cc-mock-result {
+  border: 1px solid var(--t-rule-soft);
+  border-left: 3px solid var(--t-teal);
+  border-radius: 10px;
+  background: var(--t-paper);
+  padding: 1rem 1.15rem;
+}
+
+.cc-mock-result-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+}
+
+.cc-mock-result-top h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.cc-mock-tag {
+  flex-shrink: 0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  border: 1px solid var(--t-teal-edge);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  color: var(--t-teal);
+}
+
+.cc-mock-snippet {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--t-ink-2);
+}
+
+.cc-mock-snippet mark {
+  background: color-mix(in srgb, #e3b341 40%, transparent);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
+.cc-mock-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.cc-mock-cmd {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  background: var(--t-ink);
+  overflow: hidden;
+}
+
+.cc-mock-cmd-label {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #ebf5cb 70%, transparent);
+}
+
+.cc-mock-cmd code {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #ebf5cb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cc-mock-copy {
+  flex-shrink: 0;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  border: 1px solid color-mix(in srgb, #ebf5cb 30%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: color-mix(in srgb, #ebf5cb 85%, transparent);
+}
+
+/* --- Closing --- */
+.cc-closing {
+  text-align: center;
+}
+
+.cc-closing-inner {
+  max-width: 620px;
+}
+
+.cc-closing-inner h2 {
+  margin-bottom: var(--s-2);
+}
+
+.cc-closing-inner .section-intro {
+  margin: 0 auto var(--s-3);
+  max-width: 48rem;
+}
+
+@media (max-width: 860px) {
+  .cc-result-inner {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
 }

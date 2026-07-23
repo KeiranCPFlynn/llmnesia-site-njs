@@ -1,4 +1,5 @@
 import SiteChrome from '../components/site-chrome';
+import BlogSearch from '../components/blog-search';
 import { getAllContent, getAllCategories, getContentByCategory } from '../../lib/content';
 import { buildPageMetadata } from '../../lib/metadata';
 
@@ -38,6 +39,34 @@ export default function BlogIndexPage() {
     categoryCounts[cat] = getContentByCategory('blog', cat).length;
   }
 
+  // Serialisable, pre-formatted posts for the client-side search filter. The
+  // haystack folds every field a reader might search on into one lowercase
+  // string so matching stays a cheap substring test in the browser.
+  const searchPosts = posts.map((post) => {
+    const categoryLabel = post.category
+      ? CATEGORY_LABELS[post.category] || post.category
+      : null;
+    return {
+      slug: post.slug,
+      title: post.title,
+      summary: post.dek || post.description,
+      publishDate: post.publishDate,
+      dateLabel: formatPostDate(post.publishDate),
+      categoryLabel,
+      haystack: [
+        post.title,
+        post.dek,
+        post.description,
+        post.primaryKeyword,
+        ...(post.secondaryKeywords || []),
+        categoryLabel
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase()
+    };
+  });
+
   return (
     <SiteChrome>
       <main id="main-content" className="blog-index">
@@ -67,24 +96,7 @@ export default function BlogIndexPage() {
           ))}
         </nav>
 
-        <ol className="post-list">
-          {posts.map((post) => (
-            <li key={post.slug} className="post-list__item">
-              <a href={`/blog/${post.slug}`} className="post-list__link">
-                <div className="post-list__top">
-                  <time dateTime={post.publishDate}>{formatPostDate(post.publishDate)}</time>
-                  {post.category && (
-                    <span className="post-list__cat">
-                      {CATEGORY_LABELS[post.category] || post.category}
-                    </span>
-                  )}
-                </div>
-                <h2>{post.title}</h2>
-                <p>{post.dek || post.description}</p>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <BlogSearch posts={searchPosts} />
       </main>
     </SiteChrome>
   );
