@@ -635,14 +635,24 @@ export default function SiteBehavior() {
       const rawPlacement = cta ? cta.getAttribute('data-cta-placement') : null;
       const position = rawPlacement === 'inline' ? 'intro' : rawPlacement === 'bottom' ? 'foot' : 'other';
 
-      const showSuccess = () => {
+      // `emailed` decides which of the two success messages is revealed: the
+      // "check your inbox" one only when the install email actually went out,
+      // otherwise the fallback that shows the link inline.
+      const showSuccess = (emailed) => {
         if (lead) lead.style.display = 'none';
         form.style.display = 'none';
-        if (success) success.removeAttribute('hidden');
+        if (!success) return;
+
+        const result = success.querySelector(
+          `[data-capture-result="${emailed ? 'sent' : 'fallback'}"]`
+        );
+        if (result) result.removeAttribute('hidden');
+        success.removeAttribute('hidden');
       };
 
       if (typeof honeypot === 'string' && honeypot.trim() !== '') {
-        showSuccess();
+        // Bots get the sent-copy dead end; nothing was submitted or mailed.
+        showSuccess(true);
         return;
       }
 
@@ -680,10 +690,13 @@ export default function SiteBehavior() {
           throw new Error('failed');
         }
 
-        showSuccess();
+        showSuccess(data.emailed === true);
         trackEvent('mobile_email_capture', {
           family,
           position,
+          // Separates captures that kept the "we'll email you" promise from
+          // those that fell back to showing the link.
+          emailed: data.emailed === true,
           ...(slug && { slug })
         });
       } catch {

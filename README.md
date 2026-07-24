@@ -82,11 +82,30 @@ The `/api/leads` route accepts direct website and extension JSON payloads. The
 homepage signup can override attribution with `lead_source` and `lead_context`
 query params, for example links from the extension founding prompt.
 
+## Install-link email
+
+The mobile blog CTA ("Email me the link") sends the reader the Chrome Web Store
+link, because mobile visitors cannot install a desktop extension where they are
+standing. Delivery lives in `lib/install-email.js` and runs through Resend:
+
+- `RESEND_API_KEY` **required for sending.** Without it the lead is still
+  captured, the API responds `emailed: false`, and the CTA shows the link inline
+  instead of claiming an inbox delivery.
+- `LEADS_FROM_EMAIL` sender, e.g. `LLMnesia <hello@llmnesia.com>`. The domain
+  must be verified in Resend or sends are rejected.
+- `LEADS_REPLY_TO` optional reply-to address.
+
+Sends are capped at 5 per IP per hour, per function instance, since the endpoint
+is unauthenticated. The message body is fixed and contains no caller-supplied
+content.
+
 Tracked events:
 
 - `install_click`
 - `email_signup`
 - `contact_submit`
+- `mobile_email_capture` — carries `emailed: true|false` so captures that sent
+  the install link are separable from ones that fell back to the inline link
 
 ## Deployment (Vercel)
 

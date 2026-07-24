@@ -4549,6 +4549,21 @@ main > section:nth-of-type(even) .how-num {
   color: var(--success);
 }
 
+/* Only one result message is ever unhidden, so it owns the whole block. */
+.cta-email-capture .cta-email-capture__result {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.cta-email-capture__result-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
 /* ===================================================================
    VAULT PAGE (/vault) — founding-member waitlist
    =================================================================== */

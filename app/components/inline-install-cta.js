@@ -142,9 +142,29 @@ export default function InlineInstallCta({
               No spam. Just the install link.
             </p>
           </form>
+          {/* Two outcomes, two messages. The API reports whether the install
+              email actually went out; site-behavior.js reveals the matching one
+              so the success state never claims a delivery that did not happen. */}
           <div className="cta-email-capture__success" hidden>
-            Check your inbox. We sent the LLMnesia link so you can add it next time you are on your
-            computer.
+            <p className="cta-email-capture__result" data-capture-result="sent" hidden>
+              Check your inbox. We sent the LLMnesia install link so you can add it next time you
+              are on your computer.
+            </p>
+            <p className="cta-email-capture__result" data-capture-result="fallback" hidden>
+              Saved. The email did not go through, so here is the link for when you are at your
+              computer:{' '}
+              <InstallLink
+                className="cta-email-capture__result-link"
+                utm={{
+                  utm_source: 'blog',
+                  utm_medium: 'mobile_capture_fallback',
+                  utm_campaign: 'mobile_install_link',
+                  ...(slug && { utm_term: slug })
+                }}
+              >
+                Add LLMnesia to Chrome
+              </InstallLink>
+            </p>
           </div>
         </div>
       </div>

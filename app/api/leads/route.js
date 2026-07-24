@@ -1,3 +1,5 @@
+import { sendInstallLinkEmail } from '../../../lib/install-email';
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ALLOWED_SOURCES = new Set([
   'website_homepage',
@@ -42,6 +44,49 @@ function normalizeSource(value) {
 const WEBHOOK_SOURCE_FALLBACK = {
   blog_mobile_capture: 'website_homepage'
 };
+
+// Sources whose form copy promises the reader an email ("Email me the link").
+// Only these trigger a send; every other source is list capture only.
+const EMAIL_LINK_SOURCES = new Set(['blog_mobile_capture']);
+
+// Sending mail to an address supplied by an unauthenticated caller needs a cap,
+// or the endpoint becomes a way to mail strangers on our domain's reputation.
+// The message body is fixed and carries no caller-supplied content, so the worst
+// case is repetition — this throttle is about volume, not content.
+//
+// In-memory means the window is per function instance rather than global. That
+// is enough to stop a naive loop; a distributed flood needs a shared store.
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+const RATE_LIMIT_MAX_SENDS = 5;
+const sendHistory = new Map();
+
+function clientKey(request) {
+  const forwarded = request.headers.get('x-forwarded-for') || '';
+  return forwarded.split(',')[0].trim() || request.headers.get('x-real-ip') || 'unknown';
+}
+
+function withinSendLimit(key) {
+  const now = Date.now();
+
+  // Piggyback eviction on the write path — no timer to leak in a serverless
+  // instance that may be frozen between requests.
+  for (const [entryKey, timestamps] of sendHistory) {
+    const live = timestamps.filter((ts) => now - ts < RATE_LIMIT_WINDOW_MS);
+    if (live.length === 0) {
+      sendHistory.delete(entryKey);
+    } else {
+      sendHistory.set(entryKey, live);
+    }
+  }
+
+  const recent = sendHistory.get(key) || [];
+  if (recent.length >= RATE_LIMIT_MAX_SENDS) {
+    return false;
+  }
+
+  sendHistory.set(key, [...recent, now]);
+  return true;
+}
 
 function normalizeLeadBody(body) {
   return {
@@ -162,16 +207,43 @@ export async function POST(request) {
     user_agent: normalizeString(request.headers.get('user-agent'), 300)
   };
 
+  const promisesEmail = EMAIL_LINK_SOURCES.has(requestedSource);
+
   try {
-    const result = await forwardLead(payload);
-    if (!result.submitted) {
-      return jsonResponse({
-        success: false,
-        error: result.reason === 'missing_webhook' ? 'Lead webhook is not configured.' : `Lead webhook failed: ${result.reason}.`
-      }, 502);
+    // Independent of each other on purpose: a reader who was promised the link
+    // should get it even if the sheet is down, and a lead should still land if
+    // the mail provider is down. The response reports each outcome separately.
+    const [leadResult, emailResult] = await Promise.all([
+      forwardLead(payload).catch(() => ({ submitted: false, reason: 'webhook_exception' })),
+      promisesEmail
+        ? withinSendLimit(clientKey(request))
+          ? sendInstallLinkEmail(email)
+          : Promise.resolve({ sent: false, reason: 'rate_limited' })
+        : Promise.resolve({ sent: false, reason: 'not_requested' })
+    ]);
+
+    if (promisesEmail && !emailResult.sent) {
+      // Surfaces in Vercel runtime logs. `not_configured` here means
+      // RESEND_API_KEY is unset — see lib/install-email.js.
+      console.error(`[leads] install email not sent (${emailResult.reason})`);
     }
 
-    return jsonResponse({ success: true });
+    if (!leadResult.submitted) {
+      console.error(`[leads] webhook failed (${leadResult.reason})`);
+
+      // The email is the thing the reader was promised. If it went out, the
+      // request succeeded from their side and the lost row is ours to chase.
+      if (!emailResult.sent) {
+        return jsonResponse({
+          success: false,
+          error: leadResult.reason === 'missing_webhook' ? 'Lead webhook is not configured.' : `Lead webhook failed: ${leadResult.reason}.`
+        }, 502);
+      }
+    }
+
+    // `emailed` drives which success copy the client shows, so the UI never
+    // claims an inbox delivery that did not happen.
+    return jsonResponse({ success: true, emailed: emailResult.sent });
   } catch {
     return jsonResponse({ success: false, error: 'Lead submit failed.' }, 502);
   }
