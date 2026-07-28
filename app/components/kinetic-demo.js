@@ -33,7 +33,8 @@ const LABELS = {
   deepseek: 'DeepSeek',
   copilot: 'Copilot',
   grok: 'Grok',
-  mistral: 'Mistral'
+  mistral: 'Mistral',
+  characterai: 'Character.AI'
 };
 
 const escapeHtml = (value) =>

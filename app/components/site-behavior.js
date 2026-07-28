@@ -58,7 +58,8 @@ export default function SiteBehavior() {
         claude: 'Claude',
         gemini: 'Gemini',
         perplexity: 'Perplexity',
-        deepseek: 'DeepSeek'
+        deepseek: 'DeepSeek',
+        characterai: 'Character.AI'
       };
 
       const data = [

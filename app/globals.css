@@ -5,22 +5,22 @@
   --font-mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
 
   /* === Shared tokens (one paper across site + app) === */
-  --t-paper:      #fffef8;
-  --t-paper-2:    #faf6e4;
-  --t-paper-3:    #f3eed8;
-  --t-card:       #ffffff;
-  --t-rule:       #d9decb;
-  --t-rule-soft:  #e7ecd9;
-  --t-ink:        #142430;
-  --t-ink-2:      #2e4656;
-  --t-ink-3:      #5b6b74;
-  --t-teal:       #2f7f99;
-  --t-teal-soft:  #e6f0f3;
-  --t-teal-edge:  #b8d0d9;
-  --t-on-bg:      #ebf5cb;
-  --t-on-edge:    #9ab458;
-  --t-on-ink:     #294022;
-  --t-rust:       #c6572f;
+  --t-paper: #fffef8;
+  --t-paper-2: #faf6e4;
+  --t-paper-3: #f3eed8;
+  --t-card: #ffffff;
+  --t-rule: #d9decb;
+  --t-rule-soft: #e7ecd9;
+  --t-ink: #142430;
+  --t-ink-2: #2e4656;
+  --t-ink-3: #5b6b74;
+  --t-teal: #2f7f99;
+  --t-teal-soft: #e6f0f3;
+  --t-teal-edge: #b8d0d9;
+  --t-on-bg: #ebf5cb;
+  --t-on-edge: #9ab458;
+  --t-on-ink: #294022;
+  --t-rust: #c6572f;
 
   /* === 8-pt rhythm === */
   --s-1: 8px;
@@ -30,20 +30,20 @@
   --s-5: 64px;
 
   /* Mapped legacy aliases — existing selectors keep working */
-  --bg:           var(--t-paper);
-  --bg-alt:       var(--t-paper-3);
-  --card:         var(--t-card);
-  --muted:        var(--t-paper-2);
-  --text:         var(--t-ink);
-  --text-muted:   var(--t-ink-3);
-  --border:       var(--t-rule);
-  --border-soft:  var(--t-rule-soft);
-  --brand:        var(--t-teal);
-  --accent:       var(--t-on-edge);
-  --rust:         var(--t-rust);
-  --success:      #4a7d2b;
-  --danger:       hsl(0, 70%, 45%);
-  --on-cta:       #ffffff;
+  --bg: var(--t-paper);
+  --bg-alt: var(--t-paper-3);
+  --card: var(--t-card);
+  --muted: var(--t-paper-2);
+  --text: var(--t-ink);
+  --text-muted: var(--t-ink-3);
+  --border: var(--t-rule);
+  --border-soft: var(--t-rule-soft);
+  --brand: var(--t-teal);
+  --accent: var(--t-on-edge);
+  --rust: var(--t-rust);
+  --success: #4a7d2b;
+  --danger: hsl(0, 70%, 45%);
+  --on-cta: #ffffff;
 
   --radius-sm: 5px;
   --radius: 8px;
@@ -441,7 +441,7 @@ h1 {
   line-height: 1.45;
 }
 
-.hero-setup-list li + li {
+.hero-setup-list li+li {
   margin-top: 0.25rem;
 }
 
@@ -488,7 +488,7 @@ h1 {
   text-transform: uppercase;
 }
 
-.hero-works-line > span:not(.hero-works-label) {
+.hero-works-line>span:not(.hero-works-label) {
   color: var(--text);
   font-weight: 500;
 }
@@ -533,7 +533,7 @@ h1 {
   line-height: 1.45;
 }
 
-.hero-setup-list li + li {
+.hero-setup-list li+li {
   margin-top: 0.25rem;
 }
 
@@ -903,6 +903,15 @@ h1 {
   --platform-pill-text: #0a5d56;
 }
 
+.kp-res[data-p="characterai"] {
+  --platform-accent: #7c3aed;
+  --platform-card: #f4f0ff;
+  --platform-card-selected: #ebe4ff;
+  --platform-pill-bg: #ede5ff;
+  --platform-pill-border: #cdb8ff;
+  --platform-pill-text: #5b21b6;
+}
+
 .kp-footer {
   display: flex;
   align-items: center;
@@ -1113,11 +1122,11 @@ h1 {
   scroll-margin-top: 5rem;
 }
 
-main > .section + .section {
+main>.section+.section {
   padding-top: calc(var(--s-5) + var(--s-4));
 }
 
-main > section:nth-of-type(even) {
+main>section:nth-of-type(even) {
   background: var(--bg-alt);
   box-shadow: 0 0 0 100vmax var(--bg-alt);
   clip-path: inset(0 -100vmax);
@@ -1248,7 +1257,7 @@ main > section:nth-of-type(even) {
   display: contents;
 }
 
-.vs-hd > div {
+.vs-hd>div {
   padding: 0.875rem 1rem;
   border-bottom: 1px solid var(--border);
   background: var(--t-paper-2);
@@ -1265,14 +1274,14 @@ main > section:nth-of-type(even) {
   background: var(--t-teal-soft) !important;
 }
 
-.vs-row > div {
+.vs-row>div {
   padding: 1rem;
   border-bottom: 1px solid var(--border-soft);
   color: var(--text-muted);
   line-height: 1.55;
 }
 
-.vs-row > div:first-child {
+.vs-row>div:first-child {
   color: var(--text);
   font-weight: 700;
 }
@@ -1294,7 +1303,7 @@ main > section:nth-of-type(even) {
   vertical-align: 0.08em;
 }
 
-.vs-row:last-child > div {
+.vs-row:last-child>div {
   border-bottom: none;
 }
 
@@ -1371,7 +1380,7 @@ main > section:nth-of-type(even) {
   box-shadow: 0 0 0 6px var(--bg);
 }
 
-main > section:nth-of-type(even) .how-num {
+main>section:nth-of-type(even) .how-num {
   box-shadow: 0 0 0 6px var(--bg-alt);
 }
 
@@ -1420,7 +1429,8 @@ main > section:nth-of-type(even) .how-num {
   position: relative;
   margin: 0 0 1.5rem;
   overflow: clip;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%;
+  /* 16:9 aspect ratio */
 }
 
 .demo-video iframe {
@@ -1655,7 +1665,7 @@ main > section:nth-of-type(even) .how-num {
   padding-left: 0;
 }
 
-.perf-stat + .perf-stat {
+.perf-stat+.perf-stat {
   border-left: 1px solid var(--t-rule);
 }
 
@@ -1938,38 +1948,38 @@ main > section:nth-of-type(even) .how-num {
   transform: none;
 }
 
-.reveal-ready [data-reveal-stagger] > * {
+.reveal-ready [data-reveal-stagger]>* {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > * {
+.reveal-ready [data-reveal-stagger].is-in>* {
   opacity: 1;
   transform: none;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(1) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(1) {
   transition-delay: 0ms;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(2) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(2) {
   transition-delay: 80ms;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(3) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(3) {
   transition-delay: 160ms;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(4) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(4) {
   transition-delay: 240ms;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(5) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(5) {
   transition-delay: 320ms;
 }
 
-.reveal-ready [data-reveal-stagger].is-in > *:nth-child(6) {
+.reveal-ready [data-reveal-stagger].is-in>*:nth-child(6) {
   transition-delay: 400ms;
 }
 
@@ -1984,8 +1994,9 @@ main > section:nth-of-type(even) .how-num {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .reveal-ready [data-reveal],
-  .reveal-ready [data-reveal-stagger] > * {
+  .reveal-ready [data-reveal-stagger]>* {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -2110,11 +2121,11 @@ main > section:nth-of-type(even) .how-num {
     grid-template-columns: 1fr;
   }
 
-  .vs-hd > div:first-child {
+  .vs-hd>div:first-child {
     display: none;
   }
 
-  .vs-row > div:first-child {
+  .vs-row>div:first-child {
     border-bottom: none;
     padding-bottom: 0.25rem;
     background: var(--t-paper-2);
@@ -2137,7 +2148,7 @@ main > section:nth-of-type(even) .how-num {
     padding: 0;
   }
 
-  .perf-stat + .perf-stat {
+  .perf-stat+.perf-stat {
     border-left: none;
     padding-top: 1rem;
     border-top: 1px solid var(--t-rule);
@@ -2379,11 +2390,9 @@ main > section:nth-of-type(even) .how-num {
 /* ----- Latest release (featured at top) ----- */
 .changelog-entry.is-latest {
   border-color: var(--t-teal-edge);
-  background: linear-gradient(
-    165deg,
-    var(--t-teal-soft),
-    color-mix(in srgb, var(--t-rust) 6%, var(--t-card))
-  );
+  background: linear-gradient(165deg,
+      var(--t-teal-soft),
+      color-mix(in srgb, var(--t-rust) 6%, var(--t-card)));
   box-shadow:
     inset 3px 0 0 var(--t-teal),
     0 14px 34px -20px color-mix(in srgb, var(--t-teal) 65%, transparent);
@@ -2784,7 +2793,7 @@ main > section:nth-of-type(even) .how-num {
   color: var(--brand);
 }
 
-.content-index-card > p {
+.content-index-card>p {
   margin: 0;
   color: var(--text-muted);
   font-size: 0.875rem;
@@ -2925,7 +2934,7 @@ main > section:nth-of-type(even) .how-num {
   margin-bottom: 3rem;
 }
 
-.content-body > *:first-child {
+.content-body>*:first-child {
   margin-top: 0 !important;
 }
 
@@ -2997,7 +3006,7 @@ main > section:nth-of-type(even) .how-num {
   position: relative;
 }
 
-.content-body ul > li::before {
+.content-body ul>li::before {
   content: "›";
   position: absolute;
   left: 0.25rem;
@@ -3010,11 +3019,11 @@ main > section:nth-of-type(even) .how-num {
   counter-reset: prose-ol;
 }
 
-.content-body ol > li {
+.content-body ol>li {
   counter-increment: prose-ol;
 }
 
-.content-body ol > li::before {
+.content-body ol>li::before {
   content: counter(prose-ol) ".";
   position: absolute;
   left: 0;
@@ -3585,9 +3594,11 @@ main > section:nth-of-type(even) .how-num {
   .blog-index {
     padding: 3rem 1.25rem 4rem;
   }
+
   .post-list__link {
     padding: 1rem 0;
   }
+
   .post-list__item h2 {
     font-size: 1.1rem;
   }
@@ -3662,7 +3673,7 @@ main > section:nth-of-type(even) .how-num {
   color: var(--text);
 }
 
-.post .prose > * + * {
+.post .prose>*+* {
   margin-top: 1.1em;
 }
 
@@ -3862,6 +3873,7 @@ main > section:nth-of-type(even) .how-num {
   .post .prose table {
     font-size: 0.875rem;
   }
+
   .post .prose table th,
   .post .prose table td {
     padding: 0.5rem 0.625rem;
@@ -4331,7 +4343,7 @@ main > section:nth-of-type(even) .how-num {
   vertical-align: baseline;
 }
 
-.vs-row > div:nth-child(2)::before {
+.vs-row>div:nth-child(2)::before {
   content: "✕";
   margin-right: 0.45rem;
   color: var(--t-ink-3);
@@ -5054,9 +5066,17 @@ main > section:nth-of-type(even) .how-num {
   background: var(--t-rule);
 }
 
-.vault-mock-dot:nth-child(1) { background: color-mix(in srgb, var(--t-rust) 70%, #d9985f); }
-.vault-mock-dot:nth-child(2) { background: #e3b341; }
-.vault-mock-dot:nth-child(3) { background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f); }
+.vault-mock-dot:nth-child(1) {
+  background: color-mix(in srgb, var(--t-rust) 70%, #d9985f);
+}
+
+.vault-mock-dot:nth-child(2) {
+  background: #e3b341;
+}
+
+.vault-mock-dot:nth-child(3) {
+  background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f);
+}
 
 .vault-mock-title {
   font-family: var(--font-mono);
@@ -5409,9 +5429,17 @@ main > section:nth-of-type(even) .how-num {
   background: var(--t-rule);
 }
 
-.cc-mock-dot:nth-child(1) { background: color-mix(in srgb, var(--t-rust) 70%, #d9985f); }
-.cc-mock-dot:nth-child(2) { background: #e3b341; }
-.cc-mock-dot:nth-child(3) { background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f); }
+.cc-mock-dot:nth-child(1) {
+  background: color-mix(in srgb, var(--t-rust) 70%, #d9985f);
+}
+
+.cc-mock-dot:nth-child(2) {
+  background: #e3b341;
+}
+
+.cc-mock-dot:nth-child(3) {
+  background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f);
+}
 
 .cc-mock-search {
   flex: 1;

@@ -4,58 +4,60 @@
  *
  * To add a new instance: export another array of { query, rows } objects,
  * where each row is { platform, title, snippet, date }. Supported platform
- * keys: chatgpt, claude, gemini, perplexity, deepseek, copilot, grok, mistral.
+ * keys: chatgpt, claude, gemini, perplexity, deepseek, copilot, grok, mistral,
+ * characterai.
  */
 
-// "recover" — finding a chat you thought was lost, spanning ChatGPT + Claude.
+// "recover" — finding conversations you thought were lost on Character.AI
+// (history clears on device switch, hits soft caps, etc.)
 export const recoverScenes = [
   {
-    query: 'that thread where we fixed the deploy script',
+    query: 'that roleplay we did about space colonies',
     rows: [
       {
-        platform: 'claude',
-        title: 'Debugging the failing deploy script rollback step',
-        snippet: 'The rollback failed because the health check ran before the container was ready.',
-        date: '9 days ago'
-      },
-      {
-        platform: 'chatgpt',
-        title: 'Deploy script: retry logic and exit codes',
-        snippet: 'Wrap the deploy in a retry loop and fail fast on a non-zero exit from the migration.',
+        platform: 'characterai',
+        title: 'Rebuilding a vanished Character.AI chat after switching phones',
+        snippet: 'Your old space-colony RP resurfaced in device backup — the trick is restoring from iCloud before reinstalling the app.',
         date: '2 weeks ago'
       },
       {
-        platform: 'chatgpt',
-        title: 'Why the deploy script skipped the cache purge',
-        snippet: 'The cache purge was gated behind an env var that was unset in staging.',
+        platform: 'characterai',
+        title: 'Why your favourite character conversations disappeared',
+        snippet: 'Character.AI clears chat threads on hard resets; backing up the app data restores every lost roleplay session.',
         date: '3 weeks ago'
+      },
+      {
+        platform: 'characterai',
+        title: 'Found old messages from my sci-fi world-building bot',
+        snippet: 'A quick search for "colony rules" pulled the thread back from your archived chats — they were never deleted.',
+        date: '1 month ago'
       }
     ]
   }
 ];
 
-// "export" — questions about exporting / saving / backing up history.
+// "export" — backing up your Character.AI chat history before it's gone.
 export const exportScenes = [
   {
-    query: 'export my chat history to a file',
+    query: 'export my character.ai conversations',
     rows: [
       {
-        platform: 'chatgpt',
-        title: 'Export ChatGPT history as JSON and Markdown',
-        snippet: 'Use the data export in settings, then convert the conversations.json to Markdown per chat.',
-        date: '4 days ago'
+        platform: 'characterai',
+        title: 'Save every Character.AI thread before hitting the history cap',
+        snippet: 'Export your full chat log so old roleplay sessions and advice from your favourite bots are safe forever.',
+        date: '5 days ago'
       },
       {
-        platform: 'claude',
-        title: 'Back up Claude conversations before clearing them',
-        snippet: 'Save each thread to a portable file you own so nothing is lost when you clean up.',
-        date: '1 week ago'
-      },
-      {
-        platform: 'gemini',
-        title: 'Download Gemini activity from Google Takeout',
-        snippet: 'Gemini history lives in Takeout — pick the Gemini Apps data and export as a zip.',
+        platform: 'characterai',
+        title: 'Backing up Roleplay chats on Character.AI without losing context',
+        snippet: 'A simple export keeps your RP context intact — paste it back into a new session if the app clears it.',
         date: '2 weeks ago'
+      },
+      {
+        platform: 'characterai',
+        title: 'Character.AI export guide: keep your bot memories with you',
+        snippet: 'Downloading your conversation archive means your bots remember every detail, even after a reinstall.',
+        date: '3 weeks ago'
       }
     ]
   }
