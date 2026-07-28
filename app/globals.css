@@ -1839,6 +1839,13 @@ main > section:nth-of-type(even) .how-num {
   color: var(--text);
 }
 
+.footer-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .footer-badge {
   display: inline-flex;
   align-items: center;
@@ -2141,7 +2148,7 @@ main > section:nth-of-type(even) .how-num {
     align-items: flex-start;
   }
 
-  .footer-badge {
+  .footer-badges {
     align-self: center;
   }
 }

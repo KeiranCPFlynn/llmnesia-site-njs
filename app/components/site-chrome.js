@@ -65,23 +65,42 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
             <a href="/changelog">Changelog</a>
             <InstallLink className="nav-cta">Add to Chrome</InstallLink>
           </nav>
-          <a
-            className="footer-badge"
-            href="https://openhunts.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="OpenHunts Club"
-            aria-label="OpenHunts Club Member"
-          >
-            <img
-              alt="OpenHunts Club Member"
-              src="https://cdn.openhunts.com/badges/club.webp"
-              width="486"
-              height="105"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
+          <div className="footer-badges">
+            <a
+              className="footer-badge"
+              href="https://openhunts.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="OpenHunts Club"
+              aria-label="OpenHunts Club Member"
+            >
+              <img
+                alt="OpenHunts Club Member"
+                src="https://cdn.openhunts.com/badges/club.webp"
+                width="486"
+                height="105"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <a
+              className="footer-badge"
+              href="https://startupbase.io/products/llmnesia?utm_source=startupbase&utm_medium=badge&utm_campaign=featured-badge-light"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Featured on StartupBase"
+              aria-label="Featured on StartupBase"
+            >
+              <img
+                alt="Featured on StartupBase"
+                src="https://statics.startupbase.io/site/badges/featured-on-sb.svg"
+                width="300"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
           <p>
             &copy; <span id="year"></span> LLMnesia
           </p>
