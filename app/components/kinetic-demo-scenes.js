@@ -5,59 +5,162 @@
  * To add a new instance: export another array of { query, rows } objects,
  * where each row is { platform, title, snippet, date }. Supported platform
  * keys: chatgpt, claude, gemini, perplexity, deepseek, copilot, grok, mistral,
- * characterai.
+ * characterai, qwen, kimi, poe, notebooklm, metaai, aistudio.
+ *
+ * Every set MUST stay multi-platform. These scene sets are chosen by intent
+ * family (recover / export / search), not by the post's platform, so a
+ * single-platform set lands on pages about every other platform — and the
+ * install CTA rendered beside the demo *is* platform-named, so the two
+ * contradict each other. Multi-platform rows are also the honest claim: the
+ * product's pitch is one search across all your AI tools.
+ *
+ * Queries repeat their key words inside each row's title and snippet on
+ * purpose — KineticDemo highlights query terms in the results, so shared
+ * wording is what makes the <mark> highlighting read as a real match.
  */
 
-// "recover" — finding conversations you thought were lost on Character.AI
-// (history clears on device switch, hits soft caps, etc.)
+// "recover" — surfacing a conversation you assumed was gone. Queries are the
+// half-remembered phrasing someone reaches for when they cannot find a chat.
 export const recoverScenes = [
   {
-    query: 'that roleplay we did about space colonies',
+    query: 'pricing model we worked out',
+    rows: [
+      {
+        platform: 'chatgpt',
+        title: 'The pricing model we worked out for the March launch',
+        snippet: 'That pricing model settled on three tiers with an annual discount on the middle one.',
+        date: '4 months ago'
+      },
+      {
+        platform: 'claude',
+        title: 'Pressure-test the pricing model assumptions',
+        snippet: 'The weakest part of the pricing model was the assumed renewal rate.',
+        date: '4 months ago'
+      },
+      {
+        platform: 'gemini',
+        title: 'Rebuild the pricing model sheet after it was overwritten',
+        snippet: 'Recreated the pricing model formulas from the conversation where we worked them out.',
+        date: '3 months ago'
+      }
+    ]
+  },
+  {
+    query: 'visa paperwork checklist',
+    rows: [
+      {
+        platform: 'copilot',
+        title: 'Visa paperwork checklist for the relocation',
+        snippet: 'The visa paperwork checklist covered the police certificate and proof of funds.',
+        date: '2 months ago'
+      },
+      {
+        platform: 'chatgpt',
+        title: 'Which visa paperwork needs an apostille?',
+        snippet: 'Only the birth certificate and the degree needed an apostille for the visa paperwork.',
+        date: '2 months ago'
+      },
+      {
+        platform: 'perplexity',
+        title: 'Current processing times for visa paperwork',
+        snippet: 'Visa paperwork was running six to eight weeks when the checklist was written.',
+        date: '3 months ago'
+      }
+    ]
+  },
+  {
+    query: 'roleplay about space colonies',
     rows: [
       {
         platform: 'characterai',
-        title: 'Rebuilding a vanished Character.AI chat after switching phones',
-        snippet: 'Your old space-colony RP resurfaced in device backup — the trick is restoring from iCloud before reinstalling the app.',
-        date: '2 weeks ago'
-      },
-      {
-        platform: 'characterai',
-        title: 'Why your favourite character conversations disappeared',
-        snippet: 'Character.AI clears chat threads on hard resets; backing up the app data restores every lost roleplay session.',
-        date: '3 weeks ago'
-      },
-      {
-        platform: 'characterai',
-        title: 'Found old messages from my sci-fi world-building bot',
-        snippet: 'A quick search for "colony rules" pulled the thread back from your archived chats — they were never deleted.',
+        title: 'The space colonies roleplay, picked up mid-thread',
+        snippet: 'Your space colonies roleplay ran forty messages before the app cleared the thread.',
         date: '1 month ago'
+      },
+      {
+        platform: 'claude',
+        title: 'World-building rules for the space colonies story',
+        snippet: 'The space colonies setting needed consistent gravity and water rationing rules.',
+        date: '1 month ago'
+      },
+      {
+        platform: 'grok',
+        title: 'Faction name ideas for the space colonies',
+        snippet: 'Faction names for the space colonies leaned on Latin roots and old mission numbers.',
+        date: '2 months ago'
       }
     ]
   }
 ];
 
-// "export" — backing up your Character.AI chat history before it's gone.
+// "export" — the work you would be sick to lose, kept somewhere you control.
 export const exportScenes = [
   {
-    query: 'export my character.ai conversations',
+    query: 'onboarding docs draft',
     rows: [
       {
-        platform: 'characterai',
-        title: 'Save every Character.AI thread before hitting the history cap',
-        snippet: 'Export your full chat log so old roleplay sessions and advice from your favourite bots are safe forever.',
-        date: '5 days ago'
+        platform: 'claude',
+        title: 'Draft the onboarding docs for new engineers',
+        snippet: 'The onboarding docs draft covered environment setup and a first-week checklist.',
+        date: '1 week ago'
       },
       {
-        platform: 'characterai',
-        title: 'Backing up Roleplay chats on Character.AI without losing context',
-        snippet: 'A simple export keeps your RP context intact — paste it back into a new session if the app clears it.',
+        platform: 'chatgpt',
+        title: 'Tighten the onboarding docs introduction',
+        snippet: 'Cut the onboarding docs intro from four paragraphs down to one.',
         date: '2 weeks ago'
       },
       {
-        platform: 'characterai',
-        title: 'Character.AI export guide: keep your bot memories with you',
-        snippet: 'Downloading your conversation archive means your bots remember every detail, even after a reinstall.',
+        platform: 'copilot',
+        title: 'Onboarding docs formatting for the internal wiki',
+        snippet: 'The onboarding docs needed heading levels matching the wiki template.',
         date: '3 weeks ago'
+      }
+    ]
+  },
+  {
+    query: 'thesis literature review',
+    rows: [
+      {
+        platform: 'perplexity',
+        title: 'Sources for the thesis literature review',
+        snippet: 'The thesis literature review still needed three more recent meta-analyses.',
+        date: '5 days ago'
+      },
+      {
+        platform: 'claude',
+        title: 'Structure the thesis literature review by theme',
+        snippet: 'A thematic thesis literature review read far better than a chronological one.',
+        date: '2 weeks ago'
+      },
+      {
+        platform: 'gemini',
+        title: 'Citation format check on the thesis literature review',
+        snippet: 'The thesis literature review citations needed APA 7th edition, not 6th.',
+        date: '3 weeks ago'
+      }
+    ]
+  },
+  {
+    query: 'the detective story we wrote',
+    rows: [
+      {
+        platform: 'characterai',
+        title: 'The detective story thread, sixty messages in',
+        snippet: 'Your detective story built a full case file across sixty messages of roleplay.',
+        date: '1 week ago'
+      },
+      {
+        platform: 'chatgpt',
+        title: 'Plot holes in the detective story ending',
+        snippet: 'The detective story ending left the alibi completely unexplained.',
+        date: '2 weeks ago'
+      },
+      {
+        platform: 'mistral',
+        title: 'Punchier title options for the detective story',
+        snippet: 'Title options for the detective story leaned noir and stayed under four words.',
+        date: '1 month ago'
       }
     ]
   }

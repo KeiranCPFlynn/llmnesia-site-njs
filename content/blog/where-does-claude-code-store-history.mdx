@@ -59,7 +59,32 @@ Inside each project folder are the sessions themselves:
 - **One `.jsonl` file per session.** Each file is a single conversation, named with that session's identifier.
 - **JSONL format** — "JSON Lines", one JSON object per line. Each line is one event in the conversation: a message you sent, a reply from Claude, or a tool call and its result.
 
-This layout is why your history is organised per project: every session you started in a given directory lives in that directory's folder — and it's why `claude --resume` and `claude --continue` only ever operate on the current directory's sessions, even if you pass `--resume` a specific session ID from elsewhere. There is no single built-in view that searches across everything, because your conversations are split across one folder per project on disk.
+This layout is why your history is organised per project: every session you started in a given directory lives in that directory's folder — and it's why [`claude --resume` and `claude --continue`](/blog/how-to-resume-an-old-claude-code-session) only ever operate on the current directory's sessions, even if you pass `--resume` a specific session ID from elsewhere. There is no single built-in view that searches across everything, because your conversations are split across one folder per project on disk.
+
+## What is actually inside a session file
+
+Each line of a `.jsonl` file is one event, and they are not all conversation. A typical session file interleaves:
+
+- **Your prompts** — what you typed, including anything you pasted in.
+- **Claude's replies** — the assistant text, split across multiple lines for a long response.
+- **Tool calls and their results** — every file Claude read, every shell command it ran, and the full output that came back.
+- **Metadata** — timestamps, the session ID, the model used, and the working directory.
+
+That last two categories are why the files get large fast and why they read poorly as transcripts: a session where Claude read a handful of source files can be mostly file contents by volume. It is also why a raw `grep` returns noisy matches — your search term may well be hitting a file Claude read rather than something either of you said.
+
+## How this compares to other AI tools
+
+Claude Code is unusual in keeping everything on your disk. Most AI tools keep history server-side, which changes what you can do with it:
+
+| Tool | Where history lives | Can you back it up yourself? |
+|---|---|---|
+| Claude Code | `~/.claude/projects` on your machine | Yes — copy the folder |
+| Claude (web/desktop) | Anthropic's servers, shown in the sidebar | Only via an account data export |
+| ChatGPT | OpenAI's servers | Only via an account data export |
+| Gemini | Google's servers, tied to your account | Via Google Takeout |
+| Microsoft Copilot | Microsoft's servers | One conversation at a time |
+
+The upside of the local approach is real: nothing depends on an account staying active, and a folder copy is a complete backup. The trade-off is that nothing indexes it for you — the server-side tools at least give you a sidebar. For Claude Code, [searching your history](/blog/search-claude-code-conversation-history) is entirely on you.
 
 ## Reading a session file
 
@@ -83,4 +108,6 @@ Since your history is just a folder of files, backup is simple: copy `~/.claude/
 
 Knowing where the files are is half the battle; reading them is the other half. Raw JSONL is fine for a one-off grep, but it is not how you want to browse your history day to day.
 
-[LLMnesia](https://www.llmnesia.com/) reads these session files and turns them into clean, searchable conversations — indexed locally, on your device, alongside your ChatGPT, Claude, and Gemini chats. Point it at your `~/.claude/projects` folder once (or let its optional background helper keep it in sync), and you can search every session by keyword, then reopen the one you want in the Claude Desktop app or resume it from the terminal. It indexes only your prompts and Claude's replies, leaving file reads, commands, and tool output out.
+[LLMnesia](/claude-code) reads these session files and turns them into clean, searchable conversations — indexed locally, on your device, alongside your ChatGPT, Claude, and Gemini chats. Point it at your `~/.claude/projects` folder once (or let its optional background helper keep it in sync), and you can search every session by keyword, then reopen the one you want in the Claude Desktop app or [resume it from the terminal](/blog/how-to-resume-an-old-claude-code-session). It indexes only your prompts and Claude's replies, leaving file reads, commands, and tool output out — which is exactly the noise that makes a raw `grep` frustrating.
+
+If you are trying to track down one particular session right now, the [step-by-step guide to finding an old Claude Code conversation](/blog/how-to-find-an-old-claude-code-conversation) works through each method in order.

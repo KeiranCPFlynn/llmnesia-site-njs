@@ -63,7 +63,7 @@ All three restore the session's context so Claude picks up with the history inta
 
 ## The one thing to know about directories
 
-Both `claude --continue` and `claude --resume` only operate on the current directory's sessions — and that holds even when you pass a specific session ID to `--resume`. Try to resume a session from the wrong directory and Claude Code reports it as not found, even though the file is sitting right there under `~/.claude/projects`.
+Both `claude --continue` and `claude --resume` only operate on the current directory's sessions — and that holds even when you pass a specific session ID to `--resume`. Try to resume a session from the wrong directory and Claude Code reports it as not found, even though the file is sitting right there [under `~/.claude/projects`](/blog/where-does-claude-code-store-history).
 
 So resuming an old session always starts the same way: `cd` into the project directory it belongs to, then run `--continue` or `--resume` there.
 
@@ -74,7 +74,9 @@ The built-in tools assume you can recognise the session yourself — by its entr
 Two ways through it:
 
 - **Search the files by content.** Every session is a plain file under `~/.claude/projects`, named by its session ID. `rg -i "something you remember" ~/.claude/projects` will point you at the file — its parent folder is the project, and the filename (minus `.jsonl`) is the ID. `cd` into that folder and run `claude --resume <that-id>` to reopen it.
-- **Let a tool find it and hand you the command.** [LLMnesia](https://www.llmnesia.com/) indexes your Claude Code sessions and makes them searchable by keyword across every project. Find the session by a phrase you remember, and it either reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command — for the right folder — that resumes that exact session.
+- **Let a tool find it and hand you the command.** [LLMnesia](/claude-code) indexes your Claude Code sessions and makes them searchable by keyword across every project. Find the session by a phrase you remember, and it either reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command — for the right folder — that resumes that exact session.
+
+If you cannot place the session at all, work through the [methods for finding an old Claude Code conversation](/blog/how-to-find-an-old-claude-code-conversation) first, then come back and resume it.
 
 ## Keeping sessions easy to return to
 

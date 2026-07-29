@@ -34,7 +34,13 @@ const LABELS = {
   copilot: 'Copilot',
   grok: 'Grok',
   mistral: 'Mistral',
-  characterai: 'Character.AI'
+  characterai: 'Character.AI',
+  qwen: 'Qwen',
+  kimi: 'Kimi',
+  poe: 'Poe',
+  notebooklm: 'NotebookLM',
+  metaai: 'Meta AI',
+  aistudio: 'AI Studio'
 };
 
 const escapeHtml = (value) =>

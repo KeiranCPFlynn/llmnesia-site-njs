@@ -56,7 +56,7 @@ If you can recognise the session in the picker, this is the quickest route:
 
 ## Method 2: Browse the session files directly
 
-Every session lives under `~/.claude/projects`, in a subfolder named after the project directory. You can open that folder and look around:
+Every session lives under `~/.claude/projects`, in a subfolder named after the project directory — the [storage layout guide](/blog/where-does-claude-code-store-history) covers exactly how it is organised. You can open that folder and look around:
 
 1. Open `~/.claude/projects` (it is a hidden folder — enable "show hidden files" if needed).
 2. Each subfolder is one project; the folder name maps to the directory you ran Claude Code in.
@@ -84,9 +84,9 @@ That returns the session files containing your phrase, and each file's parent fo
 
 ## Method 4: Search every session with LLMnesia
 
-Methods 1–3 all ask you to either remember the project or sift through raw files. [LLMnesia](https://www.llmnesia.com/) removes both steps: it indexes your Claude Code sessions locally and makes every one of them searchable by keyword — across every project, from one box.
+Methods 1–3 all ask you to either remember the project or sift through raw files. [LLMnesia](/claude-code) removes both steps: it indexes your Claude Code sessions locally and makes every one of them searchable by keyword — across every project, from one box.
 
-Point it at your `~/.claude/projects` folder once, or install the optional background helper so new sessions are indexed automatically as you create them. Type a phrase you remember and jump straight to the session, then reopen it in the Claude Desktop app or copy a command that resumes it in the right folder. The same index covers your ChatGPT, Claude, and Gemini history too, and it all stays on your device — it reads the sessions already on your disk rather than storing a second copy in the cloud.
+Point it at your `~/.claude/projects` folder once, or install the optional background helper so new sessions are indexed automatically as you create them. Type a phrase you remember and jump straight to the session, then reopen it in the Claude Desktop app or copy a [command that resumes it](/blog/how-to-resume-an-old-claude-code-session) in the right folder. The same index covers your ChatGPT, Claude, and Gemini history too, and it all stays on your device — it reads the sessions already on your disk rather than storing a second copy in the cloud.
 
 ## Stop losing sessions in the first place
 
