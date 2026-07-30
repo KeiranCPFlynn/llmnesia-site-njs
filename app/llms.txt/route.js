@@ -1,5 +1,6 @@
 import { getAllContent } from '../../lib/content';
 import { SITE_URL, CHROME_WEB_STORE_URL } from '../../lib/site';
+import { platformListSentence } from '../../lib/platforms';
 
 export const dynamic = 'force-static';
 
@@ -16,8 +17,7 @@ export function GET() {
     '# LLMnesia',
     '',
     `> LLMnesia is a free Chrome extension that automatically indexes AI conversations from`,
-    `> ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi,`,
-    `> Qwen, Google AI Studio, and Character.AI — locally in your browser. No cloud sync. No account required.`,
+    `> ${platformListSentence()} — locally in your browser. No cloud sync. No account required.`,
     `> Search old prompts, answers, and decisions instantly.`,
     '',
     `Canonical: ${SITE_URL}`,

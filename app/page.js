@@ -4,6 +4,7 @@ import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
 import {
   SUPPORTED_PLATFORMS,
+  IMPORT_PLATFORMS,
   PLATFORM_COUNT,
   HERO_OVERFLOW,
   platformListSentence
@@ -28,8 +29,9 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Will it index my older chat history too?',
-    answer:
-      'Yes. You can import your existing history from ChatGPT, Claude, Gemini, Perplexity, Grok, and Character.AI in a few clicks. For other supported platforms, LLMnesia indexes conversations automatically as you open them.'
+    answer: `Yes. You can import your existing history from ${platformListSentence(
+      IMPORT_PLATFORMS
+    )} in a few clicks. For other supported platforms, LLMnesia indexes conversations automatically as you open them.`
   },
   {
     question: 'Which AI platforms are supported today?',
@@ -65,6 +67,7 @@ export default function HomePage() {
     .replaceAll('{{PLATFORM_COUNT}}', String(PLATFORM_COUNT))
     .replaceAll('{{PLATFORM_OVERFLOW}}', String(HERO_OVERFLOW))
     .replaceAll('{{PLATFORM_LIST}}', platformListSentence())
+    .replaceAll('{{IMPORT_PLATFORM_LIST}}', platformListSentence(IMPORT_PLATFORMS))
     .replaceAll('{{PLATFORM_CHIPS}}', platformChips);
 
   return (

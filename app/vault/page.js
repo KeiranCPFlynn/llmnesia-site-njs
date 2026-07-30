@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: 'Which platforms does it cover?',
-    a: 'Everything LLMnesia already supports — ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio and Character.AI — brought together into one place.'
+    a: 'Everything LLMnesia already supports — ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, Character.AI and Z.ai — brought together into one place.'
   },
   {
     q: 'Will it work on mobile?',

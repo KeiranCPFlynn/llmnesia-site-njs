@@ -1,6 +1,7 @@
 import InstallLink from './install-link';
 
-// Friendly display names for the 12 platforms LLMnesia supports. Keys match the
+// Friendly display names for the platforms LLMnesia supports (Z.ai is supported
+// but has no content pages yet, so it has no CTA token). Keys match the
 // platform tokens produced by getCtaProps() in lib/content.js. Unsupported
 // platforms are intentionally absent so their pages get generic, non-committal
 // copy rather than a false "search your <platform>" claim.
