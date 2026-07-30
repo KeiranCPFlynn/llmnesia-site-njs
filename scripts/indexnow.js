@@ -11,7 +11,7 @@
  *   INDEXNOW_DRY_RUN=1  — print payload without submitting
  */
 
-const KEY = process.env.INDEXNOW_KEY || 'c4f808d6a41ae34a5c12a865c5db6731';
+const KEY = process.env.INDEXNOW_KEY || '48109b71cc404d1ea5dc1717ba3cd16b';
 const SITE_URL = process.env.SITE_URL || 'https://www.llmnesia.com';
 const KEY_LOCATION = `${SITE_URL}/${KEY}.txt`;
 const ENDPOINT = 'https://api.indexnow.org/IndexNow';
