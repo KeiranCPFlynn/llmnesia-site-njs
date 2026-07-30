@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "indexnow": "node scripts/indexnow.js",
+    "indexnow:dry": "INDEXNOW_DRY_RUN=1 node scripts/indexnow.js"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
