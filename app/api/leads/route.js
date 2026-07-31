@@ -10,6 +10,12 @@ const ALLOWED_SOURCES = new Set([
   'blog_mobile_capture'
 ]);
 
+// Fixed-enum segmentation answers captured on the Vault waitlist confirmation
+// ("Who would use this?" / "Where do you want to search from?"). Normalized to a
+// known value or '' so a spoofed value can never reach the sheet as free text.
+const ALLOWED_AUDIENCE = new Set(['just_me', 'my_team', 'a_community', 'not_sure']);
+const ALLOWED_SEARCH_FROM = new Set(['desktop', 'phone', 'browser', 'all']);
+
 function jsonResponse(body, status = 200) {
   return Response.json(body, {
     status,
@@ -33,6 +39,13 @@ function normalizeEmail(value) {
 function normalizeSource(value) {
   const source = normalizeString(value, 80);
   return ALLOWED_SOURCES.has(source) ? source : 'website_homepage';
+}
+
+// Optional enum fields normalize to '' (not a fallback) when off-enum: an absent
+// answer is meaningful, so it is forwarded empty rather than coerced to a guess.
+function normalizeEnum(value, allowed) {
+  const normalized = normalizeString(value, 40);
+  return allowed.has(normalized) ? normalized : '';
 }
 
 // The upstream Apps Script keeps its own source allowlist that lags behind
@@ -95,6 +108,8 @@ function normalizeLeadBody(body) {
     context: body.context,
     variant: body.variant,
     feedback: body.feedback,
+    audience: body.audience,
+    search_from: body.search_from,
     captured_at: body.captured_at,
     install_id: body.install_id,
     install_ts: body.install_ts,
@@ -199,6 +214,8 @@ export async function POST(request) {
       : requestedContext,
     variant: normalizeString(lead.variant, 40),
     feedback: normalizeString(lead.feedback, 2000),
+    audience: normalizeEnum(lead.audience, ALLOWED_AUDIENCE),
+    search_from: normalizeEnum(lead.search_from, ALLOWED_SEARCH_FROM),
     captured_at: normalizeString(lead.captured_at, 80) || new Date().toISOString(),
     install_id: normalizeString(lead.install_id, 120),
     install_ts: Number.isFinite(Number(lead.install_ts)) ? Math.floor(Number(lead.install_ts)) : 0,

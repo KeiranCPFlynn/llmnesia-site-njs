@@ -7,6 +7,43 @@ import { useState } from 'react';
 // webhook) tagged with a dedicated source so Vault interest lands on its own tab,
 // never mixed into the general outreach list. PostHog only ever sees an anonymous
 // counter event — no email, no PII — so the privacy promise holds.
+
+// Optional single-choice segmentation questions shown after joining. Values are
+// fixed enums that MUST match ALLOWED_AUDIENCE / ALLOWED_SEARCH_FROM in
+// app/api/leads/route.js — anything off-enum is normalized to '' server-side.
+const AUDIENCE_OPTIONS = [
+  { value: 'just_me', label: 'Just me' },
+  { value: 'my_team', label: 'My team' },
+  { value: 'a_community', label: 'A community' },
+  { value: 'not_sure', label: 'Not sure yet' }
+];
+const SEARCH_FROM_OPTIONS = [
+  { value: 'desktop', label: 'Desktop' },
+  { value: 'phone', label: 'Phone' },
+  { value: 'browser', label: 'Browser' },
+  { value: 'all', label: 'All of them' }
+];
+
+function PillGroup({ question, options, selected, onSelect }) {
+  return (
+    <div className="vault-form-pill-group">
+      <span className="vault-form-feedback-label">{question}</span>
+      <div className="vault-form-pills">
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            className={`vault-form-pill${selected === option.value ? ' selected' : ''}`}
+            onClick={() => onSelect(selected === option.value ? '' : option.value)}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function VaultWaitlistForm({ context = 'vault_page', compact = false }) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState('idle'); // idle | submitting | success | error
@@ -16,6 +53,9 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
   const [joinedEmail, setJoinedEmail] = useState('');
   const [feedback, setFeedback] = useState('');
   const [feedbackState, setFeedbackState] = useState('idle'); // idle | submitting | done
+  // Optional segmentation answers (fixed enums); '' means unanswered.
+  const [audience, setAudience] = useState('');
+  const [searchFrom, setSearchFrom] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -84,7 +124,9 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
     if (feedbackState === 'submitting') return;
 
     const trimmed = feedback.trim();
-    if (!trimmed) return;
+    // A pill-only answer (no free text) still records, so submit when any of the
+    // three optional answers is present.
+    if (!trimmed && !audience && !searchFrom) return;
 
     setFeedbackState('submitting');
 
@@ -97,6 +139,8 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
           source: 'website_vault_waitlist',
           context: `${context}_feedback`,
           feedback: trimmed,
+          ...(audience ? { audience } : {}),
+          ...(searchFrom ? { search_from: searchFrom } : {}),
           captured_at: new Date().toISOString(),
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/vault'
         })
@@ -106,7 +150,9 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
         if (typeof window !== 'undefined' && window.posthog) {
           window.posthog.capture('vault_waitlist_feedback', {
             source: 'website_vault_waitlist',
-            context
+            context,
+            ...(audience ? { audience } : {}),
+            ...(searchFrom ? { search_from: searchFrom } : {})
           });
         }
       } catch (phError) {
@@ -146,10 +192,22 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
               onChange={(event) => setFeedback(event.target.value)}
               disabled={feedbackState === 'submitting'}
             />
+            <PillGroup
+              question="Who would use this?"
+              options={AUDIENCE_OPTIONS}
+              selected={audience}
+              onSelect={setAudience}
+            />
+            <PillGroup
+              question="Where do you want to search from?"
+              options={SEARCH_FROM_OPTIONS}
+              selected={searchFrom}
+              onSelect={setSearchFrom}
+            />
             <button
               className="button button-small"
               type="submit"
-              disabled={feedbackState === 'submitting' || !feedback.trim()}
+              disabled={feedbackState === 'submitting' || (!feedback.trim() && !audience && !searchFrom)}
             >
               {feedbackState === 'submitting' ? 'Sending…' : 'Send'}
             </button>

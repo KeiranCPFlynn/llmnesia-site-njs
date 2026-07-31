@@ -4801,6 +4801,42 @@ main>section:nth-of-type(even) .how-num {
   color: var(--t-ink);
 }
 
+.vault-form-pill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.vault-form-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.vault-form-pill {
+  appearance: none;
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--t-ink-2);
+  background: var(--t-card);
+  border: 1px solid var(--t-rule);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.vault-form-pill:hover {
+  border-color: var(--t-teal);
+}
+
+.vault-form-pill.selected {
+  color: #fff;
+  background: var(--t-teal);
+  border-color: var(--t-teal);
+}
+
 .vault-form-compact {
   margin-top: var(--s-2);
   max-width: none;
