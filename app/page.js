@@ -1,4 +1,5 @@
 import { getTemplateBody } from '../lib/template-page';
+import { footerBadgesHtml } from '../lib/footer-badges';
 import JsonLd from './components/json-ld';
 import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
@@ -68,7 +69,8 @@ export default function HomePage() {
     .replaceAll('{{PLATFORM_OVERFLOW}}', String(HERO_OVERFLOW))
     .replaceAll('{{PLATFORM_LIST}}', platformListSentence())
     .replaceAll('{{IMPORT_PLATFORM_LIST}}', platformListSentence(IMPORT_PLATFORMS))
-    .replaceAll('{{PLATFORM_CHIPS}}', platformChips);
+    .replaceAll('{{PLATFORM_CHIPS}}', platformChips)
+    .replaceAll('{{FOOTER_BADGES}}', footerBadgesHtml());
 
   return (
     <>
