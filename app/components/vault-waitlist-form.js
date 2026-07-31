@@ -51,14 +51,25 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
         return;
       }
 
-      // Anonymous funnel counter only — deliberately no email/identity attached.
-      if (typeof window !== 'undefined' && window.posthog) {
-        window.posthog.capture('vault_waitlist_site_joined', { context });
-      }
-
+      // Server confirmed the signup — mark success before the PostHog call so
+      // an analytics failure can never mask a completed signup with an error.
       setJoinedEmail(trimmed);
       setState('success');
       setEmail('');
+
+      // Anonymous funnel counter only — deliberately no email/identity attached.
+      // Own try/catch so a PostHog SDK error (seen on some Windows Chrome
+      // builds) never swallows a signup that already succeeded server-side.
+      try {
+        if (typeof window !== 'undefined' && window.posthog) {
+          window.posthog.capture('vault_waitlist_joined', {
+            source: 'website_vault_waitlist',
+            context
+          });
+        }
+      } catch (phError) {
+        console.error('[vault] PostHog capture failed:', phError);
+      }
     } catch {
       setError('Something went wrong. Please try again.');
       setState('error');
@@ -91,8 +102,15 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
         })
       });
 
-      if (typeof window !== 'undefined' && window.posthog) {
-        window.posthog.capture('vault_waitlist_feedback', { context });
+      try {
+        if (typeof window !== 'undefined' && window.posthog) {
+          window.posthog.capture('vault_waitlist_feedback', {
+            source: 'website_vault_waitlist',
+            context
+          });
+        }
+      } catch (phError) {
+        console.error('[vault] PostHog feedback capture failed:', phError);
       }
     } catch {
       // Feedback is best-effort; the signup already succeeded either way.
