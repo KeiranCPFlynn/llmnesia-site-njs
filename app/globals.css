@@ -4801,10 +4801,20 @@ main>section:nth-of-type(even) .how-num {
   color: var(--t-ink);
 }
 
+/* Groups the two pre-submit questions with more room between them than the
+   label-to-pills gap inside each one, so they read as distinct questions
+   rather than one dense block. */
+.vault-form-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 0.9rem;
+}
+
 .vault-form-pill-group {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.4rem;
 }
 
 .vault-form-pills {
@@ -4835,6 +4845,11 @@ main>section:nth-of-type(even) .how-num {
   color: #fff;
   background: var(--t-teal);
   border-color: var(--t-teal);
+}
+
+.vault-form-pill:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 
 .vault-form-compact {

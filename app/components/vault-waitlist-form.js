@@ -24,7 +24,7 @@ const SEARCH_FROM_OPTIONS = [
   { value: 'all', label: 'All of them' }
 ];
 
-function PillGroup({ question, options, selected, onSelect }) {
+function PillGroup({ question, options, selected, onSelect, disabled = false }) {
   return (
     <div className="vault-form-pill-group">
       <span className="vault-form-feedback-label">{question}</span>
@@ -35,6 +35,7 @@ function PillGroup({ question, options, selected, onSelect }) {
             type="button"
             className={`vault-form-pill${selected === option.value ? ' selected' : ''}`}
             onClick={() => onSelect(selected === option.value ? '' : option.value)}
+            disabled={disabled}
           >
             {option.label}
           </button>
@@ -79,6 +80,8 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
           email: trimmed,
           source: 'website_vault_waitlist',
           context,
+          ...(audience ? { audience } : {}),
+          ...(searchFrom ? { search_from: searchFrom } : {}),
           captured_at: new Date().toISOString(),
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/vault'
         })
@@ -104,7 +107,9 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
         if (typeof window !== 'undefined' && window.posthog) {
           window.posthog.capture('vault_waitlist_joined', {
             source: 'website_vault_waitlist',
-            context
+            context,
+            ...(audience ? { audience } : {}),
+            ...(searchFrom ? { search_from: searchFrom } : {})
           });
         }
       } catch (phError) {
@@ -118,15 +123,15 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
 
   // Optional one-question survey shown after joining. Forwards free-text intent
   // against the same lead so we learn which Vault capability actually pulls,
-  // without gating the signup on it. Anonymous counter only in PostHog.
+  // without gating the signup on it. Anonymous counter only in PostHog. The
+  // segmentation pills are asked before the join now (see the pre-submit form
+  // below), so this stays free-text only.
   async function handleFeedbackSubmit(event) {
     event.preventDefault();
     if (feedbackState === 'submitting') return;
 
     const trimmed = feedback.trim();
-    // A pill-only answer (no free text) still records, so submit when any of the
-    // three optional answers is present.
-    if (!trimmed && !audience && !searchFrom) return;
+    if (!trimmed) return;
 
     setFeedbackState('submitting');
 
@@ -139,8 +144,6 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
           source: 'website_vault_waitlist',
           context: `${context}_feedback`,
           feedback: trimmed,
-          ...(audience ? { audience } : {}),
-          ...(searchFrom ? { search_from: searchFrom } : {}),
           captured_at: new Date().toISOString(),
           page_path: typeof window !== 'undefined' ? window.location.pathname : '/vault'
         })
@@ -150,9 +153,7 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
         if (typeof window !== 'undefined' && window.posthog) {
           window.posthog.capture('vault_waitlist_feedback', {
             source: 'website_vault_waitlist',
-            context,
-            ...(audience ? { audience } : {}),
-            ...(searchFrom ? { search_from: searchFrom } : {})
+            context
           });
         }
       } catch (phError) {
@@ -192,22 +193,10 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
               onChange={(event) => setFeedback(event.target.value)}
               disabled={feedbackState === 'submitting'}
             />
-            <PillGroup
-              question="Who would use this?"
-              options={AUDIENCE_OPTIONS}
-              selected={audience}
-              onSelect={setAudience}
-            />
-            <PillGroup
-              question="Where do you want to search from?"
-              options={SEARCH_FROM_OPTIONS}
-              selected={searchFrom}
-              onSelect={setSearchFrom}
-            />
             <button
               className="button button-small"
               type="submit"
-              disabled={feedbackState === 'submitting' || (!feedback.trim() && !audience && !searchFrom)}
+              disabled={feedbackState === 'submitting' || !feedback.trim()}
             >
               {feedbackState === 'submitting' ? 'Sending…' : 'Send'}
             </button>
@@ -219,6 +208,26 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
 
   return (
     <form className={`vault-form${compact ? ' vault-form-compact' : ''}`} onSubmit={handleSubmit} noValidate>
+      {/* Segmentation pills sit ahead of the email row and ride along with the
+          join itself. Asking after signup only reaches the minority who work
+          through a second stage, and coverage across all signups is the point.
+          Strictly optional: submit is never gated on them. */}
+      <div className="vault-form-questions">
+        <PillGroup
+          question="Who would use this?"
+          options={AUDIENCE_OPTIONS}
+          selected={audience}
+          onSelect={setAudience}
+          disabled={state === 'submitting'}
+        />
+        <PillGroup
+          question="Where do you want to search from?"
+          options={SEARCH_FROM_OPTIONS}
+          selected={searchFrom}
+          onSelect={setSearchFrom}
+          disabled={state === 'submitting'}
+        />
+      </div>
       <div className="vault-form-row">
         <label className="visually-hidden" htmlFor={`vault-email-${context}`}>
           Email address
