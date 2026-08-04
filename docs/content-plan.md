@@ -68,7 +68,7 @@ One file per run. Finish it completely. New MDX auto-propagates to sitemap, RSS 
 | Phase | Status | Notes |
 |---|---|---|
 | 1 — Technical SEO foundations | Done | OG image route, metadata helpers, JSON-LD (article, org, software, person, FAQ), dynamic llms.txt/llms-full.txt, related-links scoring |
-| 2 — Blog content velocity | Done (ongoing) | 179 posts live |
+| 2 — Blog content velocity | Done (ongoing) | 186 posts live |
 | 3 — GEO content | Done (ongoing) | Definitional posts, homepage FAQ JSON-LD, llms-full.txt with install URL + FAQ |
 | 4 — Use-case pages | Done (ongoing) | 5 pages live |
 | 5 — Distribution & authority | Not started | See Section 11 |
@@ -77,8 +77,8 @@ Content production (Phases 2-4) is never "finished"; it is driven by the grids i
 
 ## 4. Current inventory
 
-- Blog: 179 posts in `content/blog/`.
-- Compare: 16 pages in `content/compare/`.
+- Blog: 186 posts in `content/blog/`.
+- Compare: 18 pages in `content/compare/`.
 - Use-cases: 6 pages in `content/use-cases/` (consultants, developers, founders, researchers, students, writers).
 
 Treat the live `content/` directory as the source of truth; this number is a snapshot. When you publish, add the slug under the right grid in Section 5 and flip its cell to `Done`.
@@ -144,7 +144,7 @@ Gaps to consider: most high-value informational anchors are now covered; add new
 
 ### 5e. Compare pages
 
-Pattern: `llmnesia-vs-{competitor}`. Present (16): browser-bookmarks, chat-lens, chat-memo, chatgpt-exporter, chatgpt-history, chathub, claude-projects, mem-ai, notion-ai-notes, obsidian-ai-notes, perplexity-library, promptly, readwise, sider, superpower-chatgpt, typingmind.
+Pattern: `llmnesia-vs-{competitor}`. Present (18): ai-toolbox, browser-bookmarks, chat-lens, chat-memo, chatgpt-exporter, chatgpt-history, chathub, claude-projects, echoes, mem-ai, notion-ai-notes, obsidian-ai-notes, perplexity-library, promptly, readwise, sider, superpower-chatgpt, typingmind.
 
 Gaps to consider (verify the competitor is real and still active before writing): pieces, recall-ai, glasp, saner-ai, msty.
 
