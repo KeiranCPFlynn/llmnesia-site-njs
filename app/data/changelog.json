@@ -1,5 +1,11 @@
 [
   {
+    "version": "0.2.6",
+    "date": "2026-08-04",
+    "title": "A quieter release: faster search and reliability fixes",
+    "summary": "Search is noticeably faster on large libraries, plus a batch of indexing and reliability fixes across Qwen, Gemini, and Settings."
+  },
+  {
     "version": "0.2.5",
     "date": "2026-07-29",
     "title": "Highlight text in any chat to save it as a memory, Search straight from the toolbar popup & 8 fixes",
