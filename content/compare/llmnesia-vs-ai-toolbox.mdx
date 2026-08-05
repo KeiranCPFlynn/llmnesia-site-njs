@@ -1,7 +1,7 @@
 ---
 title: "LLMnesia vs AI Toolbox: AI Chat History Extension Comparison"
 slug: "llmnesia-vs-ai-toolbox"
-description: "AI Toolbox is a paid organisation suite for ChatGPT, Gemini, Claude and Grok with folders, prompts and full-text search capped at 5 results per query on the free tier. LLMnesia is a free, local-first Chrome extension that indexes your AI chat history automatically and gives you unmetered full-text search across 10+ platforms with direct jump-back to the original conversation."
+description: "AI Toolbox is a paid organisation suite for ChatGPT, Gemini, Claude and Grok with folders, prompts and full-text search capped at 5 results per query on the free tier. LLMnesia is a free, local-first Chrome extension that indexes your AI chat history across 13 platforms plus local Claude Code sessions, with one-click history import, unmetered full-text and semantic search, and jump-back to the exact message."
 publishDate: "2026-08-04"
 updatedDate: "2026-08-04"
 author: "Keiran Flynn"
@@ -24,9 +24,9 @@ faq:
   - question: "Are AI Toolbox and LLMnesia both local-first?"
     answer: "Both keep conversation content in your browser. AI Toolbox's privacy policy says conversations are never permanently stored on its servers, and its paid device sync covers organisational metadata such as folders and tags, encrypted at rest. Its Chrome Web Store listing discloses that it collects personally identifiable and authentication information. LLMnesia has no account and no sync: nothing, including the index, leaves your device."
   - question: "How many platforms does each one cover?"
-    answer: "AI Toolbox covers four platforms: ChatGPT, Gemini, Claude and Grok. LLMnesia covers the major platforms and 10+ in total. Coverage changes with updates, so check each extension's current release notes for the definitive list."
+    answer: "AI Toolbox covers four platforms: ChatGPT, Gemini, Claude and Grok. LLMnesia covers thirteen, including ChatGPT, Claude, Gemini, Microsoft Copilot, Character.AI and Z.ai, and also indexes your local Claude Code sessions. Coverage changes with updates, so check each extension's current release notes for the definitive list."
   - question: "What is the main difference in search?"
-    answer: "AI Toolbox indexes your messages for full-text search, but the free tier returns at most 5 results per query, so older or rarer hits can sit out of reach until you pay. LLMnesia's full-text search is unmetered, and every result links straight back to the live original conversation."
+    answer: "AI Toolbox indexes your messages for full-text search, but the free tier returns at most 5 results per query, so older or rarer hits can sit out of reach until you pay. LLMnesia's full-text search is unmetered, it adds on-device semantic search so you can search by meaning as well as keywords, and every result links straight back to the exact message in the live original conversation."
   - question: "Does AI Toolbox do more than LLMnesia?"
     answer: "In breadth, yes. AI Toolbox adds folders and subfolders, a prompt library with chaining, smart tagging, bookmarks, bulk delete and export, and platform extras such as an artifacts vault. LLMnesia deliberately stays narrow: automatic indexing, unmetered full-text search, and jump-back to the original. The choice is a paid organisation suite versus a focused, free retrieval layer."
   - question: "Can I run both at once?"
@@ -48,11 +48,11 @@ AI Toolbox and LLMnesia both attack the same problem: useful answers buried in p
 
 | | AI Toolbox | LLMnesia |
 |---|---|---|
-| Platforms covered | 4 (ChatGPT, Gemini, Claude, Grok) | Major platforms, 10+ total |
-| Search type | Full-text across indexed messages, capped at 5 results per query on free | Full-text, unmetered, search-first |
-| Capture model | File conversations into folders and search the index | Automatic background indexing, nothing to file |
-| Jump-back to original chat | From results | Direct link |
-| Extra features | Folders and subfolders, prompt library and chaining, smart tagging, bookmarks, bulk delete and export | Focused retrieval, no sprawl |
+| Platforms covered | 4 (ChatGPT, Gemini, Claude, Grok) | 13 (ChatGPT, Claude, Gemini, Perplexity, Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, AI Studio, Character.AI, Z.ai) plus local Claude Code sessions |
+| Capture model | Indexes the chats you use; you file them into folders | Automatic background indexing, plus one-click import of existing history on 8 platforms |
+| Search type | Full-text across indexed messages, capped at 5 results per query on free | Unmetered full-text plus on-device semantic search |
+| Jump-back to original chat | From results | Direct link to the exact message |
+| Extra features | Folders and subfolders, prompt library and chaining, smart tagging, bookmarks, bulk delete and export | Keyboard-shortcut search palette, portable backup export of your whole index |
 | Where data lives | Conversations local; paid sync moves folders and other metadata through its servers, encrypted at rest | Fully local, nothing leaves your device |
 | Account and data | No sign-in to install; listing discloses collection of PII and authentication information | No account, no sign-in |
 | Price | Free tier with caps; $9.99/month per platform, or $199 for all platforms | Free, unmetered |
@@ -74,21 +74,23 @@ That breadth is what you would expect from a mature paid suite. The catch is tha
 
 ## What LLMnesia does
 
-- **Automatic background indexing:** sessions are indexed as you work, with no folder filing or connect-and-organise step.
-- **Unmetered full-text search** across supported platforms, with no result caps or monthly limits.
-- **Direct jump-back links** that take you to the exact original conversation, not just a stored copy.
-- **Local-first:** your index stays on your device.
-- **Coverage across 10+ platforms** in one free extension, with no per-platform pricing.
+- **Thirteen platforms, one index:** ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, Character.AI and Z.ai. It also indexes your local Claude Code sessions, which browser-based managers do not reach.
+- **Automatic indexing plus one-click backfill:** sessions are indexed in the background as you work, with nothing to file, and on eight platforms (ChatGPT, Claude, Gemini, Perplexity, DeepSeek, Grok, Character.AI and Z.ai) you can import the history you had before installing in one go, including ChatGPT export files.
+- **Unmetered full-text search plus semantic search:** both run entirely on your device, so you can search by exact keywords or by meaning, with no result caps or monthly limits.
+- **A search palette on a keyboard shortcut:** query every platform at once without leaving the tab you are in.
+- **Jump-back to the exact message** in the live original conversation, not a stored copy.
+- **Portable backup:** export your whole index as JSONL at any time, and clear it whenever you want.
+- **Local-first and free:** the index lives in your browser's storage. No account, no subscription, no per-platform pricing.
 
 ## Where they differ most
 
-Three differences matter more than the rest. First, **cost and metering.** AI Toolbox sells access per platform: $9.99 a month for one, $199 to unlock all four. Even before you pay, the free tier caps search at 5 results per query, exports at 3 a day, and organisation at 2 folders. LLMnesia is free, covers every supported platform at once, and does not meter search at all. Second, **the organisation model.** AI Toolbox is built around filing conversations into folders and then searching the index, which works well if you enjoy organising but is overhead if you just want the answer. LLMnesia indexes everything automatically in the background and links each result straight back to the live original, so there is nothing to file and nothing to maintain. Third, **coverage.** AI Toolbox spans four platforms; LLMnesia covers the major platforms and 10+ in total under one free install.
+Three differences matter more than the rest. First, **cost and metering.** AI Toolbox sells access per platform: $9.99 a month for one, $199 to unlock all four. Even before you pay, the free tier caps search at 5 results per query, exports at 3 a day, and organisation at 2 folders. LLMnesia is free, covers every supported platform at once, and does not meter search at all. Second, **the organisation model.** AI Toolbox is built around filing conversations into folders and then searching the index, which works well if you enjoy organising but is overhead if you just want the answer. LLMnesia indexes everything automatically in the background and links each result straight back to the live original, so there is nothing to file and nothing to maintain. Third, **coverage.** AI Toolbox spans four platforms; LLMnesia covers thirteen, from ChatGPT and Claude to Character.AI and Z.ai, plus your local Claude Code sessions, under one free install. And if you have years of history from before installing, LLMnesia can import it in one click on eight platforms; AI Toolbox indexes what you use going forward.
 
 On conversation content, both keep the chats themselves local: AI Toolbox's privacy policy explicitly says conversations are never permanently stored on its servers. The privacy line to watch is the paid layer: device sync routes your folders, tags and other metadata through its servers (encrypted at rest), and its Chrome Web Store listing discloses that it collects personally identifiable and authentication information. LLMnesia has no account, no sync and nothing that leaves your machine.
 
 ## A concrete example
 
-Say you worked out a tricky data-cleaning approach in ChatGPT three weeks ago, then half-revisited it in Claude. With AI Toolbox's free tier, a search returns at most five hits per query, so if the conversation you need is not in that top handful you rephrase, dig through folders, or upgrade. With LLMnesia you search `pandas dedupe approach`, get full-text hits from both platforms, and jump straight back into the original ChatGPT session to copy the exact code, no caps involved. Both recover the answer; one gates the depth of search behind per-platform pricing, the other is unmetered and lands you back in the source. This is the everyday retrieval covered in [the best Chrome extensions to save and search AI conversations](/blog/best-chrome-extensions-save-ai-conversations).
+Say you worked out a tricky data-cleaning approach in ChatGPT three weeks ago, then half-revisited it in Claude. With AI Toolbox's free tier, a search returns at most five hits per query, so if the conversation you need is not in that top handful you rephrase, dig through folders, or upgrade. With LLMnesia you search `pandas dedupe approach`, or describe it in your own words and let semantic search match it, get hits from both platforms, and jump straight back into the exact message in the original ChatGPT session to copy the code, no caps involved. Both recover the answer; one gates the depth of search behind per-platform pricing, the other is unmetered and lands you back in the source. This is the everyday retrieval covered in [the best Chrome extensions to save and search AI conversations](/blog/best-chrome-extensions-save-ai-conversations).
 
 ## Can you use both together?
 
@@ -102,8 +104,8 @@ You can, but they overlap on search, so most people pick one. Choose AI Toolbox 
 - You are happy filing conversations into folders as you go.
 
 **LLMnesia is a better fit if:**
-- You want unmetered, search-first retrieval with no result caps or monthly limits, free.
-- Automatic background indexing with nothing to organise matters to you.
-- You want direct jump-back to the original conversation across 10+ platforms in one install.
+- You want unmetered full-text and semantic retrieval with no result caps or monthly limits, free.
+- Automatic background indexing with nothing to organise matters to you, and you want to backfill your existing history in one click.
+- You want jump-back to the exact message across 13 platforms, plus local Claude Code sessions, in one install.
 
 Want lean, automatic, unmetered retrieval? [Install LLMnesia free](https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf).
