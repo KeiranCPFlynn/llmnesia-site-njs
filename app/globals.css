@@ -5632,3 +5632,415 @@ main>section:nth-of-type(even) .how-num {
     gap: var(--s-4);
   }
 }
+
+/* ============================================================
+   MCP developer landing (/mcp)
+   ============================================================ */
+.mcp-hero {
+  padding-top: 4.5rem;
+  text-align: center;
+}
+
+.mcp-hero-inner {
+  max-width: 780px;
+}
+
+.mcp-hero .eyebrow {
+  justify-content: center;
+}
+
+.mcp-hero h1 {
+  margin: 0.75rem 0 1rem;
+}
+
+.mcp-hero-sub {
+  max-width: 60ch;
+  margin: 0 auto 1.75rem;
+}
+
+.mcp-hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.mcp-hero-secondary {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.mcp-hero-secondary:hover {
+  color: var(--rust);
+  border-color: color-mix(in srgb, var(--rust) 40%, transparent);
+}
+
+.mcp-hero-note {
+  margin: 1.25rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+/* --- Command block (the one-line install) --- */
+.mcp-cmd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 auto 1.75rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 12px;
+  background: var(--t-ink);
+  box-shadow:
+    0 18px 40px -22px rgba(20, 36, 48, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.mcp-cmd-prompt {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: color-mix(in srgb, #ebf5cb 60%, transparent);
+  user-select: none;
+}
+
+.mcp-cmd code {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: #ebf5cb;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+}
+
+/* --- Setup cards --- */
+.mcp-setup-grid {
+  margin-top: var(--s-4);
+}
+
+.mcp-setup-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.mcp-setup-kicker {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rust);
+}
+
+.mcp-setup-note {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* --- Tools list --- */
+.mcp-tools-list {
+  display: grid;
+  gap: 0.875rem;
+  margin-top: var(--s-3);
+  max-width: 56rem;
+}
+
+.mcp-tool {
+  display: grid;
+  gap: 0.625rem;
+  padding: 1.15rem 1.35rem;
+  border: 1px solid var(--t-rule);
+  border-left: 3px solid var(--t-teal);
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.mcp-tool:hover {
+  border-color: var(--t-teal-edge);
+  transform: translateY(-1px);
+}
+
+.mcp-tool-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+.mcp-tool-name {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.005em;
+}
+
+.mcp-tool-oneline {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.mcp-tool-body {
+  margin: 0;
+  color: var(--t-ink-2);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* --- Clients grid --- */
+.mcp-clients-grid {
+  margin-top: var(--s-3);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.mcp-client-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.mcp-client-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* --- Result mockup --- */
+.mcp-result-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  align-items: center;
+}
+
+.mcp-result-copy .section-intro {
+  margin-bottom: 0;
+}
+
+.mcp-mock {
+  position: relative;
+  border: 1px solid var(--t-rule);
+  border-radius: 16px;
+  background: var(--t-card);
+  overflow: hidden;
+  box-shadow:
+    0 40px 70px -30px rgba(20, 36, 48, 0.35),
+    0 12px 28px -16px rgba(20, 36, 48, 0.18);
+}
+
+.mcp-mock::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: radial-gradient(
+    45% 40% at 70% 0%,
+    color-mix(in srgb, var(--t-teal) 22%, transparent),
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.mcp-mock-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.7rem 1rem;
+  background: var(--t-paper-2);
+  border-bottom: 1px solid var(--t-rule-soft);
+}
+
+.mcp-mock-dots {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.mcp-mock-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--t-rule);
+}
+
+.mcp-mock-dot:nth-child(1) {
+  background: color-mix(in srgb, var(--t-rust) 70%, #d9985f);
+}
+
+.mcp-mock-dot:nth-child(2) {
+  background: #e3b341;
+}
+
+.mcp-mock-dot:nth-child(3) {
+  background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f);
+}
+
+.mcp-mock-label {
+  flex: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--t-card);
+  border: 1px solid var(--t-rule-soft);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--t-ink-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mcp-mock-body {
+  padding: var(--s-3);
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mcp-mock-query {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: var(--t-paper-2);
+  border: 1px solid var(--t-rule-soft);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.mcp-mock-key {
+  color: var(--t-ink-3);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.mcp-mock-val {
+  color: var(--t-ink);
+  font-weight: 500;
+}
+
+.mcp-mock-hit {
+  border: 1px solid var(--t-rule-soft);
+  border-left: 3px solid var(--t-teal);
+  border-radius: 10px;
+  background: var(--t-paper);
+  padding: 0.85rem 1rem;
+}
+
+.mcp-mock-hit-dim {
+  opacity: 0.65;
+}
+
+.mcp-mock-hit-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.mcp-mock-hit-top h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mcp-mock-tag {
+  flex-shrink: 0;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  border: 1px solid var(--t-teal-edge);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  color: var(--t-teal);
+  text-transform: lowercase;
+}
+
+.mcp-mock-snippet {
+  margin: 0 0 0.55rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--t-ink-2);
+}
+
+.mcp-mock-snippet mark {
+  background: color-mix(in srgb, #e3b341 40%, transparent);
+  color: inherit;
+  padding: 0 1px;
+  border-radius: 2px;
+}
+
+.mcp-mock-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+.mcp-mock-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--t-rule-soft);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+/* --- Closing --- */
+.mcp-closing {
+  text-align: center;
+}
+
+.mcp-closing-inner {
+  max-width: 620px;
+}
+
+.mcp-closing-inner h2 {
+  margin-bottom: var(--s-2);
+}
+
+.mcp-closing-inner .section-intro {
+  margin: 0 auto var(--s-3);
+  max-width: 48rem;
+}
+
+@media (max-width: 860px) {
+  .mcp-result-inner {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .mcp-cmd {
+    padding: 0.75rem 1rem;
+  }
+
+  .mcp-cmd code,
+  .mcp-cmd-prompt {
+    font-size: 0.85rem;
+  }
+
+  .mcp-tool-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
