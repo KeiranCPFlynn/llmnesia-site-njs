@@ -119,6 +119,7 @@ function MinorEntry({ release }) {
         <span className="changelog-minor-chevron" aria-hidden="true" />
       </summary>
       <div className="changelog-minor-body">
+        {release.summary && <p className="changelog-summary">{release.summary}</p>}
         {release.highlights && (
           <ul className="changelog-highlights">
             {release.highlights.map((item, i) => (
