@@ -21,6 +21,10 @@ export function generateStaticParams() {
   return getStaticParamsForType('blog');
 }
 
+// All article slugs are part of this deployment.  Do not let arbitrary URLs
+// trigger an on-demand render (and an ISR cache entry) before returning 404.
+export const dynamicParams = false;
+
 export function generateMetadata({ params }) {
   const entry = getContentBySlug('blog', params.slug);
 

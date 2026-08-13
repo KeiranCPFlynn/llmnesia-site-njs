@@ -39,6 +39,10 @@ export function generateStaticParams() {
   return getAllCategories('blog').map((category) => ({ category }));
 }
 
+// Categories are defined in the repository, so unknown categories should be a
+// direct 404 instead of an on-demand render.
+export const dynamicParams = false;
+
 export function generateMetadata({ params }) {
   const label = CATEGORY_LABELS[params.category];
   if (!label) return {};

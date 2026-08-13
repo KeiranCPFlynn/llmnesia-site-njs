@@ -14,6 +14,9 @@ export function generateStaticParams() {
   return getStaticParamsForType('compare');
 }
 
+// Only the comparison pages generated at build time are valid routes.
+export const dynamicParams = false;
+
 export function generateMetadata({ params }) {
   const entry = getContentBySlug('compare', params.slug);
 
