@@ -8,6 +8,15 @@ const INSTALLERS = {
       return `node-${version}-x64.msi`;
     }
   },
+  'windows-arm64': {
+    // Node's release index currently omits this otherwise official installer
+    // asset. Every current LTS release that ships the x64 MSI also ships the
+    // matching ARM64 MSI, so use the listed asset to select the release.
+    releaseFile: 'win-x64-msi',
+    filename(version) {
+      return `node-${version}-arm64.msi`;
+    }
+  },
   macos: {
     releaseFile: 'osx-x64-pkg',
     filename(version) {
