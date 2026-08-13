@@ -8,7 +8,7 @@ import { homepageFaqSchema } from '../../lib/schema';
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
   description:
-    'Coming soon — Vault syncs, backs up, and unlocks your entire AI chat history across every tool LLMnesia supports. One encrypted memory on every device, ready for your desktop AI tools via MCP. Founding members lock in 50% off for life.',
+    'Coming soon — Vault securely syncs and backs up your AI chat history across your supported desktop devices. Mobile access is planned for a future update. Vault can make the free, local MCP feature even more useful by bringing more of your history together. Founding members lock in 50% off for life.',
   canonicalPath: '/vault'
 });
 
@@ -19,8 +19,8 @@ const UNLOCKS = [
     body: 'ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, DeepSeek and the rest — all in a single searchable memory instead of a dozen walled gardens you have to check one by one.'
   },
   {
-    title: 'On your phone, too',
-    body: 'Your history syncs to every device. Look up what you worked through on your desktop from your phone on the train — the same searchable library, wherever you are.'
+    title: 'Mobile access, planned next',
+    body: 'Mobile Vault access is on the roadmap for a future update. Vault begins with secure sync and backup across supported desktop devices.'
   },
   {
     title: 'Nothing ever lost',
@@ -35,7 +35,7 @@ const UNLOCKS = [
 const USE_CASES = [
   {
     kicker: 'Pick up any thread',
-    body: 'Start a problem in ChatGPT on your desktop, continue it in Claude on your laptop, check a detail on your phone. One continuous memory instead of a dozen dead-ended tabs.'
+    body: 'Start a problem in ChatGPT on one desktop, continue it in Claude on another. One continuous memory instead of a dozen dead-ended tabs.'
   },
   {
     kicker: 'Stop re-explaining yourself',
@@ -50,7 +50,7 @@ const USE_CASES = [
 const FAQS = [
   {
     q: 'What does “chat with your history” actually mean?',
-    a: 'Vault can expose your indexed conversations to desktop AI tools through MCP — the open standard Claude Code, Codex and a growing list of apps already support. Your assistant can then answer using your own past conversations as source material, not just its training data. This runs on your desktop, where your key lives: search happens on a device that can actually decrypt your archive, which is exactly what end-to-end encrypted means.'
+    a: 'MCP is a separate, free feature that lets desktop AI tools use the conversations in your local LLMnesia archive. Vault is not required. If you choose Vault, its encrypted sync can bring more of your history together across supported desktops, making MCP more useful. Search still runs on your desktop, where your key lives and your archive can be decrypted.'
   },
   {
     q: 'Which platforms does it cover?',
@@ -58,7 +58,7 @@ const FAQS = [
   },
   {
     q: 'Will it work on mobile?',
-    a: 'Your archive does: once your history is synced through Vault, it’s backed up and reachable from your phone, not just the browser profile where you first indexed it. Chatting with your history through MCP is a desktop feature — MCP tools run on the desktop, and search has to run where your key lives. So: sync, backup and lookup everywhere; MCP on your desktop.'
+    a: 'Yes — mobile Vault access is planned for a future update. Vault begins with sync and backup across supported desktop devices, while MCP remains desktop-only because it runs locally on your desktop.'
   },
   {
     q: 'Isn’t syncing the opposite of local-first?',
@@ -66,7 +66,7 @@ const FAQS = [
   },
   {
     q: 'Will the free version still work?',
-    a: 'Always. Local search and indexing stay free, forever. Vault is an optional add-on for people who want their history synced, backed up, and usable inside their AI tools.'
+    a: 'Always. Local search, indexing, and MCP stay free. Vault is an optional add-on for people who want encrypted sync and backup across supported devices.'
   },
   {
     q: 'How is it private if it’s in the cloud?',
@@ -98,9 +98,10 @@ export default function VaultPage() {
             <p className="subheadline vault-hero-sub">
               LLMnesia already searches your chat history across every AI tool — but only inside
               the browser profile where you indexed it. Vault takes it further: one encrypted
-              memory that syncs to every device, backs itself up automatically, and travels with
-              you, so the AI tools on your desktop can draw on all of it through MCP. The first
-              100 founding members lock in half price for life.
+              memory that syncs across supported desktop devices and backs itself up automatically.
+              Mobile access is planned for a future update. MCP remains a separate, free desktop
+              feature — Vault simply makes it more useful by bringing more of your history together.
+              The first 100 founding members lock in half price for life.
             </p>
             <VaultWaitlistForm context="vault_hero" />
           </div>
@@ -110,18 +111,18 @@ export default function VaultPage() {
         <section className="section vault-spotlight">
           <div className="container vault-spotlight-inner">
             <div className="vault-spotlight-copy">
-              <p className="section-eyebrow">The headline feature</p>
-              <h2>Ask your entire history a question.</h2>
+              <p className="section-eyebrow">A stronger local archive</p>
+              <h2>Bring more of your history together.</h2>
               <p className="section-intro">
-                Index in one browser, ask from another machine entirely. Vault syncs your full
-                history to every device you use, where LLMnesia’s local connector serves it to
-                Claude Desktop, Cursor, and any tool that speaks MCP. Your AI can draw on everything
-                you’ve already worked through — every decision, every draft, every dead end — no
-                matter which assistant you used at the time, or where you were sitting.
+                Index in one browser, then keep your history securely available across supported
+                desktop devices. MCP is a separate free feature that can use your local LLMnesia
+                archive with Claude Desktop, Cursor, and other compatible tools — no Vault required.
+                Add Vault and that local archive can include the history you’ve synced from your
+                other desktops.
               </p>
               <p className="section-intro">
-                Search runs where your key lives. That’s what end-to-end encrypted means, and
-                it’s why we can’t read your conversations.
+                Mobile Vault access is planned for a future update. Search runs locally on your
+                desktop, where your key lives — so we can’t read your conversations.
               </p>
             </div>
             <div className="vault-mock" aria-hidden="true">
@@ -145,7 +146,7 @@ export default function VaultPage() {
                   didn’t work — the fix was awaiting the refresh before the test’s first request.
                 </div>
                 <p className="vault-mock-caption">
-                  Answered from your own history, via MCP on your desktop
+                  MCP uses your local history on your desktop — Vault optional
                 </p>
               </div>
             </div>
@@ -201,11 +202,12 @@ export default function VaultPage() {
               </p>
               <ul className="vault-pricing-points">
                 <li>
-                  Your whole history available to your desktop AI tools, on any machine you work
-                  from — not just the browser profile you indexed it in
+                  Encrypted history available across your supported desktop devices — not just the
+                  browser profile you indexed it in
                 </li>
-                <li>Encrypted sync across every device, including mobile</li>
+                <li>Mobile Vault access planned for a future update</li>
                 <li>Automatic, private backup of everything you’ve indexed</li>
+                <li>MCP stays free and works without a Vault subscription</li>
                 <li>Founding-member pricing that never goes up on you</li>
               </ul>
             </div>

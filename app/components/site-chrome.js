@@ -70,7 +70,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
             {FOOTER_BADGES.map((badge) => (
               <a
                 key={badge.href}
-                className="footer-badge"
+                className={badge.className || 'footer-badge'}
                 href={badge.href}
                 target="_blank"
                 rel="noopener noreferrer"

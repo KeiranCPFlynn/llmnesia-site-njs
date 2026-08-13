@@ -115,8 +115,8 @@ const FAQS = [
     a: 'The search index uses Node\'s built-in `node:sqlite` module, which is unflagged from 22.13. That means no `--experimental-sqlite` in the spawn command and no native add-ons to compile on install — which is what used to turn a one-liner into a support ticket.'
   },
   {
-    q: 'Is this the same thing as Vault?',
-    a: 'No. Vault is the paid tier that syncs your corpus encrypted across your devices and lets you chat with your history from the browser and phone. The MCP server is free, local-only, desktop-only, and reads the corpus the extension builds on this machine. Same corpus, different experience — MCP for developers who live in their AI clients, Vault for anyone who wants their history everywhere.'
+    q: 'Is MCP the same as Vault?',
+    a: 'No. MCP is free, local-only, and designed for desktop AI clients; it works without Vault. Vault is an optional paid feature for encrypted sync and backup across supported desktop devices. Using Vault can make MCP more useful by bringing more history into your local archive. Mobile Vault access is planned for a future update.'
   }
 ];
 

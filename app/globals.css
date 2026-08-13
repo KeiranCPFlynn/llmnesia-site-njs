@@ -1872,6 +1872,11 @@ main>section:nth-of-type(even) .how-num {
   transition: opacity 0.2s ease;
 }
 
+.footer-badge--betalist img {
+  width: 156px;
+  height: 54px;
+}
+
 .footer-badge:hover img {
   opacity: 1;
 }
