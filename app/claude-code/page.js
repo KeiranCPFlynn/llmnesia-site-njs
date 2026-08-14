@@ -79,7 +79,8 @@ export default function ClaudeCodePage() {
             <p className="subheadline cc-hero-sub">
               Your sessions are split across the terminal, VS Code, and the desktop app — and
               separate from your web chats. LLMnesia indexes all of them locally into one
-              search, and hands you the command to resume any session in the right folder.
+              search, and hands you the command to resume any session in the right folder. Codex
+              session support is coming soon.
             </p>
             <div className="cc-hero-actions">
               <InstallLink className="button button-large" utm={CTA_UTM}>
