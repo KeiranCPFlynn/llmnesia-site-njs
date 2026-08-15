@@ -76,8 +76,8 @@ export default function AboutPage() {
               <strong>Google AI Studio</strong>, <strong>Character.AI</strong>, and{' '}
               <strong>Z.ai</strong>. You can also
               index your local <strong>Claude Code</strong> sessions — from the terminal, the VS Code
-              extension, and the desktop app — into the same search. Additional integrations are in
-              progress.
+              extension, and the desktop app — into the same search. <strong>Codex</strong> session
+              support is coming soon. Additional integrations are in progress.
             </p>
 
             <h2>How it works</h2>
