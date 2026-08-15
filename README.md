@@ -9,12 +9,14 @@ npm install
 npm run dev
 ```
 
-## Build and start
+## Build static export
 
 ```bash
 npm run build
-npm run start
 ```
+
+The build writes the complete frontend to `out/`. Runtime endpoints live in the
+root `api/` directory as Vercel Functions and are not part of the static bundle.
 
 ## Content architecture
 
@@ -64,7 +66,7 @@ Validation runs during build via `lib/content.js`.
   www: `SITE_URL` in `lib/site.js`, all canonicals, the sitemap, and the
   apex->www redirect must all stay on www. Any new absolute link (code or
   `content/`) must use `https://www.llmnesia.com`.
-- `next.config.mjs` `redirects()` enforces:
+- `vercel.json` enforces:
   - apex -> www (`llmnesia.com` -> `www.llmnesia.com`, 308)
   - `/index.html` -> `/`, `/privacy-policy.html` -> `/privacy-policy`
   - `/contact` -> `/#contact`, `/privacy` -> `/privacy-policy`
@@ -78,7 +80,7 @@ GA4 is optional and enabled via env vars:
 - `LEADS_WEBHOOK_URL` server-side webhook for `/api/leads`
 - `LEADS_WEBHOOK_KEY` optional shared key for the leads webhook
 
-The `/api/leads` route accepts direct website and extension JSON payloads. The
+The `/api/leads` Vercel Function accepts direct website and extension JSON payloads. The
 homepage signup can override attribution with `lead_source` and `lead_context`
 query params, for example links from the extension founding prompt.
 
@@ -86,7 +88,8 @@ query params, for example links from the extension founding prompt.
 
 The mobile blog CTA ("Email me the link") sends the reader the Chrome Web Store
 link, because mobile visitors cannot install a desktop extension where they are
-standing. Delivery lives in `lib/install-email.js` and runs through Resend:
+standing. Delivery lives in `lib/install-email.js`, is called only by the
+server-side `api/leads.js` function, and runs through Resend:
 
 - `RESEND_API_KEY` **required for sending.** Without it the lead is still
   captured, the API responds `emailed: false`, and the CTA shows the link inline

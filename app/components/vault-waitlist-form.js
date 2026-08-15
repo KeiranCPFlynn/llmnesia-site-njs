@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 // Optional single-choice segmentation questions shown after joining. Values are
 // fixed enums that MUST match ALLOWED_AUDIENCE / ALLOWED_SEARCH_FROM in
-// app/api/leads/route.js — anything off-enum is normalized to '' server-side.
+// api/leads.js — anything off-enum is normalized to '' server-side.
 const AUDIENCE_OPTIONS = [
   { value: 'just_me', label: 'Just me' },
   { value: 'my_team', label: 'My team' },
