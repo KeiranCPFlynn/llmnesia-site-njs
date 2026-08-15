@@ -1,4 +1,4 @@
-import { sendInstallLinkEmail } from '../../../lib/install-email';
+import { sendInstallLinkEmail } from '../lib/install-email.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const ALLOWED_SOURCES = new Set([

@@ -32,7 +32,7 @@ function redirect(location, cache = true) {
       Location: location,
       'Cache-Control': cache
         ? 'public, s-maxage=3600, stale-while-revalidate=86400'
-        : 'no-store'
+        : 'private, max-age=0, must-revalidate'
     }
   });
 }
@@ -50,16 +50,15 @@ function latestLtsWithFile(releases, releaseFile) {
   );
 }
 
-export async function GET(_request, { params }) {
-  const installer = INSTALLERS[params.platform];
+export async function GET(request) {
+  const platform = new URL(request.url).searchParams.get('platform');
+  const installer = INSTALLERS[platform];
   if (!installer) {
     return Response.json({ error: 'Unknown platform.' }, { status: 404 });
   }
 
   try {
-    const response = await fetch(NODE_RELEASE_INDEX, {
-      next: { revalidate: 3600 }
-    });
+    const response = await fetch(NODE_RELEASE_INDEX);
     if (!response.ok) throw new Error(`Node release index returned ${response.status}`);
 
     const release = latestLtsWithFile(await response.json(), installer.releaseFile);
