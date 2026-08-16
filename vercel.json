@@ -28,6 +28,25 @@
       "permanent": true
     }
   ],
+  "headers": [
+    {
+      "source": "/download/claude/llmnesia.mcpb",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"llmnesia.mcpb\""
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/download/node/:platform",
