@@ -51,15 +51,16 @@
     <section class="section container">
       <div class="policy-content">
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 10 August 2026</p>
+        <p class="policy-date">Last updated: 16 August 2026</p>
 
         <h2>Overview</h2>
-        <p>LLMnesia is a browser extension that indexes your AI conversations locally on your device. It is built with a
-          local-first, privacy-by-design architecture.</p>
+        <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
+          locally on your device. It is built with a local-first, privacy-by-design architecture.</p>
         <p>Your AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries,
           extension settings, and searchable index are stored locally on your device using the Chrome Storage API
           (<code>chrome.storage.local</code>), unless you choose to opt in to Vault, an optional encrypted backup and
-          sync feature described below.</p>
+          sync feature described below. If you enable the desktop MCP integration, LLMnesia also stores a local copy of
+          that corpus in your user profile so desktop AI apps can search it.</p>
         <p>LLMnesia uses limited product analytics through PostHog to understand feature usage, diagnose problems, and
           improve the extension. LLMnesia does not send AI conversation content, conversation titles, conversation URLs,
           prompts, responses, search queries, cookies, authentication tokens, or local index data to PostHog or any
@@ -80,6 +81,18 @@
         <p>This data is processed and stored on your device using the Chrome Storage API
           (<code>chrome.storage.local</code>). It is not transmitted to LLMnesia servers, PostHog, or other third
           parties, unless you opt in to Vault, described below.</p>
+
+        <h2>Desktop MCP and local browser bridge</h2>
+        <p>If you choose to connect LLMnesia to a supported desktop AI app, LLMnesia creates a second local conversation
+          corpus in your operating-system user profile (by default under <code>~/.llmnesia/corpus</code>). The browser
+          extension sends conversation records to a native messaging helper running on the same computer, and the local
+          MCP server reads and writes that corpus when the desktop AI app uses a LLMnesia tool.</p>
+        <p>The native messaging helper and MCP server do not upload conversation content, titles, URLs, prompts,
+          responses, MCP search queries, cookies, authentication tokens, or local index data to LLMnesia, PostHog, or
+          other third parties. The MCP server makes no analytics or advertising requests.</p>
+        <p>Desktop MCP and automatic browser sync are optional. Chrome asks you to approve native messaging access when
+          you click <strong>Enable automatic sync</strong> in LLMnesia Settings. The local helper setup also configures
+          the supported desktop AI apps you choose to use.</p>
 
         <h2>Product analytics</h2>
         <p>LLMnesia uses PostHog to collect limited product analytics from the browser extension. This helps us
@@ -116,7 +129,8 @@
         <h2>How your data is stored</h2>
         <p>All AI conversation data created or processed by LLMnesia, including your conversation index, conversation
           metadata, search data, and extension settings, is stored locally in your browser using the Chrome Storage API
-          (<code>chrome.storage.local</code>).</p>
+          (<code>chrome.storage.local</code>). If you enable desktop MCP, a second local corpus is stored in your
+          operating-system user profile so desktop AI apps can access it.</p>
         <p>You can view, export, or delete your locally stored LLMnesia data at any time through the extension's
           settings.</p>
 
@@ -128,6 +142,8 @@
           extension settings, and local index data are not sent to LLMnesia servers, PostHog, or other third parties,
           unless you opt in to Vault, described below.</p>
         <p>Limited product analytics are sent to PostHog as described in the Product analytics section above.</p>
+        <p>If desktop MCP is enabled, searches and tool calls run against the local filesystem corpus. They do not send
+          the query or result to LLMnesia servers or analytics services.</p>
 
         <h2>Vault (optional encrypted backup and sync)</h2>
         <p>Vault is an optional feature, currently in early access and not enabled by default, that lets you back up
@@ -156,6 +172,8 @@
           <li><strong>Active Tab</strong> detects which supported AI platform you are currently visiting.</li>
           <li><strong>Scripting</strong> injects the search overlay and indexing scripts into supported AI chat pages.
           </li>
+          <li><strong>Native messaging</strong>, requested only when you enable automatic sync, connects the extension
+            to LLMnesia's local helper on the same computer so desktop AI apps can use the local corpus.</li>
         </ul>
 
         <h3>Host permissions</h3>
@@ -189,6 +207,8 @@
         <p>LLMnesia uses Supabase to host the Vault sync backend described above. If you opt in to Vault, your encrypted
           conversation data is stored on Supabase's infrastructure. Supabase does not have access to the encryption key
           needed to read that data.</p>
+        <p>The optional desktop MCP server and native messaging helper run locally and do not send conversation content
+          or MCP queries to a third-party service.</p>
         <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>
 
         <h2>Data sharing</h2>
@@ -220,12 +240,17 @@
         <h2>Data retention and deletion</h2>
         <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are
           stored locally on your device for as long as the extension is installed, unless you delete them earlier.</p>
+        <p>If you enable desktop MCP, its filesystem corpus remains on the device until you delete it. Uninstalling the
+          local helper deliberately leaves that corpus intact so removing an integration cannot accidentally destroy
+          your history.</p>
         <p>You can delete your locally stored LLMnesia data at any time by:</p>
         <ul>
           <li>Using the export/delete controls within the extension's settings</li>
           <li>Uninstalling the extension, which removes the extension's local storage</li>
           <li>Clearing your browser's extension storage</li>
         </ul>
+        <p>To remove the desktop MCP copy as well, run the LLMnesia MCP uninstall command and delete the corpus path it
+          prints (normally <code>~/.llmnesia/corpus</code>).</p>
         <p>If you opt in to Vault, your encrypted conversation data is retained on LLMnesia's servers for as long as
           your Vault is active, so it can be restored to your other devices. See the Vault section above for how to
           sign out or request deletion of your Vault backup.</p>
