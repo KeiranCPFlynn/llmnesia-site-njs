@@ -1,5 +1,12 @@
 [
   {
+    "version": "0.2.9",
+    "date": "2026-08-17",
+    "curated": true,
+    "title": "Codex sessions are now searchable, alongside Claude Code",
+    "summary": "Your local Codex sessions — from the ChatGPT desktop app, Codex CLI, and Codex IDE extension — are now indexed and searchable right alongside Claude Code, capturing only your prompts and Codex's replies, never file reads, commands, or tool output. This release also fixes a Grok import that could quietly stop after ~60 chats and report itself complete, keeps search fast as your index grows, makes history imports more resilient across browser restarts, and fixes long Qwen chats splitting into duplicate conversations when scrolling revealed older turns."
+  },
+  {
     "version": "0.2.8",
     "date": "2026-08-08",
     "curated": true,
