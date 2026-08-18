@@ -1,5 +1,34 @@
 [
   {
+    "version": "0.2.9",
+    "date": "2026-08-17",
+    "title": "Your local Codex sessions are now searchable, alongside Claude Code & 20 fixes",
+    "highlights": [
+      "Your local Codex sessions are now searchable, alongside Claude Code. Sessions from the ChatGPT desktop app, the Codex CLI, and the Codex IDE extension are indexed the same way: only your prompts and Codex's replies, never file reads, commands, or tool output. Settings has a single \"Local coding sessions\" card covering both tools, and one helper install now keeps both in sync in the background. Open a result and you can reopen the thread in the ChatGPT app or copy a codex resume command that drops you back in the right folder.",
+      "Setting that up is smoother now: the one-line terminal command no longer pauses on an unexpected confirmation prompt, explains what it does and that nothing leaves your machine, and is explicit about fully quitting (not just closing) your browser afterward. If the helper still won't connect, running npx -y @llmnesia/local-agent-host@latest doctor now tells you exactly what's missing instead of a generic error, and the installer itself reports which of Claude Code or Codex it actually found on your machine. The \"index your coding sessions\" tip also shows up for Codex-related searches now, not just Claude Code ones.",
+      "Importing a large Grok history no longer stops after roughly 60 chats and says it is complete. Grok's chat list can quietly end early when asked for an overly large page, so LLMnesia now reads it in smaller pages and keeps going through your full history.",
+      "Search stays responsive as the index grows: multi-word queries now fetch the small highest-quality match tier before considering a large partial-match pool, and smarter-search ranking keeps only the best candidates instead of sorting every conversation in memory.",
+      "History imports remain responsive after the browser restarts, so progress can continue to update and the import can still be stopped.",
+      "The \"ready for smarter search\" count in Settings now climbs on its own while your chats are being prepared, instead of freezing at whatever it read when the page opened and only moving if you refreshed. It pauses while the tab is in the background and picks straight back up when you return to it.",
+      "A history import that was already running when the browser restarted is no longer put back in the queue and run a second time after it finishes.",
+      "Repeating the same smarter-search query is now faster. LLMnesia reuses the query's local meaning vector instead of running the MiniLM model again, while keeping the same result order",
+      "Importing your history no longer competes with itself for your machine. Preparing conversations for smarter search now waits until the import has finished rather than running on every single chat as it arrives, so a large import finishes faster and leaves more of your computer free while it works.",
+      "Re-importing updated conversations now reliably refreshes their smarter-search data afterward, even when the import only changes chats already on the device. The refresh obligation survives browser restarts and waits its turn behind active imports without being lost.",
+      "An import that ends unexpectedly now leaves a note in the browser console, so a support report can say what happened rather than just that it vanished.",
+      "Long Qwen chats no longer get stuck with only the recent turns from the first lazy-loaded view, and route-only Qwen pages no longer split into multiple indexed chats as the visible message window changes. Older turns revealed by scrolling are added to the same saved conversation without making an old chat look newly edited.",
+      "Fixed an import that could be started twice at once, and a paused import that could never recover while a window was left open watching it. Both could leave anything queued behind them waiting indefinitely.",
+      "ChatGPT conversations started somewhere your browser never saw them, most commonly the desktop app, now get picked up quietly in the background next time you visit chatgpt.com after a full import — no re-import needed, and nothing shows up on screen unless there's something worth catching up.",
+      "Local Claude Code and Codex sessions run from a git worktree checkout now show your project's real name in the title, instead of the cryptic branch-name folder the worktree happened to be checked out into.",
+      "An import that gets stuck now restarts itself, and says so. Before, it told you to stop it and start it again by hand, and it said that for three and a half minutes before anything was actually wrong. LLMnesia now notices a stalled import on its own, picks it back up from where it stopped, and only mentions it in passing while that happens. A slow import is no longer mistaken for a stuck one either.",
+      "When an import gets stuck, there is now a Stop button next to the message about it. It used to appear only if you happened to be looking at the tab the import was running in.",
+      "The status message on the small LLMnesia dot is no longer cut off mid-sentence. Longer lines, like a stuck-import warning or a full \"44 of 223\" count, now fit, and hovering shows the whole thing either way.",
+      "Opening an old conversation you haven't touched in a while no longer bumps its \"Last modified\" date to today. Only conversations with real new or edited messages sort to the top of Last modified now.",
+      "\"Report a problem\" now includes the diagnostic details (what the page structure looked like, never your message text) by default instead of requiring you to notice and tick a box first, so reports actually carry enough information to track down the issue.",
+      "Search no longer waits behind background work. Preparing newly captured conversations for search runs in the same place your typed search is handled, so a long background job could hold a search up. A search you just typed now goes to the front of that queue, and never waits on anything for more than a moment.",
+      "The Settings search box no longer suggests searching for sections this build does not have. Its placeholder now names only the settings groups actually present, so typing what it suggested cannot come back with \"No settings match that search\"."
+    ]
+  },
+  {
     "version": "0.2.8",
     "date": "2026-08-08",
     "curated": true,
