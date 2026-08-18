@@ -1907,6 +1907,7 @@ main>section:nth-of-type(even) .how-num {
   margin-block-start: 2.5rem;
   margin-block-end: 0.75rem;
   font-size: clamp(1.125rem, 2vw, 1.375rem);
+  max-width: none;
   text-align: left;
 }
 
