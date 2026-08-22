@@ -102,7 +102,7 @@ export default function InlineInstallCta({
       </div>
 
       <div className="inline-install-cta__action">
-        {/* Desktop: the extension is Chrome-desktop only, so lead with install. */}
+        {/* Desktop: lead with the native store for the visitor's browser. */}
         <div className="inline-install-cta__desktop">
           <InstallLink className="button button-large" utm={utm}>
             Add to Chrome — free
@@ -113,7 +113,7 @@ export default function InlineInstallCta({
         {/* Mobile: install is a dead end, so capture an email to send the link. */}
         <div className="inline-install-cta__mobile cta-email-capture">
           <p className="cta-email-capture__lead">
-            LLMnesia is a desktop Chrome extension. Email yourself the link for when you are at your
+            LLMnesia is a desktop extension for Chrome and Edge. Email yourself the link for when you are at your
             computer.
           </p>
           <form className="cta-email-capture__form" noValidate>

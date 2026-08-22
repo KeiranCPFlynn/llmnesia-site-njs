@@ -1,5 +1,5 @@
 import { getAllContent } from '../../lib/content';
-import { SITE_URL, CHROME_WEB_STORE_URL } from '../../lib/site';
+import { SITE_URL, CHROME_WEB_STORE_URL, EDGE_ADDONS_URL } from '../../lib/site';
 import { SUPPORTED_PLATFORMS, platformListSentence } from '../../lib/platforms';
 
 export const dynamic = 'force-static';
@@ -77,14 +77,15 @@ export function GET() {
     `Canonical: ${SITE_URL}`,
     `Brand: LLMnesia`,
     `Category: Browser extension, AI chat retrieval, local-first productivity`,
-    `Primary CTA: Add to Chrome (free)`,
-    `Install URL: ${CHROME_WEB_STORE_URL}`,
+    `Primary CTA: Add to Chrome or Edge (free)`,
+    `Chrome install URL: ${CHROME_WEB_STORE_URL}`,
+    `Edge install URL: ${EDGE_ADDONS_URL}`,
     `Author: Keiran Flynn`,
     `About: ${SITE_URL}/about`,
     mostRecent ? `Content last updated: ${new Date(mostRecent).toISOString().split('T')[0]}` : '',
     '',
     '## Product facts',
-    '- LLMnesia is a free Chrome browser extension.',
+    '- LLMnesia is a free browser extension for Chrome and Microsoft Edge.',
     '- It automatically indexes AI conversations locally in the user\'s browser.',
     `- Supported platforms: ${SUPPORTED_PLATFORMS.join(', ')}.`,
     '- No cloud sync. No account required. Data stays on the user\'s device.',

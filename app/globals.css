@@ -4457,7 +4457,7 @@ main>section:nth-of-type(even) .how-num {
   gap: 0.5rem;
 }
 
-/* Mobile-only email capture. The extension is Chrome-desktop only, so on small
+/* Mobile-only email capture. The extension is desktop-only, so on small
    viewports the install button is a dead end — swapped for an email-the-link
    form (see the media query below). */
 .inline-install-cta__mobile {

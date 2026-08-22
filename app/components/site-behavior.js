@@ -1,7 +1,11 @@
 'use client';
 
 import { useEffect } from 'react';
-import { CHROME_WEB_STORE_URL } from '../../lib/site';
+import {
+  CHROME_WEB_STORE_URL,
+  EDGE_ADDONS_URL,
+  installStoreForUserAgent
+} from '../../lib/site';
 import { trackEvent } from '../../lib/analytics';
 
 export default function SiteBehavior() {
@@ -21,6 +25,38 @@ export default function SiteBehavior() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const timeouts = [];
     let revealObserver = null;
+
+    // Serve Edge users the native Edge Add-ons listing. Chrome remains the
+    // server-rendered fallback for crawlers, browsers without JavaScript, and
+    // every non-Edge browser. Preserve CTA attribution when swapping stores.
+    const { store: installStore, url: installStoreUrl } = installStoreForUserAgent(
+      window.navigator.userAgent
+    );
+    const isDesktopEdge = installStore === 'edge';
+    const installLinkSelector = [
+      'a[data-install-link]',
+      `a[href^="${CHROME_WEB_STORE_URL}"]`,
+      `a[href^="${EDGE_ADDONS_URL}"]`
+    ].join(',');
+
+    document.querySelectorAll(installLinkSelector).forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+
+      try {
+        const currentUrl = new URL(link.href);
+        const storeUrl = new URL(installStoreUrl);
+        currentUrl.searchParams.forEach((value, key) => storeUrl.searchParams.set(key, value));
+        link.href = storeUrl.toString();
+      } catch {
+        link.href = installStoreUrl;
+      }
+
+      link.dataset.installLink = '';
+      link.dataset.installStore = installStore;
+      if (isDesktopEdge && link.dataset.edgeLabel) {
+        link.textContent = link.dataset.edgeLabel;
+      }
+    });
 
     document.documentElement.classList.add('reveal-ready');
 
@@ -369,7 +405,7 @@ export default function SiteBehavior() {
       // Prefix match so UTM-tagged CTA links (…?utm_content=copilot) are caught
       // alongside plain install buttons. platform/placement come from the link's
       // UTM params, defaulting to generic/other for untagged buttons.
-      const installLink = target.closest(`a[href^="${CHROME_WEB_STORE_URL}"]`);
+      const installLink = target.closest(installLinkSelector);
       if (installLink) {
         let platform = 'generic';
         let placement = 'other';
@@ -384,7 +420,8 @@ export default function SiteBehavior() {
         } catch {
           // Malformed href — fall back to defaults.
         }
-        trackEvent('install_click', { platform, placement });
+        const store = installLink.getAttribute('data-install-store') || installStore;
+        trackEvent('install_click', { platform, placement, store });
 
         const ctaEl = installLink.closest('[data-cta-placement]');
         const ctaPlacement = ctaEl ? ctaEl.getAttribute('data-cta-placement') : 'other';
@@ -400,12 +437,13 @@ export default function SiteBehavior() {
             family,
             position,
             platform,
+            store,
             ...(ctaSlug && { slug: ctaSlug })
           });
         }
 
         if (campaign === 'blog_install_cta' && slug) {
-          trackEvent('blog_install_cta_clicked', { slug, placement: ctaPlacement });
+          trackEvent('blog_install_cta_clicked', { slug, placement: ctaPlacement, store });
         }
         return;
       }

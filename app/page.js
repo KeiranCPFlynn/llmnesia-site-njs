@@ -3,6 +3,7 @@ import { footerBadgesHtml } from '../lib/footer-badges';
 import JsonLd from './components/json-ld';
 import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
+import { CHROME_WEB_STORE_URL } from '../lib/site';
 import {
   SUPPORTED_PLATFORMS,
   IMPORT_PLATFORMS,
@@ -13,7 +14,7 @@ import {
 
 export const metadata = buildPageMetadata({
   title: 'Search ChatGPT, Claude & Gemini History Privately | LLMnesia',
-  description: `LLMnesia is a free Chrome extension that searches your AI chat history across ${PLATFORM_COUNT} AI tools. Local-first: your conversations stay on your device.`,
+  description: `LLMnesia is a free Chrome and Edge extension that searches your AI chat history across ${PLATFORM_COUNT} AI tools. Local-first: your conversations stay on your device.`,
   canonicalPath: '/'
 });
 
@@ -66,6 +67,7 @@ export default function HomePage() {
   const platformChips = SUPPORTED_PLATFORMS.map((name) => `<li>${name}</li>`).join('');
   const bodyMarkup = getTemplateBody('index.template.html')
     .replaceAll('{{PLATFORM_COUNT}}', String(PLATFORM_COUNT))
+    .replaceAll('{{CHROME_WEB_STORE_URL}}', CHROME_WEB_STORE_URL)
     .replaceAll('{{PLATFORM_OVERFLOW}}', String(HERO_OVERFLOW))
     .replaceAll('{{PLATFORM_LIST}}', platformListSentence())
     .replaceAll('{{IMPORT_PLATFORM_LIST}}', platformListSentence(IMPORT_PLATFORMS))

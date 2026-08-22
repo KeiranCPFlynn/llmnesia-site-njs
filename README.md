@@ -86,10 +86,10 @@ query params, for example links from the extension founding prompt.
 
 ## Install-link email
 
-The mobile blog CTA ("Email me the link") sends the reader the Chrome Web Store
-link, because mobile visitors cannot install a desktop extension where they are
-standing. Delivery lives in `lib/install-email.js`, is called only by the
-server-side `api/leads.js` function, and runs through Resend:
+The mobile blog CTA ("Email me the link") sends the reader Chrome Web Store and
+Microsoft Edge Add-ons links, because mobile visitors cannot install a desktop
+extension where they are standing. Delivery lives in `lib/install-email.js`, is
+called only by the server-side `api/leads.js` function, and runs through Resend:
 
 - `RESEND_API_KEY` **required for sending.** Without it the lead is still
   captured, the API responds `emailed: false`, and the CTA shows the link inline

@@ -1,5 +1,5 @@
 import { getAllContent } from '../../lib/content';
-import { SITE_URL, CHROME_WEB_STORE_URL } from '../../lib/site';
+import { SITE_URL, CHROME_WEB_STORE_URL, EDGE_ADDONS_URL } from '../../lib/site';
 import { platformListSentence } from '../../lib/platforms';
 
 export const dynamic = 'force-static';
@@ -16,12 +16,13 @@ export function GET() {
   const lines = [
     '# LLMnesia',
     '',
-    `> LLMnesia is a free Chrome extension that automatically indexes AI conversations from`,
+    `> LLMnesia is a free Chrome and Edge extension that automatically indexes AI conversations from`,
     `> ${platformListSentence()} — locally in your browser. No cloud sync. No account required.`,
     `> Search old prompts, answers, and decisions instantly.`,
     '',
     `Canonical: ${SITE_URL}`,
-    `Install: ${CHROME_WEB_STORE_URL}`,
+    `Install for Chrome: ${CHROME_WEB_STORE_URL}`,
+    `Install for Edge: ${EDGE_ADDONS_URL}`,
     `Category: Browser extension, AI chat retrieval, local-first productivity`,
     `Author: Keiran Flynn`,
     mostRecent ? `Updated: ${new Date(mostRecent).toISOString().split('T')[0]}` : '',

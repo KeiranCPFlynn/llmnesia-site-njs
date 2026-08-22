@@ -3,12 +3,12 @@ import InstallLink from '../components/install-link';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { personSchema, organizationSchema } from '../../lib/schema';
-import { absoluteUrl } from '../../lib/site';
+import { absoluteUrl, CHROME_WEB_STORE_URL, EDGE_ADDONS_URL } from '../../lib/site';
 
 export const metadata = buildPageMetadata({
   title: 'About Keiran Flynn — Founder of LLMnesia',
   description:
-    'Keiran Flynn is the founder of LLMnesia, a local-first Chrome extension for searching AI chat history across ChatGPT, Claude, Gemini, and 10+ platforms.',
+    'Keiran Flynn is the founder of LLMnesia, a local-first Chrome and Edge extension for searching AI chat history across ChatGPT, Claude, Gemini, and 10+ platforms.',
   canonicalPath: '/about'
 });
 
@@ -16,11 +16,8 @@ const founder = personSchema({
   name: 'Keiran Flynn',
   url: absoluteUrl('/about'),
   description:
-    'Keiran Flynn is the founder of LLMnesia, a local-first Chrome extension that indexes and searches AI conversations across ChatGPT, Claude, Gemini, and other platforms.',
-  sameAs: [
-    absoluteUrl('/'),
-    'https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf'
-  ]
+    'Keiran Flynn is the founder of LLMnesia, a local-first Chrome and Edge extension that indexes and searches AI conversations across ChatGPT, Claude, Gemini, and other platforms.',
+  sameAs: [absoluteUrl('/'), CHROME_WEB_STORE_URL, EDGE_ADDONS_URL]
 });
 
 export default function AboutPage() {
@@ -45,7 +42,7 @@ export default function AboutPage() {
             </div>
             <h1>About <span className="text-gradient">LLMnesia</span></h1>
             <p className="answer-first">
-              LLMnesia is a free Chrome extension that automatically indexes AI conversations
+              LLMnesia is a free Chrome and Edge extension that automatically indexes AI conversations
               from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser.
               No cloud sync. No account required. Search old prompts, answers, and decisions
               instantly.
@@ -106,8 +103,9 @@ export default function AboutPage() {
               The local-first architecture is not a feature — it&apos;s a constraint that
               shapes every technical decision. User conversation data never touches LLMnesia
               servers because there is no mechanism for it to do so. You can verify this by
-              reviewing the extension in the Chrome Web Store or inspecting the network
-              requests it makes (it makes none to llmnesia.com for indexing or search).
+              reviewing the extension in the Chrome Web Store or Microsoft Edge Add-ons, or
+              inspecting the network requests it makes (it makes none to llmnesia.com for indexing
+              or search).
             </p>
             <p>
               You can clear all indexed data at any time from the extension settings.

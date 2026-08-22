@@ -100,7 +100,7 @@ const CLIENTS = [
 const FAQS = [
   {
     q: 'Do I need the browser extension?',
-    a: 'Yes. The MCP package does not collect conversations on its own — it only reads the corpus that the LLMnesia browser extension builds. Without the extension, every search comes back empty. The extension is free on the Chrome Web Store and captures ChatGPT, Claude, Gemini, Character.AI, Grok, DeepSeek and the rest of the supported platforms as you chat.'
+    a: 'Yes. The MCP package does not collect conversations on its own — it only reads the corpus that the LLMnesia browser extension builds. Without the extension, every search comes back empty. The extension is free for Chrome and Microsoft Edge and captures ChatGPT, Claude, Gemini, Character.AI, Grok, DeepSeek and the rest of the supported platforms as you chat.'
   },
   {
     q: 'Does anything leave my device?',
