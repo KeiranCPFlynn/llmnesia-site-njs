@@ -12,5 +12,5 @@ file.
 
 Current artifact:
 
-- package version: `0.2.0`
-- SHA-256: `16d804e47446646e6d547af1c6ad999521f0c7667a662b22203ef0be5d4133a2`
+- package version: `0.2.1`
+- SHA-256: `5e7faa0060efabb1a5d5848c2f7fddcbafff7d7d0a2d3e677ecf7dc3347df826`
