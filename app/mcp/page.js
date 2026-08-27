@@ -40,24 +40,24 @@ const SETUP = [
 
 const USE_CASES = [
   {
-    name: 'Find an earlier decision',
-    oneLine: '“What did we decide about pricing last month?”',
-    body: 'Search across ChatGPT, Claude, Gemini and the rest together instead of guessing which app or thread contains the answer.'
+    name: 'Revisit an important decision',
+    oneLine: '“Why did we choose an invite-only beta?”',
+    body: 'Bring back the options, trade-offs, and decision you reached without remembering which AI app or conversation contained it.'
   },
   {
-    name: 'Recover solved work',
-    oneLine: '“Find the conversation where we fixed the token refresh race.”',
-    body: 'Your assistant can search precisely, read the relevant conversation, and answer from the work you already did.'
+    name: 'Resume a complex project',
+    oneLine: '“Where did I leave off planning the migration?”',
+    body: 'Find the latest useful thread, recover what you already worked through, and continue from the next step instead of reconstructing the whole project.'
   },
   {
-    name: 'Resume recent context',
-    oneLine: '“What was I working on across my AI apps last week?”',
-    body: 'Recent conversations from browser chats and supported local coding sessions can be brought together in one answer.'
+    name: 'Reuse research across tools',
+    oneLine: '“Pull together what I learned about local-first apps.”',
+    body: 'Combine useful context from ChatGPT, Claude, Gemini, and other supported sessions into one sourced answer you can inspect.'
   },
   {
-    name: 'Keep useful context',
-    oneLine: '“Remember this preference for future chats.”',
-    body: 'A connected assistant can suggest memories for you to review. Nothing is enabled until you approve it in LLMnesia.'
+    name: 'Reuse your working preferences',
+    oneLine: '“What does my preferred project brief look like?”',
+    body: 'Recover the formats, patterns, and preferences you have already established. Suggested memories remain under your review and control.'
   }
 ];
 
@@ -122,7 +122,7 @@ export default function McpPage() {
           <div className="container mcp-hero-inner">
             <p className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
-              For MCP clients
+              For your desktop AI
             </p>
             <h1>
               Let your desktop AI use{' '}
@@ -153,12 +153,14 @@ export default function McpPage() {
         {/* Setup — the three steps, extension → command → search */}
         <section className="section mcp-setup" id="guided-setup">
           <div className="container">
-            <p className="section-eyebrow">Guided local setup</p>
-            <h2>Three clear steps.</h2>
-            <p className="section-intro">
-              Settings walks you through the right order for Windows or macOS—no
-              guessing which app to open or which command to run.
-            </p>
+            <div className="mcp-section-head">
+              <p className="section-eyebrow">Guided local setup</p>
+              <h2>Three clear steps.</h2>
+              <p className="section-intro">
+                Settings walks you through the right order for Windows or macOS—no
+                guessing which app to open or which command to run.
+              </p>
+            </div>
             <div className="card-grid mcp-setup-grid">
               {SETUP.map((step) => (
                 <article className="card mcp-setup-card" key={step.title}>
@@ -175,12 +177,14 @@ export default function McpPage() {
         {/* Use cases — lead with what a person can accomplish, not protocol internals. */}
         <section className="section mcp-tools">
           <div className="container">
-            <p className="section-eyebrow">What it is useful for</p>
-            <h2>Ask about work you already did.</h2>
-            <p className="section-intro">
-              You ask normally. Your desktop AI chooses the right LLMnesia tools,
-              searches locally, and brings back relevant context with sources.
-            </p>
+            <div className="mcp-section-head">
+              <p className="section-eyebrow">Made for deep work</p>
+              <h2>Ask about projects you already worked through.</h2>
+              <p className="section-intro">
+                Ask in your own words. Your desktop AI searches your history locally
+                and brings back the useful context, with sources you can open.
+              </p>
+            </div>
             <div className="mcp-tools-list">
               {USE_CASES.map((useCase) => (
                 <article className="mcp-tool" key={useCase.name}>
@@ -198,12 +202,14 @@ export default function McpPage() {
         {/* Clients — the detection matrix */}
         <section className="section mcp-clients">
           <div className="container">
-            <p className="section-eyebrow">What it detects</p>
-            <h2>Connect the desktop AI apps you use.</h2>
-            <p className="section-intro">
-              The installer connects supported apps on this computer, preserves
-              their existing settings, and backs up any configuration it changes.
-            </p>
+            <div className="mcp-section-head">
+              <p className="section-eyebrow">Works where you do</p>
+              <h2>Connect the desktop AI apps you use.</h2>
+              <p className="section-intro">
+                The installer connects supported apps on this computer, preserves
+                their existing settings, and backs up any configuration it changes.
+              </p>
+            </div>
             <div className="card-grid mcp-clients-grid">
               {CLIENTS.map((client) => (
                 <article className="card mcp-client-card" key={client.name}>
@@ -218,7 +224,7 @@ export default function McpPage() {
         {/* Answer mockup — show the user-facing result, including linked sources. */}
         <section className="section mcp-result">
           <div className="container mcp-result-inner">
-            <div className="mcp-result-copy">
+            <div className="mcp-result-copy mcp-section-head">
               <p className="section-eyebrow">Sources included automatically</p>
               <h2>An answer you can verify.</h2>
               <p className="section-intro">
@@ -235,22 +241,22 @@ export default function McpPage() {
                   <span className="mcp-mock-dot" />
                   <span className="mcp-mock-dot" />
                 </span>
-                <span className="mcp-mock-label">Claude + LLMnesia</span>
+                <span className="mcp-mock-label">Your desktop AI + LLMnesia</span>
               </div>
               <div className="mcp-mock-body">
                 <div className="mcp-mock-query">
                   <span className="mcp-mock-key">You</span>
-                  <span className="mcp-mock-val">“How did we fix the refresh-token race?”</span>
+                  <span className="mcp-mock-val">“What did we decide for the beta launch?”</span>
                 </div>
                 <article className="mcp-mock-hit">
                   <div className="mcp-mock-hit-top">
-                    <h3>The race was in the first request.</h3>
+                    <h3>Start invite-only, then open access gradually.</h3>
                     <span className="mcp-mock-tag">answer</span>
                   </div>
                   <p className="mcp-mock-snippet">
-                    You fixed it by awaiting the <mark>token refresh</mark> before the
-                    first request. The mock clock was not the cause; the initial
-                    request could run while refresh was still in flight.
+                    You chose a <mark>two-week invite-only beta</mark> so the team
+                    could watch onboarding closely, fix the rough edges, and collect
+                    feedback before opening access more widely.
                   </p>
                   <div className="mcp-mock-meta">
                     <span>Sources</span>
@@ -258,14 +264,14 @@ export default function McpPage() {
                 </article>
                 <article className="mcp-mock-hit mcp-mock-hit-dim">
                   <div className="mcp-mock-hit-top">
-                    <h3>Fix flaky auth test ↗</h3>
+                    <h3>Beta rollout options ↗</h3>
                     <span className="mcp-mock-tag">ChatGPT</span>
                   </div>
                   <p className="mcp-mock-snippet">
                     Original conversation · 18 Jul 2026
                   </p>
                   <div className="mcp-mock-hit-top" style={{ marginTop: '0.8rem' }}>
-                    <h3>OAuth callback loop on Safari ↗</h3>
+                    <h3>Onboarding feedback plan ↗</h3>
                     <span className="mcp-mock-tag">Claude</span>
                   </div>
                   <p className="mcp-mock-snippet">Original conversation · 3 Jun 2026</p>
@@ -283,8 +289,10 @@ export default function McpPage() {
         {/* FAQ — the five questions people actually ask */}
         <section className="section mcp-faq">
           <div className="container">
-            <p className="section-eyebrow">Good to know</p>
-            <h2>The essentials.</h2>
+            <div className="mcp-section-head">
+              <p className="section-eyebrow">Good to know</p>
+              <h2>The essentials.</h2>
+            </div>
             <div className="faq-list mcp-faq-list">
               {FAQS.map((item) => (
                 <details key={item.q}>
@@ -299,11 +307,15 @@ export default function McpPage() {
         {/* Closing CTA */}
         <section className="section mcp-closing">
           <div className="container mcp-closing-inner">
-            <h2>The corpus starts in the browser.</h2>
-            <p className="section-intro">
-              Install LLMnesia, import the history you want, then open Full settings →
-              Connect desktop AI. Your guided setup takes it from there.
-            </p>
+            <div className="mcp-closing-copy">
+              <p className="section-eyebrow">Bring your history with you</p>
+              <h2>Your AI conversations can keep working for you.</h2>
+              <p className="section-intro">
+                Install LLMnesia, choose the history you want available, then open
+                Full settings → Connect desktop AI. The guided setup takes it from
+                there.
+              </p>
+            </div>
             <div className="mcp-hero-actions">
               <InstallLink
                 className="button button-large"
