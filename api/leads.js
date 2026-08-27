@@ -41,6 +41,16 @@ function normalizeSource(value) {
   return ALLOWED_SOURCES.has(source) ? source : 'website_homepage';
 }
 
+// Marketing consent is a hard boolean and defaults to false. Anything that is
+// not an explicit affirmative is recorded as no consent, so a malformed body, a
+// missing field, or an old client can never manufacture an opt-in.
+//
+// The Apps Script adds the matching `marketing_opt_in` column to the Mobile tab
+// on first use, so no manual sheet editing is needed.
+function normalizeOptIn(value) {
+  return value === true || value === 'true' || value === 'yes';
+}
+
 // Optional enum fields normalize to '' (not a fallback) when off-enum: an absent
 // answer is meaningful, so it is forwarded empty rather than coerced to a guess.
 function normalizeEnum(value, allowed) {
@@ -48,15 +58,13 @@ function normalizeEnum(value, allowed) {
   return allowed.has(normalized) ? normalized : '';
 }
 
-// The upstream Apps Script keeps its own source allowlist that lags behind
-// ALLOWED_SOURCES above — blog_mobile_capture is valid here but the script
-// rejects it with `invalid_source`, so every mobile lead was silently lost.
-// Until the script's allowlist is updated in the Google editor, forward these
-// sources under one it accepts; the true source is preserved in `variant` for
-// sheet-side segmentation. Remove an entry once the script accepts it.
-const WEBHOOK_SOURCE_FALLBACK = {
-  blog_mobile_capture: 'website_homepage'
-};
+// DEPLOY ORDER: the upstream Apps Script must already accept
+// `blog_mobile_capture` and route it to its own Mobile tab before this file
+// ships. It used to be relabelled `website_homepage` here because the script's
+// allowlist rejected the real source; that relabelling is gone, so deploying
+// this ahead of the script means every mobile lead is rejected as
+// `invalid_source` and lost. The script lives in
+// `scripts/leads-apps-script.gs` — paste it into the Google editor first.
 
 // Sources whose form copy promises the reader an email ("Email me the link").
 // Only these trigger a send; every other source is list capture only.
@@ -107,6 +115,7 @@ function normalizeLeadBody(body) {
     source: body.source,
     context: body.context,
     variant: body.variant,
+    marketing_opt_in: body.marketing_opt_in,
     feedback: body.feedback,
     audience: body.audience,
     search_from: body.search_from,
@@ -201,18 +210,14 @@ export async function POST(request) {
   }
 
   const requestedSource = normalizeSource(lead.source);
-  const fallbackSource = WEBHOOK_SOURCE_FALLBACK[requestedSource];
   const requestedContext = normalizeString(lead.context, 120);
 
   const payload = {
     email,
-    source: fallbackSource || requestedSource,
-    // When we fall back the source, prefix the true source into context so the
-    // sheet can still identify mobile-capture leads; variant keeps the family.
-    context: fallbackSource
-      ? normalizeString(`${requestedSource}:${requestedContext}`, 120)
-      : requestedContext,
+    source: requestedSource,
+    context: requestedContext,
     variant: normalizeString(lead.variant, 40),
+    marketing_opt_in: normalizeOptIn(lead.marketing_opt_in),
     feedback: normalizeString(lead.feedback, 2000),
     audience: normalizeEnum(lead.audience, ALLOWED_AUDIENCE),
     search_from: normalizeEnum(lead.search_from, ALLOWED_SEARCH_FROM),

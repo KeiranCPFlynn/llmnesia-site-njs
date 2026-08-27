@@ -668,7 +668,12 @@ export default function SiteBehavior() {
         return;
       }
 
-      const honeypot = new FormData(form).get('botcheck');
+      const formData = new FormData(form);
+      const honeypot = formData.get('botcheck');
+      // Unticked is the default and the whole point: an untouched form means
+      // install link only, and only an explicit tick may create a contact we
+      // are allowed to send product updates to.
+      const marketingOptIn = formData.get('marketing_opt_in') === 'yes';
       const family = cta ? cta.getAttribute('data-cta-family') || 'unknown' : 'unknown';
       const slug = cta ? cta.getAttribute('data-cta-slug') || '' : '';
       const rawPlacement = cta ? cta.getAttribute('data-cta-placement') : null;
@@ -712,6 +717,7 @@ export default function SiteBehavior() {
             source: 'blog_mobile_capture',
             context: slug,
             variant: family,
+            marketing_opt_in: marketingOptIn,
             captured_at: new Date().toISOString(),
             page_path: window.location.pathname
           }),
@@ -736,6 +742,9 @@ export default function SiteBehavior() {
           // Separates captures that kept the "we'll email you" promise from
           // those that fell back to showing the link.
           emailed: data.emailed === true,
+          // Opt-in rate is the only way to tell whether this checkbox is
+          // building a usable list or just adding a row nobody ticks.
+          marketing_opt_in: marketingOptIn,
           ...(slug && { slug })
         });
       } catch {

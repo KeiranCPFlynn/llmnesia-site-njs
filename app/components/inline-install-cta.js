@@ -139,6 +139,22 @@ export default function InlineInstallCta({
                 Email me the link
               </button>
             </div>
+            {/* Unticked by default and separate from the submit button. The
+                button promises the install link and nothing else, so a contact
+                we are allowed to market to has to come from an affirmative
+                tick here rather than from a pre-ticked box or from the act of
+                asking for the link. */}
+            <label className="cta-email-capture__optin">
+              <input
+                type="checkbox"
+                name="marketing_opt_in"
+                value="yes"
+                className="cta-email-capture__optin-input"
+              />
+              <span className="cta-email-capture__optin-label">
+                Also email me occasional product updates. Unsubscribe any time.
+              </span>
+            </label>
             <p className="cta-email-capture__msg" role="status" aria-live="polite">
               No spam. Just the install link.
             </p>

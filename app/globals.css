@@ -4557,6 +4557,31 @@ main>section:nth-of-type(even) .how-num {
   width: 100%;
 }
 
+.cta-email-capture__optin {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0.7rem 0 0;
+  cursor: pointer;
+}
+
+/* Sized up from the browser default: this is the one control on the form that
+   must be comfortably tappable on a phone, since a mistap here is a consent
+   error rather than a cosmetic one. */
+.cta-email-capture__optin-input {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin: 0.1rem 0 0;
+  accent-color: var(--brand);
+}
+
+.cta-email-capture__optin-label {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
 .cta-email-capture .cta-email-capture__msg {
   margin: 0.6rem 0 0;
   font-size: 0.8rem;
