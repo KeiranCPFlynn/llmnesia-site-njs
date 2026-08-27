@@ -27,13 +27,13 @@ const SETUP = [
   {
     kicker: 'Step 2',
     title: 'Follow the guided connection',
-    body: 'Open LLMnesia → Full settings → Connect desktop AI. It checks the required order, links to Node.js if you need it, and gives you the complete command for PowerShell on Windows or Terminal on macOS.',
-    note: 'Node.js 22.13 or newer is required. Docker is not.'
+    body: 'Open LLMnesia → Full settings → Connect desktop AI. Enable automatic sync, install Node.js if prompted, then copy the complete command into PowerShell on Windows or Terminal on macOS.',
+    note: 'Follow every step shown for your computer. Windows Claude Desktop users have one additional guided step.'
   },
   {
     kicker: 'Step 3',
-    title: 'Ask naturally',
-    body: 'Ask your desktop AI what you decided, where you solved a problem, or what you discussed before. LLMnesia searches locally and returns the relevant history.',
+    title: 'Restart, then ask naturally',
+    body: 'Fully quit and reopen the browser and connected AI app when Settings tells you to. Then ask what you decided, where you solved a problem, or what you discussed before.',
     note: 'Answers include links back to the original chats whenever those links are available.'
   }
 ];
@@ -117,7 +117,7 @@ export default function McpPage() {
         )}
       />
       <main id="main-content" className="mcp-page">
-        {/* Hero — what it does, the command front and centre */}
+        {/* Hero — lead into the guided flow; the command alone is not setup. */}
         <section className="section mcp-hero">
           <div className="container mcp-hero-inner">
             <p className="eyebrow">
@@ -135,27 +135,23 @@ export default function McpPage() {
               back to the original conversations. Everything stays on this computer.
             </p>
 
-            <div className="mcp-cmd" aria-label="Install command">
-              <span className="mcp-cmd-prompt" aria-hidden="true">$</span>
-              <code>npx -y @llmnesia/mcp@latest install</code>
-            </div>
-
             <div className="mcp-hero-actions">
               <InstallLink className="button button-large" utm={CTA_UTM}>
                 Get the extension — free
               </InstallLink>
-              <a className="mcp-hero-secondary" href="https://www.npmjs.com/package/@llmnesia/mcp">
-                View on npm →
+              <a className="mcp-hero-secondary" href="#guided-setup">
+                See the guided setup →
               </a>
             </div>
             <p className="mcp-hero-note">
-              Start in LLMnesia Settings for the OS-specific, browser-safe guided setup.
+              Install LLMnesia first. Then open Full settings → Connect desktop AI and
+              follow the steps shown for your computer.
             </p>
           </div>
         </section>
 
         {/* Setup — the three steps, extension → command → search */}
-        <section className="section mcp-setup">
+        <section className="section mcp-setup" id="guided-setup">
           <div className="container">
             <p className="section-eyebrow">Guided local setup</p>
             <h2>Three clear steps.</h2>
