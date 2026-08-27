@@ -109,7 +109,7 @@ const FAQS = [
 
 export default function McpPage() {
   return (
-    <SiteChrome minimalHeader headerCtaUtm={{ ...CTA_UTM, utm_medium: 'header_cta' }}>
+    <SiteChrome headerCtaUtm={{ ...CTA_UTM, utm_medium: 'header_cta' }}>
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd
         data={homepageFaqSchema(

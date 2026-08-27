@@ -5353,6 +5353,206 @@ main>section:nth-of-type(even) .how-num {
 }
 
 /* ============================================================
+   HOMEPAGE DESIGN PASS
+   Keep the hero's editorial split, then give every supporting section the
+   same balanced heading rhythm used by the MCP landing page.
+   ============================================================ */
+.home-page .section > h2,
+.home-page .section > .container > h2 {
+  max-width: 20ch;
+  margin: 0 auto var(--s-2);
+  line-height: 1.08;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.home-page .section > .section-eyebrow,
+.home-page .section > .container > .section-eyebrow {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.home-page .section > .section-intro,
+.home-page .section > .container > .section-intro {
+  max-width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.home-page .problem-narrative,
+.home-page .demo-caption,
+.home-page .privacy-sensitive-line {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.home-page .privacy-proof {
+  justify-content: center;
+}
+
+.home-page .platform-group {
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-page .platform-group + .platform-group {
+  margin-top: 1rem;
+}
+
+.home-page .pain-card,
+.home-page .feature-primary,
+.home-page .privacy-card,
+.home-page #testimonials .quote {
+  background: linear-gradient(
+    150deg,
+    var(--t-card) 62%,
+    color-mix(in srgb, var(--t-teal-soft) 30%, white)
+  );
+  box-shadow: 0 18px 42px -36px rgba(20, 36, 48, 0.72);
+}
+
+.home-page .feature-primary {
+  border-top: 3px solid var(--t-teal);
+}
+
+.home-page .performance-panel {
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  background: linear-gradient(
+    145deg,
+    var(--t-card),
+    color-mix(in srgb, var(--t-teal-soft) 34%, white)
+  );
+  box-shadow: 0 24px 55px -40px rgba(20, 36, 48, 0.65);
+}
+
+.home-page .performance-panel h2 {
+  max-width: 20ch;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.home-page .founder-card h2 {
+  max-width: none;
+  text-wrap: balance;
+}
+
+.home-page .popular-guides-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.home-page .popular-guides-list li:last-child {
+  grid-column: 1 / -1;
+}
+
+.home-page .popular-guides-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 100%;
+  padding: 1rem 1.125rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+  color: var(--t-ink-2);
+  font-weight: 600;
+  line-height: 1.45;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.home-page .popular-guides-list a::after {
+  content: "→";
+  flex: none;
+  color: var(--t-teal);
+  transition: transform 0.2s;
+}
+
+.home-page .popular-guides-list a:hover {
+  border-color: var(--t-teal-edge);
+  box-shadow: 0 14px 30px -25px rgba(20, 36, 48, 0.7);
+  transform: translateY(-1px);
+}
+
+.home-page .popular-guides-list a:hover::after {
+  transform: translateX(3px);
+}
+
+.home-page .section-signup {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.home-page .signup-inner {
+  max-width: 52rem;
+  padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 3.5rem);
+  border: 1px solid var(--t-teal-edge);
+  border-radius: 22px;
+  background:
+    radial-gradient(80% 120% at 50% -10%, color-mix(in srgb, var(--t-teal) 13%, transparent), transparent 62%),
+    linear-gradient(165deg, var(--t-teal-soft), color-mix(in srgb, var(--t-rust) 7%, var(--t-card)));
+  box-shadow: 0 24px 60px -32px rgba(20, 36, 48, 0.28);
+}
+
+.home-page .signup-inner > p {
+  max-width: 42rem;
+  text-wrap: pretty;
+}
+
+@media (max-width: 640px) {
+  .home-page .section > h2,
+  .home-page .section > .container > h2,
+  .home-page .section > .section-eyebrow,
+  .home-page .section > .container > .section-eyebrow,
+  .home-page .section > .section-intro,
+  .home-page .section > .container > .section-intro,
+  .home-page .problem-narrative,
+  .home-page .demo-caption,
+  .home-page .privacy-sensitive-line {
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+  }
+
+  .home-page .section > h2,
+  .home-page .section > .container > h2 {
+    max-width: 24ch;
+  }
+
+  .home-page .section-vault-teaser > .container > h2,
+  .home-page .section-vault-teaser > .container > .section-eyebrow,
+  .home-page .section-vault-teaser > .container > .section-intro,
+  .home-page .section-signup > .container > h2,
+  .home-page .section-signup > .container > p {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .home-page .popular-guides-list {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .popular-guides-list li:last-child {
+    grid-column: auto;
+  }
+
+  .home-page .signup-inner {
+    border-radius: 18px;
+  }
+}
+
+/* ============================================================
    Claude Code product page (/claude-code)
    ============================================================ */
 .cc-hero {
