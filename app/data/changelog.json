@@ -1,5 +1,36 @@
 [
   {
+    "version": "0.3.0",
+    "date": "2026-08-27",
+    "published": true,
+    "major": true,
+    "title": "Your AI history now works inside desktop assistants",
+    "summary": "LLMnesia can now connect your searchable chat history to Claude Desktop, Claude Code, Cursor, Codex, and other compatible desktop AI apps. They can find relevant conversations, answer with links to the originals, and suggest useful memories for your approval. This release also adds full-history imports for Kimi, Microsoft Copilot, Qwen, and Mistral.",
+    "features": [
+      {
+        "name": "Search your history from desktop AI",
+        "description": "Connect LLMnesia to Claude Desktop, Claude Code, Cursor, Codex, and other MCP-compatible apps. Your assistant can search and open the conversations already saved by LLMnesia while automatic sync keeps its local index current. LLMnesia's search and connection stay on your computer; any results you ask an assistant to use are handled under that assistant's own privacy terms."
+      },
+      {
+        "name": "Answers come with sources you can open",
+        "description": "When an original chat link is available, the answer includes it automatically. Results can also identify the workspace or project a conversation came from, so you can verify the context instead of relying on a detached summary."
+      },
+      {
+        "name": "Memory suggestions wait for your review",
+        "description": "A connected assistant can suggest something useful to remember, but it cannot add or change a memory by itself. Suggestions arrive switched off in Memory → Pending review, where you can approve or reject them. Rejected suggestions stay rejected instead of reappearing on the next sync."
+      },
+      {
+        "name": "Import more of your AI history",
+        "description": "Kimi, Microsoft Copilot, Qwen, and Mistral (Le Chat) now have full-history imports. LLMnesia reads the whole conversation list—including long chats—and indexes the answers you actually saw without mixing in hidden thinking notes, source panels, or suggestion chips."
+      }
+    ],
+    "more": [
+      "Settings has a clearer, higher-contrast design with shorter explanations, more consistent actions and status panels, and secondary instructions tucked behind optional details.",
+      "History imports now pause cleanly when Chrome puts their tab to sleep and continue when it wakes, without starting a duplicate import.",
+      "Perplexity's alternate prompt layout once again captures both sides of a conversation."
+    ]
+  },
+  {
     "version": "0.2.9",
     "date": "2026-08-17",
     "curated": true,

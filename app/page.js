@@ -37,7 +37,7 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Which AI platforms are supported today?',
-    answer: `Supported now: ${platformListSentence()}. You can also index your local Claude Code sessions — from the terminal, the VS Code extension, and the desktop app — into the same search. Codex session support is coming soon.`
+    answer: `Supported now: ${platformListSentence()}. You can also index local Claude Code and Codex sessions — from their terminal, IDE, and desktop surfaces — into the same search.`
   },
   {
     question: 'Will it slow down my browser?',
