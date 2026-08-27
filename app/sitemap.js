@@ -4,7 +4,6 @@ import { absoluteUrl } from '../lib/site';
 export default function sitemap() {
   const staticRoutes = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
-    { path: '/mcp', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/vault', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/claude-code', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.6, changeFrequency: 'monthly' },

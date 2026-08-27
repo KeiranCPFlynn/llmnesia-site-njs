@@ -37,7 +37,6 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
               </button>
 
               <nav className="nav" id="primary-nav" aria-label="Main">
-                <a href="/mcp">MCP</a>
                 <a href="/vault">Vault</a>
                 <a href="/blog">Blog</a>
                 <a href="/compare">Compare</a>
@@ -57,7 +56,6 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       <footer className="site-footer">
         <div className="container footer-inner">
           <nav aria-label="Footer">
-            <a href="/mcp">MCP</a>
             <a href="/vault">Vault</a>
             <a href="/claude-code">Claude Code</a>
             <a href="/about">About</a>
