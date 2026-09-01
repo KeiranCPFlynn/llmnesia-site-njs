@@ -97,12 +97,12 @@ const PLANS = [
     name: 'Vault',
     price: `${ANNUAL_PRICE_LABEL}/year or ${MONTHLY_PRICE_LABEL}/month`,
     period: 'plus tax',
-    lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer wherever you happened to be sitting.`,
+    lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer no matter where you worked it out.`,
     points: [
-      'One archive across every browser profile and machine you use, instead of one locked to each',
-      'Your free MCP connection then answers from all of it, not only what this browser profile captured',
+      'What you worked out in your work profile is there in your personal one, and on the other laptop',
+      'Your free MCP connection answers from all of it, so Claude Desktop and Cursor stop missing what you worked out elsewhere',
       ...(MOBILE_READY ? ['The same archive on your phone, so you can ask without opening a laptop'] : []),
-      'Backup comes with it: a dead laptop, or a platform quietly deleting old chats, no longer takes your history',
+      'Nothing gets lost: not to a dead laptop, not to a platform quietly ageing out your old chats',
       'Sealed on your device before it syncs, with a key we never hold'
     ]
   }
@@ -177,9 +177,9 @@ export default function PricingPage() {
               <span className="text-gradient">the other machine.</span>
             </h1>
             <p className="subheadline vault-hero-sub">
-              The extension searches the browser profile you are in, across every AI platform you
-              use, and that is free. Vault makes {DEVICE_PHRASE} one archive instead, so the answer
-              is there wherever you happened to be sitting when you worked it out.
+              The free extension searches the browser profile you are in, across every AI platform
+              you use. Vault joins {DEVICE_PHRASE} into one archive, so you stop re-solving what
+              you already worked out somewhere else.
             </p>
           </div>
         </section>
@@ -217,13 +217,15 @@ export default function PricingPage() {
               <p className="section-intro">
                 The extension already finds what you asked, in the browser profile that captured
                 it. The gap is everything captured somewhere else: the other laptop, the work
-                profile, the model you were using that week. Vault closes it by keeping one
-                encrypted archive that {DEVICE_PHRASE} writes into and reads from.
+                profile, the model you were using that week. The more you use AI, the wider that
+                gap gets. Vault closes it: one encrypted archive that {DEVICE_PHRASE} writes into
+                and reads from.
               </p>
               <ul className="vault-pricing-points">
                 <li>
-                  Your free MCP connection reads that archive, so Claude Desktop, Cursor and Codex
-                  answer from everything you have discussed, not just this browser profile.
+                  Claude Desktop, Cursor and Codex read that archive through your free MCP
+                  connection, so they answer from everything you have worked on, not just this
+                  browser profile.
                 </li>
                 {MOBILE_READY ? (
                   <li>Open it in your phone browser and search the whole thing from anywhere.</li>
