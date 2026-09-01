@@ -4943,6 +4943,20 @@ main>section:nth-of-type(even) .how-num {
 }
 
 /* The price is the hero of a plan card, not a footnote in a pill. */
+/* Risk reversal, sat beside the purchase form. Borrows /mcp's one-line device
+   so it reads as a promise rather than another body paragraph. */
+p.vault-reassure {
+  margin: var(--s-3) 0 0;
+  padding: 0.75rem 0.95rem;
+  border-left: 2px solid var(--t-teal);
+  border-radius: 0 8px 8px 0;
+  background: color-mix(in srgb, var(--t-teal-soft) 58%, transparent);
+  color: var(--t-ink-2);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
 p.vault-plan-price {
   display: flex;
   align-items: baseline;

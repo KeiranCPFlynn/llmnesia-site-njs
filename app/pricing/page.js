@@ -258,25 +258,15 @@ export default function PricingPage() {
                 gap gets. Vault closes it: one encrypted archive that {DEVICE_PHRASE} writes into
                 and reads from.
               </p>
-              <ul className="vault-pricing-points">
-                <li>
-                  Claude Desktop, Cursor and Codex read that archive through your free MCP
-                  connection, so they answer from everything you have worked on, not just this
-                  browser profile.
-                </li>
-                {MOBILE_READY ? (
+              {MOBILE_READY ? (
+                <ul className="vault-pricing-points vault-plan-points">
                   <li>Open it in your phone browser and search the whole thing from anywhere.</li>
-                ) : null}
-                <li>
-                  Cancel and you keep every conversation. Restore keeps working without a
-                  subscription.
-                </li>
-                <li>
-                  {ANNUAL_PRICE_LABEL} a year works out at {ANNUAL_MONTHLY_LABEL} a month, which is
-                  two months free against paying monthly.
-                </li>
-                <li>The extension and MCP stay free whether or not you ever take Vault.</li>
-              </ul>
+                </ul>
+              ) : null}
+              <p className="vault-reassure">
+                Cancel and you keep every conversation. Restore keeps working without a
+                subscription.
+              </p>
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">
               <p className="vault-price-badge">Vault</p>
@@ -285,9 +275,8 @@ export default function PricingPage() {
                 <span className="vault-price-period">/month</span>
               </p>
               <p className="vault-price-sub">
-                Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
-                {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. Your local
-                archive stays free either way.
+                Billed annually at {ANNUAL_PRICE_LABEL}, two months free. Or {MONTHLY_PRICE_LABEL}{' '}
+                monthly. Plus tax.
               </p>
               {CHECKOUT_ENABLED ? (
                 <VaultPurchase
