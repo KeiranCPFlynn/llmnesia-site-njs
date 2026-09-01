@@ -111,7 +111,7 @@ const PLANS = [
     featured: true,
     price: `${ANNUAL_PRICE_LABEL}/year or ${MONTHLY_PRICE_LABEL}/month`,
     period: 'plus tax',
-    lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer no matter where you worked it out.`,
+    lead: `Every browser and machine you use, writing into one archive, so a search finds the answer no matter where you worked it out.`,
     points: [
       'What you worked out in your work profile is there in your personal one, and on the other laptop',
       'Your free MCP connection answers from all of it, so Claude Desktop and Cursor stop missing what you worked out elsewhere',
@@ -204,8 +204,8 @@ export default function PricingPage() {
         <section className="section vault-benefits">
           <div className="container">
             <div className="vault-section-head">
-              <p className="section-eyebrow">What costs what</p>
-              <h2>Two things, and only one of them has a price.</h2>
+              <p className="section-eyebrow">What you get</p>
+              <h2>The free part stays free. Vault is what completes it.</h2>
             </div>
             <div className="card-grid vault-benefit-grid">
               {PLANS.map((plan) => (
@@ -215,7 +215,7 @@ export default function PricingPage() {
                   }`}
                   key={plan.name}
                 >
-                  {plan.featured ? <p className="vault-plan-flag">The paid part</p> : null}
+                  {plan.featured ? <p className="vault-plan-flag">Recommended</p> : null}
                   <p className="vault-price-badge">
                     {plan.price} · {plan.period}
                   </p>
@@ -226,6 +226,13 @@ export default function PricingPage() {
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
+                  {plan.featured ? (
+                    <a className="button vault-plan-cta" href="#get-vault">
+                      Get Vault
+                    </a>
+                  ) : (
+                    <p className="vault-plan-foot">Yours already. Nothing to do.</p>
+                  )}
                 </article>
               ))}
             </div>
@@ -233,7 +240,7 @@ export default function PricingPage() {
         </section>
 
         {/* Vault, led by the one capability upgrade available on day one */}
-        <section className="section vault-pricing">
+        <section className="section vault-pricing" id="get-vault">
           <div className="container vault-pricing-inner">
             <div className="vault-pricing-copy">
               <p className="section-eyebrow">Vault</p>

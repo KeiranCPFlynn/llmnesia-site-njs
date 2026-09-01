@@ -4911,16 +4911,52 @@ main>section:nth-of-type(even) .how-num {
   padding-top: 2rem;
 }
 
+/* The free card should read as the baseline, so it recedes: no lift, flatter
+   surface, quieter text. All the visual energy belongs to the one that pays. */
+.vault-plan-card:not(.vault-plan-card-featured) {
+  background: color-mix(in srgb, var(--t-paper-2) 45%, var(--t-card));
+  box-shadow: none;
+}
+
+.vault-plan-card:not(.vault-plan-card-featured)::before {
+  opacity: 0.25;
+}
+
 .vault-plan-card-featured {
-  border-color: var(--t-teal-edge);
+  border: 2px solid var(--t-teal);
+  padding: 2.5rem 2rem 2rem;
   background: linear-gradient(
     155deg,
-    var(--t-card) 45%,
-    color-mix(in srgb, var(--t-teal-soft) 55%, white)
+    color-mix(in srgb, var(--t-teal-soft) 30%, var(--t-card)) 0%,
+    color-mix(in srgb, var(--t-teal-soft) 72%, white) 100%
   );
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--t-teal) 22%, transparent),
-    0 26px 56px -34px rgba(20, 36, 48, 0.62);
+    0 0 0 6px color-mix(in srgb, var(--t-teal) 10%, transparent),
+    0 34px 70px -30px rgba(20, 36, 48, 0.55);
+}
+
+@media (min-width: 721px) {
+  /* Break the grid line so the paid card is physically the bigger object. */
+  .vault-plan-card-featured {
+    margin: -1.25rem 0;
+  }
+}
+
+.vault-plan-cta {
+  margin-top: auto;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.02rem;
+}
+
+p.vault-plan-foot {
+  margin: auto 0 0;
+  padding-top: 1.35rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
 }
 
 .vault-plan-card-featured::before {
@@ -4931,7 +4967,7 @@ main>section:nth-of-type(even) .how-num {
 p.vault-plan-flag {
   position: absolute;
   top: 0;
-  right: 1.6rem;
+  right: 1.5rem;
   margin: 0;
   padding: 0.28rem 0.7rem;
   border-radius: 0 0 8px 8px;
