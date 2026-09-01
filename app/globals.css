@@ -4904,9 +4904,51 @@ main>section:nth-of-type(even) .how-num {
   box-shadow: 0 18px 38px -32px rgba(20, 36, 48, 0.7);
 }
 
-.vault-benefit-kicker {
+/* Plan cards: Vault is the only thing on this page with a price, so it should
+   look like the point of the page rather than the second of two equals. */
+.vault-plan-card {
+  position: relative;
+  padding-top: 2rem;
+}
+
+.vault-plan-card-featured {
+  border-color: var(--t-teal-edge);
+  background: linear-gradient(
+    155deg,
+    var(--t-card) 45%,
+    color-mix(in srgb, var(--t-teal-soft) 55%, white)
+  );
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--t-teal) 22%, transparent),
+    0 26px 56px -34px rgba(20, 36, 48, 0.62);
+}
+
+.vault-plan-card-featured::before {
+  opacity: 1;
+  height: 4px;
+}
+
+p.vault-plan-flag {
+  position: absolute;
+  top: 0;
+  right: 1.6rem;
+  margin: 0;
+  padding: 0.28rem 0.7rem;
+  border-radius: 0 0 8px 8px;
+  background: var(--t-teal);
+  color: var(--t-card);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+p.vault-benefit-kicker {
+  align-self: flex-start;
   width: fit-content;
-  margin: 0 0 0.85rem;
+  max-width: 100%;
+  margin: 0 0 var(--s-2);
   padding: 0.22rem 0.55rem;
   border-radius: 999px;
   background: var(--t-teal-soft);
@@ -4942,7 +4984,12 @@ main>section:nth-of-type(even) .how-num {
   margin-bottom: 0.6rem;
 }
 
-.vault-benefit-card p {
+/* Ties with the rule above on specificity, so it has to come after it. */
+.vault-plan-card-featured h3 {
+  font-size: 1.5rem;
+}
+
+.vault-benefit-card p:not([class]) {
   font-size: 0.98rem;
   line-height: 1.68;
 }
@@ -4995,8 +5042,11 @@ main>section:nth-of-type(even) .how-num {
   text-align: center;
 }
 
-.vault-price-badge {
+p.vault-price-badge {
   display: inline-block;
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
   margin: 0 0 var(--s-2);
   padding: 0.3rem 0.75rem;
   font-family: var(--font-mono);
@@ -5241,9 +5291,91 @@ main>section:nth-of-type(even) .how-num {
 .vault-purchase-error { color: var(--danger); }
 
 /* --- FAQ + closing --- */
+.vault-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.vault-hero-secondary {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.vault-hero-secondary:hover {
+  color: var(--rust);
+  border-color: color-mix(in srgb, var(--rust) 40%, transparent);
+}
+
+.vault-hero-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.4rem 0 0;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--t-rule-soft);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--t-paper-2) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+}
+
+/* --- FAQ --- */
 .vault-faq-list {
   margin-top: var(--s-4);
-  max-width: 46rem;
+  max-width: 48rem;
+}
+
+.vault-faq-list details {
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.vault-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  font-size: 1.02rem;
+}
+
+.vault-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron, rotated when the answer is open */
+.vault-faq-list summary::after {
+  content: "";
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.15rem;
+  border-right: 2px solid var(--t-teal);
+  border-bottom: 2px solid var(--t-teal);
+  transform: rotate(45deg) translate(-0.1rem, -0.1rem);
+  transition: transform 0.2s ease;
+}
+
+.vault-faq-list details[open] summary::after {
+  transform: rotate(-135deg) translate(-0.1rem, -0.1rem);
+}
+
+.vault-faq-list summary:hover {
+  color: var(--rust);
+}
+
+.vault-faq-list details[open] {
+  border-color: var(--t-teal-edge);
+  background: linear-gradient(
+    150deg,
+    var(--t-card) 62%,
+    color-mix(in srgb, var(--t-teal-soft) 30%, white)
+  );
 }
 
 .vault-closing-inner {

@@ -122,7 +122,19 @@ export default function VaultPage() {
               history together.
             </p>
             {CHECKOUT_ENABLED ? (
-              <a className="button button-large" href="/pricing#vault-purchase">Subscribe to Vault</a>
+              <>
+                <div className="vault-hero-actions">
+                  <a className="button button-large" href="/pricing#vault-purchase">
+                    Subscribe to Vault
+                  </a>
+                  <a className="vault-hero-secondary" href="#what-vault-unlocks">
+                    See what you get &rarr;
+                  </a>
+                </div>
+                <p className="vault-hero-note">
+                  {ANNUAL_PRICE_LABEL}/year or {MONTHLY_PRICE_LABEL}/month &middot; cancel any time
+                </p>
+              </>
             ) : (
               <VaultWaitlistForm context="vault_hero" />
             )}
@@ -176,7 +188,7 @@ export default function VaultPage() {
         </section>
 
         {/* What it unlocks */}
-        <section className="section vault-benefits">
+        <section className="section vault-benefits" id="what-vault-unlocks">
           <div className="container">
             <div className="vault-section-head">
               <p className="section-eyebrow">What Vault unlocks</p>
