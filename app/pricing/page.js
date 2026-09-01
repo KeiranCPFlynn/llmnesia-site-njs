@@ -353,8 +353,7 @@ export default function PricingPage() {
               </figure>
             </div>
             <p className="vault-proof-caption">
-              Example content in the current popup result format. Vault does not label results by
-              source device or browser profile.
+              Example content shown in the current popup result format.
             </p>
           </div>
         </section>
@@ -378,8 +377,8 @@ export default function PricingPage() {
                 </ul>
               ) : null}
               <p className="vault-reassure">
-                Cancel and you keep every conversation. Restore keeps working without a
-                subscription.
+                Cancel any time. When your subscription ends, your existing Vault stays available
+                to restore; only new uploads stop.
               </p>
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">
