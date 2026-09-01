@@ -5846,20 +5846,23 @@ main>section:nth-of-type(even) .how-num {
   max-width: 68rem;
 }
 
-.mcp-section-head {
+.mcp-section-head,
+.vault-section-head {
   max-width: 52rem;
   margin: 0 auto var(--s-4);
   text-align: center;
 }
 
-.mcp-section-head h2 {
+.mcp-section-head h2,
+.vault-section-head h2 {
   max-width: 19ch;
   margin: 0 auto var(--s-2);
   line-height: 1.08;
   text-wrap: balance;
 }
 
-.mcp-section-head .section-intro {
+.mcp-section-head .section-intro,
+.vault-section-head .section-intro {
   max-width: 46rem;
   margin: 0 auto;
   text-wrap: pretty;
@@ -6370,13 +6373,16 @@ main>section:nth-of-type(even) .how-num {
 }
 
 @media (max-width: 640px) {
-  .mcp-section-head {
+  .mcp-section-head,
+  .vault-section-head {
     margin-bottom: var(--s-3);
     text-align: left;
   }
 
   .mcp-section-head h2,
-  .mcp-section-head .section-intro {
+  .mcp-section-head .section-intro,
+  .vault-section-head h2,
+  .vault-section-head .section-intro {
     margin-left: 0;
     margin-right: 0;
   }

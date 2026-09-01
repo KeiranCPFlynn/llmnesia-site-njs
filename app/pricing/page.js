@@ -187,8 +187,10 @@ export default function PricingPage() {
         {/* The two plans */}
         <section className="section vault-benefits">
           <div className="container">
-            <p className="section-eyebrow">What costs what</p>
-            <h2>Two things, and only one of them has a price.</h2>
+            <div className="vault-section-head">
+              <p className="section-eyebrow">What costs what</p>
+              <h2>Two things, and only one of them has a price.</h2>
+            </div>
             <div className="card-grid vault-benefit-grid">
               {PLANS.map((plan) => (
                 <article className="card vault-benefit-card" key={plan.name}>
@@ -268,8 +270,10 @@ export default function PricingPage() {
         {/* FAQ */}
         <section className="section vault-faq">
           <div className="container">
-            <p className="section-eyebrow">Questions</p>
-            <h2>The details, answered.</h2>
+            <div className="vault-section-head">
+              <p className="section-eyebrow">Questions</p>
+              <h2>The details, answered.</h2>
+            </div>
             <div className="faq-list vault-faq-list">
               {FAQS.map((item) => (
                 <details key={item.q}>

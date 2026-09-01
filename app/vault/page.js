@@ -174,8 +174,10 @@ export default function VaultPage() {
         {/* What it unlocks */}
         <section className="section vault-benefits">
           <div className="container">
-            <p className="section-eyebrow">What Vault unlocks</p>
-            <h2>More than a backup. Your history, finally working for you.</h2>
+            <div className="vault-section-head">
+              <p className="section-eyebrow">What Vault unlocks</p>
+              <h2>More than a backup. Your history, finally working for you.</h2>
+            </div>
             <div className="card-grid vault-benefit-grid">
               {UNLOCKS.map((item) => (
                 <article className="card vault-benefit-card" key={item.title}>
@@ -190,8 +192,10 @@ export default function VaultPage() {
         {/* Use cases */}
         <section className="section vault-usecases">
           <div className="container">
-            <p className="section-eyebrow">What you’ll do with it</p>
-            <h2>The possibilities it opens up.</h2>
+            <div className="vault-section-head">
+              <p className="section-eyebrow">What you’ll do with it</p>
+              <h2>The possibilities it opens up.</h2>
+            </div>
             <div className="vault-usecase-list">
               {USE_CASES.map((item, index) => (
                 <div className="vault-usecase" key={item.kicker}>
@@ -251,8 +255,10 @@ export default function VaultPage() {
         {/* FAQ */}
         <section className="section vault-faq">
           <div className="container">
-            <p className="section-eyebrow">Questions</p>
-            <h2>The details, answered.</h2>
+            <div className="vault-section-head">
+              <p className="section-eyebrow">Questions</p>
+              <h2>The details, answered.</h2>
+            </div>
             <div className="faq-list vault-faq-list">
               {FAQS.map((item) => (
                 <details key={item.q}>
