@@ -215,9 +215,10 @@ export default function PricingPage() {
               <p className="section-eyebrow">Vault</p>
               <h2>Your agent shouldn’t only know what this laptop saw.</h2>
               <p className="section-intro">
-                Most people do not lose a conversation. They lose track of which machine it was on,
-                or which model they asked. Vault removes that problem by keeping one encrypted
-                archive that {DEVICE_PHRASE} writes into and reads from.
+                The extension already finds what you asked, on the machine that captured it. The
+                gap is everything captured somewhere else: the other laptop, the work profile, the
+                model you were using that week. Vault closes it by keeping one encrypted archive
+                that {DEVICE_PHRASE} writes into and reads from.
               </p>
               <ul className="vault-pricing-points">
                 <li>
