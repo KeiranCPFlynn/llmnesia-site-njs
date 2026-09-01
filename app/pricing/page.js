@@ -17,18 +17,28 @@
 // IS the Vault pricing surface, so the classes are being used for the thing
 // they were named for.
 
+import { notFound } from 'next/navigation';
 import SiteChrome from '../components/site-chrome';
 import VaultWaitlistForm from '../components/vault-waitlist-form';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 
-export const metadata = buildPageMetadata({
-  title: 'Pricing — LLMnesia',
-  description:
-    'The LLMnesia browser extension and its MCP connection are free and stay free. Vault, the optional encrypted sync and backup across your devices, is £8 a month, or £4 a month for founding members who keep that rate for as long as they stay subscribed.',
-  canonicalPath: '/pricing'
-});
+// Pricing must not be public until the authorised Vault release. Both flags
+// must be deliberately enabled in that release; either missing flag serves a
+// 404, so an environment mistake cannot republish this unapproved page.
+const PRICING_PUBLIC =
+  process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
+  process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
+
+export const metadata = PRICING_PUBLIC
+  ? buildPageMetadata({
+      title: 'Pricing — LLMnesia',
+      description:
+        'The LLMnesia browser extension and its MCP connection are free and stay free. Vault, the optional encrypted sync and backup across your devices, is £8 a month, or £4 a month for founding members who keep that rate for as long as they stay subscribed.',
+      canonicalPath: '/pricing'
+    })
+  : { title: 'Not found', robots: { index: false, follow: false } };
 
 // The two things a reader is actually choosing between. "Free" is first and
 // deliberately not thinned out: the contrast is the argument for Vault, so
@@ -101,6 +111,8 @@ const FAQS = [
 ];
 
 export default function PricingPage() {
+  if (!PRICING_PUBLIC) notFound();
+
   return (
     <SiteChrome>
       <JsonLd data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))} />
