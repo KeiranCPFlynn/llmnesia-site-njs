@@ -5227,6 +5227,14 @@ p.vault-benefit-kicker {
   align-items: center;
 }
 
+/* Grid items default to their min-content width. On a 320px viewport the
+   pricing copy could therefore widen the single-column track past the
+   container and clip the price card on the right. */
+.vault-pricing-copy,
+.vault-price-card {
+  min-width: 0;
+}
+
 .vault-pricing-points {
   margin: var(--s-3) 0 0;
   padding: 0;
