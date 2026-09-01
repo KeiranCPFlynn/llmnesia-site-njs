@@ -5,10 +5,19 @@ import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 
+const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
+
+// Kept in step with app/pricing/page.js. Annual is two months free against
+// monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £80 Price.
+const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
+const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
+const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
+
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
-  description:
-    'Coming soon — Vault securely syncs and backs up your AI chat history across your supported desktop devices. Mobile access is planned for a future update. Vault can make the free, local MCP feature even more useful by bringing more of your history together. Founding members lock in 50% off for life.',
+  description: CHECKOUT_ENABLED
+    ? 'Vault securely syncs and backs up your AI chat history across your supported desktop devices. The free local search and MCP features remain free.'
+    : 'Coming soon. Vault securely syncs and backs up your AI chat history across the desktop machines you use. Mobile access is in development. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
   canonicalPath: '/vault'
 });
 
@@ -16,11 +25,11 @@ export const metadata = buildPageMetadata({
 const UNLOCKS = [
   {
     title: 'One library, every AI',
-    body: 'ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, DeepSeek and the rest — all in a single searchable memory instead of a dozen walled gardens you have to check one by one.'
+    body: 'ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, DeepSeek and the other platforms LLMnesia supports, all in a single searchable memory instead of walled gardens you have to check one by one.'
   },
   {
-    title: 'Mobile access, planned next',
-    body: 'Mobile Vault access is on the roadmap for a future update. Vault begins with secure sync and backup across supported desktop devices.'
+    title: 'Mobile access, in development',
+    body: 'A mobile version of Vault is being built and is included in the subscription when it lands. Vault begins with secure sync and backup across the desktop machines you use.'
   },
   {
     title: 'Nothing ever lost',
@@ -28,7 +37,7 @@ const UNLOCKS = [
   },
   {
     title: 'Encrypted end to end',
-    body: 'Sealed on your device before it ever syncs. The key never leaves your hands. We can’t read your conversations — and neither can anyone else.'
+    body: 'Sealed on your device before it ever syncs. The key never leaves your hands. We can’t read your conversations, and neither can anyone else.'
   }
 ];
 
@@ -43,7 +52,7 @@ const USE_CASES = [
   },
   {
     kicker: 'Build on your best thinking',
-    body: 'Months of research, drafts and decisions become a knowledge base you can actually query — not scattered chats you’ll never find again.'
+    body: 'Months of research, drafts and decisions become a knowledge base you can actually query, not scattered chats you’ll never find again.'
   }
 ];
 
@@ -54,15 +63,15 @@ const FAQS = [
   },
   {
     q: 'Which platforms does it cover?',
-    a: 'Everything LLMnesia already supports — ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, Character.AI and Z.ai — brought together into one place.'
+    a: 'Everything LLMnesia already supports, including ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi and Qwen, brought together into one place. We add platforms regularly, so the extension is the best guide to the current list.'
   },
   {
     q: 'Will it work on mobile?',
-    a: 'Yes — mobile Vault access is planned for a future update. Vault begins with sync and backup across supported desktop devices, while MCP remains desktop-only because it runs locally on your desktop.'
+    a: 'A mobile version is in development and is included in the subscription when it lands. Vault begins with sync and backup across the desktop machines you use, while MCP remains desktop-only because it runs locally on your desktop.'
   },
   {
     q: 'Isn’t syncing the opposite of local-first?',
-    a: 'No. Your history still lives on your device. Vault lets your devices share an encrypted copy directly, with a key only you hold. What travels between them is an unreadable blob — same privacy promise, more reach.'
+    a: 'No. Your history still lives on your device. Vault lets your devices share an encrypted copy directly, with a key only you hold. What travels between them is an unreadable blob, so it is the same privacy promise with more reach.'
   },
   {
     q: 'Will the free version still work?',
@@ -72,10 +81,15 @@ const FAQS = [
     q: 'How is it private if it’s in the cloud?',
     a: 'Everything is encrypted on your device with a key we never see. What we store is meaningless without it. We can’t read your conversations, and we can’t hand over what we don’t have.'
   },
-  {
-    q: 'When does it launch?',
-    a: 'We’re building it now. Join the waitlist and you’ll be first to know — and founding members lock in half price for as long as they stay subscribed.'
-  }
+  CHECKOUT_ENABLED
+    ? {
+        q: 'How do I subscribe?',
+        a: 'Open the pricing page, sign in with the same email as your Vault account, and continue to secure Stripe Checkout. Stripe activates sync automatically after payment.'
+      }
+    : {
+        q: 'When does it launch?',
+        a: 'We’re getting Vault ready now. Join the waitlist and you’ll be first to know, before anyone else hears about it.'
+      }
 ];
 
 export default function VaultPage() {
@@ -89,21 +103,25 @@ export default function VaultPage() {
           <div className="container vault-hero-inner">
             <p className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
-              Coming soon · LLMnesia Vault
+              {CHECKOUT_ENABLED ? 'Encrypted sync & backup · LLMnesia Vault' : 'Coming soon · LLMnesia Vault'}
             </p>
             <h1>
               All your AI chats.{' '}
               <span className="text-gradient">One memory you can actually use.</span>
             </h1>
             <p className="subheadline vault-hero-sub">
-              LLMnesia already searches your chat history across every AI tool — but only inside
+              LLMnesia already searches your chat history across every AI tool, but only inside
               the browser profile where you indexed it. Vault takes it further: one encrypted
-              memory that syncs across supported desktop devices and backs itself up automatically.
-              Mobile access is planned for a future update. MCP remains a separate, free desktop
-              feature — Vault simply makes it more useful by bringing more of your history together.
-              The first 100 founding members lock in half price for life.
+              memory that syncs across the desktop machines you use and backs itself up
+              automatically. A mobile version is in development. MCP remains a separate, free
+              desktop feature, and Vault simply makes it more useful by bringing more of your
+              history together.
             </p>
-            <VaultWaitlistForm context="vault_hero" />
+            {CHECKOUT_ENABLED ? (
+              <a className="button button-large" href="/pricing#vault-purchase">Subscribe to Vault</a>
+            ) : (
+              <VaultWaitlistForm context="vault_hero" />
+            )}
           </div>
         </section>
 
@@ -116,13 +134,13 @@ export default function VaultPage() {
               <p className="section-intro">
                 Index in one browser, then keep your history securely available across supported
                 desktop devices. MCP is a separate free feature that can use your local LLMnesia
-                archive with Claude Desktop, Cursor, and other compatible tools — no Vault required.
+                archive with Claude Desktop, Cursor, and other compatible tools, with no Vault required.
                 Add Vault and that local archive can include the history you’ve synced from your
                 other desktops.
               </p>
               <p className="section-intro">
-                Mobile Vault access is planned for a future update. Search runs locally on your
-                desktop, where your key lives — so we can’t read your conversations.
+                A mobile version of Vault is in development. Search runs locally on your desktop,
+                where your key lives, so we can’t read your conversations.
               </p>
             </div>
             <div className="vault-mock" aria-hidden="true">
@@ -143,10 +161,10 @@ export default function VaultPage() {
                     Found it in 4 past chats across Claude &amp; ChatGPT
                   </span>
                   You traced it to a race condition in the token refresh. Mocking the clock
-                  didn’t work — the fix was awaiting the refresh before the test’s first request.
+                  didn’t work. The fix was awaiting the refresh before the test’s first request.
                 </div>
                 <p className="vault-mock-caption">
-                  MCP uses your local history on your desktop — Vault optional
+                  MCP uses your local history on your desktop · Vault optional
                 </p>
               </div>
             </div>
@@ -157,7 +175,7 @@ export default function VaultPage() {
         <section className="section vault-benefits">
           <div className="container">
             <p className="section-eyebrow">What Vault unlocks</p>
-            <h2>More than a backup — your history, finally working for you.</h2>
+            <h2>More than a backup. Your history, finally working for you.</h2>
             <div className="card-grid vault-benefit-grid">
               {UNLOCKS.map((item) => (
                 <article className="card vault-benefit-card" key={item.title}>
@@ -192,36 +210,40 @@ export default function VaultPage() {
         <section className="section vault-pricing">
           <div className="container vault-pricing-inner">
             <div className="vault-pricing-copy">
-              <p className="section-eyebrow">Founding pricing</p>
-              <h2>The first 100 pay half. For life.</h2>
+              <p className="section-eyebrow">Pricing</p>
+              <h2>One archive, not one per machine.</h2>
               <p className="section-intro">
-                The first 100 founding members lock in £4/month — half of the £8 launch price —
-                and keep that rate for as long as they stay subscribed. After the first 100, the
-                founding rate steps up to £6, still below launch. It’s our thank-you to the people
-                who back it earliest.
+                Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
+                month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
+                month if you would rather not commit to a year. Plus applicable tax.
               </p>
               <ul className="vault-pricing-points">
                 <li>
-                  Encrypted history available across your supported desktop devices — not just the
+                  Encrypted history available across the desktop machines you use, not just the
                   browser profile you indexed it in
                 </li>
-                <li>Mobile Vault access planned for a future update</li>
-                <li>Automatic, private backup of everything you’ve indexed</li>
+                <li>A mobile version is in development and is included when it lands</li>
+                <li>Automatic, private backup of everything you&rsquo;ve indexed</li>
                 <li>MCP stays free and works without a Vault subscription</li>
-                <li>Founding-member pricing that never goes up on you</li>
+                <li>Cancel any time and keep everything already in your Vault</li>
               </ul>
             </div>
-            <aside className="vault-price-card" aria-label="Founding member pricing">
-              <p className="vault-price-badge">First 100 · Founding member</p>
+            <aside className="vault-price-card" aria-label="Vault pricing">
+              <p className="vault-price-badge">Vault</p>
               <p className="vault-price-figure">
-                <span className="vault-price-strike">£8</span>
-                <span className="vault-price-now">£4</span>
+                <span className="vault-price-now">{ANNUAL_MONTHLY_LABEL}</span>
                 <span className="vault-price-period">/month</span>
               </p>
               <p className="vault-price-sub">
-                Locked in for life. First 100 members only — after that it’s £6, then £8 at launch.
+                Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
+                {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. The extension,
+                its local search and the MCP connection stay free either way.
               </p>
-              <VaultWaitlistForm context="vault_pricing" compact />
+              {CHECKOUT_ENABLED ? (
+                <a className="button button-large" href="/pricing#vault-purchase">Subscribe securely</a>
+              ) : (
+                <VaultWaitlistForm context="vault_pricing" compact />
+              )}
             </aside>
           </div>
         </section>
@@ -245,13 +267,17 @@ export default function VaultPage() {
         {/* Closing CTA */}
         <section className="section vault-closing">
           <div className="container vault-closing-inner">
-            <h2>Be one of the first 100 — at half the price, for life.</h2>
+            <h2>{CHECKOUT_ENABLED ? 'Keep your history safe on every machine.' : 'Be first in when Vault opens.'}</h2>
             <p className="section-intro">
-              The first 100 founding members lock in half price for life, and everyone who joins
-              before launch keeps a founding rate. It costs nothing to claim your place now — no
-              card, no commitment — and you’ll never pay full price if you do.
+              {CHECKOUT_ENABLED
+                ? 'Subscribe with the same email as your Vault account. The free extension, local search and MCP connection stay free whether or not you take Vault.'
+                : 'Joining the waitlist costs nothing and takes no card details. You will hear about it before anyone else, and the free version carries on exactly as it is either way.'}
             </p>
-            <VaultWaitlistForm context="vault_closing" />
+            {CHECKOUT_ENABLED ? (
+              <a className="button button-large" href="/pricing#vault-purchase">Choose Vault</a>
+            ) : (
+              <VaultWaitlistForm context="vault_closing" />
+            )}
           </div>
         </section>
       </main>
