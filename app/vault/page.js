@@ -7,6 +7,15 @@ import { homepageFaqSchema } from '../../lib/schema';
 
 const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 
+// Same gate as app/pricing/page.js, which 404s the whole route unless this is
+// set. Vault is not launched, so no price figure belongs on a public page yet:
+// this section used to render its numbers unconditionally, which both put
+// pricing live before launch and made the page contradict itself, quoting a
+// live "Vault is £80 a year" directly beneath "Coming soon". The approved
+// pricing copy below is unchanged and simply waits for the flag. Turn it on in
+// the same deploy that opens Checkout, not before.
+const PRICING_PUBLIC = process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
+
 // Kept in step with app/pricing/page.js. Annual is two months free against
 // monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £80 Price.
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
@@ -234,9 +243,19 @@ export default function VaultPage() {
               <p className="section-eyebrow">Pricing</p>
               <h2>One archive, not one per browser profile.</h2>
               <p className="section-intro">
-                Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
-                month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
-                month if you would rather not commit to a year. Plus applicable tax.
+                {PRICING_PUBLIC ? (
+                  <>
+                    Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
+                    month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
+                    month if you would rather not commit to a year. Plus applicable tax.
+                  </>
+                ) : (
+                  <>
+                    Vault will be a paid add-on, priced when it opens. The extension, its local
+                    search and the MCP connection stay free either way. Join the waitlist and we
+                    will tell you the price before anyone is asked to pay.
+                  </>
+                )}
               </p>
               <ul className="vault-pricing-points">
                 <li>
@@ -251,15 +270,30 @@ export default function VaultPage() {
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">
               <p className="vault-price-badge">Vault</p>
-              <p className="vault-price-figure">
-                <span className="vault-price-now">{ANNUAL_MONTHLY_LABEL}</span>
-                <span className="vault-price-period">/month</span>
-              </p>
-              <p className="vault-price-sub">
-                Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
-                {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. The extension,
-                its local search and the MCP connection stay free either way.
-              </p>
+              {PRICING_PUBLIC ? (
+                <>
+                  <p className="vault-price-figure">
+                    <span className="vault-price-now">{ANNUAL_MONTHLY_LABEL}</span>
+                    <span className="vault-price-period">/month</span>
+                  </p>
+                  <p className="vault-price-sub">
+                    Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
+                    {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. The extension,
+                    its local search and the MCP connection stay free either way.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="vault-price-figure">
+                    <span className="vault-price-now">Coming soon</span>
+                  </p>
+                  <p className="vault-price-sub">
+                    Vault is not open yet. Join the waitlist and we will tell you the price and the
+                    opening date at the same time. The extension, its local search and the MCP
+                    connection stay free either way.
+                  </p>
+                </>
+              )}
               {CHECKOUT_ENABLED ? (
                 <a className="button button-large" href="/pricing#vault-purchase">Subscribe securely</a>
               ) : (
