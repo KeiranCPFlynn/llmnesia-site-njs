@@ -4952,6 +4952,7 @@ main>section:nth-of-type(even) .how-num {
 }
 
 .vault-proof-panel {
+  min-width: 0;
   margin: 0;
   padding: 1.5rem;
   border: 1px solid var(--t-rule);
@@ -4982,72 +4983,175 @@ main>section:nth-of-type(even) .how-num {
   color: var(--t-teal);
 }
 
-/* The search box the query sits in */
+.vault-proof-app {
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid #d8e1e7;
+  border-radius: 10px;
+  background: #f8fafb;
+  box-shadow: 0 12px 28px -24px rgba(20, 36, 48, 0.65);
+}
+
+.vault-proof-app-head {
+  display: grid;
+  gap: 0.05rem;
+  margin-bottom: 0.7rem;
+  color: #183046;
+}
+
+.vault-proof-app-head strong {
+  font-size: 0.9rem;
+}
+
+.vault-proof-app-head span {
+  color: #607887;
+  font-size: 0.68rem;
+}
+
+.vault-proof-search-row {
+  display: flex;
+  gap: 0.4rem;
+  min-width: 0;
+  margin-bottom: 0.45rem;
+}
+
+/* Matches the extension popup's quick-search input rather than inventing a
+   separate marketing-only result surface. */
 p.vault-proof-query {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin: 0 0 0.6rem;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 8px;
-  background: var(--t-paper-2);
-  color: var(--t-ink);
-  font-size: 0.95rem;
+  margin: 0;
+  padding: 0.48rem 0.65rem;
+  border: 1px solid #cfd9e0;
+  border-radius: 7px;
+  background: #fff;
+  color: #183046;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 p.vault-proof-query::before {
   content: "";
   flex: none;
-  width: 0.72rem;
-  height: 0.72rem;
-  border: 2px solid var(--text-muted);
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 1.5px solid #607887;
   border-radius: 50%;
-  box-shadow: 0.42rem 0.42rem 0 -0.09rem var(--text-muted);
+  box-shadow: 0.35rem 0.35rem 0 -0.08rem #607887;
 }
 
-p.vault-proof-count {
-  margin: 0 0 0.9rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
-  color: var(--text-muted);
+.vault-proof-full-search {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid #cfd9e0;
+  border-radius: 7px;
+  background: #fff;
+  color: #33566b;
+  font-size: 0.68rem;
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .vault-proof-list {
   margin: 0;
-  padding: 0;
+  padding: 0.25rem;
   list-style: none;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.15rem;
+  border: 1px solid #dde5ea;
+  border-radius: 7px;
+  background: #f2f6f8;
 }
 
 .vault-proof-list li {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.5rem 0.7rem;
-  border-radius: 7px;
-  background: color-mix(in srgb, var(--t-paper-2) 62%, transparent);
-  font-size: 0.88rem;
+  display: block;
+  min-width: 0;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: #fff;
+  color: #28465a;
 }
 
-/* The rows Vault adds: the whole argument, in one colour */
-.vault-proof-list li.vault-proof-new {
-  background: color-mix(in srgb, var(--t-teal) 15%, transparent);
-  box-shadow: inset 2px 0 0 var(--t-teal);
+.vault-proof-result-head {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
 }
 
 .vault-proof-platform {
-  font-weight: 650;
-  color: var(--t-ink);
+  flex: none;
+  display: inline-flex;
+  padding: 0.08rem 0.38rem;
+  border: 1px solid #d6e0e8;
+  border-radius: 999px;
+  background: #eef3f7;
+  color: #2e4656;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.vault-proof-where {
-  font-family: var(--font-mono);
+.vault-proof-platform[data-platform="chatgpt"] {
+  border-color: #bfe8dc;
+  background: #e1f6f0;
+  color: #288066;
+}
+
+.vault-proof-platform[data-platform="claude"] {
+  border-color: #e8cfbf;
+  background: #f6e9e1;
+  color: #804a28;
+}
+
+.vault-proof-platform[data-platform="gemini"] {
+  border-color: #bfc4e8;
+  background: #e1e4f6;
+  color: #283380;
+}
+
+.vault-proof-platform[data-platform="perplexity"] {
+  border-color: #bfe6e8;
+  background: #e1f5f6;
+  color: #287a80;
+}
+
+.vault-proof-platform[data-platform="grok"] {
+  border-color: #d5bfe8;
+  background: #ede1f6;
+  color: #572880;
+}
+
+.vault-proof-result-head strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #183046;
   font-size: 0.72rem;
-  color: var(--text-muted);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vault-proof-snippet {
+  display: block;
+  margin-top: 0.16rem;
+  overflow: hidden;
+  color: #607887;
+  font-size: 0.66rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 p.vault-proof-note {

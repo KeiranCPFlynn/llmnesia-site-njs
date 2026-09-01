@@ -125,22 +125,47 @@ const PLANS = [
   }
 ];
 
-// The proof panels. Deliberately stylised rather than a pixel copy of the
-// overlay, so it reads as a diagram of the difference and never as a
-// screenshot of results we are claiming someone really got.
-const PROOF_QUERY = 'connection pooling';
+// Example content rendered in the same shape as the extension popup's current
+// quick-search results: platform pill, conversation title and matched snippet.
+// Vault does not currently expose or separate source browser-profile/device
+// labels, so none are invented here.
+const PROOF_QUERY = 'italy trip itinerary';
 
 const PROOF_WITHOUT = [
-  { platform: 'Claude', where: 'this profile' },
-  { platform: 'ChatGPT', where: 'this profile' }
+  {
+    platform: 'ChatGPT',
+    platformKey: 'chatgpt',
+    title: 'Italy trip itinerary',
+    snippet: 'Rome, Florence and Bologna over ten days, with the travel days kept short.'
+  },
+  {
+    platform: 'Claude',
+    platformKey: 'claude',
+    title: 'Getting around northern Italy',
+    snippet: 'Use high-speed trains between the larger cities and book timed tickets early.'
+  }
 ];
 
 const PROOF_WITH = [
-  { platform: 'Claude', where: 'this profile' },
-  { platform: 'ChatGPT', where: 'this profile' },
-  { platform: 'Claude', where: 'work profile' },
-  { platform: 'ChatGPT', where: 'home desktop' },
-  { platform: 'Claude Code', where: 'work laptop' }
+  ...PROOF_WITHOUT,
+  {
+    platform: 'Gemini',
+    platformKey: 'gemini',
+    title: 'Puglia towns worth a detour',
+    snippet: 'Lecce for baroque streets, Ostuni for a half day, and Monopoli by the water.'
+  },
+  {
+    platform: 'Perplexity',
+    platformKey: 'perplexity',
+    title: 'Lake Como ferry planning',
+    snippet: 'The mid-lake route links Bellagio, Varenna and Menaggio throughout the day.'
+  },
+  {
+    platform: 'Grok',
+    platformKey: 'grok',
+    title: 'Packing for Italy in October',
+    snippet: 'Bring layers, a light rain shell and shoes that are comfortable on stone streets.'
+  }
 ];
 
 // Written to answer the question a paywall actually raises: what happens to my
@@ -268,52 +293,68 @@ export default function PricingPage() {
           <div className="container">
             <div className="vault-section-head">
               <p className="section-eyebrow">The difference</p>
-              <h2>The same search, before and after.</h2>
+              <h2>The same search. More of your own history.</h2>
             </div>
             <div className="vault-proof-grid">
               <figure className="vault-proof-panel">
-                <figcaption className="vault-proof-label">Without Vault</figcaption>
-                <p className="vault-proof-query">{PROOF_QUERY}</p>
-                <p className="vault-proof-count">
-                  {PROOF_WITHOUT.length} results &middot; this browser profile
-                </p>
-                <ul className="vault-proof-list">
-                  {PROOF_WITHOUT.map((hit) => (
-                    <li key={`${hit.platform}-${hit.where}`}>
-                      <span className="vault-proof-platform">{hit.platform}</span>
-                      <span className="vault-proof-where">{hit.where}</span>
-                    </li>
-                  ))}
-                </ul>
+                <figcaption className="vault-proof-label">Free extension</figcaption>
+                <div className="vault-proof-app" aria-label="Example LLMnesia search results without Vault">
+                  <div className="vault-proof-app-head">
+                    <strong>LLMnesia</strong>
+                    <span>Search your AI chats. Instantly.</span>
+                  </div>
+                  <div className="vault-proof-search-row">
+                    <p className="vault-proof-query">{PROOF_QUERY}</p>
+                    <span className="vault-proof-full-search">Full search ⤢</span>
+                  </div>
+                  <ul className="vault-proof-list">
+                    {PROOF_WITHOUT.map((hit) => (
+                      <li key={`${hit.platform}-${hit.title}`}>
+                        <div className="vault-proof-result-head">
+                          <span className="vault-proof-platform" data-platform={hit.platformKey}>{hit.platform}</span>
+                          <strong>{hit.title}</strong>
+                        </div>
+                        <span className="vault-proof-snippet">{hit.snippet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <p className="vault-proof-note">
-                  The answer you actually want is on a machine you are not sitting at.
+                  Search covers the conversations indexed in this browser profile.
                 </p>
               </figure>
 
               <figure className="vault-proof-panel vault-proof-panel-on">
                 <figcaption className="vault-proof-label">With Vault</figcaption>
-                <p className="vault-proof-query">{PROOF_QUERY}</p>
-                <p className="vault-proof-count">
-                  {PROOF_WITH.length} results &middot; {DEVICE_PHRASE}
-                </p>
-                <ul className="vault-proof-list">
-                  {PROOF_WITH.map((hit, i) => (
-                    <li
-                      key={`${hit.platform}-${hit.where}`}
-                      className={i >= PROOF_WITHOUT.length ? 'vault-proof-new' : undefined}
-                    >
-                      <span className="vault-proof-platform">{hit.platform}</span>
-                      <span className="vault-proof-where">{hit.where}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="vault-proof-app" aria-label="Example LLMnesia search results with Vault">
+                  <div className="vault-proof-app-head">
+                    <strong>LLMnesia</strong>
+                    <span>Search your AI chats. Instantly.</span>
+                  </div>
+                  <div className="vault-proof-search-row">
+                    <p className="vault-proof-query">{PROOF_QUERY}</p>
+                    <span className="vault-proof-full-search">Full search ⤢</span>
+                  </div>
+                  <ul className="vault-proof-list">
+                    {PROOF_WITH.map((hit) => (
+                      <li key={`${hit.platform}-${hit.title}`}>
+                        <div className="vault-proof-result-head">
+                          <span className="vault-proof-platform" data-platform={hit.platformKey}>{hit.platform}</span>
+                          <strong>{hit.title}</strong>
+                        </div>
+                        <span className="vault-proof-snippet">{hit.snippet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <p className="vault-proof-note">
-                  Same question, same machine. Vault is the difference.
+                  Synced conversations join the same local search on this device.
                 </p>
               </figure>
             </div>
             <p className="vault-proof-caption">
-              Illustrative. Your own results depend on what you have indexed.
+              Example content in the current popup result format. Vault does not label results by
+              source device or browser profile.
             </p>
           </div>
         </section>
