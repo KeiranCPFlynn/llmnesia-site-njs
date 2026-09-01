@@ -4943,6 +4943,136 @@ main>section:nth-of-type(even) .how-num {
 }
 
 /* The price is the hero of a plan card, not a footnote in a pill. */
+/* --- Proof panels --- */
+.vault-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.vault-proof-panel {
+  margin: 0;
+  padding: 1.5rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+}
+
+.vault-proof-panel-on {
+  border-color: var(--t-teal);
+  background: linear-gradient(
+    155deg,
+    var(--t-card) 40%,
+    color-mix(in srgb, var(--t-teal-soft) 55%, white)
+  );
+  box-shadow: 0 24px 52px -34px rgba(20, 36, 48, 0.5);
+}
+
+.vault-proof-label {
+  margin-bottom: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.vault-proof-panel-on .vault-proof-label {
+  color: var(--t-teal);
+}
+
+/* The search box the query sits in */
+p.vault-proof-query {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--t-rule);
+  border-radius: 8px;
+  background: var(--t-paper-2);
+  color: var(--t-ink);
+  font-size: 0.95rem;
+}
+
+p.vault-proof-query::before {
+  content: "";
+  flex: none;
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  box-shadow: 0.42rem 0.42rem 0 -0.09rem var(--text-muted);
+}
+
+p.vault-proof-count {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+.vault-proof-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.vault-proof-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--t-paper-2) 62%, transparent);
+  font-size: 0.88rem;
+}
+
+/* The rows Vault adds: the whole argument, in one colour */
+.vault-proof-list li.vault-proof-new {
+  background: color-mix(in srgb, var(--t-teal) 15%, transparent);
+  box-shadow: inset 2px 0 0 var(--t-teal);
+}
+
+.vault-proof-platform {
+  font-weight: 650;
+  color: var(--t-ink);
+}
+
+.vault-proof-where {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+p.vault-proof-note {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+p.vault-proof-caption {
+  margin: 1.1rem 0 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+@media (max-width: 720px) {
+  .vault-proof-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Risk reversal, sat beside the purchase form. Borrows /mcp's one-line device
    so it reads as a promise rather than another body paragraph. */
 p.vault-reassure {
