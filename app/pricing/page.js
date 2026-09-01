@@ -67,12 +67,12 @@ const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL ||
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
 const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
 
-const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every machine you use';
+const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and machine you use';
 
 export const metadata = buildPageMetadata({
   title: 'Pricing — LLMnesia',
   description:
-    'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from all your machines into one archive for £80 a year or £8 a month.',
+    'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £80 a year or £8 a month.',
   canonicalPath: '/pricing'
 });
 
@@ -84,7 +84,7 @@ const PLANS = [
     name: 'LLMnesia',
     price: 'Free',
     period: 'always',
-    lead: 'Everything the extension does today, on the machine you install it on.',
+    lead: 'Everything the extension does today, in the browser profile you install it in.',
     points: [
       'Capture and search your chats across ChatGPT, Claude, Gemini, Perplexity, Copilot, Grok and the other platforms LLMnesia supports',
       'Import your existing history from each platform',
@@ -99,8 +99,8 @@ const PLANS = [
     period: 'plus tax',
     lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer wherever you happened to be sitting.`,
     points: [
-      'One archive across all your machines, instead of one per browser profile',
-      'Your free MCP connection then answers from all of it, not only what this machine captured',
+      'One archive across every browser profile and machine you use, instead of one locked to each',
+      'Your free MCP connection then answers from all of it, not only what this browser profile captured',
       ...(MOBILE_READY ? ['The same archive on your phone, so you can ask without opening a laptop'] : []),
       'Backup comes with it: a dead laptop, or a platform quietly deleting old chats, no longer takes your history',
       'Sealed on your device before it syncs, with a key we never hold'
@@ -118,11 +118,11 @@ const FAQS = [
   },
   {
     q: 'Do I need Vault to use MCP?',
-    a: 'No. MCP is free and always will be. It reads the LLMnesia archive on the machine it is installed on, so it works perfectly well with a single-machine archive. What Vault changes is what is in that archive: with it, your desktop AI answers from the history of every machine you use rather than just the one in front of you.'
+    a: 'No. MCP is free and always will be. It reads the LLMnesia archive for the browser profile it is connected to, so it works perfectly well with a single-profile archive. What Vault changes is what is in that archive: with it, your desktop AI answers from the history of every browser and machine you use rather than just the one in front of you.'
   },
   {
     q: 'What am I actually paying for?',
-    a: 'Joining your machines together. The free extension already searches across every AI platform on the machine you are using. Vault is what makes that one archive instead of several, so the thing you worked out on the work laptop is there on the home one. Backup and restore come with it. That is the part with a server behind it, which is the part that costs money to run.'
+    a: 'Joining your browsers and machines together. The free extension already searches across every AI platform in the browser profile you are using. Vault is what makes that one archive instead of several, so the thing you worked out in your work profile, or on the work laptop, is there everywhere else. Backup and restore come with it. That is the part with a server behind it, which is the part that costs money to run.'
   },
   {
     q: 'What happens to my conversations if I cancel?',
@@ -156,7 +156,7 @@ const FAQS = [
       }
     : {
         q: 'Does Vault work on my phone?',
-        a: 'Not yet. Vault starts with sync and backup across the desktop machines you use, and a mobile version is in development. Your subscription covers it when it lands, at no extra cost.'
+        a: 'Not yet. Vault starts with sync and backup across every browser and machine you use, and a mobile version is in development. Your subscription covers it when it lands, at no extra cost.'
       }
 ];
 
@@ -177,9 +177,9 @@ export default function PricingPage() {
               <span className="text-gradient">the other machine.</span>
             </h1>
             <p className="subheadline vault-hero-sub">
-              The extension searches the machine you are on, across every AI platform you use, and
-              that is free. Vault makes {DEVICE_PHRASE} one archive instead, so the answer is there
-              wherever you happened to be sitting when you worked it out.
+              The extension searches the browser profile you are in, across every AI platform you
+              use, and that is free. Vault makes {DEVICE_PHRASE} one archive instead, so the answer
+              is there wherever you happened to be sitting when you worked it out.
             </p>
           </div>
         </section>
@@ -215,15 +215,15 @@ export default function PricingPage() {
               <p className="section-eyebrow">Vault</p>
               <h2>Your agent shouldn’t only know what this laptop saw.</h2>
               <p className="section-intro">
-                The extension already finds what you asked, on the machine that captured it. The
-                gap is everything captured somewhere else: the other laptop, the work profile, the
-                model you were using that week. Vault closes it by keeping one encrypted archive
-                that {DEVICE_PHRASE} writes into and reads from.
+                The extension already finds what you asked, in the browser profile that captured
+                it. The gap is everything captured somewhere else: the other laptop, the work
+                profile, the model you were using that week. Vault closes it by keeping one
+                encrypted archive that {DEVICE_PHRASE} writes into and reads from.
               </p>
               <ul className="vault-pricing-points">
                 <li>
                   Your free MCP connection reads that archive, so Claude Desktop, Cursor and Codex
-                  answer from everything you have discussed, not just this machine.
+                  answer from everything you have discussed, not just this browser profile.
                 </li>
                 {MOBILE_READY ? (
                   <li>Open it in your phone browser and search the whole thing from anywhere.</li>

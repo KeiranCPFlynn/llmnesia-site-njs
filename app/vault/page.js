@@ -17,7 +17,7 @@ export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
   description: CHECKOUT_ENABLED
     ? 'Vault securely syncs and backs up your AI chat history across your supported desktop devices. The free local search and MCP features remain free.'
-    : 'Coming soon. Vault securely syncs and backs up your AI chat history across the desktop machines you use. Mobile access is in development. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
+    : 'Coming soon. Vault securely syncs and backs up your AI chat history across every browser and machine you use. Mobile access is in development. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
   canonicalPath: '/vault'
 });
 
@@ -29,7 +29,7 @@ const UNLOCKS = [
   },
   {
     title: 'Mobile access, in development',
-    body: 'A mobile version of Vault is being built and is included in the subscription when it lands. Vault begins with secure sync and backup across the desktop machines you use.'
+    body: 'A mobile version of Vault is being built and is included in the subscription when it lands. Vault begins with secure sync and backup across every browser and machine you use.'
   },
   {
     title: 'Nothing ever lost',
@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: 'Will it work on mobile?',
-    a: 'A mobile version is in development and is included in the subscription when it lands. Vault begins with sync and backup across the desktop machines you use, while MCP remains desktop-only because it runs locally on your desktop.'
+    a: 'A mobile version is in development and is included in the subscription when it lands. Vault begins with sync and backup across every browser and machine you use, while MCP remains desktop-only because it runs locally on your desktop.'
   },
   {
     q: 'Isn’t syncing the opposite of local-first?',
@@ -112,7 +112,7 @@ export default function VaultPage() {
             <p className="subheadline vault-hero-sub">
               LLMnesia already searches your chat history across every AI tool, but only inside
               the browser profile where you indexed it. Vault takes it further: one encrypted
-              memory that syncs across the desktop machines you use and backs itself up
+              memory that syncs across every browser and machine you use and backs itself up
               automatically. A mobile version is in development. MCP remains a separate, free
               desktop feature, and Vault simply makes it more useful by bringing more of your
               history together.
@@ -211,7 +211,7 @@ export default function VaultPage() {
           <div className="container vault-pricing-inner">
             <div className="vault-pricing-copy">
               <p className="section-eyebrow">Pricing</p>
-              <h2>One archive, not one per machine.</h2>
+              <h2>One archive, not one per browser profile.</h2>
               <p className="section-intro">
                 Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
                 month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
@@ -219,8 +219,8 @@ export default function VaultPage() {
               </p>
               <ul className="vault-pricing-points">
                 <li>
-                  Encrypted history available across the desktop machines you use, not just the
-                  browser profile you indexed it in
+                  Encrypted history available across every browser and machine you use, not just
+                  the single profile you indexed it in
                 </li>
                 <li>A mobile version is in development and is included when it lands</li>
                 <li>Automatic, private backup of everything you&rsquo;ve indexed</li>
@@ -267,7 +267,7 @@ export default function VaultPage() {
         {/* Closing CTA */}
         <section className="section vault-closing">
           <div className="container vault-closing-inner">
-            <h2>{CHECKOUT_ENABLED ? 'Keep your history safe on every machine.' : 'Be first in when Vault opens.'}</h2>
+            <h2>{CHECKOUT_ENABLED ? 'Keep your history safe on every browser and machine.' : 'Be first in when Vault opens.'}</h2>
             <p className="section-intro">
               {CHECKOUT_ENABLED
                 ? 'Subscribe with the same email as your Vault account. The free extension, local search and MCP connection stay free whether or not you take Vault.'
