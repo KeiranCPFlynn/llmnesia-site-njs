@@ -24,18 +24,22 @@ export const metadata = buildPageMetadata({
 // Reframed as feature blocks that sell the possibilities, not just storage.
 const UNLOCKS = [
   {
+    kicker: 'Every platform',
     title: 'One library, every AI',
     body: 'ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, DeepSeek and the other platforms LLMnesia supports, all in a single searchable memory instead of walled gardens you have to check one by one.'
   },
   {
-    title: 'Mobile access, in development',
+    kicker: 'In development',
+    title: 'Mobile access',
     body: 'A mobile version of Vault is being built and is included in the subscription when it lands. Vault begins with secure sync and backup across every browser and machine you use.'
   },
   {
+    kicker: 'Backup included',
     title: 'Nothing ever lost',
     body: 'Platforms quietly delete old chats. Laptops die. Vault keeps an encrypted backup of everything you’ve indexed, so months of thinking never just disappear.'
   },
   {
+    kicker: 'Zero knowledge',
     title: 'Encrypted end to end',
     body: 'Sealed on your device before it ever syncs. The key never leaves your hands. We can’t read your conversations, and neither can anyone else.'
   }
@@ -181,6 +185,7 @@ export default function VaultPage() {
             <div className="card-grid vault-benefit-grid">
               {UNLOCKS.map((item) => (
                 <article className="card vault-benefit-card" key={item.title}>
+                  <p className="vault-benefit-kicker">{item.kicker}</p>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                 </article>
