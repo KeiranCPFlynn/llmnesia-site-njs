@@ -48,6 +48,7 @@
 // IS the Vault pricing surface, so the classes are being used for the thing
 // they were named for.
 
+import { notFound } from 'next/navigation';
 import SiteChrome from '../components/site-chrome';
 import VaultWaitlistForm from '../components/vault-waitlist-form';
 import VaultPurchase from '../components/vault-purchase';
@@ -63,18 +64,30 @@ const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'tru
 // the mobile board says the app has actually shipped.
 const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
 
+// Gates the whole route. Vault is not launched, so a public /pricing page
+// quotes a price for something nobody can buy, and the previously deployed
+// version was publicly serving the founding rate and the "first 100" cap that
+// are meant to stay private. Off by default: the route 404s unless this is
+// explicitly set, so shipping the page can never again publish it by accident.
+// Turn it on in the same deploy that opens Checkout, not before.
+const PRICING_PUBLIC = process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
+
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
 const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
 
 const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and machine you use';
 
-export const metadata = buildPageMetadata({
-  title: 'Pricing — LLMnesia',
-  description:
-    'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £80 a year or £8 a month.',
-  canonicalPath: '/pricing'
-});
+// While the route is gated the page still emits a document head, so keep the
+// price out of the description rather than shipping it on a 404.
+export const metadata = PRICING_PUBLIC
+  ? buildPageMetadata({
+      title: 'Pricing — LLMnesia',
+      description:
+        'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £80 a year or £8 a month.',
+      canonicalPath: '/pricing'
+    })
+  : { title: 'Not found', robots: { index: false, follow: false } };
 
 // The two things a reader is actually choosing between. "Free" is first and
 // deliberately not thinned out: the contrast is the argument for Vault, so
@@ -95,6 +108,7 @@ const PLANS = [
   },
   {
     name: 'Vault',
+    featured: true,
     price: `${ANNUAL_PRICE_LABEL}/year or ${MONTHLY_PRICE_LABEL}/month`,
     period: 'plus tax',
     lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer no matter where you worked it out.`,
@@ -161,6 +175,8 @@ const FAQS = [
 ];
 
 export default function PricingPage() {
+  if (!PRICING_PUBLIC) notFound();
+
   return (
     <SiteChrome>
       <JsonLd data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))} />
@@ -193,7 +209,13 @@ export default function PricingPage() {
             </div>
             <div className="card-grid vault-benefit-grid">
               {PLANS.map((plan) => (
-                <article className="card vault-benefit-card" key={plan.name}>
+                <article
+                  className={`card vault-benefit-card vault-plan-card${
+                    plan.featured ? ' vault-plan-card-featured' : ''
+                  }`}
+                  key={plan.name}
+                >
+                  {plan.featured ? <p className="vault-plan-flag">The paid part</p> : null}
                   <p className="vault-price-badge">
                     {plan.price} · {plan.period}
                   </p>
