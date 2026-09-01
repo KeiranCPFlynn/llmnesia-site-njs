@@ -5017,6 +5017,195 @@ main>section:nth-of-type(even) .how-num {
   margin-top: var(--s-3);
 }
 
+/* --- Vault authenticated purchase --- */
+.vault-purchase {
+  margin-top: var(--s-3);
+  text-align: left;
+}
+
+.vault-purchase h3,
+.vault-purchase-intro {
+  margin-left: 0;
+  margin-right: 0;
+  text-align: left;
+}
+
+.vault-purchase h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.vault-purchase-intro,
+.vault-purchase-note,
+.vault-purchase-loading {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.vault-purchase-form {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+
+.vault-purchase-form label,
+.vault-plan-picker legend {
+  color: var(--t-ink);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.vault-purchase-form input {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-md);
+  background: var(--t-card);
+  color: var(--text);
+  font: inherit;
+}
+
+.vault-purchase-form input:focus-visible,
+.vault-plan-picker label:focus-within {
+  outline: 3px solid color-mix(in srgb, var(--t-teal) 24%, transparent);
+  outline-offset: 2px;
+}
+
+.vault-purchase-form .button,
+.vault-purchase-primary {
+  width: 100%;
+  justify-content: center;
+}
+
+.vault-purchase-account {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--t-teal-edge);
+  border-radius: var(--radius-md);
+  background: var(--t-teal-soft);
+  overflow-wrap: anywhere;
+}
+
+.vault-purchase-account span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.vault-purchase-active {
+  display: grid;
+  gap: 0.2rem;
+  margin-top: 0.8rem;
+  padding: 0.8rem 0.9rem;
+  border-left: 3px solid var(--brand);
+  background: var(--t-teal-soft);
+  color: var(--t-ink-2);
+  font-size: 0.82rem;
+}
+
+.vault-plan-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin: 0.9rem 0;
+  padding: 0;
+  border: 0;
+}
+
+.vault-purchase-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  margin: 0.15rem 0 0.75rem;
+  color: var(--ink, #173448);
+}
+
+.vault-purchase-price strong {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  line-height: 1;
+}
+
+.vault-purchase-price span {
+  color: var(--muted, #587181);
+  font-size: 0.95rem;
+}
+
+.vault-plan-picker legend {
+  grid-column: 1 / -1;
+  margin-bottom: 0.15rem;
+}
+
+.vault-plan-picker label {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.7rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-md);
+  background: var(--t-card);
+  cursor: pointer;
+}
+
+.vault-plan-picker label.selected {
+  border-color: var(--t-teal);
+  background: var(--t-teal-soft);
+}
+
+.vault-plan-picker label span {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.vault-plan-picker label strong {
+  color: var(--t-ink);
+  font-size: 1.05rem;
+}
+
+.vault-plan-picker label small {
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  line-height: 1.35;
+}
+
+.vault-purchase-note {
+  margin: 0.55rem 0 0;
+  text-align: center;
+}
+
+.vault-purchase-utilities {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.vault-purchase-link {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--t-teal);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vault-purchase-link:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.vault-purchase-message,
+.vault-purchase-error {
+  margin: 0.65rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.vault-purchase-message { color: var(--t-ink-2); }
+.vault-purchase-error { color: var(--danger); }
+
 /* --- FAQ + closing --- */
 .vault-faq-list {
   margin-top: var(--s-4);
@@ -5066,6 +5255,10 @@ main>section:nth-of-type(even) .how-num {
 
   .vault-form .button {
     width: 100%;
+  }
+
+  .vault-plan-picker {
+    grid-template-columns: 1fr;
   }
 }
 
