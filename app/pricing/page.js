@@ -89,36 +89,39 @@ export const metadata = PRICING_PUBLIC
     })
   : { title: 'Not found', robots: { index: false, follow: false } };
 
-// The two things a reader is actually choosing between. "Free" is first and
-// deliberately not thinned out: the contrast is the argument for Vault, so
-// understating the free tier would weaken the paid one.
+// The two things a reader is actually choosing between. Kept deliberately
+// short: this is a comparison card, not documentation. The price is the hero
+// element rather than a footnote in a pill, and each line is scannable in one
+// pass. The detail these lines used to carry now lives in the section below
+// and in the FAQ, where someone who wants it will look for it.
 const PLANS = [
   {
     name: 'LLMnesia',
-    price: 'Free',
-    period: 'always',
-    lead: 'Everything the extension does today, in the browser profile you install it in.',
+    priceMain: 'Free',
+    priceSub: 'Always. No account needed.',
     points: [
-      'Capture and search your chats across ChatGPT, Claude, Gemini, Perplexity, Copilot, Grok and the other platforms LLMnesia supports',
-      'Import your existing history from each platform',
-      'Local coding sessions from Claude Code and Codex, indexed alongside the rest',
-      'The MCP connection, so Claude Desktop, Cursor, Codex and other desktop AI tools can read your history',
-      'No account needed, and nothing leaves your machine'
-    ]
+      'Search every AI platform you use',
+      'Import your existing history',
+      'Claude Code and Codex sessions too',
+      'MCP for your desktop AI apps',
+      'Nothing leaves your machine'
+    ],
+    foot: 'Yours already. Nothing to do.'
   },
   {
     name: 'Vault',
     featured: true,
-    price: `${ANNUAL_PRICE_LABEL}/year or ${MONTHLY_PRICE_LABEL}/month`,
-    period: 'plus tax',
-    lead: `Every browser and machine you use, writing into one archive, so a search finds the answer no matter where you worked it out.`,
+    flag: 'Recommended',
+    priceMain: ANNUAL_MONTHLY_LABEL,
+    priceUnit: '/month',
+    priceSub: `Billed annually at ${ANNUAL_PRICE_LABEL}, two months free. Or ${MONTHLY_PRICE_LABEL} monthly. Plus tax.`,
     points: [
-      'What you worked out in your work profile is there in your personal one, and on the other laptop',
-      'Your free MCP connection answers from all of it, so Claude Desktop and Cursor stop missing what you worked out elsewhere',
-      ...(MOBILE_READY ? ['The same archive on your phone, so you can ask without opening a laptop'] : []),
-      'Nothing gets lost: not to a dead laptop, not to a platform quietly ageing out your old chats',
-      'Sealed on your device before it syncs, with a key we never hold'
-    ]
+      'Every browser and machine, one archive',
+      'MCP answers from all of it',
+      'Automatic backup, nothing ages out',
+      'Sealed with a key we never hold'
+    ],
+    cta: 'Get Vault'
   }
 ];
 
@@ -215,23 +218,26 @@ export default function PricingPage() {
                   }`}
                   key={plan.name}
                 >
-                  {plan.featured ? <p className="vault-plan-flag">Recommended</p> : null}
-                  <p className="vault-price-badge">
-                    {plan.price} · {plan.period}
-                  </p>
+                  {plan.flag ? <p className="vault-plan-flag">{plan.flag}</p> : null}
                   <h3>{plan.name}</h3>
-                  <p>{plan.lead}</p>
-                  <ul className="vault-pricing-points">
+                  <p className="vault-plan-price">
+                    <span className="vault-plan-price-main">{plan.priceMain}</span>
+                    {plan.priceUnit ? (
+                      <span className="vault-plan-price-unit">{plan.priceUnit}</span>
+                    ) : null}
+                  </p>
+                  <p className="vault-plan-price-sub">{plan.priceSub}</p>
+                  <ul className="vault-pricing-points vault-plan-points">
                     {plan.points.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
-                  {plan.featured ? (
+                  {plan.cta ? (
                     <a className="button vault-plan-cta" href="#get-vault">
-                      Get Vault
+                      {plan.cta}
                     </a>
                   ) : (
-                    <p className="vault-plan-foot">Yours already. Nothing to do.</p>
+                    <p className="vault-plan-foot">{plan.foot}</p>
                   )}
                 </article>
               ))}

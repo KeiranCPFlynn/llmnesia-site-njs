@@ -4942,6 +4942,51 @@ main>section:nth-of-type(even) .how-num {
   }
 }
 
+/* The price is the hero of a plan card, not a footnote in a pill. */
+p.vault-plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin: 0.1rem 0 0.35rem;
+  line-height: 1;
+}
+
+.vault-plan-price-main {
+  font-size: clamp(2.4rem, 4.2vw, 3.1rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: var(--t-ink);
+}
+
+.vault-plan-card-featured .vault-plan-price-main {
+  color: var(--t-teal);
+}
+
+.vault-plan-price-unit {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+p.vault-plan-price-sub {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+/* Scannable in one pass: one line each, tighter rhythm than prose bullets. */
+.vault-plan-points {
+  margin-top: 0;
+  gap: 0.62rem;
+}
+
+.vault-plan-points li {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--t-ink-2);
+}
+
 .vault-plan-cta {
   margin-top: auto;
   padding-top: 0.85rem;
