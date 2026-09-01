@@ -7,11 +7,34 @@
 // panel can be reached. Nothing here is live until this repo is committed and
 // deployed.
 //
-// Numbers are fixed by VAULT_MCP_STRATEGY.md and marked "do not relitigate":
-// £8/month standard, £4/month founding held for as long as the subscription
-// runs. It is not a lifetime purchase and the founding rate is not
-// time-limited. The £6 step after the first 100 mirrors what /vault already
-// tells the waitlist, so the two pages cannot contradict each other.
+// Rewritten 2026-09-01 against docs/VAULT_LAUNCH_CONVERSION_PLAN.md. Three
+// things changed and each is deliberate:
+//
+//   D3. The founding rate is no longer public. It is honoured for the people
+//       already on the waitlist, delivered as a coupon in a personal email, so
+//       every FOUNDING_ENABLED branch has been removed from this page. That
+//       also removes a whole bug class: the old page had price bullets gated
+//       on the founding flag and others hardcoded, which contradicted each
+//       other the moment founding was switched off.
+//
+//   D3. The price is shown plainly at £96/year or £8/month with no struck
+//       through "was" figure. A strikethrough teaches the reader that the
+//       lower number is the real price, which mis-anchors every customer after
+//       the founding cohort.
+//
+//   D4. The pitch is recall, not backup. Of 27 waitlist members who wrote why
+//       they signed up, 8 asked for consolidation across models, 8 for access
+//       across machines and 7 for retrieving past reasoning. Exactly one
+//       mentioned losing data. Backup is real and stays on the page, but it is
+//       a supporting line, not the headline.
+//
+// Accuracy trap worth keeping: searching ACROSS MODELS is free, because the
+// extension already does that on one device. What Vault adds is across
+// MACHINES. Do not blur those two, it overstates the paid tier and understates
+// the free one.
+//
+// The recurring rate is £8/month or £96/year, plus tax by customer location.
+// Annual is recommended at the same rate, with no extra annual discount.
 //
 // Reuses the existing vault-* pricing classes rather than adding new CSS: this
 // IS the Vault pricing surface, so the classes are being used for the thing
@@ -19,14 +42,28 @@
 
 import SiteChrome from '../components/site-chrome';
 import VaultWaitlistForm from '../components/vault-waitlist-form';
+import VaultPurchase from '../components/vault-purchase';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 
+const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
+
+// Gates every claim that Vault reaches a phone. Defaults OFF on purpose: the
+// mobile web app is built but its real-device test (MV-24) has not been run,
+// and "from anywhere" is the load-bearing half of the recall pitch. Turn this
+// on only once a real iPhone and a real Android have installed and reopened it.
+const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
+
+const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
+const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£96';
+
+const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every desktop you use';
+
 export const metadata = buildPageMetadata({
   title: 'Pricing — LLMnesia',
   description:
-    'The LLMnesia browser extension and its MCP connection are free and stay free. Vault, the optional encrypted sync and backup across your devices, is £8 a month, or £4 a month for founding members who keep that rate for as long as they stay subscribed.',
+    'The LLMnesia browser extension, its search and the MCP connection stay free. Vault brings the history from all your machines into one archive for £96 a year or £8 a month.',
   canonicalPath: '/pricing'
 });
 
@@ -49,15 +86,15 @@ const PLANS = [
   },
   {
     name: 'Vault',
-    price: '£8',
-    period: 'per month',
-    lead: 'Optional. Adds encrypted sync and backup, so your history is not tied to one browser profile.',
+    price: `${MONTHLY_PRICE_LABEL}/month or ${ANNUAL_PRICE_LABEL}/year`,
+    period: 'plus tax',
+    lead: `Optional. Joins ${DEVICE_PHRASE} into one archive, so a search finds the answer wherever you happened to be sitting.`,
     points: [
-      'One encrypted memory shared across your supported desktop devices',
-      'Automatic backup, so a dead laptop or a platform quietly deleting old chats does not take your history with it',
-      'Sealed on your device before it syncs, with a key we never hold',
-      'Restore to a new device whenever you need it, subscribed or not',
-      '£80 a year if you would rather pay annually, which works out at two months free'
+      'One archive across all your machines, instead of one per browser profile',
+      'Your free MCP connection then answers from all of it, not only what this machine captured',
+      ...(MOBILE_READY ? ['The same archive on your phone, so you can ask without opening a laptop'] : []),
+      'Backup comes with it: a dead laptop, or a platform quietly deleting old chats, no longer takes your history',
+      'Sealed on your device before it syncs, with a key we never hold'
     ]
   }
 ];
@@ -72,32 +109,42 @@ const FAQS = [
   },
   {
     q: 'Do I need Vault to use MCP?',
-    a: 'No. MCP is free and always will be. It reads the LLMnesia archive on your machine, so it works perfectly well with a single-device archive. Vault only changes what is in that archive, by bringing in the history from your other desktops.'
+    a: 'No. MCP is free and always will be. It reads the LLMnesia archive on the machine it is installed on, so it works perfectly well with a single-device archive. What Vault changes is what is in that archive: with it, your desktop AI answers from the history of every machine you use rather than just the one in front of you.'
   },
   {
     q: 'What am I actually paying for?',
-    a: 'Encrypted sync and backup. Your conversations are sealed on your device and stored so your other devices can pull them down, and so you still have them if a machine dies or a platform deletes a chat. That is the part with a server behind it, which is the part that costs money to run.'
+    a: 'Joining your machines together. The free extension already searches across every AI platform on the device you are using. Vault is what makes that one archive instead of several, so the thing you worked out on the work laptop is there on the home one. Backup and restore come with it. That is the part with a server behind it, which is the part that costs money to run.'
   },
   {
     q: 'What happens to my conversations if I cancel?',
     a: 'Nothing is deleted. Everything already in your Vault stays yours and you can restore it to any of your devices without an active subscription. What stops is new conversations syncing up. Your local archive carries on working exactly as it did before you subscribed.'
   },
   {
-    q: 'How long does the founding rate last?',
-    a: 'For as long as you stay subscribed. It is not a discount that expires after a year and it is not a one-off lifetime purchase. Vault is a monthly subscription, and founding members keep paying the founding price at every renewal.'
+    q: 'Why is it a subscription and not a one-off?',
+    a: 'Because the cost is ongoing. Storing your encrypted history and serving it to your other devices costs money every month that you keep it there, so charging once would only work until it did not. Annual billing is the same rate as monthly, not a discount, and you can cancel from the billing portal at any time.'
   },
-  {
-    q: 'Does joining the waitlist give me access or charge me anything?',
-    a: 'Neither. There is nothing to pay yet and no card to enter. Joining tells us where to email you when Vault opens, and reserves your place at the founding rate.'
-  },
+  CHECKOUT_ENABLED
+    ? {
+        q: 'How do I subscribe?',
+        a: 'Sign in here with the same email as your Vault account, then continue to secure Stripe Checkout. Stripe activates sync automatically after payment; no manual grant is needed.'
+      }
+    : {
+        q: 'Does joining the waitlist give me access or charge me anything?',
+        a: 'Neither. There is nothing to pay yet and no card to enter. Joining tells us where to email you when Vault opens.'
+      },
   {
     q: 'Can you read my conversations?',
     a: 'No. Everything is encrypted on your device with a key we never see, so what we store is meaningless without it. We cannot read your conversations and we cannot hand over what we do not have.'
   },
-  {
-    q: 'Does Vault work on my phone?',
-    a: 'Not yet. Vault starts with sync and backup across supported desktop devices, and mobile access is planned for a future update.'
-  }
+  MOBILE_READY
+    ? {
+        q: 'Does Vault work on my phone?',
+        a: 'Yes. Your Vault opens in the phone browser and you can search your whole history there, including chats captured on machines you were not holding at the time. It is included in the subscription at no extra cost.'
+      }
+    : {
+        q: 'Does Vault work on my phone?',
+        a: 'Not yet, but it is coming. Vault starts with sync and backup across supported desktop devices, and a mobile version is close behind. Your subscription covers it when it lands, at no extra cost.'
+      }
 ];
 
 export default function PricingPage() {
@@ -113,14 +160,14 @@ export default function PricingPage() {
               Pricing
             </p>
             <h1>
-              LLMnesia is free.{' '}
-              <span className="text-gradient">Vault is the optional part.</span>
+              You already worked this out.{' '}
+              <span className="text-gradient">Somewhere.</span>
             </h1>
             <p className="subheadline vault-hero-sub">
-              The browser extension, every platform it captures, the search that runs on your
-              machine and the MCP connection to your desktop AI tools are free, and they stay
-              free. Vault is the one paid piece: encrypted sync and backup, so your history
-              belongs to you rather than to one browser profile.
+              Searching your own AI history is free, on the machine you are using, across every
+              platform you use. That does not change. Vault is the paid part: it joins{' '}
+              {DEVICE_PHRASE} into a single archive, so the answer is there whether you worked it
+              out in ChatGPT on the work laptop or in Claude at home.
             </p>
           </div>
         </section>
@@ -149,38 +196,51 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Founding rate */}
+        {/* Vault */}
         <section className="section vault-pricing">
           <div className="container vault-pricing-inner">
             <div className="vault-pricing-copy">
-              <p className="section-eyebrow">Founding rate</p>
-              <h2>Half price, and it stays half price.</h2>
+              <p className="section-eyebrow">Vault</p>
+              <h2>One archive, not one per machine.</h2>
               <p className="section-intro">
-                The first 100 founding members pay £4 a month instead of £8, and keep that rate
-                for as long as they stay subscribed. After the first 100, the founding rate is £6,
-                still under the standard price, and it works the same way: the price you join at
-                is the price you keep. It is our thank-you to the people who back Vault before it
-                is finished.
+                Most people do not lose a conversation. They lose track of which machine it was on,
+                or which model they asked. Vault removes that problem by keeping one encrypted
+                archive that {DEVICE_PHRASE} writes into and reads from.
               </p>
               <ul className="vault-pricing-points">
-                <li>Not time-limited. The rate does not step up to £8 after a year.</li>
-                <li>Not a lifetime purchase. Vault is a subscription, and this is the price you renew at.</li>
-                <li>Nothing to pay today. The waitlist is free and takes no card details.</li>
+                <li>
+                  Your free MCP connection reads that archive, so Claude Desktop, Cursor and Codex
+                  answer from everything you have discussed, not just this machine.
+                </li>
+                {MOBILE_READY ? (
+                  <li>Open it in your phone browser and search the whole thing from anywhere.</li>
+                ) : null}
+                <li>
+                  Cancel and you keep every conversation. Restore keeps working without a
+                  subscription.
+                </li>
+                <li>
+                  Choose {ANNUAL_PRICE_LABEL} yearly (recommended) or {MONTHLY_PRICE_LABEL} monthly.
+                  The rate is the same either way.
+                </li>
                 <li>The extension and MCP stay free whether or not you ever take Vault.</li>
               </ul>
             </div>
-            <aside className="vault-price-card" aria-label="Founding member pricing">
-              <p className="vault-price-badge">First 100 · Founding member</p>
+            <aside className="vault-price-card" aria-label="Vault pricing">
+              <p className="vault-price-badge">Vault</p>
               <p className="vault-price-figure">
-                <span className="vault-price-strike">£8</span>
-                <span className="vault-price-now">£4</span>
+                <span className="vault-price-now">{MONTHLY_PRICE_LABEL}</span>
                 <span className="vault-price-period">/month</span>
               </p>
               <p className="vault-price-sub">
-                Kept for as long as you stay subscribed. After the first 100 the founding rate is
-                £6, then £8 at launch.
+                Or {ANNUAL_PRICE_LABEL} a year at the same rate, recommended. Plus applicable tax.
+                Your local archive stays free.
               </p>
-              <VaultWaitlistForm context="pricing_founding" compact />
+              {CHECKOUT_ENABLED ? (
+                <VaultPurchase monthlyLabel={MONTHLY_PRICE_LABEL} annualLabel={ANNUAL_PRICE_LABEL} />
+              ) : (
+                <VaultWaitlistForm context="pricing_founding" compact />
+              )}
             </aside>
           </div>
         </section>
@@ -204,13 +264,21 @@ export default function PricingPage() {
         {/* Closing */}
         <section className="section vault-closing">
           <div className="container vault-closing-inner">
-            <h2>Claim the founding rate before Vault opens.</h2>
+            <h2>
+              {CHECKOUT_ENABLED
+                ? 'Stop re-deriving what you already worked out.'
+                : 'Be first in when Vault opens.'}
+            </h2>
             <p className="section-intro">
-              Vault is still being built. Join the waitlist and you will be first to hear when it
-              opens, at the founding price you keep for as long as you stay subscribed. No card,
-              no commitment, and the free version carries on exactly as it is either way.
+              {CHECKOUT_ENABLED
+                ? `Sign in, choose yearly or monthly, and Stripe activates sync automatically. ${ANNUAL_PRICE_LABEL} a year or ${MONTHLY_PRICE_LABEL} a month, plus tax. The free extension and MCP connection stay free.`
+                : 'Vault is still being built. Join the waitlist and you will be first to hear when it opens. No card, no commitment, and the free version carries on exactly as it is either way.'}
             </p>
-            <VaultWaitlistForm context="pricing_closing" />
+            {CHECKOUT_ENABLED ? (
+              <a className="button button-large" href="#vault-purchase">Choose Vault</a>
+            ) : (
+              <VaultWaitlistForm context="pricing_closing" />
+            )}
           </div>
         </section>
       </main>
