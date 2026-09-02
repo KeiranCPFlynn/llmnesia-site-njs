@@ -7,8 +7,9 @@ import { homepageFaqSchema } from '../../lib/schema';
 
 const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 
-// Same gate as app/pricing/page.js, which 404s the whole route unless this is
-// set. Vault is not launched, so no price figure belongs on a public page yet:
+// Same gate as app/pricing/page.js, which renders its noindex not-found page
+// unless this is set. Vault is not launched, so no price figure belongs on a
+// public page yet:
 // this section used to render its numbers unconditionally, which both put
 // pricing live before launch and made the page contradict itself, quoting a
 // live Vault pricing directly beneath "Coming soon". The approved

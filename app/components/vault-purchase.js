@@ -124,7 +124,9 @@ export default function VaultPurchase({
     }
     setSession(data.session);
     setCode('');
-    setMessage('Signed in. Choose your Vault plan below.');
+    setMessage(accountOnly
+      ? 'Signed in. Checking your Vault status.'
+      : 'Signed in. Choose your Vault plan below.');
   }
 
   async function startCheckout() {
@@ -258,9 +260,10 @@ export default function VaultPurchase({
         </div>
       ) : accountOnly ? (
         <div className="vault-purchase-active" role="status">
-          <strong>No active Vault subscription was found for this account.</strong>
+          <strong>Vault is not active on this account yet.</strong>
           <span>
-            To start a subscription, visit the <a href="/pricing">Vault pricing page</a>.
+            If you already subscribed, manage billing below while activation catches up. Otherwise,
+            visit the <a href="/pricing">Vault pricing page</a>.
           </span>
         </div>
       ) : (
@@ -303,7 +306,7 @@ export default function VaultPurchase({
         </>
       )}
       <div className="vault-purchase-utilities">
-        {entitled === true || billingDetected ? (
+        {entitled === true || billingDetected || accountOnly ? (
           <button className="vault-purchase-link" type="button" onClick={openPortal} disabled={busy !== ''}>
             {busy === 'portal' ? 'Opening…' : 'Manage billing'}
           </button>

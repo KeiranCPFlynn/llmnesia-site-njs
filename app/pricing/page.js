@@ -65,12 +65,14 @@ const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
 // Gates the whole route. Vault is not launched, so a public /pricing page
 // quotes a price for something nobody can buy, and the previously deployed
 // version was publicly serving the founding rate and the "first 100" cap that
-// are meant to stay private. Off by default: the route 404s unless this is
-// explicitly set, so shipping the page can never again publish it by accident.
+// are meant to stay private. Off by default: the statically exported route
+// renders a noindex not-found page unless this is explicitly set, so shipping
+// the page can never again publish pricing by accident.
 // Turn it on in the same deploy that opens Checkout, not before.
 //
-// Requires BOTH flags deliberately: either one missing serves a 404, so a single
-// environment mistake cannot republish this page, and it can never be public
+// Requires BOTH flags deliberately: either one missing serves the gated
+// not-found UI, so a single environment mistake cannot republish this page,
+// and it can never be public
 // while there is no purchase path. They flip together in the authorised release,
 // so demanding both costs nothing.
 const PRICING_PUBLIC =
@@ -84,7 +86,7 @@ const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL 
 const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and machine you use';
 
 // While the route is gated the page still emits a document head, so keep the
-// price out of the description rather than shipping it on a 404.
+// price out of the description rather than shipping it on the gated response.
 export const metadata = PRICING_PUBLIC
   ? buildPageMetadata({
       title: 'Pricing — LLMnesia',

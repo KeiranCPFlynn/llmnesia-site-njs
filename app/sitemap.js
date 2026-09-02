@@ -5,10 +5,11 @@ export const dynamic = 'force-static';
 
 export default function sitemap() {
   // Only advertise /pricing once the route is public AND Vault can actually be
-  // bought. The page 404s unless NEXT_PUBLIC_VAULT_PRICING_PUBLIC is set, so
-  // listing it earlier would submit a 404 to search engines, and listing a live
-  // page with no purchase path would send search traffic to a dead end. Both
-  // flags flip in the same authorised release, so requiring both costs nothing.
+  // bought. The statically exported page renders noindex not-found UI unless
+  // NEXT_PUBLIC_VAULT_PRICING_PUBLIC is set, so listing it earlier would submit
+  // a gated page to search engines, and listing a live page with no purchase
+  // path would send search traffic to a dead end. Both flags flip in the same
+  // authorised release, so requiring both costs nothing.
   const pricingRoutes =
     process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
     process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true'

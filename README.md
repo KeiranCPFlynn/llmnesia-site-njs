@@ -83,7 +83,10 @@ GA4 is optional and enabled via env vars:
 Two separate flags gate Vault on the site, and neither implies the other:
 
 - `NEXT_PUBLIC_VAULT_PRICING_PUBLIC` publishes pricing. Without it `/pricing`
-  404s, is absent from `sitemap.xml`, and `/vault` shows no price figures.
+  renders the noindex not-found page, is absent from `sitemap.xml`, and `/vault`
+  shows no price figures. Because this site is statically exported, the gated
+  page is a soft 404 (not-found UI with HTTP 200); the release contract is no
+  price leakage, `noindex`, and sitemap exclusion.
 - `NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED` compiles in the purchase component and
   switches the pages to launched-state copy.
 
@@ -97,7 +100,8 @@ The purchase component also needs these public browser values:
 - `NEXT_PUBLIC_VAULT_SUPABASE_URL`
 - `NEXT_PUBLIC_VAULT_SUPABASE_PUBLISHABLE_KEY`
 - `NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL` (display only; defaults to `£8`)
-- `NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL` (display only; defaults to `£80`)
+- `NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL` (display only; defaults to `£88`)
+- `NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL` (display only; defaults to `£7.33`)
 
 There is deliberately **no public founding rate and no founding flag**. Vault
 launches publicly rather than to a founding cohort, so no page may advertise a
