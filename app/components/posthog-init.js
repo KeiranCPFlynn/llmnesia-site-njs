@@ -6,8 +6,9 @@ import { useEffect } from 'react';
 // dynamically imported so that with no key configured (local dev and any deploy
 // that has not opted in) the posthog-js chunk is never even downloaded and the
 // site behaves exactly as before. This keeps the privacy-first footprint small:
-// no autocapture, no automatic pageviews, only the explicit events routed
-// through lib/analytics trackEvent plus feature-flag exposure.
+// no autocapture, no automatic pageviews, no session recording (forced off here
+// so a project-level toggle can't silently re-enable it), only the explicit
+// events routed through lib/analytics trackEvent plus feature-flag exposure.
 export default function PostHogInit() {
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
@@ -25,6 +26,7 @@ export default function PostHogInit() {
           autocapture: false,
           capture_pageview: false,
           capture_pageleave: false,
+          disable_session_recording: true,
           person_profiles: 'identified_only'
         });
         window.posthog = posthog;

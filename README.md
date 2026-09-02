@@ -80,6 +80,35 @@ GA4 is optional and enabled via env vars:
 - `LEADS_WEBHOOK_URL` server-side webhook for `/api/leads`
 - `LEADS_WEBHOOK_KEY` optional shared key for the leads webhook
 
+Two separate flags gate Vault on the site, and neither implies the other:
+
+- `NEXT_PUBLIC_VAULT_PRICING_PUBLIC` publishes pricing. Without it `/pricing`
+  404s, is absent from `sitemap.xml`, and `/vault` shows no price figures.
+- `NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED` compiles in the purchase component and
+  switches the pages to launched-state copy.
+
+Both are off everywhere by default, so shipping the site can never publish
+pricing as a side effect. Flip them in the same deploy, never earlier. Any new
+surface that quotes a price must go behind the pricing flag rather than render
+unconditionally.
+
+The purchase component also needs these public browser values:
+
+- `NEXT_PUBLIC_VAULT_SUPABASE_URL`
+- `NEXT_PUBLIC_VAULT_SUPABASE_PUBLISHABLE_KEY`
+- `NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL` (display only; defaults to `£8`)
+- `NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL` (display only; defaults to `£80`)
+
+There is deliberately **no public founding rate and no founding flag**. Vault
+launches publicly rather than to a founding cohort, so no page may advertise a
+founding rate, a discount, a "first 100" cap or a locked price. The founding
+discount survives only as a private Stripe promotion code, honoured for the
+people who signed up while earlier public copy promised it.
+
+Price authority and Stripe secrets live in the Vault Supabase Edge Function
+environment, not Vercel or browser code. Do not enable the checkout flag until
+the functions, Stripe prices, webhook, portal, and lifecycle acceptance pass.
+
 The `/api/leads` Vercel Function accepts direct website and extension JSON payloads. The
 homepage signup can override attribution with `lead_source` and `lead_context`
 query params, for example links from the extension founding prompt.
