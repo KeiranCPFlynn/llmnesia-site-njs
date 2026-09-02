@@ -4,10 +4,13 @@ import { absoluteUrl } from '../lib/site';
 export const dynamic = 'force-static';
 
 export default function sitemap() {
-  // Only advertise /pricing once the route itself is public. The page 404s
-  // unless NEXT_PUBLIC_VAULT_PRICING_PUBLIC is set, so listing it while Vault
-  // is unlaunched would submit a 404 to search engines.
+  // Only advertise /pricing once the route is public AND Vault can actually be
+  // bought. The page 404s unless NEXT_PUBLIC_VAULT_PRICING_PUBLIC is set, so
+  // listing it earlier would submit a 404 to search engines, and listing a live
+  // page with no purchase path would send search traffic to a dead end. Both
+  // flags flip in the same authorised release, so requiring both costs nothing.
   const pricingRoutes =
+    process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
     process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true'
       ? [{ path: '/pricing', priority: 0.9, changeFrequency: 'weekly' }]
       : [];

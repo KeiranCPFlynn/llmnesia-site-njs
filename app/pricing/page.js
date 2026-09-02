@@ -70,7 +70,14 @@ const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
 // are meant to stay private. Off by default: the route 404s unless this is
 // explicitly set, so shipping the page can never again publish it by accident.
 // Turn it on in the same deploy that opens Checkout, not before.
-const PRICING_PUBLIC = process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
+//
+// Requires BOTH flags deliberately: either one missing serves a 404, so a single
+// environment mistake cannot republish this page, and it can never be public
+// while there is no purchase path. They flip together in the authorised release,
+// so demanding both costs nothing.
+const PRICING_PUBLIC =
+  process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
+  process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
 
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
