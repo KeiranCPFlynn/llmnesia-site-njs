@@ -12,7 +12,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function VaultPurchase({
   monthlyLabel = '£8',
   annualLabel = '£88',
-  annualMonthlyLabel = '£7.33'
+  annualMonthlyLabel = '£7.33',
+  accountOnly = false
 }) {
   const [session, setSession] = useState(null);
   const [ready, setReady] = useState(false);
@@ -128,7 +129,7 @@ export default function VaultPurchase({
     }
     setSession(data.session);
     setCode('');
-    setMessage('Signed in. Choose your Vault plan below.');
+    setMessage(accountOnly ? 'Signed in. Checking your Vault status.' : 'Signed in. Choose your Vault plan below.');
   }
 
   async function startCheckout() {
@@ -176,9 +177,11 @@ export default function VaultPurchase({
   if (!session) {
     return (
       <div id="vault-purchase" className="vault-purchase">
-        <h3>Start with your Vault email</h3>
+        <h3>{accountOnly ? 'Sign in to manage Vault' : 'Start with your Vault email'}</h3>
         <p className="vault-purchase-intro">
-          Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.
+          {accountOnly
+            ? 'Use the same email as your extension. You can then view your Vault status and manage billing, invoices, or cancellation.'
+            : 'Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.'}
         </p>
         {checkoutReturn === 'success' ? (
           <p className="vault-purchase-message" role="status">
@@ -253,6 +256,11 @@ export default function VaultPurchase({
         <div className="vault-purchase-active" role="status">
           <strong>Your Vault subscription is active in Stripe.</strong>
           <span>Manage billing below. If Vault has not unlocked yet, refresh this page in a moment.</span>
+        </div>
+      ) : accountOnly ? (
+        <div className="vault-purchase-active" role="status">
+          <strong>No active Vault subscription was found for this account.</strong>
+          <span>To start a subscription, visit the Vault pricing page.</span>
         </div>
       ) : (
         <>
