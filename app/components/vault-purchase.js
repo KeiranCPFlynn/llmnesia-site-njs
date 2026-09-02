@@ -178,7 +178,7 @@ export default function VaultPurchase({
       <div id="vault-purchase" className="vault-purchase">
         <h3>Start with your Vault email</h3>
         <p className="vault-purchase-intro">
-          Sign in first so Stripe can activate the same account your extension uses.
+          Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.
         </p>
         {checkoutReturn === 'success' ? (
           <p className="vault-purchase-message" role="status">
