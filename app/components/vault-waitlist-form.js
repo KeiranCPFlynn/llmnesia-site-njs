@@ -2,7 +2,13 @@
 
 import { useState } from 'react';
 
-// Vault founding-member waitlist form. Mirrors the site's existing lead-capture
+// Vault launch-notification waitlist form. Vault launches publicly rather than to
+// a founding cohort, so this form promises notification only: it must not offer a
+// founding rate, a discount or a locked price. The founding rate still exists as a
+// private Stripe promotion code, honoured for people who signed up while the old
+// public copy promised it, and it is never advertised here.
+//
+// Mirrors the site's existing lead-capture
 // pattern: the email is POSTed to /api/leads (which forwards to the Google Sheet
 // webhook) tagged with a dedicated source so Vault interest lands on its own tab,
 // never mixed into the general outreach list. PostHog only ever sees an anonymous
@@ -172,7 +178,7 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
       <div className={`vault-form vault-form-success${compact ? ' vault-form-compact' : ''}`} role="status">
         <p className="vault-form-success-title">You’re on the list.</p>
         <p className="vault-form-success-copy">
-          We’ll email you the moment Vault opens — with your founding price locked in.
+          We’ll email you the moment Vault opens, with the price and what it includes.
         </p>
 
         {feedbackState === 'done' ? (
@@ -249,7 +255,7 @@ export default function VaultWaitlistForm({ context = 'vault_page', compact = fa
           required
         />
         <button className="button button-large" type="submit" disabled={state === 'submitting'}>
-          {state === 'submitting' ? 'Joining…' : 'Get founding access'}
+          {state === 'submitting' ? 'Joining…' : 'Get notified at launch'}
         </button>
       </div>
       {state === 'error' && error ? (
