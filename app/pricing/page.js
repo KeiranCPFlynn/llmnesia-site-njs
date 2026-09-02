@@ -56,7 +56,13 @@ import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 
-const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
+// This commit exists only on the Vercel-authenticated live-billing acceptance
+// branch. It lets us exercise the exact purchase flow before the public launch
+// flags are enabled on production. Do not merge this branch into main.
+const PROTECTED_ACCEPTANCE_PREVIEW = true;
+
+const CHECKOUT_ENABLED =
+  PROTECTED_ACCEPTANCE_PREVIEW || process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 
 // Gates every claim that Vault reaches a phone. Defaults OFF on purpose: the
 // mobile web app works, but MV-24 (physical-device install) is blocked on a
@@ -78,11 +84,6 @@ const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
 const PRICING_PUBLIC =
   process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
   process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
-
-// This commit exists only on the Vercel-authenticated live-billing acceptance
-// branch. It lets us exercise the exact purchase flow before the public launch
-// flags are enabled on production. Do not merge this branch into main.
-const PROTECTED_ACCEPTANCE_PREVIEW = true;
 
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
