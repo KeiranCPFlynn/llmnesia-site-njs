@@ -1,9 +1,5 @@
 import './globals.css';
-import { Suspense } from 'react';
-import Script from 'next/script';
-import Analytics from './components/analytics';
-import SiteBehavior from './components/site-behavior';
-import PostHogInit from './components/posthog-init';
+import SiteRuntime from './components/site-runtime';
 import { absoluteUrl, SITE_URL } from '../lib/site';
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -69,28 +65,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
-        <SiteBehavior />
-        <PostHogInit />
-        {gaId ? (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-init" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
-                gtag('js', new Date());
-                gtag('config', '${gaId}', { send_page_view: false });
-              `}
-            </Script>
-            <Suspense fallback={null}>
-              <Analytics gaId={gaId} />
-            </Suspense>
-          </>
-        ) : null}
+        <SiteRuntime gaId={gaId} />
       </body>
     </html>
   );
