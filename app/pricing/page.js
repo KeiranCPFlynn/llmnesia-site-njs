@@ -79,6 +79,11 @@ const PRICING_PUBLIC =
   process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
   process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
 
+// This commit exists only on the Vercel-authenticated live-billing acceptance
+// branch. It lets us exercise the exact purchase flow before the public launch
+// flags are enabled on production. Do not merge this branch into main.
+const PROTECTED_ACCEPTANCE_PREVIEW = true;
+
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
 const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
@@ -228,7 +233,7 @@ const FAQS = [
 ];
 
 export default function PricingPage() {
-  if (!PRICING_PUBLIC) notFound();
+  if (!PRICING_PUBLIC && !PROTECTED_ACCEPTANCE_PREVIEW) notFound();
 
   return (
     <SiteChrome>
