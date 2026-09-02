@@ -11,8 +11,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function VaultPurchase({
   monthlyLabel = '£8',
-  annualLabel = '£80',
-  annualMonthlyLabel = '£6.67'
+  annualLabel = '£88',
+  annualMonthlyLabel = '£7.33'
 }) {
   const [session, setSession] = useState(null);
   const [ready, setReady] = useState(false);
@@ -261,7 +261,7 @@ export default function VaultPurchase({
               />
               <span>
                 <strong>{annualLabel}/year</strong>
-                <small>Works out to {annualMonthlyLabel}/month · Two months free</small>
+                <small>Works out to {annualMonthlyLabel}/month · One month free</small>
               </span>
             </label>
             <label className={plan === 'monthly' ? 'selected' : ''}>

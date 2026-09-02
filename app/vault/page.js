@@ -11,16 +11,16 @@ const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'tru
 // set. Vault is not launched, so no price figure belongs on a public page yet:
 // this section used to render its numbers unconditionally, which both put
 // pricing live before launch and made the page contradict itself, quoting a
-// live "Vault is £80 a year" directly beneath "Coming soon". The approved
+// live Vault pricing directly beneath "Coming soon". The approved
 // pricing copy below is unchanged and simply waits for the flag. Turn it on in
 // the same deploy that opens Checkout, not before.
 const PRICING_PUBLIC = process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
 
-// Kept in step with app/pricing/page.js. Annual is two months free against
-// monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £80 Price.
+// Kept in step with app/pricing/page.js. Annual is one month free against
+// monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £88 Price.
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
-const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
-const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
+const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
+const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£7.33';
 
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
@@ -246,7 +246,7 @@ export default function VaultPage() {
                 {PRICING_PUBLIC ? (
                   <>
                     Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
-                    month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
+                    month and includes one month free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
                     month if you would rather not commit to a year. Plus applicable tax.
                   </>
                 ) : (
@@ -277,7 +277,7 @@ export default function VaultPage() {
                     <span className="vault-price-period">/month</span>
                   </p>
                   <p className="vault-price-sub">
-                    Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
+                    Billed annually at {ANNUAL_PRICE_LABEL}, which includes one month free. Or{' '}
                     {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. The extension,
                     its local search and the MCP connection stay free either way.
                   </p>

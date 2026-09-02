@@ -25,16 +25,13 @@
 //       the lower number is the real price, which mis-anchors every customer
 //       who arrives after the founding cohort.
 //
-//   Annual is now genuinely discounted: £80/year against £8/month, which is two
-//       months free and an effective £6.67/month. This is a revenue decision,
-//       not a giveaway. A £8 monthly subscriber who cancels around month nine
-//       pays £72, so £80 taken upfront beats the expected monthly run, removes
-//       eleven Stripe fees, and gives a lower headline number to quote without
-//       cutting the monthly rate.
+//   Annual is £88/year against £8/month: one month free and an effective
+//       £7.33/month. It gives customers a reason to commit and pulls cash forward
+//       without giving away two months of recurring revenue.
 //
-//       WARNING: STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £80 Price before
-//       this deploys. If it still points at the £96 Price, this page and
-//       Checkout will disagree.
+//       WARNING: STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £88 Price before
+//       this deploys. If it points at any other Price, this page and Checkout
+//       will disagree.
 //
 // Accuracy traps worth keeping:
 //
@@ -86,8 +83,8 @@ const PRICING_PUBLIC =
   process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
 
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
-const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
-const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
+const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
+const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£7.33';
 
 const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and machine you use';
 
@@ -97,7 +94,7 @@ export const metadata = PRICING_PUBLIC
   ? buildPageMetadata({
       title: 'Pricing — LLMnesia',
       description:
-        'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £80 a year or £8 a month.',
+        'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £88 a year or £8 a month.',
       canonicalPath: '/pricing'
     })
   : { title: 'Not found', robots: { index: false, follow: false } };
@@ -127,7 +124,7 @@ const PLANS = [
     flag: 'Recommended',
     priceMain: ANNUAL_MONTHLY_LABEL,
     priceUnit: '/month',
-    priceSub: `Billed annually at ${ANNUAL_PRICE_LABEL}, two months free. Or ${MONTHLY_PRICE_LABEL} monthly. Plus tax.`,
+    priceSub: `Billed annually at ${ANNUAL_PRICE_LABEL}, with one month free. Or ${MONTHLY_PRICE_LABEL} monthly. Plus tax.`,
     points: [
       'Every browser and machine, one archive',
       'MCP answers from all of it',
@@ -203,7 +200,7 @@ const FAQS = [
   },
   {
     q: 'Is annual cheaper than monthly?',
-    a: `Yes. Annual works out at ${ANNUAL_MONTHLY_LABEL} a month against ${MONTHLY_PRICE_LABEL} monthly, which is two months free. Both plans are the same Vault with the same features, so the only reason to pay monthly is if you would rather not commit to a year.`
+    a: `Yes. Annual works out at ${ANNUAL_MONTHLY_LABEL} a month against ${MONTHLY_PRICE_LABEL} monthly, which includes one month free. Both plans are the same Vault with the same features, so the only reason to pay monthly is if you would rather not commit to a year.`
   },
   {
     q: 'Why is it a subscription and not a one-off?',
@@ -401,7 +398,7 @@ export default function PricingPage() {
                 <span className="vault-price-period">/month</span>
               </p>
               <p className="vault-price-sub">
-                Billed annually at {ANNUAL_PRICE_LABEL}, two months free. Or {MONTHLY_PRICE_LABEL}{' '}
+                Billed annually at {ANNUAL_PRICE_LABEL}, with one month free. Or {MONTHLY_PRICE_LABEL}{' '}
                 monthly. Plus tax.
               </p>
               {CHECKOUT_ENABLED ? (

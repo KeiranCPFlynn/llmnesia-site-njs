@@ -97,7 +97,8 @@ The purchase component also needs these public browser values:
 - `NEXT_PUBLIC_VAULT_SUPABASE_URL`
 - `NEXT_PUBLIC_VAULT_SUPABASE_PUBLISHABLE_KEY`
 - `NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL` (display only; defaults to `£8`)
-- `NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL` (display only; defaults to `£80`)
+- `NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL` (display only; defaults to `£88`)
+- `NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL` (display only; defaults to `£7.33`)
 
 There is deliberately **no public founding rate and no founding flag**. Vault
 launches publicly rather than to a founding cohort, so no page may advertise a
