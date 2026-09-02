@@ -4447,6 +4447,21 @@ main>section:nth-of-type(even) .how-num {
   color: var(--text);
 }
 
+.inline-install-cta .inline-install-cta__recovery-route {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.45;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.inline-install-cta .inline-install-cta__recovery-route:hover {
+  color: var(--text);
+}
+
 .inline-install-cta__action {
   flex: 0 0 auto;
 }
