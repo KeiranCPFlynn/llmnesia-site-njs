@@ -11,20 +11,21 @@ const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'tru
 // set. Vault is not launched, so no price figure belongs on a public page yet:
 // this section used to render its numbers unconditionally, which both put
 // pricing live before launch and made the page contradict itself, quoting a
-// live "Vault is £80 a year" directly beneath "Coming soon". The approved
+// live Vault pricing directly beneath "Coming soon". The approved
 // pricing copy below is unchanged and simply waits for the flag. Turn it on in
 // the same deploy that opens Checkout, not before.
 const PRICING_PUBLIC = process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
+const PURCHASE_PUBLIC = CHECKOUT_ENABLED && PRICING_PUBLIC;
 
-// Kept in step with app/pricing/page.js. Annual is two months free against
-// monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £80 Price.
+// Kept in step with app/pricing/page.js. Annual is one month free against
+// monthly, so STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £88 Price.
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
-const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£80';
-const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£6.67';
+const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
+const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£7.33';
 
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
-  description: CHECKOUT_ENABLED
+  description: PURCHASE_PUBLIC
     ? 'Vault securely syncs and backs up your AI chat history across your supported desktop devices. The free local search and MCP features remain free.'
     : 'Coming soon. Vault securely syncs and backs up your AI chat history across every browser and machine you use. Mobile access is in development. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
   canonicalPath: '/vault'
@@ -94,7 +95,7 @@ const FAQS = [
     q: 'How is it private if it’s in the cloud?',
     a: 'Everything is encrypted on your device with a key we never see. What we store is meaningless without it. We can’t read your conversations, and we can’t hand over what we don’t have.'
   },
-  CHECKOUT_ENABLED
+  PURCHASE_PUBLIC
     ? {
         q: 'How do I subscribe?',
         a: 'Open the pricing page, sign in with the same email as your Vault account, and continue to secure Stripe Checkout. Stripe activates sync automatically after payment.'
@@ -116,7 +117,7 @@ export default function VaultPage() {
           <div className="container vault-hero-inner">
             <p className="eyebrow">
               <span className="eyebrow-dot" aria-hidden="true" />
-              {CHECKOUT_ENABLED ? 'Encrypted sync & backup · LLMnesia Vault' : 'Coming soon · LLMnesia Vault'}
+              {PURCHASE_PUBLIC ? 'Encrypted sync & backup · LLMnesia Vault' : 'Coming soon · LLMnesia Vault'}
             </p>
             <h1>
               All your AI chats.{' '}
@@ -130,7 +131,7 @@ export default function VaultPage() {
               desktop feature, and Vault simply makes it more useful by bringing more of your
               history together.
             </p>
-            {CHECKOUT_ENABLED ? (
+            {PURCHASE_PUBLIC ? (
               <>
                 <div className="vault-hero-actions">
                   <a className="button button-large" href="/pricing#vault-purchase">
@@ -243,10 +244,10 @@ export default function VaultPage() {
               <p className="section-eyebrow">Pricing</p>
               <h2>One archive, not one per browser profile.</h2>
               <p className="section-intro">
-                {PRICING_PUBLIC ? (
+                {PURCHASE_PUBLIC ? (
                   <>
                     Vault is {ANNUAL_PRICE_LABEL} a year, which works out at {ANNUAL_MONTHLY_LABEL} a
-                    month and is two months free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
+                    month and includes one month free against paying monthly. Or {MONTHLY_PRICE_LABEL} a
                     month if you would rather not commit to a year. Plus applicable tax.
                   </>
                 ) : (
@@ -270,14 +271,14 @@ export default function VaultPage() {
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">
               <p className="vault-price-badge">Vault</p>
-              {PRICING_PUBLIC ? (
+              {PURCHASE_PUBLIC ? (
                 <>
                   <p className="vault-price-figure">
                     <span className="vault-price-now">{ANNUAL_MONTHLY_LABEL}</span>
                     <span className="vault-price-period">/month</span>
                   </p>
                   <p className="vault-price-sub">
-                    Billed annually at {ANNUAL_PRICE_LABEL}, which is two months free. Or{' '}
+                    Billed annually at {ANNUAL_PRICE_LABEL}, which includes one month free. Or{' '}
                     {MONTHLY_PRICE_LABEL} a month billed monthly. Plus applicable tax. The extension,
                     its local search and the MCP connection stay free either way.
                   </p>
@@ -294,7 +295,7 @@ export default function VaultPage() {
                   </p>
                 </>
               )}
-              {CHECKOUT_ENABLED ? (
+              {PURCHASE_PUBLIC ? (
                 <a className="button button-large" href="/pricing#vault-purchase">Subscribe securely</a>
               ) : (
                 <VaultWaitlistForm context="vault_pricing" compact />
@@ -324,13 +325,13 @@ export default function VaultPage() {
         {/* Closing CTA */}
         <section className="section vault-closing">
           <div className="container vault-closing-inner">
-            <h2>{CHECKOUT_ENABLED ? 'Keep your history safe on every browser and machine.' : 'Be first in when Vault opens.'}</h2>
+            <h2>{PURCHASE_PUBLIC ? 'Keep your history safe on every browser and machine.' : 'Be first in when Vault opens.'}</h2>
             <p className="section-intro">
-              {CHECKOUT_ENABLED
+              {PURCHASE_PUBLIC
                 ? 'Subscribe with the same email as your Vault account. The free extension, local search and MCP connection stay free whether or not you take Vault.'
                 : 'Joining the waitlist costs nothing and takes no card details. You will hear about it before anyone else, and the free version carries on exactly as it is either way.'}
             </p>
-            {CHECKOUT_ENABLED ? (
+            {PURCHASE_PUBLIC ? (
               <a className="button button-large" href="/pricing#vault-purchase">Choose Vault</a>
             ) : (
               <VaultWaitlistForm context="vault_closing" />

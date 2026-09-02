@@ -11,8 +11,9 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function VaultPurchase({
   monthlyLabel = '£8',
-  annualLabel = '£80',
-  annualMonthlyLabel = '£6.67'
+  annualLabel = '£88',
+  annualMonthlyLabel = '£7.33',
+  accountOnly = false
 }) {
   const [session, setSession] = useState(null);
   const [ready, setReady] = useState(false);
@@ -26,6 +27,7 @@ export default function VaultPurchase({
   const [entitled, setEntitled] = useState(null);
   const [billingDetected, setBillingDetected] = useState(false);
   const [plan, setPlan] = useState('annual');
+  const [checkoutReturn, setCheckoutReturn] = useState('');
 
   const supabase = useMemo(() => {
     try {
@@ -33,6 +35,10 @@ export default function VaultPurchase({
     } catch {
       return null;
     }
+  }, []);
+
+  useEffect(() => {
+    setCheckoutReturn(new URLSearchParams(window.location.search).get('checkout') || '');
   }, []);
 
   useEffect(() => {
@@ -166,10 +172,21 @@ export default function VaultPurchase({
   if (!session) {
     return (
       <div id="vault-purchase" className="vault-purchase">
-        <h3>Start with your Vault email</h3>
+        <h3>{accountOnly ? 'Sign in to manage Vault' : 'Start with your Vault email'}</h3>
         <p className="vault-purchase-intro">
-          Sign in first so Stripe can activate the same account your extension uses.
+          {accountOnly
+            ? 'Use the same email as your extension. You can then view your Vault status and manage billing, invoices, or cancellation.'
+            : 'Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.'}
         </p>
+        {checkoutReturn === 'success' ? (
+          <p className="vault-purchase-message" role="status">
+            Checkout is complete. Sign in with the same email to confirm your Vault is active.
+          </p>
+        ) : checkoutReturn === 'cancelled' ? (
+          <p className="vault-purchase-message" role="status">
+            Checkout was cancelled. No charge was made.
+          </p>
+        ) : null}
         {step === 'email' ? (
           <form onSubmit={sendCode} className="vault-purchase-form" noValidate>
             <label htmlFor="vault-purchase-email">Email address</label>
@@ -239,6 +256,13 @@ export default function VaultPurchase({
           <strong>Your Vault subscription is active in Stripe.</strong>
           <span>Manage billing below. If Vault has not unlocked yet, refresh this page in a moment.</span>
         </div>
+      ) : accountOnly ? (
+        <div className="vault-purchase-active" role="status">
+          <strong>No active Vault subscription was found for this account.</strong>
+          <span>
+            To start a subscription, visit the <a href="/pricing">Vault pricing page</a>.
+          </span>
+        </div>
       ) : (
         <>
           <fieldset className="vault-plan-picker">
@@ -254,7 +278,7 @@ export default function VaultPurchase({
               />
               <span>
                 <strong>{annualLabel}/year</strong>
-                <small>Works out to {annualMonthlyLabel}/month · Two months free</small>
+                <small>Works out to {annualMonthlyLabel}/month · One month free</small>
               </span>
             </label>
             <label className={plan === 'monthly' ? 'selected' : ''}>
