@@ -91,11 +91,9 @@ export default function VaultPurchase({
     if (authError) {
       // Temporary acceptance-preview diagnostic. The customer-facing copy stays
       // generic, while the protected browser console reveals the provider reason.
-      console.error('[vault] OTP request failed', {
-        message: authError.message,
-        status: authError.status,
-        code: authError.code
-      });
+      console.error(
+        `[vault] OTP request failed: message=${authError.message}; status=${authError.status ?? 'none'}; code=${authError.code ?? 'none'}`
+      );
       setError('We could not send the sign-in code. Please try again.');
       return;
     }
