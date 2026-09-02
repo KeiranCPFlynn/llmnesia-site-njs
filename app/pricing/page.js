@@ -49,6 +49,7 @@ import { notFound } from 'next/navigation';
 import SiteChrome from '../components/site-chrome';
 import VaultWaitlistForm from '../components/vault-waitlist-form';
 import VaultPurchase from '../components/vault-purchase';
+import VaultPlanCta from '../components/vault-plan-cta';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
@@ -90,7 +91,7 @@ const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and
 
 // While the route is gated the page still emits a document head, so keep the
 // price out of the description rather than shipping it on a 404.
-export const metadata = PRICING_PUBLIC
+export const metadata = PRICING_PUBLIC || PROTECTED_ACCEPTANCE_PREVIEW
   ? buildPageMetadata({
       title: 'Pricing — LLMnesia',
       description:
@@ -286,9 +287,7 @@ export default function PricingPage() {
                     ))}
                   </ul>
                   {plan.cta ? (
-                    <a className="button vault-plan-cta" href="#get-vault">
-                      {plan.cta}
-                    </a>
+                    <VaultPlanCta />
                   ) : (
                     <p className="vault-plan-foot">{plan.foot}</p>
                   )}

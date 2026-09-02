@@ -26,6 +26,7 @@ export default function VaultPurchase({
   const [entitled, setEntitled] = useState(null);
   const [billingDetected, setBillingDetected] = useState(false);
   const [plan, setPlan] = useState('annual');
+  const [checkoutReturn, setCheckoutReturn] = useState('');
 
   const supabase = useMemo(() => {
     try {
@@ -33,6 +34,10 @@ export default function VaultPurchase({
     } catch {
       return null;
     }
+  }, []);
+
+  useEffect(() => {
+    setCheckoutReturn(new URLSearchParams(window.location.search).get('checkout') || '');
   }, []);
 
   useEffect(() => {
@@ -175,6 +180,11 @@ export default function VaultPurchase({
         <p className="vault-purchase-intro">
           Sign in first so Stripe can activate the same account your extension uses.
         </p>
+        {checkoutReturn === 'success' ? (
+          <p className="vault-purchase-message" role="status">
+            Checkout is complete. Sign in with the same email to confirm your Vault is active.
+          </p>
+        ) : null}
         {step === 'email' ? (
           <form onSubmit={sendCode} className="vault-purchase-form" noValidate>
             <label htmlFor="vault-purchase-email">Email address</label>
