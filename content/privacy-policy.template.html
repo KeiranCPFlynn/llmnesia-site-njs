@@ -51,11 +51,12 @@
     <section class="section container">
       <div class="policy-content">
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 16 August 2026</p>
+        <p class="policy-date">Last updated: 3 September 2026</p>
 
         <h2>Overview</h2>
         <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
-          locally on your device. It is built with a local-first, privacy-by-design architecture.</p>
+          locally on your device. Vault is a separate, optional paid feature that adds an encrypted server backup,
+          sync, and restore. LLMnesia is built with a local-first, privacy-by-design architecture.</p>
         <p>Your AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries,
           extension settings, and searchable index are stored locally on your device using the Chrome Storage API
           (<code>chrome.storage.local</code>), unless you choose to opt in to Vault, an optional encrypted backup and
@@ -145,33 +146,49 @@
         <p>If desktop MCP is enabled, searches and tool calls run against the local filesystem corpus. They do not send
           the query or result to LLMnesia servers or analytics services.</p>
 
-        <h2>Vault (optional encrypted backup and sync)</h2>
-        <p>Vault is an optional feature, currently in early access and not enabled by default, that lets you back up
-          your conversation index and access it across your own devices. It is off unless you deliberately set it up
-          with a passphrase.</p>
+        <h2>Vault (optional paid encrypted backup and sync)</h2>
+        <p>Vault is an optional paid feature that lets you back up your conversation index and keep it in sync across
+          your own devices. It is off unless you deliberately create a Vault. Setup requires an account, authenticated
+          with your email address and a one-time code, plus a private passphrase and an active subscription.</p>
         <p>If you turn Vault on, your conversation content is encrypted on your device (AES-256-GCM, with a key derived
           from a passphrase only you know) before it ever leaves your device. The encrypted data is then synced to
           LLMnesia's sync backend, hosted on Supabase, so it can be restored to your other devices.</p>
-        <p>LLMnesia's servers store only this encrypted data. We do not have access to your passphrase or your
-          encryption key, and cannot read, and have no practical way to decrypt, your conversation content stored in
-          Vault.</p>
+        <p>LLMnesia's servers store encrypted conversation and memory payloads, a wrapped copy of the Vault key,
+          record identifiers, sync versions and timestamps, deletion markers, account and sign-in information, and
+          subscription status. Record identifiers reveal which supported AI platform a record came from. We do not
+          have access to your passphrase or unwrapped encryption key, and cannot read or decrypt conversation text,
+          titles, URLs, previews, saved-memory text, or search queries stored in Vault.</p>
         <p>Because the browser extension is built to support Vault for every installation, the extension requests
           permission to communicate with its Supabase sync backend
           (<code>https://tkgvwpaxycliwqsrufxe.supabase.co</code>) regardless of whether you have Vault turned on. This
           permission is not used, and no data is sent to that backend, unless you opt in to Vault.</p>
+        <p>Every remote Vault operation—upload, download, metadata and key retrieval, sync, and restore—requires an
+          active subscription and is enforced by the server. If the subscription lapses, conversations already stored
+          on each device stay there and remain searchable. The encrypted server copy is not deleted, but it cannot be
+          synced or restored until you renew.</p>
+        <p>Payments are handled by Stripe. Stripe receives the payment and billing information you enter there;
+          LLMnesia receives the billing email address, Stripe customer/subscription identifiers, plan and status, and
+          relevant subscription dates. LLMnesia never receives or stores your full card details.</p>
         <p>You can sign out of Vault at any time from the extension's settings, which removes the Vault key from that
-          device. To have your encrypted backup deleted from LLMnesia's servers entirely, contact us at
-          <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a>.</p>
+          device. To have your encrypted backup deleted from LLMnesia's servers entirely, or to close the Vault
+          account, email <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a> from the address on the account.
+          There is currently no self-service whole-Vault deletion button.</p>
 
         <h2>Browser permissions</h2>
         <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
         <ul>
           <li><strong>Storage</strong> saves your conversation index and extension settings locally in your browser.
           </li>
+          <li><strong>Unlimited storage</strong> allows a large local conversation index to remain available without
+            the browser's small default extension-storage quota.</li>
           <li><strong>Tabs</strong> opens the correct conversation when you click a search result.</li>
           <li><strong>Active Tab</strong> detects which supported AI platform you are currently visiting.</li>
           <li><strong>Scripting</strong> injects the search overlay and indexing scripts into supported AI chat pages.
           </li>
+          <li><strong>Offscreen</strong> runs local background work that needs a document context, including semantic
+            search processing and Vault encryption/decryption.</li>
+          <li><strong>Alarms</strong> schedules bounded background maintenance, including indexing checks, Vault sync,
+            and subscription-status refreshes.</li>
           <li><strong>Native messaging</strong>, requested only when you enable automatic sync, connects the extension
             to LLMnesia's local helper on the same computer so desktop AI apps can use the local corpus.</li>
         </ul>
@@ -181,15 +198,15 @@
         <ul>
           <li>ChatGPT (chatgpt.com, chat.openai.com)</li>
           <li>Claude (claude.ai)</li>
-          <li>Gemini (gemini.google.com)</li>
+          <li>Gemini and Bard (gemini.google.com, bard.google.com)</li>
           <li>Perplexity (perplexity.ai)</li>
           <li>Microsoft Copilot (copilot.microsoft.com)</li>
           <li>DeepSeek (deepseek.com, chat.deepseek.com)</li>
-          <li>Grok (grok.com)</li>
-          <li>Mistral (chat.mistral.ai, mistral.ai)</li>
-          <li>Kimi (kimi.com)</li>
+          <li>Grok and X/Twitter (grok.com, x.com, twitter.com)</li>
+          <li>Mistral (chat.mistral.ai, lechat.mistral.ai, mistral.ai)</li>
+          <li>Kimi (kimi.com, kimi.ai)</li>
           <li>Qwen (qwen.ai, chat.qwen.ai)</li>
-          <li>Google AI Studio (aistudio.google.com)</li>
+          <li>Google AI Studio and its legacy hosts (aistudio.google.com, makersuite.google.com, studio.google.com)</li>
           <li>Character.AI (character.ai)</li>
           <li>Z.ai (chat.z.ai)</li>
         </ul>
@@ -199,14 +216,18 @@
         <p>LLMnesia also requests a host permission for its own sync backend, hosted on Supabase
           (<code>tkgvwpaxycliwqsrufxe.supabase.co</code>), used only by Vault, the optional encrypted backup and sync
           feature described above.</p>
+        <p>The <code>llmnesia.com</code> host permission is used for the optional email-updates form and the extension's
+          own account, pricing, support, changelog, and local-viewer handoff pages.</p>
 
         <h2>Third-party services</h2>
         <p>LLMnesia uses PostHog for limited product analytics as described above. PostHog may receive limited technical
           and product usage events, but it does not receive AI conversation content, conversation titles, conversation
           URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
         <p>LLMnesia uses Supabase to host the Vault sync backend described above. If you opt in to Vault, your encrypted
-          conversation data is stored on Supabase's infrastructure. Supabase does not have access to the encryption key
-          needed to read that data.</p>
+          conversation data and Vault account information are stored on Supabase's infrastructure. Supabase does not
+          have access to the encryption key needed to read the encrypted payloads.</p>
+        <p>LLMnesia uses Stripe for Vault subscriptions. Payment details are entered and handled by Stripe; LLMnesia
+          receives the identifiers and subscription state needed to grant or pause Vault access.</p>
         <p>The optional desktop MCP server and native messaging helper run locally and do not send conversation content
           or MCP queries to a third-party service.</p>
         <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>
@@ -215,7 +236,9 @@
         <p>We do not sell user data. We do not share user data with advertisers, data brokers, or information resellers.
         </p>
         <p>Limited product analytics are processed by PostHog only to help us operate, debug, and improve LLMnesia. AI
-          conversation content and local index data are not shared with PostHog or any other third party.</p>
+          conversation content and local index data are not shared with PostHog. If you opt in to Vault, encrypted
+          conversation payloads and the associated account and sync metadata described above are processed by Supabase
+          solely to provide Vault.</p>
 
         <h2>Chrome Web Store Limited Use disclosure</h2>
         <p>LLMnesia's use of information received from Chrome APIs and supported AI chat pages is limited to providing
@@ -233,9 +256,9 @@
         <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are
           stored locally on your device. This data is protected by your device's own security measures and your
           browser's extension storage protections.</p>
-        <p>Because AI conversation content and local index data are not transmitted to external servers, LLMnesia
-          reduces the risk of server-side breaches involving that content. Data you back up via Vault is encrypted on
-          your device before it is sent, so it remains protected even in that scenario.</p>
+        <p>Unless you enable Vault, AI conversation content and local index data are not transmitted to LLMnesia's
+          servers. Data you deliberately back up via Vault is encrypted on your device before it is sent, so its content
+          remains unreadable to LLMnesia and Supabase.</p>
 
         <h2>Data retention and deletion</h2>
         <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are
@@ -251,9 +274,11 @@
         </ul>
         <p>To remove the desktop MCP copy as well, run the LLMnesia MCP uninstall command and delete the corpus path it
           prints (normally <code>~/.llmnesia/corpus</code>).</p>
-        <p>If you opt in to Vault, your encrypted conversation data is retained on LLMnesia's servers for as long as
-          your Vault is active, so it can be restored to your other devices. See the Vault section above for how to
-          sign out or request deletion of your Vault backup.</p>
+        <p>If you opt in to Vault, encrypted records are retained until you delete them while remote access is active,
+          ask us to delete the whole Vault, or close the account. They are not deleted merely because a subscription
+          lapses; during a lapse they cannot be synced or restored unless you renew. Deleting a conversation locally
+          while access is paused does not remove the remote encrypted record until Vault is renewed and the deletion
+          can sync. See the Vault section above for how to sign out or request deletion of the complete Vault.</p>
         <p>Limited analytics data processed by PostHog may be retained for product analytics, debugging, and improvement
           purposes. This analytics data does not include AI conversation content, conversation titles, conversation
           URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
@@ -262,9 +287,9 @@
         <p>LLMnesia is not directed to children under 13. LLMnesia does not knowingly collect personal information from
           children under 13.</p>
         <p>The extension processes supported AI conversation data locally on the user's device solely to provide
-          indexing and search. LLMnesia does not transmit AI conversation content, prompts, responses, search queries,
-          or local index data from any user, including children, to LLMnesia servers, PostHog, or other third parties.
-        </p>
+          indexing and search. It never sends conversation content, prompts, responses, search queries, or local index
+          data to PostHog. Vault remains optional; if deliberately enabled, it transmits only the encrypted payloads
+          and associated account and sync metadata described above.</p>
 
         <h2>Changes to this policy</h2>
         <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued

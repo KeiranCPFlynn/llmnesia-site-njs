@@ -5,7 +5,7 @@ async function source(path) {
   return readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 }
 
-const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, behavior] = await Promise.all([
+const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy] = await Promise.all([
   source('app/components/vault-purchase.js'),
   source('app/pricing/page.js'),
   source('app/account/page.js'),
@@ -14,7 +14,8 @@ const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, beha
   source('README.md'),
   source('api/leads.js'),
   source('content/index.template.html'),
-  source('app/components/site-behavior.js')
+  source('app/components/site-behavior.js'),
+  source('content/privacy-policy.template.html')
 ]);
 
 for (const [name, text] of Object.entries({ purchase, pricing, vault, readme })) {
@@ -51,6 +52,20 @@ assert.equal(
 );
 assert.match(pricing, /Sync and restore from the encrypted Vault pause when the subscription ends/);
 assert.match(pricing, /Conversations already on each device stay searchable/);
+
+assert.match(privacy, /Last updated: 3 September 2026/);
+assert.match(privacy, /Every remote Vault operation/);
+assert.match(privacy, /cannot be\s+synced or restored until you renew/);
+assert.match(privacy, /Payments are handled by Stripe/);
+assert.match(privacy, /There is currently no self-service whole-Vault deletion button/);
+for (const permission of ['Unlimited storage', 'Offscreen', 'Alarms', 'Native messaging']) {
+  assert.match(privacy, new RegExp(`<strong>${permission}</strong>`));
+}
+assert.equal(
+  /only new uploads stop|restore.{0,100}without an active subscription|currently in early access/is.test(privacy),
+  false,
+  'privacy policy contains superseded Vault access language'
+);
 
 assert.match(leads, /'extension_vault_updates'/);
 assert.match(leads, /extension_vault_updates: 'extension_vault_waitlist'/);
