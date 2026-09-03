@@ -4,8 +4,8 @@
     "date": "2026-09-03",
     "published": true,
     "curated": true,
-    "title": "Character.AI history imports work again",
-    "summary": "Character.AI changed how its site provides chat history, which could leave an import stuck fetching the list or make it appear to finish with nothing. LLMnesia now works with the current site, offers the same “Index older chats” prompt as the other supported platforms, and gives a clear retry message when Character.AI cannot provide the list. Source links from desktop AI also now open the saved conversation in LLMnesia’s local Viewer whenever the original site has no usable link."
+    "title": "More reliable history imports and source links",
+    "summary": "A small reliability release: Character.AI history imports now work with the site’s latest changes, use the same “Index older chats” prompt as other supported platforms, and explain clearly when a retry is needed. Desktop AI source links also now always open a conversation, using LLMnesia’s local Viewer when the original chat no longer has a usable link."
   },
   {
     "version": "0.3.0",
