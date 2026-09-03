@@ -5,13 +5,16 @@ async function source(path) {
   return readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 }
 
-const [purchase, pricing, account, vault, sitemap, readme] = await Promise.all([
+const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, behavior] = await Promise.all([
   source('app/components/vault-purchase.js'),
   source('app/pricing/page.js'),
   source('app/account/page.js'),
   source('app/vault/page.js'),
   source('app/sitemap.js'),
-  source('README.md')
+  source('README.md'),
+  source('api/leads.js'),
+  source('content/index.template.html'),
+  source('app/components/site-behavior.js')
 ]);
 
 for (const [name, text] of Object.entries({ purchase, pricing, vault, readme })) {
@@ -35,6 +38,14 @@ assert.equal(/path: '\/account'/.test(sitemap), false, 'account route must remai
 assert.match(purchase, /accountOnly\s*\? 'Signed in\. Checking your Vault status\.'/);
 assert.match(purchase, /entitled === true \|\| billingDetected \|\| accountOnly/);
 assert.match(purchase, /manage billing below while activation catches up/i);
+
+assert.match(leads, /'extension_vault_updates'/);
+assert.match(leads, /extension_vault_updates: 'extension_vault_waitlist'/);
+assert.match(homepage, /id="email-capture-label"/);
+assert.match(homepage, /id="email-capture-success-title"/);
+assert.match(behavior, /isVaultUpdatesLanding/);
+assert.match(behavior, /You’re on the Vault updates list\./);
+assert.match(behavior, /encrypted sync and backup are ready\./);
 
 const combined = [purchase, pricing, account, vault].join('\n');
 assert.equal(/PROTECTED_ACCEPTANCE_PREVIEW/.test(combined), false, 'preview bypass leaked into production source');

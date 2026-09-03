@@ -34,7 +34,7 @@ const SETUP = [
     kicker: 'Step 3',
     title: 'Restart, then ask naturally',
     body: 'Fully quit and reopen the browser and connected AI app when Settings tells you to. Then ask what you decided, where you solved a problem, or what you discussed before.',
-    note: 'Answers include links back to the original chats whenever those links are available.'
+    note: 'Every answer includes source links: the original chat where possible, otherwise the saved conversation in LLMnesia’s local Viewer.'
   }
 ];
 
@@ -132,7 +132,7 @@ export default function McpPage() {
               LLMnesia already keeps your ChatGPT, Claude, Gemini and other AI chats
               searchable. Its free MCP connection lets Claude Desktop, Cursor, Codex
               and other desktop AI apps search that history, answer from it, and link
-              back to the original conversations. Everything stays on this computer.
+              back to the source conversations. Everything stays on this computer.
             </p>
 
             <div className="mcp-hero-actions">
@@ -228,9 +228,9 @@ export default function McpPage() {
               <p className="section-eyebrow">Sources included automatically</p>
               <h2>An answer you can verify.</h2>
               <p className="section-intro">
-                Your assistant answers from the conversations LLMnesia found and
-                includes links back to the originals whenever they are available.
-                You can check the context instead of trusting a detached summary.
+                Every result includes a source link. It opens the original chat when
+                possible, or the saved conversation in LLMnesia’s local Viewer when
+                the original site has no usable link, so you can always check the context.
               </p>
             </div>
 

@@ -5,6 +5,7 @@ const ALLOWED_SOURCES = new Set([
   'website_homepage',
   'extension_onboarding',
   'extension_founding',
+  'extension_vault_updates',
   'extension_vault_waitlist',
   'website_vault_waitlist',
   'blog_mobile_capture'
@@ -55,6 +56,7 @@ function normalizeEnum(value, allowed) {
 // sources under one it accepts; the true source is preserved in `variant` for
 // sheet-side segmentation. Remove an entry once the script accepts it.
 const WEBHOOK_SOURCE_FALLBACK = {
+  extension_vault_updates: 'extension_vault_waitlist',
   blog_mobile_capture: 'website_homepage'
 };
 

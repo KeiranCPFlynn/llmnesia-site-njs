@@ -573,6 +573,24 @@ export default function SiteBehavior() {
     const emailCaptureSubmit = document.getElementById('email-capture-submit');
     const emailCaptureFields = document.getElementById('email-capture-fields');
     const emailCaptureSuccess = document.getElementById('email-capture-success');
+    const emailCaptureLabel = document.getElementById('email-capture-label');
+    const emailCaptureSuccessTitle = document.getElementById('email-capture-success-title');
+    const emailCaptureSuccessCopy = document.getElementById('email-capture-success-copy');
+    const emailCaptureParams = new URLSearchParams(window.location.search);
+    const isVaultUpdatesLanding = emailCaptureParams.get('lead_source') === 'extension_vault_updates';
+    const emailCaptureIdleLabel = isVaultUpdatesLanding ? 'Get Vault updates' : 'Stay updated';
+
+    if (isVaultUpdatesLanding) {
+      if (emailCaptureLabel) emailCaptureLabel.textContent = 'Get Vault updates';
+      if (emailCaptureSubmit) emailCaptureSubmit.textContent = emailCaptureIdleLabel;
+      if (emailCaptureMessage) {
+        emailCaptureMessage.textContent = 'Only Vault launch updates and a small number of important product emails.';
+      }
+      if (emailCaptureSuccessTitle) emailCaptureSuccessTitle.textContent = 'You’re on the Vault updates list.';
+      if (emailCaptureSuccessCopy) {
+        emailCaptureSuccessCopy.textContent = 'We’ll email you when encrypted sync and backup are ready.';
+      }
+    }
 
     let onEmailCaptureSubmit = null;
 
@@ -605,9 +623,8 @@ export default function SiteBehavior() {
 
         const emailInput = document.getElementById('email-capture-input');
         try {
-          const params = new URLSearchParams(window.location.search);
-          const leadSource = params.get('lead_source') || 'website_homepage';
-          const leadContext = params.get('lead_context') || 'homepage_updates';
+          const leadSource = emailCaptureParams.get('lead_source') || 'website_homepage';
+          const leadContext = emailCaptureParams.get('lead_context') || 'homepage_updates';
           const ecResponse = await fetch('/api/leads', {
             method: 'POST',
             body: JSON.stringify({
@@ -637,7 +654,7 @@ export default function SiteBehavior() {
           emailCaptureMessage.textContent = 'Something went wrong. Please try again.';
           emailCaptureMessage.setAttribute('data-state', 'error');
           emailCaptureSubmit.disabled = false;
-          emailCaptureSubmit.textContent = 'Stay updated';
+          emailCaptureSubmit.textContent = emailCaptureIdleLabel;
         }
       };
 
