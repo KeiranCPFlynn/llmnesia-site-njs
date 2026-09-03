@@ -38,6 +38,19 @@ assert.equal(/path: '\/account'/.test(sitemap), false, 'account route must remai
 assert.match(purchase, /accountOnly\s*\? 'Signed in\. Checking your Vault status\.'/);
 assert.match(purchase, /entitled === true \|\| billingDetected \|\| accountOnly/);
 assert.match(purchase, /manage billing below while activation catches up/i);
+assert.match(
+  purchase,
+  /vault-purchase-signed-in[\s\S]*checkoutReturn === 'success'[\s\S]*Checkout is complete/,
+  'signed-in Checkout returns must show an explicit confirmation'
+);
+
+assert.equal(
+  /restore.{0,100}without an active subscription|existing Vault stays available.{0,100}restore|only new uploads stop/is.test(pricing),
+  false,
+  'pricing must not promise remote Vault access after lapse'
+);
+assert.match(pricing, /Sync and restore from the encrypted Vault pause when the subscription ends/);
+assert.match(pricing, /Conversations already on each device stay searchable/);
 
 assert.match(leads, /'extension_vault_updates'/);
 assert.match(leads, /extension_vault_updates: 'extension_vault_waitlist'/);

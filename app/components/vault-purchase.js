@@ -246,6 +246,15 @@ export default function VaultPurchase({
         <span>Signed in as</span>
         <strong>{session.user.email}</strong>
       </div>
+      {checkoutReturn === 'success' ? (
+        <p className="vault-purchase-message" role="status">
+          <strong>Checkout is complete.</strong> We’re confirming your Vault subscription now.
+        </p>
+      ) : checkoutReturn === 'cancelled' ? (
+        <p className="vault-purchase-message" role="status">
+          Checkout was cancelled. No charge was made.
+        </p>
+      ) : null}
       {entitled === null ? (
         <p className="vault-purchase-loading">Checking your Vault status…</p>
       ) : entitled === true ? (

@@ -193,7 +193,7 @@ const FAQS = [
   },
   {
     q: 'What happens to my conversations if I cancel?',
-    a: 'Nothing is deleted. Everything already in your Vault stays yours and you can restore it to any of your devices without an active subscription. What stops is new conversations syncing up. Your local archive carries on working exactly as it did before you subscribed.'
+    a: 'Nothing is deleted. Conversations already on each device remain there and stay searchable. Sync and restore from the encrypted Vault pause when the subscription ends, and resume if you renew.'
   },
   {
     q: 'Is annual cheaper than monthly?',
@@ -382,8 +382,8 @@ export default function PricingPage() {
                 </ul>
               ) : null}
               <p className="vault-reassure">
-                Cancel any time. When your subscription ends, your existing Vault stays available
-                to restore; only new uploads stop.
+                Cancel any time. Conversations already on each device stay searchable. Renew Vault
+                whenever you want to sync or restore the encrypted backup again.
               </p>
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">
