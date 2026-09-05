@@ -1,5 +1,14 @@
 [
   {
+    "version": "0.4.0",
+    "date": "2026-09-05",
+    "published": false,
+    "curated": true,
+    "major": true,
+    "title": "Keep your history safe with Vault",
+    "summary": "Vault can now keep an end-to-end encrypted backup of your AI conversation history and sync it across your devices as an optional paid subscription. Only your devices can decrypt it, and conversations already stored on a device stay searchable if the subscription ends. This release also records the exact AI model when a provider reports it, strengthens Kimi international history imports, and includes further search and sync reliability improvements."
+  },
+  {
     "version": "0.3.1",
     "date": "2026-09-03",
     "published": true,
