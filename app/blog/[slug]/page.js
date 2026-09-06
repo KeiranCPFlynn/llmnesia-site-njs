@@ -25,8 +25,9 @@ export function generateStaticParams() {
 // trigger an on-demand render (and an ISR cache entry) before returning 404.
 export const dynamicParams = false;
 
-export function generateMetadata({ params }) {
-  const entry = getContentBySlug('blog', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const entry = getContentBySlug('blog', slug);
 
   if (!entry) {
     return {};
@@ -42,7 +43,8 @@ export function generateMetadata({ params }) {
 }
 
 export default async function BlogArticlePage({ params }) {
-  const entry = getContentBySlug('blog', params.slug);
+  const { slug } = await params;
+  const entry = getContentBySlug('blog', slug);
 
   if (!entry) {
     notFound();

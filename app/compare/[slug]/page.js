@@ -17,8 +17,9 @@ export function generateStaticParams() {
 // Only the comparison pages generated at build time are valid routes.
 export const dynamicParams = false;
 
-export function generateMetadata({ params }) {
-  const entry = getContentBySlug('compare', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const entry = getContentBySlug('compare', slug);
 
   if (!entry) {
     return {};
@@ -33,7 +34,8 @@ export function generateMetadata({ params }) {
 }
 
 export default async function ComparePage({ params }) {
-  const entry = getContentBySlug('compare', params.slug);
+  const { slug } = await params;
+  const entry = getContentBySlug('compare', slug);
 
   if (!entry) {
     notFound();

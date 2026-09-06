@@ -17,8 +17,9 @@ export function generateStaticParams() {
 // Prevent invalid slugs from being generated and persisted by ISR on request.
 export const dynamicParams = false;
 
-export function generateMetadata({ params }) {
-  const entry = getContentBySlug('use-cases', params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const entry = getContentBySlug('use-cases', slug);
 
   if (!entry) {
     return {};
@@ -34,7 +35,8 @@ export function generateMetadata({ params }) {
 }
 
 export default async function UseCasePage({ params }) {
-  const entry = getContentBySlug('use-cases', params.slug);
+  const { slug } = await params;
+  const entry = getContentBySlug('use-cases', slug);
 
   if (!entry) {
     notFound();

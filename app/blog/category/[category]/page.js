@@ -43,28 +43,30 @@ export function generateStaticParams() {
 // direct 404 instead of an on-demand render.
 export const dynamicParams = false;
 
-export function generateMetadata({ params }) {
-  const label = CATEGORY_LABELS[params.category];
+export async function generateMetadata({ params }) {
+  const { category } = await params;
+  const label = CATEGORY_LABELS[category];
   if (!label) return {};
 
-  const description = CATEGORY_DESCRIPTIONS[params.category] ||
+  const description = CATEGORY_DESCRIPTIONS[category] ||
     `LLMnesia blog posts in the ${label} category.`;
 
   return buildPageMetadata({
     title: `${label} — LLMnesia Blog`,
     description,
-    canonicalPath: `/blog/category/${params.category}`
+    canonicalPath: `/blog/category/${category}`
   });
 }
 
-export default function BlogCategoryPage({ params }) {
-  const label = CATEGORY_LABELS[params.category];
+export default async function BlogCategoryPage({ params }) {
+  const { category } = await params;
+  const label = CATEGORY_LABELS[category];
   if (!label) notFound();
 
-  const posts = getContentByCategory('blog', params.category);
+  const posts = getContentByCategory('blog', category);
   if (posts.length === 0) notFound();
 
-  const description = CATEGORY_DESCRIPTIONS[params.category];
+  const description = CATEGORY_DESCRIPTIONS[category];
 
   return (
     <SiteChrome>
