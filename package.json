@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run test:static-content",
     "start": "next start",
     "test:static-content": "node scripts/test-static-content-export.mjs",
     "test:vault-release": "node scripts/test-vault-release.mjs",
