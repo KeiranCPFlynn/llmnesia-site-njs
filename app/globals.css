@@ -5244,6 +5244,10 @@ p.vault-plan-price-sub {
   gap: 0.62rem;
 }
 
+.vault-plan-card .vault-plan-points {
+  margin-bottom: 1.5rem;
+}
+
 .vault-plan-points li {
   font-size: 0.95rem;
   line-height: 1.45;
