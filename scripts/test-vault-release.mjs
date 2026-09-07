@@ -5,8 +5,9 @@ async function source(path) {
   return readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 }
 
-const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy] = await Promise.all([
+const [purchase, accountExperience, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy, vercelConfigText] = await Promise.all([
   source('app/components/vault-purchase.js'),
+  source('app/components/vault-account-experience.js'),
   source('app/pricing/page.js'),
   source('app/account/page.js'),
   source('app/vault/page.js'),
@@ -15,7 +16,8 @@ const [purchase, pricing, account, vault, sitemap, readme, leads, homepage, beha
   source('api/leads.js'),
   source('content/index.template.html'),
   source('app/components/site-behavior.js'),
-  source('content/privacy-policy.template.html')
+  source('content/privacy-policy.template.html'),
+  source('vercel.json')
 ]);
 
 for (const [name, text] of Object.entries({ purchase, pricing, vault, readme })) {
@@ -35,6 +37,21 @@ assert.match(pricing, /robots: \{ index: false, follow: false \}/);
 assert.match(account, /robots: \{ index: false, follow: false \}/);
 assert.match(sitemap, /NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true'[\s\S]*NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true'[\s\S]*path: '\/pricing'/);
 assert.equal(/path: '\/account'/.test(sitemap), false, 'account route must remain outside the sitemap');
+
+const vercelConfig = JSON.parse(vercelConfigText);
+const successRedirect = vercelConfig.redirects.find((rule) =>
+  rule.source === '/pricing' && rule.has?.some((condition) =>
+    condition.type === 'query' && condition.key === 'checkout' && condition.value === 'success'
+  )
+);
+assert.equal(successRedirect?.destination, '/account?checkout=success');
+assert.equal(successRedirect?.permanent, false);
+assert.match(account, /Suspense[\s\S]*VaultAccountExperience/);
+assert.match(accountExperience, /searchParams\.get\('checkout'\) === 'success'/);
+assert.match(accountExperience, /You’re subscribed to Vault\./);
+assert.match(accountExperience, /What to do next/);
+assert.match(accountExperience, /I’ve subscribed, check again/);
+assert.match(accountExperience, /Vault subscription active/);
 
 assert.match(purchase, /accountOnly\s*\? 'Signed in\. Checking your Vault status\.'/);
 assert.match(purchase, /entitled === true \|\| billingDetected \|\| accountOnly/);

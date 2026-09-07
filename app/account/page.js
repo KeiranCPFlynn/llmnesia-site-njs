@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import SiteChrome from '../components/site-chrome';
-import VaultPurchase from '../components/vault-purchase';
+import VaultAccountExperience from '../components/vault-account-experience';
 
 // Account management is available alongside Checkout. Keeping the same gate
 // means the extension never links customers to a public billing screen before
@@ -23,25 +24,9 @@ export default function AccountPage() {
   return (
     <SiteChrome>
       <main id="main-content" className="pricing-page">
-        <section className="section vault-pricing">
-          <div className="container vault-pricing-inner">
-            <div className="vault-pricing-copy">
-              <p className="section-eyebrow">Vault account</p>
-              <h1>Manage your Vault subscription.</h1>
-              <p className="section-intro">
-                View whether Vault is active, then securely manage your payment details, invoices,
-                or cancellation through Stripe.
-              </p>
-              <p className="vault-reassure">
-                Sign in with the same email address you use in the LLMnesia extension.
-              </p>
-            </div>
-            <aside className="vault-price-card" aria-label="Vault account and billing">
-              <p className="vault-price-badge">Account &amp; billing</p>
-              <VaultPurchase accountOnly />
-            </aside>
-          </div>
-        </section>
+        <Suspense fallback={<p className="vault-account-loading">Loading your Vault account…</p>}>
+          <VaultAccountExperience />
+        </Suspense>
       </main>
     </SiteChrome>
   );

@@ -8,6 +8,12 @@
       "permanent": true
     },
     {
+      "source": "/pricing",
+      "has": [{ "type": "query", "key": "checkout", "value": "success" }],
+      "destination": "/account?checkout=success",
+      "permanent": false
+    },
+    {
       "source": "/index.html",
       "destination": "/",
       "permanent": true

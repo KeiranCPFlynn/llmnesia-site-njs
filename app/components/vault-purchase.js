@@ -205,7 +205,7 @@ export default function VaultPurchase({
             ? 'Use the same email as your extension. You can then view your Vault status and manage billing, invoices, or cancellation.'
             : 'Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.'}
         </p>
-        {checkoutReturn === 'success' ? (
+        {checkoutReturn === 'success' && !accountOnly ? (
           <div className="vault-purchase-success" role="status">
             <span className="vault-purchase-success-icon" aria-hidden="true">✓</span>
             <div>
@@ -275,7 +275,7 @@ export default function VaultPurchase({
 
   return (
     <div id="vault-purchase" className="vault-purchase vault-purchase-signed-in" tabIndex={-1}>
-      {checkoutReturn === 'success' ? (
+      {checkoutReturn === 'success' && !accountOnly ? (
         <div className="vault-purchase-success" role="status">
           <span className="vault-purchase-success-icon" aria-hidden="true">✓</span>
           <div>
