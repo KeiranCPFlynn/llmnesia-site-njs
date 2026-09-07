@@ -37,14 +37,12 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
               </button>
 
               <nav className="nav" id="primary-nav" aria-label="Main">
-                <a href="/mcp">MCP</a>
                 <a href="/vault">Vault</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/mcp">MCP</a>
+                <a href="/use-cases">Use Cases</a>
                 <a href="/blog">Blog</a>
                 <a href="/compare">Compare</a>
-                <a href="/use-cases">Use Cases</a>
-                <a href="/changelog">Changelog</a>
-                <a href="/about">About</a>
-                <a href="/privacy-policy">Privacy</a>
                 <InstallLink className="nav-cta">Add to Chrome</InstallLink>
               </nav>
             </>
@@ -57,8 +55,9 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       <footer className="site-footer">
         <div className="container footer-inner">
           <nav aria-label="Footer">
-            <a href="/mcp">MCP</a>
             <a href="/vault">Vault</a>
+            <a href="/pricing">Pricing</a>
+            <a href="/mcp">MCP</a>
             <a href="/claude-code">Claude Code</a>
             <a href="/about">About</a>
             <a href="/privacy-policy">Privacy Policy</a>
