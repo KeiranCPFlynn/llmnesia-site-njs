@@ -267,7 +267,7 @@ export default function VaultPage() {
                 <li>A mobile version is in development and is included when it lands</li>
                 <li>Automatic, private backup of everything you&rsquo;ve indexed</li>
                 <li>MCP stays free and works without a Vault subscription</li>
-                <li>Cancel any time and keep everything already in your Vault</li>
+                <li>Cancel any time; device copies stay searchable, while Vault sync and restore pause until renewal</li>
               </ul>
             </div>
             <aside className="vault-price-card" aria-label="Vault pricing">

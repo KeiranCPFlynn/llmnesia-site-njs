@@ -201,7 +201,7 @@ const FAQS = [
   },
   {
     q: 'Why is it a subscription and not a one-off?',
-    a: 'Because the cost is ongoing. Storing your encrypted history and serving it to your other devices costs money every month that you keep it there, so charging once would only work until it did not. You can cancel from the billing portal at any time and keep everything already in your Vault.'
+    a: 'Because the cost is ongoing. Storing your encrypted history and serving it to your other devices costs money every month that you keep it there, so charging once would only work until it did not. You can cancel from the billing portal at any time. Conversations already on each device stay searchable; Vault sync and restore pause until you renew.'
   },
   CHECKOUT_ENABLED
     ? {
