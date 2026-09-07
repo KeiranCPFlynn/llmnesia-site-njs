@@ -42,6 +42,16 @@ export default function VaultPurchase({
   }, []);
 
   useEffect(() => {
+    if (!ready || !['success', 'cancelled'].includes(checkoutReturn)) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const purchase = document.getElementById('vault-purchase');
+      purchase?.scrollIntoView({ block: 'start' });
+      purchase?.focus({ preventScroll: true });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [checkoutReturn, ready]);
+
+  useEffect(() => {
     if (!supabase) {
       setReady(true);
       setError('Vault checkout is not configured yet.');
@@ -66,14 +76,29 @@ export default function VaultPurchase({
   useEffect(() => {
     if (!supabase || !session) {
       setEntitled(null);
-      return;
+      return undefined;
     }
     let mounted = true;
-    supabase.rpc('vault_entitlement').then(({ data }) => {
-      if (mounted) setEntitled(data?.entitled === true);
-    });
-    return () => { mounted = false; };
-  }, [session, supabase]);
+    let retryTimer;
+    let attempts = 0;
+
+    async function checkEntitlement() {
+      const { data } = await supabase.rpc('vault_entitlement');
+      if (!mounted) return;
+      const active = data?.entitled === true;
+      setEntitled(active);
+      attempts += 1;
+      if (checkoutReturn === 'success' && !active && attempts < 8) {
+        retryTimer = window.setTimeout(checkEntitlement, 1500);
+      }
+    }
+
+    checkEntitlement();
+    return () => {
+      mounted = false;
+      if (retryTimer) window.clearTimeout(retryTimer);
+    };
+  }, [checkoutReturn, session, supabase]);
 
   function clearFeedback() {
     setError('');
@@ -173,7 +198,7 @@ export default function VaultPurchase({
 
   if (!session) {
     return (
-      <div id="vault-purchase" className="vault-purchase">
+      <div id="vault-purchase" className="vault-purchase" tabIndex={-1}>
         <h3>{accountOnly ? 'Sign in to manage Vault' : 'Start with your Vault email'}</h3>
         <p className="vault-purchase-intro">
           {accountOnly
@@ -181,9 +206,17 @@ export default function VaultPurchase({
             : 'Sign in to manage an existing Vault subscription, or start a new one, on the same account your extension uses.'}
         </p>
         {checkoutReturn === 'success' ? (
-          <p className="vault-purchase-message" role="status">
-            Checkout is complete. Sign in with the same email to confirm your Vault is active.
-          </p>
+          <div className="vault-purchase-success" role="status">
+            <span className="vault-purchase-success-icon" aria-hidden="true">✓</span>
+            <div>
+              <span className="vault-purchase-success-kicker">Payment successful</span>
+              <strong>You’re subscribed to Vault.</strong>
+              <p>
+                Sign in below with the same email you used at checkout. Then return to LLMnesia
+                Settings to finish setting up Vault.
+              </p>
+            </div>
+          </div>
         ) : checkoutReturn === 'cancelled' ? (
           <p className="vault-purchase-message" role="status">
             Checkout was cancelled. No charge was made.
@@ -241,16 +274,25 @@ export default function VaultPurchase({
   }
 
   return (
-    <div id="vault-purchase" className="vault-purchase vault-purchase-signed-in">
+    <div id="vault-purchase" className="vault-purchase vault-purchase-signed-in" tabIndex={-1}>
+      {checkoutReturn === 'success' ? (
+        <div className="vault-purchase-success" role="status">
+          <span className="vault-purchase-success-icon" aria-hidden="true">✓</span>
+          <div>
+            <span className="vault-purchase-success-kicker">Payment successful</span>
+            <strong>You’re subscribed to Vault.</strong>
+            <p>
+              Next, go back to LLMnesia Settings. In Vault, click “I’ve subscribed, check again”,
+              then create or unlock your private Vault.
+            </p>
+          </div>
+        </div>
+      ) : null}
       <div className="vault-purchase-account">
         <span>Signed in as</span>
         <strong>{session.user.email}</strong>
       </div>
-      {checkoutReturn === 'success' ? (
-        <p className="vault-purchase-message" role="status">
-          <strong>Checkout is complete.</strong> We’re confirming your Vault subscription now.
-        </p>
-      ) : checkoutReturn === 'cancelled' ? (
+      {checkoutReturn === 'cancelled' ? (
         <p className="vault-purchase-message" role="status">
           Checkout was cancelled. No charge was made.
         </p>
@@ -266,6 +308,11 @@ export default function VaultPurchase({
         <div className="vault-purchase-active" role="status">
           <strong>Your Vault subscription is active in Stripe.</strong>
           <span>Manage billing below. If Vault has not unlocked yet, refresh this page in a moment.</span>
+        </div>
+      ) : checkoutReturn === 'success' ? (
+        <div className="vault-purchase-active" role="status">
+          <strong>Vault activation is still syncing.</strong>
+          <span>We’re checking automatically. You can also use “I’ve subscribed, check again” in LLMnesia Settings.</span>
         </div>
       ) : accountOnly ? (
         <div className="vault-purchase-active" role="status">
@@ -315,9 +362,14 @@ export default function VaultPurchase({
         </>
       )}
       <div className="vault-purchase-utilities">
-        {entitled === true || billingDetected || accountOnly ? (
-          <button className="vault-purchase-link" type="button" onClick={openPortal} disabled={busy !== ''}>
-            {busy === 'portal' ? 'Opening…' : 'Manage billing'}
+        {entitled === true || billingDetected || accountOnly || checkoutReturn === 'success' ? (
+          <button
+            className={checkoutReturn === 'success' ? 'button vault-purchase-billing' : 'vault-purchase-link'}
+            type="button"
+            onClick={openPortal}
+            disabled={busy !== ''}
+          >
+            {busy === 'portal' ? 'Opening Stripe…' : 'Manage subscription in Stripe'}
           </button>
         ) : null}
         <button className="vault-purchase-link" type="button" onClick={signOut} disabled={busy !== ''}>

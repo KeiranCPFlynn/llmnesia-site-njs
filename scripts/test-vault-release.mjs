@@ -41,9 +41,14 @@ assert.match(purchase, /entitled === true \|\| billingDetected \|\| accountOnly/
 assert.match(purchase, /manage billing below while activation catches up/i);
 assert.match(
   purchase,
-  /vault-purchase-signed-in[\s\S]*checkoutReturn === 'success'[\s\S]*Checkout is complete/,
+  /vault-purchase-signed-in[\s\S]*checkoutReturn === 'success'[\s\S]*You’re subscribed to Vault\./,
   'signed-in Checkout returns must show an explicit confirmation'
 );
+assert.match(purchase, /purchase\?\.scrollIntoView\(\{ block: 'start' \}\)/);
+assert.match(purchase, /You’re subscribed to Vault\./);
+assert.match(purchase, /I’ve subscribed, check again/);
+assert.match(purchase, /accountOnly \|\| checkoutReturn === 'success'/);
+assert.match(purchase, /checkoutReturn === 'success'[\s\S]*Vault activation is still syncing\./);
 
 assert.equal(
   /restore.{0,100}without an active subscription|existing Vault stays available.{0,100}restore|only new uploads stop/is.test(pricing),

@@ -5456,7 +5456,13 @@ p.vault-price-badge {
 /* --- Vault authenticated purchase --- */
 .vault-purchase {
   margin-top: var(--s-3);
+  scroll-margin-top: 6rem;
   text-align: left;
+}
+
+.vault-purchase:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--t-teal) 35%, transparent);
+  outline-offset: 4px;
 }
 
 .vault-purchase h3,
@@ -5522,6 +5528,59 @@ p.vault-price-badge {
   border-radius: var(--radius-md);
   background: var(--t-teal-soft);
   overflow-wrap: anywhere;
+}
+
+.vault-purchase-success {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--t-teal) 55%, var(--t-rule));
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, var(--t-teal-soft), var(--t-card));
+  box-shadow: 0 14px 30px -24px rgba(20, 84, 91, 0.55);
+}
+
+.vault-purchase-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--t-teal);
+  color: var(--t-card);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.vault-purchase-success > div {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.vault-purchase-success-kicker {
+  color: var(--t-teal);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.vault-purchase-success strong {
+  color: var(--t-ink);
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.vault-purchase-success p {
+  margin: 0.15rem 0 0;
+  color: var(--t-ink-2);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .vault-purchase-account span {
@@ -5611,8 +5670,15 @@ p.vault-price-badge {
 
 .vault-purchase-utilities {
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-top: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.vault-purchase-billing {
+  justify-content: center;
+  flex: 1 1 13rem;
 }
 
 .vault-purchase-link {
