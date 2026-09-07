@@ -452,7 +452,12 @@ export default function SiteBehavior() {
       if (trackedLink) {
         const eventName = trackedLink.getAttribute('data-analytics');
         if (eventName) {
-          trackEvent(eventName);
+          const platform = trackedLink.getAttribute('data-analytics-platform');
+          const slug = trackedLink.getAttribute('data-analytics-slug');
+          trackEvent(eventName, {
+            ...(platform && { platform }),
+            ...(slug && { slug })
+          });
         }
       }
     };
