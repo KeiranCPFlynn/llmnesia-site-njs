@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.1",
+    "date": "2026-09-10",
+    "published": true,
+    "curated": true,
+    "title": "Vault now unlocks with your device biometrics",
+    "summary": "On supported devices, you can opt in to unlock Vault with your device biometrics instead of entering your private passphrase each time. Vault also stays attached to the same sync after you sign in again, prevents keys from another account or older Vault being reused, and keeps revised Qwen conversations current. This release also adds full-page Google AI Mode capture and clearer titles for Z.ai chats that begin with a pasted image."
+  },
+  {
     "version": "0.4.0",
     "date": "2026-09-07",
     "published": true,
