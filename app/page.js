@@ -22,7 +22,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Is my data stored on your servers?',
     answer:
-      'No. Everything is stored locally in your browser. LLMnesia never sends your conversations, search queries, or personal data to external servers.'
+      'Not when you use free local search: its index stays in your browser. If you choose Vault, LLMnesia stores an end-to-end encrypted backup that we cannot read, so your supported devices can sync.'
   },
   {
     question: 'How does local indexing actually work?',

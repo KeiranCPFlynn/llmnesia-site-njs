@@ -30,6 +30,14 @@ assert.match(pricing, /NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL \|\| '£88'/);
 assert.match(pricing, /NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL \|\| '£7\.33'/);
 assert.match(vault, /NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL \|\| '£88'/);
 assert.match(vault, /NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL \|\| '£7\.33'/);
+assert.doesNotMatch(homepage, /Coming soon · LLMnesia Vault/);
+assert.doesNotMatch(homepage, /Get founding access/);
+assert.match(homepage, /Now available · LLMnesia Vault/);
+assert.match(homepage, /href="\/pricing#vault-purchase">Subscribe to Vault/);
+assert.doesNotMatch(homepage, /Nothing is uploaded, synced, or sent to the cloud\. Ever\./);
+assert.doesNotMatch(homepage, />0 bytes leave your device</);
+assert.match(homepage, /Vault data encrypted before upload/);
+assert.match(homepage, /end-to-end encrypted backup that we cannot read/);
 
 assert.match(pricing, /NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true'[\s\S]*NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true'/);
 assert.match(account, /NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true'[\s\S]*NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true'/);
@@ -91,6 +99,8 @@ assert.equal(
 
 assert.match(leads, /'extension_vault_updates'/);
 assert.match(leads, /extension_vault_updates: 'extension_vault_waitlist'/);
+assert.match(leads, /marketing_consent: lead\.marketing_consent === true/);
+assert.match(leads, /consent_copy_version: normalizeString\(lead\.consent_copy_version, 80\)/);
 assert.match(homepage, /id="email-capture-label"/);
 assert.match(homepage, /id="email-capture-success-title"/);
 assert.match(behavior, /isVaultUpdatesLanding/);

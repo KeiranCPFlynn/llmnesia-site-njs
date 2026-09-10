@@ -116,7 +116,9 @@ function normalizeLeadBody(body) {
     install_id: body.install_id,
     install_ts: body.install_ts,
     extension_version: body.extension_version,
-    page_path: body.page_path
+    page_path: body.page_path,
+    marketing_consent: body.marketing_consent,
+    consent_copy_version: body.consent_copy_version
   };
 }
 
@@ -223,6 +225,8 @@ export async function POST(request) {
     install_ts: Number.isFinite(Number(lead.install_ts)) ? Math.floor(Number(lead.install_ts)) : 0,
     extension_version: normalizeString(lead.extension_version, 40),
     page_path: normalizeString(lead.page_path, 200),
+    marketing_consent: lead.marketing_consent === true,
+    consent_copy_version: normalizeString(lead.consent_copy_version, 80),
     user_agent: normalizeString(request.headers.get('user-agent'), 300)
   };
 
