@@ -55,9 +55,8 @@ function groupReleases(published) {
   return groups;
 }
 
-// The full, expanded body for a headline release (the featured latest entry and
-// each `major` anchor). Everything below it in the list collapses into
-// MinorEntry accordions instead.
+// The full, expanded body for a headline release. Minor updates stay nested
+// under that release as accordions, even when one is the newest version.
 function FullEntry({ release, badge, className }) {
   return (
     <article className={`changelog-entry ${className}`} id={releaseId(release.version)}>
@@ -146,11 +145,8 @@ export default function ChangelogPage() {
   // Entries flagged `published: false` are staged but hidden — flip the flag
   // (or delete it) in app/data/changelog.json to make a release public.
   const published = releases.filter((release) => release.published !== false);
-  // Feature the newest release in full at the top — whatever its version — so it
-  // is never buried beneath the last `major` anchor. Everything older keeps the
-  // major-anchored grouping below.
-  const [latestRelease, ...history] = published;
-  const groups = groupReleases(history);
+  const latestRelease = published[0];
+  const groups = groupReleases(published);
 
   return (
     <SiteChrome>
@@ -178,17 +174,6 @@ export default function ChangelogPage() {
           <aside className="changelog-rail" aria-label="Release index">
             <p className="changelog-rail-label">Releases</p>
             <ol className="changelog-rail-groups">
-              <li>
-                <a
-                  href={`#${releaseId(latestRelease.version)}`}
-                  className="changelog-rail-anchor changelog-rail-anchor--major"
-                >
-                  <span>v{latestRelease.version}</span>
-                  <time dateTime={latestRelease.date}>
-                    {formatShortDate(latestRelease.date)}
-                  </time>
-                </a>
-              </li>
               {groups.map((group) => (
                 <li key={group.anchor ? group.anchor.version : 'earlier'}>
                   {group.type === 'major' ? (
@@ -227,14 +212,6 @@ export default function ChangelogPage() {
           </aside>
 
           <div className="changelog-list">
-            <section className="changelog-group">
-              <FullEntry
-                release={latestRelease}
-                badge="Latest release"
-                className="is-latest"
-              />
-            </section>
-
             {groups.map((group) => (
               <section
                 className="changelog-group"
