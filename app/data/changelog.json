@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.3",
+    "date": "2026-09-15",
+    "published": true,
+    "curated": true,
+    "title": "Meta AI support and clearer conversation titles",
+    "summary": "Meta AI chats can now be saved and searched alongside your other AI history, including an import of conversations visible in Meta AI’s sidebar. You can also give saved conversations private, searchable titles without changing the original chats. Google AI Mode access is now opt-in, and Gemini capture is more reliable during long, updating answers."
+  },
+  {
     "version": "0.4.1",
     "date": "2026-09-10",
     "published": true,
