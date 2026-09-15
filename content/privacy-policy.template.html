@@ -51,7 +51,7 @@
     <section class="section container">
       <div class="policy-content">
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 3 September 2026</p>
+        <p class="policy-date">Last updated: 15 September 2026</p>
 
         <h2>Overview</h2>
         <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
@@ -213,6 +213,14 @@
         <p>These permissions are used to index supported AI conversation content locally on your device and to provide
           LLMnesia's search functionality. LLMnesia does not use these permissions to transmit AI conversation content,
           search queries, cookies, authentication tokens, or local index data to external servers.</p>
+        <p><strong>Google AI Mode is optional.</strong> New access to <code>google.com</code> and
+          <code>www.google.com</code> is requested only when you enable Google AI Mode in Settings and approve Chrome's
+          permission prompt. If you approved Google access in an earlier version, Chrome may retain that grant and
+          Settings will show the integration as enabled. Chrome grants access at the domain level because extension host
+          permissions cannot be limited to a URL query parameter. LLMnesia limits its content script to Google Search
+          URLs and activates conversation extraction only for full-page AI Mode results
+          (<code>/search</code> with <code>udm=50</code>). Ordinary Google searches are not indexed. Disabling Google AI
+          Mode removes the optional permission without deleting conversations already saved.</p>
         <p>LLMnesia also requests a host permission for its own sync backend, hosted on Supabase
           (<code>tkgvwpaxycliwqsrufxe.supabase.co</code>), used only by Vault, the optional encrypted backup and sync
           feature described above.</p>
