@@ -56,7 +56,8 @@
         <h2>Overview</h2>
         <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
           locally on your device. Vault is a separate, optional paid feature that adds an encrypted server backup,
-          sync, and restore. LLMnesia is built with a local-first, privacy-by-design architecture.</p>
+          sync, and restore. Current Vault subscribers may also use an installable Vault web app beta to search and ask
+          questions over an existing synced Vault. LLMnesia is built with a local-first, privacy-by-design architecture.</p>
         <p>Your AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries,
           extension settings, and searchable index are stored locally on your device using the Chrome Storage API
           (<code>chrome.storage.local</code>), unless you choose to opt in to Vault, an optional encrypted backup and
@@ -174,6 +175,29 @@
           account, email <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a> from the address on the account.
           There is currently no self-service whole-Vault deletion button.</p>
 
+        <h2>Vault web app beta and Ask</h2>
+        <p>Current Vault subscribers may optionally use the installable Vault web app beta at
+          <a href="https://vault.llmnesia.com/">vault.llmnesia.com</a>. The web app is a reader for an existing Vault
+          and cannot create a person's first Vault.</p>
+        <p>The web app downloads encrypted Vault records from Supabase, then decrypts and indexes them inside the
+          browser. The readable local corpus is stored in the web app origin's IndexedDB so the device does not need to
+          restore the complete Vault on every visit. Lock removes readable content from the page and destroys the live
+          Vault key, but it does not erase that local corpus. Sign out offers a choice to keep the corpus for the same
+          account's next visit or remove the web app's local corpus and caches.</p>
+        <p>The web app may store an account session, a biometric convenience-unlock record, and a provider API key on
+          the device. These records are encrypted with device-local, non-extractable WebCrypto keys. This protects them
+          from a copied storage dump, but it does not protect them from malicious code already running on the Vault web
+          app origin. Signing out removes the saved provider credential and biometric record. The user can also forget
+          a provider key from Ask settings.</p>
+        <p>Search, filtering, transcript reading, and Ask retrieval happen locally. If the user chooses Ask, the app
+          shows the exact question and selected conversation excerpts before sending. Only after confirmation are those
+          items sent directly from the browser to the selected provider, currently OpenAI, Anthropic, Google, or
+          OpenRouter, using the user's own API key. The request does not pass through LLMnesia. The selected provider
+          receives the request content and ordinary network metadata under its own privacy and data-retention terms.</p>
+        <p>The Vault web app does not include PostHog analytics or a crash-reporting SDK. Vercel hosts and delivers the
+          app's static files and receives ordinary web request metadata such as IP address, user agent, and request
+          time.</p>
+
         <h2>Browser permissions</h2>
         <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
         <ul>
@@ -236,6 +260,13 @@
           have access to the encryption key needed to read the encrypted payloads.</p>
         <p>LLMnesia uses Stripe for Vault subscriptions. Payment details are entered and handled by Stripe; LLMnesia
           receives the identifiers and subscription state needed to grant or pause Vault access.</p>
+        <p>Vercel hosts and delivers the optional Vault web app beta. It receives ordinary web request metadata but does
+          not receive readable Vault content, the passphrase, Vault key, local searches, Ask prompts, or provider API
+          keys from the application.</p>
+        <p>If a user explicitly confirms an Ask request, the selected provider, currently OpenAI, Anthropic, Google, or
+          OpenRouter, receives the current question, the selected excerpts shown before sending, the user's API key, and
+          ordinary request metadata. The request goes directly from the browser to the provider and is governed by that
+          provider's own terms.</p>
         <p>The optional desktop MCP server and native messaging helper run locally and do not send conversation content
           or MCP queries to a third-party service.</p>
         <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>
@@ -274,6 +305,9 @@
         <p>If you enable desktop MCP, its filesystem corpus remains on the device until you delete it. Uninstalling the
           local helper deliberately leaves that corpus intact so removing an integration cannot accidentally destroy
           your history.</p>
+        <p>If you use the Vault web app beta, its local readable corpus remains in that web origin's IndexedDB after
+          Lock. Signing out lets you keep it for the same account's next visit or remove the corpus and PWA-owned caches.
+          Signing out always removes the saved provider credential and biometric unlock record.</p>
         <p>You can delete your locally stored LLMnesia data at any time by:</p>
         <ul>
           <li>Using the export/delete controls within the extension's settings</li>

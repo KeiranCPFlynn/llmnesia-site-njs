@@ -83,11 +83,15 @@ assert.equal(
 assert.match(pricing, /Sync and restore from the encrypted Vault pause when the subscription ends/);
 assert.match(pricing, /Conversations already on each device stay searchable/);
 
-assert.match(privacy, /Last updated: 3 September 2026/);
+assert.match(privacy, /Last updated: 15 September 2026/);
 assert.match(privacy, /Every remote Vault operation/);
 assert.match(privacy, /cannot be\s+synced or restored until you renew/);
 assert.match(privacy, /Payments are handled by Stripe/);
 assert.match(privacy, /There is currently no self-service whole-Vault deletion button/);
+assert.match(privacy, /Vault web app beta and Ask/);
+assert.match(privacy, /https:\/\/vault\.llmnesia\.com\//);
+assert.match(privacy, /OpenAI, Anthropic, Google, or\s+OpenRouter/);
+assert.match(privacy, /does not include PostHog analytics or a crash-reporting SDK/);
 for (const permission of ['Unlimited storage', 'Offscreen', 'Alarms', 'Native messaging']) {
   assert.match(privacy, new RegExp(`<strong>${permission}</strong>`));
 }
