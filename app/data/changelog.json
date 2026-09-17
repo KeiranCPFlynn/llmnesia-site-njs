@@ -2,7 +2,7 @@
   {
     "version": "0.4.4",
     "date": "2026-09-17",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "ChatGPT images are now saved, and Vault syncing is more reliable",
     "summary": "Images in your ChatGPT conversations are now saved along with the chat, so your saved copies and search show the whole conversation as you saw it. Signing in to Vault now makes clear you’re opening your existing Vault — not creating a second one — and shows syncing working as it happens. Vault is also more dependable: conversations that fail to reach the sync queue are retried, missed chats are picked up automatically, and a full restore clears out-of-date warnings about conversations that couldn’t be read. LLMnesia’s desktop assistant connection now also supports ZCode alongside Claude Desktop, Claude Code, Cursor, and Codex."
