@@ -103,7 +103,7 @@ const FAQS = [
   },
   {
     q: 'Is MCP the same as Vault?',
-    a: 'No. MCP is free, local-only, and designed for desktop AI clients; it works without Vault. Vault is an optional paid feature for encrypted sync and backup across supported desktop devices. Using Vault can make MCP more useful by bringing more history into your local archive. Mobile Vault access is planned for a future update.'
+    a: 'No. MCP is free, local-only, and designed for desktop AI clients; it works without Vault. Vault is an optional paid feature for encrypted sync and backup across supported desktop devices. Using Vault can make MCP more useful by bringing more history into your local archive. Mobile Vault access is included with a Vault subscription at vault.llmnesia.com.'
   }
 ];
 

@@ -27,8 +27,8 @@ const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL 
 export const metadata = buildPageMetadata({
   title: 'LLMnesia Vault — One Memory Across Every AI Tool',
   description: PURCHASE_PUBLIC
-    ? 'Vault securely syncs and backs up your AI chat history across your supported desktop devices. The free local search and MCP features remain free.'
-    : 'Coming soon. Vault securely syncs and backs up your AI chat history across every browser and machine you use. Mobile access is in development. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
+    ? 'Vault securely syncs and backs up your AI chat history across your supported devices and opens it on your phone at vault.llmnesia.com. The free local search and MCP features remain free.'
+    : 'Coming soon. Vault securely syncs and backs up your AI chat history across every browser and machine you use. Mobile access is included. Vault can make the free, local MCP feature even more useful by bringing more of your history together.',
   canonicalPath: '/vault'
 });
 
@@ -40,9 +40,9 @@ const UNLOCKS = [
     body: 'ChatGPT, Claude, Gemini, Perplexity, Grok, Copilot, DeepSeek and the other platforms LLMnesia supports, all in a single searchable memory instead of walled gardens you have to check one by one.'
   },
   {
-    kicker: 'In development',
+    kicker: 'Included now',
     title: 'Mobile access',
-    body: 'A mobile version of Vault is being built and is included in the subscription when it lands. Vault begins with secure sync and backup across every browser and machine you use.'
+    body: 'Open vault.llmnesia.com in your phone browser to search and read your whole synced history, with optional Face ID or fingerprint unlock. It is part of the subscription, at no extra cost.'
   },
   {
     kicker: 'Backup included',
@@ -82,7 +82,7 @@ const FAQS = [
   },
   {
     q: 'Will it work on mobile?',
-    a: 'A mobile version is in development and is included in the subscription when it lands. Vault begins with sync and backup across every browser and machine you use, while MCP remains desktop-only because it runs locally on your desktop.'
+    a: 'Yes. Open vault.llmnesia.com in your phone browser, sign in with the email on your Vault account, and unlock with your Vault passphrase to search and read your whole synced history. It is included in the subscription, while MCP remains desktop-only because it runs locally on your desktop.'
   },
   {
     q: 'Isn’t syncing the opposite of local-first?',
@@ -128,9 +128,9 @@ export default function VaultPage() {
               LLMnesia already searches your chat history across every AI tool, but only inside
               the browser profile where you indexed it. Vault takes it further: one encrypted
               memory that syncs across every browser and machine you use and backs itself up
-              automatically. A mobile version is in development. MCP remains a separate, free
-              desktop feature, and Vault simply makes it more useful by bringing more of your
-              history together.
+              automatically. The same library opens on your phone at vault.llmnesia.com. MCP remains
+              a separate, free desktop feature, and Vault simply makes it more useful by bringing
+              more of your history together.
             </p>
             {PURCHASE_PUBLIC ? (
               <>
@@ -166,8 +166,9 @@ export default function VaultPage() {
                 other desktops.
               </p>
               <p className="section-intro">
-                A mobile version of Vault is in development. Search runs locally on your desktop,
-                where your key lives, so we can’t read your conversations.
+                Your phone gets the same library at vault.llmnesia.com, end to end encrypted and
+                searchable on the go. Desktop search keeps running locally, where your key lives,
+                so we can’t read your conversations either way.
               </p>
             </div>
             <div className="vault-mock" aria-hidden="true">
@@ -264,7 +265,7 @@ export default function VaultPage() {
                   Encrypted history available across every browser and machine you use, not just
                   the single profile you indexed it in
                 </li>
-                <li>A mobile version is in development and is included when it lands</li>
+                <li>Mobile access at vault.llmnesia.com, included at no extra cost</li>
                 <li>Automatic, private backup of everything you&rsquo;ve indexed</li>
                 <li>MCP stays free and works without a Vault subscription</li>
                 <li>Cancel any time; device copies stay searchable, while Vault sync and restore pause until renewal</li>
