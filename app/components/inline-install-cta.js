@@ -18,6 +18,7 @@ const PLATFORM_LABELS = {
   qwen: 'Qwen',
   kimi: 'Kimi',
   'ai-studio': 'Google AI Studio',
+  'google-ai-mode': 'Google AI Mode',
   'character-ai': 'Character.AI'
 };
 
@@ -134,10 +135,14 @@ export default function InlineInstallCta({
   platform = null,
   family = 'capability',
   placement = 'inline',
-  slug = null
+  slug = null,
+  headline = null,
+  buttonLabel = null
 }) {
-  const framing = buildCopy(platform, family);
+  const framing = headline || buildCopy(platform, family);
   const recoveryGuide = RECOVERY_SEARCH_GUIDES[platform] || GENERIC_RECOVERY_SEARCH_GUIDE;
+  const showRecoveryGuide =
+    family === 'loss' && placement === 'inline' && recoveryGuide.href !== `/blog/${slug}`;
   // Readers on loss/export pages have the exact permanent-backup pain Vault
   // solves, so surface a single subordinate teaser to them only. Other families
   // stay untouched, keeping the demo/CTA-order experiment on capability pages clean.
@@ -161,7 +166,7 @@ export default function InlineInstallCta({
     >
       <div className="inline-install-cta__body">
         <p className="inline-install-cta__title">{framing}</p>
-        {family === 'loss' && placement === 'inline' && (
+        {showRecoveryGuide && (
           <a
             className="inline-install-cta__recovery-route"
             href={recoveryGuide.href}
@@ -178,7 +183,7 @@ export default function InlineInstallCta({
         {/* Desktop: lead with the native store for the visitor's browser. */}
         <div className="inline-install-cta__desktop">
           <InstallLink className="button button-large" utm={utm}>
-            Add to Chrome — free
+            {buttonLabel || 'Add to Chrome, free'}
           </InstallLink>
           <p className="inline-install-cta__note">No account. No cloud. Your chats stay local.</p>
         </div>

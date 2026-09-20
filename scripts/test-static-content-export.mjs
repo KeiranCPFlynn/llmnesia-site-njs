@@ -32,6 +32,14 @@ const categoryRoutes = [...new Set(entriesByType.blog.map((entry) => entry.categ
 );
 const routes = [...contentRoutes, ...categoryRoutes];
 
+const conversionCopyByRoute = {
+  '/blog/recover-deleted-chatgpt-conversation': 'Protect future ChatGPT chats, free',
+  '/blog/recover-deleted-claude-conversation': 'Protect future Claude chats, free',
+  '/blog/google-ai-mode-history': 'Search AI Mode history, free',
+  '/blog/how-to-find-old-character-ai-conversations': 'Search Character.AI history, free',
+  '/blog/search-character-ai-conversation-history': 'Search Character.AI chats, free'
+};
+
 for (const route of routes) {
   const outputPath = path.join(projectRoot, 'out', `${route.slice(1)}.html`);
   const html = await readFile(outputPath, 'utf8');
@@ -53,6 +61,15 @@ for (const route of routes) {
     ),
     `${route} is missing its canonical metadata`
   );
+
+  const expectedConversionCopy = conversionCopyByRoute[route];
+  if (expectedConversionCopy) {
+    assert.equal(
+      html.includes(expectedConversionCopy),
+      true,
+      `${route} is missing its targeted conversion CTA`
+    );
+  }
 }
 
 process.stdout.write(`Static content export checks passed for ${routes.length} routes.\n`);
