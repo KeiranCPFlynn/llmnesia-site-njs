@@ -7768,7 +7768,7 @@ figure.vault-mock {
   }
 }
 
-/* The bento holds ten cards; the shared stagger rules only delay 1-6 */
+/* The bento holds twelve cards; the shared stagger rules only delay 1-6 */
 .reveal-ready .feature-bento.is-in>*:nth-child(7) {
   transition-delay: 480ms;
 }
@@ -7783,6 +7783,14 @@ figure.vault-mock {
 
 .reveal-ready .feature-bento.is-in>*:nth-child(10) {
   transition-delay: 720ms;
+}
+
+.reveal-ready .feature-bento.is-in>*:nth-child(11) {
+  transition-delay: 800ms;
+}
+
+.reveal-ready .feature-bento.is-in>*:nth-child(12) {
+  transition-delay: 880ms;
 }
 
 /* --- 06 · Platforms: colour-coded pills ---------------------- */
