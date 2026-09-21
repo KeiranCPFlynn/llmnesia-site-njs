@@ -4605,7 +4605,7 @@ main>section:nth-of-type(even) .how-num {
 }
 
 /* ===================================================================
-   VAULT PAGE (/vault) — founding-member waitlist
+   VAULT PAGE (/vault)
    =================================================================== */
 .visually-hidden {
   position: absolute;
@@ -5453,6 +5453,21 @@ p.vault-price-badge {
   color: var(--text-muted);
 }
 
+.vault-price-card > .button,
+.vault-purchase-fallback {
+  margin-top: var(--s-3);
+}
+
+.vault-purchase-fallback .button {
+  width: 100%;
+  justify-content: center;
+}
+
+.vault-pricing,
+.vault-purchase-fallback {
+  scroll-margin-top: 6rem;
+}
+
 .vault-price-card .vault-form {
   margin-top: var(--s-3);
 }
@@ -5985,8 +6000,12 @@ p.vault-price-badge {
 }
 
 .vault-closing-inner .section-intro {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto var(--s-3);
+}
+
+.vault-closing-inner .vault-hero-actions {
+  justify-content: center;
+  gap: var(--s-3);
 }
 
 .vault-closing-inner .vault-form {
@@ -6030,7 +6049,7 @@ p.vault-price-badge {
   }
 }
 
-/* --- Spotlight (MCP headline feature) --- */
+/* --- Vault sync spotlight --- */
 .vault-spotlight-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -6046,6 +6065,37 @@ p.vault-price-badge {
   margin-bottom: 0;
 }
 
+.vault-ask-callout {
+  margin-top: var(--s-3);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--t-teal-edge);
+  border-left: 3px solid var(--t-teal);
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--t-teal-soft) 52%, var(--t-card));
+}
+
+p.vault-ask-kicker {
+  margin: 0 0 0.28rem;
+  color: var(--t-teal);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vault-ask-callout h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+}
+
+.vault-ask-callout p:last-child {
+  margin: 0;
+  color: var(--t-ink-2);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
 .vault-mock {
   position: relative;
   border: 1px solid var(--t-rule);
@@ -6055,6 +6105,11 @@ p.vault-price-badge {
   box-shadow:
     0 40px 70px -30px rgba(20, 36, 48, 0.35),
     0 12px 28px -16px rgba(20, 36, 48, 0.18);
+}
+
+.vault-mock figure,
+figure.vault-mock {
+  margin: 0;
 }
 
 /* Ambient glow behind the window */
@@ -6067,44 +6122,58 @@ p.vault-price-badge {
   pointer-events: none;
 }
 
-.vault-mock-head {
+.vault-pwa-head {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.7rem 1rem;
+  padding: 0.9rem 1rem;
   background: var(--t-paper-2);
   border-bottom: 1px solid var(--t-rule-soft);
 }
 
-.vault-mock-dots {
-  display: inline-flex;
-  gap: 0.4rem;
+.vault-pwa-head strong {
+  font-size: 0.9rem;
+  color: var(--t-ink);
 }
 
-.vault-mock-dot {
-  width: 10px;
-  height: 10px;
+.vault-pwa-beta {
+  padding: 0.18rem 0.48rem;
+  border: 1px solid var(--t-teal-edge);
   border-radius: 999px;
-  background: var(--t-rule);
-}
-
-.vault-mock-dot:nth-child(1) {
-  background: color-mix(in srgb, var(--t-rust) 70%, #d9985f);
-}
-
-.vault-mock-dot:nth-child(2) {
-  background: #e3b341;
-}
-
-.vault-mock-dot:nth-child(3) {
-  background: color-mix(in srgb, var(--t-teal) 75%, #6fb98f);
-}
-
-.vault-mock-title {
+  background: var(--t-teal-soft);
+  color: var(--t-teal);
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vault-pwa-settings {
+  margin-left: auto;
   color: var(--t-ink-3);
+  font-size: 0.75rem;
+}
+
+.vault-pwa-tabs {
+  display: flex;
+  gap: 1.2rem;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--t-rule-soft);
+  background: var(--t-card);
+}
+
+.vault-pwa-tabs span {
+  padding: 0.7rem 0 0.55rem;
+  border-bottom: 2px solid transparent;
+  color: var(--t-ink-3);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.vault-pwa-tabs .is-active {
+  border-bottom-color: var(--t-teal);
+  color: var(--t-teal);
 }
 
 .vault-mock-body {
@@ -6112,6 +6181,84 @@ p.vault-price-badge {
   flex-direction: column;
   gap: 0.85rem;
   padding: var(--s-3);
+}
+
+.vault-pwa-intro h3 {
+  margin: 0 0 0.15rem;
+  font-size: 1.35rem;
+}
+
+.vault-pwa-intro p {
+  margin: 0;
+  color: var(--t-ink-3);
+  font-size: 0.82rem;
+}
+
+.vault-pwa-search {
+  position: relative;
+  padding: 0.72rem 0.8rem 0.72rem 2rem;
+  border: 1px solid var(--t-rule);
+  border-radius: 9px;
+  background: var(--t-card);
+  color: var(--t-ink-2);
+  font-size: 0.82rem;
+}
+
+.vault-pwa-search::before {
+  content: "";
+  position: absolute;
+  top: 0.82rem;
+  left: 0.75rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 1.5px solid var(--t-ink-3);
+  border-radius: 50%;
+  box-shadow: 0.34rem 0.34rem 0 -0.1rem var(--t-ink-3);
+}
+
+.vault-pwa-results {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.vault-pwa-results > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.55rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--t-rule-soft);
+  border-radius: 9px;
+  background: var(--t-card);
+}
+
+.vault-pwa-results span {
+  grid-row: 1 / span 2;
+  align-self: start;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  color: var(--t-teal);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.vault-pwa-results p,
+.vault-pwa-results small {
+  margin: 0;
+}
+
+.vault-pwa-results p {
+  color: var(--t-ink-2);
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.vault-pwa-results small {
+  margin-top: 0.15rem;
+  color: var(--t-ink-3);
+  font-size: 0.69rem;
+  line-height: 1.4;
 }
 
 .vault-mock-bubble {
@@ -6131,10 +6278,48 @@ p.vault-price-badge {
 }
 
 .vault-mock-ai {
+  max-width: 100%;
   align-self: flex-start;
   background: var(--t-paper-3);
   color: var(--t-ink);
   border-bottom-left-radius: 4px;
+}
+
+.vault-pwa-sources {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.vault-pwa-sources > strong {
+  color: var(--t-ink-2);
+  font-size: 0.78rem;
+}
+
+.vault-pwa-sources > div {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--t-rule-soft);
+  border-radius: 9px;
+  background: var(--t-card);
+}
+
+.vault-pwa-sources span {
+  flex: none;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  color: var(--t-teal);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.vault-pwa-sources p {
+  margin: 0;
+  color: var(--t-ink-2);
+  font-size: 0.76rem;
 }
 
 .vault-mock-source {

@@ -51,7 +51,7 @@
     <section class="section container">
       <div class="policy-content">
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 15 September 2026</p>
+        <p class="policy-date">Last updated: 21 September 2026</p>
 
         <h2>Overview</h2>
         <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
@@ -189,11 +189,12 @@
           from a copied storage dump, but it does not protect them from malicious code already running on the Vault web
           app origin. Signing out removes the saved provider credential and biometric record. The user can also forget
           a provider key from Ask settings.</p>
-        <p>Search, filtering, transcript reading, and Ask retrieval happen locally. If the user chooses Ask, the app
-          shows the exact question and selected conversation excerpts before sending. Only after confirmation are those
-          items sent directly from the browser to the selected provider, currently OpenAI, Anthropic, Google, or
-          OpenRouter, using the user's own API key. The request does not pass through LLMnesia. The selected provider
-          receives the request content and ordinary network metadata under its own privacy and data-retention terms.</p>
+        <p>Search, filtering, and transcript reading happen locally. When the user taps Ask, the web app starts a
+          bounded Ask session using the provider and model selected in Ask settings. It sends the question and bounded
+          relevant context directly from the browser to that provider, currently OpenAI, Anthropic, Google, or
+          OpenRouter, using the user's own API key. Ask does not send the whole Vault. The request does not pass through
+          LLMnesia. The selected provider receives the request content and ordinary network metadata under its own
+          privacy and data-retention terms. The completed answer links back to supporting source conversations.</p>
         <p>The Vault web app does not include PostHog analytics or a crash-reporting SDK. Vercel hosts and delivers the
           app's static files and receives ordinary web request metadata such as IP address, user agent, and request
           time.</p>
@@ -263,10 +264,10 @@
         <p>Vercel hosts and delivers the optional Vault web app beta. It receives ordinary web request metadata but does
           not receive readable Vault content, the passphrase, Vault key, local searches, Ask prompts, or provider API
           keys from the application.</p>
-        <p>If a user explicitly confirms an Ask request, the selected provider, currently OpenAI, Anthropic, Google, or
-          OpenRouter, receives the current question, the selected excerpts shown before sending, the user's API key, and
-          ordinary request metadata. The request goes directly from the browser to the provider and is governed by that
-          provider's own terms.</p>
+        <p>When a user taps Ask, the selected provider, currently OpenAI, Anthropic, Google, or OpenRouter, receives the
+          current question, bounded relevant context selected for that Ask session, the user's API key, and ordinary
+          request metadata. Ask does not send the whole Vault. The request goes directly from the browser to the
+          provider and is governed by that provider's own terms.</p>
         <p>The optional desktop MCP server and native messaging helper run locally and do not send conversation content
           or MCP queries to a third-party service.</p>
         <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>

@@ -1,53 +1,10 @@
-// PV-04 on docs/REVENUE_LAUNCH_BOARD.md (LLMnesia repo).
-//
-// NOT YET REVIEWED. This is public pricing copy and the card requires an owner
-// read before it goes live. It is left at app/pricing/ rather than the dormant
-// app/_pricing/ because the extension's Vault paywall panel (PV-03) links to
-// https://llmnesia.com/pricing, so the route has to exist by the time that
-// panel can be reached. Nothing here is live until this repo is committed,
-// pushed and deployed.
-//
-// Rewritten 2026-09-01 against docs/VAULT_LAUNCH_CONVERSION_PLAN.md.
-//
-//   Headline. "Half your thinking is on the other machine." The earlier draft
-//       sold recall, which is what the FREE extension already does, so the paid
-//       tier was competing with its own free tier. This headline names the gap
-//       the free product leaves instead: one archive per machine. It also does
-//       not depend on the mobile web app, which is not guaranteed for launch.
-//
-//   D3. The founding rate is not on this page. It is honoured for people who
-//       signed up before launch and delivered through Stripe, not chosen in the
-//       browser. Removing it also removes a bug class: the old page had price
-//       bullets gated on a founding flag and others hardcoded, which
-//       contradicted each other the moment founding was switched off.
-//
-//   D3. No struck-through "was" price. A strikethrough teaches the reader that
-//       the lower number is the real price, which mis-anchors every customer
-//       who arrives after the founding cohort.
-//
-//   Annual is £88/year against £8/month: one month free and an effective
-//       £7.33/month. It gives customers a reason to commit and pulls cash
-//       forward without giving away two months of recurring revenue.
-//
-//       WARNING: STRIPE_VAULT_ANNUAL_PRICE_ID must point at an £88 Price before
-//       this deploys. If it points at any other Price, this page and Checkout
-//       will disagree.
-//
-// Accuracy traps worth keeping:
-//
-//   - Searching ACROSS MODELS is free, because the extension already does that
-//     on one device. What Vault adds is across MACHINES. Do not blur those two;
-//     it overstates the paid tier and understates the free one.
-//   - Do not state how many platforms are supported, and do not present a list
-//     as complete. The set changes.
-//
-// Reuses the existing vault-* pricing classes rather than adding new CSS: this
-// IS the Vault pricing surface, so the classes are being used for the thing
-// they were named for.
+// Vault is launched, so this route and its product copy are always public.
+// CHECKOUT_ENABLED controls only the embedded payment flow in a given build.
+// Annual is £88 against £8 monthly, which includes one month free.
+// Free local search covers models inside one browser profile. Vault adds sync
+// across devices, encrypted backup, and the subscriber web app beta.
 
-import { notFound } from 'next/navigation';
 import SiteChrome from '../components/site-chrome';
-import VaultWaitlistForm from '../components/vault-waitlist-form';
 import VaultPurchase from '../components/vault-purchase';
 import VaultPlanCta from '../components/vault-plan-cta';
 import JsonLd from '../components/json-ld';
@@ -56,45 +13,16 @@ import { homepageFaqSchema } from '../../lib/schema';
 
 const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 
-// Gates every claim that Vault reaches a phone. Defaults OFF on purpose: the
-// mobile web app works, but MV-24 (physical-device install) is blocked on a
-// human test and MV-51, MV-52 and MV-53 are still todo. Turn this on only once
-// the mobile board says the app has actually shipped.
-const MOBILE_READY = process.env.NEXT_PUBLIC_VAULT_MOBILE_READY === 'true';
-
-// Gates the whole route. Vault is not launched, so a public /pricing page
-// quotes a price for something nobody can buy, and the previously deployed
-// version was publicly serving the founding rate and the "first 100" cap that
-// are meant to stay private. Off by default: the statically exported route
-// renders a noindex not-found page unless this is explicitly set, so shipping
-// the page can never again publish pricing by accident.
-// Turn it on in the same deploy that opens Checkout, not before.
-//
-// Requires BOTH flags deliberately: either one missing serves the gated
-// not-found UI, so a single environment mistake cannot republish this page,
-// and it can never be public
-// while there is no purchase path. They flip together in the authorised release,
-// so demanding both costs nothing.
-const PRICING_PUBLIC =
-  process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true' &&
-  process.env.NEXT_PUBLIC_VAULT_PRICING_PUBLIC === 'true';
-
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
 const ANNUAL_MONTHLY_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL || '£7.33';
 
-const DEVICE_PHRASE = MOBILE_READY ? 'every device you use' : 'every browser and machine you use';
-
-// While the route is gated the page still emits a document head, so keep the
-// price out of the description rather than shipping it on the gated response.
-export const metadata = PRICING_PUBLIC
-  ? buildPageMetadata({
-      title: 'Pricing — LLMnesia',
-      description:
-        'The LLMnesia browser extension, its search and the MCP connection stay free. Vault joins the history from every browser and machine you use into one archive for £88 a year or £8 a month.',
-      canonicalPath: '/pricing'
-    })
-  : { title: 'Not found', robots: { index: false, follow: false } };
+export const metadata = buildPageMetadata({
+  title: 'Pricing',
+  description:
+    'The LLMnesia browser extension, local search and MCP connection stay free. Vault adds encrypted sync, backup and the Vault web app beta for £88 a year or £8 a month.',
+  canonicalPath: '/pricing'
+});
 
 // The two things a reader is actually choosing between. Kept deliberately
 // short: this is a comparison card, not documentation. The price is the hero
@@ -124,8 +52,9 @@ const PLANS = [
     priceSub: `Billed annually at ${ANNUAL_PRICE_LABEL}, with one month free. Or ${MONTHLY_PRICE_LABEL} monthly. Plus tax.`,
     points: [
       'Every browser and machine, one archive',
-      'MCP answers from all of it',
       'Automatic backup, nothing ages out',
+      'Installable Vault web app beta',
+      'Ask Vault with linked source conversations',
       'Sealed with a key we never hold'
     ],
     cta: 'Get Vault'
@@ -185,7 +114,7 @@ const FAQS = [
   },
   {
     q: 'Do I need Vault to use MCP?',
-    a: 'No. MCP is free and always will be. It reads the LLMnesia archive for the browser profile it is connected to, so it works perfectly well with a single-profile archive. What Vault changes is what is in that archive: with it, your desktop AI answers from the history of every browser and machine you use rather than just the one in front of you.'
+    a: 'No. MCP is a separate free feature. It lets compatible desktop AI apps use the local LLMnesia archive on that computer. Vault is only for encrypted sync, backup, restore, and mobile access across your devices.'
   },
   {
     q: 'What am I actually paying for?',
@@ -203,33 +132,25 @@ const FAQS = [
     q: 'Why is it a subscription and not a one-off?',
     a: 'Because the cost is ongoing. Storing your encrypted history and serving it to your other devices costs money every month that you keep it there, so charging once would only work until it did not. You can cancel from the billing portal at any time. Conversations already on each device stay searchable; Vault sync and restore pause until you renew.'
   },
-  CHECKOUT_ENABLED
-    ? {
-        q: 'How do I subscribe?',
-        a: 'Sign in here with the same email as your Vault account, then continue to secure Stripe Checkout. Stripe activates sync automatically after payment; no manual grant is needed.'
-      }
-    : {
-        q: 'Does joining the waitlist give me access or charge me anything?',
-        a: 'Neither. There is nothing to pay yet and no card to enter. Joining tells us where to email you when Vault opens.'
-      },
+  {
+    q: 'How do I subscribe?',
+    a: 'Sign in here with the same email as your Vault account, then continue to secure Stripe Checkout. Stripe activates sync automatically after payment; no manual grant is needed.'
+  },
   {
     q: 'Can you read my conversations?',
     a: 'No. Everything is encrypted on your device with a key we never see, so what we store is meaningless without it. We cannot read your conversations and we cannot hand over what we do not have.'
   },
-  MOBILE_READY
-    ? {
-        q: 'Does Vault work on my phone?',
-        a: 'Yes. Your Vault opens in the phone browser and you can search your whole history there, including chats captured on machines you were not holding at the time. It is included in the subscription at no extra cost.'
-      }
-    : {
-        q: 'Does Vault work on my phone?',
-        a: 'Not yet. Vault starts with sync and backup across every browser and machine you use, and a mobile version is in development. Your subscription covers it when it lands, at no extra cost.'
-      }
+  {
+    q: 'Does Vault work on my phone?',
+    a: 'Yes. The installable Vault web app beta works on phone and desktop, where you can search and read your synced history. It is included in the subscription.'
+  },
+  {
+    q: 'Does Ask Vault send my whole archive to an AI provider?',
+    a: 'No. Ask Vault selects a bounded set of relevant material for the question and sends that directly from your browser to the provider you chose using your own API key. It does not send the whole archive, and the request does not pass through LLMnesia.'
+  }
 ];
 
 export default function PricingPage() {
-  if (!PRICING_PUBLIC) notFound();
-
   return (
     <SiteChrome>
       <JsonLd data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))} />
@@ -245,10 +166,11 @@ export default function PricingPage() {
               Half your thinking is on{' '}
               <span className="text-gradient">the other machine.</span>
             </h1>
-            <p className="subheadline vault-hero-sub">
+              <p className="subheadline vault-hero-sub">
               The free extension searches the browser profile you are in, across every AI platform
-              you use. Vault joins {DEVICE_PHRASE} into one archive, so you stop re-solving what
-              you already worked out somewhere else.
+              you use. Vault joins every browser and computer you use into one archive, so you stop re-solving what
+              you already worked out somewhere else, then lets you search and read that archive
+              in the Vault web app beta.
             </p>
           </div>
         </section>
@@ -258,7 +180,7 @@ export default function PricingPage() {
           <div className="container">
             <div className="vault-section-head">
               <p className="section-eyebrow">What you get</p>
-              <h2>The free part stays free. Vault is what completes it.</h2>
+              <h2>Free on one profile. Vault across your devices.</h2>
             </div>
             <div className="card-grid vault-benefit-grid">
               {PLANS.map((plan) => (
@@ -368,19 +290,18 @@ export default function PricingPage() {
           <div className="container vault-pricing-inner">
             <div className="vault-pricing-copy">
               <p className="section-eyebrow">Vault</p>
-              <h2>Your agent shouldn’t only know what this laptop saw.</h2>
+              <h2>Your archive shouldn’t stop at this laptop.</h2>
               <p className="section-intro">
                 The extension already finds what you asked, in the browser profile that captured
                 it. The gap is everything captured somewhere else: the other laptop, the work
                 profile, the model you were using that week. The more you use AI, the wider that
-                gap gets. Vault closes it: one encrypted archive that {DEVICE_PHRASE} writes into
-                and reads from.
+                gap gets. Vault closes it: one encrypted archive that every connected browser and
+                computer writes into and reads from.
               </p>
-              {MOBILE_READY ? (
-                <ul className="vault-pricing-points vault-plan-points">
-                  <li>Open it in your phone browser and search the whole thing from anywhere.</li>
-                </ul>
-              ) : null}
+              <ul className="vault-pricing-points vault-plan-points">
+                <li>Install the Vault web app on phone or desktop to search and read the whole synced archive.</li>
+                <li>Ask Vault can answer across that history and link back to its source conversations.</li>
+              </ul>
               <p className="vault-reassure">
                 Cancel any time. Conversations already on each device stay searchable. Renew Vault
                 whenever you want to sync or restore the encrypted backup again.
@@ -403,7 +324,11 @@ export default function PricingPage() {
                   annualMonthlyLabel={ANNUAL_MONTHLY_LABEL}
                 />
               ) : (
-                <VaultWaitlistForm context="pricing_founding" compact />
+                <div id="vault-purchase" className="vault-purchase-fallback">
+                  <a className="button button-large" href="https://www.llmnesia.com/pricing#vault-purchase">
+                    Subscribe on the live site
+                  </a>
+                </div>
               )}
             </aside>
           </div>
@@ -430,21 +355,13 @@ export default function PricingPage() {
         {/* Closing */}
         <section className="section vault-closing">
           <div className="container vault-closing-inner">
-            <h2>
-              {CHECKOUT_ENABLED
-                ? 'Stop re-deriving what the other machine already knows.'
-                : 'Be first in when Vault opens.'}
-            </h2>
+            <h2>Stop re-deriving what your own history already knows.</h2>
             <p className="section-intro">
-              {CHECKOUT_ENABLED
-                ? `Sign in, choose yearly or monthly, and Stripe activates sync automatically. ${ANNUAL_PRICE_LABEL} a year, which is ${ANNUAL_MONTHLY_LABEL} a month, or ${MONTHLY_PRICE_LABEL} billed monthly, plus tax. The free extension and MCP connection stay free.`
-                : 'Vault is still being built. Join the waitlist and you will be first to hear when it opens. No card, no commitment, and the free version carries on exactly as it is either way.'}
+              Sign in, choose yearly or monthly, and Stripe activates sync automatically.{' '}
+              {ANNUAL_PRICE_LABEL} a year, which is {ANNUAL_MONTHLY_LABEL} a month, or{' '}
+              {MONTHLY_PRICE_LABEL} billed monthly, plus tax. The free extension stays free.
             </p>
-            {CHECKOUT_ENABLED ? (
-              <a className="button button-large" href="#vault-purchase">Choose Vault</a>
-            ) : (
-              <VaultWaitlistForm context="pricing_closing" />
-            )}
+            <a className="button button-large" href="#vault-purchase">Choose Vault</a>
           </div>
         </section>
       </main>

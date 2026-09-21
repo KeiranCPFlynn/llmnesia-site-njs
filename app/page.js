@@ -22,7 +22,7 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Is my data stored on your servers?',
     answer:
-      'Not when you use free local search: its index stays in your browser. If you choose Vault, LLMnesia stores an end-to-end encrypted backup that we cannot read, so your supported devices can sync.'
+      'Not when you use free local search: its index stays in your browser. Vault is a separate, optional paid service. If you choose it, LLMnesia stores an end-to-end encrypted backup that we cannot read, so your supported devices can sync.'
   },
   {
     question: 'How does local indexing actually work?',
@@ -59,7 +59,7 @@ const HOMEPAGE_FAQS = [
   },
   {
     question: 'Is it free?',
-    answer: 'Yes. LLMnesia is completely free to use.'
+    answer: 'Yes. Local capture, imports, search, and the desktop MCP connection are free. Vault is an optional paid service for encrypted sync, backup, restore, and its web app beta.'
   }
 ];
 

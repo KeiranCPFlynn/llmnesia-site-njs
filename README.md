@@ -80,20 +80,10 @@ GA4 is optional and enabled via env vars:
 - `LEADS_WEBHOOK_URL` server-side webhook for `/api/leads`
 - `LEADS_WEBHOOK_KEY` optional shared key for the leads webhook
 
-Two separate flags gate Vault on the site, and neither implies the other:
-
-- `NEXT_PUBLIC_VAULT_PRICING_PUBLIC` publishes pricing. Without it `/pricing`
-  renders the noindex not-found page, is absent from `sitemap.xml`, and `/vault`
-  shows no price figures. Because this site is statically exported, the gated
-  page is a soft 404 (not-found UI with HTTP 200); the release contract is no
-  price leakage, `noindex`, and sitemap exclusion.
-- `NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED` compiles in the purchase component and
-  switches the pages to launched-state copy.
-
-Both are off everywhere by default, so shipping the site can never publish
-pricing as a side effect. Flip them in the same deploy, never earlier. Any new
-surface that quotes a price must go behind the pricing flag rather than render
-unconditionally.
+Vault, its pricing page, and account management are public because the product
+has launched. `NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED` controls only whether a
+given build embeds the Stripe purchase flow. It must never be used to switch
+public copy back to a pre-launch or waitlist state.
 
 The purchase component also needs these public browser values:
 

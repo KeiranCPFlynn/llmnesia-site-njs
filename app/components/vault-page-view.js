@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 
-// Fires one anonymous counter when the Vault page loads, giving the waitlist
+// Fires one anonymous counter when the Vault page loads, giving the Vault
 // funnel its denominator. The site sets capture_pageview:false (privacy-first),
 // so there is no automatic $pageview — this explicit event is how /vault visits
-// are measured. No PII, matching the waitlist form's anonymous approach.
+// are measured. No PII is included.
 // PostHog initialises via an async dynamic import, so if it is not ready yet we
 // wait for the posthog:ready event (same pattern as demo-cta-experiment).
 export default function VaultPageView() {

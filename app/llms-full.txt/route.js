@@ -8,7 +8,7 @@ const HOMEPAGE_FAQ = [
   {
     question: 'Is my data stored on your servers?',
     answer:
-      'No. Everything is stored locally in your browser. LLMnesia never sends your conversations, search queries, or personal data to external servers.'
+      'Free local search stores its index in your browser and does not send conversation content to LLMnesia servers. Vault is a separate, optional paid service that stores an end-to-end encrypted backup so a user’s devices can sync; LLMnesia cannot read that backup.'
   },
   {
     question: 'Which AI platforms are supported?',
@@ -16,7 +16,7 @@ const HOMEPAGE_FAQ = [
   },
   {
     question: 'Is it free?',
-    answer: 'Yes. LLMnesia is completely free to use. No account required.'
+    answer: 'Local capture, imports, search, and the desktop MCP connection are free and require no account. Vault is an optional paid service for encrypted cross-device sync, backup, restore, and an installable web app beta.'
   },
   {
     question: 'How does local indexing work?',
@@ -88,7 +88,10 @@ export function GET() {
     '- LLMnesia is a free browser extension for Chrome and Microsoft Edge.',
     '- It automatically indexes AI conversations locally in the user\'s browser.',
     `- Supported platforms: ${SUPPORTED_PLATFORMS.join(', ')}.`,
-    '- No cloud sync. No account required. Data stays on the user\'s device.',
+    '- Local capture and search require no account or cloud service; their index stays on the user\'s device.',
+    '- The free MCP connection lets compatible desktop AI apps use the local archive. It does not require Vault.',
+    '- Vault is a separate optional paid service for end-to-end encrypted cross-device sync, backup, restore, and an installable web app beta.',
+    '- Ask Vault answers questions across the synced archive using the user\'s chosen AI provider and their own API key, with links back to the source conversations used.',
     '- Uses IndexedDB and chrome.storage.local APIs for local storage.',
     '- Core use case: find old prompts, answers, and decisions without re-prompting.',
     '- Positioning: local-first and privacy-first search for AI conversations.',

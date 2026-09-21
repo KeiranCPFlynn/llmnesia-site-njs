@@ -44,8 +44,9 @@ export default function AboutPage() {
             <p className="answer-first">
               LLMnesia is a free Chrome and Edge extension that automatically indexes AI conversations
               from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser.
-              No cloud sync. No account required. Search old prompts, answers, and decisions
-              instantly.
+              Local search needs no cloud service or account. Optional Vault adds end-to-end
+              encrypted sync and backup across your devices, plus an installable web app beta
+              for search and reading.
             </p>
           </header>
 
@@ -59,9 +60,10 @@ export default function AboutPage() {
               asked Claude to write — you search and it&apos;s there in seconds.
             </p>
             <p>
-              Everything stays on your device. LLMnesia uses your browser&apos;s local storage
-              to build and maintain the index. None of your conversations, queries, or data are
-              sent to external servers.
+              Free local search keeps its index on your device. LLMnesia uses your browser&apos;s
+              local storage to build and maintain it, and does not send conversation content or
+              search queries to LLMnesia servers. If you deliberately enable Vault, an encrypted
+              copy syncs through its backend so your own devices can share it.
             </p>
 
             <h2>Supported platforms</h2>
@@ -100,11 +102,10 @@ export default function AboutPage() {
             <h2>Privacy commitment</h2>
             <p>
               The local-first architecture is not a feature — it&apos;s a constraint that
-              shapes every technical decision. User conversation data never touches LLMnesia
-              servers because there is no mechanism for it to do so. You can verify this by
-              reviewing the extension in the Chrome Web Store or Microsoft Edge Add-ons, or
-              inspecting the network requests it makes (it makes none to llmnesia.com for indexing
-              or search).
+              shapes every technical decision. Local indexing and search do not send conversation
+              content to LLMnesia servers. Vault is a separate opt-in service: it encrypts the
+              archive before upload with a key LLMnesia does not hold. You can review the full
+              distinction in the privacy policy.
             </p>
             <p>
               You can clear all indexed data at any time from the extension settings.

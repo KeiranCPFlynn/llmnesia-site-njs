@@ -1,9 +1,9 @@
 ---
 title: "What is LLMnesia? How the Extension Indexes and Searches AI Conversations"
 slug: "what-is-llmnesia"
-description: "LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. It stores everything on your device and lets you search old prompts, answers, and decisions in seconds."
+description: "LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. Its local search index stays on your device, so you can find old prompts, answers, and decisions in seconds."
 publishDate: "2026-04-16"
-updatedDate: "2026-04-17"
+updatedDate: "2026-09-21"
 author: "Keiran Flynn"
 primaryKeyword: "what is llmnesia"
 secondaryKeywords:
@@ -15,9 +15,9 @@ secondaryKeywords:
 intent: "informational"
 faq:
   - question: "Is LLMnesia free?"
-    answer: "Yes. LLMnesia is completely free to install and use. There is no paid tier, no subscription, and no account required."
+    answer: "The browser extension, local capture and search, imports, and desktop MCP connection are free and require no account. Vault is a separate optional paid service for encrypted cross-device sync, backup, restore, and an installable web app beta."
   - question: "Does LLMnesia store data in the cloud?"
-    answer: "No. LLMnesia stores your conversation index locally in your browser using IndexedDB and chrome.storage.local. Your data never leaves your device."
+    answer: "Free local search stores its index in your browser using IndexedDB and chrome.storage.local; no cloud service is required. If you opt into Vault, an end-to-end encrypted copy is stored so your devices can sync, and LLMnesia does not hold the key needed to read it."
   - question: "What AI platforms does LLMnesia support?"
     answer: "LLMnesia currently supports ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi, Qwen, Google AI Studio, and Character.AI. Additional platforms are in progress."
   - question: "Does LLMnesia require setup or manual tagging?"
@@ -41,7 +41,7 @@ relatedSlugs:
   - "best-chrome-extensions-save-ai-conversations"
 ---
 
-LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. It stores the index on your device. No cloud sync or account required. When you need to find something you discussed in an AI chat — a prompt you wrote, an answer you received, a decision you documented — you search and it appears instantly.
+LLMnesia is a free Chrome extension that automatically indexes AI conversations from ChatGPT, Claude, Gemini, and 10+ other platforms locally in your browser. It stores the search index on your device, with no account or cloud service required. When you need to find something you discussed in an AI chat, such as a prompt you wrote, an answer you received, or a decision you documented, you search and it appears instantly. Optional Vault is a separate paid service for end-to-end encrypted sync, backup, restore, and an installable web app beta.
 
 ## The problem LLMnesia solves
 
@@ -92,7 +92,7 @@ Anyone who has said "I already figured this out — where was it?" is the target
 
 ## Privacy model
 
-LLMnesia's privacy guarantee is architectural, not a policy. There is no server that receives your conversations because the extension never makes outbound requests with conversation data. The entire index lives in your browser.
+For free local search, the privacy guarantee is architectural rather than just a policy: the search index lives in your browser, and indexing and search do not send conversation content to LLMnesia servers. Vault is a separate opt-in service. When enabled, it encrypts an archive copy on your device before sending that unreadable payload to the sync backend; LLMnesia does not hold the key needed to decrypt it.
 
 You can verify this yourself: open your browser's developer tools while using a supported AI platform, filter network requests to those made by the LLMnesia extension, and observe that no conversation data is transmitted anywhere.
 
@@ -113,4 +113,3 @@ The main alternatives to LLMnesia are:
 LLMnesia is designed for the user who wants the benefit of automatic indexing without the privacy trade-off that cloud-based alternatives require.
 
 The reliable fix is keeping your own copy. See [Back Up Your AI Conversations (Free)](/blog/how-to-backup-ai-conversations).
-
