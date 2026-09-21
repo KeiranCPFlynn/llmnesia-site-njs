@@ -7712,6 +7712,79 @@ figure.vault-mock {
   line-height: 1.65;
 }
 
+/* Vault reads as an optional extra, not a peer feature: full-width strip,
+   dashed border, no solid accent bar. It closes the free 3x3 grid. */
+.feature-bento .fc-vault {
+  grid-column: 1 / -1;
+  border: 1.5px dashed color-mix(in srgb, var(--fc-accent) 55%, var(--t-rule));
+  border-top-width: 1.5px;
+  background: color-mix(in srgb, var(--fc-accent) 4%, white);
+}
+
+.fc-vault .fc-tag {
+  position: static;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.fc-vault h3 {
+  margin-top: 0;
+}
+
+.fc-vault .fc-vault-body {
+  display: block;
+}
+
+.fc-vault-link {
+  flex: none;
+  align-self: center;
+  color: color-mix(in srgb, var(--fc-accent) 70%, var(--t-ink));
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.fc-vault-link:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 641px) {
+  .feature-bento .fc-vault {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding-right: 1.75rem;
+  }
+
+  .fc-vault .fc-icon {
+    flex: none;
+  }
+
+  .fc-vault .fc-vault-body {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* The bento holds ten cards; the shared stagger rules only delay 1-6 */
+.reveal-ready .feature-bento.is-in>*:nth-child(7) {
+  transition-delay: 480ms;
+}
+
+.reveal-ready .feature-bento.is-in>*:nth-child(8) {
+  transition-delay: 560ms;
+}
+
+.reveal-ready .feature-bento.is-in>*:nth-child(9) {
+  transition-delay: 640ms;
+}
+
+.reveal-ready .feature-bento.is-in>*:nth-child(10) {
+  transition-delay: 720ms;
+}
+
 /* --- 06 · Platforms: colour-coded pills ---------------------- */
 .platform-group-head {
   display: flex;
