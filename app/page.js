@@ -63,8 +63,19 @@ const HOMEPAGE_FAQS = [
   }
 ];
 
+// "Character.AI" -> "character-ai": drives the per-platform accent class on the
+// chips in the platforms section (see .pf-<slug> rules in globals.css).
+function platformSlug(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-+|-+$)/g, '');
+}
+
 export default function HomePage() {
-  const platformChips = SUPPORTED_PLATFORMS.map((name) => `<li>${name}</li>`).join('');
+  const platformChips = SUPPORTED_PLATFORMS.map(
+    (name) => `<li class="pf-chip pf-${platformSlug(name)}">${name}</li>`
+  ).join('');
   const bodyMarkup = getTemplateBody('index.template.html')
     .replaceAll('{{PLATFORM_COUNT}}', String(PLATFORM_COUNT))
     .replaceAll('{{CHROME_WEB_STORE_URL}}', CHROME_WEB_STORE_URL)

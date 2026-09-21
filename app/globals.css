@@ -1211,14 +1211,6 @@ main>section:nth-of-type(even) {
   gap: 1.5rem;
 }
 
-.feature-primary-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-}
-
-.feature-secondary-grid {
-  margin-top: 1.5rem;
-}
-
 /* ===== PROBLEM ===== */
 .section-problem {
   padding-top: 3rem;
@@ -4138,7 +4130,10 @@ main>section:nth-of-type(even) .how-num {
 
 /* ===== LANDING REDESIGN — problem / audience / privacy / vs / testimonials ===== */
 
-/* Problem: pain -> fix cards */
+/* Problem: pain -> fix cards.
+   Each card reads as a "lost" chat message: a rust-tinted bubble with mono
+   metadata, sitting above the teal fix strip. Cards land slightly scattered
+   and straighten on hover — from mess to found. */
 .pain-grid {
   list-style: none;
   margin: 0 0 2rem;
@@ -4151,18 +4146,48 @@ main>section:nth-of-type(even) .how-num {
 .pain-card {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.875rem;
   padding: 1.25rem 1.375rem;
   border-radius: var(--radius-lg);
   background: var(--t-card);
   border: 1px solid var(--t-rule);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  rotate: -0.4deg;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, rotate 0.25s ease;
+}
+
+.pain-card:nth-child(even) {
+  rotate: 0.45deg;
 }
 
 .pain-card:hover {
+  rotate: 0deg;
   border-color: var(--t-teal-edge);
   box-shadow: 0 10px 28px rgba(20, 36, 48, 0.08);
-  transform: translateY(-2px);
+}
+
+.pain-bubble {
+  position: relative;
+  padding: 0.85rem 1rem 0.9rem;
+  border-radius: 10px 10px 10px 2px;
+  background: color-mix(in srgb, var(--t-rust) 7%, var(--t-paper-2));
+  border: 1px solid color-mix(in srgb, var(--t-rust) 22%, var(--t-rule));
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.pain-card:hover .pain-bubble {
+  background: color-mix(in srgb, var(--t-teal-soft) 55%, var(--t-paper-2));
+  border-color: color-mix(in srgb, var(--t-teal) 30%, var(--t-teal-edge));
+}
+
+.pain-tag {
+  display: block;
+  margin-bottom: 0.4rem;
+  color: color-mix(in srgb, var(--t-rust) 82%, var(--t-ink));
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .pain-quote {
@@ -4176,23 +4201,40 @@ main>section:nth-of-type(even) .how-num {
 .pain-fix {
   display: flex;
   align-items: flex-start;
-  gap: 0.5rem;
+  gap: 0.625rem;
   margin: 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--t-rule-soft);
-  color: var(--text-muted);
+  padding: 0.75rem 0.875rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--t-teal-soft) 45%, transparent);
+  color: var(--t-ink-2);
   font-size: 0.9375rem;
   line-height: 1.55;
 }
 
-.pain-fix-icon {
+.pain-fix-chip {
   flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
-  margin-top: 0.18rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-top: 0.05rem;
+  border-radius: 999px;
+  background: var(--t-teal);
+  color: var(--on-cta);
+  transition: transform 0.25s ease;
+}
+
+.pain-card:hover .pain-fix-chip {
+  transform: scale(1.12);
+}
+
+.pain-fix-chip svg {
+  width: 12px;
+  height: 12px;
   fill: none;
-  stroke: var(--brand);
-  stroke-width: 1.8;
+  stroke: currentColor;
+  stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -6480,39 +6522,11 @@ figure.vault-mock {
   transform: translateX(3px);
 }
 
-/* Vault teaser band (near the foot of the homepage) */
-.section-vault-teaser {
-  border-top: 1px solid var(--t-rule);
-}
-
-.vault-teaser-inner {
-  max-width: 52rem;
-  margin: 0 auto;
-  padding: clamp(2.25rem, 4vw, 3.25rem) clamp(1.5rem, 4vw, 3rem);
-  text-align: center;
-  border: 1px solid var(--t-teal-edge);
-  border-radius: 22px;
-  background:
-    radial-gradient(80% 120% at 50% -10%, color-mix(in srgb, var(--t-teal) 13%, transparent), transparent 62%),
-    linear-gradient(165deg, var(--t-teal-soft), color-mix(in srgb, var(--t-rust) 7%, var(--t-card)));
-  box-shadow: 0 24px 60px -32px rgba(20, 36, 48, 0.28);
-}
-
-.vault-teaser-inner .section-eyebrow {
-  color: var(--t-teal);
-}
-
-.vault-teaser-inner h2 {
-  max-width: 20ch;
-  margin: 0 auto var(--s-2);
-  text-align: center;
-}
-
-.vault-teaser-inner .section-intro {
-  margin: 0 auto var(--s-3);
-  max-width: 44rem;
-}
-
+/* Teaser bands (near the foot of the homepage).
+   The MCP and Vault teasers used to share one identical card; they are now
+   distinct: MCP pairs copy with a dark terminal mock (.term-card), Vault pairs
+   copy with an encrypted device-sync panel on a gradient band. Styles live in
+   the homepage design pass block at the end of this file. */
 .vault-teaser-cta {
   display: flex;
   align-items: center;
@@ -6573,8 +6587,6 @@ figure.vault-mock {
   margin-top: 1rem;
 }
 
-.home-page .pain-card,
-.home-page .feature-primary,
 .home-page .privacy-card,
 .home-page #testimonials .quote {
   background: linear-gradient(
@@ -6583,10 +6595,6 @@ figure.vault-mock {
     color-mix(in srgb, var(--t-teal-soft) 30%, white)
   );
   box-shadow: 0 18px 42px -36px rgba(20, 36, 48, 0.72);
-}
-
-.home-page .feature-primary {
-  border-top: 3px solid var(--t-teal);
 }
 
 .home-page .performance-panel {
@@ -6698,9 +6706,6 @@ figure.vault-mock {
     max-width: 24ch;
   }
 
-  .home-page .section-vault-teaser > .container > h2,
-  .home-page .section-vault-teaser > .container > .section-eyebrow,
-  .home-page .section-vault-teaser > .container > .section-intro,
   .home-page .section-signup > .container > h2,
   .home-page .section-signup > .container > p {
     margin-left: auto;
@@ -7590,5 +7595,833 @@ figure.vault-mock {
 
   .mcp-hero-note {
     border-radius: var(--radius-lg);
+  }
+}
+
+/* ============================================================
+   HOMEPAGE DESIGN PASS — COLOUR & KINETICS
+   Sections 01/05/06/07 and the two closing teasers, upgraded
+   within the existing paper/ink design language: platform
+   accents from the search overlay (kp-*), rust for "lost",
+   teal for "found", olive for Vault, ink for terminals.
+   ============================================================ */
+
+/* --- 05 · Features: overlay showcase card ------------------- */
+.feature-showcase {
+  max-width: 46rem;
+  margin: 0 auto 1.5rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+  box-shadow: 0 22px 50px -38px rgba(20, 36, 48, 0.72);
+  overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-showcase:hover {
+  border-color: var(--t-teal-edge);
+  box-shadow: 0 26px 56px -36px rgba(20, 36, 48, 0.62);
+}
+
+.fs-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--t-paper-2);
+}
+
+.fs-search-icon {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  stroke: var(--text-muted);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.fs-query {
+  color: var(--t-ink);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.fs-kbd {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 3px;
+}
+
+.fs-kbd kbd {
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 2px 5px;
+  background: var(--t-card);
+  color: var(--t-ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+.fs-results {
+  margin: 0;
+  padding: 0.625rem;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.fs-res {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5625rem 0.625rem 0.5rem 0.75rem;
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--platform-accent, var(--accent));
+  border-radius: 6px;
+  background: var(--platform-card, var(--t-card));
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.fs-res:hover {
+  background: var(--platform-card-selected, var(--t-teal-soft));
+  transform: translateX(2px);
+}
+
+.fs-res[data-p="claude"] {
+  --platform-accent: #d07a45;
+  --platform-card: #fdf5ef;
+  --platform-card-selected: #f7ebdf;
+}
+
+.fs-res[data-p="chatgpt"] {
+  --platform-accent: #10a37f;
+  --platform-card: #eefaf6;
+  --platform-card-selected: #e0f4ee;
+}
+
+.fs-res[data-p="gemini"] {
+  --platform-accent: #3d63f0;
+  --platform-card: #f1f4ff;
+  --platform-card-selected: #e4eaff;
+}
+
+.fs-snippet {
+  margin: 0;
+  color: var(--t-ink-2);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.fs-snippet mark {
+  border-radius: 2px;
+  padding: 0 1px;
+  background: rgba(198, 87, 47, 0.1);
+  color: var(--t-ink-2);
+}
+
+.fs-date {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  white-space: nowrap;
+}
+
+.fs-hint {
+  margin: 0;
+  padding: 0.55rem 0.9rem;
+  border-top: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+}
+
+.fs-hint kbd {
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 2px 4px;
+  background: var(--t-card);
+  color: var(--t-ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  line-height: 1;
+}
+
+/* --- 05 · Features: bento cards ------------------------------ */
+.feature-bento {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.feature-card {
+  --fc-accent: var(--t-teal);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.375rem 1.375rem 1.5rem;
+  border: 1px solid var(--t-rule);
+  border-top: 3px solid var(--fc-accent);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    155deg,
+    var(--t-card) 55%,
+    color-mix(in srgb, var(--fc-accent) 8%, white)
+  );
+  box-shadow: 0 18px 42px -36px rgba(20, 36, 48, 0.72);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.feature-card:hover {
+  border-color: color-mix(in srgb, var(--fc-accent) 45%, var(--t-rule));
+  box-shadow: 0 22px 46px -32px rgba(20, 36, 48, 0.6);
+  transform: translateY(-2px);
+}
+
+.fc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--fc-accent) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--fc-accent) 30%, var(--t-rule));
+  color: color-mix(in srgb, var(--fc-accent) 72%, var(--t-ink));
+}
+
+.fc-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fc-tag {
+  position: absolute;
+  top: 1.375rem;
+  right: 1.375rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--fc-accent) 10%, white);
+  border: 1px solid color-mix(in srgb, var(--fc-accent) 26%, var(--t-rule));
+  color: color-mix(in srgb, var(--fc-accent) 68%, var(--t-ink));
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.feature-card h3 {
+  margin: 0.25rem 0 0;
+  font-size: 1.0625rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* --- 06 · Platforms: colour-coded pills ---------------------- */
+.platform-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.platform-count {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.platform-group-web {
+  background:
+    linear-gradient(
+      160deg,
+      var(--t-card),
+      color-mix(in srgb, var(--t-teal-soft) 26%, white)
+    );
+}
+
+.platform-group-agents {
+  background:
+    linear-gradient(
+      160deg,
+      var(--t-card),
+      color-mix(in srgb, var(--t-paper-2) 80%, white)
+    );
+}
+
+.pf-chip {
+  --pf-accent: var(--t-teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--pf-accent) 30%, var(--t-rule));
+  border-radius: 9999px;
+  padding: 0.375rem 0.8rem;
+  background: color-mix(in srgb, var(--pf-accent) 7%, white);
+  color: color-mix(in srgb, var(--pf-accent) 52%, var(--t-ink));
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.18s ease, background-color 0.18s ease,
+    border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.pf-chip::before {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pf-accent);
+}
+
+.pf-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--pf-accent) 55%, var(--t-rule));
+  background: color-mix(in srgb, var(--pf-accent) 13%, white);
+  box-shadow: 0 8px 18px -12px rgba(20, 36, 48, 0.55);
+}
+
+/* One accent per assistant, echoing the result pills in the overlay */
+.pf-chatgpt { --pf-accent: #10a37f; }
+.pf-claude { --pf-accent: #d07a45; }
+.pf-gemini { --pf-accent: #3d63f0; }
+.pf-google-ai-mode { --pf-accent: #1a73e8; }
+.pf-perplexity { --pf-accent: #0d9488; }
+.pf-microsoft-copilot { --pf-accent: #0078d4; }
+.pf-meta-ai { --pf-accent: #0064e0; }
+.pf-deepseek { --pf-accent: #2a7aa8; }
+.pf-grok { --pf-accent: #4b5563; }
+.pf-mistral { --pf-accent: #c06a15; }
+.pf-kimi { --pf-accent: #7c6ce0; }
+.pf-qwen { --pf-accent: #615ced; }
+.pf-google-ai-studio { --pf-accent: #0e7490; }
+.pf-character-ai { --pf-accent: #7c3aed; }
+.pf-z-ai { --pf-accent: #2563eb; }
+
+/* Coding agents read as terminals: ink chip, mono, olive prompt */
+.pf-chip.pf-agent {
+  background: var(--t-ink);
+  border-color: var(--t-ink);
+  color: #ebf5cb;
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+.pf-chip.pf-agent::before {
+  display: none;
+}
+
+.pf-agent-prompt {
+  color: var(--t-on-edge);
+  margin-right: 0.15rem;
+}
+
+.pf-chip.pf-agent:hover {
+  background: var(--t-ink-2);
+  border-color: var(--t-ink-2);
+}
+
+/* --- 07 · Privacy: this device vs optional Vault ------------- */
+.prv-flow {
+  margin: 0 0 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr minmax(96px, auto) 1fr;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.prv-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.375rem 1.375rem 1.25rem;
+  border-radius: var(--radius-lg);
+  text-align: left;
+}
+
+.prv-box-body strong {
+  display: block;
+  font-size: 1.0625rem;
+  margin-bottom: 0.3rem;
+}
+
+.prv-box-body p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.prv-local {
+  background: var(--t-card);
+  border: 1.5px solid var(--t-teal-edge);
+  box-shadow: 0 18px 42px -36px rgba(20, 36, 48, 0.72);
+}
+
+.prv-local .prv-icon {
+  background: var(--t-teal-soft);
+  border-color: var(--t-teal-edge);
+  color: var(--brand);
+}
+
+.prv-vault {
+  background: color-mix(in srgb, var(--t-paper-2) 55%, white);
+  border: 1.5px dashed color-mix(in srgb, var(--t-rust) 42%, var(--t-rule));
+}
+
+.prv-vault .prv-icon {
+  background: color-mix(in srgb, var(--t-rust) 9%, white);
+  border-color: color-mix(in srgb, var(--t-rust) 28%, var(--t-rule));
+  color: var(--t-rust);
+}
+
+.prv-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius);
+  border: 1px solid var(--t-teal-edge);
+}
+
+.prv-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prv-badge {
+  width: fit-content;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  border: 1px solid var(--t-teal-edge);
+  color: color-mix(in srgb, var(--t-teal) 78%, var(--t-ink));
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prv-badge-opt {
+  background: color-mix(in srgb, var(--t-rust) 8%, white);
+  border-color: color-mix(in srgb, var(--t-rust) 28%, var(--t-rule));
+  color: color-mix(in srgb, var(--t-rust) 80%, var(--t-ink));
+}
+
+.prv-connector {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.45rem;
+  padding: 0 0.25rem;
+}
+
+.prv-connector-line {
+  width: 100%;
+  height: 0;
+  border-top: 2px dashed color-mix(in srgb, var(--t-rust) 45%, transparent);
+}
+
+.prv-connector-lock {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--t-rust) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--t-rust) 30%, var(--t-rule));
+  color: var(--t-rust);
+  margin-top: -42px;
+  margin-bottom: -42px;
+}
+
+.prv-connector-lock svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.prv-connector-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  max-width: 12ch;
+}
+
+/* Accent-coded privacy cards (accent set inline per card) */
+.privacy-card {
+  --pc-accent: var(--t-teal);
+  border-top: 3px solid var(--pc-accent);
+}
+
+.privacy-card .privacy-icon {
+  background: color-mix(in srgb, var(--pc-accent) 11%, white);
+  border-color: color-mix(in srgb, var(--pc-accent) 30%, var(--t-rule));
+  color: color-mix(in srgb, var(--pc-accent) 75%, var(--t-ink));
+}
+
+/* --- Teasers: shared split layout ----------------------------- */
+.teaser-split {
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.teaser-copy h2 {
+  max-width: 17ch;
+}
+
+.teaser-copy .section-intro {
+  margin-bottom: var(--s-3);
+}
+
+.teaser-cta-left {
+  justify-content: flex-start;
+}
+
+/* --- MCP teaser: paper section + dark terminal mock ----------- */
+.section-mcp-teaser {
+  position: relative;
+  border-top: 1px solid var(--t-rule);
+  overflow: hidden;
+}
+
+.section-mcp-teaser::before {
+  content: "";
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  left: -12rem;
+  top: -18rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 127, 153, 0.12), transparent 68%);
+  pointer-events: none;
+}
+
+.term-card {
+  width: 100%;
+  border-radius: 14px;
+  background: var(--t-ink);
+  box-shadow:
+    0 26px 55px -30px rgba(20, 36, 48, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+
+.term-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid rgba(235, 245, 203, 0.14);
+}
+
+.term-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(235, 245, 203, 0.22);
+}
+
+.term-dot:first-child { background: rgba(198, 87, 47, 0.65); }
+.term-dot:nth-child(2) { background: rgba(154, 180, 88, 0.55); }
+.term-dot:nth-child(3) { background: rgba(47, 127, 153, 0.75); }
+
+.term-title {
+  margin-left: auto;
+  color: rgba(235, 245, 203, 0.55);
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+}
+
+.term-body {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.05rem 1.15rem 1.2rem;
+  font-size: 0.8rem;
+}
+
+.term-line {
+  margin: 0;
+  color: #ebf5cb;
+}
+
+.term-prompt {
+  color: var(--t-on-edge);
+  margin-right: 0.45rem;
+}
+
+.term-note {
+  margin: 0;
+  color: rgba(235, 245, 203, 0.5);
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.term-res {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0;
+  color: rgba(235, 245, 203, 0.88);
+  font-size: 0.76rem;
+}
+
+.term-pill {
+  --tp-accent: var(--t-teal);
+  flex: none;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--tp-accent) 24%, var(--t-ink));
+  border: 1px solid color-mix(in srgb, var(--tp-accent) 50%, transparent);
+  color: color-mix(in srgb, var(--tp-accent) 40%, white);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.term-date {
+  margin-left: auto;
+  color: rgba(235, 245, 203, 0.4);
+  font-size: 0.64rem;
+}
+
+.term-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  background: #ebf5cb;
+  vertical-align: text-bottom;
+  animation: kp-cursor 1s steps(2) infinite;
+}
+
+/* --- Vault teaser: olive band + encrypted device sync --------- */
+.section-vault-teaser {
+  border-top: 1px solid var(--t-rule);
+  background:
+    radial-gradient(
+      70% 120% at 18% -10%,
+      color-mix(in srgb, var(--t-on-edge) 18%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--t-on-bg) 40%, var(--bg)),
+      var(--bg) 88%
+    );
+}
+
+.section-vault-teaser .section-eyebrow {
+  color: var(--t-rust);
+}
+
+.vv-panel {
+  padding: 1.75rem 1.5rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--t-on-edge) 42%, var(--t-rule));
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 55px -38px rgba(20, 36, 48, 0.55);
+}
+
+.vv-devices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+
+.vv-device {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  padding: 1rem 1.35rem;
+  border-radius: 12px;
+  background: var(--t-card);
+  border: 1px solid var(--t-rule);
+  color: var(--t-ink-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.vv-device svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: var(--t-teal);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vv-device-phone svg {
+  stroke: var(--t-rust);
+}
+
+.vv-sync {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+}
+
+.vv-sync svg {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: color-mix(in srgb, var(--t-on-edge) 85%, var(--t-ink));
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: vv-spin 7s linear infinite;
+}
+
+.vv-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--t-on-bg);
+  border: 1px solid var(--t-on-edge);
+  color: var(--t-on-ink);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+}
+
+.vv-caption {
+  margin: 1.1rem 0 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+
+@keyframes vv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive ------------------------------------------------ */
+@media (max-width: 960px) {
+  .feature-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .teaser-split {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+
+  .teaser-copy h2 {
+    max-width: 22ch;
+  }
+
+  .prv-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .prv-connector {
+    grid-auto-flow: row;
+    padding: 0.25rem 0;
+  }
+
+  .prv-connector-line {
+    display: none;
+  }
+
+  .prv-connector-lock {
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .fs-res {
+    grid-template-columns: auto 1fr;
+  }
+
+  .fs-date {
+    display: none;
+  }
+
+  .fc-tag {
+    position: static;
+    width: fit-content;
+  }
+
+  .vv-devices {
+    gap: 0.6rem;
+  }
+
+  .vv-device {
+    padding: 0.85rem 1rem;
+  }
+}
+
+/* --- Reduced motion: keep the colour, drop the movement ------- */
+@media (prefers-reduced-motion: reduce) {
+  .term-caret {
+    animation: none;
+  }
+
+  .vv-sync svg {
+    animation: none;
+  }
+
+  .pf-chip,
+  .pf-chip:hover,
+  .feature-card,
+  .feature-card:hover,
+  .fs-res,
+  .fs-res:hover,
+  .pain-card,
+  .pain-card:hover {
+    transition: none;
   }
 }
