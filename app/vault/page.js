@@ -3,6 +3,7 @@ import VaultPageView from '../components/vault-page-view';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
+import { platformListSentence } from '../../lib/platforms';
 
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
@@ -63,7 +64,7 @@ const FAQS = [
   },
   {
     q: 'Which AI platforms does it cover?',
-    a: 'Everything LLMnesia already supports, including ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi and Qwen, brought together into one place. We add platforms regularly, so the extension is the best guide to the current list.'
+    a: `Vault syncs the history LLMnesia indexes from ${platformListSentence()}. Local Claude Code and Codex sessions are a separate source type, and can join the same archive when indexed. Vault does not maintain a separate platform list: when the extension adds support, that indexed history can join your encrypted archive too.`
   },
   {
     q: 'Is syncing the opposite of local-first?',

@@ -5,7 +5,7 @@ async function source(path) {
   return readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 }
 
-const [purchase, accountExperience, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy, vercelConfigText, about, foundationalArticle, llms, llmsFull, globals] = await Promise.all([
+const [purchase, accountExperience, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy, vercelConfigText, about, foundationalArticle, llms, llmsFull, globals, platforms] = await Promise.all([
   source('app/components/vault-purchase.js'),
   source('app/components/vault-account-experience.js'),
   source('app/pricing/page.js'),
@@ -22,7 +22,8 @@ const [purchase, accountExperience, pricing, account, vault, sitemap, readme, le
   source('content/blog/what-is-llmnesia.mdx'),
   source('app/llms.txt/route.js'),
   source('app/llms-full.txt/route.js'),
-  source('app/globals.css')
+  source('app/globals.css'),
+  source('lib/platforms.js')
 ]);
 
 for (const [name, text] of Object.entries({ purchase, pricing, vault, readme })) {
@@ -69,6 +70,15 @@ const vaultHero = vault.slice(
 );
 assert.doesNotMatch(vaultHero, /Ask Vault|read and Ask/, 'Ask Vault must not replace sync and backup as the hero proposition');
 assert.match(vault, /How is Vault different from free LLMnesia\?/);
+assert.match(vault, /import \{ platformListSentence \} from '\.\.\/\.\.\/lib\/platforms';/);
+assert.match(vault, /Vault syncs the history LLMnesia indexes from \$\{platformListSentence\(\)\}/);
+assert.match(vault, /Local Claude Code and Codex sessions are a separate source type/);
+assert.doesNotMatch(vault, /including ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi and Qwen/);
+assert.match(platforms, /'Google AI Mode'/);
+assert.match(platforms, /'Meta AI'/);
+assert.match(platforms, /'Z\.ai'/);
+assert.match(about, /platformListSentence\(\)/);
+assert.doesNotMatch(foundationalArticle, /does not currently support Meta AI/);
 assert.match(vault, /Do I need Vault to use MCP\?/);
 assert.match(vault, /MCP is a separate free feature/);
 assert.doesNotMatch(pricing, /MCP answers from all of it/);

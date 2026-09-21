@@ -19,7 +19,8 @@ const PLATFORM_LABELS = {
   kimi: 'Kimi',
   'ai-studio': 'Google AI Studio',
   'google-ai-mode': 'Google AI Mode',
-  'character-ai': 'Character.AI'
+  'character-ai': 'Character.AI',
+  'meta-ai': 'Meta AI'
 };
 
 // A person who searches for recovery help has two materially different needs:

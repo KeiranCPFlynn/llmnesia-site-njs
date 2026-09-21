@@ -4,6 +4,7 @@ import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { personSchema, organizationSchema } from '../../lib/schema';
 import { absoluteUrl, CHROME_WEB_STORE_URL, EDGE_ADDONS_URL } from '../../lib/site';
+import { platformListSentence } from '../../lib/platforms';
 
 export const metadata = buildPageMetadata({
   title: 'About Keiran Flynn — Founder of LLMnesia',
@@ -68,14 +69,9 @@ export default function AboutPage() {
 
             <h2>Supported platforms</h2>
             <p>
-              LLMnesia currently indexes conversations from: <strong>ChatGPT</strong>,{' '}
-              <strong>Claude</strong>, <strong>Gemini</strong>, <strong>Perplexity</strong>,{' '}
-              <strong>Microsoft Copilot</strong>, <strong>DeepSeek</strong>, <strong>Grok</strong>,{' '}
-              <strong>Mistral</strong>, <strong>Kimi</strong>, <strong>Qwen</strong>,{' '}
-              <strong>Google AI Studio</strong>, <strong>Character.AI</strong>, and{' '}
-              <strong>Z.ai</strong>. You can also index your local <strong>Claude Code</strong> and{' '}
+              LLMnesia currently indexes conversations from {platformListSentence()}. You can also index your local <strong>Claude Code</strong> and{' '}
               <strong>Codex</strong> sessions — from their terminal, IDE, and desktop surfaces —
-              into the same search. Additional integrations are in progress.
+              into the same search. Google AI Mode uses optional site access. Additional integrations are in progress.
             </p>
 
             <h2>How it works</h2>
