@@ -47,6 +47,8 @@ assert.match(homepage, /end-to-end encrypted backup that we cannot read/);
 assert.doesNotMatch(homepage, /history together for local MCP search/);
 assert.match(homepage, /Vault web app beta/);
 assert.match(homepage, /Ask Vault is a built-in beta feature/);
+assert.match(homepage, /\{\{PLATFORM_CHIPS\}\}<li>Claude Code<\/li><li>Codex<\/li>/);
+assert.doesNotMatch(homepage, /Plus your local coding-agent sessions/);
 
 assert.doesNotMatch(vault, /MCP uses your local history on your desktop/);
 assert.doesNotMatch(vault, /Point your AI at your own history/);
