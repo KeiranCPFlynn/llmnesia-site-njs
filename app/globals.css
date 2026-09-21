@@ -7606,151 +7606,24 @@ figure.vault-mock {
    teal for "found", olive for Vault, ink for terminals.
    ============================================================ */
 
-/* --- 05 · Features: overlay showcase card ------------------- */
-.feature-showcase {
-  max-width: 46rem;
-  margin: 0 auto 1.5rem;
-  border: 1px solid var(--t-rule);
-  border-radius: var(--radius-lg);
-  background: var(--t-card);
-  box-shadow: 0 22px 50px -38px rgba(20, 36, 48, 0.72);
-  overflow: hidden;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.feature-showcase:hover {
-  border-color: var(--t-teal-edge);
-  box-shadow: 0 26px 56px -36px rgba(20, 36, 48, 0.62);
-}
-
-.fs-bar {
+/* --- 05 · Features: faithful replica of the real search overlay ---
+   Reuses the hero's .kinetic-panel chrome and .kp-* row anatomy verbatim
+   (title / snippet / pill + relative date), frozen mid-search with the first
+   row keyboard-selected. No data-kp-* attributes, so SiteBehavior's typing
+   loop (bound to the hero panel) never touches it. */
+.feature-overlay {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 0.9rem;
-  border-bottom: 1px solid var(--border-soft);
-  background: var(--t-paper-2);
+  justify-content: center;
+  margin: 0 auto 1.5rem;
 }
 
-.fs-search-icon {
-  flex: none;
-  width: 14px;
-  height: 14px;
-  stroke: var(--text-muted);
-  stroke-width: 1.6;
-  fill: none;
-  stroke-linecap: round;
+.feature-overlay .kinetic-panel {
+  max-width: 420px;
 }
 
-.fs-query {
-  color: var(--t-ink);
-  font-weight: 600;
-  font-size: 0.9375rem;
-}
-
-.fs-kbd {
-  margin-left: auto;
-  display: inline-flex;
-  gap: 3px;
-}
-
-.fs-kbd kbd {
-  border: 1px solid var(--border);
-  border-bottom-width: 2px;
-  border-radius: 3px;
-  padding: 2px 5px;
-  background: var(--t-card);
-  color: var(--t-ink-2);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  line-height: 1;
-}
-
-.fs-results {
-  margin: 0;
-  padding: 0.625rem;
-  list-style: none;
-  display: grid;
-  gap: 0.4rem;
-}
-
-.fs-res {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.5625rem 0.625rem 0.5rem 0.75rem;
-  border: 1px solid var(--border-soft);
-  border-left: 3px solid var(--platform-accent, var(--accent));
-  border-radius: 6px;
-  background: var(--platform-card, var(--t-card));
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.fs-res:hover {
+.kp-res.is-sel {
   background: var(--platform-card-selected, var(--t-teal-soft));
-  transform: translateX(2px);
-}
-
-.fs-res[data-p="claude"] {
-  --platform-accent: #d07a45;
-  --platform-card: #fdf5ef;
-  --platform-card-selected: #f7ebdf;
-}
-
-.fs-res[data-p="chatgpt"] {
-  --platform-accent: #10a37f;
-  --platform-card: #eefaf6;
-  --platform-card-selected: #e0f4ee;
-}
-
-.fs-res[data-p="gemini"] {
-  --platform-accent: #3d63f0;
-  --platform-card: #f1f4ff;
-  --platform-card-selected: #e4eaff;
-}
-
-.fs-snippet {
-  margin: 0;
-  color: var(--t-ink-2);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-.fs-snippet mark {
-  border-radius: 2px;
-  padding: 0 1px;
-  background: rgba(198, 87, 47, 0.1);
-  color: var(--t-ink-2);
-}
-
-.fs-date {
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  white-space: nowrap;
-}
-
-.fs-hint {
-  margin: 0;
-  padding: 0.55rem 0.9rem;
-  border-top: 1px solid var(--border-soft);
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
-}
-
-.fs-hint kbd {
-  border: 1px solid var(--border);
-  border-bottom-width: 2px;
-  border-radius: 3px;
-  padding: 2px 4px;
-  background: var(--t-card);
-  color: var(--t-ink-2);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  line-height: 1;
+  border-color: color-mix(in srgb, var(--platform-accent, var(--t-teal)) 38%, var(--t-rule));
 }
 
 /* --- 05 · Features: bento cards ------------------------------ */
@@ -8179,35 +8052,90 @@ figure.vault-mock {
 
 .term-body {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.55rem;
   padding: 1.05rem 1.15rem 1.2rem;
   font-size: 0.8rem;
 }
 
-.term-line {
-  margin: 0;
+.term-body > * {
+  min-width: 0;
+}
+
+.term-welcome {
+  margin: 0 0 0.25rem;
+  color: rgba(235, 245, 203, 0.55);
+  font-size: 0.72rem;
+}
+
+.term-spark {
+  color: #d98e5f;
+}
+
+.term-prompt-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(235, 245, 203, 0.22);
+  border-radius: 8px;
+  background: rgba(235, 245, 203, 0.05);
   color: #ebf5cb;
 }
 
-.term-prompt {
-  color: var(--t-on-edge);
+.term-gt {
+  flex: none;
+  color: rgba(235, 245, 203, 0.5);
+}
+
+.term-prompt-next {
+  margin-top: 0.35rem;
+  border-style: dashed;
+  background: transparent;
+}
+
+.term-act {
+  margin: 0;
+  color: rgba(235, 245, 203, 0.6);
+  font-size: 0.75rem;
+}
+
+.term-bullet {
+  color: #d98e5f;
   margin-right: 0.45rem;
 }
 
-.term-note {
-  margin: 0;
-  color: rgba(235, 245, 203, 0.5);
-  font-size: 0.72rem;
-  font-style: italic;
-}
-
-.term-res {
+.term-src {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   margin: 0;
-  color: rgba(235, 245, 203, 0.88);
-  font-size: 0.76rem;
+  padding-left: 1.05rem;
+  color: rgba(235, 245, 203, 0.85);
+  font-size: 0.75rem;
+}
+
+.term-src-mark {
+  flex: none;
+  color: rgba(235, 245, 203, 0.4);
+}
+
+.term-src-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.term-answer {
+  margin: 0.15rem 0 0;
+  color: #ebf5cb;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.term-cite {
+  color: #d98e5f;
+  white-space: nowrap;
 }
 
 .term-pill {
@@ -8224,6 +8152,7 @@ figure.vault-mock {
 }
 
 .term-date {
+  flex: none;
   margin-left: auto;
   color: rgba(235, 245, 203, 0.4);
   font-size: 0.64rem;
@@ -8382,11 +8311,7 @@ figure.vault-mock {
     grid-template-columns: 1fr;
   }
 
-  .fs-res {
-    grid-template-columns: auto 1fr;
-  }
-
-  .fs-date {
+  .term-src .term-date {
     display: none;
   }
 
@@ -8418,8 +8343,6 @@ figure.vault-mock {
   .pf-chip:hover,
   .feature-card,
   .feature-card:hover,
-  .fs-res,
-  .fs-res:hover,
   .pain-card,
   .pain-card:hover {
     transition: none;

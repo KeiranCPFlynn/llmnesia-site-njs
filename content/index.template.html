@@ -192,14 +192,6 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </figure>
-      <figure class="browser-mock">
-        <div class="browser-bar" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </div>
-        <img src="/assets/demo.png"
-          alt="LLMnesia search overlay showing results from multiple AI platforms in a single browser window"
-          width="2034" height="1242" loading="lazy">
-      </figure>
       <p class="demo-caption">Search across supported AI chat history with <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>9</kbd>.</p>
     </section>
 
@@ -314,30 +306,74 @@
       <p class="section-eyebrow">05 — features</p>
       <h2>What you <span class="text-gradient">actually get</span></h2>
       <p class="section-intro">Real features, shipping in the free extension today. No account, no cloud, no paywall in front of search.</p>
-      <div class="feature-showcase" data-reveal>
-        <div class="fs-bar">
-          <svg class="fs-search-icon" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.25" /><path d="M11 11l3.5 3.5" stroke-linecap="round" /></svg>
-          <span class="fs-query">css grid masonry fix</span>
-          <span class="fs-kbd"><kbd>⌘</kbd><kbd>⇧</kbd><kbd>9</kbd></span>
+      <!-- Faithful static replica of the real search overlay (same .kp-* markup
+           the hero panel renders; no data-kp-* hooks so SiteBehavior ignores it). -->
+      <div class="feature-overlay" data-reveal aria-hidden="true">
+        <div class="kinetic-panel">
+          <div class="kp-header">
+            <span class="kp-dot"></span>
+            <span class="kp-brand">LLMnesia</span>
+            <span class="kp-kbd">⌘ ⇧ 9</span>
+          </div>
+          <div class="kp-input-wrap has-query">
+            <div class="kp-input-row">
+              <div class="kp-input">masonry gallery fix</div>
+              <div class="kp-tools">
+                <button class="kp-tool" type="button" tabindex="-1">
+                  <svg viewBox="0 0 16 16" width="13" height="13" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="8" cy="8" r="6.25" />
+                    <path d="M8 4.25v4L10.75 9.5" stroke-linecap="round" />
+                  </svg>
+                </button>
+                <button class="kp-tool" type="button" tabindex="-1">
+                  <svg viewBox="0 0 16 16" width="13" height="13" stroke-width="1.5" stroke-linecap="round"
+                    aria-hidden="true">
+                    <line x1="3" y1="4.5" x2="13" y2="4.5" />
+                    <line x1="4.75" y1="8" x2="11.25" y2="8" />
+                    <line x1="6.25" y1="11.5" x2="9.75" y2="11.5" />
+                  </svg>
+                </button>
+                <button class="kp-tool kp-tool-clear" type="button" tabindex="-1">
+                  <svg viewBox="0 0 16 16" width="12" height="12" stroke-width="1.6" stroke-linecap="round"
+                    aria-hidden="true">
+                    <path d="M4.25 4.25l7.5 7.5M11.75 4.25l-7.5 7.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="kp-hint">30 indexed <span class="dot-sep">·</span> <kbd>↑</kbd> for previous</div>
+          </div>
+          <div class="kp-results">
+            <div class="kp-res on is-sel" data-p="claude">
+              <div class="kp-title">The <mark>masonry</mark> fix we landed for the <mark>gallery</mark> page</div>
+              <div class="kp-snippet">…the trick was grid-template-rows: <mark>masonry</mark> with a columns fallback…</div>
+              <div class="kp-meta">
+                <span class="kp-pill">Claude</span>
+                <span class="kp-date">3 weeks ago</span>
+              </div>
+            </div>
+            <div class="kp-res on" data-p="chatgpt">
+              <div class="kp-title">You already solved the <mark>masonry</mark> layout in March</div>
+              <div class="kp-snippet">…here's the exact snippet you settled on for the <mark>gallery</mark> grid…</div>
+              <div class="kp-meta">
+                <span class="kp-pill">ChatGPT</span>
+                <span class="kp-date">3 weeks ago</span>
+              </div>
+            </div>
+            <div class="kp-res on" data-p="gemini">
+              <div class="kp-title"><mark>Masonry</mark> vs multi-column for image-heavy pages</div>
+              <div class="kp-snippet">…<mark>masonry</mark> keeps reading order intact where CSS columns break it…</div>
+              <div class="kp-meta">
+                <span class="kp-pill">Gemini</span>
+                <span class="kp-date">1 month ago</span>
+              </div>
+            </div>
+          </div>
+          <div class="kp-footer">
+            <span class="kp-count">3 results</span>
+            <span><kbd>↵</kbd> to open</span>
+          </div>
         </div>
-        <ul class="fs-results">
-          <li class="fs-res" data-p="claude">
-            <span class="kp-pill">Claude</span>
-            <p class="fs-snippet">…the trick was <mark>grid-template-rows: masonry</mark> with a columns fallback for Safari…</p>
-            <span class="fs-date">Mar 14</span>
-          </li>
-          <li class="fs-res" data-p="chatgpt">
-            <span class="kp-pill">ChatGPT</span>
-            <p class="fs-snippet">…you solved this in March — <mark>masonry layout</mark>, here's the snippet you landed on…</p>
-            <span class="fs-date">Mar 2</span>
-          </li>
-          <li class="fs-res" data-p="gemini">
-            <span class="kp-pill">Gemini</span>
-            <p class="fs-snippet">…compared CSS <mark>masonry</mark> against multi-columns for the gallery page…</p>
-            <span class="fs-date">Feb 27</span>
-          </li>
-        </ul>
-        <p class="fs-hint"><kbd>↵</kbd> opens the conversation at that exact message</p>
       </div>
       <ul class="feature-bento" data-reveal-stagger>
         <li class="feature-card" style="--fc-accent: var(--t-teal)">
@@ -493,14 +529,27 @@
         <div class="term-card" aria-hidden="true">
           <div class="term-bar">
             <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
-            <span class="term-title">claude · mcp</span>
+            <span class="term-title">claude code</span>
           </div>
           <div class="term-body">
-            <p class="term-line"><span class="term-prompt">›</span> what did we decide about pricing?</p>
-            <p class="term-note">searching your llmnesia index…</p>
-            <p class="term-res"><span class="term-pill" style="--tp-accent: #d07a45">Claude</span> "…move to usage-based tiers in Q3…" <span class="term-date">Apr 2</span></p>
-            <p class="term-res"><span class="term-pill" style="--tp-accent: #10a37f">ChatGPT</span> "…£8/mo felt right for Vault…" <span class="term-date">Mar 19</span></p>
-            <p class="term-line term-caret-line"><span class="term-prompt">›</span> <span class="term-caret"></span></p>
+            <p class="term-welcome"><span class="term-spark">✻</span> Welcome to Claude Code</p>
+            <div class="term-prompt-box"><span class="term-gt">&gt;</span> what did we decide about pricing?</div>
+            <p class="term-act"><span class="term-bullet">⏺</span> Searching your LLMnesia history…</p>
+            <p class="term-act"><span class="term-bullet">⏺</span> Read 3 matching conversations</p>
+            <div class="term-src">
+              <span class="term-src-mark">⎿</span>
+              <span class="term-pill" style="--tp-accent: #10a37f">ChatGPT</span>
+              <span class="term-src-text">Q3 pricing rationale memo</span>
+              <span class="term-date">2 days ago</span>
+            </div>
+            <div class="term-src">
+              <span class="term-src-mark">⎿</span>
+              <span class="term-pill" style="--tp-accent: #d07a45">Claude</span>
+              <span class="term-src-text">Pressure-test the pricing rationale</span>
+              <span class="term-date">5 days ago</span>
+            </div>
+            <p class="term-answer"><span class="term-bullet">⏺</span> You moved to usage-based tiers for Q3, with Vault at £8/mo. <span class="term-cite">2 sources ↗</span></p>
+            <div class="term-prompt-box term-prompt-next"><span class="term-gt">&gt;</span> <span class="term-caret"></span></div>
           </div>
         </div>
       </div>
