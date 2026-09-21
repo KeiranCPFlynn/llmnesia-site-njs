@@ -57,7 +57,10 @@ function CheckoutSuccess() {
                 <span aria-hidden="true">2</span>
                 <div>
                   <strong>Return to LLMnesia Settings</strong>
-                  <p>Find Vault and click “I’ve subscribed, check again”.</p>
+                  <p>
+                    Find Vault — returning there confirms your subscription automatically. If it
+                    hasn’t appeared yet, click “I’ve subscribed, check again”.
+                  </p>
                 </div>
               </li>
               <li>

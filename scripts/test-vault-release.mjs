@@ -47,7 +47,10 @@ assert.match(homepage, /end-to-end encrypted backup that we cannot read/);
 assert.doesNotMatch(homepage, /history together for local MCP search/);
 assert.match(homepage, /Vault web app beta/);
 assert.match(homepage, /Ask Vault is a built-in beta feature/);
-assert.match(homepage, /\{\{PLATFORM_CHIPS\}\}<li>Claude Code<\/li><li>Codex<\/li>/);
+// Platform chips and the agent chips (separate group since the platform-section
+// redesign) must both be present on the homepage.
+assert.match(homepage, /platform-chip-list">\{\{PLATFORM_CHIPS\}\}/);
+assert.match(homepage, /pf-chip pf-agent[\s\S]*claude code[\s\S]*pf-chip pf-agent[\s\S]*codex/);
 assert.doesNotMatch(homepage, /Plus your local coding-agent sessions/);
 
 assert.doesNotMatch(vault, /MCP uses your local history on your desktop/);

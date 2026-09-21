@@ -212,8 +212,9 @@ export default function VaultPurchase({
               <span className="vault-purchase-success-kicker">Payment successful</span>
               <strong>You’re subscribed to Vault.</strong>
               <p>
-                Sign in below with the same email you used at checkout. Then return to LLMnesia
-                Settings to finish setting up Vault.
+                Sign in below with the same email you used at checkout. Then open LLMnesia
+                Settings on this computer — the Vault panel confirms your subscription
+                automatically and you can create your Vault.
               </p>
             </div>
           </div>
@@ -282,8 +283,9 @@ export default function VaultPurchase({
             <span className="vault-purchase-success-kicker">Payment successful</span>
             <strong>You’re subscribed to Vault.</strong>
             <p>
-              Next, go back to LLMnesia Settings. In Vault, click “I’ve subscribed, check again”,
-              then create or unlock your private Vault.
+              Next, go back to LLMnesia Settings on this computer. The Vault panel confirms your
+              subscription automatically, then you create or unlock your private Vault. If it
+              hasn’t appeared yet, click “I’ve subscribed, check again”.
             </p>
           </div>
         </div>
@@ -312,7 +314,7 @@ export default function VaultPurchase({
       ) : checkoutReturn === 'success' ? (
         <div className="vault-purchase-active" role="status">
           <strong>Vault activation is still syncing.</strong>
-          <span>We’re checking automatically. You can also use “I’ve subscribed, check again” in LLMnesia Settings.</span>
+          <span>We’re checking automatically. Returning to LLMnesia Settings also picks it up straight away.</span>
         </div>
       ) : accountOnly ? (
         <div className="vault-purchase-active" role="status">

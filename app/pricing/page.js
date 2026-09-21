@@ -134,7 +134,7 @@ const FAQS = [
   },
   {
     q: 'How do I subscribe?',
-    a: 'Sign in here with the same email as your Vault account, then continue to secure Stripe Checkout. Stripe activates sync automatically after payment; no manual grant is needed.'
+    a: 'The quickest route is LLMnesia Settings in the extension: open the Vault panel, start your subscription there, and Stripe Checkout opens with no second sign-in. Or subscribe here with the same email as your Vault account. Either way, Stripe activates sync automatically after payment; no manual grant is needed.'
   },
   {
     q: 'Can you read my conversations?',

@@ -1,9 +1,12 @@
 import SiteChrome from '../components/site-chrome';
 import VaultPageView from '../components/vault-page-view';
+import VaultPurchase from '../components/vault-purchase';
 import JsonLd from '../components/json-ld';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 import { platformListSentence } from '../../lib/platforms';
+
+const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
 const ANNUAL_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL || '£88';
@@ -76,7 +79,7 @@ const FAQS = [
   },
   {
     q: 'How do I subscribe?',
-    a: 'Open the pricing page, sign in with the same email as your Vault account, and continue to secure Stripe Checkout. Stripe activates sync automatically after payment.'
+    a: 'The quickest route is LLMnesia Settings in the extension: open the Vault panel, start your subscription there, and Stripe Checkout opens with no second sign-in. Or subscribe here with the same email as your Vault account. Either way, Stripe activates sync automatically after payment.'
   }
 ];
 
@@ -102,7 +105,7 @@ export default function VaultPage() {
               read your whole archive.
             </p>
             <div className="vault-hero-actions">
-              <a className="button button-large" href="/pricing#vault-purchase">Subscribe to Vault</a>
+              <a className="button button-large" href="#vault-purchase">Subscribe to Vault</a>
               <a className="vault-hero-secondary" href="https://vault.llmnesia.com">Open the Vault web app &rarr;</a>
             </div>
             <p className="vault-hero-note">
@@ -225,7 +228,19 @@ export default function VaultPage() {
                 Billed annually at {ANNUAL_PRICE_LABEL}, including one month free. Or{' '}
                 {MONTHLY_PRICE_LABEL} billed monthly. Plus applicable tax.
               </p>
-              <a className="button button-large" href="/pricing#vault-purchase">Subscribe securely</a>
+              {CHECKOUT_ENABLED ? (
+                <VaultPurchase
+                  monthlyLabel={MONTHLY_PRICE_LABEL}
+                  annualLabel={ANNUAL_PRICE_LABEL}
+                  annualMonthlyLabel={ANNUAL_MONTHLY_LABEL}
+                />
+              ) : (
+                <div id="vault-purchase" className="vault-purchase-fallback">
+                  <a className="button button-large" href="https://www.llmnesia.com/pricing#vault-purchase">
+                    Subscribe on the live site
+                  </a>
+                </div>
+              )}
             </aside>
           </div>
         </section>
@@ -252,7 +267,7 @@ export default function VaultPage() {
               open vault.llmnesia.com to search and read from anywhere.
             </p>
             <div className="vault-hero-actions">
-              <a className="button button-large" href="/pricing#vault-purchase">Choose Vault</a>
+              <a className="button button-large" href="#vault-purchase">Choose Vault</a>
               <a className="vault-hero-secondary" href="https://vault.llmnesia.com">Open the web app &rarr;</a>
             </div>
           </div>
