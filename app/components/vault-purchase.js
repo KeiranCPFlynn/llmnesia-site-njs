@@ -42,16 +42,6 @@ export default function VaultPurchase({
   }, []);
 
   useEffect(() => {
-    if (!ready || !['success', 'cancelled'].includes(checkoutReturn)) return undefined;
-    const frame = window.requestAnimationFrame(() => {
-      const purchase = document.getElementById('vault-purchase');
-      purchase?.scrollIntoView({ block: 'start' });
-      purchase?.focus({ preventScroll: true });
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [checkoutReturn, ready]);
-
-  useEffect(() => {
     if (!supabase) {
       setReady(true);
       setError('Vault checkout is not configured yet.');

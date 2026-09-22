@@ -132,7 +132,9 @@ assert.match(
   /vault-purchase-signed-in[\s\S]*checkoutReturn === 'success'[\s\S]*You’re subscribed to Vault\./,
   'signed-in Checkout returns must show an explicit confirmation'
 );
-assert.match(purchase, /purchase\?\.scrollIntoView\(\{ block: 'start' \}\)/);
+// A checkout return must land on the page's own headline, not scroll away to
+// the widget — the redirect target (account page) opens at the top.
+assert.doesNotMatch(purchase, /scrollIntoView/);
 assert.match(purchase, /You’re subscribed to Vault\./);
 assert.match(purchase, /I’ve subscribed, check again/);
 assert.match(purchase, /accountOnly \|\| checkoutReturn === 'success'/);
