@@ -24,6 +24,10 @@ publish-ready entry, and always do a manual lean pass afterward.
   surface instead of the internal product name.
 - Title = the headline in plain language. No "& N fixes" bullet-counting when
   there's no `highlights` array.
+- Drafts arrive via the extension repo's release cut (`cut-release.mjs`,
+  synced by a commit hook) and hold exactly one release's bullets. If a draft
+  repeats already-published releases, the cut was missed: reconcile against
+  the extension repo's `CHANGELOG.md` instead of curating the dump as-is.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
