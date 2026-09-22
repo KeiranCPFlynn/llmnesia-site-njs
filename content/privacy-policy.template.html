@@ -51,7 +51,7 @@
     <section class="section container">
       <div class="policy-content">
         <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 21 September 2026</p>
+        <p class="policy-date">Last updated: 22 September 2026</p>
 
         <h2>Overview</h2>
         <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
@@ -64,9 +64,9 @@
           sync feature described below. If you enable the desktop MCP integration, LLMnesia also stores a local copy of
           that corpus in your user profile so desktop AI apps can search it.</p>
         <p>LLMnesia uses limited product analytics through PostHog to understand feature usage, diagnose problems, and
-          improve the extension. LLMnesia does not send AI conversation content, conversation titles, conversation URLs,
-          prompts, responses, search queries, cookies, authentication tokens, or local index data to PostHog or any
-          other external analytics service.</p>
+          improve the extension and the Vault web app. LLMnesia does not send AI conversation content, conversation
+          titles, conversation URLs, prompts, responses, search queries, cookies, authentication tokens, or local index
+          data to PostHog or any other external analytics service.</p>
 
         <h2>Information processed locally by the extension</h2>
         <p>LLMnesia processes the following data <strong>locally on your device</strong> to provide its core search
@@ -97,8 +97,9 @@
           the supported desktop AI apps you choose to use.</p>
 
         <h2>Product analytics</h2>
-        <p>LLMnesia uses PostHog to collect limited product analytics from the browser extension. This helps us
-          understand which features are used, diagnose errors, improve reliability, and make better product decisions.
+        <p>LLMnesia uses PostHog to collect limited product analytics from the browser extension and from the Vault web
+          app beta. This helps us understand which features are used, diagnose errors, improve reliability, and make
+          better product decisions.
         </p>
         <p>Analytics events may include limited technical and usage information such as:</p>
         <ul>
@@ -111,6 +112,11 @@
           <li>Aggregate counts, such as the number of conversations indexed</li>
           <li>An anonymous extension install identifier used to understand product usage without requiring an account
           </li>
+          <li>Web app usage events, such as opens, sign-ins and unlocks (recorded by method only), lock and sign-out,
+            searches (query length and result count, never the query text), Ask submissions (question length, never the
+            question text), and transcript opens</li>
+          <li>An anonymous web app identifier: a random ID kept in the browser's localStorage on the vault.llmnesia.com
+            origin, never an email address or account identifier</li>
         </ul>
         <p>LLMnesia does <strong>not</strong> send any of the following to PostHog or any other external analytics
           service:</p>
@@ -195,9 +201,9 @@
           OpenRouter, using the user's own API key. Ask does not send the whole Vault. The request does not pass through
           LLMnesia. The selected provider receives the request content and ordinary network metadata under its own
           privacy and data-retention terms. The completed answer links back to supporting source conversations.</p>
-        <p>The Vault web app does not include PostHog analytics or a crash-reporting SDK. Vercel hosts and delivers the
-          app's static files and receives ordinary web request metadata such as IP address, user agent, and request
-          time.</p>
+        <p>The Vault web app includes the same kind of anonymous PostHog product analytics as the extension, described in
+          the Product analytics section above. It has no crash-reporting SDK. Vercel hosts and delivers the app's static
+          files and receives ordinary web request metadata such as IP address, user agent, and request time.</p>
 
         <h2>Browser permissions</h2>
         <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
@@ -263,9 +269,9 @@
           have access to the encryption key needed to read the encrypted payloads.</p>
         <p>LLMnesia uses Stripe for Vault subscriptions. Payment details are entered and handled by Stripe; LLMnesia
           receives the identifiers and subscription state needed to grant or pause Vault access.</p>
-        <p>Vercel hosts and delivers the optional Vault web app beta. It receives ordinary web request metadata but does
-          not receive readable Vault content, the passphrase, Vault key, local searches, Ask prompts, or provider API
-          keys from the application.</p>
+        <p>Vercel hosts and delivers the optional Vault web app beta. It receives ordinary web request metadata and the
+          web app's anonymous usage events described above, but does not receive readable Vault content, the passphrase,
+          Vault key, search or Ask text, or provider API keys from the application.</p>
         <p>When a user taps Ask, the selected provider, currently OpenAI, Anthropic, Google, or OpenRouter, receives the
           current question, bounded relevant context selected for that Ask session, the user's API key, and ordinary
           request metadata. Ask does not send the whole Vault. The request goes directly from the browser to the
