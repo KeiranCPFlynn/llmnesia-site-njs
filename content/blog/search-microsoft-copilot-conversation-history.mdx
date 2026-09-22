@@ -1,9 +1,9 @@
 ---
-title: "Search Your Copilot Chat History Instantly"
+title: "How to Search Microsoft Copilot Chat History"
 slug: "search-microsoft-copilot-conversation-history"
-description: "Copilot has no real history search. Here is how to search every past chat by keyword in seconds, free and private on your own device."
+description: "Find and search Microsoft Copilot chat history, understand its 18-month retention window, and search conversation text locally."
 publishDate: "2026-04-17"
-updatedDate: "2026-06-18"
+updatedDate: "2026-09-22"
 author: "Keiran Flynn"
 primaryKeyword: "microsoft copilot conversation history"
 secondaryKeywords:
@@ -15,18 +15,18 @@ secondaryKeywords:
 intent: "informational"
 faq:
   - question: "Does Microsoft Copilot save conversation history?"
-    answer: "It depends on which version you're using. Copilot on the web (copilot.microsoft.com) saves recent conversations when you're signed into a Microsoft account. The Edge sidebar Copilot saves limited history. Microsoft 365 Copilot (in Teams, Word, etc.) keeps records in your Microsoft 365 activity log. Some modes do not retain history between sessions."
+    answer: "Yes. When you are signed in, the consumer Copilot experience saves conversation history and Microsoft says it retains the last 18 months of interactions. Microsoft 365 Copilot uses separate organisational controls."
   - question: "Where can I find my old Copilot conversations?"
     answer: "For web Copilot: the left sidebar on copilot.microsoft.com shows recent conversations when signed in. For Microsoft 365 Copilot: history may appear in the specific app where it was used (e.g., Teams chat history). For Edge sidebar: limited history is accessible in the sidebar panel."
   - question: "Why did my Copilot conversation history disappear?"
-    answer: "Copilot does not retain all conversations indefinitely. Some conversation modes (like certain quick-answer formats) do not create a persistent history entry. Signing out resets the visible history for unauthenticated sessions. Microsoft's data retention policies apply to signed-in history."
+    answer: "First confirm that you are signed into the same account and open the conversation sidebar. Consumer Copilot retains the last 18 months, so an older chat may have aged out. Work or school accounts can also follow organisational retention policies."
   - question: "Can I search the content of old Copilot conversations?"
     answer: "Not natively. Copilot's conversation history is navigable but not reliably full-text searchable through the interface. LLMnesia supports conversations at copilot.microsoft.com and indexes them locally as you browse, making their content searchable."
   - question: "Does LLMnesia work with Microsoft Copilot?"
     answer: "Yes. LLMnesia supports Microsoft Copilot conversations at copilot.microsoft.com and indexes them locally as you browse. It does not index Copilot interactions embedded inside Microsoft 365 apps, Windows, or IDEs."
 sources:
-  - label: "Microsoft Copilot support"
-    url: "https://support.microsoft.com/en-us/copilot"
+  - label: "Microsoft Support: Copilot conversation history"
+    url: "https://support.microsoft.com/en-us/microsoft-copilot/conversation-history-in-microsoft-copilot"
   - label: "Microsoft privacy dashboard"
     url: "https://account.microsoft.com/privacy"
   - label: "LLMnesia — AI conversation search"
@@ -41,7 +41,9 @@ relatedSlugs:
   - "ai-chat-history-broken-native-search"
 ---
 
-Microsoft Copilot is actually several different products that share a brand name. The conversation history experience varies considerably depending on which version you're using. Before looking for old conversations, it helps to understand which Copilot you've been using.
+**To find Microsoft Copilot chat history, sign in and open the conversation list on the left side of copilot.com or the Copilot app.** Microsoft says consumer Copilot retains the last 18 months of interactions. The history list lets you reopen a known chat, but for keyword retrieval across conversation text you may still need to open likely chats, use browser history, or search a local index.
+
+Microsoft Copilot is several products under one brand, so the exact history controls depend on whether you use consumer Copilot, the desktop or mobile app, or Microsoft 365 Copilot.
 
 ## Which Copilot are you using?
 
@@ -62,6 +64,7 @@ When you use Copilot on the web while signed into a Microsoft account:
 - Each conversation session is stored as a separate history entry
 - The sidebar shows recent conversations, accessible on return visits
 - History is account-linked, so it syncs across devices where you sign in with the same account
+- Consumer Copilot retains the last 18 months of interactions, according to Microsoft
 
 The web version supports three response styles: Balanced, Creative, and Precise (or the more direct "Chat" mode in newer versions). All of these create history entries when you're signed in.
 
