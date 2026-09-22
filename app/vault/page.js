@@ -105,7 +105,7 @@ export default function VaultPage() {
               read your whole archive.
             </p>
             <div className="vault-hero-actions">
-              <a className="button button-large" href="#vault-purchase">Subscribe to Vault</a>
+              <a className="button button-large" href="#vault-pricing">Subscribe to Vault</a>
               <a className="vault-hero-secondary" href="https://vault.llmnesia.com">Open the Vault web app &rarr;</a>
             </div>
             <p className="vault-hero-note">
@@ -218,7 +218,7 @@ export default function VaultPage() {
                 <li>Cancel any time; device copies stay searchable while sync and restore pause</li>
               </ul>
             </div>
-            <aside className="vault-price-card" aria-label="Vault pricing">
+            <aside className="vault-price-card" id="vault-pricing" aria-label="Vault pricing">
               <p className="vault-price-badge">Vault</p>
               <p className="vault-price-figure">
                 <span className="vault-price-now">{ANNUAL_MONTHLY_LABEL}</span>
@@ -267,7 +267,7 @@ export default function VaultPage() {
               open vault.llmnesia.com to search and read from anywhere.
             </p>
             <div className="vault-hero-actions">
-              <a className="button button-large" href="#vault-purchase">Choose Vault</a>
+              <a className="button button-large" href="#vault-pricing">Choose Vault</a>
               <a className="vault-hero-secondary" href="https://vault.llmnesia.com">Open the web app &rarr;</a>
             </div>
           </div>

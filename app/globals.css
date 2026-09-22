@@ -69,7 +69,10 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  /* clip, not hidden: overflow-x hidden on html and body turns each into a
+     scroll container, which makes Chrome swallow fragment/smooth scrolls
+     (anchor links land nowhere or part-way). Clip clips without scrolling. */
+  overflow-x: clip;
 }
 
 body {
@@ -77,7 +80,7 @@ body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
 }
@@ -5506,6 +5509,7 @@ p.vault-price-badge {
 }
 
 .vault-pricing,
+.vault-price-card,
 .vault-purchase-fallback {
   scroll-margin-top: 6rem;
 }

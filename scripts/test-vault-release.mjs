@@ -146,7 +146,7 @@ assert.equal(
 assert.match(pricing, /Sync and restore from the encrypted Vault pause when the subscription ends/);
 assert.match(pricing, /Conversations already on each device stay searchable/);
 
-assert.match(privacy, /Last updated: 21 September 2026/);
+assert.match(privacy, /Last updated: 22 September 2026/);
 assert.match(privacy, /Every remote Vault operation/);
 assert.match(privacy, /cannot be\s+synced or restored until you renew/);
 assert.match(privacy, /Payments are handled by Stripe/);
@@ -157,7 +157,7 @@ assert.match(privacy, /OpenAI, Anthropic, Google, or\s+OpenRouter/);
 assert.match(privacy, /When the user taps Ask/);
 assert.match(privacy, /Ask does not send the whole Vault/);
 assert.doesNotMatch(privacy, /shows the exact question and selected conversation excerpts before sending|Only after confirmation|explicitly confirms an Ask request/);
-assert.match(privacy, /does not include PostHog analytics or a crash-reporting SDK/);
+assert.match(privacy, /does not send AI conversation content[\s\S]*?to PostHog or any other external analytics service/);
 for (const permission of ['Unlimited storage', 'Offscreen', 'Alarms', 'Native messaging']) {
   assert.match(privacy, new RegExp(`<strong>${permission}</strong>`));
 }

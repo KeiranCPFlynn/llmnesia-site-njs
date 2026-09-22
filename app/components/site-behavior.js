@@ -380,6 +380,104 @@ export default function SiteBehavior() {
       navToggle.setAttribute('aria-expanded', String(isOpen));
     };
 
+    // Drive in-page anchor scrolls ourselves rather than relying on native
+    // fragment navigation. When content reflows mid-scroll (fonts, the Vault
+    // purchase widget resolving after the click), the native scroll keeps its
+    // stale pixel target and lands short of or past the anchor. Scroll, wait
+    // for the animation to finish, then correct any drift.
+    const scrollToHash = (hash, smooth) => {
+      let id = hash.slice(1);
+      try {
+        id = decodeURIComponent(id);
+      } catch {
+        // Keep the raw id; a malformed escape simply will not match.
+      }
+      const target = document.getElementById(id);
+      if (!target) return false;
+
+      const margin = parseFloat(window.getComputedStyle(target).scrollMarginTop) || 0;
+      const targetY = () =>
+        Math.max(0, target.getBoundingClientRect().top + window.scrollY - margin);
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      window.scrollTo({ top: targetY(), behavior: smooth && !reducedMotion ? 'smooth' : 'instant' });
+      if (reducedMotion) return true;
+
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+
+      let settled = false;
+      const abort = () => { settled = true; };
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        const drift = targetY() - window.scrollY;
+        if (Math.abs(drift) > 1) {
+          // instant, not auto: auto resolves to the CSS smooth behavior, and
+          // the whole point is to snap to the true landing position.
+          window.scrollTo({ top: targetY(), behavior: 'instant' });
+        }
+      };
+      // A manual wheel or touch cancels the correction: the user is driving.
+      window.addEventListener('wheel', abort, { passive: true, once: true });
+      window.addEventListener('touchstart', abort, { passive: true, once: true });
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', finish, { once: true });
+        timeouts.push(window.setTimeout(finish, 1500));
+      } else {
+        let lastY = window.scrollY;
+        let stableFrames = 0;
+        let frames = 0;
+        const poll = () => {
+          if (settled) return;
+          const y = window.scrollY;
+          stableFrames = y === lastY ? stableFrames + 1 : 0;
+          lastY = y;
+          if (stableFrames >= 4 || frames > 120) {
+            finish();
+            return;
+          }
+          frames += 1;
+          window.requestAnimationFrame(poll);
+        };
+        window.requestAnimationFrame(poll);
+      }
+      return true;
+    };
+
+    const onAnchorClick = (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey ||
+        event.shiftKey || event.altKey) {
+        return;
+      }
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest('a[href^="#"]');
+      if (!(link instanceof HTMLAnchorElement)) return;
+
+      const hash = link.getAttribute('href');
+      if (!hash || hash === '#') return;
+      if (!scrollToHash(hash, true)) return;
+
+      event.preventDefault();
+      history.pushState(null, '', hash);
+    };
+    document.addEventListener('click', onAnchorClick);
+
+    // Arriving with a hash (e.g. /pricing#vault-purchase from the Vault page
+    // fallback button): the browser scrolls before fonts and the purchase
+    // widget finish laying out, so re-check the landing spot after hydration.
+    if (window.location.hash && window.location.hash !== '#') {
+      let userMoved = false;
+      const markMoved = () => { userMoved = true; };
+      window.addEventListener('wheel', markMoved, { passive: true, once: true });
+      window.addEventListener('touchstart', markMoved, { passive: true, once: true });
+      const correctInitialHash = () => {
+        if (!userMoved) scrollToHash(window.location.hash, false);
+      };
+      timeouts.push(window.setTimeout(correctInitialHash, 400));
+      timeouts.push(window.setTimeout(correctInitialHash, 1200));
+    }
+
     const onNavClick = (event) => {
       if (!navToggle || !nav) {
         return;
@@ -776,6 +874,7 @@ export default function SiteBehavior() {
 
     return () => {
       document.removeEventListener('click', onDocumentClick);
+      document.removeEventListener('click', onAnchorClick);
       document.removeEventListener('submit', onCtaEmailCaptureSubmit);
 
       if (navToggle && nav) {
