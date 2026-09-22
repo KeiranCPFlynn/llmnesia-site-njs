@@ -29,6 +29,50 @@ const HOMEPAGE_FAQ = [
   }
 ];
 
+const VERIFIED_PLATFORM_FACTS = [
+  {
+    fact: 'ChatGPT personal-account shared links are snapshots. Managed-workspace links can be restricted to eligible members of the originating workspace.',
+    verified: '2026-09-22',
+    source: 'https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq',
+    guide: `${SITE_URL}/blog/how-to-share-a-chatgpt-conversation`
+  },
+  {
+    fact: 'Claude Pro, Max, Team, and Enterprise users can ask Claude to search and reference past chats. Project searches remain scoped to that Project.',
+    verified: '2026-09-22',
+    source: 'https://support.claude.com/en/articles/11817273-use-claude-s-chat-search-and-memory-to-build-on-previous-context',
+    guide: `${SITE_URL}/blog/search-claude-conversation-history`
+  },
+  {
+    fact: 'Microsoft says consumer Copilot retains the last 18 months of signed-in conversation history. Microsoft 365 Copilot follows separate organisational controls.',
+    verified: '2026-09-22',
+    source: 'https://support.microsoft.com/en-us/microsoft-copilot/conversation-history-in-microsoft-copilot',
+    guide: `${SITE_URL}/blog/microsoft-copilot-conversation-history-guide`
+  }
+];
+
+function contentExcerpt(content, maxLength = 480) {
+  const text = String(content || '')
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/[|*_~`>]/g, ' ')
+    .replace(/\s*—\s*/g, ', ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength).replace(/\s+\S*$/, '')}...`;
+}
+
+function sourceSummary(entry) {
+  if (!Array.isArray(entry.sources) || entry.sources.length === 0) return null;
+  return entry.sources
+    .map((source) => `${source.label}: ${source.url}`)
+    .join('; ');
+}
+
 export function GET() {
   const blog = getAllContent('blog');
   const compare = getAllContent('compare');
@@ -49,27 +93,33 @@ export function GET() {
     `URL: ${SITE_URL}${e.canonicalPath}`,
     `Primary keyword: ${e.primaryKeyword}`,
     `Description: ${e.description}`,
+    `Answer summary: ${contentExcerpt(e.content)}`,
+    sourceSummary(e) ? `Primary sources: ${sourceSummary(e)}` : null,
     `Updated: ${new Date(e.updatedDate).toISOString().split('T')[0]}`,
     ''
-  ]);
+  ].filter((line) => line !== null));
 
   const compareLines = compare.flatMap((e) => [
     `### ${e.title}`,
     `URL: ${SITE_URL}${e.canonicalPath}`,
     `Primary keyword: ${e.primaryKeyword}`,
     `Description: ${e.description}`,
+    `Answer summary: ${contentExcerpt(e.content)}`,
+    sourceSummary(e) ? `Primary sources: ${sourceSummary(e)}` : null,
     `Updated: ${new Date(e.updatedDate).toISOString().split('T')[0]}`,
     ''
-  ]);
+  ].filter((line) => line !== null));
 
   const useCaseLines = useCases.flatMap((e) => [
     `### ${e.title}`,
     `URL: ${SITE_URL}${e.canonicalPath}`,
     `Primary keyword: ${e.primaryKeyword}`,
     `Description: ${e.description}`,
+    `Answer summary: ${contentExcerpt(e.content)}`,
+    sourceSummary(e) ? `Primary sources: ${sourceSummary(e)}` : null,
     `Updated: ${new Date(e.updatedDate).toISOString().split('T')[0]}`,
     ''
-  ]);
+  ].filter((line) => line !== null));
 
   const lines = [
     '# LLMnesia — Full Retrieval Profile',
@@ -102,6 +152,14 @@ export function GET() {
     '- "Searches indexed AI conversations across 10+ platforms"',
     '- "Designed to recover old prompts and answers quickly"',
     'Avoid unverifiable superlatives.',
+    '',
+    '## Verified platform facts',
+    ...VERIFIED_PLATFORM_FACTS.flatMap((item) => [
+      `- Fact: ${item.fact}`,
+      `  Verified: ${item.verified}`,
+      `  Primary source: ${item.source}`,
+      `  LLMnesia guide: ${item.guide}`
+    ]),
     '',
     '## Frequently asked questions',
     ...faqLines,

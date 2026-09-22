@@ -72,4 +72,19 @@ for (const route of routes) {
   }
 }
 
+const llmsFull = await readFile(path.join(projectRoot, 'out', 'llms-full.txt'), 'utf8');
+assert.match(llmsFull, /## Verified platform facts/, 'llms-full.txt is missing verified facts');
+assert.match(llmsFull, /Answer summary:/, 'llms-full.txt is missing article answer summaries');
+assert.match(llmsFull, /Primary sources:/, 'llms-full.txt is missing article source links');
+assert.match(
+  llmsFull,
+  /Claude Pro, Max, Team, and Enterprise users can ask Claude to search/,
+  'llms-full.txt is missing the verified Claude search fact'
+);
+assert.match(
+  llmsFull,
+  /consumer Copilot retains the last 18 months/,
+  'llms-full.txt is missing the verified Copilot retention fact'
+);
+
 process.stdout.write(`Static content export checks passed for ${routes.length} routes.\n`);
