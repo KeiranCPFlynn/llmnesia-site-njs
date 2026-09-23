@@ -1,5 +1,12 @@
 # Weekly KPI Dashboard Spec
 
+Website analytics run only on `www.llmnesia.com` and `llmnesia.com`. Local and
+preview hosts do not initialize GA4 or PostHog. Insights also filters every
+website GA4 report to those two hosts, including historical periods; the
+Chrome Web Store property is separate and remains unfiltered. GA4's raw
+property still contains earlier local events, so apply the same hostname
+filter in any ad hoc GA4 report. Do not delete raw events to repair this.
+
 Use GA4 + Search Console and track these directory segments:
 
 - `/blog`
