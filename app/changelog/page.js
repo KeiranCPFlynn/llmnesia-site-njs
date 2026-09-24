@@ -144,7 +144,11 @@ function MinorEntry({ release }) {
 export default function ChangelogPage() {
   // Entries flagged `published: false` are staged but hidden — flip the flag
   // (or delete it) in app/data/changelog.json to make a release public.
-  const published = releases.filter((release) => release.published !== false);
+  // Keep release drafts out of production, but include them in local previews
+  // so they can be reviewed before the store release is approved.
+  const published = releases.filter(
+    (release) => process.env.NODE_ENV !== 'production' || release.published !== false
+  );
   const latestRelease = published[0];
   const groups = groupReleases(published);
 

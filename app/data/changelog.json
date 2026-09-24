@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.6",
+    "date": "2026-09-24",
+    "published": true,
+    "curated": true,
+    "title": "Recover your Vault with your saved key",
+    "summary": "If you forget your Vault passphrase, use the recovery key you saved during setup to choose a new one and unlock the same encrypted archive. Recovery accepts keys pasted from notes, verifies that the key belongs to your Vault before changing anything, and works while conversations are still syncing."
+  },
+  {
     "version": "0.4.5",
     "date": "2026-09-22",
     "published": true,
