@@ -3,7 +3,7 @@ title: "Export Claude Chat History, Step by Step"
 slug: "how-to-export-claude-conversation-history"
 description: "Export your Claude conversations to a file you can keep. Follow the steps to save any chat, plus a free way to back up every future one automatically."
 publishDate: "2026-04-17"
-updatedDate: "2026-04-17"
+updatedDate: "2026-09-25"
 author: "Keiran Flynn"
 primaryKeyword: "export claude conversation history"
 secondaryKeywords:
@@ -153,10 +153,12 @@ The export is a point-in-time snapshot. Conversations after the export date are 
 
 ## Using the export alongside LLMnesia
 
-If you're using LLMnesia for ongoing indexing of active Claude conversations:
+LLMnesia does not currently import Claude's downloaded export ZIP. Keep the export as a separate backup. LLMnesia's "Import older chats" feature reads your Claude history through your signed-in browser session.
 
-- The LLMnesia index covers conversations you've had since installation
+If you're using LLMnesia for ongoing indexing of Claude conversations:
+
+- The LLMnesia index covers Claude conversations it has captured, including older chats indexed through "Import older chats"
 - The Claude export covers all historical conversations, including before installation
 - Browsing older conversations in the Claude interface after installing LLMnesia will index them into your LLMnesia search
 
-For comprehensive coverage — all historical conversations searchable, plus automatic indexing of new ones — use both: export for history, browser extension for ongoing capture.
+Use the export as a portable archive and LLMnesia to search the Claude conversation text it captures. Separate Artifacts and other rich-content blocks may not be included in LLMnesia's saved transcript.
