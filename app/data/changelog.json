@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.7",
+    "date": "2026-09-25",
+    "published": true,
+    "curated": true,
+    "title": "ChatGPT conversations are saving again",
+    "summary": "A change to how ChatGPT displays messages interrupted conversation capture. LLMnesia now saves new ChatGPT messages to your searchable history again."
+  },
+  {
     "version": "0.4.6",
     "date": "2026-09-24",
     "published": true,
