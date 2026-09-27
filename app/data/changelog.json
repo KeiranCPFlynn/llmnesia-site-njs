@@ -2,7 +2,7 @@
   {
     "version": "0.4.8",
     "date": "2026-09-26",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "ZCode sessions are now searchable",
     "summary": "ZCode prompts and assistant replies are now indexed on this device alongside Claude Code and Codex. This release also fixes ChatGPT capture, keeps project moves in sync across devices, removes display artifacts from saved text, and refreshes connected local corpora after changes settle."
