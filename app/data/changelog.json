@@ -5,7 +5,7 @@
     "published": true,
     "curated": true,
     "title": "ZCode sessions are now searchable",
-    "summary": "ZCode prompts and assistant replies are now indexed on this device alongside Claude Code and Codex. This release also fixes ChatGPT capture, keeps project moves in sync across devices, removes display artifacts from saved text, and refreshes connected local corpora after changes settle."
+    "summary": "Your ZCode prompts and assistant replies are now indexed on this device and searchable alongside Claude Code and Codex sessions. Ask Vault picks up conversation changes about 30 seconds after they settle. This release also removes markup codes from saved text, syncs ChatGPT Project moves across devices without resending the conversation, and makes your messages easier to distinguish from the assistant's in ZCode and Perplexity Vault chats."
   },
   {
     "version": "0.4.7",
