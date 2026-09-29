@@ -2,7 +2,7 @@
   {
     "version": "0.4.9",
     "date": "2026-09-29",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "Daily local backups and more reliable imports",
     "summary": "You can now turn on daily backups in Settings to keep extra copies of your conversations in this browser profile. History imports start more reliably from the popup and onboarding, and explain when browser site access blocks them. If a chat cannot be saved, LLMnesia keeps your existing conversations and shows a persistent warning; deleting local data now requires typing DELETE. You can also show a Vault passphrase while entering it, and Codex replies are clearer in saved transcripts."
