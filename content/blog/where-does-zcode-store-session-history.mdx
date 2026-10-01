@@ -1,0 +1,98 @@
+---
+title: "Where Does ZCode Store Session History?"
+slug: "where-does-zcode-store-session-history"
+description: "ZCode keeps its sessions and task history on your machine, under ~/.zcode, in SQLite databases rather than readable text files. Here is what is in that folder and what you can do with it."
+publishDate: "2026-10-01"
+updatedDate: "2026-10-01"
+author: "Keiran Flynn"
+primaryKeyword: "where does zcode store session history"
+secondaryKeywords:
+  - "zcode session history location"
+  - "where are zcode sessions stored"
+  - "zcode data folder"
+  - "zcode sqlite database"
+  - "zcode history files"
+  - "zcode sessions on disk"
+intent: "informational"
+faq:
+  - question: "Where does ZCode store session history?"
+    answer: "ZCode keeps its local data, including sessions and task history, in a hidden folder in your home directory called ~/.zcode. On macOS and Linux that is /Users/you/.zcode or /home/you/.zcode; on Windows it is under your user folder. The history lives in SQLite database files inside that folder, not in readable per-conversation text files."
+  - question: "What format is ZCode history stored in?"
+    answer: "Unlike Claude Code, which writes one readable .jsonl text file per session, ZCode stores its history in SQLite databases under ~/.zcode — for example a session database under ~/.zcode/cli and a task index alongside it. You can inspect them with any SQLite tool, but they are an internal storage format, not a documented export."
+  - question: "Can I back up my ZCode history?"
+    answer: "Yes. Because everything lives under ~/.zcode, copying that folder (with ZCode closed, so no database is mid-write) backs up your sessions and task history, and copying it back restores them. Treat the copy as sensitive: it can contain code, paths, and details from your projects."
+  - question: "Can I grep ZCode sessions like Claude Code sessions?"
+    answer: "Not directly. Claude Code sessions are plain-text .jsonl files, so a text search across ~/.claude/projects works. ZCode history is in SQLite databases, so tools like ripgrep cannot usefully search inside them — you need a SQLite-aware tool, or an indexer like LLMnesia that reads the history and makes the conversations searchable by keyword."
+  - question: "How do I search my ZCode session history?"
+    answer: "ZCode's own interface shows your past sessions, but for keyword search across everything on disk you need to either query the SQLite databases yourself or index them with a tool. LLMnesia indexes your ZCode prompts and the assistant's replies locally — never subagent runs, commands, or tool output — and makes them searchable alongside your Claude Code, Codex, and web AI chats."
+sources:
+  - label: "ZCode — official site"
+    url: "https://zcode.z.ai/en"
+  - label: "ZCode source on GitHub"
+    url: "https://github.com/zai-org/ZCode"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://www.llmnesia.com/"
+canonicalPath: "/blog/where-does-zcode-store-session-history"
+category: "how-to"
+relatedSlugs:
+  - "search-zcode-session-history"
+  - "how-to-find-an-old-zcode-session"
+  - "where-does-claude-code-store-history"
+---
+
+**ZCode stores your session history locally, under `~/.zcode` in your home directory — inside SQLite databases, not readable text files.** Like Claude Code, ZCode keeps your history on your machine rather than on a server. Unlike Claude Code, there is no folder of one-file-per-conversation transcripts you can open in a text editor, which changes what finding and searching an old session looks like. Here is how the storage is laid out.
+
+## The short answer
+
+Your ZCode data lives here:
+
+```
+~/.zcode/
+```
+
+On macOS and Linux that expands to `/Users/you/.zcode` or `/home/you/.zcode`. On Windows it sits under your user profile folder. It is a hidden folder (the leading dot), so you may need to enable "show hidden files" in your file manager to see it.
+
+Inside it, the pieces most relevant to your history are:
+
+- **A session database** — under `~/.zcode/cli/`, holding your sessions and messages (tables for sessions, session entries, and messages sit alongside internal bookkeeping like tool usage and model stats).
+- **A task index** — `~/.zcode/v2/tasks-index.sqlite`, indexing ZCode's task history so the app can list and reopen past work.
+- **Configuration** — `~/.zcode/cli/config.json` and its neighbours, which is also where ZCode's MCP servers are configured.
+
+The exact filenames can shift between ZCode versions, but the shape is stable: everything ZCode remembers about your work lives in this one folder, in databases rather than plain text.
+
+## How this differs from Claude Code
+
+The comparison matters because the two tools make opposite trade-offs in storage. [Claude Code](/blog/where-does-claude-code-store-history) writes **one `.jsonl` file per session** under `~/.claude/projects` — plain text, one JSON object per line, grep-able with any text tool. ZCode keeps its history in **SQLite databases** under `~/.zcode`, which the app reads and writes directly.
+
+Practical consequences:
+
+- **Text search tools do not work.** `ripgrep` across `~/.zcode` will not find a phrase you remember saying, because the words are inside database pages, not plain text.
+- **No per-session file to open.** You cannot double-click one file to read one conversation; you need a SQLite-aware tool.
+- **One folder still backs it all up.** Copy `~/.zcode` (with ZCode closed) and you have your history; paste it back on a new machine to restore it.
+
+## Reading the history yourself
+
+If you want to look inside, any SQLite tool works — the `sqlite3` command line, or a GUI like DB Browser for SQLite. Two precautions:
+
+1. **Work on a copy.** These are live databases with write-ahead logs; open a copy rather than the file ZCode is using.
+2. **Expect internals, not a transcript.** The tables mix your prompts and the assistant's replies with internal records — tool usage, model stats, workflow state — so raw queries return noise alongside the conversation.
+
+For a one-off "did I really say that" check, that is fine. For anything you do more than once, it gets old fast.
+
+## How this compares to other AI tools
+
+| Tool | Where history lives | Can you back it up yourself? |
+|---|---|---|
+| ZCode | `~/.zcode` on your machine (SQLite) | Yes — copy the folder |
+| Claude Code | `~/.claude/projects` on your machine (`.jsonl` files) | Yes — copy the folder |
+| Claude (web/desktop) | Anthropic's servers, shown in the sidebar | Only via an account data export |
+| ChatGPT | OpenAI's servers | Only via an account data export |
+| Gemini | Google's servers, tied to your account | Via Google Takeout |
+
+The local-first approach — shared by ZCode and Claude Code — means your history does not depend on an account staying active, and a folder copy is a complete backup. The trade-off is that nothing indexes it for you, and ZCode's database format makes casual searching harder than Claude Code's plain text files.
+
+## Making it searchable
+
+This is the gap tools like [LLMnesia](/zcode) fill. It indexes your ZCode sessions locally — **only your prompts and the assistant's replies**, never subagent runs, shell commands, or tool output — so results read like a clean transcript instead of raw database rows. The same search also covers your [Claude Code](/claude-code) and Codex sessions and your ChatGPT, Claude, and Gemini chats, and its free MCP connection lets ZCode itself search that history when you ask it a question about past work. Everything stays on your device.
+
+If you are trying to track down one particular session right now, the [step-by-step guide to finding an old ZCode session](/blog/how-to-find-an-old-zcode-session) works through each method in order.

@@ -1,0 +1,84 @@
+---
+title: "How to Find an Old ZCode Session"
+slug: "how-to-find-an-old-zcode-session"
+description: "You remember the conversation, not the task name. Here is how to track down an old ZCode session — by recency, by date, by file, or by searching what was actually said."
+publishDate: "2026-10-01"
+updatedDate: "2026-10-01"
+author: "Keiran Flynn"
+primaryKeyword: "how to find an old zcode session"
+secondaryKeywords:
+  - "find old zcode session"
+  - "zcode session history"
+  - "recover zcode conversation"
+  - "zcode past sessions"
+  - "reopen old zcode task"
+intent: "informational"
+faq:
+  - question: "How do I find an old ZCode session?"
+    answer: "In order of speed: check ZCode's own history view if the session was recent; sort the files under ~/.zcode by modification date to find when a session happened; or search the session content by keyword with a tool like LLMnesia, which indexes your ZCode prompts and replies locally and shows matching snippets with dates and projects."
+  - question: "Does ZCode delete old sessions?"
+    answer: "ZCode keeps its session and task history locally under ~/.zcode on your machine, and does not expire it on a server schedule the way some web AI platforms do — but because it is a local folder, its survival depends on that machine's disk. If sessions are missing, check whether the folder was cleaned up or you are on a different machine, and consider a backup or an encrypted sync tool like Vault."
+  - question: "Can I reopen a session from a different project?"
+    answer: "ZCode's history view can list past sessions and tasks, so you can reopen recent ones regardless of project. The hard part is usually finding the right one when you remember what was discussed rather than when it happened — that is a search problem, not a reopening problem."
+  - question: "Where are ZCode sessions stored on disk?"
+    answer: "Under ~/.zcode in your home folder — the session database under ~/.zcode/cli and the task index at ~/.zcode/v2/tasks-index.sqlite, both SQLite databases. The full layout is explained in where does ZCode store session history."
+  - question: "How do I bring an old session's context into a new ZCode session?"
+    answer: "Find the session, then either copy the relevant parts into your new prompt, or connect LLMnesia's free MCP link so ZCode can search your indexed history itself and pull the context in with links to the sources."
+sources:
+  - label: "ZCode — official site"
+    url: "https://zcode.z.ai/en"
+  - label: "Where does ZCode store session history — LLMnesia"
+    url: "https://www.llmnesia.com/blog/where-does-zcode-store-session-history"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://www.llmnesia.com/"
+canonicalPath: "/blog/how-to-find-an-old-zcode-session"
+category: "how-to"
+relatedSlugs:
+  - "search-zcode-session-history"
+  - "where-does-zcode-store-session-history"
+  - "how-to-find-an-old-claude-code-conversation"
+---
+
+**Finding an old ZCode session is easy when you remember which task it was and hard when you only remember what was said.** ZCode keeps every session on your machine under `~/.zcode`, so nothing is lost to an account limit or a server-side cleanup — but the history lives in [SQLite databases](/blog/where-does-zcode-store-session-history), so digging it up takes the right method for what you remember. Work down this list.
+
+## If it was recent: ZCode's history view
+
+Start where you already are. ZCode lists your past sessions and tasks, most recent first, and you can reopen one directly.
+
+This works when the session was this morning, or when the task name in the list jogs your memory. It stops working as the list grows: three weeks of sessions across several projects, and you are scrolling on vibes. That is when you need a better signal than recency.
+
+## If you remember when: sort the history by date
+
+You can pin down when a session happened from the files themselves:
+
+```bash
+ls -lt ~/.zcode/cli/db/
+```
+
+Sorting by modification time shows when ZCode last wrote to each database — a rough but real signal of when sessions happened. (For Claude Code the equivalent is `ls -lt ~/.claude/projects/*/`, where each session is its own dated file; ZCode's databases make the signal coarser.)
+
+Two caveats: the timestamps move whenever ZCode writes, not only when you chat, and a date tells you *when*, not *what* — you still have to open things to check.
+
+## If you remember what was said: search the content
+
+This is the case that actually hurts. You remember discussing the retry logic, or the name of a function, or a decision about caching — and no session list answers that. The phrase is on your disk, inside the session databases, but ordinary text tools cannot see inside SQLite:
+
+```bash
+rg -i "retry backoff" ~/.zcode   # finds nothing useful
+```
+
+Your options:
+
+1. **Query the databases yourself** — open a copy with `sqlite3` or DB Browser for SQLite and search the message tables. Doable for one session you care about a lot; miserable as a habit, and the internal schema is not a stable interface.
+2. **Index the history once** — [LLMnesia](/zcode) reads your ZCode sessions and indexes your prompts and the assistant's replies (never subagent runs, commands, or tool output), so "retry backoff" returns the conversation, the project, the date, and a snippet — searched the same way as your [Claude Code](/blog/search-claude-code-conversation-history), Codex, and web AI history.
+
+## Once you have found it: get the context back in
+
+Finding the session is half the job; the other half is using it. Two ways:
+
+- **Copy what matters.** Open the session, pull the relevant exchange into your new prompt. Fine occasionally.
+- **Let ZCode fetch it.** With LLMnesia's free [MCP connection](/mcp), you can ask ZCode directly — "what did we decide about caching last week?" — and it searches your indexed history locally, answers with the context, and links the sources. No copy-paste archaeology; the agent you are working with becomes the front end to everything you already worked out.
+
+## If it is really gone
+
+ZCode does not run your history through a server-side retention clock, so sessions do not silently vanish the way they can on web platforms. When history is missing, the usual suspects are: a different machine (the history is per-device), a cleaned-up `~/.zcode`, or a disk issue. If the folder is intact, the sessions are there — [back the folder up](/blog/where-does-zcode-store-session-history#can-i-back-up-my-zcode-history) or use an encrypted sync like Vault so a lost machine does not mean lost history.

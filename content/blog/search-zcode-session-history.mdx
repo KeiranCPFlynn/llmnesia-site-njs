@@ -1,0 +1,89 @@
+---
+title: "How to Search Your ZCode Session History"
+slug: "search-zcode-session-history"
+description: "ZCode keeps sessions on your machine in SQLite databases under ~/.zcode, so text-search tools cannot find a phrase inside them. Here are the realistic ways to search old ZCode sessions by keyword."
+publishDate: "2026-10-01"
+updatedDate: "2026-10-01"
+author: "Keiran Flynn"
+primaryKeyword: "search zcode session history"
+secondaryKeywords:
+  - "zcode session search"
+  - "search old zcode sessions"
+  - "find text in zcode history"
+  - "zcode keyword search"
+  - "zcode conversation search"
+intent: "informational"
+faq:
+  - question: "Can I search my ZCode sessions by keyword?"
+    answer: "Not with ordinary text tools. ZCode stores sessions in SQLite databases under ~/.zcode, so grep and ripgrep cannot find phrases inside them. You can query the databases with SQLite yourself, browse past sessions in ZCode's own history view, or index them with LLMnesia, which makes your ZCode prompts and replies keyword-searchable alongside your other AI chats."
+  - question: "Does ZCode have built-in history search?"
+    answer: "ZCode shows your past sessions and tasks so you can reopen them, but its history view is designed for browsing and resuming recent work, not keyword search across everything on disk. For 'which session did we discuss the retry logic in' you need to search the underlying history yourself or index it with a tool."
+  - question: "Why does ripgrep not find anything in my ZCode history?"
+    answer: "Because ZCode stores history in SQLite database files under ~/.zcode rather than plain-text files. Text search tools skip binary database pages, so a phrase you remember saying produces no matches even though it is on the disk. Claude Code works differently: its sessions are .jsonl text files under ~/.claude/projects, which is why the same search works there."
+  - question: "What parts of a ZCode session does LLMnesia index?"
+    answer: "Only your prompts and the assistant's replies. Subagent runs, shell commands, and tool output are never stored, so search results read like a clean transcript. The index lives in your browser's local storage on the same machine and is never uploaded."
+  - question: "Can ZCode itself search my session history?"
+    answer: "Yes, with the free MCP connection. Once connected, you can ask ZCode questions like 'what did we decide about the caching approach?' and it searches your indexed history locally, answers with the context, and links back to the source conversations."
+sources:
+  - label: "ZCode — official site"
+    url: "https://zcode.z.ai/en"
+  - label: "Where does ZCode store session history — LLMnesia"
+    url: "https://www.llmnesia.com/blog/where-does-zcode-store-session-history"
+  - label: "LLMnesia — AI conversation search"
+    url: "https://www.llmnesia.com/"
+canonicalPath: "/blog/search-zcode-session-history"
+category: "platform-guides"
+relatedSlugs:
+  - "where-does-zcode-store-session-history"
+  - "how-to-find-an-old-zcode-session"
+  - "search-claude-code-conversation-history"
+---
+
+**Searching ZCode history by keyword is harder than it looks: your sessions live on your machine, but inside SQLite databases under `~/.zcode` — so the text-search tools you would use on Claude Code's plain files find nothing.** The realistic options are ZCode's own history view, querying the databases yourself, or indexing the history once and searching it like any other document. Here is each, in order of effort.
+
+## First, know where the history lives
+
+ZCode keeps everything — sessions, messages, task history, configuration — under one hidden folder in your home directory:
+
+```
+~/.zcode/
+```
+
+The [full storage guide](/blog/where-does-zcode-store-session-history) walks through the layout. The detail that matters here: the history is in **SQLite database files**, not per-conversation text files, which rules out the easiest searching trick entirely.
+
+## Option 1: ZCode's own history view
+
+ZCode lists your past sessions and tasks so you can reopen them. For "the thing I was working on an hour ago", this is the fastest route — open the list, find the task, reopen it.
+
+Where it stops working is exactly where search matters: when you remember *what was said* rather than *which task it was in*. Scrolling a session list looking for the conversation where you talked through a retry bug is guesswork, especially across projects and weeks of work.
+
+## Option 2: Query the databases yourself
+
+Since the history is SQLite, you can open it with the `sqlite3` command line or a GUI like DB Browser for SQLite — ideally a **copy**, not the live file. Inside, sessions and messages sit alongside internal records: tool usage, model stats, workflow state.
+
+That mix is the problem. A query for a phrase returns whatever table happens to hold it, wrapped in database noise, and the schema is an internal format that can change between ZCode versions. For a one-off forensic dig, fine. As your way of finding past decisions, it is painful — and it searches ZCode only, none of your other AI history.
+
+## Option 3: Index the history, then search it normally
+
+This is what [LLMnesia](/zcode) does. It reads your ZCode sessions on the machine and indexes **only your prompts and the assistant's replies** — subagent runs, shell commands, and tool output are never stored. Two things follow from that:
+
+- Results read like a clean transcript. You search "retry backoff", you get the conversation where you discussed retry backoff — not a wall of tool output that happened to contain the word.
+- The same search covers everything else: your [Claude Code](/blog/search-claude-code-conversation-history) and Codex sessions, plus ChatGPT, Claude, Gemini, and the rest of your web AI chats, in one box.
+
+The index stays in your browser's local storage on the same machine. Nothing is uploaded, and no account is needed.
+
+## The bonus: let ZCode do the searching
+
+There is a fourth option that inverts the problem. LLMnesia's free [MCP connection](/mcp) lets ZCode search your indexed history itself — setup configures ZCode's MCP settings for you. Then, inside a ZCode session, you can ask:
+
+> "What did we decide about the caching approach last week?"
+
+ZCode searches your history locally, brings the relevant context into the session, and links back to the source conversations. For ongoing work, that beats searching and pasting by hand: the agent you are already talking to becomes the search interface for everything you have already figured out.
+
+## Which to use
+
+- **Reopening recent work** — ZCode's history view is fine.
+- **A one-off check of what was said** — a SQLite query on a copy works, with effort.
+- **Anything you will do more than once** — index it once with LLMnesia and search every ZCode conversation by keyword, in the same box as every other AI conversation you have.
+
+If you are hunting one specific session right now, the [step-by-step guide to finding an old ZCode session](/blog/how-to-find-an-old-zcode-session) works through each method in order.
