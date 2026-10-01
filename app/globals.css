@@ -6992,6 +6992,27 @@ figure.vault-mock {
   color: color-mix(in srgb, #ebf5cb 85%, transparent);
 }
 
+.cc-mock-result--dim {
+  opacity: 0.6;
+  border-left-color: var(--t-rule);
+}
+
+.cc-mock-result + .cc-mock-result {
+  margin-top: 0.7rem;
+}
+
+/* Section headings: the marketing `.section h2` 12ch max-width (meant for
+   short centered hero-style titles) wraps these landing headings one or two
+   words per line. Use the same heading treatment as the /mcp section heads. */
+.cc-setup h2,
+.cc-result-copy h2,
+.cc-faq h2,
+.cc-closing-inner h2 {
+  max-width: 19ch;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
 /* --- Closing --- */
 .cc-closing {
   text-align: center;
@@ -7002,7 +7023,10 @@ figure.vault-mock {
 }
 
 .cc-closing-inner h2 {
-  margin-bottom: var(--s-2);
+  max-width: 19ch;
+  margin: 0 auto var(--s-2);
+  line-height: 1.08;
+  text-wrap: balance;
 }
 
 .cc-closing-inner .section-intro {

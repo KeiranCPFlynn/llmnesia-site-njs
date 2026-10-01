@@ -160,10 +160,22 @@ export default function ZCodePage() {
                     <span>·</span>
                     <span>18 Jul 2026</span>
                   </div>
-                  <div className="cc-mock-cmd">
-                    <span className="cc-mock-cmd-label">Ask ZCode</span>
-                    <code>“Where did we fix the refresh token race condition?”</code>
-                    <span className="cc-mock-copy" aria-hidden="true">Copy</span>
+                </article>
+                <article className="cc-mock-result cc-mock-result--dim">
+                  <div className="cc-mock-result-top">
+                    <h3>Token refresh retry follow-up</h3>
+                    <span className="cc-mock-tag">ZCode</span>
+                  </div>
+                  <p className="cc-mock-snippet">
+                    “…the <mark>token</mark> <mark>refresh</mark> only <mark>race</mark>d when
+                    the fake clock drifted, so the retry test flaked every few runs…”
+                  </p>
+                  <div className="cc-mock-meta">
+                    <span>~/projects/billing-worker</span>
+                    <span>·</span>
+                    <span>desktop</span>
+                    <span>·</span>
+                    <span>2 Sep 2026</span>
                   </div>
                 </article>
               </div>
