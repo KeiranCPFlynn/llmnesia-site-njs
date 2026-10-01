@@ -99,7 +99,7 @@ const FAQS = [
   },
   {
     q: 'Which clients can reach the server?',
-    a: 'Desktop apps that can run a local MCP connection, including Claude Code, Claude Desktop, Cursor and Codex. Browser-only AI websites cannot directly reach a local connection on your computer.'
+    a: 'Desktop apps that can run a local MCP connection, including Claude Code, Claude Desktop, Cursor, Codex and ZCode. Browser-only AI websites cannot directly reach a local connection on your computer.'
   },
   {
     q: 'What do I need to install?',

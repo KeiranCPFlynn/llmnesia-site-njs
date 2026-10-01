@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: 'Which AI platforms does it cover?',
-    a: `Vault syncs the history LLMnesia indexes from ${platformListSentence()}. Local Claude Code and Codex sessions are a separate source type, and can join the same archive when indexed. Vault does not maintain a separate platform list: when the extension adds support, that indexed history can join your encrypted archive too.`
+    a: `Vault syncs the history LLMnesia indexes from ${platformListSentence()}. Local Claude Code, Codex, and ZCode sessions are a separate source type, and can join the same archive when indexed. Vault does not maintain a separate platform list: when the extension adds support, that indexed history can join your encrypted archive too.`
   },
   {
     q: 'Is syncing the opposite of local-first?',

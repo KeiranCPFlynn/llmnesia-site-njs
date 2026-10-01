@@ -69,9 +69,9 @@ export default function AboutPage() {
 
             <h2>Supported platforms</h2>
             <p>
-              LLMnesia currently indexes conversations from {platformListSentence()}. You can also index your local <strong>Claude Code</strong> and{' '}
-              <strong>Codex</strong> sessions — from their terminal, IDE, and desktop surfaces —
-              into the same search. Google AI Mode uses optional site access. Additional integrations are in progress.
+              LLMnesia currently indexes conversations from {platformListSentence()}. You can also index your local <strong>Claude Code</strong>, <strong>Codex</strong>, and{' '}
+              <strong>ZCode</strong> sessions into the same search. Google AI Mode uses optional
+              site access. Additional integrations are in progress.
             </p>
 
             <h2>How it works</h2>

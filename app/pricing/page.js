@@ -37,7 +37,7 @@ const PLANS = [
     points: [
       'Search every AI platform you use',
       'Import your existing history',
-      'Claude Code and Codex sessions too',
+      'Claude Code, Codex, and ZCode sessions too',
       'MCP for your desktop AI apps',
       'Nothing leaves your machine'
     ],
