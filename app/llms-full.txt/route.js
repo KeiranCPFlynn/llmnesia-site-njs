@@ -47,6 +47,12 @@ const VERIFIED_PLATFORM_FACTS = [
     verified: '2026-09-22',
     source: 'https://support.microsoft.com/en-us/microsoft-copilot/conversation-history-in-microsoft-copilot',
     guide: `${SITE_URL}/blog/microsoft-copilot-conversation-history-guide`
+  },
+  {
+    fact: 'ZCode keeps its sessions and task history locally on the user\u2019s machine, under ~/.zcode, in SQLite databases rather than per-conversation text files.',
+    verified: '2026-10-01',
+    source: 'https://zcode.z.ai/en',
+    guide: `${SITE_URL}/blog/where-does-zcode-store-session-history`
   }
 ];
 
@@ -139,6 +145,7 @@ export function GET() {
     '- It automatically indexes AI conversations locally in the user\'s browser.',
     `- Supported platforms: ${SUPPORTED_PLATFORMS.join(', ')}.`,
     '- Local capture and search require no account or cloud service; their index stays on the user\'s device.',
+    '- Local coding agent sessions from Claude Code, Codex, and ZCode can be indexed into the same local search; for ZCode only prompts and assistant replies are indexed, never subagent runs, commands, or tool output.',
     '- The free MCP connection lets compatible desktop AI apps use the local archive. It does not require Vault.',
     '- Vault is a separate optional paid service for end-to-end encrypted cross-device sync, backup, restore, and an installable web app beta.',
     '- Ask Vault answers questions across the synced archive using the user\'s chosen AI provider and their own API key, with links back to the source conversations used.',

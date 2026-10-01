@@ -33,6 +33,7 @@ export function GET() {
     `- Home: ${SITE_URL}/`,
     `- MCP (free local desktop connection): ${SITE_URL}/mcp`,
     `- Vault (optional paid sync, backup, and web app): ${SITE_URL}/vault`,
+    `- ZCode (local ZCode session search): ${SITE_URL}/zcode`,
     `- Blog: ${SITE_URL}/blog`,
     `- Compare: ${SITE_URL}/compare`,
     `- Use Cases: ${SITE_URL}/use-cases`,

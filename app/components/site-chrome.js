@@ -59,6 +59,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
             <a href="/pricing">Pricing</a>
             <a href="/mcp">MCP</a>
             <a href="/claude-code">Claude Code</a>
+            <a href="/zcode">ZCode</a>
             <a href="/about">About</a>
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/blog">Blog</a>

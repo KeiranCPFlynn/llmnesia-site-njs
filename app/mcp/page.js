@@ -7,7 +7,7 @@ import { softwareApplicationSchema, homepageFaqSchema } from '../../lib/schema';
 export const metadata = buildPageMetadata({
   title: 'Use Your AI Chat History in Claude, Cursor & Codex — LLMnesia MCP',
   description:
-    'Let Claude Desktop, Cursor, Codex and other desktop AI apps search the conversations LLMnesia has captured across ChatGPT, Claude, Gemini and more. Local setup, linked sources, no conversation uploads.',
+    'Let Claude Desktop, Cursor, Codex, ZCode and other desktop AI apps search the conversations LLMnesia has captured across ChatGPT, Claude, Gemini and more. Local setup, linked sources, no conversation uploads.',
   canonicalPath: '/mcp'
 });
 
@@ -79,6 +79,10 @@ const CLIENTS = [
     how: 'Connected through the Codex CLI, including the copy bundled with supported desktop apps.'
   },
   {
+    name: 'ZCode',
+    how: 'Connected automatically — setup adds the server to ZCode\u2019s user-level MCP configuration (~/.zcode/cli/config.json) with a backup first, and ZCode\u2019s Settings → MCP shows the connection.'
+  },
+  {
     name: 'Other desktop clients',
     how: 'For other local MCP apps, setup prints a standard connection block you can paste into their settings.'
   }
@@ -130,8 +134,8 @@ export default function McpPage() {
             </h1>
             <p className="subheadline mcp-hero-sub">
               LLMnesia already keeps your ChatGPT, Claude, Gemini and other AI chats
-              searchable. Its free MCP connection lets Claude Desktop, Cursor, Codex
-              and other desktop AI apps search that history, answer from it, and link
+              searchable. Its free MCP connection lets Claude Desktop, Cursor, Codex,
+              ZCode and other desktop AI apps search that history, answer from it, and link
               back to the source conversations. Everything stays on this computer.
             </p>
 

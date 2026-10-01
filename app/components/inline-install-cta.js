@@ -1,7 +1,6 @@
 import InstallLink from './install-link';
 
-// Friendly display names for the platforms LLMnesia supports (Z.ai is supported
-// but has no content pages yet, so it has no CTA token). Keys match the
+// Friendly display names for the platforms LLMnesia supports. Keys match the
 // platform tokens produced by getCtaProps() in lib/content.js. Unsupported
 // platforms are intentionally absent so their pages get generic, non-committal
 // copy rather than a false "search your <platform>" claim.
@@ -10,6 +9,7 @@ const PLATFORM_LABELS = {
   chatgpt: 'ChatGPT',
   claude: 'Claude',
   'claude-code': 'Claude Code',
+  zcode: 'ZCode',
   gemini: 'Gemini',
   deepseek: 'DeepSeek',
   grok: 'Grok',
@@ -100,6 +100,16 @@ function buildCopy(platform, family) {
       return `Install LLMnesia free so you never lose a Claude Code session again. It indexes your local sessions — from the terminal, the VS Code extension, and the desktop app — into one search, and lets you jump straight back into any of them.`;
     }
     return `Search every Claude Code session you have ever run — from the terminal, the VS Code extension, and the desktop app — from one box, indexed locally on your device alongside ChatGPT, Claude, Gemini and 10+ more.`;
+  }
+
+  // ZCode is also a local coding agent, not a website LLMnesia crawls, so the
+  // generic "chats" / deletion framing does not fit there either. Speak to the
+  // sessions sitting on the reader's machine.
+  if (platform === 'zcode') {
+    if (family === 'loss') {
+      return `Install LLMnesia free so you never lose track of a ZCode session again. It indexes the ZCode sessions on your machine into one search, so what you already worked through stays findable.`;
+    }
+    return `Search every ZCode session on your machine from one box, indexed locally on your device, alongside your Claude Code and Codex sessions and your web AI chats.`;
   }
 
   if (family === 'loss') {
