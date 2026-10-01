@@ -606,8 +606,16 @@ export default function SiteBehavior() {
 
     if (contactForm) {
       const params = new URLSearchParams(window.location.search);
-      const prefillMessage = params.get('message');
-      const prefillSubject = params.get('subject');
+      // Newer extensions pass the report in the URL fragment: it never
+      // reaches the server, so large reports cannot trip edge URL-length
+      // limits. Older installed versions still use the query string.
+      const fragmentParams = window.location.hash.length > 1
+        ? new URLSearchParams(window.location.hash.slice(1))
+        : null;
+      const prefillMessage =
+        (fragmentParams && fragmentParams.get('message')) || params.get('message');
+      const prefillSubject =
+        (fragmentParams && fragmentParams.get('subject')) || params.get('subject');
 
       if (prefillSubject) {
         const hiddenSubject = contactForm.querySelector('input[name="subject"]');
