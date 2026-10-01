@@ -571,18 +571,43 @@ export default function SiteBehavior() {
 
     document.addEventListener('click', onDocumentClick);
 
-    // Pre-fill contact form from URL query params (e.g. from extension report button)
+    // Pre-fill contact form from URL query params (e.g. from extension report
+    // button). The extension passes a full diagnostic report in ?message=;
+    // filling the textarea with it buries the user's own description, so the
+    // report stays out of the editable box and is merged back on submit.
+    let contactReportBody = null;
+
+    const setContactReportMode = (report) => {
+      const reportDetails = document.getElementById('contact-report');
+      const reportBodyPre = document.getElementById('contact-report-body');
+      const messageLabel = contactForm.querySelector('label[for="contact-message"]');
+      const messageTextarea = document.getElementById('contact-message');
+      if (!reportDetails || !reportBodyPre || !messageTextarea) {
+        return;
+      }
+      if (report) {
+        reportBodyPre.textContent = report;
+        reportDetails.removeAttribute('hidden');
+        if (messageLabel) {
+          messageLabel.textContent = 'What happened?';
+        }
+        messageTextarea.setAttribute(
+          'placeholder',
+          'Describe what you saw — e.g. chats from this site never appear in search.'
+        );
+      } else {
+        reportDetails.setAttribute('hidden', '');
+        if (messageLabel) {
+          messageLabel.textContent = 'Message';
+        }
+        messageTextarea.removeAttribute('placeholder');
+      }
+    };
+
     if (contactForm) {
       const params = new URLSearchParams(window.location.search);
       const prefillMessage = params.get('message');
       const prefillSubject = params.get('subject');
-
-      if (prefillMessage) {
-        const textarea = document.getElementById('contact-message');
-        if (textarea) {
-          textarea.value = prefillMessage;
-        }
-      }
 
       if (prefillSubject) {
         const hiddenSubject = contactForm.querySelector('input[name="subject"]');
@@ -591,8 +616,31 @@ export default function SiteBehavior() {
         }
       }
 
+      if (prefillMessage && prefillMessage.startsWith('=== LLMnesia Diagnostic Report ===')) {
+        contactReportBody = prefillMessage;
+        setContactReportMode(contactReportBody);
+      } else if (prefillMessage) {
+        const textarea = document.getElementById('contact-message');
+        if (textarea) {
+          textarea.value = prefillMessage;
+        }
+      }
+
       if (prefillMessage || prefillSubject) {
         contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (contactReportBody) {
+          const textarea = document.getElementById('contact-message');
+          if (textarea) {
+            // The initial-hash corrector re-focuses the #contact section up to
+            // 1.2s after load; focus after it settles so the caret stays put.
+            timeouts.push(
+              window.setTimeout(() => {
+                textarea.focus({ preventScroll: true });
+                textarea.setSelectionRange(0, 0);
+              }, 1400)
+            );
+          }
+        }
       }
     }
 
@@ -632,6 +680,17 @@ export default function SiteBehavior() {
           return;
         }
 
+        const userMessage = String(payload.get('message') || '');
+        if (contactReportBody && !userMessage.trim()) {
+          contactMessage.textContent = 'Please add a short description of what you observed.';
+          contactMessage.setAttribute('data-state', 'error');
+          return;
+        }
+
+        if (contactReportBody) {
+          payload.set('message', `${userMessage.trim()}\n\n${contactReportBody}`);
+        }
+
         contactSubmit.disabled = true;
         contactSubmit.textContent = 'Sending...';
 
@@ -656,6 +715,8 @@ export default function SiteBehavior() {
           }
 
           contactForm.reset();
+          contactReportBody = null;
+          setContactReportMode(null);
           contactMessage.textContent = 'Thanks. Your message has been sent.';
           contactMessage.setAttribute('data-state', 'success');
           trackEvent('contact_submit');
