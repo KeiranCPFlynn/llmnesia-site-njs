@@ -1,38 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { legacyViewerUrl, parseHandoffHash } from './viewer-link';
-
-// Message shapes, protocol version, and bounds mirror the extension repo's
-// extension/src/shared/viewer_handoff.ts (bridge content script +
-// service-worker navigation). Keep the two files in sync: the extension
-// validates every field again on its side and silently ignores anything that
-// does not match, so a drifted shape here means the handshake never completes
-// and every visitor falls back to the legacy redirect.
-const PROTOCOL_VERSION = 1;
-const TYPE_DISCOVER = 'llmnesia-viewer:discover';
-const TYPE_DISCOVERED = 'llmnesia-viewer:discovered';
-const TYPE_OPEN = 'llmnesia-viewer:open';
-const TYPE_OPENING = 'llmnesia-viewer:opening';
-const TYPE_OPEN_FAILED = 'llmnesia-viewer:open-failed';
-
-const EXTENSION_ID_RE = /^[a-p]{32}$/;
-const MAX_REASON_LENGTH = 120;
-// The bridge content script injects at document idle and dynamic-imports its
-// module, so it normally answers within a few hundred milliseconds. Extension
-// releases older than the bridge never answer; they get the legacy redirect
-// once this window closes, which is the behaviour /open has always had.
-const DISCOVERY_WINDOW_MS = 2000;
-const DISCOVERY_INTERVAL_MS = 250;
-const OPEN_CONFIRMATION_TIMEOUT_MS = 3000;
-
-function newRequestId() {
-  // Matches the extension's requestId pattern: [A-Za-z0-9_-]{8,128}.
-  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID();
-  }
-  return `llm-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
-}
+import { useEffect, useRef, useState } from 'react';
+import { parseHandoffHash } from './viewer-link';
+import { abbreviatedExtensionId, createViewerHandoffController, resolveUnavailableState } from './viewer-bridge';
 
 const styles = {
   main: {
@@ -41,7 +11,7 @@ const styles = {
     placeItems: 'center',
     padding: '32px 20px',
     background: '#fffef8',
-    color: '#243342'
+    color: '#243440'
   },
   card: {
     width: 'min(560px, 100%)',
@@ -80,22 +50,37 @@ const styles = {
     lineHeight: 1.5,
     color: '#70808d'
   },
+  choices: {
+    marginTop: '24px',
+    display: 'grid',
+    gap: '10px',
+    justifyItems: 'center'
+  },
+  choiceButton: {
+    display: 'block',
+    width: 'min(100%, 340px)',
+    padding: '10px 14px',
+    borderRadius: '10px',
+    border: '1px solid #b9c7d2',
+    background: '#ffffff',
+    color: '#2b6588',
+    fontWeight: 700,
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    fontSize: '15px',
+    textAlign: 'center'
+  },
+  choiceHint: {
+    margin: '8px 0 0',
+    fontSize: '12px',
+    color: '#70808d'
+  },
   actions: {
     marginTop: '24px',
     display: 'flex',
     gap: '12px',
     justifyContent: 'center',
     flexWrap: 'wrap'
-  },
-  button: {
-    display: 'inline-block',
-    marginTop: '24px',
-    padding: '12px 18px',
-    borderRadius: '10px',
-    background: '#2b6588',
-    color: '#ffffff',
-    fontWeight: 700,
-    textDecoration: 'none'
   },
   actionButton: {
     display: 'inline-block',
@@ -105,7 +90,6 @@ const styles = {
     background: '#2b6588',
     color: '#ffffff',
     fontWeight: 700,
-    textDecoration: 'none',
     cursor: 'pointer',
     fontFamily: 'inherit',
     fontSize: '16px'
@@ -118,10 +102,17 @@ const styles = {
     background: '#ffffff',
     color: '#2b6588',
     fontWeight: 700,
-    textDecoration: 'none',
     cursor: 'pointer',
     fontFamily: 'inherit',
     fontSize: '16px'
+  },
+  fallback: {
+    margin: '18px auto 0',
+    maxWidth: '430px',
+    fontSize: '13px',
+    lineHeight: 1.55,
+    color: '#52616f',
+    textAlign: 'left'
   },
   privacy: {
     margin: '22px 0 0',
@@ -131,17 +122,47 @@ const styles = {
   }
 };
 
+// The hand-off phases are owned by the discovery controller (viewer-bridge.js);
+// this component renders them and offers the local fallbacks (retry, copy the
+// link for the right browser, search inside LLMnesia). The only chrome-
+// extension:// navigation is the pre-bridge fallback resolved by
+// resolveUnavailableState: when no build answers discovery and the link names
+// its own extension, that redirect is the sole path installs released before
+// the handshake (extension 0.4.10) can still be opened through.
+const PHASE_COPY = {
+  searching: {
+    title: 'Opening your saved conversation',
+    body: 'Looking for the LLMnesia extension in this browser.'
+  },
+  opening: {
+    title: 'Opening your saved conversation',
+    body: 'Your extension accepted the hand-off. Opening the saved conversation in its private Viewer.'
+  },
+  choice: {
+    title: 'Choose an LLMnesia installation',
+    body: 'More than one LLMnesia build responded in this browser. Pick the one holding this conversation.'
+  },
+  failed: {
+    title: 'The hand-off did not complete',
+    body: ''
+  },
+  legacy: {
+    title: 'Opening your saved conversation',
+    body: 'No extension answered the handshake, so this link is opening with the extension ID saved in it.'
+  },
+  unavailable: {
+    title: 'No LLMnesia extension responded',
+    body: 'This browser did not answer the hand-off. Open the link in the browser profile where LLMnesia is installed, or enable and update the extension here, then try again.'
+  }
+};
+
 export default function ViewerHandoff() {
-  // starting: discovering installed builds. opening: a build accepted the open
-  // request (the tab usually navigates before any confirmation arrives).
-  // legacy: nobody answered, falling back to the link's own extension ID.
-  // failed / no-extension: terminal states with a retry.
-  const [phase, setPhase] = useState('starting');
+  const [handoff, setHandoff] = useState({ phase: 'searching' });
   const [invalid, setInvalid] = useState(false);
-  const [failureReason, setFailureReason] = useState('');
-  const [responderLabel, setResponderLabel] = useState('');
+  const [copied, setCopied] = useState(false);
   const [legacyUrl, setLegacyUrl] = useState('');
   const [attempt, setAttempt] = useState(0);
+  const controllerRef = useRef(null);
 
   useEffect(() => {
     const parsed = parseHandoffHash(window.location.hash);
@@ -150,192 +171,143 @@ export default function ViewerHandoff() {
       return undefined;
     }
 
-    const hint = EXTENSION_ID_RE.test(parsed.extensionId) ? parsed.extensionId : '';
-    if (hint) {
-      setLegacyUrl(legacyViewerUrl(hint, parsed.docId));
-    }
+    // The pre-bridge fallback is resolved once per attempt so the escape-hatch
+    // anchor can offer it while discovery is still running.
+    const fallback = resolveUnavailableState(parsed.extensionId, parsed.docId);
+    setLegacyUrl(fallback.legacyUrl || '');
 
-    let cancelled = false;
-    let discoverTimer = null;
-    let openTimer = null;
-    let opened = false;
-    const responders = new Map();
-
-    const chooseTarget = () => {
-      if (hint && responders.has(hint)) return hint;
-      const first = responders.keys().next();
-      return first.done ? null : first.value;
-    };
-
-    const stopDiscovery = () => {
-      if (discoverTimer) {
-        clearInterval(discoverTimer);
-        discoverTimer = null;
-      }
-    };
-
-    const sendOpen = (targetExtensionId) => {
-      if (opened || cancelled) return;
-      opened = true;
-      stopDiscovery();
-      setPhase('opening');
-      window.postMessage(
-        {
-          v: PROTOCOL_VERSION,
-          type: TYPE_OPEN,
-          requestId,
-          targetExtensionId,
-          docId: parsed.docId
-        },
-        window.location.origin
-      );
-      // Success navigates this tab from the extension's side, so silence is
-      // normal. Only treat a still-living page with no answer at all as a
-      // failure once the confirmation window has lapsed.
-      openTimer = setTimeout(() => {
-        if (cancelled) return;
-        setPhase('failed');
-        setFailureReason('The extension did not confirm the hand-off.');
-      }, OPEN_CONFIRMATION_TIMEOUT_MS);
-    };
-
-    const onMessage = (event) => {
-      if (event.source !== window || event.origin !== window.location.origin) return;
-      const data = event.data;
-      if (!data || data.v !== PROTOCOL_VERSION || data.requestId !== requestId) return;
-      if (data.type === TYPE_DISCOVERED && EXTENSION_ID_RE.test(data.extensionId)) {
-        if (!responders.has(data.extensionId)) {
-          responders.set(
-            data.extensionId,
-            typeof data.label === 'string' ? data.label.slice(0, MAX_REASON_LENGTH) : ''
-          );
-          const target = chooseTarget();
-          if (target) {
-            setResponderLabel(responders.get(target));
-            sendOpen(target);
+    const controller = createViewerHandoffController({
+      docId: parsed.docId,
+      preferredExtensionId: parsed.extensionId,
+      postMessage: (message) => window.postMessage(message, window.location.origin),
+      addMessageListener: (handler) => {
+        window.addEventListener('message', handler);
+        return () => window.removeEventListener('message', handler);
+      },
+      expectedSource: window,
+      expectedOrigin: window.location.origin,
+      onState: (state) => {
+        if (state.phase === 'unavailable') {
+          // No bridge answered. With a hint, hand off to the link's own build
+          // the way pre-handshake /open links always worked; without one,
+          // keep the guidance page below.
+          setHandoff(fallback);
+          if (fallback.legacyUrl) {
+            window.location.replace(fallback.legacyUrl);
           }
+          return;
         }
-        return;
+        setHandoff(state);
       }
-      if (data.type === TYPE_OPENING) {
-        if (openTimer) {
-          clearTimeout(openTimer);
-          openTimer = null;
-        }
-        return;
-      }
-      if (data.type === TYPE_OPEN_FAILED) {
-        if (openTimer) {
-          clearTimeout(openTimer);
-          openTimer = null;
-        }
-        setPhase('failed');
-        setFailureReason(
-          typeof data.reason === 'string'
-            ? data.reason.slice(0, MAX_REASON_LENGTH)
-            : 'The extension refused the hand-off.'
-        );
-      }
-    };
-
-    // One requestId spans this attempt; the extension deduplicates open
-    // requests by it, and replies echo it back.
-    const requestId = newRequestId();
-    const discoverDeadline = Date.now() + DISCOVERY_WINDOW_MS;
-    const discoverOnce = () => {
-      if (opened || cancelled) return;
-      window.postMessage(
-        { v: PROTOCOL_VERSION, type: TYPE_DISCOVER, requestId },
-        window.location.origin
-      );
-      if (Date.now() >= discoverDeadline) {
-        stopDiscovery();
-        // No bridge answered. Extensions released before the handshake only
-        // understand the direct redirect, which works whenever the link's ID
-        // matches the installation that generated it (the common case).
-        if (hint) {
-          window.location.replace(legacyViewerUrl(hint, parsed.docId));
-          setPhase('legacy');
-        } else {
-          setPhase('no-extension');
-        }
-      }
-    };
-
-    window.addEventListener('message', onMessage);
-    discoverOnce();
-    discoverTimer = setInterval(discoverOnce, DISCOVERY_INTERVAL_MS);
-
+    });
+    controllerRef.current = controller;
+    controller.start();
     return () => {
-      cancelled = true;
-      window.removeEventListener('message', onMessage);
-      stopDiscovery();
-      if (openTimer) {
-        clearTimeout(openTimer);
-      }
+      controller.stop();
+      controllerRef.current = null;
     };
   }, [attempt]);
 
   const retry = () => {
-    setFailureReason('');
-    setResponderLabel('');
-    setPhase('starting');
+    setCopied(false);
+    setHandoff({ phase: 'searching' });
     setAttempt((n) => n + 1);
   };
 
-  const invalidHandled = invalid;
-  const showLegacyAnchor = Boolean(legacyUrl) && (phase === 'failed' || phase === 'legacy');
+  const chooseResponder = (extensionId) => {
+    controllerRef.current?.choose(extensionId);
+  };
+
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+    } catch {
+      setCopied(false);
+    }
+  };
+
+  if (invalid) {
+    return (
+      <main style={styles.main}>
+        <section style={styles.card} aria-live="polite">
+          <p style={styles.eyebrow}>LLMnesia source</p>
+          <h1 style={styles.title}>This source link is incomplete</h1>
+          <p style={styles.body}>
+            Return to your desktop AI answer and open the source again.
+          </p>
+          <p style={styles.privacy}>
+            The conversation identifier stays after the # in this address. Browsers do not send that fragment to this website.
+          </p>
+        </section>
+      </main>
+    );
+  }
+
+  const phase = PHASE_COPY[handoff.phase] ? handoff.phase : 'searching';
+  const copy = PHASE_COPY[phase];
+  const responders = handoff.phase === 'choice' ? handoff.responders : [];
 
   return (
     <main style={styles.main}>
       <section style={styles.card} aria-live="polite">
         <p style={styles.eyebrow}>LLMnesia source</p>
-        <h1 style={styles.title}>
-          {invalidHandled
-            ? 'This source link is incomplete'
-            : phase === 'failed'
-              ? 'The hand-off did not complete'
-              : phase === 'no-extension'
-                ? 'No LLMnesia extension responded'
-                : 'Opening your saved conversation'}
-        </h1>
+        <h1 style={styles.title}>{copy.title}</h1>
         <p style={styles.body}>
-          {invalidHandled
-            ? 'Return to your desktop AI answer and open the source again.'
-            : phase === 'starting'
-              ? 'LLMnesia is handing this source to the private Viewer in your browser extension.'
-              : phase === 'opening'
-                ? 'Your extension accepted the hand-off. Opening the saved conversation in its private Viewer.'
-                : phase === 'legacy'
-                  ? 'No extension answered the handshake, so this link is opening with the extension ID saved in it.'
-                  : phase === 'failed'
-                    ? failureReason || 'The extension could not open this source.'
-                    : 'Make sure the LLMnesia extension is installed and enabled in this browser, then retry.'}
+          {phase === 'failed'
+            ? handoff.reason || copy.body || 'The extension could not open this source.'
+            : copy.body}
         </p>
-        {phase === 'opening' && responderLabel ? (
-          <p style={styles.found}>Responding build: {responderLabel}</p>
+        {phase === 'opening' && handoff.responder ? (
+          <p style={styles.found}>
+            Responding build: {handoff.responder.label || 'LLMnesia extension'}
+            {handoff.responder.extensionId ? ` (${abbreviatedExtensionId(handoff.responder.extensionId)})` : ''}
+          </p>
         ) : null}
-        {phase === 'starting' || phase === 'opening' ? (
+        {phase === 'choice' ? (
+          <div style={styles.choices}>
+            {responders.map((responder) => (
+              <button
+                key={responder.extensionId}
+                type="button"
+                style={styles.choiceButton}
+                onClick={() => chooseResponder(responder.extensionId)}
+              >
+                {responder.label || 'LLMnesia extension'} ({abbreviatedExtensionId(responder.extensionId)})
+              </button>
+            ))}
+            <p style={styles.choiceHint}>Not sure? Pick the build you use for searches.</p>
+          </div>
+        ) : null}
+        {legacyUrl && (phase === 'searching' || phase === 'opening' || phase === 'legacy') ? (
           <a
-            href={legacyUrl || '#'}
-            style={{ ...styles.button, visibility: legacyUrl ? 'visible' : 'hidden' }}
-            aria-hidden={!legacyUrl}
-            tabIndex={legacyUrl ? 0 : -1}
+            href={legacyUrl}
+            style={{ ...styles.actionGhost, marginTop: '24px', display: 'inline-block' }}
           >
             Open LLMnesia Viewer
           </a>
         ) : null}
-        {phase === 'failed' || phase === 'no-extension' ? (
+        {phase === 'failed' || phase === 'unavailable' ? (
           <div style={styles.actions}>
             <button type="button" style={styles.actionButton} onClick={retry}>
               Try again
             </button>
-            {showLegacyAnchor ? (
+            <button type="button" style={styles.actionGhost} onClick={copyLink}>
+              {copied ? 'Link copied' : 'Copy this link'}
+            </button>
+            {phase === 'failed' && legacyUrl ? (
               <a href={legacyUrl} style={styles.actionGhost}>
                 Open with the link&rsquo;s saved extension
               </a>
             ) : null}
           </div>
+        ) : null}
+        {phase === 'unavailable' ? (
+          <p style={styles.fallback}>
+            Copied the link into another browser with LLMnesia? Open it there to view this conversation. You can also
+            open the LLMnesia extension in that browser and search for the conversation directly; the saved copy lives
+            locally in the extension.
+          </p>
         ) : null}
         <p style={styles.privacy}>
           The conversation identifier stays after the # in this address. Browsers do not send that fragment to this website.
