@@ -1,5 +1,21 @@
 [
   {
+    "version": "0.4.11",
+    "date": "2026-10-02",
+    "published": true,
+    "curated": true,
+    "title": "Copilot history imports are more accurate",
+    "summary": "A Copilot history import now waits for the correct conversation before saving its messages, so delayed chat navigation can no longer save one conversation's messages under another. When an import captures some chats only in part, the warning stays visible even if a fully captured chat happens to finish last."
+  },
+  {
+    "version": "0.4.10",
+    "date": "2026-10-02",
+    "published": true,
+    "curated": true,
+    "title": "Source links find your installed extension, and ZCode chats open their projects",
+    "summary": "Source links from your desktop AI answers now discover the installed LLMnesia extension instead of trusting the ID saved in the link, so they keep working after a reinstall or a move between browsers. From a saved ZCode chat you can open its project folder, or copy a search phrase that finds the chat inside ZCode. Copilot support covers its new domain and message layout, including history import for the conversations it discovers, and search now matches text in languages whose words are not separated by spaces. Vault errors show support codes for easier troubleshooting, large exports split between whole conversations instead of through the middle of one, and this release also hardens Vault passphrase changes and sync against interrupted or out-of-date devices, keeps partially captured chats marked for retry, and makes ChatGPT Continue-in and local coding-session imports more dependable."
+  },
+  {
     "version": "0.4.9",
     "date": "2026-09-29",
     "published": true,
