@@ -80,9 +80,8 @@ export default function ClaudeCodePage() {
               Your sessions are split across the terminal, VS Code, and the desktop app — and
               separate from your web chats. LLMnesia indexes all of them locally into one
               search, and hands you the command to resume any session in the right folder. Codex
-              search, and hands you the command to resume any session in the right folder. Codex
-              and <a href="/zcode">ZCode</a> sessions are supported too. Want your desktop AI to
-              search all of this history for you? <a href="/mcp">See the free MCP connection.</a>
+              and <a href="/zcode">ZCode</a> sessions are supported too. Want your desktop AI to search all of this
+              history for you? <a href="/mcp">See the free MCP connection.</a>
             </p>
             <div className="cc-hero-actions">
               <InstallLink className="button button-large" utm={CTA_UTM}>
