@@ -4,8 +4,14 @@
     "date": "2026-10-04",
     "published": true,
     "curated": true,
-    "title": "Search your Google AI Mode history, with more reliable imports",
-    "summary": "Enable Google AI Mode in Settings, open an AI Mode chat, then use Import to save the history Google makes available. Imports now handle localized and restored Google conversations more reliably and remove duplicate provisional captures. DeepSeek imports read prompts and replies from its current layout, Copilot imports keep replies up to date as they load, and long active imports avoid false stalled warnings. History imports also recognize summarized titles, wait for the selected conversation before saving, and retain warnings when history cannot be fully discovered. Images that appear after the message text are now included in saved captures."
+    "title": "Google AI Mode history imports and capture fixes",
+    "highlights": [
+      "Import your Google AI Mode history from its sidebar. Enable Google AI Mode in Settings first.",
+      "Fix missing DeepSeek messages and delayed Copilot replies during imports.",
+      "Avoid duplicate Google chats and false warnings about stalled imports.",
+      "Wait for the correct conversation before saving, and flag incomplete imports.",
+      "Save images that load after the message text."
+    ]
   },
   {
     "version": "0.4.11",
