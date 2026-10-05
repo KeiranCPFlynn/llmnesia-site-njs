@@ -9,6 +9,7 @@
     "start": "next start",
     "test:static-content": "node scripts/test-static-content-export.mjs",
     "test:vault-release": "node scripts/test-vault-release.mjs",
+    "test:vault-sign-in": "node --test scripts/test-vault-sign-in.mjs",
     "test:viewer-handoff": "node scripts/test-viewer-handoff.mjs",
     "indexnow": "node scripts/indexnow.js",
     "indexnow:dry": "INDEXNOW_DRY_RUN=1 node scripts/indexnow.js"

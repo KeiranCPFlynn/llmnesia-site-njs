@@ -119,12 +119,13 @@ assert.equal(successRedirect?.destination, '/account?checkout=success');
 assert.equal(successRedirect?.permanent, false);
 assert.match(account, /Suspense[\s\S]*VaultAccountExperience/);
 assert.match(accountExperience, /searchParams\.get\('checkout'\) === 'success'/);
-assert.match(accountExperience, /You’re subscribed to Vault\./);
+assert.match(accountExperience, /Sign in with the email you used at checkout so we can confirm your subscription/);
+assert.doesNotMatch(accountExperience, /Your payment went through|You’re subscribed to Vault\./, 'query parameters cannot prove payment');
 assert.match(accountExperience, /What to do next/);
 assert.match(accountExperience, /I’ve subscribed, check again/);
 assert.match(accountExperience, /Vault subscription active/);
 
-assert.match(purchase, /accountOnly\s*\? 'Signed in\. Checking your Vault status\.'/);
+assert.match(purchase, /Email confirmed\. Checking your Vault account so you can continue\./);
 assert.match(purchase, /entitled === true \|\| billingDetected \|\| accountOnly/);
 assert.match(purchase, /manage billing below while activation catches up/i);
 assert.match(
@@ -138,7 +139,7 @@ assert.doesNotMatch(purchase, /scrollIntoView/);
 assert.match(purchase, /You’re subscribed to Vault\./);
 assert.match(purchase, /I’ve subscribed, check again/);
 assert.match(purchase, /accountOnly \|\| checkoutReturn === 'success'/);
-assert.match(purchase, /checkoutReturn === 'success'[\s\S]*Vault activation is still syncing\./);
+assert.match(purchase, /checkoutReturn === 'success'[\s\S]*Your subscription is not confirmed yet\./);
 
 assert.equal(
   /restore.{0,100}without an active subscription|existing Vault stays available.{0,100}restore|only new uploads stop/is.test(pricing),

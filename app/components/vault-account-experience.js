@@ -33,11 +33,11 @@ function CheckoutSuccess() {
       <div className="container vault-account-success-shell">
         <header className="vault-account-success-header">
           <span className="vault-account-success-mark" aria-hidden="true">✓</span>
-          <p className="section-eyebrow">Payment successful</p>
-          <h1 id="vault-success-title">You’re subscribed to Vault.</h1>
+          <p className="section-eyebrow">Back from checkout</p>
+          <h1 id="vault-success-title">Finish your Vault setup.</h1>
           <p>
-            Your payment went through. One short setup in the LLMnesia extension will switch on
-            encrypted sync and backup for this device.
+            Sign in with the email you used at checkout so we can confirm your subscription.
+            Once Vault is active, finish setup in the LLMnesia extension to switch on encrypted sync.
           </p>
         </header>
 
@@ -58,7 +58,7 @@ function CheckoutSuccess() {
                 <div>
                   <strong>Return to LLMnesia Settings</strong>
                   <p>
-                    Find Vault — returning there confirms your subscription automatically. If it
+                    Find Vault. Returning there confirms your subscription automatically. If it
                     hasn’t appeared yet, click “I’ve subscribed, check again”.
                   </p>
                 </div>
