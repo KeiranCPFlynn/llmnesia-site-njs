@@ -5,6 +5,10 @@ Recorded 2026-10-06 for the handoff `GROWTH_ARTICLE_CTA_EXPERIMENT.md`
 attribution verification, and the honesty check that motivated the copy
 change. Local commit only: deployment requires separate founder approval.
 
+## Release update, 7 October 2026
+
+Keiran confirmed extension 0.4.14 is live. The site preparation now replaces the forward-capture CTA with "Search AI Mode history, free" and adds instructions for optional Google access, history import and an individual slow-chat retry. The release includes history paging and incomplete-capture handling; it does not promise recovery of deleted or unavailable chats. This preparation is local and has not been deployed. The October 6 reasoning below is historical. Any measurement of the new copy starts with its actual production deployment, not this preparation date.
+
 ## Background
 
 The 23 September conversion audit (`conversion-audit-2026-09-23.md`) told us

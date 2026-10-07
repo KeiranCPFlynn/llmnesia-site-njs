@@ -1,5 +1,26 @@
 [
   {
+    "version": "0.4.14",
+    "date": "2026-10-07",
+    "published": true,
+    "curated": true,
+    "title": "Google AI Mode history import and more reliable Vault sync",
+    "summary": "Import Google AI Mode conversations from your history, including older chats beyond the first ten. Interrupted imports resume unfinished work, slow-loading chats have a longer individual retry, and saved conversations preserve visible replies and formatting with fewer duplicates. Vault sync and restore are more reliable, with responsive status details in the popup and Settings. This update also improves sign-in and reduces repetitive background analytics."
+  },
+  {
+    "version": "0.4.13",
+    "date": "2026-10-04",
+    "title": "3 fixes",
+    "highlights": [
+      "Import Google AI Mode history through its history sidebar.",
+      "Google AI Mode captures localized restored conversations and removes duplicate provisional captures.",
+      "History imports recognize summarized titles and wait for the selected thread's transcript before saving.",
+      "Incomplete or unavailable history discovery retains a warning."
+    ],
+    "published": false,
+    "curated": true
+  },
+  {
     "version": "0.4.11",
     "date": "2026-10-02",
     "published": true,

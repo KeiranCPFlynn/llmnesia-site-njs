@@ -35,7 +35,7 @@ const routes = [...contentRoutes, ...categoryRoutes];
 const conversionCopyByRoute = {
   '/blog/recover-deleted-chatgpt-conversation': 'Protect future ChatGPT chats, free',
   '/blog/recover-deleted-claude-conversation': 'Protect future Claude chats, free',
-  '/blog/google-ai-mode-history': 'Save AI Mode chats, free',
+  '/blog/google-ai-mode-history': 'Search AI Mode history, free',
   '/blog/how-to-find-old-character-ai-conversations': 'Search Character.AI history, free',
   '/blog/search-character-ai-conversation-history': 'Search Character.AI chats, free'
 };

@@ -3,10 +3,10 @@ title: "Google AI Mode History: Find and Resume Past Chats"
 slug: "google-ai-mode-history"
 description: "See where Google AI Mode history is stored, why a past chat may be missing, and how to resume, export, or delete AI Mode conversations."
 publishDate: "2026-09-10"
-updatedDate: "2026-09-20"
+updatedDate: "2026-10-07"
 author: "Keiran Flynn"
-ctaHeadline: "Keep a searchable copy of the AI Mode conversations you have from now on. LLMnesia saves and indexes your Google AI Mode chats locally, alongside ChatGPT, Claude, Gemini and more."
-ctaButtonLabel: "Save AI Mode chats, free"
+ctaHeadline: "Import the conversations available in your Google AI Mode history and search them alongside ChatGPT, Claude, Gemini and more. LLMnesia keeps your searchable copy on this device."
+ctaButtonLabel: "Search AI Mode history, free"
 primaryKeyword: "google ai mode history"
 secondaryKeywords:
   - "find ai mode history"
@@ -26,6 +26,8 @@ faq:
     answer: "Open AI Mode history, use the menu beside one conversation to delete it, or use the menu at the top to delete all AI Mode history. Google notes that an item may remain in My Activity for less than 24 hours, and an AI Overview that continued into AI Mode can create a separate Search-history entry that must also be deleted."
   - question: "Can I export Google AI Mode history?"
     answer: "Google says Search Services History can be downloaded with Google Takeout. Treat that as an account-data archive rather than assuming it will reproduce the exact interactive AI Mode interface or every visual element."
+  - question: "Can LLMnesia import my Google AI Mode history?"
+    answer: "Yes. Enable optional Google AI Mode access in LLMnesia Settings, open Google AI Mode while signed in, then start its history import from the extension. LLMnesia saves available conversations locally so you can search them alongside other AI chats. If a chat loads slowly or is captured only in part, Settings shows it for an individual retry. It cannot recover conversations Google no longer provides."
 sources:
   - label: "Google Search Help — use and delete AI Mode history"
     url: "https://support.google.com/websearch/answer/16011537"
@@ -131,6 +133,17 @@ Google’s Search Services History documentation says saved activity can include
 - Device, language, referrer, and approximate-location context associated with the activity
 
 The same documentation explains that saved Search history can be used for personalisation and product improvement, including generative-AI model training. Turning Search Services History off stops future account-linked activity from being used for that model training unless you explicitly submit feedback; it does not erase past activity automatically.
+
+## Import AI Mode history into LLMnesia
+
+LLMnesia 0.4.14 can import the conversations available in your Google AI Mode history, including older entries beyond the first loaded page. Your searchable copy stays on this device, alongside saved chats from ChatGPT, Claude, Gemini and other supported assistants.
+
+1. Install or update LLMnesia, then enable **Google AI Mode** in Settings and approve the optional Google site access.
+2. Open [Google AI Mode](https://www.google.com/ai) while signed into the account whose history you want to import.
+3. Start the Google AI Mode history import from the extension and keep the Google tab open while it loads conversations.
+4. If a conversation loads slowly or is captured only in part, open the **Google AI Mode import report** in Settings and retry that chat individually. The longer retry gives Google up to nine minutes to restore it.
+
+Imports start when you request them. If one is interrupted, start it again to resume unfinished work. LLMnesia cannot recover deleted chats or activity Google never saved, and a loading failure remains visible rather than being reported as a complete capture.
 
 ## A practical backup rule
 
