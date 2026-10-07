@@ -21,12 +21,26 @@
     "curated": true
   },
   {
+    "version": "0.4.12",
+    "date": "2026-10-04",
+    "published": true,
+    "curated": true,
+    "title": "Google AI Mode history imports and capture fixes",
+    "highlights": [
+      "Import your Google AI Mode history from its sidebar. Enable Google AI Mode in Settings first.",
+      "Fix missing DeepSeek messages and delayed Copilot replies during imports.",
+      "Avoid duplicate Google chats and false warnings about stalled imports.",
+      "Wait for the correct conversation before saving, and flag incomplete imports.",
+      "Save images that load after the message text."
+    ]
+  },
+  {
     "version": "0.4.11",
     "date": "2026-10-02",
     "published": true,
     "curated": true,
     "title": "Copilot history imports are more accurate",
-    "summary": "A Copilot history import now waits for the correct conversation before saving its messages, so delayed chat navigation can no longer save one conversation's messages under another. When an import captures some chats only in part, the warning stays visible even if a fully captured chat happens to finish last."
+    "summary": "Copilot history imports now wait for the correct chat and for both questions and replies to load, preventing messages from being saved under the wrong conversation or missing delayed answers. Imports also handle already-open chats and restore your original chat more reliably. If a chat is only partly captured, LLMnesia preserves its fuller saved copy and keeps the warning visible when the import finishes."
   },
   {
     "version": "0.4.10",
