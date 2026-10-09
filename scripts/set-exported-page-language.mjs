@@ -5,13 +5,13 @@ import { SITE_LANGUAGES, LOCALIZED_CORE_PAGES } from '../lib/site-language.js';
 
 // The static export shares one Next.js root layout. Set each registered locale
 // on its exported HTML, including no-JS clients; SiteLanguage handles navigation.
-// Vercel packages Next's prerendered HTML rather than our patched out/ export.
-// Keep both artifacts consistent before the adapter assembles the deployment.
+// Vercel's onBuildComplete adapter copies HTML into .next/output/static before
+// this postbuild step. Update that copy too before Vercel packages it.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 for (const {code, path: route, guidePath} of SITE_LANGUAGES.filter(item => item.code !== 'en')) {
   const routes = [route, ...LOCALIZED_CORE_PAGES.map(page => `${route}/${page}`), ...(guidePath ? [guidePath] : [])];
   for (const localizedRoute of routes) {
-    for (const directory of ['out', '.next/server/app', '.vercel/output/static']) {
+    for (const directory of ['out', '.next/server/app', '.next/output/static']) {
       const filename = path.join(root, directory, `${localizedRoute.slice(1)}.html`);
       let html;
       try { html = await fs.readFile(filename, 'utf8'); }
