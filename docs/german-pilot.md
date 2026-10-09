@@ -1,12 +1,12 @@
 # German acquisition pilot
 
-Prepared scope: a German introduction at `/de`, installation guidance at `/de/installation`, an English/German selector on the homepage, and a German store-listing draft. The extension, Vault, checkout, and wider documentation remain in English. The German pages disclose this before installation.
+Prepared scope: the existing English homepage translated at `/de`, installation guidance at `/de/installation`, a compact language dropdown separate from the main menu, and a German store-listing draft. The extension, Vault, checkout, and wider documentation remain in English. The German pages disclose this before installation.
 
 ## Display and discovery
 
 Each language has its own URL. German is suggested on the English homepage when the visitor's first browser language is German or they previously chose German. Explicitly choosing English, or dismissing the suggestion, suppresses it. Choices are saved in local browser storage when available. There are no forced redirects, IP lookups, or geographic restrictions.
 
-The homepages have reciprocal English/German `hreflang` links and their own canonicals. Both German routes are included in the sitemap. The German setup guide always offers both official store links; its explicit Chrome button is not changed to Edge by browser detection.
+The homepages have reciprocal English/German `hreflang` links and their own canonicals. Both German routes are included in the sitemap. The homepages share one template, all sections, styling and behavior; language changes copy instead of selecting a different design. See [shared website localization](site-localization.md) for editing and adding languages. The German setup guide always offers both official store links; its explicit Chrome button is not changed to Edge by browser detection.
 
 ## Translation workflow
 
@@ -19,7 +19,7 @@ npm run test:site-language
 npm run build
 ```
 
-The script uses only Node's installed built-in APIs. No additional dependency is needed. It sends the public copy in `content/locales/en.json` to DeepL with product context and informal German tone. It requests the quality-optimized model when available, without silently upgrading the account. Only official `api.deepl.com` and `api-free.deepl.com` origins are accepted. The origin is inferred from the key's `:fx` suffix; an explicit `DEEPL_API_URL` can select either official origin if the account requires it.
+The script uses Node’s built-in APIs and the existing locale registry. No additional dependency is needed. The shared `translate:site` script (`translate:german` remains an alias) sends the public copy in `content/locales/en.json` to DeepL with product context and informal German tone. It requests the quality-optimized model when available, without silently upgrading the account. Only official `api.deepl.com` and `api-free.deepl.com` origins are accepted. The origin is inferred from the key's `:fx` suffix; an explicit `DEEPL_API_URL` can select either official origin if the account requires it.
 
 The script checks the existing account allowance before translation, limits a run to 25,000 source characters, and saves each completed batch. Source hashes identify changed strings. Already translated strings, including manually reviewed edits, are retained until their English source changes. Changing an English string requires a new translation and review. No account, subscription, cloud glossary, or other resource is created by the script. It never retries a failed request automatically. If a translation request times out, check account usage before rerunning it.
 
@@ -40,7 +40,7 @@ These are tokenizer checks, not end-to-end capture, retrieval, or semantic-searc
 
 ## Measurement
 
-German installation links use campaign `german_pilot` and placement-specific attribution. Existing `install_click` tracking remains in place, including accurate attribution for the guide's explicit store choices. The selector records `site_language_selected`; the homepage guide link records `german_setup_guide_click`. These use existing production-only analytics, with no new vendor, account, or live configuration changes.
+German installation links use campaign `german_pilot`; the guide's explicit store choices also identify their placements. Existing `install_click` tracking remains in place, including accurate attribution for those choices. The selector records `site_language_selected`; the homepage guide link records `german_setup_guide_click`. These use existing production-only analytics, with no new vendor, account, or live configuration changes.
 
 Use production-host traffic, language, landing page, device, and source breakdowns. Separate install clicks from actual installs. Assess first successful search and returning usage only where available instrumentation can support those claims. Website/store events do not establish extension activation or retention. Observe roughly 4–6 weeks and extend the window if volumes are sparse.
 
@@ -62,3 +62,13 @@ The local pages and listing copy are preparation artifacts. Deployment and store
 - [DeepL text API](https://developers.deepl.com/api-reference/translate/request-translation)
 - [DeepL API plans](https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans)
 - [Google multilingual-site guidance](https://developers.google.com/search/docs/advanced/crawling/managing-multi-regional-sites)
+
+## Shared-design correction — 9 October 2026
+
+The initial shortened German page was replaced with a full translation of the existing English homepage. Both locales now render `Homepage` and `index.template.html`, retaining all 18 sections, original kinetic animation, typography, grids, platform list and footer. The initial inline EN/Deutsch menu links were replaced by a compact independent dropdown generated from the language registry. The English page’s main text and element structure were compared with the original and preserved.
+
+The shared translation workflow covers homepage text and contact/signup feedback. Locale builds reject missing, stale or unreviewed copy and changed inline markup; the homepage check also verifies that locale structures match. Original extension-demo controls and examples remain English, matching the product. No form messages or signups were submitted during verification.
+
+The final DeepL usage counter is 22,434 of 1,000,000 characters (977,566 remaining). This includes the initial pilot and the shared-homepage correction, including one repeated batch after the initial markup check stopped it. Future builds and page views consume no DeepL characters.
+
+The corrected production build passed, including the 223 existing content-route checks and shared-design checks for both homepages and 275 copy slots. Language-preference and private Viewer hand-off tests passed; the translation dry run reports no pending strings. Browser verification covered the restored desktop animation and step layout, German homepage and guide at 390px, separate Chrome/Edge guide links, guide skip navigation, and the selector on an existing English page. The closed desktop selector is approximately 60px wide. Opening it closes the mobile menu; Escape dismisses it. No horizontal overflow or browser warnings/errors were observed. These checks did not submit any forms or publish the site.

@@ -104,7 +104,7 @@ for (const route of ['/de', '/de/installation']) {
   assert.ok(html.includes(`rel="canonical" href="https://www.llmnesia.com${route}"`), `${route} canonical is missing`);
   assert.ok(html.includes('data-site-language="en"'), `${route} has no English choice`);
   assert.ok(html.includes('utm_campaign=german_pilot'), `${route} has no attributed installation link`);
-  assert.ok(html.includes(escapeHtml(germanCopy[route === '/de' ? 'home.languageNotice' : 'guide.intro'])), `${route} does not disclose the English interface`);
+  assert.ok(html.includes(escapeHtml(germanCopy[route === '/de' ? 'homepage.languageNotice' : 'guide.intro'])), `${route} does not disclose the English interface`);
   assert.equal(/\{\{[A-Z_]+\}\}/.test(html), false, `${route} contains unresolved placeholders`);
 }
 for (const file of ['index.html', 'de.html']) {

@@ -1,5 +1,6 @@
 import InstallLink from './install-link';
 import { FOOTER_BADGES } from '../../lib/footer-badges';
+import { languagePickerHtml } from '../../lib/site-language';
 
 // `minimalHeader` strips the header down to logo + a single install button, for
 // dedicated landing pages (e.g. /claude-code) where external traffic arrives to
@@ -13,7 +14,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
         Skip to content
       </a>
 
-      <header className={`site-header${minimalHeader ? ' site-header--minimal' : ''}`}>
+      <header className={`site-header${minimalHeader ? ' site-header--minimal' : ' site-header--language'}`}>
         <div className="container header-inner">
           <a className="brand" href="/" aria-label="LLMnesia home">
             <img src="/logo.svg" alt="" width="28" height="28" />
@@ -45,6 +46,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
                 <a href="/compare">Compare</a>
                 <InstallLink className="nav-cta">Add to Chrome</InstallLink>
               </nav>
+              <div dangerouslySetInnerHTML={{ __html: languagePickerHtml('en') }} />
             </>
           )}
         </div>

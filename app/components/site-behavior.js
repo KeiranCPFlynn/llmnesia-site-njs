@@ -7,9 +7,13 @@ import {
   installStoreForUserAgent
 } from '../../lib/site';
 import { trackEvent } from '../../lib/analytics';
+import { siteText } from '../../lib/site-copy';
+import { languageForPath } from '../../lib/site-language';
 
 export default function SiteBehavior() {
   useEffect(() => {
+    const language = languageForPath(window.location.pathname);
+    const text = (id) => siteText(id, language);
     const navToggle = document.getElementById('nav-toggle');
     const nav = document.getElementById('primary-nav');
     const yearNode = document.getElementById('year');
@@ -594,16 +598,16 @@ export default function SiteBehavior() {
         reportBodyPre.textContent = report;
         reportDetails.removeAttribute('hidden');
         if (messageLabel) {
-          messageLabel.textContent = 'What happened?';
+          messageLabel.textContent = text('runtime.contact.label');
         }
         messageTextarea.setAttribute(
           'placeholder',
-          'Describe what you saw — e.g. chats from this site never appear in search.'
+          text('runtime.contact.placeholder')
         );
       } else {
         reportDetails.setAttribute('hidden', '');
         if (messageLabel) {
-          messageLabel.textContent = 'Message';
+          messageLabel.textContent = text('runtime.contact.message');
         }
         messageTextarea.removeAttribute('placeholder');
       }
@@ -671,7 +675,7 @@ export default function SiteBehavior() {
         }
 
         if (!contactForm.checkValidity()) {
-          contactMessage.textContent = 'Please complete all fields.';
+          contactMessage.textContent = text('runtime.contact.complete');
           contactMessage.setAttribute('data-state', 'error');
           contactForm.reportValidity();
           return;
@@ -679,7 +683,7 @@ export default function SiteBehavior() {
 
         const action = contactForm.getAttribute('action') || '';
         if (!action) {
-          contactMessage.textContent = 'Contact form is not configured yet.';
+          contactMessage.textContent = text('runtime.contact.unconfigured');
           contactMessage.setAttribute('data-state', 'error');
           return;
         }
@@ -688,14 +692,14 @@ export default function SiteBehavior() {
         const honeypot = payload.get('botcheck');
         if (typeof honeypot === 'string' && honeypot.trim() !== '') {
           contactForm.reset();
-          contactMessage.textContent = 'Message sent.';
+          contactMessage.textContent = text('runtime.contact.sent');
           contactMessage.setAttribute('data-state', 'success');
           return;
         }
 
         const userMessage = String(payload.get('message') || '');
         if (contactReportBody && !userMessage.trim()) {
-          contactMessage.textContent = 'Please add a short description of what you observed.';
+          contactMessage.textContent = text('runtime.contact.description');
           contactMessage.setAttribute('data-state', 'error');
           return;
         }
@@ -705,7 +709,7 @@ export default function SiteBehavior() {
         }
 
         contactSubmit.disabled = true;
-        contactSubmit.textContent = 'Sending...';
+        contactSubmit.textContent = text('runtime.contact.sending');
 
         try {
           const response = await fetch(action, {
@@ -730,15 +734,15 @@ export default function SiteBehavior() {
           contactForm.reset();
           contactReportBody = null;
           setContactReportMode(null);
-          contactMessage.textContent = 'Thanks. Your message has been sent.';
+          contactMessage.textContent = text('runtime.contact.success');
           contactMessage.setAttribute('data-state', 'success');
           trackEvent('contact_submit');
         } catch {
-          contactMessage.textContent = 'Could not send your message. Please try again.';
+          contactMessage.textContent = text('runtime.contact.error');
           contactMessage.setAttribute('data-state', 'error');
         } finally {
           contactSubmit.disabled = false;
-          contactSubmit.textContent = 'Send message';
+          contactSubmit.textContent = text('runtime.contact.submit');
         }
       };
 
@@ -755,17 +759,17 @@ export default function SiteBehavior() {
     const emailCaptureSuccessCopy = document.getElementById('email-capture-success-copy');
     const emailCaptureParams = new URLSearchParams(window.location.search);
     const isVaultUpdatesLanding = emailCaptureParams.get('lead_source') === 'extension_vault_updates';
-    const emailCaptureIdleLabel = isVaultUpdatesLanding ? 'Get Vault updates' : 'Stay updated';
+    const emailCaptureIdleLabel = isVaultUpdatesLanding ? text('runtime.signup.vaultLabel') : text('runtime.signup.idle');
 
     if (isVaultUpdatesLanding) {
-      if (emailCaptureLabel) emailCaptureLabel.textContent = 'Get Vault updates';
+      if (emailCaptureLabel) emailCaptureLabel.textContent = text('runtime.signup.vaultLabel');
       if (emailCaptureSubmit) emailCaptureSubmit.textContent = emailCaptureIdleLabel;
       if (emailCaptureMessage) {
-        emailCaptureMessage.textContent = 'Only Vault launch updates and a small number of important product emails.';
+        emailCaptureMessage.textContent = text('runtime.signup.vaultNotice');
       }
-      if (emailCaptureSuccessTitle) emailCaptureSuccessTitle.textContent = 'You’re on the Vault updates list.';
+      if (emailCaptureSuccessTitle) emailCaptureSuccessTitle.textContent = text('runtime.signup.vaultSuccess');
       if (emailCaptureSuccessCopy) {
-        emailCaptureSuccessCopy.textContent = 'We’ll email you when encrypted sync and backup are ready.';
+        emailCaptureSuccessCopy.textContent = text('runtime.signup.vaultCopy');
       }
     }
 
@@ -796,7 +800,7 @@ export default function SiteBehavior() {
         }
 
         emailCaptureSubmit.disabled = true;
-        emailCaptureSubmit.textContent = 'Joining...';
+        emailCaptureSubmit.textContent = text('runtime.signup.joining');
 
         const emailInput = document.getElementById('email-capture-input');
         try {
@@ -828,7 +832,7 @@ export default function SiteBehavior() {
           emailCaptureSuccess.removeAttribute('hidden');
           trackEvent('email_signup');
         } catch {
-          emailCaptureMessage.textContent = 'Something went wrong. Please try again.';
+          emailCaptureMessage.textContent = text('runtime.signup.error');
           emailCaptureMessage.setAttribute('data-state', 'error');
           emailCaptureSubmit.disabled = false;
           emailCaptureSubmit.textContent = emailCaptureIdleLabel;
@@ -891,7 +895,7 @@ export default function SiteBehavior() {
 
       if (submit) {
         submit.disabled = true;
-        submit.textContent = 'Sending...';
+        submit.textContent = text('runtime.contact.sending');
       }
       if (message) {
         message.textContent = 'No spam. Just the install link.';
@@ -934,7 +938,7 @@ export default function SiteBehavior() {
         });
       } catch {
         if (message) {
-          message.textContent = 'Something went wrong. Please try again.';
+          message.textContent = text('runtime.signup.error');
           message.setAttribute('data-state', 'error');
         }
         if (submit) {

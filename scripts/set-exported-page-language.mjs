@@ -1,16 +1,18 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SITE_LANGUAGES } from '../lib/site-language.js';
 
-// Next's shared root layout has one document language. For this static export,
-// set German on its generated documents before serving them, including no-JS
-// clients. SiteLanguage maintains the same value after client navigation.
+// The static export shares one Next.js root layout. Set each registered locale
+// on its exported HTML, including no-JS clients; SiteLanguage handles navigation.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-for (const route of ['de', 'de/installation']) {
-  const filename = path.join(root, 'out', `${route}.html`);
-  const html = await fs.readFile(filename, 'utf8');
-  if (!/<html\b[^>]*\blang="(?:en|de)"/.test(html)) throw new Error(`Missing document language in ${route}.`);
-  const localized = html.replace(/(<html\b[^>]*\blang=")en("[^>]*>)/, '$1de$2');
-  await fs.writeFile(filename, localized);
+for (const {code, path: route, guidePath} of SITE_LANGUAGES.filter(item => item.code !== 'en')) {
+  const routes = [route, ...(guidePath ? [guidePath] : [])];
+  for (const localizedRoute of routes) {
+    const filename = path.join(root, 'out', `${localizedRoute.slice(1)}.html`);
+    const html = await fs.readFile(filename, 'utf8');
+    if (!/<html\b[^>]*\blang="[^"]+"/.test(html)) throw new Error(`Missing document language in ${localizedRoute}.`);
+    await fs.writeFile(filename, html.replace(/(<html\b[^>]*\blang=")[^"]+("[^>]*>)/, `$1${code}$2`));
+  }
 }
-console.log('German static document languages set.');
+console.log('Registered locale document languages set.');
