@@ -142,7 +142,7 @@ video {
 .site-header--language .nav-toggle { margin-left: auto; }
 .site-language-note { margin-top: 0.4rem; }
 .site-language-note a { text-decoration: underline; text-underline-offset: 3px; }
-.home-page:lang(de) .hero h1 { max-width: 15ch; }
+.home-page:lang(de) .hero h1, .home-page:lang(es) .hero h1 { max-width: 15ch; }
 .language-suggestion { background: var(--t-paper); border-bottom: 1px solid var(--t-rule); }
 .language-suggestion-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; padding-block: 0.65rem; font-size: 0.875rem; }
 .language-suggestion-inner > a { font-weight: 600; }
@@ -154,7 +154,7 @@ video {
 .german-reading-width { max-width: 54rem; }
 .german-guide h1 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 22ch; }
 .german-guide-step { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
-.german-guide-step h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+.german-guide .german-guide-step h2 { font-size: clamp(1.4rem, 3vw, 2rem); max-width: none; }
 .german-guide-step p { margin: 1rem 0; line-height: 1.75; }
 .german-store-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
 @media (max-width: 480px) {

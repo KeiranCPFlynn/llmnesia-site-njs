@@ -62,6 +62,15 @@ observePageAnalytics(english, { pathname: '/', pagePath: '/' })();
 assert.equal(posthog.at(-1)[1].site_language, 'en');
 assert.equal(posthog.at(-1)[1].browser_language, 'de');
 assert.equal(analyticsProperties('/de/installation/').page_type, 'installation_guide');
+assert.equal(analyticsProperties('/es/installation/').page_type, 'installation_guide');
+assert.equal(analyticsProperties('/es', {}, 'es-MX').site_language, 'es');
+assert.equal(analyticsProperties('/es', {}, 'es-MX').browser_language, 'es');
+const spanish = fakeBrowser('www.llmnesia.com', '/es');
+const spanishEvents = [];
+spanish.gtag = (...args) => spanishEvents.push(args);
+observePageAnalytics(spanish, { gaId: 'test-only', pathname: '/es', pagePath: '/es' })();
+assert.equal(spanishEvents.filter(args => args[1] === 'localized_page_viewed').length, 1);
+assert.equal(spanishEvents.at(-1)[2].site_language, 'es');
 assert.equal(analyticsProperties('/demo-preview').page_type, 'other');
 
 // Tracking must stay disabled for local/preview hosts and private Viewer URLs.

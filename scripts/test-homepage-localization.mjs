@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import parser from 'next/dist/compiled/node-html-parser/index.js';
-import { SITE_CATALOGS, inlineMarkupTokens } from '../lib/site-copy.js';
-import { SITE_LANGUAGES, languagePickerHtml } from '../lib/site-language.js';
+import { SITE_CATALOGS, inlineMarkupTokens, translationSource } from '../lib/site-copy.js';
+import { SITE_LANGUAGES, languagePickerHtml, languageCampaign } from '../lib/site-language.js';
 
 const template = await readFile(new URL('../content/index.template.html', import.meta.url), 'utf8');
 const ids = [...template.matchAll(/\{\{t:([\w.-]+)\}\}/g)].map(match => match[1]);
@@ -19,7 +19,7 @@ for (const {code} of SITE_LANGUAGES) {
     const keyLabels = text => text.match(/<kbd\b[^>]*>.*?<\/kbd>/g) || [];
     assert.deepEqual(keyLabels(catalog[id]), keyLabels(source), `${code}: changed keyboard labels in ${id}`);
     if (record) {
-      assert.equal(record.entries[id]?.sourceHash, createHash('sha256').update(source).digest('hex'), `${code}: outdated ${id}`);
+      assert.equal(record.entries[id]?.sourceHash, createHash('sha256').update(translationSource(id, source, code)).digest('hex'), `${code}: outdated ${id}`);
       assert.equal(record.entries[id]?.reviewedHash, createHash('sha256').update(catalog[id]).digest('hex'), `${code}: unreviewed ${id}`);
     }
   }
@@ -50,3 +50,22 @@ for (const {code, path} of SITE_LANGUAGES) {
   assert.ok(root.querySelector('.header-inner > .language-picker'), 'Compact language picker is missing');
 }
 console.log(`Shared homepage design and catalog checks passed for ${SITE_LANGUAGES.length} languages and ${ids.length} copy slots.`);
+
+const localizedGuides = SITE_LANGUAGES.filter(item => item.guidePath);
+let guideSkeleton;
+for (const {code, guidePath} of localizedGuides) {
+  const html = await readFile(new URL(`../out/${guidePath.slice(1)}.html`, import.meta.url), 'utf8');
+  const root = parser.parse(html);
+  assert.equal(root.querySelector('html').getAttribute('lang'), code);
+  const skeleton = root.querySelector('main').querySelectorAll('*').map(node => [node.tagName, node.getAttribute('class') || '']);
+  if (guideSkeleton) assert.deepEqual(skeleton, guideSkeleton, `${code}: installation guide design drifted`);
+  guideSkeleton = skeleton;
+  for (const store of ['chrome', 'edge']) {
+    const link = root.querySelector(`a[data-install-position="guide_${store}"]`);
+    assert.ok(link, `${code}: missing ${store} guide link`);
+    const url = new URL(link.getAttribute('href'));
+    assert.equal(url.searchParams.get('utm_campaign'), languageCampaign(code).utm_campaign);
+    assert.equal(url.searchParams.get('utm_content'), `guide_${store}`);
+  }
+}
+console.log(`Shared installation guide checks passed for ${localizedGuides.length} languages.`);

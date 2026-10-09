@@ -3,11 +3,11 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { trackEvent } from '../../lib/analytics';
-import { LANGUAGE_PREFERENCE_KEY, SITE_LANGUAGES, languageForPath, shouldSuggestGerman } from '../../lib/site-language';
+import { LANGUAGE_PREFERENCE_KEY, SITE_LANGUAGES, languageForPath, suggestedLanguage } from '../../lib/site-language';
 
 export default function SiteLanguage() {
   const pathname = usePathname() || '/';
-  const [suggestGerman, setSuggestGerman] = useState(false);
+  const [suggestion, setSuggestion] = useState(null);
 
   useEffect(() => {
     document.documentElement.lang = languageForPath(pathname);
@@ -15,7 +15,7 @@ export default function SiteLanguage() {
     if (pathname === '/open' || pathname === '/open/') return;
     let preference;
     try { preference = localStorage.getItem(LANGUAGE_PREFERENCE_KEY); } catch { /* Storage is optional. */ }
-    setSuggestGerman(shouldSuggestGerman(pathname, preference, navigator.languages || [navigator.language]));
+    setSuggestion(suggestedLanguage(pathname, preference, navigator.languages || [navigator.language]));
 
     const rememberChoice = (event) => {
       const link = event.target instanceof Element ? event.target.closest('a[data-site-language]') : null;
@@ -49,15 +49,15 @@ export default function SiteLanguage() {
 
   function dismissSuggestion() {
     try { localStorage.setItem(LANGUAGE_PREFERENCE_KEY, 'en'); } catch { /* Storage is optional. */ }
-    setSuggestGerman(false);
+    setSuggestion(null);
   }
 
-  if (!suggestGerman || pathname !== '/') return null;
+  if (!suggestion || pathname !== '/') return null;
   return (
     <aside className="language-suggestion" aria-label="Language suggestion">
       <div className="container language-suggestion-inner">
-        <a href="/de" lang="de" data-site-language="de">Auf Deutsch ansehen</a>
-        <span>German website and installation guide</span>
+        <a href={suggestion.path} lang={suggestion.code} data-site-language={suggestion.code}>{suggestion.viewLabel}</a>
+        <span>{suggestion.suggestionLabel}</span>
         <button type="button" onClick={dismissSuggestion}>Keep English</button>
       </div>
     </aside>

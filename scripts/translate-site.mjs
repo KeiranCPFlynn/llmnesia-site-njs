@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { inlineMarkupTokens } from '../lib/site-copy.js';
+import { inlineMarkupTokens, translationSource } from '../lib/site-copy.js';
 import { SITE_LANGUAGES } from '../lib/site-language.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -18,7 +18,7 @@ const optionalJson = async (filename) => {
   catch (error) { if (error.code === 'ENOENT') return {}; throw error; }
 };
 
-const source = JSON.parse(await fs.readFile(sourcePath, 'utf8'));
+const source = Object.fromEntries(Object.entries(JSON.parse(await fs.readFile(sourcePath, 'utf8'))).map(([id, text]) => [id, translationSource(id, text, language)]));
 const target = await optionalJson(targetPath);
 const record = await optionalJson(recordPath);
 const pending = Object.entries(source).filter(([id, text]) => !target[id] || record.entries?.[id]?.sourceHash !== hash(text));
@@ -50,7 +50,7 @@ const remaining = usage.character_limit - usage.character_count;
 console.log(JSON.stringify({ remainingCharacters: remaining, requestedCharacters: characters }));
 if (characters > remaining) throw new Error('Not enough existing DeepL character allowance. No translation was submitted.');
 
-const context = `LLMnesia is a browser extension for Chrome and Microsoft Edge. Translate this public product website from English to natural ${config.label}, using a consistent informal singular tone. Free local search stores chat content and its index in the browser on the user's device. Vault is the unchanged brand name of an optional PAID service for end-to-end encrypted backup and sync; do not confuse it with free local search. The application interface and payment pages remain in English. This translation must not imply semantic search in the target language or cross-language search is guaranteed. Preserve brand names, URLs and keyboard shortcuts. ${language === 'de' ? 'German terminology: search index = Suchindex; chat history = Chatverlauf; backup = Sicherung; end-to-end encrypted = Ende-zu-Ende-verschlüsselt.' : 'Use consistent technical terminology in the target language.'}`;
+const context = `LLMnesia is a browser extension for Chrome and Microsoft Edge. Translate this public product website from English to natural ${config.label}, using a consistent informal singular tone. Free local search stores chat content and its index in the browser on the user's device. Vault is the unchanged brand name of an optional PAID service for end-to-end encrypted backup and sync; do not confuse it with free local search. The application interface and payment pages remain in English. This translation must not imply semantic search in the target language or cross-language search is guaranteed. Preserve brand names, URLs and keyboard shortcuts. ${language === 'de' ? 'German terminology: search index = Suchindex; chat history = Chatverlauf; backup = Sicherung; end-to-end encrypted = Ende-zu-Ende-verschlüsselt.' : language === 'es' ? 'Use international Spanish understandable in Spain and Latin America, informal singular tú, without vosotros or regional idioms. Keep Vault, Ask Vault, Google AI Mode, browser permission names and product brands unchanged.' : 'Use consistent technical terminology in the target language.'}`;
 const entries = record.entries || {};
 for (let start = 0; start < pending.length; start += 40) {
   const batch = pending.slice(start, start + 40);
