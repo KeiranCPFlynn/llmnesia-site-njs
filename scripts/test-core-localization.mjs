@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import parser from 'next/dist/compiled/node-html-parser/index.js';
-import { SITE_LANGUAGES, LOCALIZED_CORE_PAGES, localizedHref, localizeHtmlLinks, languagePickerHtml } from '../lib/site-language.js';
+import { SITE_LANGUAGES, LOCALIZED_CORE_PAGES, localizedHref, localizeHtmlLinks, languagePickerHtml, languageCampaign } from '../lib/site-language.js';
 import { SITE_CATALOGS, siteHtml, clientCopy } from '../lib/site-copy.js';
 
 const readPage = async route => parser.parse(await readFile(new URL(`../out${route}.html`, import.meta.url), 'utf8'));
@@ -29,6 +29,16 @@ for (const page of LOCALIZED_CORE_PAGES) {
     }
     assert.ok(sitemap.includes(`<loc>https://www.llmnesia.com${route}</loc>`), `${route}: missing from sitemap`);
     assert.equal(/\{\{(?:t:|[A-Z_])/.test(root.querySelector('main').toString()), false, `${route}: unresolved copy`);
+    if (code !== 'en') {
+      const storeLinks = root.querySelectorAll('a[href]').filter(anchor => /^https:\/\/(chromewebstore\.google\.com|microsoftedge\.microsoft\.com)\//.test(anchor.getAttribute('href')));
+      assert.ok(storeLinks.length, `${route}: missing store links`);
+      for (const anchor of storeLinks) {
+        const params = new URL(anchor.getAttribute('href')).searchParams;
+        for (const [key, value] of Object.entries(languageCampaign(code))) {
+          assert.equal(params.get(key), value, `${route}: store link lost ${key}`);
+        }
+      }
+    }
     for (const anchor of root.querySelector('main').querySelectorAll('a[href^="#"]')) {
       assert.ok(root.querySelector(`[id="${anchor.getAttribute('href').slice(1)}"]`), `${route}: broken in-page link`);
     }

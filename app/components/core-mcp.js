@@ -258,7 +258,7 @@ export default function McpPage({ language = 'en' }) {
             <div className="mcp-hero-actions">
               <InstallLink
                 className="button button-large"
-                utm={{ ...CTA_UTM, utm_medium: 'cta_closing' }}
+                utm={language === 'en' ? { ...CTA_UTM, utm_medium: 'cta_closing' } : { ...CTA_UTM, ...languageCampaign(language), utm_content: 'mcp_closing' }}
               >{t('mcp.copy080')}</InstallLink>
               <a
                 className="mcp-hero-secondary"
