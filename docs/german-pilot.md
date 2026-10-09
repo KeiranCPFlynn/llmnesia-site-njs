@@ -46,7 +46,7 @@ German installation links use campaign `german_pilot`; the guide's explicit stor
 
 Use production-host traffic, language, landing page, device, and source breakdowns. Separate install clicks from actual installs. Assess first successful search and returning usage only where available instrumentation can support those claims. Website/store events do not establish extension activation or retention. Observe roughly 4–6 weeks and extend the window if volumes are sparse.
 
-The prepared [localization measurement plan](localization-measurement.md) adds an explicit homepage/guide denominator for English and German, page/browser-language context and CTA positions. It fixes page-view delivery when analytics loads after the component mounts. The plan defines a comparable visitor funnel and the three GA4 custom definitions to register after approval. Code and local tests are prepared; deployment, live definition/report setup and live receipt verification remain separate steps.
+The prepared [localization measurement plan](localization-measurement.md) adds an explicit homepage/guide denominator for English and German, page/browser-language context and CTA positions. It fixes page-view delivery when analytics loads after the component mounts. The approved German deployment and live receipt verification are complete. The three GA4 custom definitions and private comparison exploration are registered and verified; see the reporting receipt below.
 
 ## Publication
 
@@ -84,3 +84,9 @@ Release commit `3e3dba53ebc6d7b028aea077b89afd8ad5aad6e4` was deployed to the ex
 The cloud build and export checks passed. Live browser inspection confirmed German document language, canonical/alternate metadata, all 18 homepage sections, compact selector and CTA-position labels. The installation guide has separate Chrome/Edge store choices. GA4's existing read-only Data API returned `localized_page_viewed` with an event count of one at 06:11 UTC, verifying receipt after the live check. Agent verification visits around 06:07–06:11 UTC are internal checks, not new customer demand. No install, message, signup or purchase was submitted.
 
 A preparation error initially created an empty temporary Vercel project named `llmnesia-german-release-3e3dba5`. The attempt was stopped before the existing site's alias changed. The user approved cleanup, and Vercel confirmed removal of that exact temporary project. The corrected release directory was explicitly checked against the existing project's and team's IDs before deployment.
+
+### GA4 reporting setup completed
+
+On 9 October 2026, the authorized Brave session registered and verified Website language (`site_language`), Localization page type (`page_type`) and Install CTA position (`cta_position`) as event-scoped custom dimensions in property 533614466. The private **Website language pilot** exploration was saved with matched German/English homepage-to-install funnels, 30-minute completion windows and acquisition-channel breakdowns. Its list explicitly confirms it is not shared. See [the report receipt and filters](localization-measurement.md#saved-report-receipt). This completes the previously pending administration setup without changing the Insights service account's access.
+
+Spanish website/guide preparation is local only; see [Spanish pilot](spanish-pilot.md). It is not part of the German production deployment.

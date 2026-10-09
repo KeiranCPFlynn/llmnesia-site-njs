@@ -1,6 +1,6 @@
 # Website localization measurement
 
-Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. The user approved deployment, the three GA4 definitions and the comparison report. German pages and analytics code are now deployed; live GA4 definition/report setup is waiting for the user's browser sign-in because the existing Insights connection received HTTP 403 for Analytics administration. No permissions were changed or denial bypassed.
+Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. The user approved deployment, the three GA4 definitions and the comparison report. German pages and analytics code are deployed. All three GA4 event-scoped definitions and the private comparison exploration were created and verified through the user's authorized Brave session. The Insights service-account administration request received HTTP 403; no service-account permissions were changed.
 
 ## Collection contract
 
@@ -20,7 +20,7 @@ Only `www.llmnesia.com` and `llmnesia.com` collect events. Localhost, previews a
 
 ## Approved live setup
 
-Deployment to the existing production website is complete. GA4's read-only Data API verified receipt of `localized_page_viewed` at 06:11 UTC on 9 October. In the supplied GA4 property, inspect existing custom definitions first and reuse matching definitions. If missing, register these three **event-scoped** definitions once the approved signed-in administration session is available:
+Deployment to the existing production website is complete. GA4's read-only Data API verified receipt of `localized_page_viewed` at 06:11 UTC on 9 October. The supplied GA4 property had six existing definitions and no matching language fields. These three **event-scoped** definitions were added on 9 October 2026 and verified in the table:
 
 | Display name | Event parameter |
 |---|---|
@@ -30,7 +30,7 @@ Deployment to the existing production website is complete. GA4's read-only Data 
 
 Use built-in Language/Language code, Device category, Browser, Country, Host name and acquisition dimensions in GA4. The additional `browser_language` property is useful directly in PostHog and need not consume another GA4 custom-definition slot. There is no need to register custom page paths or user/session identifiers. Do not mark page views or language selections as key events.
 
-Create a private GA4 exploration named **Website language pilot** using the funnel below, with German and English versions and separate device/channel breakdowns. It uses the existing property and services, without provisioning resources or changing subscriptions. This is a small increase of one explicit localization event per eligible page view. Deployment and GA4 administrative configuration require the user's approval. Report setup alone cannot collect the new events before code deployment, or reconstruct missing historical events.
+The private GA4 exploration **Website language pilot** is saved with German and English funnel tabs, the same production-host, desktop, Chrome/Edge and German-browser-language filters, and a session acquisition-channel breakdown. It uses the existing property and services, without provisioning resources or changing subscriptions. This is a small increase of one explicit localization event per eligible page view. The user approved this deployment and configuration. Report setup alone cannot collect the new events before code deployment, or reconstruct missing historical events.
 
 Google says registered custom data generally becomes reportable after 24–48 hours. [Custom dimensions](https://support.google.com/analytics/answer/14240153?hl=en).
 
@@ -60,12 +60,22 @@ Review 4–6 weeks of complete post-deployment data, allowing reporting delay. A
 
 ## Verification
 
-`npm run test:localization-analytics` exercises delayed SDK loading in either order, duplicate-ready notifications, English comparison collection without a GA key, cleanup before SDK readiness, locale properties, and local/preview/private-route exclusion. It uses local fakes and sends no events to analytics providers. The production build and shared-design export checks also passed. Live page inspection and GA4 event receipt passed after deployment; the three definitions and saved comparison exploration remain pending sign-in. See the [deployment record](german-pilot.md).
+`npm run test:localization-analytics` exercises delayed SDK loading in either order, duplicate-ready notifications, English comparison collection without a GA key, cleanup before SDK readiness, locale properties, and local/preview/private-route exclusion. It uses local fakes and sends no events to analytics providers. The production build and shared-design export checks also passed. Live page inspection and GA4 event receipt passed after deployment; the three definitions and private comparison exploration were also verified in Brave. See the [deployment record](german-pilot.md).
 
 ## Adding another language
 
 The registry automatically includes future homepages/guides in the denominator and language properties. No new event name or provider is needed for each language. Spanish is the next recommended website/guide pilot: the reviewed CSV's Spanish-country proxy had 451 active-user counts, 211 engaged sessions and 28 key events, versus 367/199/27 for Germany and Austria. These sums do not establish preferred language, unique audiences or localization uplift.
 
-The last verified DeepL counter was 22,434 of 1,000,000 characters (2.24%). The current English catalog has 336 strings and 22,926 source characters including markup: a fresh full locale is roughly 2.3% of that observed allowance before any draft repetition; actual billable characters can differ. This is capacity, not an ROI estimate or a promise of recurring free usage. DeepL's plans have different billing/allowance structures. [DeepL API plans](https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans).
+After preparing Spanish, the verified DeepL counter was 39,825 of 1,000,000 characters (3.98%), with 960,175 remaining. Spanish used 17,391 billable characters. The current English catalog has 336 strings and 22,926 source characters including markup: a fresh full locale is roughly 2.3% of that observed allowance before any draft repetition; actual billable characters can differ. This is capacity, not an ROI estimate or a promise of recurring free usage. DeepL's plans have different billing/allowance structures. [DeepL API plans](https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans).
 
 Recommendation: make German measurement live, then add Spanish as one further acquisition pilot. Keep the extension, Vault and checkout in English with clear disclosure. Hold a broad language rollout until browser-language demand and adoption support it. Review, terminology, layout QA and keeping translations current are the remaining costs; there is still no native reviewer. See the [country assessment](language-support-assessment-2026-10-09.md).
+
+## Saved report receipt
+
+[Open Website language pilot](https://analytics.google.com/analytics/web/?authuser=0#/analysis/a391857932p533614466/edit/WL9Gl5GtTLCz5bzmt7zFdA). Verified on 9 October in property **LLMNesia site (533614466)** under account **LLMnesia (391857932)**. The Explorations list identifies owner Keiran Flynn and explicitly says **Exploration is not shared**.
+
+Tabs: **German homepage to install** and **English homepage to install**. Both are closed funnels: event name exactly `localized_page_viewed` AND Localization page type exactly `homepage` AND Website language exactly `de` or `en`, then `install_click` indirectly within 30 minutes. Language is restricted only at the entry step, allowing later English-page installation clicks.
+
+Both tabs use these identical report filters: Hostname matches `^(www\.)?llmnesia\.com$`; Device category exactly `desktop`; Browser matches `^(Chrome|Edge)$`; Language code matches `^de([_-].*)?$`. Breakdown: **Session primary channel group (Default Channel Group)**. The default rolling Last 28 days range excluded launch day when configured (11 September–8 October), so no data was expected. It advances with complete dates; exclude the prelaunch period and allow custom-dimension processing before drawing conclusions. Owner checks on 9 October are internal verification traffic.
+
+All-visitor/device and supporting guide/CTA views above remain analysis instructions, rather than extra saved tabs. The primary private comparison is complete. Spanish is prepared locally and uses the same measurement contract when separately approved for release.
