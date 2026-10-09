@@ -29,11 +29,13 @@ The homepage, installation guide and five core pages (Vault, MCP, Pricing, About
 
 Form labels and client-side contact/signup messages use the selected catalog. Form destinations and submitted field values remain the existing ones. No test message or signup was submitted.
 
-Language choices are remembered locally. The primary browser language or a remembered choice may suggest any registered language on the English homepage; there are no IP lookups or forced geographic redirects. Translations are prepared in advance, so builds and page views never call DeepL. The key stays in ignored `.env.local` and is not included in exported files.
+Language choices are remembered locally. Only the browser's first preferred language may suggest a registered non-English language on the English homepage. Saved German/Spanish selections cannot override an English-primary browser, and secondary browser languages do not trigger a suggestion. Choosing English or dismissing a suggestion suppresses future suggestions in that browser. There are no IP lookups or forced geographic redirects. Translations are prepared in advance, so builds and page views never call DeepL. The key stays in ignored `.env.local` and is not included in exported files.
+
+The stricter suggestion rule is prepared locally after a user reported unexpected German prompts. It awaits publication; the initial live rule also considers remembered non-English choices.
 
 ## Prepared Spanish pilot
 
-Spanish is prepared locally at `/es`, `/es/installation`, `/es/vault`, `/es/mcp`, `/es/pricing`, `/es/about` and `/es/privacy-policy`; it has not been deployed. Both share the existing design and the same tracking contract. `spanish_pilot` is its store campaign. The generic language suggestion supports `es-ES`, `es-MX` and `es-419` without geography-based redirects.
+Spanish is live at `/es`, `/es/installation`, `/es/vault`, `/es/mcp`, `/es/pricing`, `/es/about` and `/es/privacy-policy`. Both share the existing design and the same tracking contract. `spanish_pilot` is its store campaign. The generic language suggestion supports primary `es-ES`, `es-MX` and `es-419` preferences without geography-based redirects.
 
 `translationSource` adapts only language-specific pilot disclosures (language name and landing-page URL), so Spanish does not inherit statements about a German guide. Source hashes use that effective source. All ordinary marketing copy stays shared. Build checks compare every registered homepage and localized guide’s structure, markup, keyboard labels and review hashes.
 
@@ -45,4 +47,4 @@ Translate larger updates in bounded groups, for example `npm run translate:site 
 
 The on-page purchase widget receives only its copy map from the server. Authentication calls, entitlement checks, billing plans and Stripe destinations are unchanged. The loading state now provides the purchase anchor before hydration, and core-page help links lead to the corresponding localized homepage contact form. No valid email, sign-in code or payment was submitted during verification.
 
-See [core-page-localization.md](core-page-localization.md) for routes, review and usage evidence. These additions are local and have not been deployed; the earlier German homepage/guide release remains the production baseline.
+See [core-page-localization.md](core-page-localization.md) for routes, review, usage evidence and the approved German/Spanish production release.
