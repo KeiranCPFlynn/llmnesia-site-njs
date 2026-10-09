@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/set-exported-page-language.mjs && npm run test:static-content && npm run test:homepage-localization",
+    "build": "next build && node scripts/set-exported-page-language.mjs && npm run test:static-content && npm run test:homepage-localization && npm run test:core-localization",
     "start": "next start",
     "test:static-content": "node scripts/test-static-content-export.mjs",
     "test:site-language": "node scripts/test-site-language.mjs",
@@ -17,7 +17,8 @@
     "test:vault-sign-in": "node --test scripts/test-vault-sign-in.mjs",
     "test:viewer-handoff": "node scripts/test-viewer-handoff.mjs",
     "indexnow": "node scripts/indexnow.js",
-    "indexnow:dry": "INDEXNOW_DRY_RUN=1 node scripts/indexnow.js"
+    "indexnow:dry": "INDEXNOW_DRY_RUN=1 node scripts/indexnow.js",
+    "test:core-localization": "node scripts/test-core-localization.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

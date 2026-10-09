@@ -21,7 +21,8 @@ const optionalJson = async (filename) => {
 const source = Object.fromEntries(Object.entries(JSON.parse(await fs.readFile(sourcePath, 'utf8'))).map(([id, text]) => [id, translationSource(id, text, language)]));
 const target = await optionalJson(targetPath);
 const record = await optionalJson(recordPath);
-const pending = Object.entries(source).filter(([id, text]) => !target[id] || record.entries?.[id]?.sourceHash !== hash(text));
+const prefixes = process.argv.find(arg => arg.startsWith('--prefix='))?.slice('--prefix='.length).split(',');
+const pending = Object.entries(source).filter(([id, text]) => (!prefixes || prefixes.some(prefix => id.startsWith(prefix))) && (!target[id] || record.entries?.[id]?.sourceHash !== hash(text)));
 const characters = pending.reduce((count, [, text]) => count + [...text].length, 0);
 console.log(JSON.stringify({ pendingStrings: pending.length, sourceCharacters: characters, maximumCharacters: 25000 }));
 if (process.argv.includes('--dry-run') || pending.length === 0) process.exit(0);
@@ -50,14 +51,14 @@ const remaining = usage.character_limit - usage.character_count;
 console.log(JSON.stringify({ remainingCharacters: remaining, requestedCharacters: characters }));
 if (characters > remaining) throw new Error('Not enough existing DeepL character allowance. No translation was submitted.');
 
-const context = `LLMnesia is a browser extension for Chrome and Microsoft Edge. Translate this public product website from English to natural ${config.label}, using a consistent informal singular tone. Free local search stores chat content and its index in the browser on the user's device. Vault is the unchanged brand name of an optional PAID service for end-to-end encrypted backup and sync; do not confuse it with free local search. The application interface and payment pages remain in English. This translation must not imply semantic search in the target language or cross-language search is guaranteed. Preserve brand names, URLs and keyboard shortcuts. ${language === 'de' ? 'German terminology: search index = Suchindex; chat history = Chatverlauf; backup = Sicherung; end-to-end encrypted = Ende-zu-Ende-verschlüsselt.' : language === 'es' ? 'Use international Spanish understandable in Spain and Latin America, informal singular tú, without vosotros or regional idioms. Keep Vault, Ask Vault, Google AI Mode, browser permission names and product brands unchanged.' : 'Use consistent technical terminology in the target language.'}`;
+const context = `LLMnesia is a browser extension for Chrome and Microsoft Edge. Translate this public product website from English to natural ${config.label}, using a consistent informal singular tone. Free local search stores chat content and its index in the browser on the user's device. Vault is the unchanged brand name of an optional PAID service for end-to-end encrypted backup and sync; do not confuse it with free local search. The application interface and payment pages remain in English. This translation must not imply semantic search in the target language or cross-language search is guaranteed. Preserve brand names, URLs, keyboard shortcuts, code, browser permission identifiers and {{UPPERCASE_BINDINGS}} exactly. Full settings, Connect desktop AI, Enable automatic sync, Settings and Ask are English interface labels; keep them in English so the user can find them in the actual app. Keep Vault and Ask Vault unchanged. Translate policy text faithfully without adding or removing promises. ${language === 'de' ? 'German terminology: search index = Suchindex; chat history = Chatverlauf; backup = Sicherung; end-to-end encrypted = Ende-zu-Ende-verschlüsselt.' : language === 'es' ? 'Use international Spanish understandable in Spain and Latin America, informal singular tú, without vosotros or regional idioms. Keep Vault, Ask Vault, Google AI Mode, browser permission names and product brands unchanged.' : 'Use consistent technical terminology in the target language.'}`;
 const entries = record.entries || {};
 for (let start = 0; start < pending.length; start += 40) {
   const batch = pending.slice(start, start + 40);
   const result = await request('translate', {
     text: batch.map(([, text]) => text), source_lang: 'EN', target_lang: language.toUpperCase(),
     formality: 'prefer_less', model_type: 'prefer_quality_optimized', context,
-    preserve_formatting: true, tag_handling: 'html', ignore_tags: ['svg', 'kbd'], show_billed_characters: true
+    preserve_formatting: true, tag_handling: 'html', ignore_tags: ['svg', 'kbd', 'code'], show_billed_characters: true
   });
   if (!Array.isArray(result.translations) || result.translations.length !== batch.length || result.translations.some((item) => !item.text?.trim())) {
     throw new Error('DeepL returned an incomplete translation batch. No automatic retry was made.');

@@ -19,361 +19,215 @@
 </head>
 
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <a class="skip-link" href="#main-content">{{t:privacy.copy001}}</a>
 
-  <header class="site-header">
+  <header class="site-header site-header--language">
     <div class="container header-inner">
-      <a class="brand" href="/" aria-label="LLMnesia home">
+      <a class="brand" href="/" aria-label="{{t:privacy.copy152}}">
         <img src="/logo.svg" alt="" width="28" height="28">
         <span>LLMnesia</span>
       </a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">
-        Menu
-      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" type="button">{{t:privacy.copy002}}</button>
 
-      <nav class="nav" id="primary-nav" aria-label="Main">
-        <a href="/blog">Blog</a>
-        <a href="/compare">Compare</a>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/#features">Features</a>
-        <a href="/#privacy">Privacy</a>
-        <a href="/#demo">Demo</a>
-        <a href="/#contact">Contact</a>
-        <a href="/#faq">FAQ</a>
+      <nav class="nav" id="primary-nav" aria-label="{{t:privacy.copy153}}">
+        <a href="/blog">{{t:privacy.copy003}}</a>
+        <a href="/compare">{{t:privacy.copy004}}</a>
+        <a href="/use-cases">{{t:privacy.copy005}}</a>
+        <a href="/#features">{{t:privacy.copy006}}</a>
+        <a href="/#privacy">{{t:privacy.copy007}}</a>
+        <a href="/#demo">{{t:privacy.copy008}}</a>
+        <a href="/#contact">{{t:privacy.copy009}}</a>
+        <a href="/#faq">{{t:privacy.copy010}}</a>
         <a class="nav-cta" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
-          target="_blank" rel="noopener noreferrer">Add to Chrome</a>
+          target="_blank" rel="noopener noreferrer">{{t:privacy.copy011}}</a>
       </nav>
+      {{LANGUAGE_PICKER}}
     </div>
   </header>
 
   <main id="main-content">
     <section class="section container">
       <div class="policy-content">
-        <h1>Privacy Policy</h1>
-        <p class="policy-date">Last updated: 30 September 2026</p>
+        <h1>{{t:privacy.copy012}}</h1>
+        <p class="policy-date">{{t:privacy.copy013}}</p>
 
-        <h2>Overview</h2>
-        <p>LLMnesia is a browser extension and optional local desktop MCP integration that indexes your AI conversations
-          locally on your device. Vault is a separate, optional paid feature that adds an encrypted server backup,
-          sync, and restore. Current Vault subscribers may also use an installable Vault web app beta to search and ask
-          questions over an existing synced Vault. LLMnesia is built with a local-first, privacy-by-design architecture.</p>
-        <p>Your AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries,
-          extension settings, and searchable index are stored locally on your device using the Chrome Storage API
-          (<code>chrome.storage.local</code>), unless you choose to opt in to Vault, an optional encrypted backup and
-          sync feature described below. If you enable the desktop MCP integration, LLMnesia also stores a local copy of
-          that corpus in your user profile so desktop AI apps can search it.</p>
-        <p>LLMnesia uses limited product analytics through PostHog to understand feature usage, diagnose problems, and
-          improve the extension and the Vault web app. LLMnesia does not send AI conversation content, conversation
-          titles, conversation URLs, prompts, responses, search queries, cookies, authentication tokens, or local index
-          data to PostHog or any other external analytics service.</p>
+        <h2>{{t:privacy.copy014}}</h2>
+        <p>{{t:privacy.copy015}}</p>
+        <p>{{t:privacy.copy016}}</p>
+        <p>{{t:privacy.copy017}}</p>
 
-        <h2>Information processed locally by the extension</h2>
-        <p>LLMnesia processes the following data <strong>locally on your device</strong> to provide its core search
-          functionality:</p>
+        <h2>{{t:privacy.copy018}}</h2>
+        <p>{{t:privacy.copy019}}</p>
         <ul>
-          <li><strong>Conversation metadata</strong> such as titles, URLs, and timestamps from supported AI chat
-            platforms, used to build your searchable conversation index.</li>
-          <li><strong>Conversation content</strong> such as text from your AI conversations on supported platforms,
-            indexed locally to enable full-text search.</li>
-          <li><strong>Search queries</strong> entered into LLMnesia, used locally to search your on-device index.</li>
-          <li><strong>Extension settings</strong> such as your preferences and configuration, stored locally in your
-            browser.</li>
+          <li>{{t:privacy.copy020}}</li>
+          <li>{{t:privacy.copy021}}</li>
+          <li>{{t:privacy.copy022}}</li>
+          <li>{{t:privacy.copy023}}</li>
         </ul>
-        <p>This data is processed and stored on your device using the Chrome Storage API
-          (<code>chrome.storage.local</code>). It is not transmitted to LLMnesia servers, PostHog, or other third
-          parties, unless you opt in to Vault, described below.</p>
+        <p>{{t:privacy.copy024}}</p>
 
-        <h2>Desktop MCP and local browser bridge</h2>
-        <p>If you choose to connect LLMnesia to a supported desktop AI app, LLMnesia creates a second local conversation
-          corpus in your operating-system user profile (by default under <code>~/.llmnesia/corpus</code>). The browser
-          extension sends conversation records to a native messaging helper running on the same computer, and the local
-          MCP server reads and writes that corpus when the desktop AI app uses a LLMnesia tool.</p>
-        <p>The native messaging helper and MCP server do not upload conversation content, titles, URLs, prompts,
-          responses, MCP search queries, cookies, authentication tokens, or local index data to LLMnesia, PostHog, or
-          other third parties. The MCP server makes no analytics or advertising requests.</p>
-        <p>Desktop MCP and automatic browser sync are optional. Chrome asks you to approve native messaging access when
-          you click <strong>Enable automatic sync</strong> in LLMnesia Settings. The local helper setup also configures
-          the supported desktop AI apps you choose to use.</p>
+        <h2>{{t:privacy.copy025}}</h2>
+        <p>{{t:privacy.copy026}}</p>
+        <p>{{t:privacy.copy027}}</p>
+        <p>{{t:privacy.copy028}}</p>
 
-        <h2>Product analytics</h2>
-        <p>LLMnesia uses PostHog to collect limited product analytics from the browser extension and from the Vault web
-          app beta. This helps us understand which features are used, diagnose errors, improve reliability, and make
-          better product decisions.
-        </p>
-        <p>Analytics events may include limited technical and usage information such as:</p>
+        <h2>{{t:privacy.copy029}}</h2>
+        <p>{{t:privacy.copy030}}</p>
+        <p>{{t:privacy.copy031}}</p>
         <ul>
-          <li>Extension version</li>
-          <li>Browser type and operating system</li>
-          <li>Supported AI platform name, such as ChatGPT, Claude, Gemini, or Perplexity</li>
-          <li>Feature interactions, such as opening the extension, starting indexing, completing indexing, or using a
-            settings control</li>
-          <li>Error categories or failure states</li>
-          <li>Aggregate counts, such as the number of conversations indexed</li>
-          <li>An anonymous extension install identifier used to understand product usage without requiring an account
-          </li>
-          <li>Web app usage events, such as opens, sign-ins and unlocks (recorded by method only), lock and sign-out,
-            searches (query length and result count, never the query text), Ask submissions (question length, never the
-            question text), and transcript opens</li>
-          <li>An anonymous web app identifier: a random ID kept in the browser's localStorage on the vault.llmnesia.com
-            origin, never an email address or account identifier</li>
+          <li>{{t:privacy.copy032}}</li>
+          <li>{{t:privacy.copy033}}</li>
+          <li>{{t:privacy.copy034}}</li>
+          <li>{{t:privacy.copy035}}</li>
+          <li>{{t:privacy.copy036}}</li>
+          <li>{{t:privacy.copy037}}</li>
+          <li>{{t:privacy.copy038}}</li>
+          <li>{{t:privacy.copy039}}</li>
+          <li>{{t:privacy.copy040}}</li>
         </ul>
-        <p>LLMnesia does <strong>not</strong> send any of the following to PostHog or any other external analytics
-          service:</p>
+        <p>{{t:privacy.copy041}}</p>
         <ul>
-          <li>AI conversation content</li>
-          <li>Conversation titles</li>
-          <li>Conversation URLs</li>
-          <li>Prompts or responses</li>
-          <li>Search queries</li>
-          <li>Conversation snippets or page text</li>
-          <li>Cookies or authentication tokens</li>
-          <li>Your local search index</li>
-          <li>Your name, email address, or AI platform account details</li>
+          <li>{{t:privacy.copy042}}</li>
+          <li>{{t:privacy.copy043}}</li>
+          <li>{{t:privacy.copy044}}</li>
+          <li>{{t:privacy.copy045}}</li>
+          <li>{{t:privacy.copy046}}</li>
+          <li>{{t:privacy.copy047}}</li>
+          <li>{{t:privacy.copy048}}</li>
+          <li>{{t:privacy.copy049}}</li>
+          <li>{{t:privacy.copy050}}</li>
         </ul>
-        <p>PostHog analytics are used only to operate, debug, and improve LLMnesia. They are not sold, used for
-          advertising, transferred to data brokers, or used to determine creditworthiness or for lending purposes.</p>
+        <p>{{t:privacy.copy051}}</p>
 
-        <h2>How your data is stored</h2>
-        <p>All AI conversation data created or processed by LLMnesia, including your conversation index, conversation
-          metadata, search data, and extension settings, is stored locally in your browser using the Chrome Storage API
-          (<code>chrome.storage.local</code>). If you enable desktop MCP, a second local corpus is stored in your
-          operating-system user profile so desktop AI apps can access it.</p>
-        <p>You can view, export, or delete your locally stored LLMnesia data at any time through the extension's
-          settings.</p>
+        <h2>{{t:privacy.copy052}}</h2>
+        <p>{{t:privacy.copy053}}</p>
+        <p>{{t:privacy.copy054}}</p>
 
-        <h2>Data handling</h2>
-        <p>When you visit a supported AI chat platform, LLMnesia reads conversation titles and content from the page and
-          saves them to a local index on your device. When you search, the extension queries this local index and
-          displays results in your browser.</p>
-        <p>AI conversation content, conversation titles, conversation URLs, prompts, responses, search queries,
-          extension settings, and local index data are not sent to LLMnesia servers, PostHog, or other third parties,
-          unless you opt in to Vault, described below.</p>
-        <p>Limited product analytics are sent to PostHog as described in the Product analytics section above.</p>
-        <p>If desktop MCP is enabled, searches and tool calls run against the local filesystem corpus. They do not send
-          the query or result to LLMnesia servers or analytics services.</p>
+        <h2>{{t:privacy.copy055}}</h2>
+        <p>{{t:privacy.copy056}}</p>
+        <p>{{t:privacy.copy057}}</p>
+        <p>{{t:privacy.copy058}}</p>
+        <p>{{t:privacy.copy059}}</p>
 
-        <h2>Vault (optional paid encrypted backup and sync)</h2>
-        <p>Vault is an optional paid feature that lets you back up your conversation index and keep it in sync across
-          your own devices. It is off unless you deliberately create a Vault. Setup requires an account, authenticated
-          with your email address and a one-time code, plus a private passphrase and an active subscription.</p>
-        <p>If you turn Vault on, your conversation content is encrypted on your device (AES-256-GCM, with a key derived
-          from a passphrase only you know) before it ever leaves your device. The encrypted data is then synced to
-          LLMnesia's sync backend, hosted on Supabase, so it can be restored to your other devices.</p>
-        <p>LLMnesia's servers store encrypted conversation and memory payloads, a wrapped copy of the Vault key,
-          record identifiers, sync versions and timestamps, deletion markers, account and sign-in information, and
-          subscription status. Record identifiers reveal which supported AI platform a record came from. We do not
-          have access to your passphrase or unwrapped encryption key, and cannot read or decrypt conversation text,
-          titles, URLs, previews, saved-memory text, or search queries stored in Vault.</p>
-        <p>Because the browser extension is built to support Vault for every installation, the extension requests
-          permission to communicate with its Supabase sync backend
-          (<code>https://tkgvwpaxycliwqsrufxe.supabase.co</code>) regardless of whether you have Vault turned on. This
-          permission is not used, and no data is sent to that backend, unless you opt in to Vault.</p>
-        <p>Every remote Vault operation—upload, download, metadata and key retrieval, sync, and restore—requires an
-          active subscription and is enforced by the server. If the subscription lapses, conversations already stored
-          on each device stay there and remain searchable. The encrypted server copy is not deleted, but it cannot be
-          synced or restored until you renew.</p>
-        <p>Payments are handled by Stripe. Stripe receives the payment and billing information you enter there;
-          LLMnesia receives the billing email address, Stripe customer/subscription identifiers, plan and status, and
-          relevant subscription dates. LLMnesia never receives or stores your full card details.</p>
-        <p>You can sign out of Vault at any time from the extension's settings, which removes the Vault key from that
-          device. To have your encrypted backup deleted from LLMnesia's servers entirely, or to close the Vault
-          account, email <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a> from the address on the account.
-          There is currently no self-service whole-Vault deletion button.</p>
+        <h2>{{t:privacy.copy060}}</h2>
+        <p>{{t:privacy.copy061}}</p>
+        <p>{{t:privacy.copy062}}</p>
+        <p>{{t:privacy.copy063}}</p>
+        <p>{{t:privacy.copy064}}</p>
+        <p>{{t:privacy.copy065}}</p>
+        <p>{{t:privacy.copy066}}</p>
+        <p>{{t:privacy.copy067}}</p>
 
-        <h2>Vault web app beta and Ask</h2>
-        <p>Current Vault subscribers may optionally use the installable Vault web app beta at
-          <a href="https://vault.llmnesia.com/">vault.llmnesia.com</a>. The web app is a reader for an existing Vault
-          and cannot create a person's first Vault.</p>
-        <p>The web app downloads encrypted Vault records from Supabase, then decrypts and indexes them inside the
-          browser. The readable local corpus is stored in the web app origin's IndexedDB so the device does not need to
-          restore the complete Vault on every visit. Lock removes readable content from the page and destroys the live
-          Vault key, but it does not erase that local corpus. Sign out offers a choice to keep the corpus for the same
-          account's next visit or remove the web app's local corpus and caches.</p>
-        <p>The web app may store an account session, a biometric convenience-unlock record, and a provider API key on
-          the device. These records are encrypted with device-local, non-extractable WebCrypto keys. This protects them
-          from a copied storage dump, but it does not protect them from malicious code already running on the Vault web
-          app origin. Signing out removes the saved provider credential and biometric record. The user can also forget
-          a provider key from Ask settings.</p>
-        <p>Search, filtering, and transcript reading happen locally. When the user taps Ask, the web app starts a
-          bounded Ask session using the provider and model selected in Ask settings. It sends the question and bounded
-          relevant context directly from the browser to that provider, currently OpenAI, Anthropic, Google, or
-          OpenRouter, using the user's own API key. Ask does not send the whole Vault. The request does not pass through
-          LLMnesia. The selected provider receives the request content and ordinary network metadata under its own
-          privacy and data-retention terms. The completed answer links back to supporting source conversations.</p>
-        <p>The Vault web app includes the same kind of anonymous PostHog product analytics as the extension, described in
-          the Product analytics section above. It has no crash-reporting SDK. Vercel hosts and delivers the app's static
-          files and receives ordinary web request metadata such as IP address, user agent, and request time.</p>
+        <h2>{{t:privacy.copy068}}</h2>
+        <p>{{t:privacy.copy069}}</p>
+        <p>{{t:privacy.copy070}}</p>
+        <p>{{t:privacy.copy071}}</p>
+        <p>{{t:privacy.copy072}}</p>
+        <p>{{t:privacy.copy073}}</p>
 
-        <h2>Browser permissions</h2>
-        <p>LLMnesia requests the following browser permissions, each used solely to provide core functionality:</p>
+        <h2>{{t:privacy.copy074}}</h2>
+        <p>{{t:privacy.copy075}}</p>
         <ul>
-          <li><strong>Storage</strong> saves your conversation index and extension settings locally in your browser.
-          </li>
-          <li><strong>Unlimited storage</strong> allows a large local conversation index to remain available without
-            the browser's small default extension-storage quota.</li>
-          <li><strong>Tabs</strong> opens the correct conversation when you click a search result.</li>
-          <li><strong>Active Tab</strong> detects which supported AI platform you are currently visiting.</li>
-          <li><strong>Scripting</strong> injects the search overlay and indexing scripts into supported AI chat pages.
-          </li>
-          <li><strong>Offscreen</strong> runs local background work that needs a document context, including semantic
-            search processing and Vault encryption/decryption.</li>
-          <li><strong>Alarms</strong> schedules bounded background maintenance, including indexing checks, Vault sync,
-            and subscription-status refreshes.</li>
-          <li><strong>Native messaging</strong>, requested only when you enable automatic sync, connects the extension
-            to LLMnesia's local helper on the same computer so desktop AI apps can use the local corpus.</li>
+          <li>{{t:privacy.copy076}}</li>
+          <li>{{t:privacy.copy077}}</li>
+          <li>{{t:privacy.copy078}}</li>
+          <li>{{t:privacy.copy079}}</li>
+          <li>{{t:privacy.copy080}}</li>
+          <li>{{t:privacy.copy081}}</li>
+          <li>{{t:privacy.copy082}}</li>
+          <li>{{t:privacy.copy083}}</li>
         </ul>
 
-        <h3>Host permissions</h3>
-        <p>LLMnesia requests host permissions for supported AI platforms:</p>
+        <h3>{{t:privacy.copy084}}</h3>
+        <p>{{t:privacy.copy085}}</p>
         <ul>
-          <li>ChatGPT (chatgpt.com, chat.openai.com)</li>
-          <li>Claude (claude.ai)</li>
-          <li>Gemini and Bard (gemini.google.com, bard.google.com)</li>
-          <li>Google AI Mode (google.com, enabled as an optional site permission)</li>
-          <li>Perplexity (perplexity.ai)</li>
-          <li>Microsoft Copilot (copilot.microsoft.com)</li>
-          <li>Meta AI (meta.ai)</li>
-          <li>DeepSeek (deepseek.com, chat.deepseek.com)</li>
-          <li>Grok and X/Twitter (grok.com, x.com, twitter.com)</li>
-          <li>Mistral (chat.mistral.ai, lechat.mistral.ai, mistral.ai)</li>
-          <li>Kimi (kimi.com, kimi.ai)</li>
-          <li>Qwen (qwen.ai, chat.qwen.ai)</li>
-          <li>Google AI Studio and its legacy hosts (aistudio.google.com, makersuite.google.com, studio.google.com)</li>
-          <li>Character.AI (character.ai)</li>
-          <li>Z.ai (chat.z.ai)</li>
+          <li>{{t:privacy.copy086}}</li>
+          <li>{{t:privacy.copy087}}</li>
+          <li>{{t:privacy.copy088}}</li>
+          <li>{{t:privacy.copy089}}</li>
+          <li>{{t:privacy.copy090}}</li>
+          <li>{{t:privacy.copy091}}</li>
+          <li>{{t:privacy.copy092}}</li>
+          <li>{{t:privacy.copy093}}</li>
+          <li>{{t:privacy.copy094}}</li>
+          <li>{{t:privacy.copy095}}</li>
+          <li>{{t:privacy.copy096}}</li>
+          <li>{{t:privacy.copy097}}</li>
+          <li>{{t:privacy.copy098}}</li>
+          <li>{{t:privacy.copy099}}</li>
+          <li>{{t:privacy.copy100}}</li>
         </ul>
-        <p>These permissions are used to index supported AI conversation content locally on your device and to provide
-          LLMnesia's search functionality. LLMnesia does not use these permissions to transmit AI conversation content,
-          search queries, cookies, authentication tokens, or local index data to external servers.</p>
-        <p><strong>Google AI Mode is optional.</strong> New access to <code>google.com</code> and
-          <code>www.google.com</code> is requested only when you enable Google AI Mode in Settings and approve Chrome's
-          permission prompt. If you approved Google access in an earlier version, Chrome may retain that grant and
-          Settings will show the integration as enabled. Chrome grants access at the domain level because extension host
-          permissions cannot be limited to a URL query parameter. LLMnesia limits its content script to Google Search
-          URLs and activates conversation extraction only for full-page AI Mode results
-          (<code>/search</code> with <code>udm=50</code>). Ordinary Google searches are not indexed. Disabling Google AI
-          Mode removes the optional permission without deleting conversations already saved.</p>
-        <p>LLMnesia also requests a host permission for its own sync backend, hosted on Supabase
-          (<code>tkgvwpaxycliwqsrufxe.supabase.co</code>), used only by Vault, the optional encrypted backup and sync
-          feature described above.</p>
-        <p>The <code>llmnesia.com</code> host permission is used for the optional email-updates form and the extension's
-          own account, pricing, support, changelog, and local-viewer handoff pages.</p>
+        <p>{{t:privacy.copy101}}</p>
+        <p>{{t:privacy.copy102}}</p>
+        <p>{{t:privacy.copy103}}</p>
+        <p>{{t:privacy.copy104}}</p>
 
-        <h2>Third-party services</h2>
-        <p>LLMnesia uses PostHog for limited product analytics as described above. PostHog may receive limited technical
-          and product usage events, but it does not receive AI conversation content, conversation titles, conversation
-          URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
-        <p>LLMnesia uses Supabase to host the Vault sync backend described above. If you opt in to Vault, your encrypted
-          conversation data and Vault account information are stored on Supabase's infrastructure. Supabase does not
-          have access to the encryption key needed to read the encrypted payloads.</p>
-        <p>LLMnesia uses Stripe for Vault subscriptions. Payment details are entered and handled by Stripe; LLMnesia
-          receives the identifiers and subscription state needed to grant or pause Vault access.</p>
-        <p>Vercel hosts and delivers the optional Vault web app beta. It receives ordinary web request metadata and the
-          web app's anonymous usage events described above, but does not receive readable Vault content, the passphrase,
-          Vault key, search or Ask text, or provider API keys from the application.</p>
-        <p>When a user taps Ask, the selected provider, currently OpenAI, Anthropic, Google, or OpenRouter, receives the
-          current question, bounded relevant context selected for that Ask session, the user's API key, and ordinary
-          request metadata. Ask does not send the whole Vault. The request goes directly from the browser to the
-          provider and is governed by that provider's own terms.</p>
-        <p>The optional desktop MCP server and native messaging helper run locally and do not send conversation content
-          or MCP queries to a third-party service.</p>
-        <p>LLMnesia does not use third-party advertising networks, data brokers, or information resellers.</p>
+        <h2>{{t:privacy.copy105}}</h2>
+        <p>{{t:privacy.copy106}}</p>
+        <p>{{t:privacy.copy107}}</p>
+        <p>{{t:privacy.copy108}}</p>
+        <p>{{t:privacy.copy109}}</p>
+        <p>{{t:privacy.copy110}}</p>
+        <p>{{t:privacy.copy111}}</p>
+        <p>{{t:privacy.copy112}}</p>
 
-        <h2>Data sharing</h2>
-        <p>We do not sell user data. We do not share user data with advertisers, data brokers, or information resellers.
-        </p>
-        <p>Limited product analytics are processed by PostHog only to help us operate, debug, and improve LLMnesia. AI
-          conversation content and local index data are not shared with PostHog. If you opt in to Vault, encrypted
-          conversation payloads and the associated account and sync metadata described above are processed by Supabase
-          solely to provide Vault.</p>
+        <h2>{{t:privacy.copy113}}</h2>
+        <p>{{t:privacy.copy114}}</p>
+        <p>{{t:privacy.copy115}}</p>
 
-        <h2>Chrome Web Store Limited Use disclosure</h2>
-        <p>LLMnesia's use of information received from Chrome APIs and supported AI chat pages is limited to providing
-          and improving its single purpose: local indexing and search of the user's AI conversations, including the
-          optional Vault backup and sync feature described above.</p>
-        <p>LLMnesia does not sell user data, does not use user data for advertising, does not transfer user data to data
-          brokers or information resellers, and does not use user data to determine creditworthiness or for lending
-          purposes.</p>
-        <p>Human access to AI conversation content is not possible through LLMnesia because AI conversation content and
-          the searchable index are stored locally on the user's device and are not transmitted to LLMnesia servers,
-          PostHog, or other third parties. If you opt in to Vault, your conversation content is encrypted on your
-          device before it is stored on LLMnesia's servers, so it remains unreadable to LLMnesia there as well.</p>
+        <h2>{{t:privacy.copy116}}</h2>
+        <p>{{t:privacy.copy117}}</p>
+        <p>{{t:privacy.copy118}}</p>
+        <p>{{t:privacy.copy119}}</p>
 
-        <h2>Data security</h2>
-        <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are
-          stored locally on your device. This data is protected by your device's own security measures and your
-          browser's extension storage protections.</p>
-        <p>Unless you enable Vault, AI conversation content and local index data are not transmitted to LLMnesia's
-          servers. Data you deliberately back up via Vault is encrypted on your device before it is sent, so its content
-          remains unreadable to LLMnesia and Supabase.</p>
+        <h2>{{t:privacy.copy120}}</h2>
+        <p>{{t:privacy.copy121}}</p>
+        <p>{{t:privacy.copy122}}</p>
 
-        <h2>Data retention and deletion</h2>
-        <p>AI conversation content, conversation metadata, search queries, extension settings, and local index data are
-          stored locally on your device for as long as the extension is installed, unless you delete them earlier.</p>
-        <p>If you enable desktop MCP, its filesystem corpus remains on the device until you delete it. Uninstalling the
-          local helper deliberately leaves that corpus intact so removing an integration cannot accidentally destroy
-          your history.</p>
-        <p>If you use the Vault web app beta, its local readable corpus remains in that web origin's IndexedDB after
-          Lock. Signing out lets you keep it for the same account's next visit or remove the corpus and PWA-owned caches.
-          Signing out always removes the saved provider credential and biometric unlock record.</p>
-        <p>You can delete your locally stored LLMnesia data at any time by:</p>
+        <h2>{{t:privacy.copy123}}</h2>
+        <p>{{t:privacy.copy124}}</p>
+        <p>{{t:privacy.copy125}}</p>
+        <p>{{t:privacy.copy126}}</p>
+        <p>{{t:privacy.copy127}}</p>
         <ul>
-          <li>Using the export/delete controls within the extension's settings</li>
-          <li>Uninstalling the extension, which removes the extension's local storage</li>
-          <li>Clearing your browser's extension storage</li>
+          <li>{{t:privacy.copy128}}</li>
+          <li>{{t:privacy.copy129}}</li>
+          <li>{{t:privacy.copy130}}</li>
         </ul>
-        <p>To remove the desktop MCP copy as well, run the LLMnesia MCP uninstall command and delete the corpus path it
-          prints (normally <code>~/.llmnesia/corpus</code>).</p>
-        <p>If you opt in to Vault, encrypted records are retained until you delete them while remote access is active,
-          ask us to delete the whole Vault, or close the account. They are not deleted merely because a subscription
-          lapses; during a lapse they cannot be synced or restored unless you renew. Deleting a conversation locally
-          while access is paused does not remove the remote encrypted record until Vault is renewed and the deletion
-          can sync. See the Vault section above for how to sign out or request deletion of the complete Vault.</p>
-        <p>Limited analytics data processed by PostHog may be retained for product analytics, debugging, and improvement
-          purposes. This analytics data does not include AI conversation content, conversation titles, conversation
-          URLs, prompts, responses, search queries, cookies, authentication tokens, or local index data.</p>
+        <p>{{t:privacy.copy131}}</p>
+        <p>{{t:privacy.copy132}}</p>
+        <p>{{t:privacy.copy133}}</p>
 
-        <h2>Children's privacy</h2>
-        <p>LLMnesia is not directed to children under 13. LLMnesia does not knowingly collect personal information from
-          children under 13.</p>
-        <p>The extension processes supported AI conversation data locally on the user's device solely to provide
-          indexing and search. It never sends conversation content, prompts, responses, search queries, or local index
-          data to PostHog. Vault remains optional; if deliberately enabled, it transmits only the encrypted payloads
-          and associated account and sync metadata described above.</p>
+        <h2>{{t:privacy.copy134}}</h2>
+        <p>{{t:privacy.copy135}}</p>
+        <p>{{t:privacy.copy136}}</p>
 
-        <h2>Changes to this policy</h2>
-        <p>If we update this privacy policy, we will revise the "Last updated" date at the top of this page. Continued
-          use of the extension or website after changes constitutes acceptance of the updated policy.</p>
+        <h2>{{t:privacy.copy137}}</h2>
+        <p>{{t:privacy.copy138}}</p>
 
-        <h2>Support requests</h2>
-        <p>When you email <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a> or use our contact form, we
-          use the details and message you provide to respond to your request. We also keep basic ticket details,
-          including the sender name and email address, date received, subject, and status, to track it. Our email and support record providers
-          process this information for us.</p>
-        <p>We keep support email for 12 months after the request is closed and remove resolved ticket records after
-          180 days. You can request deletion by emailing <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a>.</p>
+        <h2>{{t:privacy.copy139}}</h2>
+        <p>{{t:privacy.copy140}}</p>
+        <p>{{t:privacy.copy141}}</p>
 
-        <h2>Contact</h2>
-        <p>If you have questions about this privacy policy, please contact us at <a
-            href="mailto:hello@llmnesia.com">hello@llmnesia.com</a> or via the <a href="/#contact">contact form</a> on
-          our website.</p>
+        <h2>{{t:privacy.copy142}}</h2>
+        <p>{{t:privacy.copy143}}</p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <nav aria-label="Footer">
-        <a href="/privacy-policy">Privacy Policy</a>
-        <a href="/blog">Blog</a>
-        <a href="/compare">Compare</a>
-        <a href="/use-cases">Use Cases</a>
-        <a href="/#features">Features</a>
-        <a href="/#contact">Contact</a>
-        <a href="/#faq">FAQ</a>
+      <nav aria-label="{{t:privacy.copy154}}">
+        <a href="/privacy-policy">{{t:privacy.copy144}}</a>
+        <a href="/blog">{{t:privacy.copy145}}</a>
+        <a href="/compare">{{t:privacy.copy146}}</a>
+        <a href="/use-cases">{{t:privacy.copy147}}</a>
+        <a href="/#features">{{t:privacy.copy148}}</a>
+        <a href="/#contact">{{t:privacy.copy149}}</a>
+        <a href="/#faq">{{t:privacy.copy150}}</a>
         <a class="nav-cta" href="https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifbjbbgiiclannjdkf"
-          target="_blank" rel="noopener noreferrer">Add to Chrome</a>
+          target="_blank" rel="noopener noreferrer">{{t:privacy.copy151}}</a>
       </nav>
       <p>&copy; <span id="year"></span> LLMnesia</p>
     </div>

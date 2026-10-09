@@ -1,6 +1,13 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
+const english = JSON.parse(await readFile(new URL('../content/locales/en.json', import.meta.url), 'utf8'));
+async function localizedSource(path, prefix) {
+  return (await source(path)) + '\n' + Object.entries(english).filter(([id]) => id.startsWith(prefix + '.')).map(([,text]) => text).join('\n');
+}
+async function templateSource(path) {
+  return (await source(path)).replace(/\{\{t:([\w.-]+)\}\}/g, (_, id) => english[id]);
+}
 async function source(path) {
   return readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 }
@@ -8,17 +15,17 @@ async function source(path) {
 const [purchase, accountExperience, pricing, account, vault, sitemap, readme, leads, homepage, behavior, privacy, vercelConfigText, about, foundationalArticle, llms, llmsFull, globals, platforms] = await Promise.all([
   source('app/components/vault-purchase.js'),
   source('app/components/vault-account-experience.js'),
-  source('app/pricing/page.js'),
+  localizedSource('app/components/core-pricing.js', 'pricing'),
   source('app/account/page.js'),
-  source('app/vault/page.js'),
+  localizedSource('app/components/core-vault.js', 'vault'),
   source('app/sitemap.js'),
   source('README.md'),
   source('api/leads.js'),
-  source('content/index.template.html'),
-  source('app/components/site-behavior.js'),
-  source('content/privacy-policy.template.html'),
+  templateSource('content/index.template.html'),
+  localizedSource('app/components/site-behavior.js', 'runtime'),
+  templateSource('content/privacy-policy.template.html'),
   source('vercel.json'),
-  source('app/about/page.js'),
+  localizedSource('app/components/core-about.js', 'about'),
   source('content/blog/what-is-llmnesia.mdx'),
   source('app/llms.txt/route.js'),
   source('app/llms-full.txt/route.js'),
@@ -76,7 +83,8 @@ const vaultHero = vault.slice(
 assert.doesNotMatch(vaultHero, /Ask Vault|read and Ask/, 'Ask Vault must not replace sync and backup as the hero proposition');
 assert.match(vault, /How is Vault different from free LLMnesia\?/);
 assert.match(vault, /import \{ platformListSentence \} from '\.\.\/\.\.\/lib\/platforms';/);
-assert.match(vault, /Vault syncs the history LLMnesia indexes from \$\{platformListSentence\(\)\}/);
+assert.match(vault, /Vault syncs the history LLMnesia indexes from \{\{VALUE_A\}\}/);
+assert.match(vault, /VALUE_A: platformListSentence\(\)/);
 assert.match(vault, /Local Claude Code, Codex, and ZCode sessions are a separate source type/);
 assert.doesNotMatch(vault, /including ChatGPT, Claude, Gemini, Perplexity, Microsoft Copilot, DeepSeek, Grok, Mistral, Kimi and Qwen/);
 assert.match(platforms, /'Google AI Mode'/);
@@ -103,7 +111,7 @@ for (const [name, text] of Object.entries({ about, foundationalArticle, llms, ll
 
 assert.doesNotMatch(pricing, /NEXT_PUBLIC_VAULT_PRICING_PUBLIC/);
 assert.doesNotMatch(account, /NEXT_PUBLIC_VAULT_PRICING_PUBLIC|notFound\(/);
-assert.match(pricing, /canonicalPath: '\/pricing'/);
+assert.match(await source('app/pricing/page.js'), /corePageMetadata\('pricing', 'en'\)/);
 assert.match(account, /robots: \{ index: false, follow: false \}/);
 assert.match(sitemap, /path: '\/pricing'/);
 assert.doesNotMatch(sitemap, /NEXT_PUBLIC_VAULT_PRICING_PUBLIC/);

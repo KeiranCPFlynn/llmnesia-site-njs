@@ -1,6 +1,6 @@
 import { getAllContent, getAllCategories } from '../lib/content';
 import { absoluteUrl, SITE_URL } from '../lib/site';
-import { SITE_LANGUAGES, languageAlternates } from '../lib/site-language';
+import { SITE_LANGUAGES, languageAlternates, LOCALIZED_CORE_PAGES, basePagePath } from '../lib/site-language';
 
 export const dynamic = 'force-static';
 
@@ -9,6 +9,7 @@ export default function sitemap() {
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
     ...SITE_LANGUAGES.filter(item => item.code !== 'en').map(({path}) => ({path, priority: 0.8, changeFrequency: 'monthly'})),
     ...SITE_LANGUAGES.filter(item => item.guidePath).map(({guidePath}) => ({path: guidePath, priority: 0.6, changeFrequency: 'monthly'})),
+    ...SITE_LANGUAGES.filter(item => item.code !== 'en').flatMap(({path}) => LOCALIZED_CORE_PAGES.map(page => ({path: `${path}/${page}`, priority: 0.6, changeFrequency: 'monthly'}))),
     { path: '/mcp', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/vault', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/pricing', priority: 0.9, changeFrequency: 'weekly' },
@@ -54,6 +55,6 @@ export default function sitemap() {
     lastModified: route.lastModified || new Date().toISOString(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
-    ...(SITE_LANGUAGES.some(item => item.path === route.path) && { alternates: { languages: languageAlternates(SITE_URL) } })
+    ...((SITE_LANGUAGES.some(item => item.path === route.path) || LOCALIZED_CORE_PAGES.includes(basePagePath(route.path).slice(1))) && { alternates: { languages: languageAlternates(SITE_URL, basePagePath(route.path)) } })
   }));
 }

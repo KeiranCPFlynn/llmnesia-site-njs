@@ -1,13 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE_LANGUAGES } from '../lib/site-language.js';
+import { SITE_LANGUAGES, LOCALIZED_CORE_PAGES } from '../lib/site-language.js';
 
 // The static export shares one Next.js root layout. Set each registered locale
 // on its exported HTML, including no-JS clients; SiteLanguage handles navigation.
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 for (const {code, path: route, guidePath} of SITE_LANGUAGES.filter(item => item.code !== 'en')) {
-  const routes = [route, ...(guidePath ? [guidePath] : [])];
+  const routes = [route, ...LOCALIZED_CORE_PAGES.map(page => `${route}/${page}`), ...(guidePath ? [guidePath] : [])];
   for (const localizedRoute of routes) {
     const filename = path.join(root, 'out', `${localizedRoute.slice(1)}.html`);
     const html = await fs.readFile(filename, 'utf8');

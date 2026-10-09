@@ -1,29 +1,33 @@
 import InstallLink from './install-link';
 import { FOOTER_BADGES } from '../../lib/footer-badges';
-import { languagePickerHtml } from '../../lib/site-language';
+import { languagePickerHtml, localizedHref, languageCampaign } from '../../lib/site-language';
+
+import { siteText } from '../../lib/site-copy';
 
 // `minimalHeader` strips the header down to logo + a single install button, for
 // dedicated landing pages (e.g. /claude-code) where external traffic arrives to
 // act on one CTA and the full site nav is just a distraction. `headerCtaUtm`
 // attributes clicks on that button to the page. The footer is left intact — a
 // landing page still wants its footer links and copyright.
-export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm }) {
+export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/' }) {
+  const t = (id) => siteText(`chrome.${id}`, language);
+  const href = (path) => localizedHref(path, language);
   return (
     <>
       <a className="skip-link" href="#main-content">
-        Skip to content
+        {t('skip')}
       </a>
 
       <header className={`site-header${minimalHeader ? ' site-header--minimal' : ' site-header--language'}`}>
         <div className="container header-inner">
-          <a className="brand" href="/" aria-label="LLMnesia home">
+          <a className="brand" href={href('/')} aria-label={t('home')}>
             <img src="/logo.svg" alt="" width="28" height="28" />
             <span>LLMnesia</span>
           </a>
 
           {minimalHeader ? (
-            <InstallLink className="nav-cta" utm={headerCtaUtm}>
-              Add to Chrome
+            <InstallLink className="nav-cta" utm={language === 'en' ? headerCtaUtm : { ...headerCtaUtm, ...languageCampaign(language) }}>
+              {t('install')}
             </InstallLink>
           ) : (
             <>
@@ -34,19 +38,19 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
                 aria-controls="primary-nav"
                 type="button"
               >
-                Menu
+                {t('menu')}
               </button>
 
-              <nav className="nav" id="primary-nav" aria-label="Main">
-                <a href="/vault">Vault</a>
-                <a href="/pricing">Pricing</a>
-                <a href="/mcp">MCP</a>
-                <a href="/use-cases">Use Cases</a>
-                <a href="/blog">Blog</a>
-                <a href="/compare">Compare</a>
-                <InstallLink className="nav-cta">Add to Chrome</InstallLink>
+              <nav className="nav" id="primary-nav" aria-label={t('main')}>
+                <a href={href('/vault')}>{t('vault')}</a>
+                <a href={href('/pricing')}>{t('pricing')}</a>
+                <a href={href('/mcp')}>{t('mcp')}</a>
+                <a href={href('/use-cases')}>{t('useCases')}</a>
+                <a href={href('/blog')}>{t('blog')}</a>
+                <a href={href('/compare')}>{t('compare')}</a>
+                <InstallLink className="nav-cta" utm={languageCampaign(language)}>{t('install')}</InstallLink>
               </nav>
-              <div dangerouslySetInnerHTML={{ __html: languagePickerHtml('en') }} />
+              <div dangerouslySetInnerHTML={{ __html: languagePickerHtml(language, pagePath) }} />
             </>
           )}
         </div>
@@ -56,20 +60,21 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          <nav aria-label="Footer">
-            <a href="/vault">Vault</a>
-            <a href="/pricing">Pricing</a>
-            <a href="/mcp">MCP</a>
-            <a href="/claude-code">Claude Code</a>
-            <a href="/zcode">ZCode</a>
-            <a href="/about">About</a>
-            <a href="/privacy-policy">Privacy Policy</a>
-            <a href="/blog">Blog</a>
-            <a href="/compare">Compare</a>
-            <a href="/use-cases">Use Cases</a>
-            <a href="/changelog">Changelog</a>
-            <InstallLink className="nav-cta">Add to Chrome</InstallLink>
+          <nav aria-label={t('footer')}>
+            <a href={href('/vault')}>{t('vault')}</a>
+            <a href={href('/pricing')}>{t('pricing')}</a>
+            <a href={href('/mcp')}>{t('mcp')}</a>
+            <a href={href('/claude-code')}>Claude Code</a>
+            <a href={href('/zcode')}>ZCode</a>
+            <a href={href('/about')}>{t('about')}</a>
+            <a href={href('/privacy-policy')}>{t('privacy')}</a>
+            <a href={href('/blog')}>{t('blog')}</a>
+            <a href={href('/compare')}>{t('compare')}</a>
+            <a href={href('/use-cases')}>{t('useCases')}</a>
+            <a href={href('/changelog')}>{t('changelog')}</a>
+            <InstallLink className="nav-cta" utm={languageCampaign(language)}>{t('install')}</InstallLink>
           </nav>
+          {language !== 'en' && <p className="site-language-note">{t('interfaceNotice')}</p>}
           <div className="footer-badges">
             {FOOTER_BADGES.map((badge) => (
               <a

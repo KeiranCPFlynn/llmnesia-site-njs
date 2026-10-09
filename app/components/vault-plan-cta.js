@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getVaultBillingClient } from '../../lib/vault-billing-client';
 
-export default function VaultPlanCta() {
+export default function VaultPlanCta({ copy = {} }) {
   const [active, setActive] = useState(false);
 
   const supabase = useMemo(() => {
@@ -29,7 +29,7 @@ export default function VaultPlanCta() {
 
   return (
     <a className="button vault-plan-cta" href={active ? '/account' : '#get-vault'}>
-      {active ? 'Manage Vault' : 'Get Vault'} <span aria-hidden="true">→</span>
+      {active ? (copy['Manage Vault'] || 'Manage Vault') : (copy['Get Vault'] || 'Get Vault')} <span aria-hidden="true">→</span>
     </a>
   );
 }
