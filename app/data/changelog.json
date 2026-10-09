@@ -4,8 +4,8 @@
     "date": "2026-10-09",
     "published": false,
     "curated": true,
-    "title": "Cleaner Codex search results",
-    "summary": "Codex command-approval reviews are no longer saved as conversations, keeping internal review verdicts out of your search results. Previously saved conversations containing only these verdicts are removed, and Vault sync prevents them from returning."
+    "title": "Minor updates and fixes",
+    "summary": "Reliability improvements to Vault sync and conversation indexing."
   },
   {
     "version": "0.4.14",
