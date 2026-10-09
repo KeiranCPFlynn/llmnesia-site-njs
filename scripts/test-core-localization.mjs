@@ -13,6 +13,8 @@ for (const page of LOCALIZED_CORE_PAGES) {
     const route = localizedHref(`/${page}`, code);
     const root = await readPage(route);
     assert.equal(root.querySelector('html').getAttribute('lang'), code, `${route}: document language`);
+    const prerendered = parser.parse(await readFile(new URL(`../.next/server/app${route}.html`, import.meta.url), 'utf8'));
+    assert.equal(prerendered.querySelector('html').getAttribute('lang'), code, `${route}: Vercel prerendered document language`);
     assert.deepEqual(skeleton(root), skeleton(original), `${route}: design differs from English`);
     assert.equal(root.querySelectorAll('h1').length, 1, `${route}: one page heading`);
     assert.equal(root.querySelector('link[rel="canonical"]').getAttribute('href'), `https://www.llmnesia.com${route}`);
