@@ -3,7 +3,7 @@ import { footerBadgesHtml } from '../lib/footer-badges';
 import JsonLd from './components/json-ld';
 import { buildPageMetadata } from '../lib/metadata';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../lib/schema';
-import { CHROME_WEB_STORE_URL } from '../lib/site';
+import { CHROME_WEB_STORE_URL, absoluteUrl } from '../lib/site';
 import {
   SUPPORTED_PLATFORMS,
   IMPORT_PLATFORMS,
@@ -12,11 +12,17 @@ import {
   platformListSentence
 } from '../lib/platforms';
 
-export const metadata = buildPageMetadata({
-  title: 'Search ChatGPT, Claude & Gemini History Privately | LLMnesia',
-  description: `LLMnesia is a free Chrome and Edge extension that searches your AI chat history across ${PLATFORM_COUNT} AI tools. Local-first: your conversations stay on your device.`,
-  canonicalPath: '/'
-});
+export const metadata = {
+  ...buildPageMetadata({
+    title: 'Search ChatGPT, Claude & Gemini History Privately | LLMnesia',
+    description: `LLMnesia is a free Chrome and Edge extension that searches your AI chat history across ${PLATFORM_COUNT} AI tools. Local-first: your conversations stay on your device.`,
+    canonicalPath: '/'
+  }),
+  alternates: {
+    canonical: absoluteUrl('/'),
+    languages: { en: absoluteUrl('/'), de: absoluteUrl('/de'), 'x-default': absoluteUrl('/') }
+  }
+};
 
 const HOMEPAGE_FAQS = [
   {

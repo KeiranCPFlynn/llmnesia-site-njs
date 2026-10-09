@@ -41,6 +41,11 @@ export default function SiteBehavior() {
 
     document.querySelectorAll(installLinkSelector).forEach((link) => {
       if (!(link instanceof HTMLAnchorElement)) return;
+      // The German guide deliberately offers both stores as explicit choices.
+      if (link.dataset.fixedInstallStore) {
+        link.dataset.installStore = link.dataset.fixedInstallStore;
+        return;
+      }
 
       try {
         const currentUrl = new URL(link.href);

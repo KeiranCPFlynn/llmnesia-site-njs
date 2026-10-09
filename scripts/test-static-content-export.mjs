@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readdir, readFile } from 'node:fs/promises';
 import matter from 'gray-matter';
+import { createHash } from 'node:crypto';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const contentTypes = ['blog', 'compare', 'use-cases'];
@@ -87,4 +88,30 @@ assert.match(
   'llms-full.txt is missing the verified Copilot retention fact'
 );
 
-process.stdout.write(`Static content export checks passed for ${routes.length} routes.\n`);
+const englishCopy = JSON.parse(await readFile(path.join(projectRoot, 'content/locales/en.json'), 'utf8'));
+const germanCopy = JSON.parse(await readFile(path.join(projectRoot, 'content/locales/de.json'), 'utf8'));
+const translationRecord = JSON.parse(await readFile(path.join(projectRoot, 'content/locales/de.translation.json'), 'utf8'));
+assert.deepEqual(Object.keys(germanCopy).sort(), Object.keys(englishCopy).sort(), 'German catalog is incomplete');
+for (const [id, text] of Object.entries(englishCopy)) {
+  assert.ok(germanCopy[id]?.trim(), `Empty German translation: ${id}`);
+  assert.equal(translationRecord.entries[id]?.sourceHash, createHash('sha256').update(text).digest('hex'), `Outdated German source: ${id}`);
+  assert.equal(translationRecord.entries[id]?.reviewedHash, createHash('sha256').update(germanCopy[id]).digest('hex'), `German translation needs review: ${id}`);
+}
+const escapeHtml = (text) => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#x27;');
+for (const route of ['/de', '/de/installation']) {
+  const html = await readFile(path.join(projectRoot, 'out', `${route.slice(1)}.html`), 'utf8');
+  assert.match(html, /<html\b[^>]*lang="de"/, `${route} document language is not German`);
+  assert.ok(html.includes(`rel="canonical" href="https://www.llmnesia.com${route}"`), `${route} canonical is missing`);
+  assert.ok(html.includes('data-site-language="en"'), `${route} has no English choice`);
+  assert.ok(html.includes('utm_campaign=german_pilot'), `${route} has no attributed installation link`);
+  assert.ok(html.includes(escapeHtml(germanCopy[route === '/de' ? 'home.languageNotice' : 'guide.intro'])), `${route} does not disclose the English interface`);
+  assert.equal(/\{\{[A-Z_]+\}\}/.test(html), false, `${route} contains unresolved placeholders`);
+}
+for (const file of ['index.html', 'de.html']) {
+  const html = await readFile(path.join(projectRoot, 'out', file), 'utf8');
+  assert.ok(html.includes('hrefLang="de" href="https://www.llmnesia.com/de"') || html.includes('hreflang="de" href="https://www.llmnesia.com/de"'), `${file} lacks German alternate metadata`);
+  assert.match(html, /href[Ll]ang="en" href="https:\/\/www\.llmnesia\.com\/?"/, `${file} lacks English alternate metadata`);
+}
+const guideHtml = await readFile(path.join(projectRoot, 'out', 'de/installation.html'), 'utf8');
+assert.ok(guideHtml.includes('data-fixed-install-store="chrome"') && guideHtml.includes('data-fixed-install-store="edge"'), 'Guide must retain both store choices');
+process.stdout.write(`Static content export checks passed for ${routes.length} content routes and the German pilot.\n`);

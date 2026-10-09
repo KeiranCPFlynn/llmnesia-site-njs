@@ -6,6 +6,8 @@ export const dynamic = 'force-static';
 export default function sitemap() {
   const staticRoutes = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' },
+    { path: '/de', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/de/installation', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/mcp', priority: 0.9, changeFrequency: 'weekly' },
     { path: '/vault', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/pricing', priority: 0.9, changeFrequency: 'weekly' },
@@ -50,6 +52,7 @@ export default function sitemap() {
     url: absoluteUrl(route.path),
     lastModified: route.lastModified || new Date().toISOString(),
     changeFrequency: route.changeFrequency,
-    priority: route.priority
+    priority: route.priority,
+    ...(['/', '/de'].includes(route.path) && { alternates: { languages: { en: absoluteUrl('/'), de: absoluteUrl('/de'), 'x-default': absoluteUrl('/') } } })
   }));
 }

@@ -58,7 +58,7 @@ Spanish should therefore remain a close second. Better distribution opportunitie
 4. **One country report cannot measure localization's effect.** Traffic source, landing page, device, retention, and paid outcomes are not broken out here. Existing English-only traffic also cannot reveal all the demand translated acquisition could unlock.
 5. **Product limitations are findings from the earlier audit.** Verify their current status. Translating interface text does not by itself establish reliable target-language capture, keyword search, or semantic search.
 
-Start with a **German landing page and store listing**, clearly describing any remaining English-only interface. Verify German capture and search quality, then localize essential onboarding. Use a native reviewer for public copy and privacy explanations. Every translated surface adds review and maintenance work.
+Start with a **German landing page and store listing**, clearly describing any remaining English-only interface. Verify German capture and search quality, then localize essential onboarding. A native reviewer is preferable for public copy and privacy explanations. Since none is available, the prepared pilot uses DeepL plus AI-assisted source comparison and editorial checks; this does not establish native-level accuracy. Every translated surface adds review and maintenance work. See the [prepared pilot and verification](german-pilot.md).
 
 Measure discovery, install intent, first successful search, and returning usage, with paid outcomes where available. Evaluate a sufficiently populated observation period; the earlier discussion suggested an initial **4–6 weeks**, extending it if acquisition is sparse. Expand interface coverage only after useful adoption is demonstrated.
 

@@ -1,0 +1,637 @@
+{
+  "provider": "DeepL",
+  "sourceLanguage": "EN",
+  "targetLanguage": "DE",
+  "review": "AI-assisted source comparison and editorial review completed; no native human review.",
+  "entries": {
+    "nav.skip": {
+      "sourceHash": "ac576a66d4563e600314a2ce6e731725e9826fd88baf2399e05f60bfb177dbc0",
+      "machineHash": "0223fd4834ed4884018d03754afc816c5c9bef8dc3889c54df079fcbf4f928e1",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.661Z",
+      "reviewedHash": "0223fd4834ed4884018d03754afc816c5c9bef8dc3889c54df079fcbf4f928e1"
+    },
+    "nav.home": {
+      "sourceHash": "55940424c3df86ab73f90bbfc5b951ade0c9879ba5bf9afb6644cb60ff79e4cb",
+      "machineHash": "36b5d54cb9809b688489b272688f4349ea4decab48c2337d2a2eceb28cf7db4a",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "36b5d54cb9809b688489b272688f4349ea4decab48c2337d2a2eceb28cf7db4a"
+    },
+    "nav.label": {
+      "sourceHash": "3db65f8c2a7d1861b4bca37da3adec5aa7905931eb6faddbc595a35f75e6ca40",
+      "machineHash": "3db65f8c2a7d1861b4bca37da3adec5aa7905931eb6faddbc595a35f75e6ca40",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "3db65f8c2a7d1861b4bca37da3adec5aa7905931eb6faddbc595a35f75e6ca40"
+    },
+    "nav.features": {
+      "sourceHash": "5697d03daef4de9cf8db7cb11755f71358a32b4acca94909a9d449f71040d2dd",
+      "machineHash": "d23a4f609c9ee624af11f53504401e68c97b052849d72187ec158a61cbdb8822",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "d23a4f609c9ee624af11f53504401e68c97b052849d72187ec158a61cbdb8822"
+    },
+    "nav.setup": {
+      "sourceHash": "d334745b85acdbfcbfe8396dfa2c463e3ba6dcd372ff3ce4ab93a1d2aca8277d",
+      "machineHash": "de049eaf7500900f3d0456353ef314ad1c9280cd9871cdce1453f2ed8390dc30",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "de049eaf7500900f3d0456353ef314ad1c9280cd9871cdce1453f2ed8390dc30"
+    },
+    "nav.privacy": {
+      "sourceHash": "54a57c3147c49f33de5898b87084ad2b14c4ab308f762454bf92aca907478ad5",
+      "machineHash": "f624fcf0dcbb39c0a05062577622a8530ae2b04c335ae657cb19bbda57e90d6b",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "f624fcf0dcbb39c0a05062577622a8530ae2b04c335ae657cb19bbda57e90d6b"
+    },
+    "nav.install": {
+      "sourceHash": "8bedad4be69b7e56e43ec078aa181910196362a4085a6db5081ca858f2043ddf",
+      "machineHash": "a90aa64b7a415d1442b31bdc962e9fbaece5d07e46a58bca64facfc0c0a986cd",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "a90aa64b7a415d1442b31bdc962e9fbaece5d07e46a58bca64facfc0c0a986cd"
+    },
+    "nav.language": {
+      "sourceHash": "a4fe65264ef7dbb38d104b1e81eb3350f3142f3d16f32bdec39b1d9b42c1b8d1",
+      "machineHash": "f2a1cc71fa59a04b38c226ecc20d57747090ba3b6d6c11d349f5e052cd87aa5a",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "f2a1cc71fa59a04b38c226ecc20d57747090ba3b6d6c11d349f5e052cd87aa5a"
+    },
+    "footer.english": {
+      "sourceHash": "9786e889760897d417c6bcdda105c8ef7c06cf5fac701d4d9baec8a7c3269a63",
+      "machineHash": "f1da68a6ab6e9aa0d302d2d2d0113f203b87ae1ea66939ce93460136b7d7ee6d",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "f1da68a6ab6e9aa0d302d2d2d0113f203b87ae1ea66939ce93460136b7d7ee6d"
+    },
+    "footer.policy": {
+      "sourceHash": "4a8b700dcbc4f97cede97796ec232b73ba99d3370330499269b7cced7c6f6540",
+      "machineHash": "2cd3733747302ac65f6337c588703f6ccef07056ceee047295a3ea6fd44eeff9",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "2cd3733747302ac65f6337c588703f6ccef07056ceee047295a3ea6fd44eeff9"
+    },
+    "footer.vault": {
+      "sourceHash": "98afd0a69c29ddcf7fbdfb9d12116a6371dfd7e23d905e19c0810126dcaced71",
+      "machineHash": "4fbcd81bef92e1d8469168ca73ee022dda55680995ccb14d017551bdd4d2af67",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "4fbcd81bef92e1d8469168ca73ee022dda55680995ccb14d017551bdd4d2af67"
+    },
+    "home.metaTitle": {
+      "sourceHash": "0316274c2cf1a6290e3d679de597556001e100cd6124c692ab34fc4212557883",
+      "machineHash": "cb92baaf757436eec172afa32f2219cc6e23675c23515b927d011e2d486125fd",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "cb92baaf757436eec172afa32f2219cc6e23675c23515b927d011e2d486125fd"
+    },
+    "home.metaDescription": {
+      "sourceHash": "b1cad5aae573e88cba7045fdf232f7fd2f3df25282369d79588f1a11dbc8b167",
+      "machineHash": "245e34aef7d9e3e929b255c9cc3d23bcf6c5b776e45c5bb23dc1b7ce9f2a7e27",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "f91f66811389405791a1624c495bab0db2dbd1bf9f08781a02f3cdd70ae4c367"
+    },
+    "home.eyebrow": {
+      "sourceHash": "09da80ba5bc8d85c587ac1ab07c6ccc7995f820c321c86bdc4581336648f011c",
+      "machineHash": "8209c1126764409e2ff76075b9a659ba46c1b74d9e9f1653ff3dd16f6a964811",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "8209c1126764409e2ff76075b9a659ba46c1b74d9e9f1653ff3dd16f6a964811"
+    },
+    "home.title": {
+      "sourceHash": "de6b023f6d3cfc203627233e8fef938e884a6afea3bf2b4ccea8248c19e34e8f",
+      "machineHash": "0a39373dc4b0f674bec79969b00969790a981e881fce7217c5b2a4ac09880ca5",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "0a39373dc4b0f674bec79969b00969790a981e881fce7217c5b2a4ac09880ca5"
+    },
+    "home.intro": {
+      "sourceHash": "3b66f0f8f409ccc3f80d8f99367806a5bc78b6ab3ecf4683edb9aad853998d2e",
+      "machineHash": "6ff506b8bfcd301435bb9af3ff84515e5896f19a3eadca3f0bd2e7d99f553b65",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "0a871ee7ed27175c1f110cbae7998168dc69f24fb381296e408bf58524f9a9f8"
+    },
+    "home.install": {
+      "sourceHash": "6572c01b1647ab39c23e9f4ae7cd2f54811c8c48bf30e826f118b141d6f414dd",
+      "machineHash": "e4a7a1d9ec0e446c057f0372b45f3e37f6bc7786a7f543215e336ef73960067e",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "e4a7a1d9ec0e446c057f0372b45f3e37f6bc7786a7f543215e336ef73960067e"
+    },
+    "home.guide": {
+      "sourceHash": "a254e6a5ec9ac080237f06e25773e5b2d13ccc01b6c5e44ac87bd5dcf8047844",
+      "machineHash": "d47c239da4dc7e19cd44c8ae1a2b063a1a5268e826b422202f78cd506f559e73",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "43178c91c1ca302b5f74c857dd9803eaa476fa6fb2e3bf0b288e3aede2eb9f2c"
+    },
+    "home.languageNotice": {
+      "sourceHash": "cd3e746fd60353ec014f61d4acc79c23cd737e88e867540f3f4ef9ade5f07368",
+      "machineHash": "24c8db3ee8e41e360f24ce0e60ae7945305bed60a6e9202a2e4a37cb56ef6632",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "24c8db3ee8e41e360f24ce0e60ae7945305bed60a6e9202a2e4a37cb56ef6632"
+    },
+    "home.localNote": {
+      "sourceHash": "90a453277dab30fcbb4a068a1f088827466e067c418c5eeda1fa9660cd056fd5",
+      "machineHash": "d29ce2c15eea3835da5b8734de474949aec239b433f7a5656f72203c067b0989",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "d29ce2c15eea3835da5b8734de474949aec239b433f7a5656f72203c067b0989"
+    },
+    "home.exampleLabel": {
+      "sourceHash": "3f4597ae304ef10d74102e7fca8c29d8001900843a0dbc7af8b224eab1cc61bd",
+      "machineHash": "02508704c5ee62b9de26f69ec76bdaa041b3e740724a66669520c03f92ef0831",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "02508704c5ee62b9de26f69ec76bdaa041b3e740724a66669520c03f92ef0831"
+    },
+    "home.exampleQuery": {
+      "sourceHash": "75c78af2af57b54f5d8f8fb4e836022cb7886e28a42fbe643c2109a83c52bd79",
+      "machineHash": "3dde26241d06608c9829a5998a107494bbb4c1d2f8d4f8537d8d9a27d942ba3e",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "3dde26241d06608c9829a5998a107494bbb4c1d2f8d4f8537d8d9a27d942ba3e"
+    },
+    "home.exampleTitle": {
+      "sourceHash": "ca8c4019bcffe0c0ec8c5f97d9d8471044e154c787825e9762ee83b8b06057ae",
+      "machineHash": "6caf10ddb706a17e3004d46b8d71fb70f69c966a37fa32d30f20d34d8d4019eb",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "6caf10ddb706a17e3004d46b8d71fb70f69c966a37fa32d30f20d34d8d4019eb"
+    },
+    "home.exampleSnippet": {
+      "sourceHash": "5907ca3b97f3c3038058b1b368059fab08025acf4e475cb2f836c112d0892d1f",
+      "machineHash": "d792b9ccc469e9a33f9bde9f1030e0953f9d2f71ebbb24b4e763e2ed1310955a",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "d792b9ccc469e9a33f9bde9f1030e0953f9d2f71ebbb24b4e763e2ed1310955a"
+    },
+    "home.exampleCaption": {
+      "sourceHash": "adbbef2672b68f76ed01aae4f1fed8c8f491b03b6926cfc685cc6293edc740e1",
+      "machineHash": "b8c2f12c3efb97d7ade77f24cf71d4989b68789cd8b41749025ec293b4084bb8",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "b8c2f12c3efb97d7ade77f24cf71d4989b68789cd8b41749025ec293b4084bb8"
+    },
+    "home.featuresKicker": {
+      "sourceHash": "6cd8a5ea6a60fd259a356dac2702626321f440c03859c7219225b68fe8a47744",
+      "machineHash": "f80b0386a6e725b34ea34a002d44b2b967cdca87543880fe382c22cf905cff99",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "f80b0386a6e725b34ea34a002d44b2b967cdca87543880fe382c22cf905cff99"
+    },
+    "home.featuresTitle": {
+      "sourceHash": "23ed6953cc92b5dd362b6eee23cc30edd6a4575d2e8baede5b158114ad26e6e6",
+      "machineHash": "b2cf2ccad517339434efc0f9947255ea887c7a25ade9e7f747b169991e2683ae",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "b2cf2ccad517339434efc0f9947255ea887c7a25ade9e7f747b169991e2683ae"
+    },
+    "home.featureSearchTitle": {
+      "sourceHash": "de5d82f3c58e877c0f6ed90f0390e50c1198cb7ac3f346d1850a8fcf2f72884a",
+      "machineHash": "0ff993d0f36850a91dc70f3acc618e3e492f7887bd78cec70c34866180c12862",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "fef085f55329786429fcab03d302bef2ab3a9ea48163ec0118b5f8d6f18769d3"
+    },
+    "home.featureSearchBody": {
+      "sourceHash": "fd363cb5ea939fb8ca2124d4d71d76e5db698e2452837f031ea0cd31ba98ca76",
+      "machineHash": "3d214de9c6d30999e19f144031cc70c8ac544df3a0308be1cb8aa5328534c969",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.666Z",
+      "reviewedHash": "3d214de9c6d30999e19f144031cc70c8ac544df3a0308be1cb8aa5328534c969"
+    },
+    "home.featureImportTitle": {
+      "sourceHash": "20e4138044a08b82a325456d41ed79f939090281d60ca665f659bb2548b6c561",
+      "machineHash": "68b64ae001e869708a07e3341f46282c37913285c7e3fc5e6495f6bd42aff260",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "68b64ae001e869708a07e3341f46282c37913285c7e3fc5e6495f6bd42aff260"
+    },
+    "home.featureImportBody": {
+      "sourceHash": "48873c7d99aa2f132ba3ca81abf1b295fbfeb745defd767298f78e841184f5a5",
+      "machineHash": "a07679ba8786731ed70e8a0fb5e3116b886027569bf4ce35f3abc76611ca0593",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "a07679ba8786731ed70e8a0fb5e3116b886027569bf4ce35f3abc76611ca0593"
+    },
+    "home.featureArchiveTitle": {
+      "sourceHash": "992ff274231f28ed0870260e3a7ff5e73ce39a7704079095dd1cbdfb45689e28",
+      "machineHash": "defb3f371a6a8995840cd2fc83ea57bf8a2cd65dbc94652fef6d65a2911700a3",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "defb3f371a6a8995840cd2fc83ea57bf8a2cd65dbc94652fef6d65a2911700a3"
+    },
+    "home.featureArchiveBody": {
+      "sourceHash": "49b08bbf3dc866f66b3c98d3f7f5ce598004e986411297b20dcb068a6fcf3579",
+      "machineHash": "b374abe3f54e674962563846f507b0c3c30145e3fa596a2dd2587a9e40d3c324",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "b374abe3f54e674962563846f507b0c3c30145e3fa596a2dd2587a9e40d3c324"
+    },
+    "home.platformsTitle": {
+      "sourceHash": "d318c881c1fe691083334f409331b3ef2d2bc4fa54f6b1e0f5f06f8c89ab230d",
+      "machineHash": "8ee7acaff8d6a58b813218b05e6e300562d47f20a8c09489216c96c94bc78975",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "8ee7acaff8d6a58b813218b05e6e300562d47f20a8c09489216c96c94bc78975"
+    },
+    "home.platformsIntro": {
+      "sourceHash": "005128b7511eb30710991b96f8ee7942d38d7132fff779b22ad211760dd7d460",
+      "machineHash": "4efa132d0989aa518fc7881d1e12a973ecbe025064ee50bd2e0e96889226cc9b",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "4efa132d0989aa518fc7881d1e12a973ecbe025064ee50bd2e0e96889226cc9b"
+    },
+    "home.platformsLocal": {
+      "sourceHash": "f64b00185cb4e5d2bb7dc7d26ebc2c1dacab49adccacce8723488ee456c64b52",
+      "machineHash": "06cf198fac6fdd21722658d85ad0f08e3b70b271824e8d8dc7a3deed3916c2b8",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "4a227013f05ac45d4bf2ac74e825a6bc80bd115a8581112d337bc018cb855be5"
+    },
+    "home.howKicker": {
+      "sourceHash": "61e8d44ad423a4a0951b21b9d11440a1c23a881fe79335c367f63be251c64800",
+      "machineHash": "ae0a8fd899db606187cbc29c087b37fbd3057f87d59c30f46cf092e099e7fb11",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "ae0a8fd899db606187cbc29c087b37fbd3057f87d59c30f46cf092e099e7fb11"
+    },
+    "home.howTitle": {
+      "sourceHash": "fa4c35d0d7c88f62dfe9e5840af15d8b1446d0e0187d1df5a76a39375d8384ba",
+      "machineHash": "02afa5be68c0934377f181709f560a032bbfa60c168f7ce81bf61cf24da58ad4",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "02afa5be68c0934377f181709f560a032bbfa60c168f7ce81bf61cf24da58ad4"
+    },
+    "home.stepInstallTitle": {
+      "sourceHash": "a212e1e66e3bd5af5f5c55afba8e27a1cbd41e962d20b82aa51ac3ed887b6802",
+      "machineHash": "1c56923c15799e3833d671d2dc82b03d0dfa82b23638aa9ae48539945530cc1c",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "1c56923c15799e3833d671d2dc82b03d0dfa82b23638aa9ae48539945530cc1c"
+    },
+    "home.stepInstallBody": {
+      "sourceHash": "ab892b3fce02018644880b953540536769ea5bc2844bb7d7645408d125d8c06c",
+      "machineHash": "13cd953855e55c24a21dbbaa0f4157ac6f73fa7dea5ab991056520bd78ef44ea",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:53.667Z",
+      "reviewedHash": "caa5c561ad8aa98f3205bd64214ae4537750bbee3f38f88d0f5f3a75d633759d"
+    },
+    "home.stepImportTitle": {
+      "sourceHash": "d0db9b66dfc9372465ced1fc873b6bd21fe35ff8ee1d9eb5d6a49964ad17b28f",
+      "machineHash": "e5524622c76e3146c5ad0598057b412e19bbcd1efb3464f35f1514f29184e763",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "e5524622c76e3146c5ad0598057b412e19bbcd1efb3464f35f1514f29184e763"
+    },
+    "home.stepImportBody": {
+      "sourceHash": "19af4486d6855a87bbb9832856893ba3ee0f328abfb02176adc90f6dc82d37b4",
+      "machineHash": "10c31faab09d14217c6e1002170b07d7bccd5b554790ed716c2f0fd7778af91d",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "10c31faab09d14217c6e1002170b07d7bccd5b554790ed716c2f0fd7778af91d"
+    },
+    "home.stepSearchTitle": {
+      "sourceHash": "6c23c0c32f972359f5de8018eb9b87ca12397d5cd560ca034cf72fb330f7c7e2",
+      "machineHash": "59896fa6e8dd875f1ac7c5179e9947aacdd6c11ac5ed20466a88bf61173ce0b8",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "59896fa6e8dd875f1ac7c5179e9947aacdd6c11ac5ed20466a88bf61173ce0b8"
+    },
+    "home.stepSearchBody": {
+      "sourceHash": "f997705b60de4b61f12092b363137f57d2a4adbf2afb251819f337630cfd1550",
+      "machineHash": "3743cdd128f2a63c6b75a3c119addede57eb315c512f0f40d7957513d487c786",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "de2ee49a3aa3471f24665e6883316a6c114baea6ee5ab2755cad414f3b3330d3"
+    },
+    "home.privacyKicker": {
+      "sourceHash": "54a57c3147c49f33de5898b87084ad2b14c4ab308f762454bf92aca907478ad5",
+      "machineHash": "f624fcf0dcbb39c0a05062577622a8530ae2b04c335ae657cb19bbda57e90d6b",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "f624fcf0dcbb39c0a05062577622a8530ae2b04c335ae657cb19bbda57e90d6b"
+    },
+    "home.privacyTitle": {
+      "sourceHash": "e351b18cf5583613337098ca8a489e748b3ea170c7921954d3f3651bea15ca3a",
+      "machineHash": "17643b23f4c442c98cacb2332da41b38222d27efbcd81b86b5d41532e70c0db3",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "17643b23f4c442c98cacb2332da41b38222d27efbcd81b86b5d41532e70c0db3"
+    },
+    "home.privacyLocalTitle": {
+      "sourceHash": "b0ef618be4377d94342843bb10184c1ce60382b05f335d0838f02c13119f40ec",
+      "machineHash": "521299e4891c7c906fbd8f251d81c89b3acb7cd7ff1b636d6dfaf34a9f3f37f6",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "521299e4891c7c906fbd8f251d81c89b3acb7cd7ff1b636d6dfaf34a9f3f37f6"
+    },
+    "home.privacyLocalBody": {
+      "sourceHash": "5094293cf8915b2440e701dd5d6c853cf458433047931faa55f6c3c2b1976acc",
+      "machineHash": "db4b90f6f586050bc7cb2ef684e644acf5ceba0e65b82e68fa74037267e7cee2",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "db4b90f6f586050bc7cb2ef684e644acf5ceba0e65b82e68fa74037267e7cee2"
+    },
+    "home.privacyVaultTitle": {
+      "sourceHash": "fdd696fdb618e0deee1a9d733d3e946ad10712602088f71eedbb808818206fb5",
+      "machineHash": "5a3c8a06fbbac5872e276359b0927979a9c67c07a050e0c8568007646513fa85",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "5a3c8a06fbbac5872e276359b0927979a9c67c07a050e0c8568007646513fa85"
+    },
+    "home.privacyVaultBody": {
+      "sourceHash": "db0439069468d1f4ec230a76d0a0ba5d106f2a21c2b220478d80ae1dbad0273c",
+      "machineHash": "040942f23c4691cfb6399644da97edd227c544d4327df8a66b7597c970efa75c",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "040942f23c4691cfb6399644da97edd227c544d4327df8a66b7597c970efa75c"
+    },
+    "home.privacyAnalytics": {
+      "sourceHash": "bfed6e3b8d59cd1f9424e21f543c1601aa3ef04254debaaf53d8b541d3e281ec",
+      "machineHash": "18e51297ec9dd48b5f73ff84cce615c9151227b17bb161ac69676aee64122f7d",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "18e51297ec9dd48b5f73ff84cce615c9151227b17bb161ac69676aee64122f7d"
+    },
+    "home.faqTitle": {
+      "sourceHash": "b39869a1169bf96e6657d69f134ce057fb49b1d0bac21847901abad58b8cd208",
+      "machineHash": "cfa0c96a0162ab1b8467c786c64148b329a082f91cc80c9558749cb89d487e96",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "cfa0c96a0162ab1b8467c786c64148b329a082f91cc80c9558749cb89d487e96"
+    },
+    "home.faqLanguageQuestion": {
+      "sourceHash": "4079a0bc3e96ea3a3ee7d8ecca31ff87e9b867921d8da2b1346784af22845be6",
+      "machineHash": "5db63d774c5ce2c764fe2a42b914f7e9b8213b1923598cd1d40f7d930342fd28",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "5db63d774c5ce2c764fe2a42b914f7e9b8213b1923598cd1d40f7d930342fd28"
+    },
+    "home.faqLanguageAnswer": {
+      "sourceHash": "fa70fe626f40b780c47c1a3bc10a3d11f81023cb1cd4b8534aa3c925d2d85425",
+      "machineHash": "411af194ee21c8a36b115c4b3592d8333a3ab19551fdf834d8f5312e16454833",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "411af194ee21c8a36b115c4b3592d8333a3ab19551fdf834d8f5312e16454833"
+    },
+    "home.faqSearchQuestion": {
+      "sourceHash": "3009a5854bc1dd2f5372701a0cc5457db3980e6322f53b19285ab37f77839dc0",
+      "machineHash": "65546e013e61afdc7a16dcca28dc2d774765ae738aed446f1d38cb24ff5204f2",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "65546e013e61afdc7a16dcca28dc2d774765ae738aed446f1d38cb24ff5204f2"
+    },
+    "home.faqSearchAnswer": {
+      "sourceHash": "a6edb5b6f5d775f2ec2a6f603ecfcc184dea38dc6e13828709143a2c0bd6ffbf",
+      "machineHash": "f8d087f330fe8fa1e801e8a7300cb7a623031f78382eb572b15284217b9c9928",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "f8d087f330fe8fa1e801e8a7300cb7a623031f78382eb572b15284217b9c9928"
+    },
+    "home.faqFreeQuestion": {
+      "sourceHash": "ac912224b70cbe88937029b920de947c9b13135f0504d6d2fd2772725216b524",
+      "machineHash": "3cdc34d0a2fa9a07eebf43f71c940d06768ed84aedfd431a2a6152fee8b683ed",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "3cdc34d0a2fa9a07eebf43f71c940d06768ed84aedfd431a2a6152fee8b683ed"
+    },
+    "home.faqFreeAnswer": {
+      "sourceHash": "7001dcb13d5cdd527e194404b2d0ad3219a03aff842363ceeea6affeb6ae6db7",
+      "machineHash": "72eaa83c9cfd7c01675fc3756a5b9435ba6311ca51a2663f561fff59c32463ca",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "72eaa83c9cfd7c01675fc3756a5b9435ba6311ca51a2663f561fff59c32463ca"
+    },
+    "home.faqDeletedQuestion": {
+      "sourceHash": "8575c9e62824a3a1ed04056b9aab423a7718e41965741f6e386fe119f08c42b1",
+      "machineHash": "81226d7bf4cbc16b4c068e250e111f801a091377f1e42023cf76010759922ed1",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "81226d7bf4cbc16b4c068e250e111f801a091377f1e42023cf76010759922ed1"
+    },
+    "home.faqDeletedAnswer": {
+      "sourceHash": "4b97bb07c54c6b5dffd041f38ffed817ab3bf654691c65fbc1dcc17b3908313b",
+      "machineHash": "a093f2f2157d3f221af2930427e7fcab7ff77bafb7fd11e735b25db6d1dd5fcd",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "a093f2f2157d3f221af2930427e7fcab7ff77bafb7fd11e735b25db6d1dd5fcd"
+    },
+    "home.closingTitle": {
+      "sourceHash": "b70e8648375da81866f9f8673697bdefd8ef71c94223850d952b018b2430ae03",
+      "machineHash": "fa505e8ec388d2a18091f766899eeeb46300d2fde2df4419c8fa803b708c68bd",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "fa505e8ec388d2a18091f766899eeeb46300d2fde2df4419c8fa803b708c68bd"
+    },
+    "home.closingBody": {
+      "sourceHash": "f12f9fd0e7da6f5db3219a35f2feeaf341542e5bf27b3890add6ff7cda692232",
+      "machineHash": "08f33fc4a81428ae13f85fc895c457a6ea7fccd44b17685da34e2720e9c767fa",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "08f33fc4a81428ae13f85fc895c457a6ea7fccd44b17685da34e2720e9c767fa"
+    },
+    "guide.metaTitle": {
+      "sourceHash": "949a0f870d7d0cf4bffd230891a691925c49b3a33b42ef85829dd9c78b108421",
+      "machineHash": "9ecf29c6687d3ba293e493330c8a3bff27ff738c573d9e2b38d7b1ee33bd5895",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "9ecf29c6687d3ba293e493330c8a3bff27ff738c573d9e2b38d7b1ee33bd5895"
+    },
+    "guide.metaDescription": {
+      "sourceHash": "8b3fa5de1189d48802e3752f9ccd1125138dcacb153237538908c4cd58a9f051",
+      "machineHash": "2681b9da9901ab62e1abaf717abcf13025eb1bea5a56c343357988e521737146",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "2681b9da9901ab62e1abaf717abcf13025eb1bea5a56c343357988e521737146"
+    },
+    "guide.eyebrow": {
+      "sourceHash": "d334745b85acdbfcbfe8396dfa2c463e3ba6dcd372ff3ce4ab93a1d2aca8277d",
+      "machineHash": "de049eaf7500900f3d0456353ef314ad1c9280cd9871cdce1453f2ed8390dc30",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "de049eaf7500900f3d0456353ef314ad1c9280cd9871cdce1453f2ed8390dc30"
+    },
+    "guide.title": {
+      "sourceHash": "33a7c087a7b9666cde215967238878962b9e1c27ee5568b2d499f81b159c74d2",
+      "machineHash": "1e08657c03bf1a655445a16b938b7595d18d7928f6805e98a27345d9fda94c3d",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "1e08657c03bf1a655445a16b938b7595d18d7928f6805e98a27345d9fda94c3d"
+    },
+    "guide.intro": {
+      "sourceHash": "2d391e99eaba4d279fbc5cb6b565b67b712f230aa77571ea5ee34eabcc18b19d",
+      "machineHash": "45fe681158b7af0794e652181d26be5698a2916eccd16ab38f73b2ab65fbff04",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "45fe681158b7af0794e652181d26be5698a2916eccd16ab38f73b2ab65fbff04"
+    },
+    "guide.installTitle": {
+      "sourceHash": "d7263d03cbe280ad8a095799f65cc2ae6f38441d114f04e9abdded645306df27",
+      "machineHash": "aff4a5e4864edde152bb9eee944e7b613768512536c09dd40a2138fdbc9bea54",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "aff4a5e4864edde152bb9eee944e7b613768512536c09dd40a2138fdbc9bea54"
+    },
+    "guide.installBody": {
+      "sourceHash": "e0b7285fb52ac8731979d63690a3e006f8764e7d7676ba992c439022ce8619e4",
+      "machineHash": "e7b73d73ca6a610071df761092d0e856e94900241f05305c5ce7b8bbdb9f32fb",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "3675f860cf50ed4ff7c57965559647220d511d72078adbe52c18b7d48522d0f2"
+    },
+    "guide.chrome": {
+      "sourceHash": "78d65ab6544370ad0f115c892103f8dc588b54c358913e1f8b0e2ff3fbee3bc9",
+      "machineHash": "3e958f8b02571a9aa8cac7ac08c2987258065737b6a384c5747c79b9e98ab1c9",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "3e958f8b02571a9aa8cac7ac08c2987258065737b6a384c5747c79b9e98ab1c9"
+    },
+    "guide.edge": {
+      "sourceHash": "f281ffb4e2bc4964b080f7f7f7b595bec7a93843ddc87db327c8ce9774107f77",
+      "machineHash": "7af8cc7dce859d97d860d8412e47dab8a92e93dce327a48020f03381b91a1cf6",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "c92b24ea021c1eaef20b6ed862aec145803ee354c4607da630718cd3a8599b97"
+    },
+    "guide.importTitle": {
+      "sourceHash": "71aaaf9fa1fe775d440c620db8756c2f1866a39f863a92d653361a9a680f95b9",
+      "machineHash": "f213e03083d057012131693d9b5a848c464b60d91c1d13ececb29cfb47aaf723",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "f213e03083d057012131693d9b5a848c464b60d91c1d13ececb29cfb47aaf723"
+    },
+    "guide.importBody": {
+      "sourceHash": "ff8ed0483d7bc11cafb10336efdbaf929330ecf24210584ac46d0e9ae1ac95fa",
+      "machineHash": "8ee90a765060cb2767066e6942dc1c27da415261aaec48e05f41b8a10570f0cd",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "c9788a4ad1fb1e69397124c4c7a3c600ba08929e37934c0840019f0174a95ee8"
+    },
+    "guide.importPlatforms": {
+      "sourceHash": "0ab14846677c026871518e7a1bec3583e72f29853d7c46b27982fa28941bd352",
+      "machineHash": "2edc111fb4de164848e0b8260c55bfb53a1116becb47e524c8b2b0333a561259",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "2edc111fb4de164848e0b8260c55bfb53a1116becb47e524c8b2b0333a561259"
+    },
+    "guide.importCaution": {
+      "sourceHash": "b4bc99de3c346312a8b71513c675513f262fc07245ac8cb67605934403e6d0f8",
+      "machineHash": "a159097d87bff24589f8efa6bbaef649c1f4533f81086c89591ac5a0c167855d",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "a159097d87bff24589f8efa6bbaef649c1f4533f81086c89591ac5a0c167855d"
+    },
+    "guide.searchTitle": {
+      "sourceHash": "1ddce42a7a50cac82cf69a4a7ffc8514208c19750f1edc4821c9180a0a0c32c4",
+      "machineHash": "5d270dbe2e12686b3f5fe8f494a144030ce4464bcbdd7e7f0fe3e6338fc932ee",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "5d270dbe2e12686b3f5fe8f494a144030ce4464bcbdd7e7f0fe3e6338fc932ee"
+    },
+    "guide.searchBody": {
+      "sourceHash": "7f7405763ad840bff518536c55470c76aa7a84896f81f977c9d79bc666e9adbb",
+      "machineHash": "da598efc91e300716c00c82ae8f25dea1344c1bf6ab6f618ffb7f269789764ac",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "da598efc91e300716c00c82ae8f25dea1344c1bf6ab6f618ffb7f269789764ac"
+    },
+    "guide.searchExample": {
+      "sourceHash": "de2aa267d8073bf68fabe265d5d401c0c1f341a93e273d42a4e876a47a2be6ec",
+      "machineHash": "220e9b76fbcb68e44e1658edbc3f93a6c545e4c2f866a6b8b723e3b005268190",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "220e9b76fbcb68e44e1658edbc3f93a6c545e4c2f866a6b8b723e3b005268190"
+    },
+    "guide.shortcutNote": {
+      "sourceHash": "4f70b5a7772273b36d6e8e23fcc49ffe56675656a5f2ee36ea8c10b75360daf4",
+      "machineHash": "dfae9ececb726212d3f4100e6b1640abb8573870e2a68caf92d5951c58301ddc",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "dfae9ececb726212d3f4100e6b1640abb8573870e2a68caf92d5951c58301ddc"
+    },
+    "guide.troubleshootTitle": {
+      "sourceHash": "85bcb301d6fb5f656dfef79b86afada8a8d9ca30a2fd2bd21c5ca9f5284d0ebf",
+      "machineHash": "9b9be93e8fbb32d6f7f20373d927617f25521730508c01cba5e868c92d383701",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:54.435Z",
+      "reviewedHash": "9b9be93e8fbb32d6f7f20373d927617f25521730508c01cba5e868c92d383701"
+    },
+    "guide.troubleshootBody": {
+      "sourceHash": "c7fba410a8624f75694c97c440bee74fc40a94845c430ec8a58b4a978c6144f8",
+      "machineHash": "5ca02986c4bbd1ee7b6eb9d0f8b7e7859df7e65c2b6a5cd5b24ae522d00bcde6",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "5ca02986c4bbd1ee7b6eb9d0f8b7e7859df7e65c2b6a5cd5b24ae522d00bcde6"
+    },
+    "guide.privacyTitle": {
+      "sourceHash": "24d4343a4613ed2434be08ad5e8e470642b1fdf24069142921404b3587af67bc",
+      "machineHash": "36bd585e6ef667cd05c7ec0ad7b0c20408a81929cec0aaab5d8db14560b50995",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "36bd585e6ef667cd05c7ec0ad7b0c20408a81929cec0aaab5d8db14560b50995"
+    },
+    "guide.privacyBody": {
+      "sourceHash": "317239f9ab994f443554d5d8c6cfacbd9d1aa7442e58f8cd0bbf0f99c1aa5e94",
+      "machineHash": "1371206a99b561fb7a917fc910d0463b108ec99aafb905f772616a96eabbf588",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "1371206a99b561fb7a917fc910d0463b108ec99aafb905f772616a96eabbf588"
+    },
+    "guide.nextTitle": {
+      "sourceHash": "94f26f5c9eff0b2e28a2b670be6a3a7a839741853234ba9b2dd595c94331b7e0",
+      "machineHash": "5489ea1d7c24ec43bccaeaf2d00b6a903a218752be1b4a5411c191abb76813a7",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "0da12fa54ea0af3b11de72208da6e45506718516a9bc9a5eb96c77acab8f787e"
+    },
+    "guide.nextBody": {
+      "sourceHash": "c5f1e88d3de518124c75a6de537ff4a87280bcf62d5a6a758631bc73f6bff8e5",
+      "machineHash": "c2d9fe4ffb50ed5d729872531a827cabf7b03482b506e02ca3afc481fdd14c12",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "beece3a46958d1081a9a006132efe4084521baa3a253bb08456f72a4d5daaf26"
+    },
+    "guide.back": {
+      "sourceHash": "36076d7489188f0c805bdc04f6f2797ca78543f8ac6b1aeabc0cfee1ffe064ee",
+      "machineHash": "e895efca01cad8cf81f0d459b4e5c372c24abd17b1c17c7ee63f8cd8de2d0cc0",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "e895efca01cad8cf81f0d459b4e5c372c24abd17b1c17c7ee63f8cd8de2d0cc0"
+    },
+    "listing.name": {
+      "sourceHash": "7be5922fc6afb282e45c712a8b113c5e24ba1dd205cbdb576cede478194bfc73",
+      "machineHash": "d6b0de173e20d18a8f118acd593f8b644f2c84c29424b1e3b01870bfda695973",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "d6b0de173e20d18a8f118acd593f8b644f2c84c29424b1e3b01870bfda695973"
+    },
+    "listing.summary": {
+      "sourceHash": "d9a4b30d66864f8313c96522a44940e33c1ffb9453f75d24fd810780f226f4de",
+      "machineHash": "62363c5331e5ccb45cbda79b7e70fac7d671484f9c783ed895fbd5bc157cc7df",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "62363c5331e5ccb45cbda79b7e70fac7d671484f9c783ed895fbd5bc157cc7df"
+    },
+    "listing.description": {
+      "sourceHash": "c38746dc5e8ce1c37f5d736609bcf891ffeb0c84580e97a946944ba6de993295",
+      "machineHash": "8e59f0e6210f89fef9c07913c02ea9dd770764b4ce2fb2be1a57f8e0e88dbca4",
+      "model": "quality_optimized",
+      "translatedAt": "2026-10-09T04:13:55.348Z",
+      "reviewedHash": "6c9891b60b4e73642912f7a2ab2f3373e0b998dce30808ab91a6653f44116362"
+    }
+  },
+  "reviewedAt": "2026-10-09T04:14:44.229Z",
+  "reviewNotes": [
+    "Consistent informal du, product names, Prompt terminology and keyboard labels.",
+    "Checked English-interface disclosure, local search versus paid Vault, privacy wording and search limitations.",
+    "Reworded install action to avoid implying that the store button is literally labelled Installieren."
+  ]
+}

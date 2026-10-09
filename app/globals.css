@@ -129,6 +129,63 @@ video {
   top: 0.75rem;
 }
 
+/* ===== LANGUAGE PILOT ===== */
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  white-space: nowrap;
+}
+.language-switch a[aria-current="page"] { color: var(--text); font-weight: 700; }
+.site-header--language .nav { gap: 1.1rem; }
+.language-suggestion { background: var(--t-paper); border-bottom: 1px solid var(--t-rule); }
+.language-suggestion-inner { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; padding-block: 0.65rem; font-size: 0.875rem; }
+.language-suggestion-inner > a { font-weight: 600; }
+.language-suggestion-inner > span { color: var(--text-muted); }
+.language-suggestion button { margin-left: auto; background: transparent; border: 1px solid var(--border); border-radius: var(--radius); padding: 0.35rem 0.6rem; font: inherit; color: var(--text); cursor: pointer; }
+.german-hero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; gap: 3rem; }
+.german-page .german-hero h1 { max-width: none; }
+.german-language-note { border-left: 3px solid var(--brand); padding: 0.8rem 1rem; background: var(--t-paper); font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.german-example { margin: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--t-paper); overflow: hidden; }
+.german-example-head { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); font-family: var(--font-mono); }
+.german-example-query { margin: 1.25rem; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius); font-family: var(--font-mono); font-size: 0.9rem; }
+.german-example-result { margin: 1.25rem; }
+.german-example-platform { display: inline-block; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+.german-example-result h3 { font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.6rem; }
+.german-example-result p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
+.german-example figcaption { padding: 1rem 1.25rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+.german-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 2rem; }
+.german-privacy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 2rem; }
+.german-platforms { margin-top: 2.5rem; }
+.german-platform-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0; }
+.german-platform-list li { border: 1px solid var(--border); padding: 0.35rem 0.7rem; border-radius: var(--radius); font-size: 0.85rem; }
+.german-steps { padding-left: 1.5rem; margin: 2rem 0; }
+.german-steps li { padding-left: 0.7rem; margin-bottom: 1.5rem; }
+.german-steps li::marker { color: var(--brand); font-weight: 700; }
+.german-steps h3 { margin-bottom: 0.5rem; }
+.german-steps p { max-width: 70ch; color: var(--text-muted); line-height: 1.7; }
+.german-small-copy { margin-top: 1.5rem; max-width: 85ch; font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); }
+.german-reading-width { max-width: 54rem; }
+.german-guide h1 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 22ch; }
+.german-guide-step { margin-top: 3rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+.german-guide-step h2 { font-size: clamp(1.4rem, 3vw, 2rem); }
+.german-guide-step p { margin: 1rem 0; line-height: 1.75; }
+.german-store-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.5rem; }
+.german-closing { text-align: center; }
+.german-closing .section-intro { margin-inline: auto; }
+.german-page h1, .german-page h2, .german-page h3 { overflow-wrap: anywhere; hyphens: auto; }
+.german-page h1 { overflow-wrap: normal; hyphens: none; }
+@media (max-width: 900px) {
+  .german-hero-grid, .german-card-grid, .german-privacy-grid { grid-template-columns: 1fr; }
+  .german-hero-grid { gap: 2rem; }
+  .german-example { max-width: 36rem; }
+}
+@media (max-width: 480px) {
+  .language-suggestion-inner > span { display: none; }
+  .german-store-links > a { width: 100%; white-space: normal; text-align: center; }
+  .german-hero .button { white-space: normal; text-align: center; }
+}
+
 /* ===== HEADER ===== */
 .site-header {
   position: sticky;

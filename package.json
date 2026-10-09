@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run test:static-content",
+    "build": "next build && node scripts/set-exported-page-language.mjs && npm run test:static-content",
     "start": "next start",
     "test:static-content": "node scripts/test-static-content-export.mjs",
+    "test:site-language": "node scripts/test-site-language.mjs",
+    "translate:german": "node scripts/translate-german.mjs",
     "test:vault-release": "node scripts/test-vault-release.mjs",
     "test:vault-sign-in": "node --test scripts/test-vault-sign-in.mjs",
     "test:viewer-handoff": "node scripts/test-viewer-handoff.mjs",

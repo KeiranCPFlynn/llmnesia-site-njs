@@ -1,5 +1,6 @@
 import './globals.css';
 import SiteRuntime from './components/site-runtime';
+import SiteLanguage from './components/site-language';
 import { absoluteUrl, SITE_URL } from '../lib/site';
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -53,7 +54,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -64,6 +65,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <SiteLanguage />
         {children}
         <SiteRuntime gaId={gaId} />
       </body>
