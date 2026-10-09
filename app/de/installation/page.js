@@ -23,8 +23,8 @@ export default function GermanInstallationPage() {
             <article className="german-guide-step">
               <h2>{t('guide.installTitle')}</h2><p>{t('guide.installBody')}</p>
               <div className="german-store-links">
-                <a className="button" href={storeUrl(CHROME_WEB_STORE_URL, 'chrome')} target="_blank" rel="noopener noreferrer" data-fixed-install-store="chrome">{t('guide.chrome')}</a>
-                <a className="button button-ghost" href={storeUrl(EDGE_ADDONS_URL, 'edge')} target="_blank" rel="noopener noreferrer" data-fixed-install-store="edge">{t('guide.edge')}</a>
+                <a className="button" href={storeUrl(CHROME_WEB_STORE_URL, 'chrome')} target="_blank" rel="noopener noreferrer" data-fixed-install-store="chrome" data-install-position="guide_chrome">{t('guide.chrome')}</a>
+                <a className="button button-ghost" href={storeUrl(EDGE_ADDONS_URL, 'edge')} target="_blank" rel="noopener noreferrer" data-fixed-install-store="edge" data-install-position="guide_edge">{t('guide.edge')}</a>
               </div>
             </article>
             <article className="german-guide-step">

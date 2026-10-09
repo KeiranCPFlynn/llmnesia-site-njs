@@ -528,7 +528,8 @@ export default function SiteBehavior() {
           // Malformed href — fall back to defaults.
         }
         const store = installLink.getAttribute('data-install-store') || installStore;
-        trackEvent('install_click', { platform, placement, store });
+        const ctaPosition = installLink.getAttribute('data-install-position');
+        trackEvent('install_click', { platform, placement, store, ...(ctaPosition && { cta_position: ctaPosition }) });
 
         const ctaEl = installLink.closest('[data-cta-placement]');
         const ctaPlacement = ctaEl ? ctaEl.getAttribute('data-cta-placement') : 'other';

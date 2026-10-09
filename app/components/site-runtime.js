@@ -40,12 +40,13 @@ export default function SiteRuntime({ gaId }) {
               window.gtag = gtag;
               gtag('js', new Date());
               gtag('config', '${gaId}', { send_page_view: false });
+              window.dispatchEvent(new Event('ga:ready'));
             `}
           </Script>
-          <Suspense fallback={null}>
-            <Analytics gaId={gaId} />
-          </Suspense>
         </>
+      ) : null}
+      {analyticsEnabled ? (
+        <Suspense fallback={null}><Analytics gaId={gaId} /></Suspense>
       ) : null}
     </>
   );

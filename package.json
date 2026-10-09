@@ -9,6 +9,7 @@
     "start": "next start",
     "test:static-content": "node scripts/test-static-content-export.mjs",
     "test:site-language": "node scripts/test-site-language.mjs",
+    "test:localization-analytics": "node scripts/test-localization-analytics.mjs",
     "test:homepage-localization": "node scripts/test-homepage-localization.mjs",
     "translate:german": "node scripts/translate-german.mjs",
     "translate:site": "node scripts/translate-site.mjs",

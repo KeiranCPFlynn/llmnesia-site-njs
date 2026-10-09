@@ -44,6 +44,8 @@ German installation links use campaign `german_pilot`; the guide's explicit stor
 
 Use production-host traffic, language, landing page, device, and source breakdowns. Separate install clicks from actual installs. Assess first successful search and returning usage only where available instrumentation can support those claims. Website/store events do not establish extension activation or retention. Observe roughly 4–6 weeks and extend the window if volumes are sparse.
 
+The prepared [localization measurement plan](localization-measurement.md) adds an explicit homepage/guide denominator for English and German, page/browser-language context and CTA positions. It fixes page-view delivery when analytics loads after the component mounts. The plan defines a comparable visitor funnel and the three GA4 custom definitions to register after approval. Code and local tests are prepared; deployment, live definition/report setup and live receipt verification remain separate steps.
+
 ## Publication
 
 The local pages and listing copy are preparation artifacts. Deployment and store submission require separate approval. The listing should retain honest English-interface disclosure, and screenshots must show the actual interface rather than pretend the extension is translated. Existing platform/import lists are reused so supported-platform claims stay in sync with the English site.

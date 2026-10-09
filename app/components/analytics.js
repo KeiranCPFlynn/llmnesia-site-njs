@@ -2,24 +2,16 @@
 
 import { useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { contentGroupFromPath } from '../../lib/site';
+import { observePageAnalytics } from '../../lib/localization-analytics';
 
 export default function Analytics({ gaId }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (!gaId || typeof window.gtag !== 'function') {
-      return;
-    }
-
     const queryString = searchParams?.toString();
     const pagePath = queryString ? `${pathname}?${queryString}` : pathname;
-
-    window.gtag('event', 'page_view', {
-      page_path: pagePath,
-      content_group: contentGroupFromPath(pathname || '/')
-    });
+    return observePageAnalytics(window, { gaId, pathname: pathname || '/', pagePath });
   }, [gaId, pathname, searchParams]);
 
   return null;
