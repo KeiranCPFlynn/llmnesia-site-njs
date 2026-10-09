@@ -89,8 +89,8 @@ A preparation error initially created an empty temporary Vercel project named `l
 
 On 9 October 2026, the authorized Brave session registered and verified Website language (`site_language`), Localization page type (`page_type`) and Install CTA position (`cta_position`) as event-scoped custom dimensions in property 533614466. The private **Website language pilot** exploration was saved with matched German/English homepage-to-install funnels, 30-minute completion windows and acquisition-channel breakdowns. Its list explicitly confirms it is not shared. See [the report receipt and filters](localization-measurement.md#saved-report-receipt). This completes the previously pending administration setup without changing the Insights service account's access.
 
-Spanish website/guide preparation is local only; see [Spanish pilot](spanish-pilot.md). It is not part of the German production deployment.
+The initial German-only release did not include Spanish. Spanish was published in the subsequent core-page release below; see [Spanish pilot](spanish-pilot.md).
 
-## Core-page expansion prepared locally
+## Core-page expansion released
 
-Vault, MCP, Pricing, About and Privacy Policy are now also prepared in German and Spanish with shared English page designs. These additions have not been deployed. The production receipt above still identifies the homepage/installation-guide pilot release. See [core-page-localization.md](core-page-localization.md) for routes, review and checks.
+Vault, MCP, Pricing, About and Privacy Policy are now also live in German and Spanish with shared English page designs. The approved 9 October expansion includes the Spanish homepage and installation guide. The production receipt above describes the initial German-only release; see [the current production receipt](core-page-localization.md#production-release--9-october-2026) for deployment `dpl_Fd6b4Y86HTvnChXdpDXC3z9wMjrd`, routes, review, live verification and rollback reference.

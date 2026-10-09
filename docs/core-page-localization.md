@@ -1,6 +1,6 @@
 # German and Spanish core website pages
 
-Prepared locally on 9 October 2026. Not deployed. This expands the existing German acquisition pilot and prepared Spanish pilot; it does not translate the extension or Vault app.
+Deployed with approval on 9 October 2026. This expands the existing German acquisition pilot and releases the Spanish pilot; it does not translate the extension or Vault app.
 
 | Page | German | Spanish |
 | --- | --- | --- |
@@ -37,3 +37,15 @@ No plan changes or new service resources were created. Builds and page views use
 - Browser verification: all ten translated pages at requested 1440 × 1000 and 390 × 844 viewports, with no horizontal document overflow. Language menu switched `/de/vault` to `/es/vault` successfully. Invalid-email submission on German and Spanish pricing pages returned the correct translated validation; no email was sent and no checkout was opened.
 
 Local previews: [German pricing](http://127.0.0.1:3100/de/pricing), [Spanish Vault](http://127.0.0.1:3100/es/vault).
+
+## Production release — 9 October 2026
+
+The user approved publication with “push live”. Release commit `909c685` includes the core translations from `b0388bd` and the production HTML-language correction. Existing Vercel project `llmnesia-site-njs` (`prj_PdeeqYxiRqRNFKpO6pkXngd7nuNy`) in `keiranflynns-projects` is READY at deployment `dpl_Fd6b4Y86HTvnChXdpDXC3z9wMjrd`, assigned to `www.llmnesia.com` and the existing project aliases. Deployment URL: https://llmnesia-site-e0x05cutu-keiranflynns-projects.vercel.app. No new project, plan or recurring resource was created.
+
+Published scope: German and Spanish homepages, installation guides, Vault, MCP, Pricing, About and Privacy Policy. The original English routes remain available. Live examples: [German pricing](https://www.llmnesia.com/de/pricing), [Spanish Vault](https://www.llmnesia.com/es/vault).
+
+The first public check caught `lang="en"` in raw localized HTML even though JavaScript corrected it. Vercel's Next adapter copies the prerendered documents into `.next/output/static` during `next build`, before the site's postbuild export patch. The postbuild script now patches that actual deployment copy as well as the export and prerender sources; build checks cover the adapter copy. The correction was verified with the installed Vercel adapter locally and on production.
+
+Final public checks at `2026-10-09T09:09:58.329Z`: all 20 English/German/Spanish checked routes returned 200, with correct raw document languages, translated headings, shared core designs, equivalent-page picker links, canonical/hreflang URLs and sitemap entries. Twelve sampled local CSS/JS assets returned 200; GA4 measurement configuration was present; the apex domain redirected correctly. Browser switching from German Vault to Spanish Vault succeeded, with no browser console errors observed. This verifies deployed configuration and navigation, not GA4 report processing or completed conversions.
+
+Rollback reference before this release: German-only deployment `dpl_DBELQtQFXhYhjvXsNzoy21Pr9rvx` at https://llmnesia-site-gwzyfa85l-keiranflynns-projects.vercel.app. Publishing used clean archives of committed source, excluding local secrets and unrelated untracked work.

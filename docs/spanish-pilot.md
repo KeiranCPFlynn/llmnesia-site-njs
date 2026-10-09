@@ -1,6 +1,6 @@
-# Spanish website pilot, prepared 9 October 2026
+# Spanish website pilot, released 9 October 2026
 
-**Status: local preparation complete; not deployed.** German is already live. Preview: http://127.0.0.1:3100/es and http://127.0.0.1:3100/es/installation.
+**Status: deployed with approval on 9 October 2026.** Live: https://www.llmnesia.com/es and https://www.llmnesia.com/es/installation. The release includes the five translated core pages below; see the [production receipt](core-page-localization.md#production-release--9-october-2026).
 
 ## Scope
 
@@ -14,16 +14,16 @@ The initial homepage/guide batch of 336 copy strings was translated once with De
 
 The batch contained 22,938 source characters including markup and used **17,391 billable characters**. DeepL’s usage endpoint then reported **39,825 / 1,000,000 characters (3.98%)**, with **960,175 remaining**. The previous counter was 22,434. This is the allowance returned by the account, not a promise of recurring free use or an ROI measure. Page views and builds make no translation API calls.
 
-## Measurement when released
+## Measurement
 
 Use the existing `localized_page_viewed`, `site_language_selected` and `install_click` events with `site_language=es`, the same page types and CTA positions. The guide link is `spanish_setup_guide_click`; store links use `utm_source=spanish_page`, `utm_campaign=spanish_pilot` and guide-specific `utm_content`. Production hosts only collect tracking; this local preview sends no events.
 
-Follow [the measurement plan](localization-measurement.md). Website clicks indicate install intent, not completed installs. A Spanish release needs separate approval. Do not infer success from country totals or cheap translation alone.
+Follow [the measurement plan](localization-measurement.md). Website clicks indicate install intent, not completed installs. The user approved this Spanish release with “push live”. Do not infer success from country totals or cheap translation alone. The saved GA4 exploration currently compares German and English; it has not been expanded to a Spanish comparison.
 
 ## Verification
 
 Production build, all 223 existing content exports, 3 shared homepage catalogs/designs, 2 shared guides, language preference checks, analytics checks and private Viewer tests passed. Desktop and mobile previews retained the kinetic demo and compact selector with no horizontal overflow. No form message, signup or purchase was submitted.
 
-## Core pages prepared
+## Core pages released
 
-The local Spanish preparation now also includes Vault, MCP, Pricing, About and Privacy Policy, using the shared English components. The on-site purchase widget has translated labels and feedback; the external app, account management and Stripe pages remain English. See [core-page-localization.md](core-page-localization.md) for the current scope, review, checks and latest usage. None of the Spanish routes has been deployed.
+Spanish now also includes Vault, MCP, Pricing, About and Privacy Policy, using the shared English components. The on-site purchase widget has translated labels and feedback; the external app, account management and Stripe pages remain English. See [core-page-localization.md](core-page-localization.md) for the current scope, review, checks, latest usage and deployment receipt.
