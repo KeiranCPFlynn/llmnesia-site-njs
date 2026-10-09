@@ -1,6 +1,6 @@
 # Website localization measurement
 
-Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. This code is local preparation; the German pages and these analytics changes have not been deployed, and no live GA4 definitions or reports have been changed.
+Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. The user approved deployment, the three GA4 definitions and the comparison report. German pages and analytics code are now deployed; live GA4 definition/report setup is waiting for the user's browser sign-in because the existing Insights connection received HTTP 403 for Analytics administration. No permissions were changed or denial bypassed.
 
 ## Collection contract
 
@@ -18,9 +18,9 @@ GA4 receives the counters through its existing configured tag. PostHog receives 
 
 Only `www.llmnesia.com` and `llmnesia.com` collect events. Localhost, previews and `/open` remain excluded. No conversation content, search queries, form messages, email addresses or new identifiers are added by this change. Existing GA4 page-view query handling is retained; the localization event adds no query or fragment data.
 
-## Live setup to approve
+## Approved live setup
 
-Deploy the reviewed German pilot and this measurement code to the existing production website. In the supplied GA4 property, inspect existing custom definitions first and reuse matching definitions. If missing, register these three **event-scoped** definitions:
+Deployment to the existing production website is complete. GA4's read-only Data API verified receipt of `localized_page_viewed` at 06:11 UTC on 9 October. In the supplied GA4 property, inspect existing custom definitions first and reuse matching definitions. If missing, register these three **event-scoped** definitions once the approved signed-in administration session is available:
 
 | Display name | Event parameter |
 |---|---|
@@ -60,7 +60,7 @@ Review 4–6 weeks of complete post-deployment data, allowing reporting delay. A
 
 ## Verification
 
-`npm run test:localization-analytics` exercises delayed SDK loading in either order, duplicate-ready notifications, English comparison collection without a GA key, cleanup before SDK readiness, locale properties, and local/preview/private-route exclusion. It uses local fakes and sends no events to analytics providers. The production build and shared-design export checks also passed. Live receipt and the saved report remain to be checked after approved deployment/configuration.
+`npm run test:localization-analytics` exercises delayed SDK loading in either order, duplicate-ready notifications, English comparison collection without a GA key, cleanup before SDK readiness, locale properties, and local/preview/private-route exclusion. It uses local fakes and sends no events to analytics providers. The production build and shared-design export checks also passed. Live page inspection and GA4 event receipt passed after deployment; the three definitions and saved comparison exploration remain pending sign-in. See the [deployment record](german-pilot.md).
 
 ## Adding another language
 

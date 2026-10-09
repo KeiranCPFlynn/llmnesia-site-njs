@@ -2,6 +2,8 @@
 
 Prepared scope: the existing English homepage translated at `/de`, installation guidance at `/de/installation`, a compact language dropdown separate from the main menu, and a German store-listing draft. The extension, Vault, checkout, and wider documentation remain in English. The German pages disclose this before installation.
 
+The German website pilot and tracking were deployed with approval on **9 October 2026**. The homepage and guide are live at `https://www.llmnesia.com/de` and `/de/installation`. The store listing remains an unsubmitted draft.
+
 ## Display and discovery
 
 Each language has its own URL. German is suggested on the English homepage when the visitor's first browser language is German or they previously chose German. Explicitly choosing English, or dismissing the suggestion, suppresses it. Choices are saved in local browser storage when available. There are no forced redirects, IP lookups, or geographic restrictions.
@@ -48,7 +50,7 @@ The prepared [localization measurement plan](localization-measurement.md) adds a
 
 ## Publication
 
-The local pages and listing copy are preparation artifacts. Deployment and store submission require separate approval. The listing should retain honest English-interface disclosure, and screenshots must show the actual interface rather than pretend the extension is translated. Existing platform/import lists are reused so supported-platform claims stay in sync with the English site.
+The German pages and tracking are deployed after approval. Store submission still requires separate approval. The listing should retain honest English-interface disclosure, and screenshots must show the actual interface rather than pretend the extension is translated. Existing platform/import lists are reused so supported-platform claims stay in sync with the English site.
 
 ## Preparation and verification — 9 October 2026
 
@@ -74,3 +76,11 @@ The shared translation workflow covers homepage text and contact/signup feedback
 The final DeepL usage counter is 22,434 of 1,000,000 characters (977,566 remaining). This includes the initial pilot and the shared-homepage correction, including one repeated batch after the initial markup check stopped it. Future builds and page views consume no DeepL characters.
 
 The corrected production build passed, including the 223 existing content-route checks and shared-design checks for both homepages and 275 copy slots. Language-preference and private Viewer hand-off tests passed; the translation dry run reports no pending strings. Browser verification covered the restored desktop animation and step layout, German homepage and guide at 390px, separate Chrome/Edge guide links, guide skip navigation, and the selector on an existing English page. The closed desktop selector is approximately 60px wide. Opening it closes the mobile menu; Escape dismisses it. No horizontal overflow or browser warnings/errors were observed. These checks did not submit any forms or publish the site.
+
+## Approved deployment — 9 October 2026
+
+Release commit `3e3dba53ebc6d7b028aea077b89afd8ad5aad6e4` was deployed to the existing `llmnesia-site-njs` Vercel project. Deployment `dpl_DBELQtQFXhYhjvXsNzoy21Pr9rvx` is READY and assigned to `www.llmnesia.com`, `llmnesia.com` and the existing project aliases. The previous production deployment was `dpl_Rxk4MNoXBuEfrCfZJvN2BaitcpZ8`, available as a rollback reference.
+
+The cloud build and export checks passed. Live browser inspection confirmed German document language, canonical/alternate metadata, all 18 homepage sections, compact selector and CTA-position labels. The installation guide has separate Chrome/Edge store choices. GA4's existing read-only Data API returned `localized_page_viewed` with an event count of one at 06:11 UTC, verifying receipt after the live check. Agent verification visits around 06:07–06:11 UTC are internal checks, not new customer demand. No install, message, signup or purchase was submitted.
+
+A preparation error initially created an empty temporary Vercel project named `llmnesia-german-release-3e3dba5`. The attempt was stopped before the existing site's alias changed. The user approved cleanup, and Vercel confirmed removal of that exact temporary project. The corrected release directory was explicitly checked against the existing project's and team's IDs before deployment.
