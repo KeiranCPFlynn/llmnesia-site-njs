@@ -1,6 +1,6 @@
 # Shared website localization
 
-The English, German and prepared Spanish homepages render the same `Homepage` component and `content/index.template.html`. Language selects a catalog; it does not select another page design. All use the existing CSS, all 18 homepage sections, the kinetic demo, reveal animations, forms, platform lists and footer badges. German and Spanish installation guides render the same `LocalizedInstallation` component and shared homepage header/footer.
+The English, German and Spanish homepages render the same `Homepage` component and `content/index.template.html`. Language selects a catalog; it does not select another page design. All use the existing CSS, all 18 homepage sections, the kinetic demo, reveal animations, forms, platform lists and footer badges. German and Spanish installation guides render the same `LocalizedInstallation` component and shared homepage header/footer.
 
 ## Edit the site
 
@@ -25,15 +25,15 @@ The picker is separate from the main menu. It shows only the current code and a 
 
 ## Scope and truthful presentation
 
-The homepage, installation guide and five core pages (Vault, MCP, Pricing, About and Privacy Policy) are prepared in German and Spanish. The on-site subscription widget is translated too; the extension, Vault web app, account-management page, external payment pages and wider documentation remain English. The original animated and static extension demos retain their English interface and examples, matching the actual product. Each localized hero’s support copy discloses the English interface and links to the localized installation guide. The search feature explains that target-language and cross-language semantic-search quality is unverified.
+The homepage, installation guide and five core pages (Vault, MCP, Pricing, About and Privacy Policy) are live in German and Spanish. The on-site subscription widget is translated too; the extension, Vault web app, account-management page, external payment pages and wider documentation remain English. The original animated and static extension demos retain their English interface and examples, matching the actual product. Each localized hero’s support copy discloses the English interface and links to the localized installation guide. The search feature explains that target-language and cross-language semantic-search quality is unverified.
 
 Form labels and client-side contact/signup messages use the selected catalog. Form destinations and submitted field values remain the existing ones. No test message or signup was submitted.
 
 Language choices are remembered locally. Only the browser's first preferred language may suggest a registered non-English language on the English homepage. Saved German/Spanish selections cannot override an English-primary browser, and secondary browser languages do not trigger a suggestion. Choosing English or dismissing a suggestion suppresses future suggestions in that browser. There are no IP lookups or forced geographic redirects. Translations are prepared in advance, so builds and page views never call DeepL. The key stays in ignored `.env.local` and is not included in exported files.
 
-The stricter suggestion rule is prepared locally after a user reported unexpected German prompts. It awaits publication; the initial live rule also considers remembered non-English choices.
+The stricter suggestion rule was deployed with approval on 9 October 2026 in commit `a9d7e61`. Existing Vercel project `llmnesia-site-njs` is READY at deployment `dpl_25QtwaSaA2XTshivh7aRUFnMBPGd`, aliased to `www.llmnesia.com`. Public checks passed for 20 routes and 12 assets. Browser verification selected German, navigated directly back to the English homepage and observed no language suggestion. The language-rule and analytics tests passed, as did the production build. Rollback reference: previous deployment `dpl_Fd6b4Y86HTvnChXdpDXC3z9wMjrd`. Publication used a clean archive of committed source, excluding unrelated local work and secrets.
 
-## Prepared Spanish pilot
+## Live Spanish pilot
 
 Spanish is live at `/es`, `/es/installation`, `/es/vault`, `/es/mcp`, `/es/pricing`, `/es/about` and `/es/privacy-policy`. Both share the existing design and the same tracking contract. `spanish_pilot` is its store campaign. The generic language suggestion supports primary `es-ES`, `es-MX` and `es-419` preferences without geography-based redirects.
 

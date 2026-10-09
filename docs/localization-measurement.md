@@ -1,6 +1,6 @@
 # Website localization measurement
 
-Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. The user approved deployment, the three GA4 definitions and the comparison report. German pages and analytics code are deployed. All three GA4 event-scoped definitions and the private comparison exploration were created and verified through the user's authorized Brave session. The Insights service-account administration request received HTTP 403; no service-account permissions were changed.
+Prepared on 9 October 2026 for the existing LLMnesia website and GA4 property **533614466**, from the report supplied by the user. The user approved deployment, the three GA4 definitions and the comparison report. German and Spanish homepages, guides and core website pages, plus their analytics code, are deployed. All three GA4 event-scoped definitions and the private comparison exploration were created and verified through the user's authorized Brave session. The Insights service-account administration request received HTTP 403; no service-account permissions were changed.
 
 ## Collection contract
 
@@ -34,7 +34,7 @@ The private GA4 exploration **Website language pilot** is saved with German and 
 
 Google says registered custom data generally becomes reportable after 24–48 hours. [Custom dimensions](https://support.google.com/analytics/answer/14240153?hl=en).
 
-## Primary comparison
+## Website click comparison
 
 Use a **closed, user-based funnel**, not total clicks divided by page views:
 
@@ -54,7 +54,7 @@ The language choice is voluntary, so this comparison is observational. It can sh
 - Direct-guide visitors: guide page view → install click, with Chrome and Edge choices separated.
 - CTA-position breakdown: distinct clicking users and event counts, labelled separately; do not infer a position's conversion rate without its own exposure denominator.
 - Language choices: use destination page views and the existing choice event to inspect English/German switching. No new custom dimension for the legacy `language` parameter is required for the primary comparison.
-- Store campaign `german_pilot`: use the stores' available acquisition/install reporting separately. A website click does not prove a store installation, first successful search, retention or purchase. The current country CSV cannot supply those downstream outcomes.
+- Chrome store campaigns `german_pilot` and `spanish_pilot`: count actual `install` events separately from website `install_click`. See the completed-install measurement below. First successful search, retention and purchase attribution to website language are not established by these events.
 
 Review 4–6 weeks of complete post-deployment data, allowing reporting delay. As a practical sparse-data warning, avoid ranking a language/device/channel cell with fewer than 100 eligible visitors or 10 converters; these are readability gates, not proof of statistical significance. Publish uncertainty alongside rates and extend the observation window when sparse. Never combine GA4 and PostHog identities or counts into a single funnel. Annotate the actual verified deployment date and any owner/synthetic live checks.
 
@@ -64,11 +64,11 @@ Review 4–6 weeks of complete post-deployment data, allowing reporting delay. A
 
 ## Adding another language
 
-The registry automatically includes future homepages/guides in the denominator and language properties. No new event name or provider is needed for each language. Spanish is the next recommended website/guide pilot: the reviewed CSV's Spanish-country proxy had 451 active-user counts, 211 engaged sessions and 28 key events, versus 367/199/27 for Germany and Austria. These sums do not establish preferred language, unique audiences or localization uplift.
+The registry automatically includes future homepages/guides in the denominator and language properties. No new event name or provider is needed for each language. Spanish was selected as the second website/guide pilot: the reviewed CSV's Spanish-country proxy had 451 active-user counts, 211 engaged sessions and 28 key events, versus 367/199/27 for Germany and Austria. These sums do not establish preferred language, unique audiences or localization uplift.
 
-After preparing Spanish, the verified DeepL counter was 39,825 of 1,000,000 characters (3.98%), with 960,175 remaining. Spanish used 17,391 billable characters. The current English catalog has 336 strings and 22,926 source characters including markup: a fresh full locale is roughly 2.3% of that observed allowance before any draft repetition; actual billable characters can differ. This is capacity, not an ROI estimate or a promise of recurring free usage. DeepL's plans have different billing/allowance structures. [DeepL API plans](https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans).
+After preparing Spanish, the verified DeepL counter was 39,825 of 1,000,000 characters (3.98%), with 960,175 remaining. Spanish used 17,391 billable characters. At that earlier homepage/guide checkpoint, the English catalog had 336 strings and 22,926 source characters including markup. This historical catalog size is not an estimate for the expanded core-page scope. After that expansion, the counter was 134,527 / 1,000,000 characters, with 865,473 remaining; see `core-page-localization.md` for the verified receipt. This is capacity, not an ROI estimate or a promise of recurring free usage. DeepL's plans have different billing/allowance structures. [DeepL API plans](https://support.deepl.com/hc/en-us/articles/360021200939-DeepL-API-plans).
 
-Recommendation: make German measurement live, then add Spanish as one further acquisition pilot. Keep the extension, Vault and checkout in English with clear disclosure. Hold a broad language rollout until browser-language demand and adoption support it. Review, terminology, layout QA and keeping translations current are the remaining costs; there is still no native reviewer. See the [country assessment](language-support-assessment-2026-10-09.md).
+Current decision: keep the live German and Spanish website pilots and add no further language now. The extension, Vault app and external checkout remain English with clear disclosure. Hold a broad language rollout until browser-language demand and actual installs support it. Review, terminology, layout QA and keeping translations current are the remaining costs; there is still no native reviewer. See the [country assessment](language-support-assessment-2026-10-09.md).
 
 ## Saved report receipt
 
@@ -78,4 +78,29 @@ Tabs: **German homepage to install** and **English homepage to install**. Both a
 
 Both tabs use these identical report filters: Hostname matches `^(www\.)?llmnesia\.com$`; Device category exactly `desktop`; Browser matches `^(Chrome|Edge)$`; Language code matches `^de([_-].*)?$`. Breakdown: **Session primary channel group (Default Channel Group)**. The default rolling Last 28 days range excluded launch day when configured (11 September–8 October), so no data was expected. It advances with complete dates; exclude the prelaunch period and allow custom-dimension processing before drawing conclusions. Owner checks on 9 October are internal verification traffic.
 
-All-visitor/device and supporting guide/CTA views above remain analysis instructions, rather than extra saved tabs. The primary private comparison is complete. Spanish is prepared locally and uses the same measurement contract when separately approved for release.
+All-visitor/device and supporting guide/CTA views above remain analysis instructions, rather than extra saved tabs. The primary private comparison is complete. Spanish is live and uses the same measurement contract. The saved exploration currently contains only the German/English comparison; Spanish data is collected and can be queried through the existing Data API, but the equivalent Spanish/English saved tabs have not been created.
+
+## Completed-install measurement — verified 9 October 2026
+
+The business question is whether the translated acquisition pages generate enough completed installs to justify keeping their translations current and handling resulting support demand. Website store-link clicks are a diagnostic step, not the primary outcome.
+
+The existing Chrome Web Store GA4 property **529666179** is readable through the founder OAuth connection already configured in LLMnesia Insights. A bounded read-only Data API check at **2026-10-09T12:23:05Z** successfully returned `install` and `page_view` events broken down by `sessionCampaignName`, `sessionSource` and `sessionMedium`. For example, `blog_install_cta` had 142 install events in 11 September–8 October; this verifies that completed installs are available with campaign attribution, not just website clicks. No new access, resources, subscriptions or extension telemetry were added.
+
+Chrome documents that its `install` event is sent after the user accepts the permission prompt, and that store URL campaign parameters carry through to both listing views and installs. Data can take 24–48 hours to finalize. [Chrome Web Store GA4 integration](https://developer.chrome.com/docs/webstore/google-analytics).
+
+| Website language | Store campaign | Source | Medium |
+| --- | --- | --- | --- |
+| German | `german_pilot` | `german_page` | `cta` |
+| Spanish | `spanish_pilot` | `spanish_page` | `cta` |
+
+Use the store property's **Session campaign** dimension with **Event name = install** and report **Event count** plus **Total users** for each campaign. Also report listing-view users for context; do not divide independent event-user aggregates and call the result a closed installation funnel. If a store conversion rate is needed, use a closed listing-view-to-install user funnel within the store property. Do not join website and store user identities or divide their differently collected populations into an exact end-to-end user conversion rate.
+
+The launch-day read returned no German/Spanish campaign rows yet. This is not a finding of zero demand: 9 October is incomplete and processing is pending. The store property's timezone is **America/Los_Angeles**; use complete store dates and document differences from the website report timezone. Exclude or annotate owner verification traffic on launch day.
+
+A public audit of all 44 store links across 14 German/Spanish routes found six attribution gaps: the closing MCP button and both privacy-page store buttons in each language. The focused local correction adds the corresponding language campaign to those links; a build check now verifies every store link on the translated core pages. This correction is awaiting separate publication approval. The main homepages, guides and other core-page links already have their language campaigns.
+
+Attribution covers the tagged store link that the user follows. A visitor who switches to an English page and clicks an English CTA may receive that page's campaign instead. Attribution therefore does not capture every install that might have been influenced by a translated page. Exact Edge campaign install attribution and activation/retention/purchase by website language are not verified by this check.
+
+First check campaign receipt after the 24–48-hour processing window. Review approximately **6–20 November 2026**, after 4–6 weeks of complete postlaunch data, extending the window if counts are sparse. Compare website-language cohorts within the same browser-language audience and acquisition channel; use actual campaign installs as the business outcome and website click funnels to explain drop-off. Record ongoing translation maintenance and support effort. Cheap DeepL capacity alone is not evidence that a language is worthwhile.
+
+The pilot is observational: attributed installs show acquisition through these pages, but do not prove how many additional installs would have occurred compared with keeping everything in English. A causal uplift claim would require a separately planned controlled test.
