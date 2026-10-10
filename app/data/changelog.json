@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.16",
+    "date": "2026-10-10",
+    "published": true,
+    "curated": true,
+    "title": "Google AI Mode import and Claude capture fixes",
+    "summary": "Google AI Mode history imports continue past chats that fail to open, leaving them available for retry. Claude no longer repeats capture feedback when nothing has changed."
+  },
+  {
     "version": "0.4.15",
     "date": "2026-10-09",
     "published": true,
