@@ -2,7 +2,7 @@
   {
     "version": "0.4.17",
     "date": "2026-10-11",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "More reliable Google AI Mode imports and Vault background checks",
     "summary": "Google AI Mode history imports recover from repeated stalls, allow more time for slow histories, and reach older chats more reliably. Imports started from the empty AI Mode landing page keep the final conversation open when finished. Vault background checks identify quiet and locked devices more reliably while preserving completed sync reports."
