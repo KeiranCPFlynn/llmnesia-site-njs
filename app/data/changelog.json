@@ -1,5 +1,27 @@
 [
   {
+    "version": "0.4.18",
+    "date": "2026-10-15",
+    "published": true,
+    "curated": true,
+    "title": "More reliable Google AI Mode imports and saved chats",
+    "summary": "Google AI Mode imports now continue through the Google tab when background access is unavailable, preserving saved progress and protecting unsent messages. Completed replies save their later paragraphs and lists, original-chat links reopen the right conversation, and the save indicator settles correctly. Keep the Google tab open while importing; LLMnesia cannot recover text Google does not load.",
+    "highlights": [
+      "Clearer import counts, Resume import and individual chat retries make interrupted imports easier to finish.",
+      "Outdated import, memory-building and save warnings clear when the underlying problem has ended.",
+      "Vault uploads and deletions remain recoverable through overlapping sync attempts and browser restarts. Older local-session renames preserve newer messages.",
+      "Saved copies refresh while preserving selected text, Google reply emphasis and Gemini formulas. This update also improves chat-title updates, Vault feedback and optional first-search suggestions."
+    ]
+  },
+  {
+    "version": "0.4.17",
+    "date": "2026-10-11",
+    "published": true,
+    "curated": true,
+    "title": "Google history import and Vault status fixes",
+    "summary": "Large Google AI Mode imports recover more reliably when older history pages load slowly. Imports started from the empty AI Mode page stay on the final conversation instead of returning to a blank page. Vault status shows clearer activity and counts, explains skipped items, and clears successful sync feedback automatically."
+  },
+  {
     "version": "0.4.16",
     "date": "2026-10-10",
     "published": true,
