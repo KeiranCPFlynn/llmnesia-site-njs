@@ -91,6 +91,10 @@ const GENERIC_RECOVERY_SEARCH_GUIDE = {
 function buildCopy(platform, family) {
   const label = PLATFORM_LABELS[platform];
 
+  if (platform === 'ai-studio') {
+    return 'Save an open Google AI Studio chat with one click, then search its text locally alongside your other AI chats. AI Studio capture is manual.';
+  }
+
   // Claude Code is a local source, not a website LLMnesia crawls, so the generic
   // "chats" / "even after one is deleted" framing does not fit. Speak to sessions
   // that live on the reader's own machine across the terminal, VS Code, and the
