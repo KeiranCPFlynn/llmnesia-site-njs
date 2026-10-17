@@ -3,13 +3,24 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "llmnesia.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "llmnesia.com"
+        }
+      ],
       "destination": "https://www.llmnesia.com/:path*",
       "permanent": true
     },
     {
       "source": "/pricing",
-      "has": [{ "type": "query", "key": "checkout", "value": "success" }],
+      "has": [
+        {
+          "type": "query",
+          "key": "checkout",
+          "value": "success"
+        }
+      ],
       "destination": "/account?checkout=success",
       "permanent": false
     },
@@ -49,6 +60,32 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/download/test/google-chat-diagnostic-101-98f2771e/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/download/test/google-chat-diagnostic-101-98f2771e/llmnesia-google-chat-diagnostic-1.0.1.zip",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/zip"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"llmnesia-google-chat-diagnostic-1.0.1.zip\""
         }
       ]
     }
