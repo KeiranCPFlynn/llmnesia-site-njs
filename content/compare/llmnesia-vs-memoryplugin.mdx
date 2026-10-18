@@ -1,0 +1,91 @@
+---
+title: "LLMnesia vs MemoryPlugin: Chat History, Memory and MCP Compared"
+slug: "llmnesia-vs-memoryplugin"
+description: "MemoryPlugin offers shared memories, full chat-history import and MCP access through a hosted service. LLMnesia provides free local history search and desktop MCP, with optional encrypted Vault sync. Compare capture, context reuse and privacy."
+publishDate: "2026-10-18"
+updatedDate: "2026-10-18"
+author: "Keiran Flynn"
+primaryKeyword: "llmnesia vs memoryplugin"
+secondaryKeywords:
+  - "memoryplugin alternative"
+  - "cross platform ai memory"
+  - "ai chat history mcp"
+intent: "commercial"
+category: "comparisons"
+relatedSlugs:
+  - "compare/llmnesia-vs-ai-toolbox"
+  - "blog/how-to-move-ai-chat-history-between-assistants"
+  - "blog/cross-llm-workflow-without-context-loss"
+faq:
+  - question: "Does MemoryPlugin store full chats or just summaries?"
+    answer: "Both are part of its product. Regular memories hold selected facts; its opt-in Chat History feature stores imported conversations in full and makes them available for retrieval. Describing it as summaries only is inaccurate."
+  - question: "Does a local MemoryPlugin MCP server mean local storage?"
+    answer: "No. Its documentation says the local and hosted MCP connections use the same tools and data. Its trust page describes server-side storage and search. LLMnesia's desktop MCP server searches a corpus on your computer."
+  - question: "Is MemoryPlugin end-to-end encrypted?"
+    answer: "Its trust page explicitly says no. It uses encryption in transit and at rest, with restricted and logged administrative access. LLMnesia's optional Vault uses end-to-end encryption; free local history search does not require cloud storage."
+  - question: "Can either tool recreate my chats inside another AI platform?"
+    answer: "Both can make saved context available to another assistant through supported integrations. That is different from restoring the original conversations inside the receiving platform's native chat list."
+sources:
+  - label: "MemoryPlugin features and plans, checked 18 October 2026"
+    url: "https://www.memoryplugin.com/"
+  - label: "MemoryPlugin Chat History overview"
+    url: "https://help.memoryplugin.com/features/chat-history/introduction"
+  - label: "MemoryPlugin import and sync documentation"
+    url: "https://help.memoryplugin.com/features/chat-history/importing"
+  - label: "MemoryPlugin MCP documentation"
+    url: "https://help.memoryplugin.com/integrations/mcp-server"
+  - label: "MemoryPlugin trust and data handling"
+    url: "https://www.memoryplugin.com/trust"
+  - label: "LLMnesia MCP"
+    url: "https://www.llmnesia.com/mcp"
+  - label: "LLMnesia Vault"
+    url: "https://www.llmnesia.com/vault"
+  - label: "LLMnesia privacy policy"
+    url: "https://www.llmnesia.com/privacy-policy"
+canonicalPath: "/compare/llmnesia-vs-memoryplugin"
+---
+MemoryPlugin and LLMnesia both help you reuse context across AI tools, and both can work with full conversation history. The useful distinction is how you collect that history, where it is searched and how it reaches your next assistant.
+
+This comparison is published by LLMnesia. MemoryPlugin's capabilities and data handling were checked against its public documentation on 18 October 2026. This is not a hands-on recall benchmark.
+
+## Compare the workflows
+
+| Question | MemoryPlugin | LLMnesia |
+|---|---|---|
+| What can be recalled? | Saved memories, imported chat history and uploaded reference files | Captured conversations and saved memories |
+| How does history arrive? | Opt-in file imports, browser sync and a coding-session desktop app | Supported history imports, browser capture and local coding-session indexing |
+| How does another AI use it? | Browser integrations, Custom GPT, TypingMind and MCP | Search and copy context, or use free local MCP with a compatible desktop assistant |
+| Where is history searched? | Hosted storage and search services | On your computer for local search and desktop MCP |
+| Account and payment | Account and paid plans, with a trial | No account for free local features; optional paid Vault |
+
+## MemoryPlugin includes full conversation history
+
+MemoryPlugin separates regular memories from [Chat History](https://help.memoryplugin.com/features/chat-history/introduction). A memory is a selected fact or preference. Chat History keeps the conversations those facts came from, so later retrieval can consult the discussion itself. It is inaccurate to describe the whole product as storing only snippets or summaries.
+
+The [import guide](https://help.memoryplugin.com/features/chat-history/importing) documents file uploads and opt-in browser sync. It also describes a macOS app that syncs Claude Code, Codex and Cursor sessions. Initial file import and ongoing capture are separate: an MCP client can recall stored history, but does not capture new browser conversations by itself. Check the platform-specific guide, as support and experimental integrations vary.
+
+This may suit someone who wants a shared memory service across browser chats and desktop tools, particularly when automatic context injection and integrations inside existing AI apps matter more than keeping the archive local.
+
+## LLMnesia starts with a local archive
+
+LLMnesia captures supported browser chats and imports accessible older history into an archive on your device. It can also index local Claude Code, Codex and ZCode sessions. Search covers the captured material, not conversations it has never saved or chats deleted before capture.
+
+The [desktop MCP connection](/mcp) lets a compatible assistant search that archive, read matching conversations and answer with source links. The extension builds the corpus; the MCP package reads it. Browser-only AI websites cannot directly reach this local connection.
+
+That workflow is useful when you want to ask, "Why did we reject the first pricing plan?" and inspect the original discussion. Keyword search, semantic search, imports and desktop MCP are free. Optional [Vault](/vault) adds end-to-end encrypted backup and sync across supported devices.
+
+## Local connection and local storage are different
+
+MemoryPlugin offers both hosted and locally run MCP connections. Its [MCP documentation](https://help.memoryplugin.com/integrations/mcp-server) says both expose the same tools and data. Running the connection process on your computer does not move the underlying history archive onto it.
+
+Its [trust page](https://www.memoryplugin.com/trust) says imported or synced chats are stored in full on its servers, alongside search data. It explicitly states that the service is not end-to-end encrypted. Data is encrypted in transit and at rest, and administrative access is restricted and logged. Features involving AI processing can send relevant content to model providers.
+
+LLMnesia's free archive, search index and desktop MCP server stay on your computer. Limited product analytics exclude conversation content and search queries. If you enable Vault, encrypted data syncs to its service. If an assistant retrieves a transcript through MCP, that text becomes context for the assistant and is subject to its privacy terms. Local retrieval does not make a remote model offline.
+
+## Which should you choose?
+
+Consider MemoryPlugin if you want a hosted memory service with integrations across browser chats, Custom GPT and desktop tools, and are comfortable with its documented cloud processing. Its site lists paid plans and a seven-day trial; check the current plan's history-import allowance before subscribing.
+
+Consider LLMnesia if your priority is free, local search of captured history and a desktop assistant that can consult the original conversations. Vault is optional when you want encrypted backup and device sync.
+
+For either approach, keep an independent export of important work. Test a real retrieval question against a conversation you know is present, then inspect the source before relying on the answer. The [portability guide](/blog/how-to-move-ai-chat-history-between-assistants) explains how files, memories and retrieval fit together.
