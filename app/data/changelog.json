@@ -2,7 +2,7 @@
   {
     "version": "0.4.19",
     "date": "2026-10-21",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "Much lower memory use, AI Studio capture and complete Character.AI imports",
     "summary": "Saving chats now uses far less memory and large imports run faster. LLMnesia also releases its search model's memory when you stop searching and takes about 10 MB less space once installed. The first time this version starts, it reorganises your search index in the background; search keeps working while it does.",
