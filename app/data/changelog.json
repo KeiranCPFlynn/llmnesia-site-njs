@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.4.19",
+    "date": "2026-10-21",
+    "published": false,
+    "curated": true,
+    "title": "Much lower memory use, AI Studio capture and complete Character.AI imports",
+    "summary": "Saving chats now uses far less memory and large imports run faster. LLMnesia also releases its search model's memory when you stop searching and takes about 10 MB less space once installed. The first time this version starts, it reorganises your search index in the background; search keeps working while it does.",
+    "highlights": [
+      "Google AI Studio chats save automatically when opened, and older chats can be imported straight from AI Studio or from files downloaded from Google Drive.",
+      "Character.AI imports include every chat with a character, archived chats, and the alternative replies on each chat's latest message.",
+      "Import history starts straight away, and new chats from your other devices arrive on their own more often.",
+      "Search results no longer flash after they appear, very large Claude Code and Codex sessions and the automatic backup use far less memory, and Settings has a Copy logs button for bug reports."
+    ]
+  },
+  {
     "version": "0.4.18",
     "date": "2026-10-15",
     "published": true,
