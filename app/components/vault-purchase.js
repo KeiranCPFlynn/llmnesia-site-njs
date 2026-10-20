@@ -32,6 +32,7 @@ export default function VaultPurchase({
   const [billingDetected, setBillingDetected] = useState(false);
   const [plan, setPlan] = useState('annual');
   const [checkoutReturn, setCheckoutReturn] = useState('');
+  const [checkoutSource, setCheckoutSource] = useState('');
   const [resendSeconds, setResendSeconds] = useState(0);
   const [statusError, setStatusError] = useState('');
   const [statusRevision, setStatusRevision] = useState(0);
@@ -65,7 +66,12 @@ export default function VaultPurchase({
   }, []);
 
   useEffect(() => {
-    setCheckoutReturn(new URLSearchParams(window.location.search).get('checkout') || '');
+    const params = new URLSearchParams(window.location.search);
+    setCheckoutReturn(params.get('checkout') || '');
+    // Where the visitor came from (for example the extension's Vault card),
+    // passed to checkout so Stripe can attribute the purchase.
+    const src = params.get('src') || '';
+    setCheckoutSource(/^[a-z0-9_]{1,32}$/.test(src) ? src : '');
   }, []);
 
   useEffect(() => {
@@ -211,7 +217,7 @@ export default function VaultPurchase({
     try {
       const requestId = crypto.randomUUID();
       const { data, error: functionError } = await supabase.functions.invoke('vault-create-checkout', {
-        body: { plan, requestId }
+        body: { plan, requestId, ...(checkoutSource ? { source: checkoutSource } : {}) }
       });
       if (functionError || typeof data?.url !== 'string') {
         const code = await vaultFunctionError(functionError, 'checkout_unavailable');

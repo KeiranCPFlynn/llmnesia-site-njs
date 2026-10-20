@@ -38,6 +38,9 @@ for (const [name, text] of Object.entries({ purchase, pricing, vault, readme }))
 }
 
 assert.match(purchase, /annualLabel = '£88'/);
+assert.match(purchase, /params\.get\('src'\)/);
+assert.match(purchase, /\/\^\[a-z0-9_\]\{1,32\}\$\/\.test\(src\) \? src : ''/);
+assert.match(purchase, /body: \{ plan, requestId, \.\.\.\(checkoutSource \? \{ source: checkoutSource \} : \{\}\) \}/);
 assert.match(purchase, /annualMonthlyLabel = '£7\.33'/);
 assert.match(pricing, /NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL \|\| '£88'/);
 assert.match(pricing, /NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL \|\| '£7\.33'/);
