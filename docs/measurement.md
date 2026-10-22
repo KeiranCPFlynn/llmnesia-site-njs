@@ -48,14 +48,15 @@ Use GA4 + Search Console and track these directory segments:
 - `recovery_search_guide_click` records recovery-article visitors who choose
   the "not sure it was deleted" route to a find-old-chat guide. It indicates a
   missing-history problem rather than immediate extension-purchase intent.
-- **Vault completion key event (to configure after deployment):**
+- **Vault completion key event:**
   `vault_purchase_completed`. `vault_checkout_started` is a funnel step, not a
   key event. These website events are separate from the extension's
   `vault_checkout_opened` event. Do not sum them as one checkout metric.
 
 ## Website Vault purchase measurement
 
-Prepared 22 October 2026. Not deployed by this change. GA4 property: `533614466`;
+Deployed and verified on 22 October 2026. Implementation commit: `13c5147`.
+GA4 property: `533614466`;
 PostHog project: `132419`. Both events use the central `trackEvent` function and
 the existing production-host restrictions. No SDK or cloud resource was added.
 
@@ -82,8 +83,10 @@ events as zero purchases. Weekly Insights Stripe invoice/payment evidence is
 the source of truth for paid subscriptions and revenue. Source attribution lives
 on Stripe Checkout Session and subscription `metadata.checkout_source`.
 
-After an approved deployment, mark `vault_purchase_completed` as a GA4 key
-event. No GA4 administration setting is changed by this code. Compare users
+`vault_purchase_completed` was registered and verified enabled as a GA4 key
+event after owner approval on 22 October. It uses the event emitted by the code,
+once-per-event counting and no default monetary value. No URL-based derived
+event or Google Ads conversion was created. Compare users
 with `vault_checkout_started` followed by `vault_purchase_completed` in the same
 provider and a 24-hour window, with source and plan breakdowns in PostHog. Do not
 mix GA4 identities with PostHog identities or the extension's checkout events.
@@ -135,3 +138,19 @@ store.
 - Use page path contains filters for each directory.
 - Keep date windows aligned across GA4 and Search Console.
 - Record annotations when new pages are published.
+
+
+Production verification, 22 October 2026: `13c5147` was pushed to `origin/main`
+and Vercel deployment `dpl_6h6PJF4jzXfKQ1BB2DfvMgt4qQT4` reached READY. The
+production aliases include `www.llmnesia.com` and `llmnesia.com`. Read-only HTTP
+checks at 12:52 Asia/Bangkok (05:52 UTC) returned 200 for `/vault?src=payoff`, `/pricing`, and
+`/account?checkout=success`; their served JavaScript contains both purchase
+events, the pending-checkout guard, and beacon delivery. The apex-to-www redirect
+retains `src=payoff`. No form, email, checkout or payment was submitted. Rollback
+reference: `dpl_HKoE1pALnZtfBUgkrX5YG3FWVCpA` (implementation base `9838a2a`).
+
+GA4 verification: the LLMnesia site property `533614466` lists
+`vault_purchase_completed` in Key events with its key-event switch enabled.
+It currently has no stream data, as no production purchase event was fabricated.
+A future real purchase must supply payment-attribution evidence; this rollout
+does not claim that such a purchase has already occurred.
