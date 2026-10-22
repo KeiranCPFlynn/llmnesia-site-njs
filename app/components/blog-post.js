@@ -34,6 +34,7 @@ function stripTypePrefix(label) {
 export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLinks, ctaProps = {} }) {
   const eyebrow = entry.category ? (CATEGORY_LABELS[entry.category] || entry.category) : 'Field notes';
   const mins = entry.readTime || readingTime(entry.content);
+  const characterGuide = entry.slug.includes('character-ai');
 
   const readNext = relatedLinks[0] || null;
   const otherLinks = relatedLinks.slice(1);
@@ -65,6 +66,7 @@ export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLink
           )}
           <div className="post__meta">
             <time dateTime={entry.publishDate}>{formatDate(entry.publishDate)}</time>
+            {characterGuide && entry.updatedDate !== entry.publishDate && <span>Updated {formatDate(entry.updatedDate)}</span>}
             <span aria-hidden="true">·</span>
             <span>{mins} min read</span>
             {entry.author && (
@@ -147,7 +149,7 @@ export default function BlogPost({ entry, body, breadcrumb, schemas, relatedLink
 
         <section className="post__section post__install-cta-alt" aria-label="Install LLMnesia">
           <p>
-            <strong>Search all your AI conversations in one place</strong> — LLMnesia indexes your ChatGPT, Claude, Gemini, Grok, and 10+ other AI chats locally on your device. No account, no cloud, completely private. <a href="/">Install LLMnesia free →</a>
+            {characterGuide ? <><strong>Keep the stories you want to return to.</strong> Search chats you have saved with LLMnesia. Local search is free; encrypted Vault sync is optional. </> : <><strong>Search all your AI conversations in one place</strong>, LLMnesia indexes your ChatGPT, Claude, Gemini, Grok, and 10+ other AI chats locally on your device. No account, no cloud, completely private. </>}<a href="/">Install LLMnesia free →</a>
           </p>
         </section>
 

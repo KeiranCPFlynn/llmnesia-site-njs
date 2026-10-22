@@ -91,3 +91,18 @@ assert.equal(ga.at(-1)[2].site_language, 'de');
 assert.equal(ga.at(-1)[2].cta_position, 'hero');
 delete globalThis.window;
 console.log('Localization analytics checks passed: delayed SDKs, independent delivery, cleanup, language context and excluded traffic. No live events sent.');
+
+// Public Character.AI guide visits count once, without enabling generic pageviews.
+const guide = fakeBrowser('www.llmnesia.com', '/blog/how-to-export-character-ai-conversation-history');
+const guideEvents = [];
+const stopGuide = observePageAnalytics(guide, { pathname: guide.location.pathname, pagePath: guide.location.pathname });
+guide.posthog = { capture: (...args) => guideEvents.push(args) };
+guide.dispatchEvent(new Event('posthog:ready'));
+guide.dispatchEvent(new Event('posthog:ready'));
+assert.equal(guideEvents.length, 1);
+assert.equal(guideEvents[0][0], 'character_ai_guide_viewed');
+assert.equal(guideEvents[0][1].page_path, guide.location.pathname);
+stopGuide();
+const ordinaryBlog = fakeBrowser('www.llmnesia.com', '/blog/unrelated');
+ordinaryBlog.posthog = { capture: () => assert.fail('Unrelated blog tracking changed') };
+observePageAnalytics(ordinaryBlog, { pathname: ordinaryBlog.location.pathname, pagePath: ordinaryBlog.location.pathname })();

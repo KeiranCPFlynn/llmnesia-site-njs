@@ -90,6 +90,9 @@ const GENERIC_RECOVERY_SEARCH_GUIDE = {
 // no em dashes, no hype words.
 function buildCopy(platform, family) {
   const label = PLATFORM_LABELS[platform];
+  if (platform === 'character-ai') {
+    return 'Keep your Character.AI stories readable and searchable. Save a private copy of accessible chats with LLMnesia, and keep a separate backup of anything irreplaceable.';
+  }
 
   if (platform === 'ai-studio') {
     return 'Save an open Google AI Studio chat with one click, then search its text locally alongside your other AI chats. AI Studio capture is manual.';
@@ -200,7 +203,7 @@ export default function InlineInstallCta({
           <InstallLink className="button button-large" utm={utm}>
             {buttonLabel || 'Add to Chrome, free'}
           </InstallLink>
-          <p className="inline-install-cta__note">No account. No cloud. Your chats stay local.</p>
+          <p className="inline-install-cta__note">{platform === 'character-ai' ? 'Free local search. Optional encrypted Vault sync.' : 'No account. No cloud. Your chats stay local.'}</p>
         </div>
 
         {/* Mobile: install is a dead end, so capture an email to send the link. */}
