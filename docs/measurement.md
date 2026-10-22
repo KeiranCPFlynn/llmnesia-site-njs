@@ -30,6 +30,8 @@ Use GA4 + Search Console and track these directory segments:
 - `install_click`
 - `email_signup`
 - `contact_submit`
+- `vault_checkout_started`
+- `vault_purchase_completed`
 
 ## Conversion definitions
 
@@ -46,6 +48,69 @@ Use GA4 + Search Console and track these directory segments:
 - `recovery_search_guide_click` records recovery-article visitors who choose
   the "not sure it was deleted" route to a find-old-chat guide. It indicates a
   missing-history problem rather than immediate extension-purchase intent.
+- **Vault completion key event (to configure after deployment):**
+  `vault_purchase_completed`. `vault_checkout_started` is a funnel step, not a
+  key event. These website events are separate from the extension's
+  `vault_checkout_opened` event. Do not sum them as one checkout metric.
+
+## Website Vault purchase measurement
+
+Prepared 22 October 2026. Not deployed by this change. GA4 property: `533614466`;
+PostHog project: `132419`. Both events use the central `trackEvent` function and
+the existing production-host restrictions. No SDK or cloud resource was added.
+
+| Event | Trigger | Additional properties |
+| --- | --- | --- |
+| `vault_checkout_started` | The authenticated checkout call returns a URL, immediately before leaving for Stripe | `surface: website_purchase`, `plan: annual/monthly`, `checkout_source: payoff/unknown` |
+| `vault_purchase_completed` | A success return from a checkout started in the same tab, for the same signed-in account, after the entitlement RPC confirms `entitled: true` | The original plan and allowlisted source, plus `verification: entitled_return` |
+
+The pending checkout expires after 24 hours and is consumed before sending
+completion. Its account binding stays in tab-scoped session storage until it
+is consumed, replaced, cancelled or the tab closes. This prevents entitlement
+polls, reloads, an unrelated account and a typed success URL from inflating the
+count. Cancellation clears it. The account binding is never included in an
+event. No email, account ID, checkout ID, request ID or Stripe URL is sent.
+If tab storage is unavailable, checkout still works, but completion is omitted.
+Completion delivery waits up to ten seconds for either analytics SDK to load;
+each provider receives it at most once. Checkout uses immediate beacon delivery
+and never waits for tracking to finish.
+
+This event measures a verified entitled return, not a server-confirmed payment.
+People who close Stripe without returning, change device/tab or have analytics
+blocked can be absent. Do not infer revenue from it or report historic missing
+events as zero purchases. Weekly Insights Stripe invoice/payment evidence is
+the source of truth for paid subscriptions and revenue. Source attribution lives
+on Stripe Checkout Session and subscription `metadata.checkout_source`.
+
+After an approved deployment, mark `vault_purchase_completed` as a GA4 key
+event. No GA4 administration setting is changed by this code. Compare users
+with `vault_checkout_started` followed by `vault_purchase_completed` in the same
+provider and a 24-hour window, with source and plan breakdowns in PostHog. Do not
+mix GA4 identities with PostHog identities or the extension's checkout events.
+Use the existing Stripe report for actual paid counts.
+
+Verification commands: `npm run test:vault-analytics`,
+`npm run test:localization-analytics`, `npm run test:vault-release`,
+`npm run test:vault-sign-in`, and `npm run build`.
+
+Read-only Stripe check on 22 October: the existing restricted live key could
+read all subscriptions created since 20 October. One non-founder subscription
+was returned, with no `checkout_source=payoff`. Checkout Session listing and
+account-name lookup returned HTTP 403; permissions were not changed. Thus no
+real payoff-attributed purchase has been verified by this check. No checkout,
+subscription, email or charge was created for verification.
+
+SDK reference: [PostHog capture before page unload](https://posthog.com/docs/libraries/js/usage).
+
+Local verification on 22 October: all nine purchase-analytics tests and the
+existing localization, Vault release and sign-in checks passed. The production
+build and static export checks passed. An isolated headless Chrome canary
+loaded these modules from a local server and carried synthetic checkout state
+from `/vault` to `/account`: each stubbed provider received exactly one start
+and one completion, with the original plan/source. The localhost run received
+zero events. All analytics were stubbed, network connections were blocked by
+the fixture's Content Security Policy, and the disposable browser profiles
+were removed. This is not evidence of a real Stripe purchase.
 
 ## CTA dimensions
 

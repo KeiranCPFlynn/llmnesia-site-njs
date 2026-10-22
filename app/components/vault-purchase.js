@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { normalizeVaultCode, normalizeVaultEmail, vaultAuthMessage } from '../../lib/vault-sign-in';
+import { clearVaultCheckout, trackVaultCheckout, trackVaultPurchaseReturn } from '../../lib/vault-purchase-analytics';
 import {
   billingMessage,
   getVaultBillingClient,
@@ -67,7 +68,9 @@ export default function VaultPurchase({
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setCheckoutReturn(params.get('checkout') || '');
+    const checkout = params.get('checkout') || '';
+    setCheckoutReturn(checkout);
+    if (checkout === 'cancelled') clearVaultCheckout();
     // Where the visitor came from (for example the extension's Vault card),
     // passed to checkout so Stripe can attribute the purchase.
     const src = params.get('src') || '';
@@ -120,6 +123,7 @@ export default function VaultPurchase({
         if (!mounted) return;
         const active = data.entitled;
         setEntitled(active);
+        trackVaultPurchaseReturn({ checkoutReturn, entitled: active, userId: session.user.id });
         attempts += 1;
         if (checkoutReturn === 'success' && !active && attempts < 8) {
           retryTimer = window.setTimeout(checkEntitlement, 1500);
@@ -225,6 +229,7 @@ export default function VaultPurchase({
         setError(t(billingMessage(code)));
         return;
       }
+      trackVaultCheckout({ plan, source: checkoutSource, userId: session.user.id });
       window.location.assign(data.url);
     } catch {
       setError(t(billingMessage('checkout_unavailable')));
