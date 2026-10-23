@@ -1,5 +1,21 @@
 [
   {
+    "version": "0.4.20",
+    "date": "2026-10-23",
+    "published": true,
+    "curated": true,
+    "title": "Character.AI transcript files, Markdown downloads and more reliable imports",
+    "summary": "Import saved Character.AI transcript files in Settings and download saved conversations as readable Markdown. This update also adds All words search, makes filters more compact and helps local coding-chat imports recover after a helper disconnects.",
+    "highlights": [
+      "Import CAI Tools Tavern JSONL, supported transcript JSON and unencrypted ZIPs. Identical snapshots are not duplicated. Official Character.AI account exports are not supported; encrypted and damaged ZIPs show clear recovery guidance.",
+      "All words search requires every indexed query word to appear in a conversation. Clearer help explains matching and shortcuts. Expanded filters wrap on narrow screens without an inner vertical scrollbar, and their menus stay usable between controls.",
+      "Local coding-chat imports reconnect after the helper exits, so a failed session no longer blocks later Claude Code or Codex chats. Interrupted imports show clearer status and errors. Update the local helper to 0.3.4, or MCP to 0.2.15, for the matching large-session memory fix.",
+      "Character.AI history imports continue past unavailable chats, handle rate limits and prioritise missing chats. Small imports count successful saves toward the requested limit.",
+      "Scheduled Claude task runs have dated titles and cleaner saved conversations, without hidden scheduling instructions or duplicated opening prompts.",
+      "Vault activity reporting keeps working for accounts using R2 storage. This update does not change where chats are stored."
+    ]
+  },
+  {
     "version": "0.4.19",
     "date": "2026-10-21",
     "published": true,
