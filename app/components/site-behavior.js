@@ -944,7 +944,7 @@ export default function SiteBehavior() {
         }
         if (submit) {
           submit.disabled = false;
-          submit.textContent = 'Email me the link';
+          submit.textContent = 'Email me the computer link';
         }
       }
     };

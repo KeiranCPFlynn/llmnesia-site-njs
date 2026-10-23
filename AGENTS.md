@@ -17,3 +17,16 @@ When Keiran asks to prepare the site for the next extension release:
 Preparing a release does not itself authorize pushing or deploying. Follow
 Keiran's existing approval boundaries; an explicit request to push or make
 the site live authorizes that action within the requested scope.
+
+## Customer reply drafts
+
+- Keep replies direct, warm and friendly. Avoid excessive apologies or guesses
+  about how the customer feels.
+- Address the actual LLMnesia question. Do not suggest unrelated tasks or
+  offer to help import or export chats through another platform unless Keiran
+  asks for that help.
+- When asked to draft a customer email reply, save an unsent Gmail reply in
+  the original email thread. Reply to the appropriate message and verify the
+  sender, recipient, thread and saved draft. Do not create a standalone email
+  or provide only chat text.
+- Never send without Keiran's approval of the exact final draft and recipients.

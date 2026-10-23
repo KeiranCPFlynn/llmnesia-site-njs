@@ -438,13 +438,15 @@
       "reviewedHash": "10f5733a46d5fcbfd5df8a6938f03e573806032a7d88ea7fc7c4e2c62b473569"
     },
     "homepage.top.p.1": {
-      "sourceHash": "2f4d3c701ee519ab63dc5012124085e73f3453500079fcea78250a95eedf9542",
+      "sourceHash": "36de4a303e4734d98fabad4f94fab8eb624693d2ef10a8cb07dc373ed85d7251",
       "machineHash": "1a928a586afd4680e9c85f4e4427a9e9136302dae65bb182bb3af34f96442c1c",
       "model": "quality_optimized",
       "billedCharacters": 41,
       "needsMarkupReview": false,
       "translatedAt": "2026-10-09T05:24:10.232Z",
-      "reviewedHash": "7a1d7f76e3513394af4dcdad9d89bf2dbe95ca8dc0ec58965b10eac3b88e759a"
+      "reviewedHash": "d072337dce4d327b3b6d363925ddc871dc64b771712bedcf78e194c21572df9a",
+      "reviewedAt": "2026-10-23T03:20:35.266662+00:00",
+      "reviewedBy": "Codex: source meaning and markup comparison"
     },
     "homepage.top.h1.1": {
       "sourceHash": "982a59d88f32a95d06621d18f959b83b9aea7753b7ee85a9fa5457148a6bf508",
@@ -501,13 +503,15 @@
       "reviewedHash": "9f755ed524877655f435562a847def26b262b01778123855d046642219ef4051"
     },
     "homepage.top.p.3": {
-      "sourceHash": "85ea7a2b68e3ba75bf9fb5f9a803349fe877e6a40a3d73f2214ce7e7ef08f764",
+      "sourceHash": "4166b7daedba181c650a6594249928d30c7b64740d2e336a89674c0d08fefde5",
       "machineHash": "cd7f8f0b5b1b726f3d54f7272edbc569501ac5a84d9cc3ddac4099e4cd190820",
       "model": "quality_optimized",
       "billedCharacters": 74,
       "needsMarkupReview": false,
       "translatedAt": "2026-10-09T05:24:10.232Z",
-      "reviewedHash": "cd7f8f0b5b1b726f3d54f7272edbc569501ac5a84d9cc3ddac4099e4cd190820"
+      "reviewedHash": "a4aaf072d309f6f55ab286a7f77fd52945b415f6a2d6c1816f399e5c5c944293",
+      "reviewedAt": "2026-10-23T03:20:35.266999+00:00",
+      "reviewedBy": "Codex: source meaning and markup comparison"
     },
     "homepage.problem.p.1": {
       "sourceHash": "b073e49ba2ba8411390bdc2fd7d20208e81075244418c2f5186d0700b45b8fc9",
@@ -1347,13 +1351,15 @@
       "reviewedHash": "e4a7a1d9ec0e446c057f0372b45f3e37f6bc7786a7f543215e336ef73960067e"
     },
     "homepage.features.p.16": {
-      "sourceHash": "1ad39792725606683323192792f1c421f9558bbb5eabd6ef775b3c0762fcd928",
+      "sourceHash": "b297caca7c185dfb7516c8e44e12aa1fb4dacffd83145ac61f2864c7a8f4cfd7",
       "machineHash": "1ac99553ce17ca4a67cc57a567d4136bc7669e440b8e209faea00c6cf321587c",
       "model": "quality_optimized",
       "billedCharacters": 32,
       "needsMarkupReview": false,
       "translatedAt": "2026-10-09T05:24:11.752Z",
-      "reviewedHash": "1ac99553ce17ca4a67cc57a567d4136bc7669e440b8e209faea00c6cf321587c"
+      "reviewedHash": "efcf7a8d932b27404aaacc30914f4a29d3e29f1513b183ca3c423fd60b6c1b13",
+      "reviewedAt": "2026-10-23T03:20:35.267006+00:00",
+      "reviewedBy": "Codex: source meaning and markup comparison"
     },
     "homepage.platforms.p.1": {
       "sourceHash": "3a1c4c2ce3d507dac57e82b0f5455df032b30d7b9297d1809b9f457cd2c13747",
@@ -2589,13 +2595,15 @@
       "reviewedHash": "e728b07a13a364053154bb44843b258ba1974ce0eee5aec367472de9674c9345"
     },
     "homepage.updates.p.1": {
-      "sourceHash": "2ba25166c97d9feec73089d6305618f1ee4da2336114b9e4cad250c079a4b230",
+      "sourceHash": "2c26f7dd56c1866ab24aa24baa179fb8da273de2dc8fe3dd1b453585548887f5",
       "machineHash": "835a6c1fc3db1a8c253e4fd82e2a486b52fccfb9ed35ff9d267ce8f6c22a7a6c",
       "model": "quality_optimized",
       "billedCharacters": 137,
       "needsMarkupReview": false,
       "translatedAt": "2026-10-09T05:24:15.071Z",
-      "reviewedHash": "835a6c1fc3db1a8c253e4fd82e2a486b52fccfb9ed35ff9d267ce8f6c22a7a6c"
+      "reviewedHash": "bdc0bfa21a43b83a51175045f1024df41d075b58d25e067470096010a1fdc502",
+      "reviewedAt": "2026-10-23T03:20:35.267010+00:00",
+      "reviewedBy": "Codex: source meaning and markup comparison"
     },
     "homepage.updates.attr-data-edge-label.1": {
       "sourceHash": "a73b7a9bdf11b6536e71d23b236152a88fd3f3ca5f1595841d7d8026162a94ec",
@@ -8053,6 +8061,14 @@
       "translatedAt": "2026-10-09T08:33:39.489Z",
       "reviewedHash": "3b1e5d061e6fd71e4e29f169ad0e2a285957c9983e2bd2b407fc03ad26735763",
       "reviewedAt": "2026-10-09T08:36:17.031Z"
+    },
+    "homepage.top.compatibility": {
+      "provider": "Codex",
+      "sourceHash": "defb792b6f1bd2007be2b5242c85bc521dfdef07c86c8b82fe3f9ef1e5012062",
+      "reviewedHash": "08e6b7f9f7778eb570f330bc82f1b1db9fc7b8c491563a572d2a5fd63d3ac29a",
+      "reviewedAt": "2026-10-23T03:20:35.266994+00:00",
+      "reviewedBy": "Codex: source meaning and markup comparison",
+      "needsMarkupReview": false
     }
   }
 }

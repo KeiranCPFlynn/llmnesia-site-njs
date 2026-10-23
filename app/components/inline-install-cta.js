@@ -203,14 +203,14 @@ export default function InlineInstallCta({
           <InstallLink className="button button-large" utm={utm}>
             {buttonLabel || 'Add to Chrome, free'}
           </InstallLink>
-          <p className="inline-install-cta__note">{platform === 'character-ai' ? 'Free local search. Optional encrypted Vault sync.' : 'No account. No cloud. Your chats stay local.'}</p>
+          <p className="inline-install-cta__note">For Chrome and Edge on a computer. {platform === 'character-ai' ? 'Free local search. Optional encrypted Vault sync.' : 'No account. No cloud. Your chats stay local.'}</p>
         </div>
 
         {/* Mobile: install is a dead end, so capture an email to send the link. */}
         <div className="inline-install-cta__mobile cta-email-capture">
           <p className="cta-email-capture__lead">
-            LLMnesia is a desktop extension for Chrome and Edge. Email yourself the link for when you are at your
-            computer.
+            LLMnesia requires Chrome or Edge on a computer. The extension doesn’t run on phones or tablets.
+            Email yourself the install link to open on your computer.
           </p>
           <form className="cta-email-capture__form" noValidate>
             <div className="cta-email-capture__row">
@@ -232,7 +232,7 @@ export default function InlineInstallCta({
                 aria-hidden="true"
               />
               <button type="submit" className="button button-small cta-email-capture__submit">
-                Email me the link
+                Email me the computer link
               </button>
             </div>
             <p className="cta-email-capture__msg" role="status" aria-live="polite">
@@ -244,12 +244,12 @@ export default function InlineInstallCta({
               so the success state never claims a delivery that did not happen. */}
           <div className="cta-email-capture__success" hidden>
             <p className="cta-email-capture__result" data-capture-result="sent" hidden>
-              Check your inbox. We sent the LLMnesia install link so you can add it next time you
-              are on your computer.
+              Check your inbox for the computer install link. Open it in Chrome or Edge on your computer.
+              The extension doesn’t run on phones or tablets.
             </p>
             <p className="cta-email-capture__result" data-capture-result="fallback" hidden>
-              Saved. The email did not go through, so here is the link for when you are at your
-              computer:{' '}
+              Saved. The email did not go through. The extension doesn’t run on phones or tablets,
+              so open this link in Chrome or Edge on a computer:{' '}
               <InstallLink
                 className="cta-email-capture__result-link"
                 utm={{
