@@ -4,15 +4,14 @@
     "date": "2026-10-23",
     "published": true,
     "curated": true,
-    "title": "Character.AI transcript files, Markdown downloads and more reliable imports",
-    "summary": "Import saved Character.AI transcript files in Settings and download saved conversations as readable Markdown. This update also adds All words search, makes filters more compact and helps local coding-chat imports recover after a helper disconnects.",
+    "title": "More ways to save your chats, easier search and smoother imports",
+    "summary": "Bring saved Character.AI chats into LLMnesia and download readable copies of your conversations. Search is easier to refine, and importing older chats is more reliable.",
     "highlights": [
-      "Import CAI Tools Tavern JSONL, supported transcript JSON and unencrypted ZIPs. Identical snapshots are not duplicated. Official Character.AI account exports are not supported; encrypted and damaged ZIPs show clear recovery guidance.",
-      "All words search requires every indexed query word to appear in a conversation. Clearer help explains matching and shortcuts. Expanded filters wrap on narrow screens without an inner vertical scrollbar, and their menus stay usable between controls.",
-      "Local coding-chat imports reconnect after the helper exits, so a failed session no longer blocks later Claude Code or Codex chats. Interrupted imports show clearer status and errors. Update the local helper to 0.3.4, or MCP to 0.2.15, for the matching large-session memory fix.",
-      "Character.AI history imports continue past unavailable chats, handle rate limits and prioritise missing chats. Small imports count successful saves toward the requested limit.",
-      "Scheduled Claude task runs have dated titles and cleaner saved conversations, without hidden scheduling instructions or duplicated opening prompts.",
-      "Vault activity reporting keeps working for accounts using R2 storage. This update does not change where chats are stored."
+      "Import saved Character.AI chats from supported transcript files in Settings. Importing the same file again will not create duplicates. Official Character.AI account downloads are not supported yet.",
+      "Download saved conversations as readable text files with Markdown formatting, ready to keep or read elsewhere.",
+      "Use All words to find conversations containing every word you search for. Filters take up less space, fit smaller screens and have clearer help.",
+      "Character.AI history imports keep going when a chat is unavailable and look for missing chats first. Claude Code and Codex imports can recover from a lost connection, with clearer messages when something needs attention. If you use these coding tools, update your LLMnesia desktop helper too.",
+      "Scheduled Claude task runs are easier to recognise by date, and their saved conversations are cleaner to read."
     ]
   },
   {
