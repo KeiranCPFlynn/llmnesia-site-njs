@@ -18,6 +18,19 @@ Preparing a release does not itself authorize pushing or deploying. Follow
 Keiran's existing approval boundaries; an explicit request to push or make
 the site live authorizes that action within the requested scope.
 
+## Established production deployment workflow
+
+- Pushing `main` to `origin` (`KeiranCPFlynn/llmnesia-site-njs` on GitHub)
+  automatically triggers the Vercel production deployment for
+  `https://www.llmnesia.com`. This is established configuration; do not
+  rediscover or re-audit it for each routine release.
+- A request to push the prepared site update authorizes that automatic live
+  deployment. Do not ask for a separate deployment confirmation.
+- After pushing, verify the deployment result and the changed public page.
+  Checking completion is distinct from rechecking how deployment is configured.
+- Revisit the configuration only when there is evidence it changed or a
+  deployment failure requires investigation.
+
 ## Customer reply drafts
 
 - Keep replies direct, warm and friendly. Avoid excessive apologies or guesses
