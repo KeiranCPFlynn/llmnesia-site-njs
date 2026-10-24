@@ -20,9 +20,10 @@ test('anything unexpected in the URL becomes unknown and never reaches an event'
   assert.deepEqual(parseGoodbyeParams(undefined), { extension_version: 'unknown', install_age: 'unknown' });
 });
 
-test('there are five one-tap reasons with stable ids and no em dashes in the copy', () => {
+test('there are seven one-tap reasons with stable ids and no em dashes in the copy', () => {
   assert.deepEqual(GOODBYE_REASONS.map((r) => r.id), [
-    'not_useful', 'slowed_browser', 'privacy_worry', 'didnt_understand', 'switched_tools'
+    'not_useful', 'no_capture', 'slowed_browser', 'privacy_worry', 'didnt_understand', 'switched_tools',
+    'something_else'
   ]);
   for (const reason of GOODBYE_REASONS) {
     assert.equal(isGoodbyeReason(reason.id), true);

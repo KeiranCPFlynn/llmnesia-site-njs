@@ -18,15 +18,21 @@ export default function GoodbyeForm() {
   const [reason, setReason] = useState('');
   const [comment, setComment] = useState('');
   const [noteSent, setNoteSent] = useState(false);
+  const [changing, setChanging] = useState(false);
 
   useEffect(() => {
     setContext(parseGoodbyeParams(window.location.search));
   }, []);
 
+  // A second answer replaces the first. It is sent as another event flagged with
+  // the answer it replaces, so reports can keep the latest answer per visitor.
   function choose(id) {
-    if (reason || !isGoodbyeReason(id)) return;
+    if (!isGoodbyeReason(id)) return;
+    setChanging(false);
+    if (id === reason) return;
+    const change = reason ? { is_change: true, changed_from: reason } : {};
     setReason(id);
-    trackEvent('uninstall_reason', { reason: id, ...context }, { waitForReady: true });
+    trackEvent('uninstall_reason', { reason: id, ...context, ...change }, { waitForReady: true });
   }
 
   function sendNote(event) {
@@ -58,13 +64,13 @@ export default function GoodbyeForm() {
       </header>
 
       <div className="content-body">
-        {!reason && (
+        {(!reason || changing) && (
           <>
             <h2>What was the main reason?</h2>
             <ul className="goodbye-reasons" style={{ listStyle: 'none', padding: 0, display: 'grid', gap: '0.75rem' }}>
               {GOODBYE_REASONS.map((item) => (
                 <li key={item.id}>
-                  <button className="button" type="button" onClick={() => choose(item.id)}>
+                  <button className="button" type="button" aria-pressed={item.id === reason} onClick={() => choose(item.id)}>
                     {item.label}
                   </button>
                 </li>
@@ -73,7 +79,7 @@ export default function GoodbyeForm() {
           </>
         )}
 
-        {reason && !noteSent && (
+        {reason && !changing && !noteSent && (
           <form onSubmit={sendNote}>
             <label htmlFor="goodbye-note">Anything else you would like us to know? (optional)</label>
             <textarea
@@ -85,14 +91,23 @@ export default function GoodbyeForm() {
               onChange={(event) => setComment(event.target.value)}
               style={{ display: 'block', width: '100%', margin: '0.5rem 0 0.75rem' }}
             />
-            <p>Please leave out personal details. We read every note.</p>
+            <p>Please leave out personal details. We read these notes.</p>
             <button className="button" type="submit" disabled={!cleanGoodbyeComment(comment)}>
               Send note
             </button>
           </form>
         )}
 
-        {reason && noteSent && <p>Got it. Thanks for taking the time.</p>}
+        {reason && !changing && noteSent && <p>Got it. Thanks for taking the time.</p>}
+
+        {reason && !changing && (
+          <p>
+            Tapped the wrong one?{' '}
+            <button type="button" className="goodbye-change" onClick={() => setChanging(true)} style={{ background: 'none', border: 0, padding: 0, color: 'inherit', textDecoration: 'underline', cursor: 'pointer', font: 'inherit' }}>
+              Change my answer
+            </button>
+          </p>
+        )}
 
         <p>
           If something was broken, you can email <a href="mailto:hello@llmnesia.com">hello@llmnesia.com</a>.
