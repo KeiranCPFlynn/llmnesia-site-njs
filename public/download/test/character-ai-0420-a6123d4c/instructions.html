@@ -13,7 +13,7 @@
 <main>
 <h1>Character.AI private import test</h1>
 <p>Thanks for helping us test this change. This is an unlisted test build for Chrome, separate from the public store version.</p>
-<p><a class="download" href="llmnesia-0.4.20-character-ai-private-2b824dc1.zip">Download private test ZIP (20 MB)</a></p>
+<p><a class="download" href="llmnesia-0.4.20-character-ai-private-cfa0aaa9.zip">Download private test ZIP (20 MB)</a></p>
 <div class="notice"><p><strong>Keep your existing LLMnesia installation.</strong> Use a separate temporary Chrome profile for this test so your saved chats stay intact.</p></div>
 <h2>What this build changes</h2>
 <p>The import can continue past chats Character.AI refuses to provide and save the others. It also stops automatic retries after an access refusal. It may still be unable to retrieve the refused chats. Unavailable bots could be related, but that has not been confirmed.</p>
@@ -31,16 +31,17 @@
 <ol>
 <li>With Character.AI open, open the LLMnesia popup. Set the import limit to <strong>10</strong> and choose <strong>Import chats</strong>.</li>
 <li>Leave the Character.AI tab open until the run finishes. There is no need to locate, open, or unarchive the unavailable bots.</li>
-<li>Reply to Keiran with the number saved and the final status message. In particular, let us know whether it passes the point where it previously stopped after three failures.</li>
-<li>If it still gets stuck, send a fresh diagnostic report from the test copy. You do not need to include chat text, passwords, or access tokens.</li>
+<li>The build sends the technical results automatically. There is no need to copy logs or send a diagnostic report. If something looks wrong on screen, you can still reply to Keiran with a short description.</li>
 </ol>
 <p>If some chats are refused, the build should say automatic retries are paused. A manual import starts another deliberate attempt. There is no need to repeatedly retry refused chats for this test.</p>
 <h2>About diagnostics</h2>
-<p>Automatic diagnostic reporting is disabled by default for this unpacked test copy. We currently need your reply or a diagnostic report to understand how this test went.</p>
+<p><strong>This private build automatically shares Character.AI import diagnostics with LLMnesia through PostHog.</strong> Reporting starts with your first import and stops after 24 hours. This applies only to this private test build.</p>
+<p>The reports include discovery and queue counts, archive state, request timings and status codes, recognised error categories, extracted message counts, save results, and the final import outcome. A random test identifier lets us connect the results from your attempts.</p>
+<p>Chat text, titles, chat and character IDs, URLs, passwords, access tokens, and raw responses are excluded. No Vault connection is needed. If an upload fails, a small report queue is kept locally for retry within the same 24-hour window.</p>
 <p>Your usual Chrome profile and extension can continue to be used normally. Keep the extracted folder in place while the test copy is installed.</p>
 <details><summary>Build details</summary>
-<p class="muted">Prepared 25 October 2026. Private test only, not a public release.<br>Extension version: 0.4.20<br>Diagnostic build identifier: <code>2b824dc1</code></p>
-<p>ZIP SHA-256:<br><code>a6123d4c2ff117c01b811757ca5243576c54da38fe09e0dd49178672db0034b7</code></p>
+<p class="muted">Prepared 25 October 2026. Private test only, not a public release.<br>Extension version: 0.4.20<br>Diagnostic build identifier: <code>cfa0aaa9</code></p>
+<p>ZIP SHA-256:<br><code>56606b624e2f2810dc5183c6679b0c423c01c40bbfb1bd368ab27c184081c92a</code></p>
 </details>
 </main>
 </body>
