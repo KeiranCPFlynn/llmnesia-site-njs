@@ -4,44 +4,55 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Character.AI private import test | LLMnesia</title>
+<title>Character.AI private archive recovery test | LLMnesia</title>
 <style>
 :root{color-scheme:light}*{box-sizing:border-box}body{max-width:800px;margin:40px auto;padding:0 24px 48px;font:17px/1.65 system-ui,sans-serif;color:#17212b;background:#fff}h1,h2{line-height:1.25}h1{font-size:2rem;margin-bottom:16px}h2{font-size:1.35rem;margin-top:36px}a{color:#1759b9}li{margin:12px 0;padding-left:4px}ol{padding-left:26px}code{font-size:.9em;overflow-wrap:anywhere;background:#f1f4f7;border-radius:4px;padding:2px 5px}.download{display:inline-block;background:#1759b9;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:600}.download:hover{background:#124891}.notice{padding:16px 20px;background:#f0f6fc;border-left:4px solid #1759b9;border-radius:4px}.notice p{margin:0}.muted{color:#526170}details{margin-top:32px;border-top:1px solid #dce3ea;padding-top:20px}summary{cursor:pointer;font-weight:600}@media(max-width:480px){body{margin-top:24px;padding-left:18px;padding-right:18px}h1{font-size:1.7rem}.download{display:block;text-align:center}}
 </style>
 </head>
 <body>
 <main>
-<h1>Character.AI private import test</h1>
+<h1>Character.AI private archive recovery test</h1>
 <p>Thanks for helping us test this change. This is an unlisted test build for Chrome, separate from the public store version.</p>
-<p><a class="download" href="llmnesia-0.4.20-character-ai-private-cfa0aaa9.zip">Download private test ZIP (20 MB)</a></p>
-<div class="notice"><p><strong>Keep your existing LLMnesia installation.</strong> Use a separate temporary Chrome profile for this test so your saved chats stay intact.</p></div>
-<h2>What this build changes</h2>
-<p>The import can continue past chats Character.AI refuses to provide and save the others. It also stops automatic retries after an access refusal. It may still be unable to retrieve the refused chats. Unavailable bots could be related, but that has not been confirmed.</p>
-<h2>Set up the test copy</h2>
+<p><a class="download" href="llmnesia-0.4.20-character-ai-archive-recovery-d819a033.zip">Download private test ZIP (20 MB)</a></p>
+<div class="notice"><p><strong>Already using the private test copy?</strong> Update that same copy using the steps below. Keep its Chrome profile, extension entry and extracted folder so the chats it has saved stay in place.</p></div>
+<h2>What this test does</h2>
+<p>The new <strong>Recover up to 3 archives</strong> button tries a small batch of pending archived chats. Before the test starts, it asks your permission to unarchive those chats if needed. If Character.AI refuses to read an archived chat, the test unarchives it in your Character.AI account and then tries importing it again.</p>
+<p><strong>Recovered chats stay unarchived, including if importing or saving fails.</strong> They may appear in your Character.AI recent chats. This test does not rearchive or delete them. Ordinary imports do not unarchive chats.</p>
+<p>We have checked the unarchive request with our own disposable test chat, and tested the recovery flow with synthetic cases. We have not reproduced your exact older archives, so this test may still be unable to retrieve some chats, especially those belonging to unavailable bots.</p>
+<h2>Update your existing test copy</h2>
 <ol>
-<li>Keep your usual Chrome profile and LLMnesia installation as they are. Do not uninstall the extension or clear its data.</li>
-<li>In Chrome, use the profile button to add a separate temporary profile. You can continue without a Google account.</li>
-<li>Download the ZIP above and extract it to a folder you can keep in place while testing.</li>
-<li>In the temporary profile, open <code>chrome://extensions</code> and switch on <strong>Developer mode</strong>. Choose <strong>Load unpacked</strong> and select the extracted folder containing <code>manifest.json</code>.</li>
-<li>Open <a href="https://character.ai/" rel="noreferrer">character.ai</a> in that temporary profile and sign in to your usual Character.AI account. Complete LLMnesia’s setup if it opens. Leave Vault disconnected for this test.</li>
+<li>Use the same temporary Chrome profile and private LLMnesia copy you used for the earlier test. Do not remove the extension, clear its data or make another profile.</li>
+<li>Finish any running import and close the Character.AI tabs in that temporary profile.</li>
+<li>Download the new ZIP above and extract it to a temporary location.</li>
+<li>Copy the contents of the newly extracted folder into the original folder you selected with <strong>Load unpacked</strong>, replacing files when asked. Keep that original folder at the same path. It is the folder containing <code>manifest.json</code>.</li>
+<li>Open <code>chrome://extensions</code> in the temporary profile and click the reload button on the existing LLMnesia test entry. Do not remove and reinstall it. Your saved chats should still be there.</li>
+<li>Open <a href="https://character.ai/" rel="noreferrer">character.ai</a> and sign in to the same Character.AI account if needed. Leave Vault disconnected.</li>
 </ol>
-<p>The test copy starts with a separate, empty search index, so it may import chats you already saved in your usual installation. That is expected. Your original saved chats stay in the original profile.</p>
-<p>Keep any chats saved by the test copy until we have agreed how to retain them. They will not automatically appear in the store copy.</p>
-<h2>Try the import</h2>
+<h2>Try three archives</h2>
 <ol>
-<li>With Character.AI open, open the LLMnesia popup. Set the import limit to <strong>10</strong> and choose <strong>Import chats</strong>.</li>
-<li>Leave the Character.AI tab open until the run finishes. There is no need to locate, open, or unarchive the unavailable bots.</li>
-<li>The build sends the technical results automatically. There is no need to copy logs or send a diagnostic report. If something looks wrong on screen, you can still reply to Keiran with a short description.</li>
+<li>With Character.AI open, open the LLMnesia popup and choose <strong>Recover up to 3 archives</strong>. You do not need to repeat the full import or set a limit.</li>
+<li>Read the confirmation. Continue only if you are happy for up to three pending archived chats to become unarchived in your Character.AI account. Cancel leaves them unchanged.</li>
+<li>Keep the Character.AI tab open until the test finishes. You do not need to locate each bot or share any chat links or text.</li>
+<li>The technical results are sent automatically. Please wait for Keiran to review them before running another recovery batch.</li>
 </ol>
-<p>If some chats are refused, the build should say automatic retries are paused. A manual import starts another deliberate attempt. There is no need to repeatedly retry refused chats for this test.</p>
+<p>This test does not schedule another recovery batch automatically. Keep the test profile, extracted folder and chats it has saved while we review the results.</p>
+<details><summary>Installing this private build for the first time</summary>
+<ol>
+<li>Keep your usual Chrome profile and LLMnesia installation as they are. Add a separate temporary Chrome profile; you can continue without a Google account.</li>
+<li>Download and extract the ZIP to a folder you can keep in place.</li>
+<li>In the temporary profile, open <code>chrome://extensions</code>, switch on <strong>Developer mode</strong>, choose <strong>Load unpacked</strong> and select the folder containing <code>manifest.json</code>.</li>
+<li>Sign in to Character.AI in that profile and complete LLMnesia setup. Leave Vault disconnected. Run one ordinary import first, then follow the three-archive test above.</li>
+</ol>
+<p>A new profile has a separate index. Its saved chats do not automatically appear in your usual installation.</p>
+</details>
 <h2>About diagnostics</h2>
-<p><strong>This private build automatically shares Character.AI import diagnostics with LLMnesia through PostHog.</strong> Reporting starts with your first import and stops after 24 hours. This applies only to this private test build.</p>
-<p>The reports include discovery and queue counts, archive state, request timings and status codes, recognised error categories, extracted message counts, save results, and the final import outcome. A random test identifier lets us connect the results from your attempts.</p>
+<p><strong>This private build automatically shares Character.AI import diagnostics with LLMnesia through PostHog.</strong> This recovery build starts a fresh 24-hour reporting window with your first import or recovery attempt. This applies only to this private test build.</p>
+<p>The reports include discovery and queue counts, archive state, request timings and status codes, recognised error categories, extracted message counts, save results, unarchive request outcomes, and the final import outcome. A random test identifier lets us connect the results from your attempts.</p>
 <p>Chat text, titles, chat and character IDs, URLs, passwords, access tokens, and raw responses are excluded. No Vault connection is needed. If an upload fails, a small report queue is kept locally for retry within the same 24-hour window.</p>
 <p>Your usual Chrome profile and extension can continue to be used normally. Keep the extracted folder in place while the test copy is installed.</p>
 <details><summary>Build details</summary>
-<p class="muted">Prepared 25 October 2026. Private test only, not a public release.<br>Extension version: 0.4.20<br>Diagnostic build identifier: <code>cfa0aaa9</code></p>
-<p>ZIP SHA-256:<br><code>56606b624e2f2810dc5183c6679b0c423c01c40bbfb1bd368ab27c184081c92a</code></p>
+<p class="muted">Prepared 26 October 2026. Private test only, not a public release.<br>Extension version: 0.4.20<br>Diagnostic build identifier: <code>d819a033</code></p>
+<p>ZIP SHA-256:<br><code>b8a1e0f46302cbc4cc3425f8a0d05688e2cfda527eb985cef405f7e9a18a368f</code></p>
 </details>
 </main>
 </body>
