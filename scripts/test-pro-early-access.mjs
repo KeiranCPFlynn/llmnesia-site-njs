@@ -59,13 +59,15 @@ test('off-enum and duplicate answers never reach the sheet as free text', async 
     team_size: 'a hundred',
     tools: 'codex,<script>,codex, gemini ',
     model_access: 'yes please',
+    tools_other: '  Lovable and Bolt  ',
     feedback: 'ignored free text'
   });
   const payload = sent[0].payload;
   assert.equal(payload.team_size, '');
   assert.equal(payload.tools, 'codex,gemini');
   assert.equal(payload.model_access, '');
-  assert.equal(payload.feedback, 'tools=codex,gemini');
+  assert.equal(payload.tools_other, 'Lovable and Bolt');
+  assert.equal(payload.feedback, 'tools=codex,gemini; tools_other=Lovable and Bolt');
 });
 
 test('other sources are unchanged and carry no Pro fields', async () => {

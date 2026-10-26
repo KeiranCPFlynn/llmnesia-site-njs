@@ -17,28 +17,56 @@ const TEAM_SIZE_OPTIONS = [
   { value: '6_20', label: '6 to 20' },
   { value: 'more_20', label: 'More than 20' }
 ];
-const TOOL_OPTIONS = [
-  { value: 'chatgpt', label: 'ChatGPT' },
-  { value: 'claude', label: 'Claude' },
-  { value: 'gemini', label: 'Gemini' },
-  { value: 'claude_code', label: 'Claude Code' },
-  { value: 'codex', label: 'Codex' },
-  { value: 'other', label: 'Other' }
+// Every assistant LLMnesia saves today, plus common coding tools it does not
+// support yet, so the answers show exactly which platforms early users need.
+const TOOL_GROUPS = [
+  {
+    label: 'Chat assistants',
+    options: [
+      { value: 'chatgpt', label: 'ChatGPT' },
+      { value: 'claude', label: 'Claude' },
+      { value: 'gemini', label: 'Gemini' },
+      { value: 'google_ai_mode', label: 'Google AI Mode' },
+      { value: 'ai_studio', label: 'Google AI Studio' },
+      { value: 'copilot', label: 'Microsoft Copilot' },
+      { value: 'perplexity', label: 'Perplexity' },
+      { value: 'grok', label: 'Grok' },
+      { value: 'deepseek', label: 'DeepSeek' },
+      { value: 'mistral', label: 'Mistral Le Chat' },
+      { value: 'meta_ai', label: 'Meta AI' },
+      { value: 'qwen', label: 'Qwen' },
+      { value: 'kimi', label: 'Kimi' },
+      { value: 'zai', label: 'Z.ai' }
+    ]
+  },
+  {
+    label: 'Coding tools',
+    options: [
+      { value: 'claude_code', label: 'Claude Code' },
+      { value: 'codex', label: 'Codex' },
+      { value: 'zcode', label: 'ZCode' },
+      { value: 'cursor', label: 'Cursor' },
+      { value: 'github_copilot', label: 'GitHub Copilot' },
+      { value: 'windsurf', label: 'Windsurf' },
+      { value: 'gemini_cli', label: 'Gemini CLI' }
+    ]
+  }
 ];
 const MODEL_ACCESS_OPTIONS = [
-  { value: 'api_key', label: 'I have an API key' },
-  { value: 'coding_agent', label: 'I use Claude Code or Codex' },
+  { value: 'api_key', label: 'I have an AI API key' },
+  { value: 'coding_agent', label: 'I use Claude Code, Codex or ZCode' },
   { value: 'neither', label: 'Neither yet' },
   { value: 'not_sure', label: 'Not sure' }
 ];
 
-function PillGroup({ id, question, hint, options, isSelected, onToggle, disabled }) {
+function PillGroup({ id, question, hint, note, options, isSelected, onToggle, disabled }) {
   return (
     <div className="vault-form-pill-group" role="group" aria-labelledby={id}>
       <span className="vault-form-feedback-label" id={id}>
         {question}
         {hint ? <span className="teams-form-hint"> {hint}</span> : null}
       </span>
+      {note ? <p className="teams-form-note">{note}</p> : null}
       <div className="vault-form-pills">
         {options.map((option) => {
           const selected = isSelected(option.value);
@@ -64,6 +92,7 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
   const [email, setEmail] = useState('');
   const [teamSize, setTeamSize] = useState('');
   const [tools, setTools] = useState([]);
+  const [toolsOther, setToolsOther] = useState('');
   const [modelAccess, setModelAccess] = useState('');
   const [state, setState] = useState('idle'); // idle | submitting | success | error
   const [error, setError] = useState('');
@@ -99,6 +128,7 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
     const answers = {
       team_size: teamSize,
       ...(tools.length ? { tools: tools.join(',') } : {}),
+      ...(toolsOther.trim() ? { tools_other: toolsOther.trim().slice(0, 120) } : {}),
       ...(modelAccess ? { model_access: modelAccess } : {})
     };
 
@@ -130,7 +160,9 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
 
       try {
         if (typeof window !== 'undefined' && window.posthog) {
-          window.posthog.capture('pro_early_access_joined', { context, ...answers });
+          // Enum answers only: the free-text tools answer never goes to PostHog.
+          const { tools_other: _omit, ...enumAnswers } = answers;
+          window.posthog.capture('pro_early_access_joined', { context, ...enumAnswers });
         }
       } catch (phError) {
         console.error('[pro] PostHog capture failed:', phError);
@@ -167,18 +199,51 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
           }}
           disabled={busy}
         />
-        <PillGroup
-          id={`pro-tools-${context}`}
-          question="Which do you use for project work?"
-          hint="Pick any."
-          options={TOOL_OPTIONS}
-          isSelected={(value) => tools.includes(value)}
-          onToggle={toggleTool}
-          disabled={busy}
-        />
+        <div className="vault-form-pill-group" role="group" aria-labelledby={`pro-tools-${context}`}>
+          <span className="vault-form-feedback-label" id={`pro-tools-${context}`}>
+            Which AI tools do you use for project work?
+            <span className="teams-form-hint"> Pick all that apply.</span>
+          </span>
+          {TOOL_GROUPS.map((group) => (
+            <div className="teams-tool-group" key={group.label}>
+              <span className="teams-tool-group-label">{group.label}</span>
+              <div className="vault-form-pills">
+                {group.options.map((option) => {
+                  const selected = tools.includes(option.value);
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      className={`vault-form-pill${selected ? ' selected' : ''}`}
+                      aria-pressed={selected}
+                      onClick={() => toggleTool(option.value)}
+                      disabled={busy}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+          <label className="visually-hidden" htmlFor={`pro-tools-other-${context}`}>
+            Any other AI tools you use
+          </label>
+          <input
+            id={`pro-tools-other-${context}`}
+            className="teams-form-other"
+            type="text"
+            maxLength={120}
+            placeholder="Anything else? Tell us which tools"
+            value={toolsOther}
+            onChange={(event) => setToolsOther(event.target.value)}
+            disabled={busy}
+          />
+        </div>
         <PillGroup
           id={`pro-model-${context}`}
-          question="How would you power board updates?"
+          question="What could you connect to write your boards?"
+          note="Pro uses an AI model you connect, either an API key from an AI provider or a coding agent you already use. You pay that provider directly."
           options={MODEL_ACCESS_OPTIONS}
           isSelected={(value) => modelAccess === value}
           onToggle={(value) => setModelAccess(modelAccess === value ? '' : value)}

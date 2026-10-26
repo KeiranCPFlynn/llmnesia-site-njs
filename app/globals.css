@@ -9642,6 +9642,109 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   font-weight: 400;
 }
 
+.teams-form-note {
+  max-width: 32rem;
+  margin: -0.1rem 0 0.15rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.teams-tool-group {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+
+.teams-tool-group-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.teams-form-other {
+  margin-top: 0.35rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius);
+  background: var(--t-card);
+  color: var(--t-ink);
+  font: inherit;
+  font-size: 0.88rem;
+}
+
+.teams-form-other:focus-visible {
+  outline: 2px solid var(--t-teal);
+  outline-offset: 1px;
+}
+
+/* --- Entrance: the page arrives light, then the dark hero spreads in from
+   the top like ink, the header follows, and the content rises into place. --- */
+body:has(.pro-page) .site-header {
+  animation: pro-header-in 0.9s ease 0.25s backwards;
+}
+
+body:has(.pro-page) .brand {
+  animation: pro-header-text-in 0.9s ease 0.25s backwards;
+}
+
+@keyframes pro-header-in {
+  from {
+    background: var(--t-paper);
+    border-bottom-color: var(--t-rule);
+  }
+}
+
+@keyframes pro-header-text-in {
+  from { color: var(--t-ink); }
+}
+
+main.pro-page > section.pro-hero {
+  animation: pro-ink-in 1.15s cubic-bezier(0.7, 0, 0.2, 1) 0.1s backwards;
+}
+
+@keyframes pro-ink-in {
+  from { clip-path: circle(0% at 50% 0%); }
+  to { clip-path: circle(150% at 50% 0%); }
+}
+
+.pro-hero-inner > *,
+.pro-sources {
+  animation: pro-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.pro-pill { animation-delay: 0.55s; }
+.pro-title { animation-delay: 0.65s; }
+.pro-lede { animation-delay: 0.78s; }
+.pro-hero-actions { animation-delay: 0.88s; }
+.pro-sources { animation-delay: 1.35s; }
+
+.pro-demo-wrap {
+  perspective: 1600px;
+}
+
+.pro-demo-wrap > .pro-app {
+  transform-origin: 50% 0;
+  animation: pro-tilt-in 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.95s backwards;
+}
+
+@keyframes pro-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes pro-tilt-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotateX(14deg) scale(0.96);
+  }
+}
+
 /* --- FAQ --- */
 .pro-faq {
   padding: 0 0 clamp(4rem, 9vw, 6rem);
@@ -9722,6 +9825,12 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body:has(.pro-page) .site-header,
+  body:has(.pro-page) .brand,
+  main.pro-page > section.pro-hero,
+  .pro-hero-inner > *,
+  .pro-sources,
+  .pro-demo-wrap > .pro-app,
   .pro-pill-dot,
   .pro-card.is-fresh,
   .pro-detail .is-fresh,

@@ -21,7 +21,11 @@ const ALLOWED_SEARCH_FROM = new Set(['desktop', 'phone', 'browser', 'all']);
 // Fixed-enum answers from the Pro early-access form on /teams. `tools` is a
 // multi-select sent as a comma-separated list; unknown entries are dropped.
 const ALLOWED_TEAM_SIZE = new Set(['just_me', '2_5', '6_20', 'more_20']);
-const ALLOWED_TOOLS = new Set(['chatgpt', 'claude', 'gemini', 'claude_code', 'codex', 'other']);
+const ALLOWED_TOOLS = new Set([
+  'chatgpt', 'claude', 'gemini', 'google_ai_mode', 'ai_studio', 'copilot', 'perplexity', 'grok',
+  'deepseek', 'mistral', 'meta_ai', 'qwen', 'kimi', 'zai',
+  'claude_code', 'codex', 'zcode', 'cursor', 'github_copilot', 'windsurf', 'gemini_cli'
+]);
 const ALLOWED_MODEL_ACCESS = new Set(['api_key', 'coding_agent', 'neither', 'not_sure']);
 
 function jsonResponse(body, status = 200) {
@@ -64,10 +68,11 @@ function normalizeEnumList(value, allowed) {
 
 // The Apps Script has no columns for the Pro answers yet, so they also travel
 // in `feedback` as one readable line. Remove once the sheet has its own columns.
-function proAnswersSummary({ team_size, tools, model_access }) {
+function proAnswersSummary({ team_size, tools, tools_other, model_access }) {
   return [
     team_size && `team_size=${team_size}`,
     tools && `tools=${tools}`,
+    tools_other && `tools_other=${tools_other}`,
     model_access && `model_access=${model_access}`
   ].filter(Boolean).join('; ');
 }
@@ -141,6 +146,7 @@ function normalizeLeadBody(body) {
     search_from: body.search_from,
     team_size: body.team_size,
     tools: body.tools,
+    tools_other: body.tools_other,
     model_access: body.model_access,
     captured_at: body.captured_at,
     install_id: body.install_id,
@@ -242,6 +248,8 @@ export async function POST(request) {
     ? {
         team_size: normalizeEnum(lead.team_size, ALLOWED_TEAM_SIZE),
         tools: normalizeEnumList(lead.tools, ALLOWED_TOOLS),
+        // The one free-text answer: which unlisted tools they use.
+        tools_other: normalizeString(lead.tools_other, 120),
         model_access: normalizeEnum(lead.model_access, ALLOWED_MODEL_ACCESS)
       }
     : null;

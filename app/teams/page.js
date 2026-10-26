@@ -19,8 +19,8 @@ export const metadata = buildPageMetadata({
 });
 
 // Keep in step with the Decisions table (decision 2) before publishing.
-const PRICE_MONTHLY = '£25';
-const PRICE_ANNUAL = '£250';
+const PRICE_MONTHLY = '£15';
+const PRICE_ANNUAL = '£165';
 
 const SOURCES = ['ChatGPT', 'Claude', 'Gemini', 'Claude Code', 'Codex', 'and more'];
 
@@ -68,7 +68,7 @@ const FAQS = [
   },
   {
     q: 'Do I need an API key?',
-    a: 'Boards are updated by an AI model you supply: your own API key, or a coding agent such as Claude Code or Codex. On a team project, the admin can add one key for everyone, so teammates do not need their own.'
+    a: 'Boards are written by an AI model you connect: an API key from an AI provider, or a coding agent you already use, such as Claude Code, Codex or ZCode. On a team project, the admin can add one key for everyone, so teammates do not need their own.'
   },
   {
     q: 'What does the AI provider see?',
@@ -89,10 +89,6 @@ const FAQS = [
   {
     q: 'I already pay for Vault. What happens?',
     a: 'Vault is included in every Pro seat. When you upgrade, you get credit for the unused part of your current Vault period.'
-  },
-  {
-    q: 'Is there a free trial or an early-access discount?',
-    a: 'No. Instead, early-access members get personal setup help from the founder and a real say in what we build next.'
   }
 ];
 
@@ -222,21 +218,20 @@ export default function TeamsPage() {
                 {PRICE_MONTHLY}
                 <span>per seat / month</span>
               </p>
-              <p className="pro-price-sub">or {PRICE_ANNUAL} a year, two months free</p>
+              <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
               <ul className="pro-price-list">
                 {PRICE_POINTS.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
               <p className="pro-price-foot">
-                Early-access members get personal setup help from the founder and a say in what we
-                build next.
+                Early-access members get in first, before Pro opens to everyone.
               </p>
             </div>
 
             <div className="pro-join-form">
               <h2>Get early access.</h2>
-              <p className="pro-join-sub">Three quick taps, then your email.</p>
+              <p className="pro-join-sub">A few quick questions, then your email.</p>
               <ProEarlyAccessForm context="teams_page" />
             </div>
           </div>
