@@ -1,9 +1,9 @@
 ---
-title: "How to Search Your Gemini Chat History"
+title: "Find and Search Gemini Chat History: Computer & Phone"
 slug: "search-gemini-conversation-history"
-description: "Search saved Gemini chats with the native search tool, find text inside a chat, or search conversations you have indexed locally with LLMnesia."
+description: "Find old Gemini chats on a computer, Android or iPhone. Follow the search steps, check missing history, and search a saved local copy across AI apps."
 publishDate: "2026-04-17"
-updatedDate: "2026-10-13"
+updatedDate: "2026-10-26"
 author: "Keiran Flynn"
 primaryKeyword: "search gemini conversation history"
 secondaryKeywords:
@@ -17,6 +17,8 @@ ctaHeadline: "Search the Gemini conversations you have saved and indexed locally
 faq:
   - question: "How do I search my Gemini chat history?"
     answer: "Open Gemini's side panel, select Search, enter a term and press Enter. Check that you are signed into the account that owns the chat. Search cannot bring back a deleted conversation."
+  - question: "Where is Gemini chat history on my phone?"
+    answer: "Open the Gemini app or gemini.google.com, tap Menu, then browse Recent or use the search field. Check that you are signed into the account that owns the chats. LLMnesia's browser extension runs on a computer, not inside the Gemini mobile app."
   - question: "Can LLMnesia search chats from before I installed it?"
     answer: "Supported Gemini history imports can save older conversations that are still accessible to your signed-in account. Search covers the conversations successfully saved and indexed, not every chat ever created."
   - question: "Do I need to wait for semantic indexing?"
@@ -24,6 +26,10 @@ faq:
 sources:
   - label: "Google: find and manage chats"
     url: "https://support.google.com/gemini/answer/13666746?hl=en"
+  - label: "Google: find chats on Android"
+    url: "https://support.google.com/gemini/answer/13666746?hl=en&co=GENIE.Platform%3DAndroid"
+  - label: "Google: find chats on iPhone and iPad"
+    url: "https://support.google.com/gemini/answer/13666746?hl=en&co=GENIE.Platform%3DiOS"
   - label: "Google: manage Gemini activity"
     url: "https://support.google.com/gemini/answer/13278892?hl=en"
   - label: "Google: download Gemini data"
@@ -38,13 +44,28 @@ relatedSlugs:
   - "recover-deleted-gemini-conversation"
 ---
 
-To search Gemini chat history, open the side panel in Gemini, select **Search**, enter a term and press Enter. Start there for a chat that still exists in your account. For cross-platform search, LLMnesia searches the conversations you have successfully saved and indexed on your device.
+**On a computer, open Gemini's menu and choose Search. On a phone, open the menu and use the search field.** Sign into the Google account that owns the chats. Use the recent list to browse, or search for a topic you remember.
 
-## Use Gemini's native search first
+## Find and search Gemini history on a computer
 
-Try a distinctive topic, then a shorter term if needed. Open a candidate chat and check that it contains the answer you wanted. Google's [chat-management guide](https://support.google.com/gemini/answer/13666746?hl=en) documents the Search control; it does not define its matching scope as title-only, so do not assume that limitation.
+1. Open [gemini.google.com](https://gemini.google.com/) and check the signed-in account.
+2. Click **Menu** if the side panel is hidden. Your pinned and recent chats appear there.
+3. Choose **Search**, type a topic or distinctive term, and press Enter.
+4. Open a matching chat and check that it contains the answer you wanted.
 
-Account access matters. A work or school account may have administrator-controlled history settings. If a chat is missing rather than hard to locate, follow the [older-chat troubleshooting guide](/blog/how-to-find-old-gemini-conversations).
+These steps follow [Google's computer guide](https://support.google.com/gemini/answer/13666746?hl=en). It does not define matching as title-only. Try a shorter term if a longer phrase gives no useful match.
+
+## Find Gemini history on Android, iPhone or iPad
+
+Open the Gemini app or [gemini.google.com](https://gemini.google.com/) in your mobile browser. Tap **Menu** to see **Recent** and the search field, then enter a topic. Google's [Android instructions](https://support.google.com/gemini/answer/13666746?hl=en&co=GENIE.Platform%3DAndroid) and [iPhone instructions](https://support.google.com/gemini/answer/13666746?hl=en&co=GENIE.Platform%3DiOS) cover both routes.
+
+The steps above use Gemini itself. LLMnesia's Chrome or Edge extension runs on a computer; installing it there does not add a search control to the Gemini mobile app.
+
+## If your Gemini history is missing
+
+Check the account before changing anything. For personal accounts, saved history depends on **Keep Activity**; work and school settings may be controlled by an administrator. A temporary or deleted chat may not appear. Turning activity on now does not recreate a conversation that was never saved.
+
+Use the [missing-chat checklist](/blog/how-to-find-old-gemini-conversations) to separate an account or loading problem from confirmed deletion. For how long activity is kept, see the [retention settings guide](/blog/gemini-conversation-history-limits).
 
 ## Find a passage inside an open chat
 
@@ -74,9 +95,13 @@ For an offline export, follow Google's [Gemini download instructions](https://su
 
 ## Choose the right retrieval method
 
-- Use Gemini search to locate a saved chat in your Google account.
-- Use browser find to locate a passage in an open chat.
-- Use LLMnesia for keyword search across successfully indexed local conversations from supported platforms.
-- Use an existing export or saved copy when the original is no longer accessible.
+| What you need | Where to start | What it covers |
+| --- | --- | --- |
+| Find a Gemini chat | Gemini's menu and native search | Chats still available in that Google account |
+| Find a passage in one chat | Browser find on a computer | Text currently loaded in the page |
+| Search Gemini alongside other assistants | LLMnesia on a computer | Conversations successfully saved and locally indexed |
+| Read a chat after the original disappears | An existing export or saved copy | Only the content that copy actually contains |
+
+For example, a phrase from a saved project discussion can find the same work across Gemini, Claude and ChatGPT in LLMnesia. First capture or import the relevant conversations, wait for keyword indexing, and open a result to verify the saved text. Native Gemini search remains the starting point for a chat that exists only in your Google account.
 
 If you are trying to recover something deliberately deleted, see [what is and is not recoverable](/blog/recover-deleted-gemini-conversation).

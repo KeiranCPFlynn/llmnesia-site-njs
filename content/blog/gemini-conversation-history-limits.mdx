@@ -1,9 +1,9 @@
 ---
-title: "Gemini Conversation History: Limits, Retention, and What Google Keeps"
+title: "How Long Does Gemini Keep Chats? History Settings"
 slug: "gemini-conversation-history-limits"
-description: "Understand Gemini history retention, Keep Activity, temporary chats and context windows, plus how to keep a searchable copy of conversations you save."
+description: "Gemini activity auto-deletes after 18 months by default. Compare 3, 18 and 36 months or no auto-delete, check your setting, and understand missing chats."
 publishDate: "2026-05-19"
-updatedDate: "2026-10-13"
+updatedDate: "2026-10-26"
 author: "Keiran Flynn"
 primaryKeyword: "gemini conversation history limits"
 secondaryKeywords:
@@ -38,13 +38,25 @@ relatedSlugs:
   - "how-to-export-gemini-conversation-history"
 ---
 
-Gemini history retention and a model's context window are different limits. A chat can remain saved even when it no longer fits in a model's active context, and a large context window does not guarantee permanent history storage.
+**For personal accounts, Gemini Apps activity is set to auto-delete after 18 months by default.** You can choose 3 or 36 months instead, or switch off auto-deletion. Check your account: temporary chats, activity-off conversations and work or school accounts follow different rules.
 
-## Retention depends on activity settings
+## Compare Gemini history settings
 
-For personal accounts, Google's [Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en) describes an 18-month default auto-delete setting, with options for 3 months, 36 months or no auto-deletion. Check the setting in your own account rather than assuming a fixed lifetime for every conversation.
+| Setting or account | What to check | What it does not guarantee |
+| --- | --- | --- |
+| Keep Activity on, default auto-delete | Activity older than 18 months is automatically deleted | A separate backup of deleted chats |
+| Custom auto-delete | Choose 3 or 36 months | Recovery of activity already removed |
+| Don't auto-delete activity | Automatic age-based deletion is off | Permanent access after manual deletion or loss of account access |
+| Keep Activity off or a temporary chat | Google describes short-term retention of up to 72 hours | A recoverable history archive |
+| Work or school account | Ask your Workspace administrator about the applicable policy | The same settings or retention as a personal account |
 
-Temporary chats and chats with Keep Activity off have different handling, including short-term retention for service and safety purposes. That is not a promise of a recoverable archive. Work or school accounts can have administrator-controlled policies.
+Google's [activity controls](https://support.google.com/gemini/answer/13278892?hl=en) and [Privacy Hub](https://support.google.com/gemini/answer/13594961?hl=en) explain these differences. Server-side retention is not the same as a conversation being available to reopen.
+
+## Check or change your auto-delete period
+
+On a computer, open Gemini, choose **Settings & help**, then **Activity**. You can also open [Gemini Apps Activity](https://myactivity.google.com/product/gemini) directly. Check the signed-in account, open the auto-delete option near the top, choose a period or **Don't auto-delete activity**, then follow Google's confirmation steps.
+
+Review the choice before confirming it. Selecting a shorter period can remove older activity. Changing retention later does not bring back conversations already deleted. For managed accounts, these controls may not be available.
 
 ## A saved history list is not a backup
 
@@ -56,7 +68,7 @@ Before removing important work, verify a copy you control. A copied URL, browser
 
 A context window limits how much information a model can use at once. Practical limits vary by model and product surface, so API token limits should not be presented as a guarantee for the consumer Gemini app.
 
-This is separate from how many chats your account retains. If you need to find something in a saved chat, start with [Gemini's native Search](/blog/search-gemini-conversation-history), not a context-window estimate. Google's chat-search help does not establish a title-only matching restriction.
+There is no universal conversation-count guarantee in the settings above. This is separate from how many chats your account retains. If you need to find something in a saved chat, start with [Gemini's native Search](/blog/search-gemini-conversation-history), not a context-window estimate. Google's chat-search help does not establish a title-only matching restriction.
 
 ## Keep an inspectable offline export
 

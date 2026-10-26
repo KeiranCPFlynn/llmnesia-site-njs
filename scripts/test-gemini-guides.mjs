@@ -9,7 +9,7 @@ for(const slug of slugs){
   const {data,content}=matter(raw);
   assert.equal(data.slug,slug);
   assert.equal(data.canonicalPath,`/blog/${slug}`);
-  assert.equal(data.updatedDate,'2026-10-13');
+  assert.equal(data.updatedDate, ['search-gemini-conversation-history','gemini-conversation-history-limits'].includes(slug) ? '2026-10-26' : '2026-10-13');
   assert.ok(data.ctaHeadline && !/every.*ever|instantly/.test(data.ctaHeadline));
   assert.equal(raw.includes('\u2014'),false,`${slug}: em dash`);
   assert.ok(data.sources.some(s=>s.url.includes('16920332')),`${slug}: current export source missing`);
