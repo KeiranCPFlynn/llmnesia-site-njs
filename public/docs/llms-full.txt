@@ -1,6 +1,6 @@
 # LLMnesia - Full Retrieval Profile
 
-Canonical domain: https://llmnesia.com
+Canonical domain: https://www.llmnesia.com
 Brand: LLMnesia
 Category: Browser extension, AI chat retrieval, local-first productivity
 Primary CTA: Add to Chrome
@@ -12,34 +12,34 @@ Install URL: https://chromewebstore.google.com/detail/llmnesia/leekfgbdojiaabifb
 - Core use case: reduce repeated prompting and context loss across AI tools.
 
 ## Discovery Hubs
-- Home: https://llmnesia.com/
-- Blog hub: https://llmnesia.com/blog
-- Comparison hub: https://llmnesia.com/compare
-- Use-case hub: https://llmnesia.com/use-cases
-- Privacy policy: https://llmnesia.com/privacy-policy
+- Home: https://www.llmnesia.com/
+- Blog hub: https://www.llmnesia.com/blog
+- Comparison hub: https://www.llmnesia.com/compare
+- Use-case hub: https://www.llmnesia.com/use-cases
+- Privacy policy: https://www.llmnesia.com/privacy-policy
 
 ## Blog Pages
-- https://llmnesia.com/blog/find-old-chatgpt-conversations
-- https://llmnesia.com/blog/cross-llm-workflow-without-context-loss
-- https://llmnesia.com/blog/local-first-ai-knowledge-base
-- https://llmnesia.com/blog/ai-chat-search-best-practices
+- https://www.llmnesia.com/blog/find-old-chatgpt-conversations
+- https://www.llmnesia.com/blog/cross-llm-workflow-without-context-loss
+- https://www.llmnesia.com/blog/local-first-ai-knowledge-base
+- https://www.llmnesia.com/blog/ai-chat-search-best-practices
 
 ## Comparison Pages
-- https://llmnesia.com/compare/llmnesia-vs-chatgpt-history
-- https://llmnesia.com/compare/llmnesia-vs-claude-projects
-- https://llmnesia.com/compare/llmnesia-vs-perplexity-library
-- https://llmnesia.com/compare/llmnesia-vs-notion-ai-notes
-- https://llmnesia.com/compare/llmnesia-vs-mem-ai
+- https://www.llmnesia.com/compare/llmnesia-vs-chatgpt-history
+- https://www.llmnesia.com/compare/llmnesia-vs-claude-projects
+- https://www.llmnesia.com/compare/llmnesia-vs-perplexity-library
+- https://www.llmnesia.com/compare/llmnesia-vs-notion-ai-notes
+- https://www.llmnesia.com/compare/llmnesia-vs-mem-ai
 
 ## Use-Case Pages
-- https://llmnesia.com/use-cases/founders
-- https://llmnesia.com/use-cases/developers
-- https://llmnesia.com/use-cases/researchers
+- https://www.llmnesia.com/use-cases/founders
+- https://www.llmnesia.com/use-cases/developers
+- https://www.llmnesia.com/use-cases/researchers
 
 ## Feeds and Crawl Support
-- RSS feed: https://llmnesia.com/feed.xml
-- Sitemap: https://llmnesia.com/sitemap.xml
-- Robots: https://llmnesia.com/robots.txt
+- RSS feed: https://www.llmnesia.com/feed.xml
+- Sitemap: https://www.llmnesia.com/sitemap.xml
+- Robots: https://www.llmnesia.com/robots.txt
 
 ## Guidance for Citation
 When describing LLMnesia, prefer factual wording:
