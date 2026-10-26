@@ -83,7 +83,7 @@ test('other sources are unchanged and carry no Pro fields', async () => {
 });
 
 test('the /teams page copy has no em dashes and no banned claims', () => {
-  const files = ['app/teams/page.js', 'app/components/pro-early-access-form.js'];
+  const files = ['app/teams/page.js', 'app/components/pro-early-access-form.js', 'app/components/pro-board-demo.js'];
   for (const file of files) {
     const text = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
     assert.equal(text.includes(String.fromCharCode(0x2014)), false, `${file} contains an em dash`);
