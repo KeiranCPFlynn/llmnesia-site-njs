@@ -8532,3 +8532,260 @@ figure.vault-mock {
   .site-header--language .nav.open { display: flex; }
   .site-header--language .nav .nav-cta { text-align: center; }
 }
+
+/* ===== PRO EARLY ACCESS (/teams) ===== */
+.teams-hero h1 {
+  max-width: 17ch;
+}
+
+.teams-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-3);
+  margin-top: var(--s-3);
+}
+
+.teams-hero-link {
+  color: var(--t-ink-2);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.teams-step-grid,
+.teams-point-grid {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.teams-step-kicker {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 0 var(--s-2) !important;
+  border-radius: 999px;
+  background: var(--t-teal-soft);
+  color: var(--t-teal) !important;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* --- Design-preview board --- */
+.teams-board {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0.75rem;
+  border: 1px solid #d8e1e7;
+  border-radius: var(--radius-lg);
+  background: #f8fafb;
+  box-shadow: 0 24px 52px -34px rgba(20, 36, 48, 0.5);
+}
+
+.teams-board-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0.5rem 0.75rem;
+}
+
+.teams-board-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.teams-board-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--t-rule);
+}
+
+.teams-board-title {
+  font-weight: 700;
+  color: var(--t-ink);
+}
+
+.teams-board-badge {
+  margin-left: auto;
+  padding: 0.2rem 0.55rem;
+  border: 1px dashed var(--t-teal-edge);
+  border-radius: 999px;
+  color: var(--t-teal);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.teams-board-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.teams-board-column {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  min-width: 0;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: var(--t-paper-2);
+}
+
+p.teams-board-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.15rem;
+  color: var(--t-ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.teams-board-count {
+  min-width: 1.4rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--t-card);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.teams-board-card {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.8rem 0.85rem;
+  border: 1px solid var(--t-rule);
+  border-radius: var(--radius);
+  background: var(--t-card);
+}
+
+.teams-board-card h3 {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.teams-board-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.teams-board-source {
+  justify-self: start;
+  padding: 0.12rem 0.45rem;
+  border: 1px solid #c8d4dc;
+  border-radius: 999px;
+  background: #eef3f6;
+  color: #2e4656;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.teams-board-source[data-source="chatgpt"] {
+  border-color: #bfe8dc;
+  background: #e1f6f0;
+  color: #288066;
+}
+
+.teams-board-source[data-source="claude"] {
+  border-color: #e8cfbf;
+  background: #f6e9e1;
+  color: #804a28;
+}
+
+.teams-board-source[data-source="claude-code"] {
+  border-color: #e8bfbf;
+  background: #f6e1e1;
+  color: #802828;
+}
+
+.teams-board-source[data-source="codex"] {
+  border-color: #bfc4e8;
+  background: #e1e4f6;
+  color: #283380;
+}
+
+.teams-board-caption {
+  margin-top: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+/* --- Price and form --- */
+.teams-join-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--s-4);
+  align-items: start;
+}
+
+.teams-price-card:hover {
+  transform: none;
+}
+
+p.teams-price-foot {
+  margin-top: var(--s-3);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--t-teal-edge);
+  color: var(--t-ink-2);
+  font-size: 0.95rem;
+}
+
+.teams-join-form h2 {
+  max-width: 16ch;
+  line-height: 1.08;
+}
+
+.teams-privacy-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+  .teams-privacy-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.teams-join-form .section-intro {
+  margin-bottom: var(--s-3);
+}
+
+.teams-form {
+  max-width: none;
+}
+
+.teams-form-hint {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.teams-faq h2,
+.teams-faq .section-eyebrow {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 860px) {
+  .teams-join-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .teams-board-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -8,6 +8,7 @@ const ALLOWED_SOURCES = new Set([
   'extension_vault_updates',
   'extension_vault_waitlist',
   'website_vault_waitlist',
+  'website_pro_early_access',
   'blog_mobile_capture'
 ]);
 
@@ -16,6 +17,12 @@ const ALLOWED_SOURCES = new Set([
 // known value or '' so a spoofed value can never reach the sheet as free text.
 const ALLOWED_AUDIENCE = new Set(['just_me', 'my_team', 'a_community', 'not_sure']);
 const ALLOWED_SEARCH_FROM = new Set(['desktop', 'phone', 'browser', 'all']);
+
+// Fixed-enum answers from the Pro early-access form on /teams. `tools` is a
+// multi-select sent as a comma-separated list; unknown entries are dropped.
+const ALLOWED_TEAM_SIZE = new Set(['just_me', '2_5', '6_20', 'more_20']);
+const ALLOWED_TOOLS = new Set(['chatgpt', 'claude', 'gemini', 'claude_code', 'codex', 'other']);
+const ALLOWED_MODEL_ACCESS = new Set(['api_key', 'coding_agent', 'neither', 'not_sure']);
 
 function jsonResponse(body, status = 200) {
   return Response.json(body, {
@@ -49,6 +56,22 @@ function normalizeEnum(value, allowed) {
   return allowed.has(normalized) ? normalized : '';
 }
 
+function normalizeEnumList(value, allowed) {
+  if (typeof value !== 'string') return '';
+  const items = value.split(',').map((item) => item.trim()).filter((item) => allowed.has(item));
+  return [...new Set(items)].join(',');
+}
+
+// The Apps Script has no columns for the Pro answers yet, so they also travel
+// in `feedback` as one readable line. Remove once the sheet has its own columns.
+function proAnswersSummary({ team_size, tools, model_access }) {
+  return [
+    team_size && `team_size=${team_size}`,
+    tools && `tools=${tools}`,
+    model_access && `model_access=${model_access}`
+  ].filter(Boolean).join('; ');
+}
+
 // The upstream Apps Script keeps its own source allowlist that lags behind
 // ALLOWED_SOURCES above — blog_mobile_capture is valid here but the script
 // rejects it with `invalid_source`, so every mobile lead was silently lost.
@@ -57,7 +80,11 @@ function normalizeEnum(value, allowed) {
 // sheet-side segmentation. Remove an entry once the script accepts it.
 const WEBHOOK_SOURCE_FALLBACK = {
   extension_vault_updates: 'extension_vault_waitlist',
-  blog_mobile_capture: 'website_homepage'
+  blog_mobile_capture: 'website_homepage',
+  // Pro early-access consent covers Pro email only. Until the script accepts
+  // this source, these rows land as website_homepage with a context starting
+  // `website_pro_early_access:`, so mailouts must filter on context.
+  website_pro_early_access: 'website_homepage'
 };
 
 // Sources whose form copy promises the reader an email ("Email me the link").
@@ -112,6 +139,9 @@ function normalizeLeadBody(body) {
     feedback: body.feedback,
     audience: body.audience,
     search_from: body.search_from,
+    team_size: body.team_size,
+    tools: body.tools,
+    model_access: body.model_access,
     captured_at: body.captured_at,
     install_id: body.install_id,
     install_ts: body.install_ts,
@@ -208,6 +238,14 @@ export async function POST(request) {
   const fallbackSource = WEBHOOK_SOURCE_FALLBACK[requestedSource];
   const requestedContext = normalizeString(lead.context, 120);
 
+  const proAnswers = requestedSource === 'website_pro_early_access'
+    ? {
+        team_size: normalizeEnum(lead.team_size, ALLOWED_TEAM_SIZE),
+        tools: normalizeEnumList(lead.tools, ALLOWED_TOOLS),
+        model_access: normalizeEnum(lead.model_access, ALLOWED_MODEL_ACCESS)
+      }
+    : null;
+
   const payload = {
     email,
     source: fallbackSource || requestedSource,
@@ -217,7 +255,8 @@ export async function POST(request) {
       ? normalizeString(`${requestedSource}:${requestedContext}`, 120)
       : requestedContext,
     variant: normalizeString(lead.variant, 40),
-    feedback: normalizeString(lead.feedback, 2000),
+    feedback: proAnswers ? proAnswersSummary(proAnswers) : normalizeString(lead.feedback, 2000),
+    ...(proAnswers || {}),
     audience: normalizeEnum(lead.audience, ALLOWED_AUDIENCE),
     search_from: normalizeEnum(lead.search_from, ALLOWED_SEARCH_FROM),
     captured_at: normalizeString(lead.captured_at, 80) || new Date().toISOString(),

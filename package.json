@@ -17,6 +17,7 @@
     "test:vault-sign-in": "node --test scripts/test-vault-sign-in.mjs",
     "test:vault-analytics": "node --test scripts/test-vault-purchase-analytics.mjs",
     "test:goodbye": "node --test scripts/test-goodbye.mjs",
+    "test:pro-early-access": "node --test scripts/test-pro-early-access.mjs",
     "test:viewer-handoff": "node scripts/test-viewer-handoff.mjs",
     "indexnow": "node scripts/indexnow.js",
     "indexnow:dry": "INDEXNOW_DRY_RUN=1 node scripts/indexnow.js",
