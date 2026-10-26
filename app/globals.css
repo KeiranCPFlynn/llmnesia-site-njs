@@ -9675,12 +9675,31 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   font-size: 0.88rem;
 }
 
+.pro-price-for {
+  margin: 1.25rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--pro-line);
+  color: var(--pro-text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.pro-price-list-label {
+  margin: 1.1rem 0 0.6rem;
+  color: var(--pro-teal);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .pro-price-list {
   display: grid;
   gap: 0.6rem;
-  margin: 1.5rem 0 0;
-  padding: 1.5rem 0 0;
-  border-top: 1px solid var(--pro-line);
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
