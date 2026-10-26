@@ -140,6 +140,19 @@
           "value": "attachment; filename=\"llmnesia-0.4.20-character-ai-archive-recovery-d819a033.zip\""
         }
       ]
+    },
+    {
+      "source": "/download/test/character-ai-0420-a6123d4c/llmnesia-0.4.21.3-character-ai-test-3-86915ad6.zip",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/zip"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"llmnesia-0.4.21.3-character-ai-test-3-86915ad6.zip\""
+        }
+      ]
     }
   ],
   "rewrites": [
