@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.4.21",
+    "date": "2026-10-26",
+    "published": true,
+    "curated": true,
+    "title": "More reliable history imports and clearer search filters",
+    "summary": "Copilot history imports now collect the full available conversation regardless of where you start scrolling. This update also improves Google AI Mode and Character.AI imports and makes search filters easier to use.",
+    "highlights": [
+      "Copilot imports collect newer and older messages before marking a saved copy complete, preventing missing messages when you start near the top or middle of a chat.",
+      "Google AI Mode imports continue past unusual chat-list entries and try reading history from the page when more kinds of list failures occur. Rate limits and sign-in problems still stop the import.",
+      "Character.AI imports continue past chats that deny access, show how many remain, and wait for you to retry instead of repeatedly requesting unavailable chats.",
+      "Search filters use compact dropdowns, clearer active states and improved keyboard navigation."
+    ]
+  },
+  {
     "version": "0.4.20",
     "date": "2026-10-23",
     "published": true,
