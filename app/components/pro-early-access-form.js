@@ -53,7 +53,7 @@ const TOOL_GROUPS = [
   }
 ];
 const MODEL_ACCESS_OPTIONS = [
-  { value: 'api_key', label: 'I have an AI API key' },
+  { value: 'api_key', label: 'I have an API key' },
   { value: 'coding_agent', label: 'I use Claude Code, Codex or ZCode' },
   { value: 'neither', label: 'Neither yet' },
   { value: 'not_sure', label: 'Not sure' }
@@ -242,8 +242,8 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
         </div>
         <PillGroup
           id={`pro-model-${context}`}
-          question="What could you connect to write your boards?"
-          note="Pro uses an AI model you connect, either an API key from an AI provider or a coding agent you already use. You pay that provider directly."
+          question="Which AI would write your boards?"
+          note="Pro needs an AI to turn your chats into boards: an API key from an AI company, or a coding agent you already use. You pay them directly."
           options={MODEL_ACCESS_OPTIONS}
           isSelected={(value) => modelAccess === value}
           onToggle={(value) => setModelAccess(modelAccess === value ? '' : value)}

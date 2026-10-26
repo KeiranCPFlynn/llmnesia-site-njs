@@ -8647,9 +8647,10 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
 
 .pro-title {
   margin: 0;
-  max-width: none;
+  max-width: 16ch;
   color: var(--pro-text);
-  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  text-wrap: balance;
   font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.045em;
@@ -8663,7 +8664,7 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
 }
 
 .pro-lede {
-  max-width: 34rem;
+  max-width: 40rem;
   margin: var(--s-3) auto 0;
   color: var(--pro-muted);
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
@@ -9314,48 +9315,136 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   border-color: var(--t-teal-edge);
 }
 
-/* --- Moments --- */
-.pro-moments {
+/* --- Pain and payoff --- */
+.pro-pain {
   padding: clamp(4rem, 9vw, 6.5rem) 0;
   border-bottom: 1px solid var(--t-rule);
 }
 
-.pro-moments-grid {
+.pro-pain-inner {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
 }
 
-.pro-moment-label {
+.pro-pain-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-pain-list li {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin: 0 0 var(--s-2);
-  color: var(--t-teal);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  gap: 0.85rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--t-rule);
+  border-radius: 12px;
+  background: var(--t-card);
+  color: var(--t-ink-2);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.4;
 }
 
-.pro-moment-label span {
+.pro-pain-list .pro-chip {
+  flex: 0 0 auto;
+}
+
+.pro-chip--you {
+  border-color: var(--t-rule);
+  background: var(--t-paper-2);
   color: var(--t-ink-3);
 }
 
-.pro-moment h2 {
-  max-width: 14ch;
-  margin: 0 0 0.6rem;
-  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+.pro-pain-answer h2 {
+  max-width: 16ch;
+  margin: 0 0 var(--s-3);
+  font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
 }
 
-.pro-moment p {
+.pro-outcomes {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-outcomes li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--t-ink-2);
+  font-size: 1.08rem;
+  line-height: 1.5;
+}
+
+.pro-outcomes li::before {
+  content: "";
+  position: absolute;
+  left: 0.15rem;
+  top: 0.42em;
+  width: 0.75rem;
+  height: 0.4rem;
+  border-left: 2px solid var(--t-teal);
+  border-bottom: 2px solid var(--t-teal);
+  transform: rotate(-45deg);
+}
+
+/* --- How it works --- */
+.pro-steps {
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0;
+  border-bottom: 1px solid var(--t-rule);
+}
+
+.pro-steps-kicker {
+  text-align: center;
+}
+
+.pro-steps-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-step-number {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: var(--pro-night);
+  color: var(--pro-text);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.pro-steps-list h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.pro-steps-list p {
   max-width: 22rem;
   margin: 0;
   color: var(--t-ink-3);
   line-height: 1.6;
+}
+
+.pro-demo-hint {
+  margin: 0 0 1rem;
+  color: var(--pro-muted);
+  font-size: 0.88rem;
+  text-align: center;
 }
 
 /* --- Teams --- */
@@ -9797,7 +9886,8 @@ main.pro-page > section.pro-hero {
     scroll-snap-align: start;
   }
 
-  .pro-moments-grid,
+  .pro-pain-inner,
+  .pro-steps-list,
   .pro-team-inner,
   .pro-join-inner {
     grid-template-columns: minmax(0, 1fr);

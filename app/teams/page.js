@@ -12,9 +12,9 @@ import { homepageFaqSchema } from '../../lib/schema';
 // design preview with made-up content, never a real user's work.
 
 export const metadata = buildPageMetadata({
-  title: 'LLMnesia Pro: a project board that keeps itself current (early access)',
+  title: 'LLMnesia Pro: stop re-explaining your project to every AI chat (early access)',
   description:
-    'LLMnesia Pro turns your ChatGPT, Claude, Gemini, Claude Code and Codex chats into a project board of what is decided, in progress and next, with every card linked to the chats behind it. Use it alone or with your team. Join early access.',
+    'LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for each project: what is decided, what is in progress and what is next, each linked to the chat it came from. Use it alone or with your team. Join early access.',
   canonicalPath: '/teams'
 });
 
@@ -24,37 +24,47 @@ const PRICE_ANNUAL = '£165';
 
 const SOURCES = ['ChatGPT', 'Claude', 'Gemini', 'Claude Code', 'Codex', 'and more'];
 
-const MOMENTS = [
+// The pain, in the reader's words, then what Pro does about it.
+const PAINS = [
+  { text: 'The decision is in a Claude chat from Tuesday.', platform: 'claude', label: 'Claude' },
+  { text: 'The next step is in last night’s Codex session.', platform: 'codex', label: 'Codex' },
+  { text: 'The full picture is in your head, and nowhere else.' }
+];
+
+const OUTCOMES = [
+  'See where every project stands.',
+  'Check any decision against the chat it came from.',
+  'Jump back into the right chat and carry on.'
+];
+
+const STEPS = [
   {
-    label: 'See',
-    title: 'Where every project stands.',
-    body: 'Decided, in progress and next, kept up to date from your AI chats while your computer is on.'
+    title: 'Install LLMnesia',
+    body: 'The free extension saves your AI chats as you go. Coding sessions come in through the free desktop helper.'
   },
   {
-    label: 'Trust',
-    title: 'Every card shows its source.',
-    body: 'Each decision and next step quotes the chat it came from, one click away.'
+    title: 'Connect your AI',
+    body: 'Add an API key from an AI company, or use a coding agent you already have. Pro uses it to read your chats.'
   },
   {
-    label: 'Resume',
-    title: 'Pick up where you left off.',
-    body: 'Continue in the right chat or coding agent, with the context already there.'
+    title: 'Your boards fill in',
+    body: 'Each project gets a board that updates itself while your computer is on. Nothing to sort by hand.'
   }
 ];
 
 const PROMISES = [
-  { icon: 'lock', title: 'End-to-end encrypted', body: 'Our servers can’t read your projects.' },
-  { icon: 'key', title: 'Your AI, your key', body: 'Updates use the provider you choose. We never mark up model costs.' },
-  { icon: 'check', title: 'Shared only with approval', body: 'You see the exact text before your team does.' },
+  { icon: 'lock', title: 'Only your team can read it', body: 'Team projects are encrypted before they leave your computer. We can’t read them.' },
+  { icon: 'key', title: 'Your own AI account', body: 'Pro uses your AI account to write boards, so you pay the AI company directly. We add no markup.' },
+  { icon: 'check', title: 'Nothing shared by accident', body: 'You see the exact text before your team does.' },
   { icon: 'undo', title: 'Take it back', body: 'Withdraw anything you shared, any time.' }
 ];
 
 const PRICE_POINTS = [
-  'Self-updating boards for every project',
-  'Team projects with a shared board',
-  'Vault sync and backup included',
-  'Bring your own AI key',
-  'Use it alone or add seats'
+  'Boards that update themselves, for every project',
+  'Shared boards for your team',
+  'Vault backup and sync included',
+  'Uses your own AI account',
+  'Use it alone or with your team'
 ];
 
 const FAQS = [
@@ -67,16 +77,16 @@ const FAQS = [
     a: 'Yes. A solo user is simply a one-seat Pro. Your boards work the same whether or not you ever invite anyone.'
   },
   {
-    q: 'Do I need an API key?',
-    a: 'Boards are written by an AI model you connect: an API key from an AI provider, or a coding agent you already use, such as Claude Code, Codex or ZCode. On a team project, the admin can add one key for everyone, so teammates do not need their own.'
+    q: 'Do I need my own AI account?',
+    a: 'Yes. Pro uses an AI you connect to write your boards: an API key from an AI company, or a coding agent you already use, such as Claude Code, Codex or ZCode. On a team project, the admin can add one key for everyone, so teammates don’t need their own.'
   },
   {
     q: 'What does the AI provider see?',
-    a: 'Board updates are drafted on your computer and sent to the AI provider you chose, which processes that text. LLMnesia’s servers never see it, and team projects are stored end-to-end encrypted.'
+    a: 'To write a board update, your computer sends the relevant chat text to the AI company you chose, and it processes that text. LLMnesia’s servers never see it, and team projects are encrypted so we can’t read them.'
   },
   {
     q: 'What will the AI cost me?',
-    a: 'It depends on how much you use it. You pay your AI provider directly, and you set a daily limit so updates pause rather than overspend.'
+    a: 'It depends on how much you use it. You pay the AI company directly, and you set a daily limit so updates pause rather than overspend.'
   },
   {
     q: 'What does it run on?',
@@ -119,13 +129,13 @@ export default function TeamsPage() {
               LLMnesia Pro · Early access
             </p>
             <h1 className="pro-title">
-              Your AI chats,
-              <br />
-              <span className="pro-title-accent">now a project board.</span>
+              Stop re-explaining your project to{' '}
+              <span className="pro-title-accent">every new AI chat.</span>
             </h1>
             <p className="pro-lede">
-              A board of what’s decided, in progress and next, that keeps itself current. Every card
-              links to the chats behind it.
+              LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for
+              each project: what’s decided, what’s in progress, what’s next. Every item links back to
+              the chat it came from.
             </p>
             <div className="pro-hero-actions">
               <a className="pro-cta" href="#early-access">Join early access</a>
@@ -134,6 +144,7 @@ export default function TeamsPage() {
           </div>
 
           <div className="container pro-demo-wrap">
+            <p className="pro-demo-hint">Try it: click any card to see the chats behind it.</p>
             <ProBoardDemo />
           </div>
 
@@ -145,17 +156,46 @@ export default function TeamsPage() {
           </div>
         </section>
 
-        <section className="pro-moments">
-          <div className="container pro-moments-grid">
-            {MOMENTS.map((moment, index) => (
-              <article className="pro-moment" key={moment.label}>
-                <p className="pro-moment-label">
-                  <span>0{index + 1}</span> {moment.label}
-                </p>
-                <h2>{moment.title}</h2>
-                <p>{moment.body}</p>
-              </article>
-            ))}
+        <section className="pro-pain">
+          <div className="container pro-pain-inner">
+            <div className="pro-pain-problem">
+              <p className="pro-kicker">Sound familiar?</p>
+              <ul className="pro-pain-list">
+                {PAINS.map((pain) => (
+                  <li key={pain.text}>
+                    {pain.platform ? (
+                      <span className="pro-chip" data-platform={pain.platform}>{pain.label}</span>
+                    ) : (
+                      <span className="pro-chip pro-chip--you">You</span>
+                    )}
+                    <span>{pain.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="pro-pain-answer">
+              <h2>LLMnesia puts it all on one board, and keeps it up to date.</h2>
+              <ul className="pro-outcomes">
+                {OUTCOMES.map((outcome) => (
+                  <li key={outcome}>{outcome}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="pro-steps">
+          <div className="container">
+            <p className="pro-kicker pro-steps-kicker">How it works</p>
+            <ol className="pro-steps-list">
+              {STEPS.map((step, index) => (
+                <li key={step.title}>
+                  <span className="pro-step-number" aria-hidden="true">{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
@@ -165,8 +205,9 @@ export default function TeamsPage() {
               <p className="pro-kicker">For teams</p>
               <h2>Share decisions, not your whole chat history.</h2>
               <p>
-                Everyone keeps their own AI tools. Share a card or excerpt in one click, the project
-                lead approves what lands, and teammates’ AI tools can read the team board.
+                Everyone keeps using their own AI tools. When something is worth sharing, you pick it,
+                check the exact wording and share it in one click. The project lead approves what goes
+                on the team board, and your teammates’ AI tools can read it.
               </p>
             </div>
 
@@ -216,7 +257,7 @@ export default function TeamsPage() {
               <p className="pro-kicker">Pro</p>
               <p className="pro-price-figure">
                 {PRICE_MONTHLY}
-                <span>per seat / month</span>
+                <span>per person / month</span>
               </p>
               <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
               <ul className="pro-price-list">
