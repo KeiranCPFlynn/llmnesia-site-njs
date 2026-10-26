@@ -47,8 +47,8 @@ const STEPS = [
     body: 'Add an API key from an AI company, or use a coding agent you already have. Pro uses it to read your chats.'
   },
   {
-    title: 'Your boards fill in',
-    body: 'Each project gets a board that updates itself while your computer is on. Nothing to sort by hand.'
+    title: 'It keeps track for you',
+    body: 'Each project gets one page of what’s decided, in progress and next, updated while your computer is on. Nothing to sort by hand.'
   }
 ];
 
@@ -61,8 +61,8 @@ const PROMISES = [
 
 // Written as what the reader gets, in their words, not as feature names.
 const PRICE_POINTS = [
-  'A board for every project that keeps itself up to date',
-  'Every decision linked to the chat it came from',
+  'Always know where each project is up to',
+  'Find any decision, and the chat it came from',
   'Pick up any project without re-explaining it',
   'Share the important bits with your team, when you choose',
   'Your chats backed up and synced between your computers (Vault included)'
@@ -175,7 +175,7 @@ export default function TeamsPage() {
               </ul>
             </div>
             <div className="pro-pain-answer">
-              <h2>LLMnesia puts it all on one board, and keeps it up to date.</h2>
+              <h2>LLMnesia keeps track of it for you.</h2>
               <ul className="pro-outcomes">
                 {OUTCOMES.map((outcome) => (
                   <li key={outcome}>{outcome}</li>
