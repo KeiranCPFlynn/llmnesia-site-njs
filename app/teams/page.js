@@ -61,11 +61,10 @@ const PROMISES = [
 
 // Written as what the reader gets, in their words, not as feature names.
 const PRICE_POINTS = [
-  'Always know where each project is up to',
-  'Find any decision, and the chat it came from',
-  'Pick up any project without re-explaining it',
-  'Share the important bits with your team, when you choose',
-  'Your chats backed up and synced between your computers (Vault included)'
+  'Know where every project stands',
+  'Never re-explain a project',
+  'Share with your team, on your terms',
+  'Vault backup and sync included'
 ];
 
 const FAQS = [
@@ -261,17 +260,14 @@ export default function TeamsPage() {
                 <span>per person / month</span>
               </p>
               <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
-              <p className="pro-price-for">For anyone juggling projects across more than one AI.</p>
+              <p className="pro-price-for">For anyone working across more than one AI.</p>
               <p className="pro-price-list-label">What you get</p>
               <ul className="pro-price-list">
                 {PRICE_POINTS.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
-              <p className="pro-price-foot">
-                Works alone or with a team. Runs on your own AI account, so you pay the AI company
-                directly. Early-access members get in first.
-              </p>
+              <p className="pro-price-foot">Alone or with a team. Uses your own AI account.</p>
             </div>
 
             <div className="pro-join-form">

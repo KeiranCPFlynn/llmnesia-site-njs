@@ -9706,7 +9706,8 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
 .pro-price-list li {
   position: relative;
   padding-left: 1.6rem;
-  font-size: 0.95rem;
+  font-size: 1.08rem;
+  font-weight: 500;
 }
 
 .pro-price-list li::before {
