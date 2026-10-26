@@ -44,7 +44,7 @@ const STEPS = [
   },
   {
     title: 'Connect your AI',
-    body: 'Add an API key from an AI company, or use a coding agent you already have. Pro uses it to read your chats.'
+    body: 'Add an OpenAI, Anthropic or OpenRouter key, or use a coding agent you already have. Pro uses it to read your chats.'
   },
   {
     title: 'It keeps track for you',
@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: 'Do I need my own AI account?',
-    a: 'Yes. Pro uses an AI you connect to write your boards: an API key from an AI company, or a coding agent you already use, such as Claude Code, Codex or ZCode. On a team project, the admin can add one key for everyone, so teammates don’t need their own.'
+    a: 'Yes. Pro uses an AI you connect to write your boards: an OpenAI, Anthropic or OpenRouter API key, or a coding agent you already use, such as Claude Code, Codex or ZCode. On a team project, the admin can add one key for everyone, so teammates don’t need their own.'
   },
   {
     q: 'What does the AI provider see?',
@@ -86,7 +86,7 @@ const FAQS = [
   },
   {
     q: 'What will the AI cost me?',
-    a: 'It depends on how much you use it. You pay the AI company directly, and you set a daily limit so updates pause rather than overspend.'
+    a: 'Very little. In our testing with a fast, low-cost model (GPT-6 Luna), each update cost well under a tenth of a US cent, and a busy month came to around £1. Bigger models cost more. You pay the AI company directly and set a daily limit, so it can never run away.'
   },
   {
     q: 'What does it run on?',

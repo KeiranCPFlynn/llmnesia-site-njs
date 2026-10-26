@@ -243,7 +243,7 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
         <PillGroup
           id={`pro-model-${context}`}
           question="Which AI would write your boards?"
-          note="Pro needs an AI to turn your chats into boards: an API key from an AI company, or a coding agent you already use. You pay them directly."
+          note="Pro needs an AI to turn your chats into boards: an OpenAI, Anthropic or OpenRouter API key, or a coding agent you already use. You pay them directly."
           options={MODEL_ACCESS_OPTIONS}
           isSelected={(value) => modelAccess === value}
           onToggle={(value) => setModelAccess(modelAccess === value ? '' : value)}
