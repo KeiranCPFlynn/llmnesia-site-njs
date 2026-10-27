@@ -68,7 +68,8 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
                 <a href={href('/compare')}>{t('compare')}</a>
                 <InstallLink className="nav-cta" utm={languageCampaign(language)}>{t('install')}</InstallLink>
               </nav>
-              <div dangerouslySetInnerHTML={{ __html: languagePickerHtml(language, pagePath) }} />
+              {/* /pro is English only, so a language picker there would do nothing. */}
+              {pagePath !== '/pro' && <div dangerouslySetInnerHTML={{ __html: languagePickerHtml(language, pagePath) }} />}
             </>
           )}
         </div>
