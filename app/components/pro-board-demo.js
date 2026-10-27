@@ -47,7 +47,7 @@ export default function ProBoardDemo() {
   const [projectId, setProjectId] = useState('invoicing');
   const [cardId, setCardId] = useState(null);
   const [run, setRun] = useState(IDLE);
-  const [scrollToken, setScrollToken] = useState(0);
+  const [scrollTarget, setScrollTarget] = useState(null);
   const mainRef = useRef(null);
   const project = PROJECTS.find((item) => item.id === projectId);
   const projectRun = projectId === 'invoicing' ? run : IDLE;
@@ -72,22 +72,24 @@ export default function ProBoardDemo() {
     if (mainRef.current) mainRef.current.scrollTop = 0;
   }, [step, projectId, cardId]);
 
-  // Step 2 then brings the cards being rewritten into view, just below the
-  // pinned "Updating your board" panel.
+  // Steps 2 and 3 then bring the part they are about into view: the cards
+  // being rewritten (below the pinned "Updating your board" panel), or the
+  // card's Now, Next and "Keep working on this".
   useEffect(() => {
     const main = mainRef.current;
-    const topic = scrollToken && main?.querySelector(`[data-topic="${UPDATING_TOPIC}"]`);
-    if (!topic) return;
+    const target = scrollTarget && main?.querySelector(scrollTarget.selector);
+    if (!target) return;
     const panel = main.querySelector('.pj-activity-card');
+    const top = target.getBoundingClientRect().top - main.getBoundingClientRect().top + main.scrollTop;
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    main.scrollTo({ top: topic.offsetTop - (panel ? panel.offsetHeight + 12 : 12), behavior: reduce ? 'auto' : 'smooth' });
-  }, [scrollToken]);
+    main.scrollTo({ top: top - (panel ? panel.offsetHeight + 24 : 12), behavior: reduce ? 'auto' : 'smooth' });
+  }, [scrollTarget]);
 
   // Reduced motion shows the finished result straight away.
   const startRun = () => {
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     setRun(reduce ? DONE : { phase: 'matching', chats: 0, cards: 0 });
-    setScrollToken((token) => token + 1);
+    setScrollTarget({ selector: `[data-topic="${UPDATING_TOPIC}"]` });
   };
 
   const show = (index) => {
@@ -95,6 +97,7 @@ export default function ProBoardDemo() {
     setProjectId('invoicing');
     if (index === 2) {
       setCardId(FIRST_CARD);
+      setScrollTarget({ selector: '.pj-card-now-next' });
       return;
     }
     setCardId(null);
