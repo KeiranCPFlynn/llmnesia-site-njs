@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // Interactive design preview of Pro for /pro. Everything here is made-up
 // content. The page copies the real Projects page in the extension
@@ -95,17 +95,20 @@ const GUIDE = [
   {
     id: 'chat',
     title: 'You chat in any AI',
-    body: 'ChatGPT, Claude, Gemini, Claude Code, Codex. LLMnesia saves each chat as you go.'
+    body: 'ChatGPT, Claude, Gemini, Claude Code, Codex. LLMnesia saves each chat as you go.',
+    hint: 'An ordinary chat in Claude. Press Next to see what LLMnesia does with it.'
   },
   {
     id: 'decided',
     title: 'It sorts them into projects by itself',
-    body: 'No tagging or copying. LLMnesia reads your new chats and keeps each project page up to date: what’s decided, in progress and next.'
+    body: 'No tagging or copying. LLMnesia reads your new chats and keeps each project page up to date: what’s decided, in progress and next.',
+    hint: 'The decision from that chat is already here. Try the tabs, or click “Open source chat”.'
   },
   {
     id: 'next',
     title: 'Click to check or carry on',
-    body: 'Open the chat behind any item, then pick up there or continue it in another AI.'
+    body: 'Open the chat behind any item, then pick up there or continue it in another AI.',
+    hint: 'The highlight shows the exact words the item came from.'
   }
 ];
 
@@ -394,6 +397,12 @@ export default function ProBoardDemo() {
   const [tab, setTab] = useState('decided');
   const [chatId, setChatId] = useState(FIRST_CHAT);
   const step = view === 'ai' ? 0 : view === 'project' ? 1 : 2;
+  const sceneRef = useRef(null);
+
+  // The window keeps one size; each new view starts at its top.
+  useEffect(() => {
+    if (sceneRef.current) sceneRef.current.scrollTop = 0;
+  }, [view, chatId]);
 
   const show = (index) => {
     if (index === 0) {
@@ -447,17 +456,19 @@ export default function ProBoardDemo() {
           <span className="pro-app-name">{barName}</span>
           <span className="pro-app-badge">Design preview</span>
         </div>
-        <div className="pro-scene">
-          {view === 'ai' ? <AiChat chatId={FIRST_CHAT} /> : null}
-          {view === 'project' ? (
-            <ProjectPage project={project} onProject={setProject} tab={tab} onTab={setTab} onOpenChat={openChat} />
-          ) : null}
-          {view === 'viewer' ? <ChatView chatId={chatId} onBack={() => setView('project')} /> : null}
+        <div className="pro-scene" ref={sceneRef}>
+          <div className="pro-scene-view" key={view}>
+            {view === 'ai' ? <AiChat chatId={FIRST_CHAT} /> : null}
+            {view === 'project' ? (
+              <ProjectPage project={project} onProject={setProject} tab={tab} onTab={setTab} onOpenChat={openChat} />
+            ) : null}
+            {view === 'viewer' ? <ChatView chatId={chatId} onBack={() => setView('project')} /> : null}
+          </div>
         </div>
         <div className="pro-app-foot">
-          <span className="pro-app-hint">Everything in the preview is clickable.</span>
+          <span className="pro-app-hint" aria-live="polite">{GUIDE[step].hint}</span>
           <button type="button" className="pro-app-next" onClick={() => show(last ? 0 : step + 1)}>
-            {last ? 'Start again' : `Next: ${GUIDE[step + 1].title}`} <span aria-hidden="true">{last ? '↺' : '→'}</span>
+            {last ? 'Start again' : 'Next'} <span aria-hidden="true">{last ? '↺' : '→'}</span>
           </button>
         </div>
       </div>

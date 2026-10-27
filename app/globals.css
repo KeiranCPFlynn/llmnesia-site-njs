@@ -9127,6 +9127,7 @@ a.pro-btn {
   .pro-hero-inner > *,
   .pro-sources,
   .pro-demo-wrap > .pro-demo,
+  .pro-scene-view,
   .pro-pill-dot {
     animation: none;
   }
@@ -9219,8 +9220,21 @@ a.pro-btn {
 }
 
 .pro-scene {
-  min-height: 28rem;
+  height: 32rem;
+  overflow-y: auto;
   background: var(--t-paper);
+}
+
+/* Views swap in place with a short fade, so nothing moves or resizes. */
+.pro-scene-view {
+  min-height: 100%;
+  animation: pro-fade 0.2s ease;
+}
+
+@keyframes pro-fade {
+  from {
+    opacity: 0;
+  }
 }
 
 .pro-app-foot {
@@ -9235,8 +9249,9 @@ a.pro-btn {
 }
 
 .pro-app-hint {
-  color: var(--t-ink-3);
-  font-size: 0.85rem;
+  flex: 1 1 18rem;
+  color: var(--t-ink-2);
+  font-size: 0.88rem;
 }
 
 .pro-app-next {
@@ -9251,8 +9266,15 @@ a.pro-btn {
   cursor: pointer;
 }
 
-/* Step 1: the chat in the assistant itself. */
+/* Step 1: the chat in the assistant itself, centred in the window. */
+.pro-scene-view:has(> .pro-aichat) {
+  display: grid;
+  align-items: center;
+}
+
 .pro-aichat {
+  box-sizing: border-box;
+  width: 100%;
   max-width: 46rem;
   margin: 0 auto;
   padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
@@ -9536,7 +9558,7 @@ a.pro-btn {
   }
 
   .pro-scene {
-    min-height: 0;
+    height: 30rem;
   }
 
   .pro-project,
