@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 // Interactive design preview of Pro for /pro. Everything here is made-up
 // content. The right-hand page copies the real Projects page in the extension
@@ -12,10 +12,9 @@ import { useEffect, useRef, useState } from 'react';
 // Opening a chat shows it as the LLMnesia viewer does, with "Continue in".
 // Nothing here shows a feature the product does not have.
 //
-// The left-hand list is the reader's own chats across several AIs. Picking
-// one shows where LLMnesia filed it: the right project, the right tab, and
-// the cards it fed, ringed. That is the point of the demo: the sorting is
-// automatic.
+// Three numbered captions beside it say what is going on, and clicking a
+// caption shows that part of the page. The reader can also click around the
+// page freely.
 
 const PLATFORMS = {
   chatgpt: 'ChatGPT',
@@ -88,8 +87,27 @@ const CHATS = {
   }
 };
 
-// Newest first, across both projects and every AI.
-const CHAT_ORDER = ['trial-pricing', 'headline', 'refunds', 'launch-post', 'vat', 'stripe', 'webhooks'];
+// The chat the first caption opens.
+const FIRST_CHAT = 'trial-pricing';
+
+// The captions. Each one shows the part of the page it describes.
+const GUIDE = [
+  {
+    id: 'chat',
+    title: 'You chat in any AI',
+    body: 'ChatGPT, Claude, Gemini, Claude Code, Codex. LLMnesia saves each chat as you go.'
+  },
+  {
+    id: 'decided',
+    title: 'It sorts them into projects by itself',
+    body: 'No tagging or copying. LLMnesia reads your new chats and keeps each project page up to date: what’s decided, in progress and next.'
+  },
+  {
+    id: 'next',
+    title: 'Click to check or carry on',
+    body: 'Open the chat behind any item, then pick up there or continue it in another AI.'
+  }
+];
 
 // Work items shaped like the real board: a title, a status, a summary and
 // evidence, plus any decision claims and a next action, each with its quote.
@@ -150,7 +168,6 @@ const KIND_LABELS = { explicit: 'Explicit commitment', recommendation: 'Recommen
 const CONTINUE_TARGETS = ['chatgpt', 'gemini', 'claude', 'claude-code'];
 
 const statusText = (status) => status.replaceAll('_', ' ');
-const usesChat = (evidence, chatId) => evidence.some((ref) => ref.chat === chatId);
 
 // The quotes a chat backs, across every card, so the chat view can mark them.
 function quotesFor(chatId) {
@@ -160,14 +177,6 @@ function quotesFor(chatId) {
     ...(card.next ? card.next.evidence : [])
   ]);
   return refs.filter((ref) => ref.chat === chatId).map((ref) => ref.quote);
-}
-
-// Where a chat landed: the first tab that shows something it fed.
-function tabFor(chatId) {
-  const cards = CARDS.filter((card) => card.project === CHATS[chatId].project);
-  if (cards.some((card) => (card.claims || []).some((claim) => usesChat(claim.evidence, chatId)))) return 'decided';
-  if (cards.some((card) => IN_PROGRESS_STATUSES.includes(card.status) && usesChat(card.evidence, chatId))) return 'progress';
-  return 'next';
 }
 
 function Platform({ id }) {
@@ -212,9 +221,9 @@ function Evidence({ refs, onOpen }) {
   );
 }
 
-function Card({ card, summary, kind, refs, ringed, onOpen }) {
+function Card({ card, summary, kind, refs, onOpen }) {
   return (
-    <article className={`pro-project-card${ringed ? ' is-ringed' : ''}`}>
+    <article className="pro-project-card">
       <h4>{card.title}</h4>
       <span className="pro-project-pill">{statusText(card.status)}</span>
       <p className="pro-project-summary">{summary}</p>
@@ -224,9 +233,8 @@ function Card({ card, summary, kind, refs, ringed, onOpen }) {
   );
 }
 
-function ProjectPage({ project, onProject, tab, onTab, onOpenChat, chatId }) {
+function ProjectPage({ project, onProject, tab, onTab, onOpenChat }) {
   const cards = CARDS.filter((card) => card.project === project);
-  const ring = (refs) => Boolean(chatId) && usesChat(refs, chatId);
   const completed = cards.filter((card) => card.status === 'verified_complete');
 
   return (
@@ -278,7 +286,6 @@ function ProjectPage({ project, onProject, tab, onTab, onOpenChat, chatId }) {
                   summary={claim.text}
                   kind="Decision claim"
                   refs={claim.evidence}
-                  ringed={ring(claim.evidence)}
                   onOpen={onOpenChat}
                 />
               ))
@@ -289,7 +296,7 @@ function ProjectPage({ project, onProject, tab, onTab, onOpenChat, chatId }) {
           ? cards
               .filter((card) => IN_PROGRESS_STATUSES.includes(card.status))
               .map((card) => (
-                <Card key={card.id} card={card} summary={card.summary} refs={card.evidence} ringed={ring(card.evidence)} onOpen={onOpenChat} />
+                <Card key={card.id} card={card} summary={card.summary} refs={card.evidence} onOpen={onOpenChat} />
               ))
           : null}
 
@@ -303,7 +310,6 @@ function ProjectPage({ project, onProject, tab, onTab, onOpenChat, chatId }) {
                   summary={card.next.text}
                   kind={KIND_LABELS[card.next.basis]}
                   refs={card.next.evidence}
-                  ringed={ring(card.next.evidence)}
                   onOpen={onOpenChat}
                 />
               ))
@@ -315,7 +321,7 @@ function ProjectPage({ project, onProject, tab, onTab, onOpenChat, chatId }) {
           <summary>Completed work ({completed.length})</summary>
           <div className="pro-project-list">
             {completed.map((card) => (
-              <Card key={card.id} card={card} summary={card.summary} kind="Verified complete" refs={card.evidence} ringed={ring(card.evidence)} onOpen={onOpenChat} />
+              <Card key={card.id} card={card} summary={card.summary} kind="Verified complete" refs={card.evidence} onOpen={onOpenChat} />
             ))}
           </div>
         </details>
@@ -363,90 +369,59 @@ function ChatView({ chatId, onBack }) {
 }
 
 export default function ProBoardDemo() {
-  const [chatId, setChatId] = useState(CHAT_ORDER[0]);
-  const [project, setProject] = useState(CHATS[CHAT_ORDER[0]].project);
-  const [tab, setTab] = useState(tabFor(CHAT_ORDER[0]));
+  const [project, setProject] = useState('invoicing');
+  const [tab, setTab] = useState('decided');
   const [viewing, setViewing] = useState(null);
-  const [picks, setPicks] = useState(0);
-  const pageRef = useRef(null);
+  const active = viewing ? 'chat' : tab === 'progress' ? 'decided' : tab;
 
-  // After a pick, bring the first ringed card into view if it is off screen,
-  // so the reader always sees where the chat went.
-  useEffect(() => {
-    if (!picks) return;
-    pageRef.current?.querySelector('.is-ringed')?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  }, [picks]);
-
-  const pickChat = (id) => {
-    setChatId(id);
-    setProject(CHATS[id].project);
-    setTab(tabFor(id));
+  const show = (id) => {
+    if (id === 'chat') {
+      setViewing(FIRST_CHAT);
+      return;
+    }
     setViewing(null);
-    setPicks((count) => count + 1);
-  };
-
-  const pickProject = (id) => {
-    setProject(id);
-    if (chatId && CHATS[chatId].project !== id) setChatId(null);
+    setProject('invoicing');
+    setTab(id);
   };
 
   return (
     <div className="pro-demo">
-      <ol className="pro-flow">
-        <li><span className="pro-flow-num" aria-hidden="true">1</span> You chat in any AI</li>
-        <li><span className="pro-flow-num" aria-hidden="true">2</span> LLMnesia sorts each chat into the right project, automatically</li>
-        <li><span className="pro-flow-num" aria-hidden="true">3</span> Open the chat behind anything</li>
+      <ol className="pro-guide">
+        {GUIDE.map((item, index) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className={`pro-guide-item${active === item.id ? ' is-on' : ''}`}
+              aria-pressed={active === item.id}
+              onClick={() => show(item.id)}
+            >
+              <span className="pro-guide-num" aria-hidden="true">{index + 1}</span>
+              <span className="pro-guide-text">
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+        <li className="pro-guide-hint">Try it: everything in the preview is clickable.</li>
       </ol>
 
-      <div className="pro-demo-cols">
-        <div className="pro-chats">
-          <p className="pro-chats-label">Your recent chats</p>
-          <ul className="pro-chats-list">
-            {CHAT_ORDER.map((id) => {
-              const chat = CHATS[id];
-              return (
-                <li key={id}>
-                  <button
-                    type="button"
-                    className={`pro-chats-item${chatId === id ? ' is-on' : ''}`}
-                    aria-pressed={chatId === id}
-                    onClick={() => pickChat(id)}
-                  >
-                    <Platform id={chat.platform} />
-                    <span className="pro-chats-title">{chat.title}</span>
-                    <span className="pro-chats-when">{chat.when}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-          <p className="pro-chats-hint">Pick a chat to see where it was filed.</p>
+      <div className="pro-app">
+        <div className="pro-app-bar">
+          <span className="pro-app-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className="pro-app-name">LLMnesia · Projects</span>
+          <span className="pro-app-badge">Design preview</span>
         </div>
-
-        <div className="pro-app">
-          <div className="pro-app-bar">
-            <span className="pro-app-dots" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-            <span className="pro-app-name">LLMnesia · Projects</span>
-            <span className="pro-app-badge">Design preview</span>
-          </div>
-          <div className="pro-scene" ref={pageRef}>
-            {viewing ? (
-              <ChatView chatId={viewing} onBack={() => setViewing(null)} />
-            ) : (
-              <ProjectPage
-                project={project}
-                onProject={pickProject}
-                tab={tab}
-                onTab={setTab}
-                onOpenChat={setViewing}
-                chatId={chatId}
-              />
-            )}
-          </div>
+        <div className="pro-scene">
+          {viewing ? (
+            <ChatView chatId={viewing} onBack={() => setViewing(null)} />
+          ) : (
+            <ProjectPage project={project} onProject={setProject} tab={tab} onTab={setTab} onOpenChat={setViewing} />
+          )}
         </div>
       </div>
     </div>
