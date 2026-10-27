@@ -48,12 +48,12 @@ const STEPS = [
   },
   {
     title: 'It keeps track for you',
-    body: 'Each project gets one page of what’s decided, in progress and next, updated while your computer is on. Nothing to sort by hand.'
+    body: 'Each project gets one page of what’s decided, in progress and next, updated while your computer is on. Chats are sorted into projects for you where the source is clear.'
   }
 ];
 
 const PROMISES = [
-  { icon: 'lock', title: 'Only your team can read it', body: 'Team projects are encrypted before they leave your computer. We can’t read them.' },
+  { icon: 'lock', title: 'Encrypted end to end', body: 'Team projects are encrypted before they leave your computer, so we can’t read them. The only outside service that sees your text is the AI you choose.' },
   { icon: 'key', title: 'Your own AI account', body: 'Pro uses your AI account to write boards, so you pay the AI company directly. We add no markup.' },
   { icon: 'check', title: 'Nothing shared by accident', body: 'You see the exact text before your team does.' },
   { icon: 'undo', title: 'Take it back', body: 'Withdraw anything you shared, any time.' }
@@ -83,6 +83,10 @@ const FAQS = [
   {
     q: 'What does it run on?',
     a: 'Pro runs in the LLMnesia browser extension on your computer. Claude Code and Codex sessions are picked up with the free desktop helper.'
+  },
+  {
+    q: 'Is anything shared with my team automatically?',
+    a: 'No. Filing a chat under a team project never shares it. LLMnesia suggests updates for the team board from your work, but each one waits until you check the exact text and approve it. New or changed decisions then go to the project lead.'
   },
   {
     q: 'Can I take back something I shared?',
@@ -195,9 +199,11 @@ export default function ProPage() {
               <p className="pro-kicker">For teams</p>
               <h2>Share decisions, not your whole chat history.</h2>
               <p>
-                Everyone keeps using their own AI tools. When something is worth sharing, you pick it,
-                check the exact wording and share it in one click. The project lead approves what goes
-                on the team board, and your teammates’ AI tools can read it.
+                Everyone keeps using their own AI tools. LLMnesia suggests team updates from your work,
+                and you can share anything else yourself. Nothing reaches the team until you check the
+                exact wording and approve it. Progress updates go straight on the board. New decisions,
+                and any clashes, go to the project lead first. Any AI tool your teammates use that
+                supports MCP can read the board.
               </p>
             </div>
 
@@ -258,7 +264,7 @@ export default function ProPage() {
                 </li>
                 <li>
                   <strong>Alone or with a team</strong>
-                  <span>Keep projects private, or share them with your team.</span>
+                  <span>Keep projects private, or share what you choose with your team.</span>
                 </li>
                 <li>
                   <strong>Uses your own AI account</strong>
