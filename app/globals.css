@@ -9137,19 +9137,18 @@ a.pro-btn {
   }
 }
 
-/* --- Demo: numbered captions beside the clickable preview (dark hero) --- */
+/* --- Demo: three numbered steps above a full-width preview (dark hero) --- */
 .pro-demo {
   display: grid;
-  grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
-  gap: clamp(1.25rem, 3vw, 2.25rem);
-  align-items: start;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
   max-width: 72rem;
   margin: 0 auto;
 }
 
 .pro-guide {
   display: grid;
-  gap: 0.6rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9161,6 +9160,7 @@ a.pro-btn {
   align-items: flex-start;
   gap: 0.8rem;
   width: 100%;
+  height: 100%;
   padding: 0.9rem 1rem;
   border: 1px solid rgba(214, 233, 240, 0.14);
   border-radius: 12px;
@@ -9203,7 +9203,7 @@ a.pro-btn {
 .pro-guide-text {
   display: grid;
   gap: 0.25rem;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -9213,22 +9213,67 @@ a.pro-btn {
   line-height: 1.3;
 }
 
-.pro-guide-hint {
-  padding: 0.2rem 0.25rem 0;
-  color: #f2a27c;
-  font-size: 0.85rem;
-  font-weight: 600;
+/* The window shows a whole desktop page, as the extension does in a tab. */
+.pro-demo > .pro-app {
+  width: 100%;
 }
 
 .pro-scene {
-  display: grid;
-  justify-items: center;
-  gap: 1.1rem;
-  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-  background:
-    radial-gradient(circle at 1px 1px, var(--t-rule) 1px, transparent 0) 0 0 / 22px 22px,
-    var(--t-paper);
-  border-radius: 0 0 16px 16px;
+  min-height: 28rem;
+  background: var(--t-paper);
+}
+
+.pro-app-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--t-rule);
+  background: var(--t-paper-2);
+}
+
+.pro-app-hint {
+  color: var(--t-ink-3);
+  font-size: 0.85rem;
+}
+
+.pro-app-next {
+  padding: 0.5rem 0.95rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--t-teal);
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Step 1: the chat in the assistant itself. */
+.pro-aichat {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
+}
+
+.pro-aichat-title {
+  margin: 0 0 0.75rem;
+  color: var(--t-ink-3);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.pro-aichat .pro-line p,
+.pro-viewer .pro-line p {
+  font-size: 0.95rem;
+}
+
+.pro-aichat .pro-line-who,
+.pro-viewer .pro-line-who {
+  font-size: 0.66rem;
 }
 
 .pro-window-body {
@@ -9239,12 +9284,10 @@ a.pro-btn {
 
 /* --- The project page, mirroring the real Projects page in the extension --- */
 .pro-project {
-  width: min(44rem, 100%);
-  padding: clamp(1rem, 2.5vw, 1.5rem);
-  border: 1px solid var(--t-rule);
-  border-radius: 12px;
-  background: var(--t-paper);
-  box-shadow: 0 30px 60px -34px rgba(11, 22, 29, 0.4);
+  box-sizing: border-box;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px;
   text-align: left;
 }
 
@@ -9411,16 +9454,15 @@ a.pro-btn {
 
 /* --- A chat as the LLMnesia viewer shows it --- */
 .pro-viewer {
-  width: min(44rem, 100%);
-  border: 1px solid #c9c3ad;
-  border-radius: 12px;
-  background: var(--t-card);
-  box-shadow: 0 30px 60px -30px rgba(11, 22, 29, 0.45);
+  box-sizing: border-box;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px;
   text-align: left;
 }
 
 .pro-viewer-head {
-  padding: 0.85rem 1rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--t-rule);
 }
 
@@ -9458,7 +9500,7 @@ a.pro-btn {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0 0;
   border-top: 1px solid var(--t-rule-soft);
 }
 
@@ -9488,9 +9530,18 @@ a.pro-btn {
   font-weight: 600;
 }
 
-@media (max-width: 900px) {
-  .pro-demo {
+@media (max-width: 760px) {
+  .pro-guide {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pro-scene {
+    min-height: 0;
+  }
+
+  .pro-project,
+  .pro-viewer {
+    padding: 16px;
   }
 }
 

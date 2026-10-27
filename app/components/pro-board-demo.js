@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 // Interactive design preview of Pro for /pro. Everything here is made-up
-// content. The right-hand page copies the real Projects page in the extension
+// content. The page copies the real Projects page in the extension
 // (extension/src/pages/projects.ts) as closely as a web page can: the heading
 // and subtitle, the project picker with Retry, the freshness line, the
 // Decided / In progress / Next tabs, and cards with a title, a status, a
@@ -12,9 +12,9 @@ import { useState } from 'react';
 // Opening a chat shows it as the LLMnesia viewer does, with "Continue in".
 // Nothing here shows a feature the product does not have.
 //
-// Three numbered captions beside it say what is going on, and clicking a
-// caption shows that part of the page. The reader can also click around the
-// page freely.
+// Three numbered steps above it tell the story in order: the chat in the
+// assistant, the Projects page it fed, then the source chat opened from it.
+// Clicking a step shows that view, and the reader can click around freely.
 
 const PLATFORMS = {
   chatgpt: 'ChatGPT',
@@ -87,10 +87,10 @@ const CHATS = {
   }
 };
 
-// The chat the first caption opens.
+// The chat the story follows: step 1 shows it, step 3 opens it.
 const FIRST_CHAT = 'trial-pricing';
 
-// The captions. Each one shows the part of the page it describes.
+// The steps. Each one shows the view it describes.
 const GUIDE = [
   {
     id: 'chat',
@@ -368,21 +368,53 @@ function ChatView({ chatId, onBack }) {
   );
 }
 
+// A chat as it happens in the assistant itself, before LLMnesia does anything.
+function AiChat({ chatId }) {
+  const chat = CHATS[chatId];
+  return (
+    <div className="pro-aichat">
+      <p className="pro-aichat-title">{chat.title}</p>
+      <div className="pro-window-body">
+        {chat.lines.map((line) => (
+          <div key={line.text} className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
+            <span className="pro-line-who">{line.you ? 'You' : PLATFORMS[chat.platform]}</span>
+            <p>{line.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ProBoardDemo() {
+  // 'ai' is the chat in the assistant (step 1), 'project' the Projects page
+  // (step 2) and 'viewer' a source chat opened from it (step 3).
+  const [view, setView] = useState('ai');
   const [project, setProject] = useState('invoicing');
   const [tab, setTab] = useState('decided');
-  const [viewing, setViewing] = useState(null);
-  const active = viewing ? 'chat' : tab === 'progress' ? 'decided' : tab;
+  const [chatId, setChatId] = useState(FIRST_CHAT);
+  const step = view === 'ai' ? 0 : view === 'project' ? 1 : 2;
 
-  const show = (id) => {
-    if (id === 'chat') {
-      setViewing(FIRST_CHAT);
-      return;
+  const show = (index) => {
+    if (index === 0) {
+      setView('ai');
+    } else if (index === 1) {
+      setProject('invoicing');
+      setTab('decided');
+      setView('project');
+    } else {
+      setChatId(FIRST_CHAT);
+      setView('viewer');
     }
-    setViewing(null);
-    setProject('invoicing');
-    setTab(id);
   };
+
+  const openChat = (id) => {
+    setChatId(id);
+    setView('viewer');
+  };
+
+  const barName = view === 'ai' ? PLATFORMS[CHATS[FIRST_CHAT].platform] : 'LLMnesia · Projects';
+  const last = step === GUIDE.length - 1;
 
   return (
     <div className="pro-demo">
@@ -391,9 +423,9 @@ export default function ProBoardDemo() {
           <li key={item.id}>
             <button
               type="button"
-              className={`pro-guide-item${active === item.id ? ' is-on' : ''}`}
-              aria-pressed={active === item.id}
-              onClick={() => show(item.id)}
+              className={`pro-guide-item${step === index ? ' is-on' : ''}`}
+              aria-pressed={step === index}
+              onClick={() => show(index)}
             >
               <span className="pro-guide-num" aria-hidden="true">{index + 1}</span>
               <span className="pro-guide-text">
@@ -403,7 +435,6 @@ export default function ProBoardDemo() {
             </button>
           </li>
         ))}
-        <li className="pro-guide-hint">Try it: everything in the preview is clickable.</li>
       </ol>
 
       <div className="pro-app">
@@ -413,15 +444,21 @@ export default function ProBoardDemo() {
             <span />
             <span />
           </span>
-          <span className="pro-app-name">LLMnesia · Projects</span>
+          <span className="pro-app-name">{barName}</span>
           <span className="pro-app-badge">Design preview</span>
         </div>
         <div className="pro-scene">
-          {viewing ? (
-            <ChatView chatId={viewing} onBack={() => setViewing(null)} />
-          ) : (
-            <ProjectPage project={project} onProject={setProject} tab={tab} onTab={setTab} onOpenChat={setViewing} />
-          )}
+          {view === 'ai' ? <AiChat chatId={FIRST_CHAT} /> : null}
+          {view === 'project' ? (
+            <ProjectPage project={project} onProject={setProject} tab={tab} onTab={setTab} onOpenChat={openChat} />
+          ) : null}
+          {view === 'viewer' ? <ChatView chatId={chatId} onBack={() => setView('project')} /> : null}
+        </div>
+        <div className="pro-app-foot">
+          <span className="pro-app-hint">Everything in the preview is clickable.</span>
+          <button type="button" className="pro-app-next" onClick={() => show(last ? 0 : step + 1)}>
+            {last ? 'Start again' : `Next: ${GUIDE[step + 1].title}`} <span aria-hidden="true">{last ? '↺' : '→'}</span>
+          </button>
         </div>
       </div>
     </div>
