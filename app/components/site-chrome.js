@@ -43,6 +43,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
 
               <nav className="nav" id="primary-nav" aria-label={t('main')}>
                 <a href={href('/vault')}>{t('vault')}</a>
+                <a href={href('/teams')}>Pro</a>
                 <a href={href('/pricing')}>{t('pricing')}</a>
                 <a href={href('/mcp')}>{t('mcp')}</a>
                 <a href={href('/use-cases')}>{t('useCases')}</a>
@@ -62,6 +63,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
         <div className="container footer-inner">
           <nav aria-label={t('footer')}>
             <a href={href('/vault')}>{t('vault')}</a>
+            <a href={href('/teams')}>Pro</a>
             <a href={href('/pricing')}>{t('pricing')}</a>
             <a href={href('/mcp')}>{t('mcp')}</a>
             <a href={href('/claude-code')}>Claude Code</a>
