@@ -53,7 +53,7 @@ const STEPS = [
 ];
 
 const PROMISES = [
-  { icon: 'lock', title: 'Encrypted end to end', body: 'Team projects are encrypted before they leave your computer, so we can’t read them. The only outside service that sees your text is the AI you choose.' },
+  { icon: 'lock', title: 'Encrypted end to end', body: 'Team projects are encrypted before they leave your computer, so we can’t read them. Apart from the AI you choose, no outside service sees your text.' },
   { icon: 'key', title: 'Your own AI account', body: 'Pro uses your AI account to write boards, so you pay the AI company directly. We add no markup.' },
   { icon: 'check', title: 'Nothing shared by accident', body: 'You see the exact text before your team does.' },
   { icon: 'undo', title: 'Take it back', body: 'Withdraw anything you shared, any time.' }
