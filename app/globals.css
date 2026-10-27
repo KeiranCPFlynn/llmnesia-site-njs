@@ -9041,49 +9041,6 @@ main.pro-page > section.pro-hero {
   letter-spacing: -0.03em;
 }
 
-/* --- Chat lines (chat view) --- */
-.pro-line {
-  display: grid;
-  gap: 0.15rem;
-  max-width: 92%;
-}
-
-.pro-line--you {
-  justify-self: end;
-  text-align: right;
-}
-
-.pro-line-who {
-  color: var(--t-ink-3);
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.pro-line p {
-  margin: 0;
-  padding: 0.5rem 0.65rem;
-  border-radius: 10px;
-  background: var(--t-paper-2);
-  color: var(--t-ink-2);
-  font-size: 0.78rem;
-  line-height: 1.45;
-  text-align: left;
-}
-
-.pro-line--you p {
-  background: var(--t-teal-soft);
-}
-
-.pro-line mark {
-  padding: 0 0.15em;
-  border-radius: 3px;
-  background: #fbe9a6;
-  color: var(--t-ink);
-}
-
 button.pro-btn,
 a.pro-btn {
   font-family: inherit;
@@ -9127,7 +9084,7 @@ a.pro-btn {
   .pro-hero-inner > *,
   .pro-sources,
   .pro-demo-wrap > .pro-demo,
-  .pro-scene-view,
+  .pjx-view,
   .pro-pill-dot {
     animation: none;
   }
@@ -9219,15 +9176,58 @@ a.pro-btn {
   width: 100%;
 }
 
-.pro-scene {
-  height: 32rem;
+/* The Projects app sits in the window at one fixed size. Its project list and
+   page scroll inside, as they do in the app, so the window never resizes. */
+.pro-app .pjx {
+  display: flex;
+  flex-direction: column;
+  height: 40rem;
+  text-align: left;
+}
+
+.pro-app .pjx .pj-topbar {
+  position: static;
+  flex: none;
+}
+
+.pro-app .pjx .pj-topbar-row {
+  min-height: 56px;
+  max-width: none;
+}
+
+.pro-app .pjx .pj-shell {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: none;
+}
+
+.pro-app .pjx .pj-project-rail,
+.pro-app .pjx .pj-app {
   overflow-y: auto;
-  background: var(--t-paper);
+}
+
+.pro-app .pjx .pj-app {
+  position: relative;
+  margin: 0;
+  max-width: none;
+}
+
+/* While the board updates, its progress panel stays in view above the cards. */
+.pro-app .pjx .pj-activity-card {
+  position: sticky;
+  top: 12px;
+  z-index: 2;
+}
+
+.pro-app .pjx h1,
+.pro-app .pjx h2,
+.pro-app .pjx h3 {
+  font-family: inherit;
 }
 
 /* Views swap in place with a short fade, so nothing moves or resizes. */
-.pro-scene-view {
-  min-height: 100%;
+.pjx-view {
   animation: pro-fade 0.2s ease;
 }
 
@@ -9266,312 +9266,13 @@ a.pro-btn {
   cursor: pointer;
 }
 
-/* Step 1: the chat in the assistant itself, centred in the window. */
-.pro-scene-view:has(> .pro-aichat) {
-  display: grid;
-  align-items: center;
-}
-
-.pro-aichat {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
-}
-
-.pro-aichat-title {
-  margin: 0 0 0.75rem;
-  color: var(--t-ink-3);
-  font-size: 0.86rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.pro-aichat .pro-line p,
-.pro-viewer .pro-line p {
-  font-size: 0.95rem;
-}
-
-.pro-aichat .pro-line-who,
-.pro-viewer .pro-line-who {
-  font-size: 0.66rem;
-}
-
-.pro-window-body {
-  display: grid;
-  gap: 0.8rem;
-  padding: 1rem;
-}
-
-/* --- The project page, mirroring the real Projects page in the extension --- */
-.pro-project {
-  box-sizing: border-box;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 24px;
-  text-align: left;
-}
-
-.pro-project-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
-}
-
-.pro-project-h1 {
-  margin: 0;
-  font-size: 1.45rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.pro-project-sub {
-  margin: 0.3rem 0 0;
-  color: var(--t-ink-3);
-  font-size: 0.9rem;
-}
-
-.pro-project-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.pro-project-select,
-.pro-project-button,
-.pro-project-tab {
-  min-height: 2.4rem;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 8px;
-  background: var(--t-card);
-  color: var(--t-ink-2);
-  font: inherit;
-  font-size: 0.92rem;
-}
-
-.pro-project-button {
-  display: inline-flex;
-  align-items: center;
-}
-
-.pro-project-select {
-  color: var(--t-ink);
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.pro-project-fresh {
-  margin: 0.6rem 0 0;
-  color: var(--t-ink-3);
-  font-size: 0.86rem;
-}
-
-.pro-project-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1.1rem 0 0.8rem;
-}
-
-.pro-project-tab {
-  min-width: 6.5rem;
-  cursor: pointer;
-}
-
-.pro-project-tab:hover,
-.pro-project-tab[aria-pressed="true"] {
-  border-color: var(--t-teal);
-  background: var(--t-teal-soft);
-  color: var(--t-ink);
-}
-
-.pro-project-list {
-  display: grid;
-  gap: 0.75rem;
-}
-
-.pro-project-card {
-  min-width: 0;
-  padding: 1rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 10px;
-  background: var(--t-card);
-  box-shadow: 0 1px 2px rgba(11, 22, 29, 0.05);
-}
-
-.pro-project-card h4 {
-  margin: 0 0 0.4rem;
-  font-size: 1.02rem;
-  line-height: 1.35;
-}
-
-.pro-project-pill {
-  display: inline-block;
-  margin: 0 0.5rem 0.5rem 0;
-  padding: 0.1rem 0.6rem;
-  border-radius: 999px;
-  background: var(--t-paper-2);
-  color: var(--t-ink-2);
-  font-size: 0.8rem;
-}
-
-.pro-project-summary {
-  margin: 0.2rem 0 0.6rem;
-  color: var(--t-ink);
-  font-size: 0.94rem;
-  line-height: 1.5;
-}
-
-.pro-project-completed {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--t-rule-soft);
-}
-
-.pro-project-completed > summary {
-  margin-bottom: 0.6rem;
-  color: var(--t-ink-2);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* Evidence: "Open source chat" with the quote under it, as a list. */
-.pro-evidence {
-  margin: 0.6rem 0 0;
-  padding-left: 1.2rem;
-  color: var(--t-ink-3);
-}
-
-.pro-evidence li {
-  margin: 0.35rem 0;
-}
-
-.pro-evidence-link {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--t-teal);
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-
-.pro-evidence-quote {
-  display: block;
-  margin-top: 0.1rem;
-  color: var(--t-ink-3);
-  font-size: 0.88rem;
-  line-height: 1.5;
-}
-
-/* --- A chat as the LLMnesia viewer shows it --- */
-.pro-viewer {
-  box-sizing: border-box;
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 24px;
-  text-align: left;
-}
-
-.pro-viewer-head {
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--t-rule);
-}
-
-.pro-viewer-back {
-  margin: 0 0 0.6rem;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--t-teal);
-  font: inherit;
-  font-size: 0.86rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.pro-viewer-title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.pro-viewer-meta {
-  margin: 0.2rem 0 0;
-  color: var(--t-ink-3);
-  font-size: 0.8rem;
-}
-
-.pro-viewer-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  padding: 0.75rem 0 0;
-  border-top: 1px solid var(--t-rule-soft);
-}
-
-.pro-viewer-open {
-  padding: 0.45rem 0.9rem;
-  border-radius: 8px;
-  background: var(--t-teal);
-  color: #ffffff;
-  font-size: 0.86rem;
-  font-weight: 700;
-}
-
-.pro-viewer-continue {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--t-ink-3);
-  font-size: 0.82rem;
-}
-
-.pro-viewer-target {
-  padding: 0.25rem 0.6rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 999px;
-  color: var(--t-ink-2);
-  font-weight: 600;
-}
-
 @media (max-width: 760px) {
   .pro-guide {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .pro-scene {
-    height: 30rem;
-  }
-
-  .pro-project,
-  .pro-viewer {
-    padding: 16px;
-  }
-}
-
-@media (max-width: 720px) {
-  .pro-project-tab {
-    flex: 1 1 29%;
-    min-width: 0;
-    padding-inline: 0.5rem;
+  .pro-app .pjx {
+    height: 34rem;
   }
 }
 
