@@ -8884,6 +8884,33 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   line-height: 1.4;
 }
 
+.pro-price-includes {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-price-includes li {
+  display: grid;
+  gap: 0.15rem;
+  padding-left: 1.6rem;
+  background: no-repeat left 0.2rem / 1rem 1rem
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2366bdd6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E");
+}
+
+.pro-price-includes strong {
+  color: var(--pro-text);
+  font-size: 0.95rem;
+}
+
+.pro-price-includes span {
+  color: var(--pro-muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
 .pro-price-foot {
   margin: 1rem 0 0;
   color: var(--pro-muted);

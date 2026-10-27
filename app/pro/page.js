@@ -252,7 +252,21 @@ export default function ProPage() {
               </p>
               <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
               <p className="pro-price-for">For anyone working across more than one AI.</p>
-              <p className="pro-price-foot">Alone or with a team. Uses your own AI account. Vault included. Nothing to pay now.</p>
+              <ul className="pro-price-includes">
+                <li>
+                  <strong>LLMnesia Vault included</strong>
+                  <span>End-to-end encrypted backup and sync of all your chats. £8 a month on its own.</span>
+                </li>
+                <li>
+                  <strong>Alone or with a team</strong>
+                  <span>Keep projects private, or share them with your team.</span>
+                </li>
+                <li>
+                  <strong>Uses your own AI account</strong>
+                  <span>Your board updates with your own key or coding agent.</span>
+                </li>
+              </ul>
+              <p className="pro-price-foot">Nothing to pay now.</p>
             </div>
 
             <div className="pro-join-form">
