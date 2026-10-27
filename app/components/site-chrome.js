@@ -20,7 +20,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       </a>
 
       {pagePath !== '/pro' && (
-        <a className="pro-bar" href="/pro" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>
+        <a className="pro-bar" href="/pro#waitlist" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>
           <span className="container pro-bar-inner">
             <span className="pro-bar-tag">{t('proBarTag')}</span>{' '}
             <strong>LLMnesia Pro</strong>{' '}

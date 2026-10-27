@@ -9132,89 +9132,136 @@ a.pro-btn {
   }
 
   .pro-cta,
-  .pro-guide-item {
+  .pro-chats-item,
+  .pro-project-card {
     transition: none;
   }
 }
 
-/* --- Demo: numbered captions beside the clickable preview (dark hero) --- */
+/* --- Demo: the flow strip, your chats, and the project page (dark hero) --- */
 .pro-demo {
-  display: grid;
-  grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
-  gap: clamp(1.25rem, 3vw, 2.25rem);
-  align-items: start;
   max-width: 72rem;
   margin: 0 auto;
-}
-
-.pro-guide {
-  display: grid;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
   text-align: left;
 }
 
-.pro-guide-item {
+.pro-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-flow li {
   display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
-  width: 100%;
-  padding: 0.9rem 1rem;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid rgba(214, 233, 240, 0.14);
   border-radius: 12px;
   background: rgba(214, 233, 240, 0.04);
-  color: #cfe3e8;
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  color: #eef4f2;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
 
-.pro-guide-item:hover {
-  border-color: rgba(102, 189, 214, 0.5);
-}
-
-.pro-guide-item.is-on {
-  border-color: #66bdd6;
+.pro-flow li:nth-child(2) {
+  border-color: rgba(102, 189, 214, 0.55);
   background: rgba(102, 189, 214, 0.12);
 }
 
-.pro-guide-num {
+.pro-flow-num {
   display: inline-grid;
   flex: 0 0 auto;
   place-items: center;
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 999px;
-  background: rgba(214, 233, 240, 0.12);
-  color: #eef4f2;
+  background: #66bdd6;
+  color: #0b161d;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 700;
 }
 
-.pro-guide-item.is-on .pro-guide-num {
-  background: #66bdd6;
-  color: #0b161d;
-}
-
-.pro-guide-text {
+.pro-demo-cols {
   display: grid;
-  gap: 0.25rem;
-  font-size: 0.92rem;
-  line-height: 1.5;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: start;
 }
 
-.pro-guide-text strong {
+/* On wide screens the preview scrolls inside its window, so picking a chat
+   never moves the page away from the list. */
+@media (min-width: 901px) {
+  .pro-demo-cols .pro-scene {
+    max-height: 36rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+.pro-chats-label {
+  margin: 0 0 0.6rem;
+  color: var(--pro-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pro-chats-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-chats-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.55rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid rgba(214, 233, 240, 0.14);
+  border-radius: 10px;
+  background: rgba(214, 233, 240, 0.04);
   color: #eef4f2;
-  font-size: 1.02rem;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.pro-chats-item:hover {
+  border-color: rgba(102, 189, 214, 0.5);
+}
+
+.pro-chats-item.is-on {
+  border-color: #f2a27c;
+  background: rgba(242, 162, 124, 0.12);
+}
+
+.pro-chats-title {
+  min-width: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
   line-height: 1.3;
 }
 
-.pro-guide-hint {
-  padding: 0.2rem 0.25rem 0;
+.pro-chats-when {
+  grid-column: 2;
+  color: var(--pro-muted);
+  font-size: 0.75rem;
+}
+
+.pro-chats-hint {
+  margin: 0.75rem 0 0;
   color: #f2a27c;
   font-size: 0.85rem;
   font-weight: 600;
@@ -9248,6 +9295,14 @@ a.pro-btn {
   text-align: left;
 }
 
+.pro-project-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+}
+
 .pro-project-h1 {
   margin: 0;
   font-size: 1.45rem;
@@ -9265,23 +9320,36 @@ a.pro-btn {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem 0.9rem;
+  gap: 0.6rem;
   margin-top: 1rem;
 }
 
-.pro-project-select {
-  display: inline-flex;
-  gap: 1.5rem;
-  padding: 0.5rem 0.8rem;
+.pro-project-select,
+.pro-project-button,
+.pro-project-tab {
+  min-height: 2.4rem;
+  padding: 0.45rem 0.8rem;
   border: 1px solid var(--t-rule);
   border-radius: 8px;
   background: var(--t-card);
-  color: var(--t-ink);
+  color: var(--t-ink-2);
+  font: inherit;
   font-size: 0.92rem;
+}
+
+.pro-project-button {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pro-project-select {
+  color: var(--t-ink);
   font-weight: 600;
+  cursor: pointer;
 }
 
 .pro-project-fresh {
+  margin: 0.6rem 0 0;
   color: var(--t-ink-3);
   font-size: 0.86rem;
 }
@@ -9294,24 +9362,12 @@ a.pro-btn {
 }
 
 .pro-project-tab {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
   min-width: 6.5rem;
-  min-height: 2.4rem;
-  padding: 0.45rem 0.9rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 8px;
-  background: var(--t-card);
-  color: var(--t-ink-2);
-  font: inherit;
-  font-size: 0.92rem;
   cursor: pointer;
 }
 
 .pro-project-tab:hover,
-.pro-project-tab.is-on {
+.pro-project-tab[aria-pressed="true"] {
   border-color: var(--t-teal);
   background: var(--t-teal-soft);
   color: var(--t-ink);
@@ -9324,22 +9380,29 @@ a.pro-btn {
 
 .pro-project-card {
   min-width: 0;
-  padding: 0.95rem 1rem;
+  padding: 1rem;
   border: 1px solid var(--t-rule);
   border-radius: 10px;
   background: var(--t-card);
   box-shadow: 0 1px 2px rgba(11, 22, 29, 0.05);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Demo only: the cards fed by the chat picked on the left. */
+.pro-project-card.is-ringed {
+  border-color: #f2a27c;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #f2a27c 25%, transparent);
 }
 
 .pro-project-card h4 {
   margin: 0 0 0.4rem;
-  font-size: 1rem;
+  font-size: 1.02rem;
   line-height: 1.35;
 }
 
-.pro-project-status {
+.pro-project-pill {
   display: inline-block;
-  margin: 0 0 0.5rem;
+  margin: 0 0.5rem 0.5rem 0;
   padding: 0.1rem 0.6rem;
   border-radius: 999px;
   background: var(--t-paper-2);
@@ -9347,86 +9410,57 @@ a.pro-btn {
   font-size: 0.8rem;
 }
 
-.pro-project-status.is-waiting {
-  background: #fbefd9;
-  color: #8a5a12;
-}
-
-.pro-project-status.is-done {
-  background: color-mix(in srgb, var(--success) 14%, transparent);
-  color: var(--success);
-}
-
 .pro-project-summary {
-  margin: 0 0 0.5rem;
-  color: var(--t-ink-2);
-  font-size: 0.92rem;
+  margin: 0.2rem 0 0.6rem;
+  color: var(--t-ink);
+  font-size: 0.94rem;
   line-height: 1.5;
 }
 
 .pro-project-completed {
+  margin-top: 1rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--t-rule-soft);
 }
 
-.pro-project-completed > button {
+.pro-project-completed > summary {
   margin-bottom: 0.6rem;
-  padding: 0;
-  border: 0;
-  background: none;
   color: var(--t-ink-2);
-  font: inherit;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
 }
 
-/* A quote and the link back to its chat. */
+/* Evidence: "Open source chat" with the quote under it, as a list. */
 .pro-evidence {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.pro-evidence-quote {
-  padding-left: 0.7rem;
-  border-left: 3px solid #f0d77a;
-  color: var(--t-ink-2);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.pro-evidence-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.35rem 0.8rem;
-}
-
-.pro-evidence-source {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem;
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
   color: var(--t-ink-3);
-  font-size: 0.8rem;
+}
+
+.pro-evidence li {
+  margin: 0.35rem 0;
 }
 
 .pro-evidence-link {
-  padding: 0.25rem 0.6rem;
-  border: 1px solid var(--t-rule);
-  border-radius: 999px;
-  background: var(--t-card);
+  padding: 0;
+  border: 0;
+  background: none;
   color: var(--t-teal);
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
 }
 
-.pro-evidence-link:hover {
-  border-color: var(--t-teal);
-  background: var(--t-teal-soft);
+.pro-evidence-quote {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--t-ink-3);
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 /* --- A chat as the LLMnesia viewer shows it --- */
@@ -9509,8 +9543,36 @@ a.pro-btn {
 }
 
 @media (max-width: 900px) {
-  .pro-demo {
+  .pro-demo-cols,
+  .pro-flow {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pro-flow {
+    gap: 0.4rem;
+  }
+
+  .pro-flow li {
+    padding: 0.55rem 0.75rem;
+  }
+
+  /* Your chats become one swipeable row above the page. */
+  .pro-chats-list {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 -1rem;
+    padding: 0 1rem 0.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+  }
+
+  .pro-chats-list > li {
+    flex: 0 0 13.5rem;
+    scroll-snap-align: start;
+  }
+
+  .pro-chats-item {
+    height: 100%;
   }
 }
 

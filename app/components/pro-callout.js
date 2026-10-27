@@ -16,7 +16,7 @@ export default function ProCallout({ slug, language = 'en' }) {
         </div>
         <a
           className="pro-callout-link"
-          href="/pro"
+          href="/pro#waitlist"
           data-analytics="pro_callout_click"
           data-analytics-slug={slug}
         >

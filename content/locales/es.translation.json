@@ -515,15 +515,12 @@
       "reviewedAt": "2026-10-09T06:25:54.591Z"
     },
     "homepage.top.p.1": {
-      "sourceHash": "36de4a303e4734d98fabad4f94fab8eb624693d2ef10a8cb07dc373ed85d7251",
-      "machineHash": "d33797f99b45e229680485d589d97a022a0bae4d7ec94b981996130cd1c5bb34",
-      "model": "quality_optimized",
-      "billedCharacters": 41,
-      "needsMarkupReview": false,
-      "translatedAt": "2026-10-09T06:14:02.575Z",
-      "reviewedHash": "9e66f3e02fe08fcfb1ca2cc3606bb7ec80e06ea8d581269264e268fb335ced09",
-      "reviewedAt": "2026-10-23T03:20:35.273994+00:00",
-      "reviewedBy": "Codex: source meaning and markup comparison"
+      "sourceHash": "2ebfbb614266c397c1e9894f69e24570d0302f66aef53da0bc152098282d13ba",
+      "machineHash": "44a319410c60720d44a036d87cbf59cc088db9286018e197267766335cdbec86",
+      "model": "manual",
+      "translatedAt": "2026-10-27T06:19:18.338Z",
+      "reviewedHash": "44a319410c60720d44a036d87cbf59cc088db9286018e197267766335cdbec86",
+      "needsMarkupReview": false
     },
     "homepage.top.h1.1": {
       "sourceHash": "982a59d88f32a95d06621d18f959b83b9aea7753b7ee85a9fa5457148a6bf508",
@@ -8209,11 +8206,11 @@
       "reviewedAt": "2026-10-09T08:36:17.040Z"
     },
     "homepage.top.compatibility": {
-      "provider": "Codex",
-      "sourceHash": "defb792b6f1bd2007be2b5242c85bc521dfdef07c86c8b82fe3f9ef1e5012062",
-      "reviewedHash": "fc5aa11e2ad531b7ec3db36e38cc31c1765d96d67820f793c589482804f0565f",
-      "reviewedAt": "2026-10-23T03:20:35.274013+00:00",
-      "reviewedBy": "Codex: source meaning and markup comparison",
+      "sourceHash": "3fcf616b317974a770a21caa7471ad7dae921be7a25f3270e981e5ac563fe575",
+      "machineHash": "19da1d3abba0749597a24b8eeb9b452c352181851fdfe5aab4e1c14a07add7f7",
+      "model": "manual",
+      "translatedAt": "2026-10-27T06:19:18.338Z",
+      "reviewedHash": "19da1d3abba0749597a24b8eeb9b452c352181851fdfe5aab4e1c14a07add7f7",
       "needsMarkupReview": false
     },
     "chrome.proBarTag": {

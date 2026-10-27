@@ -50,7 +50,7 @@
   "homepage.header.a.4": "Compare",
   "homepage.header.attr-data-edge-label.1": "Add to Edge",
   "homepage.header.a.5": "Add to Chrome",
-  "homepage.top.p.1": "<span class=\"eyebrow-dot\"></span> Free for Chrome &amp; Edge on computers",
+  "homepage.top.p.1": "<span class=\"eyebrow-dot\"></span> Free extension for Chrome &amp; Edge",
   "homepage.top.h1.1": "Stop losing answers <span class=\"text-gradient\">in AI chats.</span>",
   "homepage.top.p.2": "LLMnesia is a free browser extension for Chrome and Edge that searches your AI chat history across ChatGPT, Claude, Gemini, Perplexity, Copilot, DeepSeek, Grok, Mistral, and more. Free search stays on your device; optional Vault adds end-to-end encrypted sync and backup.",
   "homepage.top.attr-data-edge-label.1": "Add to Edge — Free",
@@ -841,5 +841,5 @@
   "purchase.copy071": "Manage Vault",
   "purchase.copy072": "Get Vault",
   "purchase.codePlaceholder": "8-digit code",
-  "homepage.top.compatibility": "Requires Chrome or Edge on a computer. The extension doesn’t run on phones or tablets."
+  "homepage.top.compatibility": "Works in Chrome or Edge on a laptop or desktop, not on phones or tablets."
 }

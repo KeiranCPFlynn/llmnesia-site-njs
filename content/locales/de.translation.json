@@ -429,15 +429,12 @@
       "reviewedHash": "a90aa64b7a415d1442b31bdc962e9fbaece5d07e46a58bca64facfc0c0a986cd"
     },
     "homepage.top.p.1": {
-      "sourceHash": "36de4a303e4734d98fabad4f94fab8eb624693d2ef10a8cb07dc373ed85d7251",
-      "machineHash": "1a928a586afd4680e9c85f4e4427a9e9136302dae65bb182bb3af34f96442c1c",
-      "model": "quality_optimized",
-      "billedCharacters": 41,
-      "needsMarkupReview": false,
-      "translatedAt": "2026-10-09T05:24:10.232Z",
-      "reviewedHash": "d072337dce4d327b3b6d363925ddc871dc64b771712bedcf78e194c21572df9a",
-      "reviewedAt": "2026-10-23T03:20:35.266662+00:00",
-      "reviewedBy": "Codex: source meaning and markup comparison"
+      "sourceHash": "2ebfbb614266c397c1e9894f69e24570d0302f66aef53da0bc152098282d13ba",
+      "machineHash": "9d8fc974dbd7124a48011b7d203304cc47f897736ac956c70e2c86a831bea840",
+      "model": "manual",
+      "translatedAt": "2026-10-27T06:19:18.338Z",
+      "reviewedHash": "9d8fc974dbd7124a48011b7d203304cc47f897736ac956c70e2c86a831bea840",
+      "needsMarkupReview": false
     },
     "homepage.top.h1.1": {
       "sourceHash": "982a59d88f32a95d06621d18f959b83b9aea7753b7ee85a9fa5457148a6bf508",
@@ -7865,11 +7862,11 @@
       "reviewedAt": "2026-10-09T08:36:17.031Z"
     },
     "homepage.top.compatibility": {
-      "provider": "Codex",
-      "sourceHash": "defb792b6f1bd2007be2b5242c85bc521dfdef07c86c8b82fe3f9ef1e5012062",
-      "reviewedHash": "08e6b7f9f7778eb570f330bc82f1b1db9fc7b8c491563a572d2a5fd63d3ac29a",
-      "reviewedAt": "2026-10-23T03:20:35.266994+00:00",
-      "reviewedBy": "Codex: source meaning and markup comparison",
+      "sourceHash": "3fcf616b317974a770a21caa7471ad7dae921be7a25f3270e981e5ac563fe575",
+      "machineHash": "e1c88fbfc8c61b1093c5ef51fca3632015df78044beaca41d6d554b8f2fe0873",
+      "model": "manual",
+      "translatedAt": "2026-10-27T06:19:18.338Z",
+      "reviewedHash": "e1c88fbfc8c61b1093c5ef51fca3632015df78044beaca41d6d554b8f2fe0873",
       "needsMarkupReview": false
     },
     "chrome.proBarTag": {

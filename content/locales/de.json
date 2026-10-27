@@ -50,7 +50,7 @@
   "homepage.header.a.4": "Vergleich",
   "homepage.header.attr-data-edge-label.1": "Zu Edge hinzufügen",
   "homepage.header.a.5": "Zu Chrome hinzufügen",
-  "homepage.top.p.1": "<span class=\"eyebrow-dot\"></span> Kostenlos für Chrome &amp; Edge auf Computern",
+  "homepage.top.p.1": "<span class=\"eyebrow-dot\"></span> Kostenlose Erweiterung für Chrome &amp; Edge",
   "homepage.top.h1.1": "Verliere keine Antworten mehr <span class=\"text-gradient\">in KI-Chats.</span>",
   "homepage.top.p.2": "LLMnesia ist eine kostenlose Erweiterung für Chrome und Edge, die deinen KI-Chatverlauf aus ChatGPT, Claude, Gemini, Perplexity, Copilot, DeepSeek, Grok, Mistral und weiteren Tools durchsucht. Die kostenlose Suche bleibt auf deinem Gerät; Vault bietet optional Ende-zu-Ende-verschlüsselte Synchronisierung und Sicherung.",
   "homepage.top.attr-data-edge-label.1": "Zu Edge hinzufügen – kostenlos",
@@ -841,5 +841,5 @@
   "purchase.copy071": "Vault verwalten",
   "purchase.copy072": "Vault holen",
   "purchase.codePlaceholder": "8-stelliger Code",
-  "homepage.top.compatibility": "Erfordert Chrome oder Edge auf einem Computer. Die Erweiterung funktioniert nicht auf Smartphones oder Tablets."
+  "homepage.top.compatibility": "Funktioniert in Chrome oder Edge auf Laptop oder Desktop-PC, nicht auf Smartphones oder Tablets."
 }
