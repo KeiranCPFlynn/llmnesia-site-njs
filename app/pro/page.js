@@ -217,9 +217,9 @@ export default function ProPage() {
               </div>
               <p className="pro-share-label">Your team will see exactly this</p>
               <div className="pro-share-text">
-                <p className="pro-share-card">Retry failed payment webhooks</p>
-                <p>Retries are keyed on the Stripe event ID, so a replay can never charge twice.</p>
-                <span className="pro-chip" data-platform="codex">Codex</span>
+                <p className="pro-share-card">14-day free trial, no free plan</p>
+                <p>OK, 14-day trial it is.</p>
+                <span className="pro-chip" data-platform="claude">Claude</span>
               </div>
               <div className="pro-share-change">
                 <span className="pro-share-move">In progress</span>

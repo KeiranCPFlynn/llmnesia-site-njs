@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// Interactive design preview of a Pro project board for /pro. Everything here
-// is made-up content for a fictional invoicing app. It mirrors the real card
-// shape in the Projects engine: a card has decisions and a next step, each
-// quoting the chat it came from, plus its linked chats and a resume target.
+// Interactive design preview of Pro for /pro. Everything here is made-up
+// content for a fictional invoicing app. The project page in steps 2 to 4
+// mirrors the real Projects page in the extension (extension/src/pages/
+// projects.ts): a project picker, a freshness line, Decided / In progress /
+// Next tabs, and items that quote their chat with an "Open source chat" link.
+// Opening a chat shows it as the LLMnesia viewer does, with "Continue in".
+// Nothing here shows a feature the product does not have.
 //
-// It is a four-step tour the reader moves through: you chat, LLMnesia updates
-// the project, your next chat starts with the context, then the full board to
+// It is a four-step tour the reader moves through: you chat, LLMnesia adds it
+// to the project, you pick up where you left off, then the project page to
 // explore. One idea per step, and nothing advances on its own.
 
 const PLATFORMS = {
@@ -19,194 +22,94 @@ const PLATFORMS = {
   codex: 'Codex'
 };
 
-// Every quote on a card appears word for word in one of these chats, so the
-// chat view can highlight exactly what the card is based on.
+// Every quote below appears word for word in one of these chats, so the chat
+// view can highlight exactly what the project item is based on.
 const CHATS = {
-  'billing-shortlist': {
-    platform: 'chatgpt', title: 'Billing provider shortlist', when: 'Mon', cardId: 'stripe',
+  'trial-pricing': {
+    platform: 'claude', title: 'Free trial or free plan?', when: 'Just now',
     lines: [
-      { you: true, text: 'Which billing providers should we shortlist for invoices and receipts?' },
-      { text: 'Stripe Billing, Paddle and Chargebee all cover it. Stripe fits best because you already take payments there.' }
+      { you: true, text: 'Free plan or free trial for launch?' },
+      { text: 'For a small team, a 14-day trial usually works better. People try everything, then decide.' },
+      { you: true, text: 'OK, 14-day trial it is. Next I’ll write the emails that go out before the trial ends.' }
     ]
   },
-  'stripe-vs-ledger': {
-    platform: 'claude', title: 'Stripe Billing vs a custom ledger', when: 'Mon', cardId: 'stripe',
+  stripe: {
+    platform: 'claude', title: 'Stripe or our own billing?', when: 'Mon',
     lines: [
-      { you: true, text: 'Custom ledger or Stripe Billing for invoices?' },
-      { text: 'Stripe Billing handles invoices, receipts and retries. A custom ledger gives you control but needs ongoing upkeep.' },
-      { you: true, text: 'A ledger is weeks of work we’d have to maintain forever. Stripe it is.' }
+      { you: true, text: 'Should we build our own billing or use Stripe?' },
+      { text: 'Stripe handles invoices, receipts and failed payments. Your own system means weeks of work and upkeep.' },
+      { you: true, text: 'Building our own is weeks of work. Stripe it is.' }
     ]
   },
-  'stripe-tax': {
-    platform: 'claude', title: 'Stripe Tax and VAT', when: 'Tue', cardId: 'stripe',
-    lines: [
-      { you: true, text: 'Do we need our own VAT rates table?' },
-      { text: 'Stripe Tax covers UK and EU VAT, so we don’t need our own rates table. Turn it on before the VAT work starts.' }
-    ]
-  },
-  'invoice-needs': {
-    platform: 'chatgpt', title: 'What do customers need from invoices?', when: 'Tue', cardId: 'pdf',
+  invoices: {
+    platform: 'chatgpt', title: 'How should invoices reach customers?', when: 'Tue',
     lines: [
       { you: true, text: 'Do customers need a portal to see their invoices?' },
       { text: 'Most small customers just want the PDF by email.' },
       { you: true, text: 'Portal can wait. PDF plus email covers every customer we have.' }
     ]
   },
-  'email-layout': {
-    platform: 'gemini', title: 'Invoice email layout ideas', when: 'Wed', cardId: 'pdf',
-    lines: [
-      { you: true, text: 'Ideas for the invoice email layout?' },
-      { text: 'Keep the email to three lines and put the PDF up front.' }
-    ]
-  },
-  'retry-handler': {
-    platform: 'claude-code', title: 'Webhook retry handler', when: '2h ago', cardId: 'webhooks',
-    lines: [
-      { you: true, text: 'Webhook retries are charging twice when Stripe replays an event.' },
-      { text: 'Use the event ID as the idempotency key so a replay can never charge twice.' }
-    ]
-  },
-  'failure-strategy': {
-    platform: 'chatgpt', title: 'Webhook failure strategy', when: 'Yesterday', cardId: 'webhooks',
-    lines: [
-      { you: true, text: 'How many times should we retry a failed webhook?' },
-      { text: 'Three tries with backoff is plenty. After that, alert someone.' }
-    ]
-  },
-  'idempotency-keys': {
-    platform: 'claude', title: 'Idempotency keys explained', when: 'Mon', cardId: 'webhooks',
-    lines: [
-      { you: true, text: 'Explain idempotency keys simply.' },
-      { text: 'An idempotency key tells the server it has already handled a request, so repeating it changes nothing.' }
-    ]
-  },
-  'test-fixtures': {
-    platform: 'claude-code', title: 'Webhook test fixtures', when: 'Mon', cardId: 'webhooks',
-    lines: [
-      { you: true, text: 'Add test fixtures for replayed webhook events.' },
-      { text: 'Added fixtures for a replayed event and a duplicate delivery. The replay test fails for now, as expected.' }
-    ]
-  },
-  'fix-idempotency': {
-    platform: 'codex', title: 'Fix idempotency test', when: 'Just now', cardId: 'webhooks', folder: '~/invoicing-app',
-    lines: [
-      { you: true, text: 'The webhook idempotency test still fails when Stripe replays an event.' },
-      { text: 'Found it: retries weren’t keyed on anything stable. I’ve keyed them on the Stripe event ID, so a replay is now a no-op.' },
-      { text: 'All webhook tests pass now. Next step is staging.' }
-    ]
-  },
-  'refund-policy': {
-    platform: 'claude', title: 'Refund policy options', when: 'Mon', cardId: 'refunds',
-    lines: [
-      { you: true, text: 'Should refunds go back to the card or become store credit?' },
-      { text: 'Original payment method only is the simplest place to start.' },
-      { you: true, text: 'Original payment method only. No store credit for now.' }
-    ]
-  },
-  'refund-endpoint': {
-    platform: 'claude-code', title: 'Refund endpoint', when: 'Yesterday', cardId: 'refunds',
+  refunds: {
+    platform: 'claude-code', title: 'Refund endpoint', when: 'Yesterday',
     lines: [
       { you: true, text: 'Build the refund endpoint.' },
-      { text: 'Full refunds work end to end. Partial refunds need their own test, the rounding is easy to get wrong.' }
+      { text: 'Full refunds work end to end. Partial refunds still need their own test.' }
     ]
   },
-  'valid-vat': {
-    platform: 'claude', title: 'What a valid UK VAT invoice needs', when: 'Tue', cardId: 'vat',
+  'email-design': {
+    platform: 'gemini', title: 'Invoice email design', when: 'Wed',
     lines: [
-      { you: true, text: 'What does a valid UK VAT invoice need?' },
-      { text: 'The PDF needs our VAT number in the footer to be valid in the UK, plus the VAT amount on each line.' }
+      { you: true, text: 'Can you mock up the invoice email?' },
+      { text: 'Here’s a first layout. Swap in your real logo when Sam sends the files.' }
     ]
   },
-  'pdf-renderer': {
-    platform: 'codex', title: 'Invoice PDF renderer', when: 'Wed', cardId: 'vat',
+  webhooks: {
+    platform: 'claude-code', title: 'Payment webhooks', when: 'Mon',
+    lines: [
+      { you: true, text: 'Run the webhook tests against the Stripe test account.' },
+      { text: 'All passing. Payment webhooks are live and tested.' }
+    ]
+  },
+  vat: {
+    platform: 'codex', title: 'Invoice PDF renderer', when: 'Wed',
     lines: [
       { you: true, text: 'Render each invoice as a PDF.' },
-      { text: 'The renderer now outputs a one-page PDF. VAT lines aren’t added yet.' }
-    ]
-  },
-  'refund-tone': {
-    platform: 'chatgpt', title: 'Refund email tone', when: 'Wed', cardId: 'copy',
-    lines: [
-      { you: true, text: 'What tone should the refund email have?' },
-      { text: 'Tone: short and friendly, and say how many days the money takes.' }
+      { text: 'The PDF renderer works. Add VAT lines before you invoice UK customers.' }
     ]
   }
 };
 
-const NEW_CHAT = 'fix-idempotency';
+const NEW_CHAT = 'trial-pricing';
 
-const CARDS = [
-  {
-    id: 'stripe', column: 'decided', title: 'Billing runs on Stripe',
-    summary: 'Stripe Billing handles invoices and receipts. No custom ledger.',
-    next: { text: 'Turn on Stripe Tax before the VAT work starts.', quote: 'Stripe Tax covers UK and EU VAT, so we don’t need our own rates table.', chat: 'stripe-tax' },
-    decided: [{ text: 'Use Stripe Billing, not a custom ledger', quote: 'A ledger is weeks of work we’d have to maintain forever. Stripe it is.', chat: 'stripe-vs-ledger' }],
-    chats: ['stripe-tax', 'stripe-vs-ledger', 'billing-shortlist'],
-    resume: 'claude'
-  },
-  {
-    id: 'pdf', column: 'decided', title: 'Invoices go out as PDF and email',
-    summary: 'A PDF attached to an email for every invoice. A customer portal waits until later.',
-    next: { text: 'Design the invoice email template.', quote: 'Keep the email to three lines and put the PDF up front.', chat: 'email-layout' },
-    decided: [{ text: 'No customer portal in the first release', quote: 'Portal can wait. PDF plus email covers every customer we have.', chat: 'invoice-needs' }],
-    chats: ['email-layout', 'invoice-needs'],
-    resume: 'gemini'
-  },
-  {
-    id: 'webhooks', column: 'progress', title: 'Retry failed payment webhooks',
-    summary: 'Failed Stripe webhooks retry with backoff. Waiting on the idempotency fix.',
-    blocked: 'Blocked: idempotency test still failing',
-    next: { text: 'Key retries on the Stripe event ID, then rerun the webhook tests.', quote: 'Use the event ID as the idempotency key so a replay can never charge twice.', chat: 'retry-handler' },
-    decided: [{ text: 'Three attempts: after 1, 5 and 15 minutes', quote: 'Three tries with backoff is plenty. After that, alert someone.', chat: 'failure-strategy' }],
-    chats: ['retry-handler', 'failure-strategy', 'idempotency-keys', 'test-fixtures'],
-    resume: 'claude-code',
-    // What the card becomes once the new Codex chat has been read.
-    updated: {
-      summary: 'Failed Stripe webhooks retry with backoff. Idempotency is fixed and the tests pass.',
-      blocked: null,
-      next: { text: 'Deploy the retry handler to staging and watch one real failure.', quote: 'All webhook tests pass now. Next step is staging.', chat: NEW_CHAT },
-      newDecision: { text: 'Retries are keyed on the Stripe event ID', quote: 'I’ve keyed them on the Stripe event ID, so a replay is now a no-op.', chat: NEW_CHAT },
-      resume: 'codex'
-    }
-  },
-  {
-    id: 'refunds', column: 'progress', title: 'Refund flow',
-    summary: 'Full refunds work end to end. Partial refunds are half built.',
-    next: { text: 'Finish partial refunds and add a test for each case.', quote: 'Partial refunds need their own test, the rounding is easy to get wrong.', chat: 'refund-endpoint' },
-    decided: [{ text: 'Refunds go back to the original card only', quote: 'Original payment method only. No store credit for now.', chat: 'refund-policy' }],
-    chats: ['refund-endpoint', 'refund-policy'],
-    resume: 'claude-code'
-  },
-  {
-    id: 'vat', column: 'next', title: 'Add VAT to the invoice template',
-    summary: 'Show VAT lines on invoices using Stripe Tax amounts.',
-    next: { text: 'Add the VAT line and registration number to the PDF.', quote: 'The PDF needs our VAT number in the footer to be valid in the UK', chat: 'valid-vat' },
-    decided: [],
-    chats: ['pdf-renderer', 'valid-vat'],
-    resume: 'codex'
-  },
-  {
-    id: 'copy', column: 'next', title: 'Write the refund email copy',
-    summary: 'A short, friendly email confirming a refund and when it lands.',
-    next: { text: 'Draft the email and the subject line.', quote: 'Tone: short and friendly, and say how many days the money takes.', chat: 'refund-tone' },
-    decided: [],
-    chats: ['refund-tone'],
-    resume: 'chatgpt'
-  }
+// The project, shaped like the real board: decisions, cards and next actions,
+// each with the quote it rests on. `isNew` items come from the new chat.
+const DECIDED = [
+  { id: 'trial', text: '14-day free trial, no free plan', quote: 'OK, 14-day trial it is.', chat: NEW_CHAT, isNew: true },
+  { id: 'stripe', text: 'Use Stripe for billing, not our own system', quote: 'Building our own is weeks of work. Stripe it is.', chat: 'stripe' },
+  { id: 'pdf', text: 'Invoices go out as a PDF by email. No customer portal yet.', quote: 'Portal can wait. PDF plus email covers every customer we have.', chat: 'invoices' }
 ];
 
-const COLUMNS = [
+const IN_PROGRESS = [
+  { id: 'refunds', title: 'Refund flow', status: 'Active', summary: 'Full refunds work. Partial refunds still need a test.', quote: 'Full refunds work end to end. Partial refunds still need their own test.', chat: 'refunds' },
+  { id: 'email', title: 'Invoice email design', status: 'Waiting', summary: 'First layout done. Waiting on the logo files from Sam.', quote: 'Swap in your real logo when Sam sends the files.', chat: 'email-design' }
+];
+
+const COMPLETED = [
+  { id: 'webhooks', title: 'Payment webhooks', status: 'Verified complete', summary: 'Live and tested against Stripe.', quote: 'Payment webhooks are live and tested.', chat: 'webhooks' }
+];
+
+const NEXT = [
+  { id: 'emails', text: 'Write the emails that go out before the trial ends', basis: 'You said you’d do this', quote: 'Next I’ll write the emails that go out before the trial ends.', chat: NEW_CHAT, isNew: true },
+  { id: 'vat', text: 'Add VAT lines to the invoice PDF', basis: 'Suggested', quote: 'Add VAT lines before you invoice UK customers.', chat: 'vat' }
+];
+
+const TABS = [
   { id: 'decided', label: 'Decided' },
   { id: 'progress', label: 'In progress' },
   { id: 'next', label: 'Next' }
 ];
 
-// Which chat changed which card, newest first.
-const ACTIVITY = [
-  { chat: 'retry-handler', change: 'new next step' },
-  { chat: 'pdf-renderer', change: 'linked' },
-  { chat: 'email-layout', change: 'new next step' }
-];
+const CONTINUE_TARGETS = ['chatgpt', 'gemini', 'claude', 'claude-code'];
 
 // The guided tour: one idea per step, moved on by the reader, never on a timer.
 // Each scene's animation plays once when its step opens and then holds still.
@@ -214,53 +117,57 @@ const STEPS = [
   {
     label: 'You chat',
     title: 'You chat like you always do.',
-    what: 'Here you fix a bug in Codex. LLMnesia saves the chat in the background.',
+    what: 'Here you settle a pricing question with Claude. LLMnesia saves the chat in the background.',
     why: 'Nothing new to learn. No copying, pasting or note-taking.'
   },
   {
-    label: 'It updates',
-    title: 'LLMnesia updates the project for you.',
-    what: 'It reads the chat, sees it belongs to the Invoicing app and updates the card it’s about. Each change quotes the chat it came from.',
-    why: 'Where the project stands is always written down, and you didn’t write it.'
+    label: 'It’s noted',
+    title: 'LLMnesia adds it to your project.',
+    what: 'It spots the decision and the next step in that chat and adds them to your Invoicing app project, quoting your own words.',
+    why: 'Your project stays written down, and you didn’t have to write it.'
   },
   {
-    label: 'You carry on',
-    title: 'Your next chat starts where you left off.',
-    what: 'Pick up the work in any AI. The new chat opens with the project already explained.',
-    why: 'No more re-explaining your project to every new chat.'
+    label: 'Pick up',
+    title: 'Come back any time and pick up where you left off.',
+    what: 'Your next step is waiting. One click opens the chat it came from, so you can carry on there or continue it in another AI.',
+    why: 'No digging through old chats to remember where you got to.'
   },
   {
-    label: 'Every project',
-    title: 'Every project, at a glance.',
-    what: 'All your projects get a board like this. Click any card, quote or chat to look around.',
-    why: 'See where everything stands, and check any line against the chat it came from.'
+    label: 'Your project',
+    title: 'Every project, in one place.',
+    what: 'This is the project page. Switch between Decided, In progress and Next, and open the chat behind any item.',
+    why: 'Know where every project stands, and check anything against the chat it came from.'
   }
 ];
 
-const CONTINUE_REPLY =
-  'Picking up from your Codex session: retries are keyed on the Stripe event ID and the tests pass. Let’s get it onto staging. First, check the webhook signing secret is set there.';
-
-function Platform({ id, compact = false }) {
+function Platform({ id }) {
   return (
-    <span className={`pro-chip${compact ? ' pro-chip--dot' : ''}`} data-platform={id}>
-      {compact ? <span className="visually-hidden">{PLATFORMS[id]}</span> : PLATFORMS[id]}
+    <span className="pro-chip" data-platform={id}>
+      {PLATFORMS[id]}
     </span>
   );
 }
 
-function withMarks(text, quotes) {
-  const quote = quotes.find((q) => text.includes(q));
-  if (!quote) return text;
-  const start = text.indexOf(quote);
-  return (
-    <>
-      {text.slice(0, start)}
-      <mark>{quote}</mark>
-      {text.slice(start + quote.length)}
-    </>
-  );
+// Highlights every quoted passage in a line, in the order they appear.
+function withMark(text, quotes) {
+  const found = quotes
+    .map((quote) => ({ quote, start: text.indexOf(quote) }))
+    .filter((hit) => hit.start >= 0)
+    .sort((a, b) => a.start - b.start);
+  if (!found.length) return text;
+  const parts = [];
+  let at = 0;
+  for (const { quote, start } of found) {
+    if (start < at) continue;
+    parts.push(text.slice(at, start), <mark key={start}>{quote}</mark>);
+    at = start + quote.length;
+  }
+  parts.push(text.slice(at));
+  return parts;
 }
 
+const ALL_ITEMS = [...DECIDED, ...IN_PROGRESS, ...COMPLETED, ...NEXT];
+const quotesFor = (chatId) => ALL_ITEMS.filter((item) => item.chat === chatId).map((item) => item.quote);
 
 // Fades a piece of a scene in after `at` seconds. With reduced motion it is
 // simply there (see the CSS).
@@ -269,21 +176,179 @@ const reveal = (at, className = '') => ({
   style: { animationDelay: `${at}s` }
 });
 
+// One quote with its link back to the chat, as the real page shows it.
+function Evidence({ item, onOpen, pulse = false }) {
+  const chat = CHATS[item.chat];
+  return (
+    <div className="pro-evidence">
+      <span className="pro-evidence-quote">“{item.quote}”</span>
+      <span className="pro-evidence-row">
+        <span className="pro-evidence-source">
+          <Platform id={chat.platform} /> {chat.title} · {chat.when}
+        </span>
+        <button
+          type="button"
+          className={`pro-evidence-link${pulse ? ' is-pulse' : ''}`}
+          onClick={() => onOpen?.(item.chat)}
+        >
+          Open source chat
+        </button>
+      </span>
+    </div>
+  );
+}
+
+function NewTag() {
+  return <span className="pro-pill-new">New</span>;
+}
+
+// The project page. `highlight` marks the items that came from the new chat;
+// `revealNew` (seconds) fades them in; `pulseNext` draws the eye to the link.
+function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = null, pulseNext = false }) {
+  const [showCompleted, setShowCompleted] = useState(false);
+  const itemProps = (item) => {
+    const className = `pro-project-card${highlight && item.isNew ? ' is-new' : ''}`;
+    return revealNew !== null && item.isNew ? reveal(revealNew, className) : { className };
+  };
+
+  return (
+    <div className="pro-project">
+      <p className="pro-project-h1">Projects</p>
+      <p className="pro-project-sub">Your project work, kept in your Vault.</p>
+      <div className="pro-project-controls">
+        <span className="pro-project-select">
+          Invoicing app <span aria-hidden="true">▾</span>
+        </span>
+        <span className="pro-project-fresh">Updated just now</span>
+      </div>
+
+      <div className="pro-project-tabs" role="tablist" aria-label="Project sections">
+        {TABS.map((t) => (
+          <button
+            type="button"
+            role="tab"
+            key={t.id}
+            aria-selected={tab === t.id}
+            className={`pro-project-tab${tab === t.id ? ' is-on' : ''}`}
+            onClick={() => onTab?.(t.id)}
+          >
+            {t.label}
+            {highlight && t.id === 'next' && tab !== 'next' ? (
+              <span {...reveal((revealNew ?? 0) + 1.4, 'pro-tab-new')}>1 new</span>
+            ) : null}
+          </button>
+        ))}
+      </div>
+
+      <div className="pro-project-list" role="tabpanel">
+        {tab === 'decided'
+          ? DECIDED.map((item) => (
+              <article key={item.id} {...itemProps(item)}>
+                <h4>
+                  {item.text} {highlight && item.isNew ? <NewTag /> : null}
+                </h4>
+                <Evidence item={item} onOpen={onOpenChat} />
+              </article>
+            ))
+          : null}
+
+        {tab === 'progress' ? (
+          <>
+            {IN_PROGRESS.map((item) => (
+              <article key={item.id} className="pro-project-card">
+                <h4>{item.title}</h4>
+                <span className={`pro-project-status is-${item.status.toLowerCase()}`}>{item.status}</span>
+                <p className="pro-project-summary">{item.summary}</p>
+                <Evidence item={item} onOpen={onOpenChat} />
+              </article>
+            ))}
+            <div className="pro-project-completed">
+              <button type="button" onClick={() => setShowCompleted((open) => !open)} aria-expanded={showCompleted}>
+                <span aria-hidden="true">{showCompleted ? '▾' : '▸'}</span> Completed work ({COMPLETED.length})
+              </button>
+              {showCompleted
+                ? COMPLETED.map((item) => (
+                    <article key={item.id} className="pro-project-card">
+                      <h4>{item.title}</h4>
+                      <span className="pro-project-status is-done">{item.status}</span>
+                      <p className="pro-project-summary">{item.summary}</p>
+                      <Evidence item={item} onOpen={onOpenChat} />
+                    </article>
+                  ))
+                : null}
+            </div>
+          </>
+        ) : null}
+
+        {tab === 'next'
+          ? NEXT.map((item) => (
+              <article key={item.id} {...itemProps(item)}>
+                <h4>
+                  {item.text} {highlight && item.isNew ? <NewTag /> : null}
+                </h4>
+                <span className="pro-project-status">{item.basis}</span>
+                <Evidence item={item} onOpen={onOpenChat} pulse={pulseNext && item.isNew} />
+              </article>
+            ))
+          : null}
+      </div>
+    </div>
+  );
+}
+
+// A chat as the LLMnesia viewer shows it: the quoted lines highlighted, and
+// "Continue in" to carry it on in another assistant.
+function ChatView({ chatId, onBack, className = '', style }) {
+  const chat = CHATS[chatId];
+  const quotes = quotesFor(chatId);
+  return (
+    <div className={`pro-viewer${className ? ` ${className}` : ''}`} style={style}>
+      <div className="pro-viewer-head">
+        {onBack ? (
+          <button type="button" className="pro-viewer-back" onClick={onBack}>
+            <span aria-hidden="true">←</span> Back to project
+          </button>
+        ) : null}
+        <p className="pro-viewer-title">
+          <Platform id={chat.platform} /> {chat.title}
+        </p>
+        <p className="pro-viewer-meta">{chat.when} · Invoicing app</p>
+      </div>
+      <div className="pro-window-body">
+        {chat.lines.map((line) => (
+          <div key={line.text} className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
+            <span className="pro-line-who">{line.you ? 'You' : PLATFORMS[chat.platform]}</span>
+            <p>{withMark(line.text, quotes)}</p>
+          </div>
+        ))}
+      </div>
+      <div className="pro-viewer-foot">
+        <span className="pro-viewer-open">Open in {PLATFORMS[chat.platform]}</span>
+        <span className="pro-viewer-continue">
+          <span>Continue in</span>
+          {CONTINUE_TARGETS.filter((id) => id !== chat.platform).slice(0, 3).map((id) => (
+            <span key={id} className="pro-viewer-target">{PLATFORMS[id]}</span>
+          ))}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function ChatScene() {
   const chat = CHATS[NEW_CHAT];
   return (
-    <div className="pro-scene pro-scene--chat">
+    <div className="pro-scene">
       <div className="pro-window">
         <div className="pro-window-bar">
           <Platform id={chat.platform} />
           <span>{chat.title}</span>
-          <span className="pro-window-folder">{chat.folder}</span>
         </div>
         <div className="pro-window-body">
           {chat.lines.map((line, index) => (
             <div key={line.text} {...reveal(0.5 + index * 1.6)}>
               <div className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
-                <span className="pro-line-who">{line.you ? 'You' : 'Codex'}</span>
+                <span className="pro-line-who">{line.you ? 'You' : 'Claude'}</span>
                 <p>{line.text}</p>
               </div>
             </div>
@@ -298,359 +363,40 @@ function ChatScene() {
   );
 }
 
-function UpdateScene() {
-  const chat = CHATS[NEW_CHAT];
-  const card = CARDS.find((c) => c.id === 'webhooks');
-  const { newDecision, next } = card.updated;
-  const Source = () => (
-    <span className="pro-scene-source">
-      <Platform id="codex" /> from “{chat.title}”
-    </span>
-  );
+function NotedScene() {
   return (
-    <div className="pro-scene pro-scene--update">
-      <div {...reveal(0.2, 'pro-scene-from')}>
-        <span className="pro-scene-from-label">New chat</span>
-        <span className="pro-scene-from-chat">
-          <Platform id="codex" /> {chat.title}
-        </span>
-        <span className="pro-scene-arrow" aria-hidden="true">↓</span>
-        <span className="pro-scene-from-label">Filed to Invoicing app</span>
-      </div>
-
-      <article {...reveal(1, 'pro-scene-card')}>
-        <p className="pro-scene-crumb">Invoicing app · In progress</p>
-        <h4>{card.title}</h4>
-
-        <div {...reveal(2, 'pro-scene-row')}>
-          <p className="pro-scene-row-label">Status</p>
-          <p>
-            <span className="pro-strike" style={{ animationDelay: '2.4s' }}>{card.blocked}</span>
-          </p>
-          <p {...reveal(3, 'pro-scene-new')}>
-            <span className="pro-scene-tag pro-scene-tag--good">Unblocked</span> Tests pass
-          </p>
-        </div>
-
-        <div {...reveal(4.4, 'pro-scene-row')}>
-          <p className="pro-scene-row-label">
-            Decided <span className="pro-scene-tag">New</span>
-          </p>
-          <p className="pro-scene-new">{newDecision.text}</p>
-          <blockquote className="pro-scene-quote">
-            “{newDecision.quote}” <Source />
-          </blockquote>
-        </div>
-
-        <div {...reveal(6.2, 'pro-scene-row')}>
-          <p className="pro-scene-row-label">
-            Next step <span className="pro-scene-tag">Changed</span>
-          </p>
-          <p>
-            <span className="pro-strike" style={{ animationDelay: '6.6s' }}>{card.next.text}</span>
-          </p>
-          <p {...reveal(7.2, 'pro-scene-new')}>{next.text}</p>
-          <blockquote {...reveal(7.6, 'pro-scene-quote')}>
-            “{next.quote}” <Source />
-          </blockquote>
-        </div>
-      </article>
+    <div className="pro-scene">
+      <ProjectPage tab="decided" highlight revealNew={0.9} />
     </div>
   );
 }
 
-function ContinueScene() {
-  const card = CARDS.find((c) => c.id === 'webhooks');
-  const { newDecision, next } = card.updated;
+function PickUpScene() {
   return (
-    <div className="pro-scene pro-scene--continue">
-      <div {...reveal(0.2, 'pro-scene-continue-bar')}>
-        <span className="pro-scene-continue-card">{card.title}</span>
-        <span className="pro-scene-continue-label">Continue in</span>
-        {['claude', 'chatgpt', 'codex'].map((id) => (
-          <span key={id} className={`pro-scene-continue-btn${id === 'claude' ? ' is-picked' : ''}`}>
-            {PLATFORMS[id]}
-          </span>
-        ))}
-      </div>
-
-      <div {...reveal(1.4, 'pro-window')}>
-        <div className="pro-window-bar">
-          <Platform id="claude" />
-          <span>New chat</span>
-        </div>
-        <div className="pro-window-body">
-          <div className="pro-line pro-line--you pro-line--prefill">
-            <span className="pro-line-who">You</span>
-            <div className="pro-prefill">
-              <span className="pro-prefill-tag">Filled in by LLMnesia</span>
-              <p>Project: Invoicing app</p>
-              <p>Working on: {card.title}</p>
-              <p>Decided: {newDecision.text}</p>
-              <p>Next: {next.text}</p>
-            </div>
-          </div>
-          <div {...reveal(3.6)}>
-            <div className="pro-line">
-              <span className="pro-line-who">Claude</span>
-              <p>{CONTINUE_REPLY}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="pro-scene">
+      <ProjectPage tab="next" highlight pulseNext />
+      <span {...reveal(2.4, 'pro-scene-arrow')} aria-hidden="true">↓ Opens the chat</span>
+      <ChatView chatId={NEW_CHAT} {...reveal(2.8)} />
     </div>
   );
 }
 
-// The full board, open to explore: cards, quotes and the chats behind them.
-function BoardScene() {
-  const [selected, setSelected] = useState({ kind: 'card', id: 'webhooks' });
-  const [handoff, setHandoff] = useState(false);
-
-  // A card with the new Codex chat folded in.
-  const view = (card) => {
-    if (!card.updated) return { ...card, fresh: false };
-    const u = card.updated;
-    return {
-      ...card,
-      summary: u.summary,
-      blocked: u.blocked,
-      next: u.next,
-      decided: [u.newDecision, ...card.decided],
-      chats: [NEW_CHAT, ...card.chats],
-      resume: u.resume,
-      fresh: true
-    };
-  };
-
-  const cardPlatforms = (card) => [...new Set(card.chats.map((id) => CHATS[id].platform))].slice(0, 3);
-  const quotesFor = (chatId) =>
-    CARDS.map(view).flatMap((card) => [card.next, ...card.decided]).filter((q) => q.chat === chatId).map((q) => q.quote);
-  const linkedTotal = CARDS.reduce((sum, card) => sum + card.chats.length, 0) + 1;
-  const activity = [{ chat: NEW_CHAT, change: 'blocker cleared, new decision' }, ...ACTIVITY];
-
-  const openChat = (id) => {
-    setHandoff(false);
-    setSelected({ kind: 'chat', id });
-  };
-  const openCard = (id) => {
-    setHandoff(false);
-    setSelected({ kind: 'card', id });
-  };
-
-  const card = selected.kind === 'card' ? view(CARDS.find((c) => c.id === selected.id)) : null;
-  const chat = selected.kind === 'chat' ? CHATS[selected.id] : null;
-
-  const Quote = ({ item }) => (
-    <blockquote className="pro-quote">
-      <p>“{item.quote}”</p>
-      <button type="button" className="pro-quote-source" onClick={() => openChat(item.chat)}>
-        <Platform id={CHATS[item.chat].platform} /> {CHATS[item.chat].title} · {CHATS[item.chat].when}
-        <span aria-hidden="true"> ↗</span>
-      </button>
-    </blockquote>
-  );
-
+// The project page, open to explore. Opening a chat swaps to the chat view.
+function ProjectScene() {
+  const [tab, setTab] = useState('decided');
+  const [openChat, setOpenChat] = useState(null);
   return (
-    <div className="pro-app-body">
-      <aside className="pro-app-side" aria-label="Projects">
-        <p className="pro-side-label">Projects</p>
-        <ul className="pro-side-list">
-          <li className="is-active">
-            <span>Invoicing app</span>
-            <span className="pro-side-count">{linkedTotal}</span>
-          </li>
-          <li>
-            <span>Marketing site</span>
-            <span className="pro-side-count">6</span>
-          </li>
-          <li>
-            <span>Mobile app</span>
-            <span className="pro-side-count">9</span>
-          </li>
-        </ul>
-        <p className="pro-side-label">Saved from</p>
-        <ul className="pro-side-sources">
-          {Object.keys(PLATFORMS).map((id) => (
-            <li key={id}>
-              <Platform id={id} compact /> {PLATFORMS[id]}
-            </li>
-          ))}
-        </ul>
-      </aside>
-
-      <div className="pro-app-main">
-        <div className="pro-board-top">
-          <div>
-            <p className="pro-board-name">Invoicing app</p>
-            <p className="pro-board-meta">
-              6 cards · {linkedTotal} linked chats · <span className="pro-live is-on">updated just now</span>
-            </p>
-          </div>
-          <span className="pro-board-scope">Team · 4 members</span>
-        </div>
-
-        <div className="pro-columns" role="list">
-          {COLUMNS.map((column) => (
-            <div className="pro-column" key={column.id} role="listitem">
-              <p className="pro-column-label">
-                {column.label}
-                <span>{CARDS.filter((c) => c.column === column.id).length}</span>
-              </p>
-              {CARDS.filter((c) => c.column === column.id).map((raw) => {
-                const c = view(raw);
-                const isSelected = selected.kind === 'card' && selected.id === c.id;
-                return (
-                  <button
-                    type="button"
-                    key={c.id}
-                    className={`pro-card${isSelected ? ' is-selected' : ''}`}
-                    onClick={() => openCard(c.id)}
-                    aria-pressed={isSelected}
-                  >
-                    <span className="pro-card-title">{c.title}</span>
-                    {c.blocked ? <span className="pro-card-flag">Blocked</span> : null}
-                    {c.fresh ? <span className="pro-card-flag pro-card-flag--fresh">Updated</span> : null}
-                    <span className="pro-card-foot">
-                      <span className="pro-card-platforms">
-                        {cardPlatforms(c).map((p) => (
-                          <Platform id={p} compact key={p} />
-                        ))}
-                      </span>
-                      <span className="pro-card-count">
-                        {c.chats.length === 1 ? '1 chat' : `${c.chats.length} chats`}
-                      </span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          ))}
-        </div>
-
-        <div className="pro-activity">
-          <p className="pro-activity-label">Recent activity</p>
-          <ul>
-            {activity.slice(0, 3).map((item) => {
-              const source = CHATS[item.chat];
-              return (
-                <li key={item.chat}>
-                  <button type="button" onClick={() => openChat(item.chat)}>
-                    <Platform id={source.platform} compact />
-                    <span className="pro-activity-text">
-                      <strong>{source.title}</strong>
-                      <span aria-hidden="true"> → </span>
-                      {CARDS.find((c) => c.id === source.cardId).title}
-                      <span className="pro-activity-change"> · {item.change}</span>
-                    </span>
-                    <span className="pro-activity-when">{source.when}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-
-      <section className="pro-detail" aria-live="polite" aria-label={chat ? 'Selected chat' : 'Selected card'}>
-        {card ? (
-          <>
-            <p className="pro-detail-column">{COLUMNS.find((col) => col.id === card.column).label}</p>
-            <h3 className="pro-detail-title">{card.title}</h3>
-            <p className="pro-detail-summary">{card.summary}</p>
-            {card.blocked ? <p className="pro-detail-blocked">{card.blocked}</p> : null}
-
-            <p className="pro-detail-label">Next step</p>
-            <p className="pro-detail-next">{card.next.text}</p>
-            <Quote item={card.next} />
-
-            {card.decided.length ? (
-              <>
-                <p className="pro-detail-label">Decided</p>
-                <p className="pro-detail-decision">{card.decided[0].text}</p>
-                <Quote item={card.decided[0]} />
-              </>
-            ) : null}
-
-            <p className="pro-detail-label">Linked chats</p>
-            <ul className="pro-detail-chats">
-              {card.chats.slice(0, 4).map((id) => (
-                <li key={id}>
-                  <button type="button" onClick={() => openChat(id)}>
-                    <Platform id={CHATS[id].platform} compact />
-                    <span className="pro-detail-chat-title">{CHATS[id].title}</span>
-                    <span className="pro-detail-chat-when">{CHATS[id].when}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <div className="pro-detail-actions">
-              <button
-                type="button"
-                className="pro-btn pro-btn--primary"
-                onClick={() => setHandoff((open) => !open)}
-                aria-expanded={handoff}
-              >
-                Continue in {PLATFORMS[card.resume]}
-              </button>
-              <a className="pro-btn" href="#for-teams">Share with team</a>
-            </div>
-
-            {handoff ? (
-              <div className="pro-handoff" role="dialog" aria-label={`Continue in ${PLATFORMS[card.resume]}`}>
-                <div className="pro-handoff-head">
-                  <strong>Continue in {PLATFORMS[card.resume]}</strong>
-                  <button type="button" className="pro-handoff-close" onClick={() => setHandoff(false)} aria-label="Close">
-                    ×
-                  </button>
-                </div>
-                <p>{PLATFORMS[card.resume]} opens with this already filled in:</p>
-                <pre>
-                  {`Project: Invoicing app\nWorking on: ${card.title}\n${card.decided[0] ? `Decided: ${card.decided[0].text}\n` : ''}Next: ${card.next.text}`}
-                </pre>
-              </div>
-            ) : null}
-          </>
-        ) : null}
-
-        {chat ? (
-          <>
-            <p className="pro-detail-column">Chat</p>
-            <h3 className="pro-detail-title">
-              <Platform id={chat.platform} /> {chat.title}
-            </h3>
-            <p className="pro-detail-summary">
-              {chat.when} · filed to Invoicing app · linked to{' '}
-              <button type="button" className="pro-inline-link" onClick={() => openCard(chat.cardId)}>
-                {CARDS.find((c) => c.id === chat.cardId).title}
-              </button>
-            </p>
-            <div className="pro-transcript">
-              {chat.lines.map((line) => (
-                <div key={line.text} className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
-                  <span className="pro-line-who">{line.you ? 'You' : PLATFORMS[chat.platform]}</span>
-                  <p>{withMarks(line.text, quotesFor(selected.id))}</p>
-                </div>
-              ))}
-            </div>
-            {quotesFor(selected.id).length ? (
-              <p className="pro-transcript-note">Highlighted: what the card quotes from this chat.</p>
-            ) : null}
-            <div className="pro-detail-actions">
-              <span className="pro-btn pro-btn--primary">Open in {PLATFORMS[chat.platform]}</span>
-              <button type="button" className="pro-btn" onClick={() => openCard(chat.cardId)}>
-                Back to card
-              </button>
-            </div>
-          </>
-        ) : null}
-      </section>
+    <div className="pro-scene">
+      {openChat ? (
+        <ChatView chatId={openChat} onBack={() => setOpenChat(null)} />
+      ) : (
+        <ProjectPage tab={tab} onTab={setTab} onOpenChat={setOpenChat} />
+      )}
     </div>
   );
 }
 
-const SCENES = [ChatScene, UpdateScene, ContinueScene, BoardScene];
+const SCENES = [ChatScene, NotedScene, PickUpScene, ProjectScene];
 
 export default function ProBoardDemo() {
   const rootRef = useRef(null);
@@ -709,19 +455,10 @@ export default function ProBoardDemo() {
             </p>
           </div>
           <div className="pro-tour-nav">
-            <button
-              type="button"
-              className="pro-tour-back"
-              onClick={() => setStep(step - 1)}
-              disabled={step === 0}
-            >
+            <button type="button" className="pro-tour-back" onClick={() => setStep(step - 1)} disabled={step === 0}>
               Back
             </button>
-            <button
-              type="button"
-              className="pro-tour-next"
-              onClick={() => setStep(last ? 0 : step + 1)}
-            >
+            <button type="button" className="pro-tour-next" onClick={() => setStep(last ? 0 : step + 1)}>
               {last ? 'Start again' : 'Next'} <span aria-hidden="true">{last ? '↺' : '→'}</span>
             </button>
           </div>
@@ -735,9 +472,7 @@ export default function ProBoardDemo() {
             <span />
             <span />
           </span>
-          <span className="pro-app-name">
-            {step === 3 ? 'LLMnesia · Projects' : `Step ${step + 1} of ${STEPS.length}`}
-          </span>
+          <span className="pro-app-name">{step === 0 ? 'Claude' : 'LLMnesia · Projects'}</span>
           <span className="pro-app-badge">Design preview</span>
         </div>
         <div className="pro-stage" key={step}>
