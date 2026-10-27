@@ -9,7 +9,7 @@ import { siteText } from '../../lib/site-copy';
 // act on one CTA and the full site nav is just a distraction. `headerCtaUtm`
 // attributes clicks on that button to the page. The footer is left intact — a
 // landing page still wants its footer links and copyright. The Pro bar above
-// the header links every page except /pro itself to Pro early access.
+// the header links every page except /pro itself to the Pro waitlist.
 export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/' }) {
   const t = (id) => siteText(`chrome.${id}`, language);
   const href = (path) => localizedHref(path, language);

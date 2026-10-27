@@ -7873,35 +7873,35 @@
       "needsMarkupReview": false
     },
     "chrome.proBarTag": {
-      "sourceHash": "18fdd549b2ed367ac0c74cbec1214644728515b30edbcb78e7d322757a7c8359",
-      "machineHash": "d9b1e13f3b97c8b0ab19ba900af70b621315f46375f9c4875ca0e307c218fd9f",
+      "sourceHash": "4f7d64017689437e6d93f5724f3f797054f3935d98a13148025b616b8db8fb2c",
+      "machineHash": "e7ed6a8c26a09f2da027bf2dc71b9a655b0979a7c2fa8aec07185a908a7e2993",
       "model": "manual",
-      "translatedAt": "2026-10-27T04:24:57.883580Z",
-      "reviewedHash": "d9b1e13f3b97c8b0ab19ba900af70b621315f46375f9c4875ca0e307c218fd9f",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "e7ed6a8c26a09f2da027bf2dc71b9a655b0979a7c2fa8aec07185a908a7e2993",
       "needsMarkupReview": false
     },
     "chrome.proBarText": {
-      "sourceHash": "ff9b90028c747f712a108ac1e184639276583c5032111b13f989fd9a94b37d0b",
-      "machineHash": "f9bf68ac13be0619bf7f12a46448dfafc06a1fa184cebd8ec29f59888932698f",
+      "sourceHash": "1ed7f7c1950d65ba177f150c6deb6604aaccec30e935e46d4361e78f32b681f3",
+      "machineHash": "b9b4388d319c080851d272b6eb586a610387df33ba2740f384403923be38ae87",
       "model": "manual",
-      "translatedAt": "2026-10-27T04:24:57.883580Z",
-      "reviewedHash": "f9bf68ac13be0619bf7f12a46448dfafc06a1fa184cebd8ec29f59888932698f",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "b9b4388d319c080851d272b6eb586a610387df33ba2740f384403923be38ae87",
       "needsMarkupReview": false
     },
     "chrome.proBarCta": {
-      "sourceHash": "ad15bb5a7b458a8929f40e30d83a46c78f3927e73890380ef79d3f2b4605ae00",
-      "machineHash": "03f22671c1f71d06580c3bd0890b4eae1048b629d20b962a754a5ee73dbe744f",
+      "sourceHash": "6a16124b654c7660f3a37d8b422d70d23b94b6c771d8773d7ea1cf6c3a4dc391",
+      "machineHash": "43e08b5c907d6365d4de761ca6f110428097d5baee3c17b1c5cf57f4aa30d625",
       "model": "manual",
-      "translatedAt": "2026-10-27T04:24:57.883580Z",
-      "reviewedHash": "03f22671c1f71d06580c3bd0890b4eae1048b629d20b962a754a5ee73dbe744f",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "43e08b5c907d6365d4de761ca6f110428097d5baee3c17b1c5cf57f4aa30d625",
       "needsMarkupReview": false
     },
     "chrome.proCalloutText": {
-      "sourceHash": "fd0d5d9612b934300947e85def3e287f29cbe55f7c72d10a5fd36d54b47169ac",
-      "machineHash": "b830d48a7f3296676ed093152af4b535eb8e427871a97b66b72afa8e73ff64fe",
+      "sourceHash": "1c8d1e825359227b7e66d5fbf7b877291f9a74a7e6d40c8c293322905fd87f38",
+      "machineHash": "bfc8401daf0fa2aa8d82433abb4c708051224b449a7dbe45d180b129b348c624",
       "model": "manual",
-      "translatedAt": "2026-10-27T04:25:37.621044Z",
-      "reviewedHash": "b830d48a7f3296676ed093152af4b535eb8e427871a97b66b72afa8e73ff64fe",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "bfc8401daf0fa2aa8d82433abb4c708051224b449a7dbe45d180b129b348c624",
       "needsMarkupReview": false
     },
     "homepage.more.eyebrow": {
@@ -8017,11 +8017,11 @@
       "needsMarkupReview": false
     },
     "homepage.more.pro.tag": {
-      "sourceHash": "321217e9e556bfbf3e95e0a59d090fe9bd4a301a09c02ea21aef7d2a1db15ad9",
-      "machineHash": "775972ce21957a9bf8679011511b8ed6282faa0d3696107dce3fd4b1a1749751",
+      "sourceHash": "4f7d64017689437e6d93f5724f3f797054f3935d98a13148025b616b8db8fb2c",
+      "machineHash": "e7ed6a8c26a09f2da027bf2dc71b9a655b0979a7c2fa8aec07185a908a7e2993",
       "model": "manual",
-      "translatedAt": "2026-10-27T05:08:24.305837Z",
-      "reviewedHash": "775972ce21957a9bf8679011511b8ed6282faa0d3696107dce3fd4b1a1749751",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "e7ed6a8c26a09f2da027bf2dc71b9a655b0979a7c2fa8aec07185a908a7e2993",
       "needsMarkupReview": false
     },
     "homepage.more.pro.title": {
@@ -8033,19 +8033,19 @@
       "needsMarkupReview": false
     },
     "homepage.more.pro.body": {
-      "sourceHash": "7d53ab541859c62caa2fe5deb918a86b1027de2251632ce7ecff1a4724831eba",
-      "machineHash": "4b6850f9f8a8bef5bc785a14084c6078e8b7ba8c70fe5e89c73e6ef2e506688f",
+      "sourceHash": "d774f2b8703cd8cc1c0d95f04c8ac40928b48c7d217b28e21063b6314820dba6",
+      "machineHash": "1bd3abc5909f3f03c12f98f5ba81c6c6cb23462916b22a51ce7d8d111aa21dfe",
       "model": "manual",
-      "translatedAt": "2026-10-27T05:08:24.305837Z",
-      "reviewedHash": "4b6850f9f8a8bef5bc785a14084c6078e8b7ba8c70fe5e89c73e6ef2e506688f",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "1bd3abc5909f3f03c12f98f5ba81c6c6cb23462916b22a51ce7d8d111aa21dfe",
       "needsMarkupReview": false
     },
     "homepage.more.pro.link": {
-      "sourceHash": "ad15bb5a7b458a8929f40e30d83a46c78f3927e73890380ef79d3f2b4605ae00",
-      "machineHash": "cb09e01ba8c8fc6956aa818c3a021c3a4c4c0a0bbdc49becef6a10887c2796f6",
+      "sourceHash": "6a16124b654c7660f3a37d8b422d70d23b94b6c771d8773d7ea1cf6c3a4dc391",
+      "machineHash": "43e08b5c907d6365d4de761ca6f110428097d5baee3c17b1c5cf57f4aa30d625",
       "model": "manual",
-      "translatedAt": "2026-10-27T05:08:24.305837Z",
-      "reviewedHash": "cb09e01ba8c8fc6956aa818c3a021c3a4c4c0a0bbdc49becef6a10887c2796f6",
+      "translatedAt": "2026-10-27T06:00:42.102Z",
+      "reviewedHash": "43e08b5c907d6365d4de761ca6f110428097d5baee3c17b1c5cf57f4aa30d625",
       "needsMarkupReview": false
     }
   }

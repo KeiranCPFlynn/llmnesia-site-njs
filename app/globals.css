@@ -9041,15 +9041,7 @@ main.pro-page > section.pro-hero {
   letter-spacing: -0.03em;
 }
 
-.pro-save-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--success);
-  box-shadow: 0 0 0 3px rgba(74, 125, 43, 0.18);
-}
-
-/* --- Chat lines (tour windows and chat view) --- */
+/* --- Chat lines (chat view) --- */
 .pro-line {
   display: grid;
   gap: 0.15rem;
@@ -9135,185 +9127,97 @@ a.pro-btn {
   .pro-hero-inner > *,
   .pro-sources,
   .pro-demo-wrap > .pro-demo,
-  .pro-pill-dot,
-  .pro-reveal,
-  .pro-tour-copy,
-  .pro-stage,
-  .pro-evidence-link.is-pulse {
+  .pro-pill-dot {
     animation: none;
   }
 
-  .pro-cta {
+  .pro-cta,
+  .pro-guide-item {
     transition: none;
   }
 }
 
-/* --- Demo tour: steps, story and Back/Next (on the dark hero) --- */
-.pro-tour {
+/* --- Demo: numbered captions beside the clickable preview (dark hero) --- */
+.pro-demo {
+  display: grid;
+  grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  align-items: start;
   max-width: 72rem;
-  margin: 0 auto 1.1rem;
-  text-align: left;
+  margin: 0 auto;
 }
 
-.pro-tour-steps {
+.pro-guide {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.4rem;
-  margin: 0 0 1rem;
+  gap: 0.6rem;
+  margin: 0;
   padding: 0;
   list-style: none;
+  text-align: left;
 }
 
-.pro-tour-step {
+.pro-guide-item {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.8rem;
   width: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 0;
-  border-top: 3px solid rgba(214, 233, 240, 0.16);
-  background: none;
-  color: #8fa3aa;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(214, 233, 240, 0.14);
+  border-radius: 12px;
+  background: rgba(214, 233, 240, 0.04);
+  color: #cfe3e8;
   font: inherit;
-  font-size: 0.86rem;
-  font-weight: 600;
   text-align: left;
   cursor: pointer;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
-.pro-tour-step:hover {
-  color: #eef4f2;
+.pro-guide-item:hover {
+  border-color: rgba(102, 189, 214, 0.5);
 }
 
-.pro-tour-num {
+.pro-guide-item.is-on {
+  border-color: #66bdd6;
+  background: rgba(102, 189, 214, 0.12);
+}
+
+.pro-guide-num {
   display: inline-grid;
   flex: 0 0 auto;
   place-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 999px;
-  background: rgba(214, 233, 240, 0.1);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-}
-
-.pro-tour-step.is-done {
-  border-top-color: rgba(102, 189, 214, 0.55);
-  color: #cfe3e8;
-}
-
-.pro-tour-step.is-current {
-  border-top-color: #66bdd6;
+  background: rgba(214, 233, 240, 0.12);
   color: #eef4f2;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
-.pro-tour-step.is-current .pro-tour-num {
+.pro-guide-item.is-on .pro-guide-num {
   background: #66bdd6;
   color: #0b161d;
 }
 
-.pro-tour-story {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1rem 2rem;
+.pro-guide-text {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
-.pro-tour-copy {
-  flex: 1 1 30rem;
-  min-width: 0;
-  animation: pro-rise 0.5s ease backwards;
-}
-
-.pro-tour-title {
-  margin: 0 0 0.45rem;
+.pro-guide-text strong {
   color: #eef4f2;
-  font-size: clamp(1.3rem, 2.4vw, 1.75rem);
-  letter-spacing: -0.02em;
+  font-size: 1.02rem;
+  line-height: 1.3;
 }
 
-.pro-tour-what,
-.pro-tour-why {
-  max-width: 44rem;
-  margin: 0;
-  color: #cfe3e8;
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-.pro-tour-why {
-  margin-top: 0.35rem;
-  color: #9fb4ba;
-}
-
-.pro-tour-why strong {
+.pro-guide-hint {
+  padding: 0.2rem 0.25rem 0;
   color: #f2a27c;
-}
-
-.pro-tour-nav {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 0.5rem;
-}
-
-.pro-tour-back,
-.pro-tour-next {
-  padding: 0.7rem 1.2rem;
-  border-radius: 999px;
-  font: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.pro-tour-back {
-  border: 1px solid rgba(214, 233, 240, 0.25);
-  background: transparent;
-  color: #eef4f2;
-}
-
-.pro-tour-back:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-.pro-tour-next {
-  border: 0;
-  background: #eef4f2;
-  color: #0b161d;
-}
-
-.pro-tour-next:hover {
-  background: #ffffff;
-}
-
-/* --- The stage each step plays on --- */
-.pro-stage {
-  min-height: 27rem;
-  animation: pro-stage-in 0.45s ease backwards;
-}
-
-@keyframes pro-stage-in {
-  from { opacity: 0; }
-}
-
-.pro-reveal {
-  animation: pro-reveal-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
-}
-
-@keyframes pro-reveal-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-}
-
-/* Hold the first scene still until the demo is on screen. */
-.pro-app.is-waiting .pro-reveal,
-.pro-app.is-waiting .pro-stage {
-  animation-play-state: paused;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .pro-scene {
@@ -9327,55 +9231,10 @@ a.pro-btn {
   border-radius: 0 0 16px 16px;
 }
 
-/* A chat window (Codex in step 1, Claude in step 3). */
-.pro-window {
-  width: min(36rem, 100%);
-  border: 1px solid #c9c3ad;
-  border-radius: 12px;
-  background: var(--t-card);
-  box-shadow: 0 30px 60px -30px rgba(11, 22, 29, 0.45);
-}
-
-.pro-window-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.7rem 0.9rem;
-  border-bottom: 1px solid var(--t-rule);
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-
 .pro-window-body {
   display: grid;
   gap: 0.8rem;
   padding: 1rem;
-}
-
-.pro-window-body > .pro-reveal {
-  display: grid;
-}
-
-.pro-window .pro-line p {
-  font-size: 0.92rem;
-}
-
-.pro-window-foot {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.6rem 0.9rem;
-  border-top: 1px solid var(--t-rule-soft);
-  color: var(--success);
-  font-size: 0.82rem;
-  font-weight: 600;
-}
-
-/* Step 3: the arrow between the project page and the chat it opens. */
-.pro-scene-arrow {
-  color: var(--t-teal);
-  font-size: 0.82rem;
-  font-weight: 700;
 }
 
 /* --- The project page, mirroring the real Projects page in the extension --- */
@@ -9458,15 +9317,6 @@ a.pro-btn {
   color: var(--t-ink);
 }
 
-.pro-tab-new {
-  padding: 0.05rem 0.45rem;
-  border-radius: 999px;
-  background: #f2a27c;
-  color: #3b1d0e;
-  font-size: 0.68rem;
-  font-weight: 700;
-}
-
 .pro-project-list {
   display: grid;
   gap: 0.75rem;
@@ -9481,26 +9331,10 @@ a.pro-btn {
   box-shadow: 0 1px 2px rgba(11, 22, 29, 0.05);
 }
 
-.pro-project-card.is-new {
-  border-color: #f2a27c;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #f2a27c 22%, transparent);
-}
-
 .pro-project-card h4 {
   margin: 0 0 0.4rem;
   font-size: 1rem;
   line-height: 1.35;
-}
-
-.pro-pill-new {
-  margin-left: 0.3rem;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
-  background: #f2a27c;
-  color: #3b1d0e;
-  font-size: 0.66rem;
-  font-weight: 700;
-  vertical-align: 0.15em;
 }
 
 .pro-project-status {
@@ -9595,15 +9429,6 @@ a.pro-btn {
   background: var(--t-teal-soft);
 }
 
-.pro-evidence-link.is-pulse {
-  border-color: var(--t-teal);
-  animation: pro-link-pulse 1.1s ease-in-out 0.8s 3;
-}
-
-@keyframes pro-link-pulse {
-  50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--t-teal) 25%, transparent); }
-}
-
 /* --- A chat as the LLMnesia viewer shows it --- */
 .pro-viewer {
   width: min(44rem, 100%);
@@ -9683,33 +9508,13 @@ a.pro-btn {
   font-weight: 600;
 }
 
+@media (max-width: 900px) {
+  .pro-demo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 720px) {
-  .pro-tour-steps {
-    grid-template-columns: repeat(4, minmax(0, auto));
-    justify-content: start;
-    overflow-x: auto;
-  }
-
-  .pro-tour-step {
-    white-space: nowrap;
-  }
-
-  .pro-tour-step:not(.is-current) .pro-tour-label {
-    display: none;
-  }
-
-  .pro-tour-nav {
-    width: 100%;
-  }
-
-  .pro-tour-next {
-    flex: 1;
-  }
-
-  .pro-stage {
-    min-height: 0;
-  }
-
   .pro-project-tab {
     flex: 1 1 29%;
     min-width: 0;

@@ -1,6 +1,6 @@
 import { siteText } from '../../lib/site-copy';
 
-// "Pro early access" band placed just under the hero on pages whose visitors
+// "Pro coming soon" band placed just under the hero on pages whose visitors
 // already work across several AI tools (MCP, Claude Code). /pro is English
 // only, so translated pages link to the English page with translated copy.
 // `slug` tags the click so we can see which page sends people to /pro.

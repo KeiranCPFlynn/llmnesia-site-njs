@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-// Pro (Projects and Teams) early-access form. Email first, nothing else in the
+// Pro (Projects and Teams) waitlist form. Email first, nothing else in the
 // way; two optional questions appear only after the signup has landed. Mirrors
 // the Vault waitlist pattern: the email is POSTed to /api/leads with its own
 // source, the follow-up answers go in a second POST for the same email, and
@@ -215,9 +215,9 @@ export default function ProEarlyAccessForm({ context = 'pro_page' }) {
   if (state === 'success') {
     return (
       <div className="vault-form vault-form-success" role="status">
-        <p className="vault-form-success-title">You’re on the early-access list.</p>
+        <p className="vault-form-success-title">You’re on the waitlist.</p>
         <p className="vault-form-success-copy">
-          We’ll email you when your spot opens, plus the occasional update while we build it.
+          We’ll email you when Pro opens, plus the occasional update while we build it. Nothing to pay now.
         </p>
         <FollowUp email={joinedEmail} context={context} />
       </div>
@@ -247,7 +247,7 @@ export default function ProEarlyAccessForm({ context = 'pro_page' }) {
           required
         />
         <button className="button button-large" type="submit" disabled={busy}>
-          {busy ? 'Joining…' : 'Join early access'}
+          {busy ? 'Joining…' : 'Join the waitlist'}
         </button>
       </div>
       {state === 'error' && error ? (
@@ -256,7 +256,7 @@ export default function ProEarlyAccessForm({ context = 'pro_page' }) {
         </p>
       ) : (
         <p className="vault-form-note">
-          We’ll only email you about Pro early access and launch. Nothing else.
+          Free to join, no card needed. We’ll only email you about Pro and its launch.
         </p>
       )}
     </form>

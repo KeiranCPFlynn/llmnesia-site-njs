@@ -1,18 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 // Interactive design preview of Pro for /pro. Everything here is made-up
-// content for a fictional invoicing app. The project page in steps 2 to 4
-// mirrors the real Projects page in the extension (extension/src/pages/
+// content for a fictional invoicing app. The project page mirrors the real Projects page in the extension (extension/src/pages/
 // projects.ts): a project picker, a freshness line, Decided / In progress /
 // Next tabs, and items that quote their chat with an "Open source chat" link.
 // Opening a chat shows it as the LLMnesia viewer does, with "Continue in".
 // Nothing here shows a feature the product does not have.
 //
-// It is a four-step tour the reader moves through: you chat, LLMnesia adds it
-// to the project, you pick up where you left off, then the project page to
-// explore. One idea per step, and nothing advances on its own.
+// The reader clicks around it freely. Three numbered captions beside it say
+// what is going on, and clicking a caption shows that part of the page.
 
 const PLATFORMS = {
   chatgpt: 'ChatGPT',
@@ -79,12 +77,13 @@ const CHATS = {
   }
 };
 
-const NEW_CHAT = 'trial-pricing';
+// The chat the first caption opens.
+const FIRST_CHAT = 'trial-pricing';
 
 // The project, shaped like the real board: decisions, cards and next actions,
-// each with the quote it rests on. `isNew` items come from the new chat.
+// each with the quote it rests on.
 const DECIDED = [
-  { id: 'trial', text: '14-day free trial, no free plan', quote: 'OK, 14-day trial it is.', chat: NEW_CHAT, isNew: true },
+  { id: 'trial', text: '14-day free trial, no free plan', quote: 'OK, 14-day trial it is.', chat: FIRST_CHAT },
   { id: 'stripe', text: 'Use Stripe for billing, not our own system', quote: 'Building our own is weeks of work. Stripe it is.', chat: 'stripe' },
   { id: 'pdf', text: 'Invoices go out as a PDF by email. No customer portal yet.', quote: 'Portal can wait. PDF plus email covers every customer we have.', chat: 'invoices' }
 ];
@@ -99,7 +98,7 @@ const COMPLETED = [
 ];
 
 const NEXT = [
-  { id: 'emails', text: 'Write the emails that go out before the trial ends', basis: 'You said you’d do this', quote: 'Next I’ll write the emails that go out before the trial ends.', chat: NEW_CHAT, isNew: true },
+  { id: 'emails', text: 'Write the emails that go out before the trial ends', basis: 'You said you’d do this', quote: 'Next I’ll write the emails that go out before the trial ends.', chat: FIRST_CHAT },
   { id: 'vat', text: 'Add VAT lines to the invoice PDF', basis: 'Suggested', quote: 'Add VAT lines before you invoice UK customers.', chat: 'vat' }
 ];
 
@@ -111,32 +110,22 @@ const TABS = [
 
 const CONTINUE_TARGETS = ['chatgpt', 'gemini', 'claude', 'claude-code'];
 
-// The guided tour: one idea per step, moved on by the reader, never on a timer.
-// Each scene's animation plays once when its step opens and then holds still.
-const STEPS = [
+// The captions. Each one shows the part of the page it describes.
+const GUIDE = [
   {
-    label: 'You chat',
-    title: 'You chat like you always do.',
-    what: 'Here you settle a pricing question with Claude. LLMnesia saves the chat in the background.',
-    why: 'Nothing new to learn. No copying, pasting or note-taking.'
+    id: 'chat',
+    title: 'You chat in any AI',
+    body: 'ChatGPT, Claude, Gemini, Claude Code, Codex. LLMnesia saves each chat as you go.'
   },
   {
-    label: 'It’s noted',
-    title: 'LLMnesia adds it to your project.',
-    what: 'It spots the decision and the next step in that chat and adds them to your Invoicing app project, quoting your own words.',
-    why: 'Your project stays written down, and you didn’t have to write it.'
+    id: 'decided',
+    title: 'It writes down where things stand',
+    body: 'Each project gets one page: what’s decided, in progress and next, quoting your own words.'
   },
   {
-    label: 'Pick up',
-    title: 'Come back any time and pick up where you left off.',
-    what: 'Your next step is waiting. One click opens the chat it came from, so you can carry on there or continue it in another AI.',
-    why: 'No digging through old chats to remember where you got to.'
-  },
-  {
-    label: 'Your project',
-    title: 'Every project, in one place.',
-    what: 'This is the project page. Switch between Decided, In progress and Next, and open the chat behind any item.',
-    why: 'Know where every project stands, and check anything against the chat it came from.'
+    id: 'next',
+    title: 'Click to check or carry on',
+    body: 'Open the chat behind any item, then pick up there or continue it in another AI.'
   }
 ];
 
@@ -169,15 +158,8 @@ function withMark(text, quotes) {
 const ALL_ITEMS = [...DECIDED, ...IN_PROGRESS, ...COMPLETED, ...NEXT];
 const quotesFor = (chatId) => ALL_ITEMS.filter((item) => item.chat === chatId).map((item) => item.quote);
 
-// Fades a piece of a scene in after `at` seconds. With reduced motion it is
-// simply there (see the CSS).
-const reveal = (at, className = '') => ({
-  className: className ? `${className} pro-reveal` : 'pro-reveal',
-  style: { animationDelay: `${at}s` }
-});
-
 // One quote with its link back to the chat, as the real page shows it.
-function Evidence({ item, onOpen, pulse = false }) {
+function Evidence({ item, onOpen }) {
   const chat = CHATS[item.chat];
   return (
     <div className="pro-evidence">
@@ -188,7 +170,7 @@ function Evidence({ item, onOpen, pulse = false }) {
         </span>
         <button
           type="button"
-          className={`pro-evidence-link${pulse ? ' is-pulse' : ''}`}
+          className="pro-evidence-link"
           onClick={() => onOpen?.(item.chat)}
         >
           Open source chat
@@ -198,18 +180,9 @@ function Evidence({ item, onOpen, pulse = false }) {
   );
 }
 
-function NewTag() {
-  return <span className="pro-pill-new">New</span>;
-}
-
-// The project page. `highlight` marks the items that came from the new chat;
-// `revealNew` (seconds) fades them in; `pulseNext` draws the eye to the link.
-function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = null, pulseNext = false }) {
+// The project page.
+function ProjectPage({ tab, onTab, onOpenChat }) {
   const [showCompleted, setShowCompleted] = useState(false);
-  const itemProps = (item) => {
-    const className = `pro-project-card${highlight && item.isNew ? ' is-new' : ''}`;
-    return revealNew !== null && item.isNew ? reveal(revealNew, className) : { className };
-  };
 
   return (
     <div className="pro-project">
@@ -233,9 +206,6 @@ function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = nu
             onClick={() => onTab?.(t.id)}
           >
             {t.label}
-            {highlight && t.id === 'next' && tab !== 'next' ? (
-              <span {...reveal((revealNew ?? 0) + 1.4, 'pro-tab-new')}>1 new</span>
-            ) : null}
           </button>
         ))}
       </div>
@@ -243,10 +213,8 @@ function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = nu
       <div className="pro-project-list" role="tabpanel">
         {tab === 'decided'
           ? DECIDED.map((item) => (
-              <article key={item.id} {...itemProps(item)}>
-                <h4>
-                  {item.text} {highlight && item.isNew ? <NewTag /> : null}
-                </h4>
+              <article key={item.id} className="pro-project-card">
+                <h4>{item.text}</h4>
                 <Evidence item={item} onOpen={onOpenChat} />
               </article>
             ))
@@ -282,12 +250,10 @@ function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = nu
 
         {tab === 'next'
           ? NEXT.map((item) => (
-              <article key={item.id} {...itemProps(item)}>
-                <h4>
-                  {item.text} {highlight && item.isNew ? <NewTag /> : null}
-                </h4>
+              <article key={item.id} className="pro-project-card">
+                <h4>{item.text}</h4>
                 <span className="pro-project-status">{item.basis}</span>
-                <Evidence item={item} onOpen={onOpenChat} pulse={pulseNext && item.isNew} />
+                <Evidence item={item} onOpen={onOpenChat} />
               </article>
             ))
           : null}
@@ -298,11 +264,11 @@ function ProjectPage({ tab, onTab, onOpenChat, highlight = false, revealNew = nu
 
 // A chat as the LLMnesia viewer shows it: the quoted lines highlighted, and
 // "Continue in" to carry it on in another assistant.
-function ChatView({ chatId, onBack, className = '', style }) {
+function ChatView({ chatId, onBack }) {
   const chat = CHATS[chatId];
   const quotes = quotesFor(chatId);
   return (
-    <div className={`pro-viewer${className ? ` ${className}` : ''}`} style={style}>
+    <div className="pro-viewer">
       <div className="pro-viewer-head">
         {onBack ? (
           <button type="button" className="pro-viewer-back" onClick={onBack}>
@@ -335,156 +301,59 @@ function ChatView({ chatId, onBack, className = '', style }) {
   );
 }
 
-function ChatScene() {
-  const chat = CHATS[NEW_CHAT];
-  return (
-    <div className="pro-scene">
-      <div className="pro-window">
-        <div className="pro-window-bar">
-          <Platform id={chat.platform} />
-          <span>{chat.title}</span>
-        </div>
-        <div className="pro-window-body">
-          {chat.lines.map((line, index) => (
-            <div key={line.text} {...reveal(0.5 + index * 1.6)}>
-              <div className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
-                <span className="pro-line-who">{line.you ? 'You' : 'Claude'}</span>
-                <p>{line.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div {...reveal(5.4, 'pro-window-foot')}>
-          <span className="pro-save-dot" aria-hidden="true" />
-          Saved by LLMnesia
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NotedScene() {
-  return (
-    <div className="pro-scene">
-      <ProjectPage tab="decided" highlight revealNew={0.9} />
-    </div>
-  );
-}
-
-function PickUpScene() {
-  return (
-    <div className="pro-scene">
-      <ProjectPage tab="next" highlight pulseNext />
-      <span {...reveal(2.4, 'pro-scene-arrow')} aria-hidden="true">↓ Opens the chat</span>
-      <ChatView chatId={NEW_CHAT} {...reveal(2.8)} />
-    </div>
-  );
-}
-
-// The project page, open to explore. Opening a chat swaps to the chat view.
-function ProjectScene() {
+export default function ProBoardDemo() {
   const [tab, setTab] = useState('decided');
   const [openChat, setOpenChat] = useState(null);
-  return (
-    <div className="pro-scene">
-      {openChat ? (
-        <ChatView chatId={openChat} onBack={() => setOpenChat(null)} />
-      ) : (
-        <ProjectPage tab={tab} onTab={setTab} onOpenChat={setOpenChat} />
-      )}
-    </div>
-  );
-}
+  const active = openChat ? 'chat' : tab === 'progress' ? 'decided' : tab;
 
-const SCENES = [ChatScene, NotedScene, PickUpScene, ProjectScene];
-
-export default function ProBoardDemo() {
-  const rootRef = useRef(null);
-  const [step, setStep] = useState(0);
-  // The first scene waits, paused, until the demo is on screen.
-  const [seen, setSeen] = useState(false);
-
-  useEffect(() => {
-    const node = rootRef.current;
-    if (!node || typeof IntersectionObserver === 'undefined') {
-      setSeen(true);
-      return undefined;
+  const show = (id) => {
+    if (id === 'chat') {
+      setOpenChat(FIRST_CHAT);
+      return;
     }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          setSeen(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  const current = STEPS[step];
-  const Scene = SCENES[step];
-  const last = step === STEPS.length - 1;
+    setOpenChat(null);
+    setTab(id);
+  };
 
   return (
-    <div className="pro-demo" ref={rootRef}>
-      <div className="pro-tour">
-        <ol className="pro-tour-steps">
-          {STEPS.map((s, index) => (
-            <li key={s.label}>
-              <button
-                type="button"
-                className={`pro-tour-step${step === index ? ' is-current' : ''}${step > index ? ' is-done' : ''}`}
-                aria-current={step === index ? 'step' : undefined}
-                onClick={() => setStep(index)}
-              >
-                <span className="pro-tour-num">{index + 1}</span>
-                <span className="pro-tour-label">{s.label}</span>
-              </button>
-            </li>
-          ))}
-        </ol>
-
-        <div className="pro-tour-story" aria-live="polite">
-          <div className="pro-tour-copy" key={step}>
-            <h3 className="pro-tour-title">{current.title}</h3>
-            <p className="pro-tour-what">{current.what}</p>
-            <p className="pro-tour-why">
-              <strong>Why it matters:</strong> {current.why}
-            </p>
-          </div>
-          <div className="pro-tour-nav">
-            <button type="button" className="pro-tour-back" onClick={() => setStep(step - 1)} disabled={step === 0}>
-              Back
+    <div className="pro-demo">
+      <ol className="pro-guide">
+        {GUIDE.map((item, index) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className={`pro-guide-item${active === item.id ? ' is-on' : ''}`}
+              aria-pressed={active === item.id}
+              onClick={() => show(item.id)}
+            >
+              <span className="pro-guide-num" aria-hidden="true">{index + 1}</span>
+              <span className="pro-guide-text">
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </span>
             </button>
-            <button type="button" className="pro-tour-next" onClick={() => setStep(last ? 0 : step + 1)}>
-              {last ? 'Start again' : 'Next'} <span aria-hidden="true">{last ? '↺' : '→'}</span>
-            </button>
-          </div>
-        </div>
-      </div>
+          </li>
+        ))}
+        <li className="pro-guide-hint">Try it: everything in the preview is clickable.</li>
+      </ol>
 
-      <div className={`pro-app${seen ? '' : ' is-waiting'}`}>
+      <div className="pro-app">
         <div className="pro-app-bar">
           <span className="pro-app-dots" aria-hidden="true">
             <span />
             <span />
             <span />
           </span>
-          <span className="pro-app-name">{step === 0 ? 'Claude' : 'LLMnesia · Projects'}</span>
+          <span className="pro-app-name">LLMnesia · Projects</span>
           <span className="pro-app-badge">Design preview</span>
         </div>
-        <div className="pro-stage" key={step}>
-          <Scene />
+        <div className="pro-scene">
+          {openChat ? (
+            <ChatView chatId={openChat} onBack={() => setOpenChat(null)} />
+          ) : (
+            <ProjectPage tab={tab} onTab={setTab} onOpenChat={setOpenChat} />
+          )}
         </div>
-        {last ? null : (
-          <div className="pro-stage-foot">
-            <button type="button" className="pro-stage-next" onClick={() => setStep(step + 1)}>
-              Next: {STEPS[step + 1].label} <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -5,16 +5,16 @@ import ProEarlyAccessForm from '../components/pro-early-access-form';
 import { buildPageMetadata } from '../../lib/metadata';
 import { homepageFaqSchema } from '../../lib/schema';
 
-// Early-access page for Pro (Projects and Teams). Pro is still being built, so
+// Waitlist page for Pro (Projects and Teams). Pro is still being built, so
 // every claim here must match the "safe once it ships" list in the LLMnesia
 // repo's docs/TEAMS_PROJECTS_GTM_PLAN.md, and the price and packaging must match
 // the Decisions table in docs/TEAMS_FIRST_PAID_TEAM.md. The board is a labelled
 // design preview with made-up content, never a real user's work.
 
 export const metadata = buildPageMetadata({
-  title: 'LLMnesia Pro: stop re-explaining your project to every AI chat (early access)',
+  title: 'LLMnesia Pro: know where every project stands, across every AI (coming soon)',
   description:
-    'LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for each project: what is decided, what is in progress and what is next, each linked to the chat it came from. Use it alone or with your team. Join early access.',
+    'LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for each project: what is decided, what is in progress and what is next, each linked to the chat it came from. Use it alone or with your team. Coming soon: join the waitlist.',
   canonicalPath: '/pro'
 });
 
@@ -62,7 +62,7 @@ const PROMISES = [
 const FAQS = [
   {
     q: 'When can I use it?',
-    a: 'We are building Pro now. Early-access members hear first, and we will open it in small groups so everyone gets set up properly.'
+    a: 'Not yet. We are building Pro now. Everyone on the waitlist hears first, and we will open it in small groups so everyone gets set up properly. Joining the waitlist is free, and you only pay if you decide to start once it opens.'
   },
   {
     q: 'Can I use it on my own?',
@@ -118,11 +118,11 @@ export default function ProPage() {
           <div className="container pro-hero-inner">
             <p className="pro-pill">
               <span className="pro-pill-dot" aria-hidden="true" />
-              LLMnesia Pro · Early access
+              LLMnesia Pro · Coming soon
             </p>
             <h1 className="pro-title">
-              Stop re-explaining your project to{' '}
-              <span className="pro-title-accent">every new AI chat.</span>
+              Know where every project stands,{' '}
+              <span className="pro-title-accent">across every AI.</span>
             </h1>
             <p className="pro-lede">
               LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for
@@ -130,8 +130,8 @@ export default function ProPage() {
               the chat it came from.
             </p>
             <div className="pro-hero-actions">
-              <a className="pro-cta" href="#early-access">Join early access</a>
-              <span className="pro-hero-note">Use it alone or with your team</span>
+              <a className="pro-cta" href="#waitlist">Join the waitlist</a>
+              <span className="pro-hero-note">Free to join, no card needed</span>
             </div>
           </div>
 
@@ -242,22 +242,22 @@ export default function ProPage() {
           </div>
         </section>
 
-        <section className="pro-join" id="early-access">
+        <section className="pro-join" id="waitlist">
           <div className="container pro-join-inner">
             <div className="pro-price" id="pricing">
-              <p className="pro-kicker">Pro</p>
+              <p className="pro-kicker">Planned price at launch</p>
               <p className="pro-price-figure">
                 {PRICE_MONTHLY}
                 <span>per person / month</span>
               </p>
               <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
               <p className="pro-price-for">For anyone working across more than one AI.</p>
-              <p className="pro-price-foot">Alone or with a team. Uses your own AI account. Vault included.</p>
+              <p className="pro-price-foot">Alone or with a team. Uses your own AI account. Vault included. Nothing to pay now.</p>
             </div>
 
             <div className="pro-join-form">
-              <h2>Get early access.</h2>
-              <p className="pro-join-sub">Just your email. We’ll tell you when your spot opens.</p>
+              <h2>Join the waitlist.</h2>
+              <p className="pro-join-sub">Free to join, no card needed. We’ll email you when Pro opens.</p>
               <ProEarlyAccessForm context="pro_page" />
             </div>
           </div>
