@@ -4,53 +4,51 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Character.AI Test 3: archive recovery | LLMnesia</title>
+<title>Character.AI Test 5: full recovery | LLMnesia</title>
 <style>
 :root{color-scheme:light}*{box-sizing:border-box}body{max-width:800px;margin:40px auto;padding:0 24px 48px;font:17px/1.65 system-ui,sans-serif;color:#17212b;background:#fff}h1,h2{line-height:1.25}h1{font-size:2rem;margin-bottom:16px}h2{font-size:1.35rem;margin-top:36px}a{color:#1759b9}li{margin:12px 0;padding-left:4px}ol{padding-left:26px}code{font-size:.9em;overflow-wrap:anywhere;background:#f1f4f7;border-radius:4px;padding:2px 5px}.download{display:inline-block;background:#1759b9;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:600}.download:hover{background:#124891}.notice{padding:16px 20px;background:#f0f6fc;border-left:4px solid #1759b9;border-radius:4px}.notice p{margin:0}.muted{color:#526170}details{margin-top:32px;border-top:1px solid #dce3ea;padding-top:20px}summary{cursor:pointer;font-weight:600}@media(max-width:480px){body{margin-top:24px;padding-left:18px;padding-right:18px}h1{font-size:1.7rem}.download{display:block;text-align:center}}
 </style>
 </head>
 <body>
 <main>
-<h1>Character.AI Test 3: archive recovery</h1>
-<p>Thanks for helping us test this change. This is <strong>Test 3</strong>, a private Chrome build for a small archive recovery test.</p>
-<p><a class="download" href="llmnesia-0.4.21.3-character-ai-test-3-86915ad6.zip">Download Test 3 (20 MB)</a></p>
-<div class="notice"><p><strong>Keep the old test copy and its saved chats.</strong> Switch it off while testing, then load Test 3 from its own new folder. There is no need to copy, replace or delete any old files.</p></div>
-<h2>What this test does</h2>
-<p>The new <strong>Recover up to 3 archives</strong> button tries a small batch of pending archived chats. Before the test starts, it asks your permission to unarchive those chats if needed. If Character.AI refuses to read an archived chat, the test unarchives it in your Character.AI account and then tries importing it again.</p>
-<p><strong>Recovered chats stay unarchived, including if importing or saving fails.</strong> They may appear in your Character.AI recent chats. This test does not rearchive or delete them. Ordinary imports do not unarchive chats.</p>
-<p>We have checked the unarchive request with our own disposable test chat, and tested the recovery flow with synthetic cases. We have not reproduced your exact older archives, so this test may still be unable to retrieve some chats, especially those belonging to unavailable bots.</p>
-<h2>Load Test 3 separately</h2>
+<h1>Character.AI Test 5: full recovery</h1>
+<p>This private Chrome copy works through all the chats Character.AI makes available in one run, including archives. It replaces the small three-chat test.</p>
+<p><a class="download" href="llmnesia-0.4.21.5-character-ai-test-5-e59588e5.zip">Download Test 5 (20 MB)</a></p>
+<div class="notice"><p><strong>Keep your older test copies and their saved chats.</strong> Switch those copies off, then load Test 5 from a new folder. No copying or replacing old files is needed.</p></div>
+<h2>Before you start</h2>
+<p><strong>This run may unarchive hundreds of chats in your Character.AI account.</strong> It asks for confirmation before starting. It first tries reading a chat; if an archived chat is refused, it can unarchive it and try reading it again.</p>
+<p><strong>Restored chats stay unarchived, even if importing or saving fails.</strong> They may appear in Character.AI’s recent chats. This copy does not rearchive or delete them. Please continue only if you are happy with that.</p>
+<h2>Load the new copy</h2>
 <ol>
-<li>Download the Test 3 ZIP above and extract it to a <strong>new folder</strong> you can keep in place. Leave the old test folder alone.</li>
-<li>In the same temporary Chrome profile used for the earlier test, let any import finish and close the Character.AI tabs. Open <code>chrome://extensions</code> and <strong>switch off the old LLMnesia entry</strong> using its toggle. Do not click Remove or clear its data.</li>
-<li>On that page, click <strong>Load unpacked</strong> and select the newly extracted Test 3 folder containing <code>manifest.json</code>. If needed, switch on <strong>Developer mode</strong> to see Load unpacked. A new entry should say <strong>LLMnesia Character.AI Test 3</strong>, version <strong>0.4.21.3</strong>.</li>
-<li>Close any LLMnesia welcome tab. You do not need to start a full import or connect Vault. Open <a href="https://character.ai/" rel="noreferrer">character.ai</a> in that profile; sign in to the same Character.AI account if needed.</li>
+<li>Download the ZIP above and extract it to a <strong>new folder</strong> you can keep in place. Leave your earlier test folders alone.</li>
+<li>In the same Chrome test profile as before, let any current import finish and close its Character.AI tabs. Open <code>chrome://extensions</code> and use the toggles to <strong>switch off the older LLMnesia test entries</strong>. Do not remove them or clear their data.</li>
+<li>Click <strong>Load unpacked</strong> and select the new folder containing <code>manifest.json</code>. If needed, switch on <strong>Developer mode</strong> to see Load unpacked. The new entry should say <strong>LLMnesia Character.AI Test 5</strong>, version <strong>0.4.21.5</strong>.</li>
 </ol>
-<p><strong>Test 3 starts with an empty search index. That is expected.</strong> The chats saved by the old copy stay with that old copy and do not automatically appear in Test 3. Only the new test copy should be switched on during this test.</p>
-<h2>Try three archives</h2>
+<p>Close any LLMnesia welcome tab without starting an ordinary import. Leave Vault disconnected. Test 5 starts with its own empty search index; your earlier saved chats remain with the older copies.</p>
+<h2>Run recovery once</h2>
 <ol>
-<li>With Character.AI open, open the LLMnesia popup and choose <strong>Recover up to 3 archives</strong> once. This works without a full import first. You do not need to set a limit.</li>
-<li>Read the confirmation. Continue only if you are happy for up to three pending archived chats to become unarchived in your Character.AI account. Cancel leaves them unchanged.</li>
-<li>Keep the Character.AI tab open until the test finishes. You do not need to locate each bot or share any chat links or text.</li>
-<li>The technical results are sent automatically. Please wait for Keiran to review them before running another recovery batch.</li>
+<li>Open <a href="https://character.ai/" rel="noreferrer">character.ai</a> in that test profile and sign in to your usual account if needed.</li>
+<li>Open the popup for <strong>LLMnesia Character.AI Test 5</strong> and click <strong>Recover available chats</strong> once. Read the confirmation before continuing. You do not need to set a limit or find individual bots.</li>
+<li><strong>Keep Chrome and the Character.AI tab open until the run finishes.</strong> A large history can take a while. You can pause or stop from the popup if needed.</li>
 </ol>
-<p>After this one attempt, stop while Keiran checks the automatic results. Keep both extension entries and both extracted folders. This test does not schedule another recovery batch automatically.</p>
-<details><summary>How to return to the chats saved by the old copy</summary>
-<p>Close Character.AI tabs, open <code>chrome://extensions</code>, switch <strong>Test 3 off</strong> and switch <strong>the old copy back on</strong>. Reopen Character.AI or LLMnesia search. Do not remove either copy or delete either folder while we review the test.</p>
+<p>The run saves readable active chats and archives, waits briefly for restored messages, and continues past unavailable chats. Chats already saved in Test 5 are left alone. Some messages may remain unavailable even after Character.AI accepts an unarchive request.</p>
+<p><strong>When it ends, the popup shows saved, failed, skipped and any unattempted counts.</strong> The technical results are sent automatically, so there is no need to send logs, chat links or message text. A finished pass does not guarantee that Character.AI provided every historical message.</p>
+<p>If sign-in expires, the tab closes or Character.AI imposes a persistent rate limit, the saved chats remain in Test 5. Recovery will not restart automatically. Keep the copies and folders while Keiran reviews the results.</p>
+<h2>About automatic reporting</h2>
+<p><strong>This private copy sends technical Character.AI import diagnostics to LLMnesia through PostHog for 24 hours after its first import or recovery attempt.</strong> The new copy has its own reporting window.</p>
+<p>Reports include discovery and queue counts, archive state, timings, status codes, recognised error categories, extracted message counts, acknowledged save results, unarchive outcomes, read retries and the final saved/failed totals. A random test identifier connects the technical events from the same attempt. Detailed reporting is bounded; final aggregate counts are retained even if that detailed-event budget is reached.</p>
+<p><strong>Chat text, titles, chat and character IDs, URLs, passwords, access tokens and raw responses are excluded.</strong> No Vault connection is needed. Failed uploads retain a small local retry queue within the same reporting window.</p>
+<details><summary>Return to the chats saved by an older copy</summary>
+<p>Close Character.AI tabs, open <code>chrome://extensions</code>, switch Test 5 off, then switch on the older copy whose saved chats you want to search. Reopen LLMnesia search. Keep only one test copy switched on at a time. The separate indexes do not merge automatically.</p>
 </details>
-<h2>About diagnostics</h2>
-<p><strong>This private build automatically shares Character.AI import diagnostics with LLMnesia through PostHog.</strong> This recovery build starts a fresh 24-hour reporting window with your first import or recovery attempt. This applies only to this private test build.</p>
-<p>The reports include discovery and queue counts, archive state, request timings and status codes, recognised error categories, extracted message counts, save results, unarchive request outcomes, and the final import outcome. A random test identifier lets us connect the results from your attempts.</p>
-<p>Chat text, titles, chat and character IDs, URLs, passwords, access tokens, and raw responses are excluded. No Vault connection is needed. If an upload fails, a small report queue is kept locally for retry within the same 24-hour window.</p>
-<p>Your usual Chrome profile and extension can continue to be used normally. Keep the extracted folder in place while the test copy is installed.</p>
-<details><summary>Build numbers and details</summary>
+<details><summary>Build numbers and verification</summary>
 <ul>
-<li><strong>Test 1:</strong> initial import continuation test, build <code>2b824dc1</code>.</li>
-<li><strong>Test 2:</strong> automatic technical reporting, build <code>cfa0aaa9</code>. This is the copy used for the earlier import.</li>
-<li><strong>Test 3 (current):</strong> explicit three-archive recovery, build <code>86915ad6</code>, version <code>0.4.21.3</code>.</li>
+<li><strong>Test 2:</strong> earlier import with automatic reporting, build <code>cfa0aaa9</code>.</li>
+<li><strong>Test 3:</strong> three-archive recovery, build <code>86915ad6</code>, version <code>0.4.21.3</code>.</li>
+<li><strong>Test 5 (current):</strong> full recovery run, build <code>e59588e5</code>, version <code>0.4.21.5</code>. Test 4 was an internal candidate and was not distributed.</li>
 </ul>
-<p class="muted">Prepared 26 October 2026. Private test only, not a public release.<br>Extension version: 0.4.21.3<br>Diagnostic build identifier: <code>86915ad6</code></p>
-<p>ZIP SHA-256:<br><code>a7e43d91e170271b3f89a70dc38d3edef156783f0fdcc4402a8fe515c09cfda8</code></p>
+<p>Prepared 27 October 2026. Private copy only, not a public store release. Focused synthetic tests and package checks passed. Test 3 recovered two previously refused archives on the customer account; this larger run has not yet been verified on that account.</p>
+<p>ZIP SHA-256:<br><code>c7cae578354bcd44d0873478b3c792634acfee4e74208bd8095c9e9267963004</code></p>
 </details>
 </main>
 </body>
