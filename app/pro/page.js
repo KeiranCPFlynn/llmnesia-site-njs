@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: 'What will the AI cost me?',
-    a: 'Very little. In our testing with a fast, low-cost model (GPT-6 Luna), each update cost well under a tenth of a US cent, and a busy month came to around £1. Bigger models cost more. You pay the AI company directly and set a daily limit, so it can never run away.'
+    a: 'Very little. In our testing with a fast, low-cost model (GPT-6 Luna), each update cost well under a tenth of a penny, and a busy month came to around £1. Bigger models cost more. You pay the AI company directly and set a daily limit, so it can never run away.'
   },
   {
     q: 'What does it run on?',

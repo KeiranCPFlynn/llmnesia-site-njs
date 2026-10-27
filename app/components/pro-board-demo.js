@@ -34,9 +34,15 @@ const STEPS = [
   {
     title: 'Pick up where you left off',
     body: 'Open any card to see where it stands and the chats behind it, then carry on in Claude Code, Codex or a web chat.',
-    hint: 'Resume the latest session, or start a new chat that already knows this card.'
+    hint: 'In the app, Resume reopens the latest session for this card. Here, try Next card, or go back to the board.'
   }
 ];
+
+// Buttons that only do something in the real app explain themselves when
+// clicked, instead of silently doing nothing.
+const INERT_NOTE_MS = 4500;
+const controlLabel = (control) => (control.getAttribute('aria-label') || control.querySelector('.pj-btn-label')?.textContent || control.textContent || '')
+  .replace(/\s+/g, ' ').replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, '').slice(0, 40);
 
 // The card step 3 opens.
 const FIRST_CARD = 'refunds';
@@ -48,6 +54,7 @@ export default function ProBoardDemo() {
   const [cardId, setCardId] = useState(null);
   const [run, setRun] = useState(IDLE);
   const [scrollTarget, setScrollTarget] = useState(null);
+  const [note, setNote] = useState('');
   const mainRef = useRef(null);
   const project = PROJECTS.find((item) => item.id === projectId);
   const projectRun = projectId === 'invoicing' ? run : IDLE;
@@ -85,6 +92,23 @@ export default function ProBoardDemo() {
     main.scrollTo({ top: top - (panel ? panel.offsetHeight + 24 : 12), behavior: reduce ? 'auto' : 'smooth' });
   }, [scrollTarget]);
 
+  useEffect(() => {
+    if (!note) return undefined;
+    const timer = setTimeout(() => setNote(''), INERT_NOTE_MS);
+    return () => clearTimeout(timer);
+  }, [note]);
+
+  const explainInert = (event) => {
+    const control = event.target.closest('button, select, .pj-button');
+    if (!control) return;
+    if (control.hasAttribute('data-live')) {
+      setNote('');
+      return;
+    }
+    const label = controlLabel(control);
+    setNote(`${label ? `“${label}”` : 'That'} works in the app. In this preview, try the cards, the project list and the steps above.`);
+  };
+
   // Reduced motion shows the finished result straight away.
   const startRun = () => {
     const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -94,6 +118,7 @@ export default function ProBoardDemo() {
 
   const show = (index) => {
     setStep(index);
+    setNote('');
     setProjectId('invoicing');
     if (index === 2) {
       setCardId(FIRST_CARD);
@@ -128,7 +153,7 @@ export default function ProBoardDemo() {
 
   const card = cardId ? cardNow(project.cards.find((item) => item.id === cardId), projectRun) : null;
   const last = step === STEPS.length - 1;
-  const hint = step === 1 && run.phase === 'done' ? STEPS[1].doneHint : STEPS[step].hint;
+  const hint = note || (step === 1 && run.phase === 'done' ? STEPS[1].doneHint : STEPS[step].hint);
 
   return (
     <div className="pro-demo">
@@ -161,7 +186,7 @@ export default function ProBoardDemo() {
           <span className="pro-app-name">LLMnesia Projects</span>
           <span className="pro-app-badge">Example data</span>
         </div>
-        <div className="pjx">
+        <div className="pjx" onClick={explainInert}>
           <header className={c('topbar')}>
             <div className={c('topbar-row')}>
               <div className={c('brand')}>
@@ -169,7 +194,7 @@ export default function ProBoardDemo() {
                 <span className={c('brand-word')}>LLMnesia <strong>Projects</strong></span>
               </div>
               <nav className={c('breadcrumb')} aria-label="Breadcrumb">
-                <button type="button" className={c('crumb')} onClick={backToBoard}>Projects</button>
+                <button type="button" className={c('crumb')} onClick={backToBoard} data-live>Projects</button>
                 <span className={c('crumb-sep')} aria-hidden="true">›</span>
                 <span className={c('crumb-current')}>{project.name}</span>
               </nav>
@@ -183,7 +208,7 @@ export default function ProBoardDemo() {
               <p className={c('rail-title')}>Projects</p>
               {PROJECTS.map((item) => (
                 <div key={item.id} className={c('rail-project-row')}>
-                  <button type="button" className={c(`rail-project${item.id === projectId ? ' current' : ''}`)} onClick={() => pickProject(item.id)}>
+                  <button type="button" className={c(`rail-project${item.id === projectId ? ' current' : ''}`)} onClick={() => pickProject(item.id)} data-live>
                     <span className={c('rail-name')}>{item.name}</span>
                     <span className={c('rail-goal')}>{item.goal}</span>
                     <span className={c('rail-meta')}>{item.cards.length + item.done.length} cards · {item.repo}</span>

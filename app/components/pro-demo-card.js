@@ -60,7 +60,7 @@ function KeepWorking({ card }) {
         <p className={c('continue-kicker')}>Or start a new chat with this card’s context</p>
         <div className={c('task-picker')} role="group" aria-label="What the new chat should do">
           {TASKS.map(([label], index) => (
-            <button key={label} type="button" className={c(`task-choice${task === index ? ' task-choice-current' : ''}`)} onClick={() => setTask(index)}>{label}</button>
+            <button key={label} type="button" className={c(`task-choice${task === index ? ' task-choice-current' : ''}`)} onClick={() => setTask(index)} data-live>{label}</button>
           ))}
         </div>
         <p className={c('task-hint')}>{TASKS[task][1]}</p>
@@ -90,15 +90,15 @@ export function CardPage({ project, card, onBack, onNext }) {
   return (
     <section className={c('story-panel')}>
       <div className={c('panel-crumb-row')}>
-        <button type="button" className={c('text-button back-link')} onClick={onBack}>← Back to {project.name}</button>
-        <button type="button" className={c('button button-small next-card')} onClick={onNext}>Next card →</button>
+        <button type="button" className={c('text-button back-link')} onClick={onBack} data-live>← Back to {project.name}</button>
+        <button type="button" className={c('button button-small next-card')} onClick={onNext} data-live>Next card →</button>
       </div>
       <div className={c('story-main card-page')}>
         <header className={c('card-head')}>
           <div className={c('card-kicker')}>
             <div className={c('subject-line')}>
               <span className={c('subject-label')}>Topic</span>
-              <select className={c('subject-select')} value={card.topic} aria-label="Topic" onChange={() => {}}>
+              <select className={c('subject-select')} value={card.topic} aria-label="Topic" onChange={() => {}} onMouseDown={(event) => event.preventDefault()}>
                 {project.topics.map((topic) => <option key={topic.id} value={topic.id}>{topic.name}</option>)}
               </select>
             </div>

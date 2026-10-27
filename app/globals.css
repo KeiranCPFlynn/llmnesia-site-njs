@@ -9240,6 +9240,16 @@ a.pro-btn {
   max-width: none;
 }
 
+/* Only controls marked data-live do something in the preview; the rest keep
+   the app's look but not a pointer, and explain themselves when clicked. */
+.pro-app .pjx :is(button, select, .pj-button):not([data-live]) {
+  cursor: default;
+}
+
+.pro-app .pjx button:not([data-live]):active {
+  transform: none;
+}
+
 /* On a phone the app opens a card as a full-screen panel; in the demo it
    stays inside the window. */
 .pro-app .pjx .pj-story-panel:not([hidden]) {

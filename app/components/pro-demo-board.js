@@ -49,7 +49,7 @@ function RowAsk({ ask, onOpen }) {
         <p className={c('need-basis')}>{ask.why}</p>
       </details>
       <div className={c('need-actions')}>
-        <button type="button" className={c('button button-primary button-small')} onClick={onOpen}>Review</button>
+        <button type="button" className={c('button button-primary button-small')} onClick={onOpen} data-live>Review</button>
         <button type="button" className={c('button button-small')}>Not now</button>
         <button type="button" className={c('text-button')}>Not relevant</button>
       </div>
@@ -62,7 +62,7 @@ function CardRow({ card, onOpen }) {
   return (
     <article className={c(`card-row open-row border-${card.status}${card.ask ? ' needs-you-row' : ''}${paused ? ' card-row-paused' : ''}`)}>
       <div className={c('card-row-head')}>
-        <button type="button" className={c('work-link')} onClick={() => onOpen(card.id)}>{card.title}</button>
+        <button type="button" className={c('work-link')} onClick={() => onOpen(card.id)} data-live>{card.title}</button>
         {card.ask
           ? <span className={c('pill pill-needs-you')}>Needs you</span>
           : <span className={c(`pill pill-${card.status}`)}>{STATUS[card.status]}</span>}
@@ -221,7 +221,7 @@ export function ProjectPage({ project, run, onOpen }) {
                 <span>Done</span>
                 <span className={c('overview-group-count')}>{project.done.length}</span>
               </h2>
-              <button type="button" className={c('text-button')} onClick={() => setShowDone(!showDone)}>{showDone ? 'Hide' : 'Show'}</button>
+              <button type="button" className={c('text-button')} onClick={() => setShowDone(!showDone)} data-live>{showDone ? 'Hide' : 'Show'}</button>
             </div>
             {showDone ? project.done.map((title) => (
               <article key={title} className={c('card-row open-row border-verified_complete')}>
