@@ -171,6 +171,19 @@
           "value": "attachment; filename=\"llmnesia-0.4.21.5-character-ai-test-5-e59588e5.zip\""
         }
       ]
+    },
+    {
+      "source": "/download/test/character-ai-0420-a6123d4c/llmnesia-0.4.22.1-character-ai-test-6-7f1b3eab.zip",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/zip"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"llmnesia-0.4.22.1-character-ai-test-6-7f1b3eab.zip\""
+        }
+      ]
     }
   ],
   "rewrites": [
