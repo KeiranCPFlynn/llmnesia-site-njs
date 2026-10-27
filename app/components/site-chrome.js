@@ -1,6 +1,6 @@
 import InstallLink from './install-link';
 import { FOOTER_BADGES } from '../../lib/footer-badges';
-import { languagePickerHtml, localizedHref, languageCampaign } from '../../lib/site-language';
+import { languagePickerHtml, localizedHref, languageCampaign, LOCALIZED_CORE_PAGES } from '../../lib/site-language';
 
 import { siteText } from '../../lib/site-copy';
 
@@ -68,8 +68,9 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
                 <a href={href('/compare')}>{t('compare')}</a>
                 <InstallLink className="nav-cta" utm={languageCampaign(language)}>{t('install')}</InstallLink>
               </nav>
-              {/* /pro is English only, so a language picker there would do nothing. */}
-              {pagePath !== '/pro' && <div dangerouslySetInnerHTML={{ __html: languagePickerHtml(language, pagePath) }} />}
+              {/* Only translated pages get a language picker; on an English-only
+                  page every option would lead back to the same page. */}
+              {LOCALIZED_CORE_PAGES.includes(pagePath.slice(1)) && <div dangerouslySetInnerHTML={{ __html: languagePickerHtml(language, pagePath) }} />}
             </>
           )}
         </div>
