@@ -88,7 +88,7 @@ function PillGroup({ id, question, hint, note, options, isSelected, onToggle, di
   );
 }
 
-export default function ProEarlyAccessForm({ context = 'teams_page' }) {
+export default function ProEarlyAccessForm({ context = 'pro_page' }) {
   const [email, setEmail] = useState('');
   const [teamSize, setTeamSize] = useState('');
   const [tools, setTools] = useState([]);
@@ -142,7 +142,7 @@ export default function ProEarlyAccessForm({ context = 'teams_page' }) {
           context,
           ...answers,
           captured_at: new Date().toISOString(),
-          page_path: typeof window !== 'undefined' ? window.location.pathname : '/teams'
+          page_path: typeof window !== 'undefined' ? window.location.pathname : '/pro'
         })
       });
 

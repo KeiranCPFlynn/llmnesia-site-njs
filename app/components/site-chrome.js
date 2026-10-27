@@ -8,7 +8,8 @@ import { siteText } from '../../lib/site-copy';
 // dedicated landing pages (e.g. /claude-code) where external traffic arrives to
 // act on one CTA and the full site nav is just a distraction. `headerCtaUtm`
 // attributes clicks on that button to the page. The footer is left intact — a
-// landing page still wants its footer links and copyright.
+// landing page still wants its footer links and copyright. The Pro bar above
+// the header links every page except /pro itself to Pro early access.
 export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/' }) {
   const t = (id) => siteText(`chrome.${id}`, language);
   const href = (path) => localizedHref(path, language);
@@ -17,6 +18,17 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       <a className="skip-link" href="#main-content">
         {t('skip')}
       </a>
+
+      {pagePath !== '/pro' && (
+        <a className="pro-bar" href="/pro" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>
+          <span className="container pro-bar-inner">
+            <span className="pro-bar-tag">{t('proBarTag')}</span>{' '}
+            <strong>LLMnesia Pro</strong>{' '}
+            <span className="pro-bar-text">{t('proBarText')}</span>{' '}
+            <span className="pro-bar-cta">{t('proBarCta')} <span aria-hidden="true">→</span></span>
+          </span>
+        </a>
+      )}
 
       <header className={`site-header${minimalHeader ? ' site-header--minimal' : ' site-header--language'}`}>
         <div className="container header-inner">
@@ -43,7 +55,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
 
               <nav className="nav" id="primary-nav" aria-label={t('main')}>
                 <a href={href('/vault')}>{t('vault')}</a>
-                <a href={href('/teams')}>Pro</a>
+                <a href={href('/pro')}>Pro</a>
                 <a href={href('/pricing')}>{t('pricing')}</a>
                 <a href={href('/mcp')}>{t('mcp')}</a>
                 <a href={href('/use-cases')}>{t('useCases')}</a>
@@ -63,7 +75,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
         <div className="container footer-inner">
           <nav aria-label={t('footer')}>
             <a href={href('/vault')}>{t('vault')}</a>
-            <a href={href('/teams')}>Pro</a>
+            <a href={href('/pro')}>Pro</a>
             <a href={href('/pricing')}>{t('pricing')}</a>
             <a href={href('/mcp')}>{t('mcp')}</a>
             <a href={href('/claude-code')}>Claude Code</a>

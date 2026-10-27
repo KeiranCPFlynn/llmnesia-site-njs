@@ -2,15 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-// Interactive design preview of a Pro project board for /teams. Everything here
+// Interactive design preview of a Pro project board for /pro. Everything here
 // is made-up content for a fictional invoicing app. It mirrors the real card
 // shape in the Projects engine: a card has decisions and a next step, each
 // quoting the chat it came from, plus its linked chats and a resume target.
 //
-// It plays as a four-step story when it scrolls into view: a new Codex chat
-// arrives, LLMnesia files it, the board updates, then you carry on in one
-// click. The step buttons jump to any step. With reduced motion nothing plays
-// on its own; the steps still work.
+// It is a four-step tour the reader moves through: you chat, LLMnesia updates
+// the project, your next chat starts with the context, then the full board to
+// explore. One idea per step, and nothing advances on its own.
 
 const PLATFORMS = {
   chatgpt: 'ChatGPT',
@@ -209,17 +208,37 @@ const ACTIVITY = [
   { chat: 'email-layout', change: 'new next step' }
 ];
 
+// The guided tour: one idea per step, moved on by the reader, never on a timer.
+// Each scene's animation plays once when its step opens and then holds still.
 const STEPS = [
-  { label: 'New chat', caption: 'You fix a bug in Codex. LLMnesia saves the session as you go.' },
-  { label: 'Filed', caption: 'It works out which project the chat belongs to and files it there.' },
-  { label: 'Board updates', caption: 'The board updates itself: the blocker clears and the decision is recorded, quoting the chat.' },
-  { label: 'Carry on', caption: 'Next time, carry on in one click. The AI starts with the context already there.' }
+  {
+    label: 'You chat',
+    title: 'You chat like you always do.',
+    what: 'Here you fix a bug in Codex. LLMnesia saves the chat in the background.',
+    why: 'Nothing new to learn. No copying, pasting or note-taking.'
+  },
+  {
+    label: 'It updates',
+    title: 'LLMnesia updates the project for you.',
+    what: 'It reads the chat, sees it belongs to the Invoicing app and updates the card it’s about. Each change quotes the chat it came from.',
+    why: 'Where the project stands is always written down, and you didn’t write it.'
+  },
+  {
+    label: 'You carry on',
+    title: 'Your next chat starts where you left off.',
+    what: 'Pick up the work in any AI. The new chat opens with the project already explained.',
+    why: 'No more re-explaining your project to every new chat.'
+  },
+  {
+    label: 'Every project',
+    title: 'Every project, at a glance.',
+    what: 'All your projects get a board like this. Click any card, quote or chat to look around.',
+    why: 'See where everything stands, and check any line against the chat it came from.'
+  }
 ];
-const INTRO_CAPTION = 'Watch a new chat arrive, get filed and update the board.';
-const DONE_CAPTION = 'Your turn: click any card, quote or chat to explore.';
 
-// Autoplay timeline in milliseconds from the start.
-const TIMELINE = { line1: 500, line2: 1800, line3: 3300, filed: 5000, updated: 6500, carryOn: 10300, done: 14800 };
+const CONTINUE_REPLY =
+  'Picking up from your Codex session: retries are keyed on the Stripe event ID and the tests pass. Let’s get it onto staging. First, check the webhook signing secret is set there.';
 
 function Platform({ id, compact = false }) {
   return (
@@ -242,80 +261,155 @@ function withMarks(text, quotes) {
   );
 }
 
-export default function ProBoardDemo() {
-  const rootRef = useRef(null);
-  const timers = useRef([]);
-  const [step, setStep] = useState(-1); // -1 intro, 0 to 3 story steps, 4 done
-  const [typed, setTyped] = useState(0);
+
+// Fades a piece of a scene in after `at` seconds. With reduced motion it is
+// simply there (see the CSS).
+const reveal = (at, className = '') => ({
+  className: className ? `${className} pro-reveal` : 'pro-reveal',
+  style: { animationDelay: `${at}s` }
+});
+
+function ChatScene() {
+  const chat = CHATS[NEW_CHAT];
+  return (
+    <div className="pro-scene pro-scene--chat">
+      <div className="pro-window">
+        <div className="pro-window-bar">
+          <Platform id={chat.platform} />
+          <span>{chat.title}</span>
+          <span className="pro-window-folder">{chat.folder}</span>
+        </div>
+        <div className="pro-window-body">
+          {chat.lines.map((line, index) => (
+            <div key={line.text} {...reveal(0.5 + index * 1.6)}>
+              <div className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
+                <span className="pro-line-who">{line.you ? 'You' : 'Codex'}</span>
+                <p>{line.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div {...reveal(5.4, 'pro-window-foot')}>
+          <span className="pro-save-dot" aria-hidden="true" />
+          Saved by LLMnesia
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function UpdateScene() {
+  const chat = CHATS[NEW_CHAT];
+  const card = CARDS.find((c) => c.id === 'webhooks');
+  const { newDecision, next } = card.updated;
+  const Source = () => (
+    <span className="pro-scene-source">
+      <Platform id="codex" /> from “{chat.title}”
+    </span>
+  );
+  return (
+    <div className="pro-scene pro-scene--update">
+      <div {...reveal(0.2, 'pro-scene-from')}>
+        <span className="pro-scene-from-label">New chat</span>
+        <span className="pro-scene-from-chat">
+          <Platform id="codex" /> {chat.title}
+        </span>
+        <span className="pro-scene-arrow" aria-hidden="true">↓</span>
+        <span className="pro-scene-from-label">Filed to Invoicing app</span>
+      </div>
+
+      <article {...reveal(1, 'pro-scene-card')}>
+        <p className="pro-scene-crumb">Invoicing app · In progress</p>
+        <h4>{card.title}</h4>
+
+        <div {...reveal(2, 'pro-scene-row')}>
+          <p className="pro-scene-row-label">Status</p>
+          <p>
+            <span className="pro-strike" style={{ animationDelay: '2.4s' }}>{card.blocked}</span>
+          </p>
+          <p {...reveal(3, 'pro-scene-new')}>
+            <span className="pro-scene-tag pro-scene-tag--good">Unblocked</span> Tests pass
+          </p>
+        </div>
+
+        <div {...reveal(4.4, 'pro-scene-row')}>
+          <p className="pro-scene-row-label">
+            Decided <span className="pro-scene-tag">New</span>
+          </p>
+          <p className="pro-scene-new">{newDecision.text}</p>
+          <blockquote className="pro-scene-quote">
+            “{newDecision.quote}” <Source />
+          </blockquote>
+        </div>
+
+        <div {...reveal(6.2, 'pro-scene-row')}>
+          <p className="pro-scene-row-label">
+            Next step <span className="pro-scene-tag">Changed</span>
+          </p>
+          <p>
+            <span className="pro-strike" style={{ animationDelay: '6.6s' }}>{card.next.text}</span>
+          </p>
+          <p {...reveal(7.2, 'pro-scene-new')}>{next.text}</p>
+          <blockquote {...reveal(7.6, 'pro-scene-quote')}>
+            “{next.quote}” <Source />
+          </blockquote>
+        </div>
+      </article>
+    </div>
+  );
+}
+
+function ContinueScene() {
+  const card = CARDS.find((c) => c.id === 'webhooks');
+  const { newDecision, next } = card.updated;
+  return (
+    <div className="pro-scene pro-scene--continue">
+      <div {...reveal(0.2, 'pro-scene-continue-bar')}>
+        <span className="pro-scene-continue-card">{card.title}</span>
+        <span className="pro-scene-continue-label">Continue in</span>
+        {['claude', 'chatgpt', 'codex'].map((id) => (
+          <span key={id} className={`pro-scene-continue-btn${id === 'claude' ? ' is-picked' : ''}`}>
+            {PLATFORMS[id]}
+          </span>
+        ))}
+      </div>
+
+      <div {...reveal(1.4, 'pro-window')}>
+        <div className="pro-window-bar">
+          <Platform id="claude" />
+          <span>New chat</span>
+        </div>
+        <div className="pro-window-body">
+          <div className="pro-line pro-line--you pro-line--prefill">
+            <span className="pro-line-who">You</span>
+            <div className="pro-prefill">
+              <span className="pro-prefill-tag">Filled in by LLMnesia</span>
+              <p>Project: Invoicing app</p>
+              <p>Working on: {card.title}</p>
+              <p>Decided: {newDecision.text}</p>
+              <p>Next: {next.text}</p>
+            </div>
+          </div>
+          <div {...reveal(3.6)}>
+            <div className="pro-line">
+              <span className="pro-line-who">Claude</span>
+              <p>{CONTINUE_REPLY}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// The full board, open to explore: cards, quotes and the chats behind them.
+function BoardScene() {
   const [selected, setSelected] = useState({ kind: 'card', id: 'webhooks' });
   const [handoff, setHandoff] = useState(false);
-  const [playing, setPlaying] = useState(false);
 
-  const filed = step >= 1;
-  const updated = step >= 2;
-
-  function clearTimers() {
-    timers.current.forEach((id) => clearTimeout(id));
-    timers.current = [];
-  }
-
-  function show(nextStep) {
-    setStep(nextStep);
-    if (nextStep <= 1) setSelected({ kind: 'card', id: 'webhooks' });
-    if (nextStep === 2) setSelected({ kind: 'card', id: 'webhooks' });
-    setHandoff(nextStep === 3);
-  }
-
-  function jumpTo(nextStep) {
-    clearTimers();
-    setPlaying(false);
-    setTyped(3);
-    show(nextStep);
-  }
-
-  function play() {
-    clearTimers();
-    setPlaying(true);
-    setTyped(0);
-    show(0);
-    const at = (ms, fn) => timers.current.push(setTimeout(fn, ms));
-    at(TIMELINE.line1, () => setTyped(1));
-    at(TIMELINE.line2, () => setTyped(2));
-    at(TIMELINE.line3, () => setTyped(3));
-    at(TIMELINE.filed, () => show(1));
-    at(TIMELINE.updated, () => show(2));
-    at(TIMELINE.carryOn, () => show(3));
-    at(TIMELINE.done, () => {
-      show(4);
-      setPlaying(false);
-    });
-  }
-
-  useEffect(() => {
-    const node = rootRef.current;
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (!node || reduceMotion || typeof IntersectionObserver === 'undefined') return undefined;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          timers.current.push(setTimeout(play, 900));
-        }
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(node);
-    return () => {
-      observer.disconnect();
-      clearTimers();
-    };
-    // play only uses state setters and the timer ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // A card as it looks right now, with the new chat folded in once read.
+  // A card with the new Codex chat folded in.
   const view = (card) => {
-    if (!(updated && card.updated)) return { ...card, fresh: false };
+    if (!card.updated) return { ...card, fresh: false };
     const u = card.updated;
     return {
       ...card,
@@ -332,11 +426,8 @@ export default function ProBoardDemo() {
   const cardPlatforms = (card) => [...new Set(card.chats.map((id) => CHATS[id].platform))].slice(0, 3);
   const quotesFor = (chatId) =>
     CARDS.map(view).flatMap((card) => [card.next, ...card.decided]).filter((q) => q.chat === chatId).map((q) => q.quote);
-
-  const linkedTotal = CARDS.reduce((sum, card) => sum + card.chats.length, 0) + (filed ? 1 : 0);
-  const activity = filed
-    ? [{ chat: NEW_CHAT, change: updated ? 'blocker cleared, new decision' : 'filed' }, ...ACTIVITY]
-    : ACTIVITY;
+  const linkedTotal = CARDS.reduce((sum, card) => sum + card.chats.length, 0) + 1;
+  const activity = [{ chat: NEW_CHAT, change: 'blocker cleared, new decision' }, ...ACTIVITY];
 
   const openChat = (id) => {
     setHandoff(false);
@@ -349,12 +440,9 @@ export default function ProBoardDemo() {
 
   const card = selected.kind === 'card' ? view(CARDS.find((c) => c.id === selected.id)) : null;
   const chat = selected.kind === 'chat' ? CHATS[selected.id] : null;
-  const caption = step === -1 ? INTRO_CAPTION : step === 4 ? DONE_CAPTION : STEPS[step].caption;
-  const incomingState = step === 0 ? 'is-in' : step === 1 ? 'is-filing' : '';
-  const incoming = CHATS[NEW_CHAT];
 
   const Quote = ({ item }) => (
-    <blockquote className={`pro-quote${item.chat === NEW_CHAT && updated ? ' is-fresh' : ''}`}>
+    <blockquote className="pro-quote">
       <p>“{item.quote}”</p>
       <button type="button" className="pro-quote-source" onClick={() => openChat(item.chat)}>
         <Platform id={CHATS[item.chat].platform} /> {CHATS[item.chat].title} · {CHATS[item.chat].when}
@@ -364,271 +452,304 @@ export default function ProBoardDemo() {
   );
 
   return (
+    <div className="pro-app-body">
+      <aside className="pro-app-side" aria-label="Projects">
+        <p className="pro-side-label">Projects</p>
+        <ul className="pro-side-list">
+          <li className="is-active">
+            <span>Invoicing app</span>
+            <span className="pro-side-count">{linkedTotal}</span>
+          </li>
+          <li>
+            <span>Marketing site</span>
+            <span className="pro-side-count">6</span>
+          </li>
+          <li>
+            <span>Mobile app</span>
+            <span className="pro-side-count">9</span>
+          </li>
+        </ul>
+        <p className="pro-side-label">Saved from</p>
+        <ul className="pro-side-sources">
+          {Object.keys(PLATFORMS).map((id) => (
+            <li key={id}>
+              <Platform id={id} compact /> {PLATFORMS[id]}
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <div className="pro-app-main">
+        <div className="pro-board-top">
+          <div>
+            <p className="pro-board-name">Invoicing app</p>
+            <p className="pro-board-meta">
+              6 cards · {linkedTotal} linked chats · <span className="pro-live is-on">updated just now</span>
+            </p>
+          </div>
+          <span className="pro-board-scope">Team · 4 members</span>
+        </div>
+
+        <div className="pro-columns" role="list">
+          {COLUMNS.map((column) => (
+            <div className="pro-column" key={column.id} role="listitem">
+              <p className="pro-column-label">
+                {column.label}
+                <span>{CARDS.filter((c) => c.column === column.id).length}</span>
+              </p>
+              {CARDS.filter((c) => c.column === column.id).map((raw) => {
+                const c = view(raw);
+                const isSelected = selected.kind === 'card' && selected.id === c.id;
+                return (
+                  <button
+                    type="button"
+                    key={c.id}
+                    className={`pro-card${isSelected ? ' is-selected' : ''}`}
+                    onClick={() => openCard(c.id)}
+                    aria-pressed={isSelected}
+                  >
+                    <span className="pro-card-title">{c.title}</span>
+                    {c.blocked ? <span className="pro-card-flag">Blocked</span> : null}
+                    {c.fresh ? <span className="pro-card-flag pro-card-flag--fresh">Updated</span> : null}
+                    <span className="pro-card-foot">
+                      <span className="pro-card-platforms">
+                        {cardPlatforms(c).map((p) => (
+                          <Platform id={p} compact key={p} />
+                        ))}
+                      </span>
+                      <span className="pro-card-count">
+                        {c.chats.length === 1 ? '1 chat' : `${c.chats.length} chats`}
+                      </span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+
+        <div className="pro-activity">
+          <p className="pro-activity-label">Recent activity</p>
+          <ul>
+            {activity.slice(0, 3).map((item) => {
+              const source = CHATS[item.chat];
+              return (
+                <li key={item.chat}>
+                  <button type="button" onClick={() => openChat(item.chat)}>
+                    <Platform id={source.platform} compact />
+                    <span className="pro-activity-text">
+                      <strong>{source.title}</strong>
+                      <span aria-hidden="true"> → </span>
+                      {CARDS.find((c) => c.id === source.cardId).title}
+                      <span className="pro-activity-change"> · {item.change}</span>
+                    </span>
+                    <span className="pro-activity-when">{source.when}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+
+      <section className="pro-detail" aria-live="polite" aria-label={chat ? 'Selected chat' : 'Selected card'}>
+        {card ? (
+          <>
+            <p className="pro-detail-column">{COLUMNS.find((col) => col.id === card.column).label}</p>
+            <h3 className="pro-detail-title">{card.title}</h3>
+            <p className="pro-detail-summary">{card.summary}</p>
+            {card.blocked ? <p className="pro-detail-blocked">{card.blocked}</p> : null}
+
+            <p className="pro-detail-label">Next step</p>
+            <p className="pro-detail-next">{card.next.text}</p>
+            <Quote item={card.next} />
+
+            {card.decided.length ? (
+              <>
+                <p className="pro-detail-label">Decided</p>
+                <p className="pro-detail-decision">{card.decided[0].text}</p>
+                <Quote item={card.decided[0]} />
+              </>
+            ) : null}
+
+            <p className="pro-detail-label">Linked chats</p>
+            <ul className="pro-detail-chats">
+              {card.chats.slice(0, 4).map((id) => (
+                <li key={id}>
+                  <button type="button" onClick={() => openChat(id)}>
+                    <Platform id={CHATS[id].platform} compact />
+                    <span className="pro-detail-chat-title">{CHATS[id].title}</span>
+                    <span className="pro-detail-chat-when">{CHATS[id].when}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pro-detail-actions">
+              <button
+                type="button"
+                className="pro-btn pro-btn--primary"
+                onClick={() => setHandoff((open) => !open)}
+                aria-expanded={handoff}
+              >
+                Continue in {PLATFORMS[card.resume]}
+              </button>
+              <a className="pro-btn" href="#for-teams">Share with team</a>
+            </div>
+
+            {handoff ? (
+              <div className="pro-handoff" role="dialog" aria-label={`Continue in ${PLATFORMS[card.resume]}`}>
+                <div className="pro-handoff-head">
+                  <strong>Continue in {PLATFORMS[card.resume]}</strong>
+                  <button type="button" className="pro-handoff-close" onClick={() => setHandoff(false)} aria-label="Close">
+                    ×
+                  </button>
+                </div>
+                <p>{PLATFORMS[card.resume]} opens with this already filled in:</p>
+                <pre>
+                  {`Project: Invoicing app\nWorking on: ${card.title}\n${card.decided[0] ? `Decided: ${card.decided[0].text}\n` : ''}Next: ${card.next.text}`}
+                </pre>
+              </div>
+            ) : null}
+          </>
+        ) : null}
+
+        {chat ? (
+          <>
+            <p className="pro-detail-column">Chat</p>
+            <h3 className="pro-detail-title">
+              <Platform id={chat.platform} /> {chat.title}
+            </h3>
+            <p className="pro-detail-summary">
+              {chat.when} · filed to Invoicing app · linked to{' '}
+              <button type="button" className="pro-inline-link" onClick={() => openCard(chat.cardId)}>
+                {CARDS.find((c) => c.id === chat.cardId).title}
+              </button>
+            </p>
+            <div className="pro-transcript">
+              {chat.lines.map((line) => (
+                <div key={line.text} className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
+                  <span className="pro-line-who">{line.you ? 'You' : PLATFORMS[chat.platform]}</span>
+                  <p>{withMarks(line.text, quotesFor(selected.id))}</p>
+                </div>
+              ))}
+            </div>
+            {quotesFor(selected.id).length ? (
+              <p className="pro-transcript-note">Highlighted: what the card quotes from this chat.</p>
+            ) : null}
+            <div className="pro-detail-actions">
+              <span className="pro-btn pro-btn--primary">Open in {PLATFORMS[chat.platform]}</span>
+              <button type="button" className="pro-btn" onClick={() => openCard(chat.cardId)}>
+                Back to card
+              </button>
+            </div>
+          </>
+        ) : null}
+      </section>
+    </div>
+  );
+}
+
+const SCENES = [ChatScene, UpdateScene, ContinueScene, BoardScene];
+
+export default function ProBoardDemo() {
+  const rootRef = useRef(null);
+  const [step, setStep] = useState(0);
+  // The first scene waits, paused, until the demo is on screen.
+  const [seen, setSeen] = useState(false);
+
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      setSeen(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          observer.disconnect();
+          setSeen(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const current = STEPS[step];
+  const Scene = SCENES[step];
+  const last = step === STEPS.length - 1;
+
+  return (
     <div className="pro-demo" ref={rootRef}>
-      <div className="pro-story">
-        <ol className="pro-story-steps">
+      <div className="pro-tour">
+        <ol className="pro-tour-steps">
           {STEPS.map((s, index) => (
             <li key={s.label}>
               <button
                 type="button"
-                className={`pro-story-step${step === index ? ' is-current' : ''}${step > index ? ' is-done' : ''}`}
+                className={`pro-tour-step${step === index ? ' is-current' : ''}${step > index ? ' is-done' : ''}`}
                 aria-current={step === index ? 'step' : undefined}
-                onClick={() => jumpTo(index)}
+                onClick={() => setStep(index)}
               >
-                <span className="pro-story-num">{index + 1}</span>
-                {s.label}
+                <span className="pro-tour-num">{index + 1}</span>
+                <span className="pro-tour-label">{s.label}</span>
               </button>
             </li>
           ))}
         </ol>
-        <button type="button" className="pro-story-replay" onClick={play} disabled={playing}>
-          {playing ? 'Playing…' : step === -1 ? 'Play' : 'Replay'}
-        </button>
-        <p className="pro-story-caption" aria-live="polite">{caption}</p>
+
+        <div className="pro-tour-story" aria-live="polite">
+          <div className="pro-tour-copy" key={step}>
+            <h3 className="pro-tour-title">{current.title}</h3>
+            <p className="pro-tour-what">{current.what}</p>
+            <p className="pro-tour-why">
+              <strong>Why it matters:</strong> {current.why}
+            </p>
+          </div>
+          <div className="pro-tour-nav">
+            <button
+              type="button"
+              className="pro-tour-back"
+              onClick={() => setStep(step - 1)}
+              disabled={step === 0}
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              className="pro-tour-next"
+              onClick={() => setStep(last ? 0 : step + 1)}
+            >
+              {last ? 'Start again' : 'Next'} <span aria-hidden="true">{last ? '↺' : '→'}</span>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div className="pro-app">
+      <div className={`pro-app${seen ? '' : ' is-waiting'}`}>
         <div className="pro-app-bar">
           <span className="pro-app-dots" aria-hidden="true">
             <span />
             <span />
             <span />
           </span>
-          <span className="pro-app-name">LLMnesia · Projects</span>
+          <span className="pro-app-name">
+            {step === 3 ? 'LLMnesia · Projects' : `Step ${step + 1} of ${STEPS.length}`}
+          </span>
           <span className="pro-app-badge">Design preview</span>
         </div>
-
-        <div className="pro-app-body">
-          <aside className="pro-app-side" aria-label="Projects">
-            <p className="pro-side-label">Projects</p>
-            <ul className="pro-side-list">
-              <li className={`is-active${step === 1 ? ' is-pulse' : ''}`}>
-                <span>Invoicing app</span>
-                <span className="pro-side-count">{linkedTotal}</span>
-              </li>
-              <li>
-                <span>Marketing site</span>
-                <span className="pro-side-count">6</span>
-              </li>
-              <li>
-                <span>Mobile app</span>
-                <span className="pro-side-count">9</span>
-              </li>
-            </ul>
-            <p className="pro-side-label">Saved from</p>
-            <ul className="pro-side-sources">
-              {Object.keys(PLATFORMS).map((id) => (
-                <li key={id}>
-                  <Platform id={id} compact /> {PLATFORMS[id]}
-                </li>
-              ))}
-            </ul>
-          </aside>
-
-          <div className="pro-app-main">
-            <div className="pro-board-top">
-              <div>
-                <p className="pro-board-name">Invoicing app</p>
-                <p className="pro-board-meta">
-                  6 cards · {linkedTotal} linked chats ·{' '}
-                  <span className={updated ? 'pro-live is-on' : 'pro-live'}>
-                    {updated ? 'updated just now' : 'updated 2h ago'}
-                  </span>
-                </p>
-              </div>
-              <span className="pro-board-scope">Team · 4 members</span>
-            </div>
-
-            <div className="pro-columns" role="list">
-              {COLUMNS.map((column) => (
-                <div className="pro-column" key={column.id} role="listitem">
-                  <p className="pro-column-label">
-                    {column.label}
-                    <span>{CARDS.filter((c) => c.column === column.id).length}</span>
-                  </p>
-                  {CARDS.filter((c) => c.column === column.id).map((raw) => {
-                    const c = view(raw);
-                    const isSelected = selected.kind === 'card' && selected.id === c.id;
-                    const waiting = step === 1 && c.id === 'webhooks';
-                    return (
-                      <button
-                        type="button"
-                        key={c.id}
-                        className={`pro-card${isSelected ? ' is-selected' : ''}${c.fresh ? ' is-fresh' : ''}${waiting ? ' is-incoming' : ''}`}
-                        onClick={() => openCard(c.id)}
-                        aria-pressed={isSelected}
-                      >
-                        <span className="pro-card-title">{c.title}</span>
-                        {c.blocked ? <span className="pro-card-flag">Blocked</span> : null}
-                        {waiting ? <span className="pro-card-flag pro-card-flag--new">1 new chat</span> : null}
-                        {c.fresh ? <span className="pro-card-flag pro-card-flag--fresh">Updated</span> : null}
-                        <span className="pro-card-foot">
-                          <span className="pro-card-platforms">
-                            {cardPlatforms(c).map((p) => (
-                              <Platform id={p} compact key={p} />
-                            ))}
-                          </span>
-                          <span className="pro-card-count">
-                            {c.chats.length === 1 ? '1 chat' : `${c.chats.length} chats`}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-
-            <div className="pro-activity">
-              <p className="pro-activity-label">Recent activity</p>
-              <ul>
-                {activity.slice(0, 3).map((item, index) => {
-                  const source = CHATS[item.chat];
-                  return (
-                    <li key={item.chat} className={filed && index === 0 ? 'is-fresh' : ''}>
-                      <button type="button" onClick={() => openChat(item.chat)}>
-                        <Platform id={source.platform} compact />
-                        <span className="pro-activity-text">
-                          <strong>{source.title}</strong>
-                          <span aria-hidden="true"> → </span>
-                          {CARDS.find((c) => c.id === source.cardId).title}
-                          <span className="pro-activity-change"> · {item.change}</span>
-                        </span>
-                        <span className="pro-activity-when">{source.when}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          <section className="pro-detail" aria-live="polite" aria-label={chat ? 'Selected chat' : 'Selected card'}>
-            {card ? (
-              <>
-                <p className="pro-detail-column">{COLUMNS.find((col) => col.id === card.column).label}</p>
-                <h3 className="pro-detail-title">{card.title}</h3>
-                <p className="pro-detail-summary">{card.summary}</p>
-                {card.blocked ? <p className="pro-detail-blocked">{card.blocked}</p> : null}
-
-                <p className="pro-detail-label">Next step</p>
-                <p className={`pro-detail-next${card.fresh ? ' is-fresh' : ''}`}>{card.next.text}</p>
-                <Quote item={card.next} />
-
-                {card.decided.length ? (
-                  <>
-                    <p className="pro-detail-label">Decided</p>
-                    <p className={`pro-detail-decision${card.fresh ? ' is-fresh' : ''}`}>{card.decided[0].text}</p>
-                    <Quote item={card.decided[0]} />
-                  </>
-                ) : null}
-
-                <p className="pro-detail-label">Linked chats</p>
-                <ul className="pro-detail-chats">
-                  {card.chats.slice(0, 4).map((id, index) => (
-                    <li key={id} className={card.fresh && index === 0 ? 'is-fresh' : ''}>
-                      <button type="button" onClick={() => openChat(id)}>
-                        <Platform id={CHATS[id].platform} compact />
-                        <span className="pro-detail-chat-title">{CHATS[id].title}</span>
-                        <span className="pro-detail-chat-when">{CHATS[id].when}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="pro-detail-actions">
-                  <button
-                    type="button"
-                    className={`pro-btn pro-btn--primary${step === 3 ? ' is-pulse' : ''}`}
-                    onClick={() => setHandoff((open) => !open)}
-                    aria-expanded={handoff}
-                  >
-                    Continue in {PLATFORMS[card.resume]}
-                  </button>
-                  <a className="pro-btn" href="#for-teams">Share with team</a>
-                </div>
-
-                {handoff ? (
-                  <div className="pro-handoff" role="dialog" aria-label={`Continue in ${PLATFORMS[card.resume]}`}>
-                    <div className="pro-handoff-head">
-                      <strong>Continue in {PLATFORMS[card.resume]}</strong>
-                      <button type="button" className="pro-handoff-close" onClick={() => setHandoff(false)} aria-label="Close">
-                        ×
-                      </button>
-                    </div>
-                    <p>{PLATFORMS[card.resume]} opens with this already filled in:</p>
-                    <pre>
-                      {`Project: Invoicing app\nWorking on: ${card.title}\n${card.decided[0] ? `Decided: ${card.decided[0].text}\n` : ''}Next: ${card.next.text}`}
-                    </pre>
-                  </div>
-                ) : null}
-              </>
-            ) : null}
-
-            {chat ? (
-              <>
-                <p className="pro-detail-column">Chat</p>
-                <h3 className="pro-detail-title">
-                  <Platform id={chat.platform} /> {chat.title}
-                </h3>
-                <p className="pro-detail-summary">
-                  {chat.when} · filed to Invoicing app · linked to{' '}
-                  <button type="button" className="pro-inline-link" onClick={() => openCard(chat.cardId)}>
-                    {CARDS.find((c) => c.id === chat.cardId).title}
-                  </button>
-                </p>
-                <div className="pro-transcript">
-                  {chat.lines.map((line) => (
-                    <div key={line.text} className={`pro-line${line.you ? ' pro-line--you' : ''}`}>
-                      <span className="pro-line-who">{line.you ? 'You' : PLATFORMS[chat.platform]}</span>
-                      <p>{withMarks(line.text, quotesFor(selected.id))}</p>
-                    </div>
-                  ))}
-                </div>
-                {quotesFor(selected.id).length ? (
-                  <p className="pro-transcript-note">Highlighted: what the card quotes from this chat.</p>
-                ) : null}
-                <div className="pro-detail-actions">
-                  <span className="pro-btn pro-btn--primary">Open in {PLATFORMS[chat.platform]}</span>
-                  <button type="button" className="pro-btn" onClick={() => openCard(chat.cardId)}>
-                    Back to card
-                  </button>
-                </div>
-              </>
-            ) : null}
-          </section>
+        <div className="pro-stage" key={step}>
+          <Scene />
         </div>
-
-        {/* The new chat, as its own window, arriving and then filing itself away. */}
-        <div className={`pro-incoming ${incomingState}`} aria-hidden={!incomingState}>
-          <div className="pro-incoming-bar">
-            <Platform id={incoming.platform} />
-            <span>{incoming.title}</span>
-            <span className="pro-incoming-folder">{incoming.folder}</span>
+        {last ? null : (
+          <div className="pro-stage-foot">
+            <button type="button" className="pro-stage-next" onClick={() => setStep(step + 1)}>
+              Next: {STEPS[step + 1].label} <span aria-hidden="true">→</span>
+            </button>
           </div>
-          <div className="pro-incoming-body">
-            {incoming.lines.map((line, index) => (
-              <div
-                key={line.text}
-                className={`pro-line${line.you ? ' pro-line--you' : ''}${index < typed ? ' is-shown' : ''}`}
-              >
-                <span className="pro-line-who">{line.you ? 'You' : 'Codex'}</span>
-                <p>{line.text}</p>
-              </div>
-            ))}
-            {typed < incoming.lines.length && step === 0 ? (
-              <div className="pro-typing" aria-hidden="true">
-                <span />
-                <span />
-                <span />
-              </div>
-            ) : null}
-          </div>
-          <div className="pro-incoming-foot">
-            <span className="pro-save-dot" aria-hidden="true" />
-            {step === 1 ? 'Filed to Invoicing app' : 'Saved by LLMnesia'}
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

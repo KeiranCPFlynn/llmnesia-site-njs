@@ -97,6 +97,8 @@ export default function ClaudeCodePage() {
         </section>
 
         {/* Setup — the two ways in */}
+        <ProCallout slug="claude_code" />
+
         <section className="section cc-setup">
           <div className="container">
             <p className="section-eyebrow">Set up in a minute</p>
@@ -165,8 +167,6 @@ export default function ClaudeCodePage() {
             </div>
           </div>
         </section>
-
-        <ProCallout slug="claude_code" />
 
         {/* FAQ — the three questions people actually ask */}
         <section className="section cc-faq">

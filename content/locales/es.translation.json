@@ -8435,6 +8435,38 @@
       "reviewedAt": "2026-10-23T03:20:35.274013+00:00",
       "reviewedBy": "Codex: source meaning and markup comparison",
       "needsMarkupReview": false
+    },
+    "chrome.proBarTag": {
+      "sourceHash": "18fdd549b2ed367ac0c74cbec1214644728515b30edbcb78e7d322757a7c8359",
+      "machineHash": "069d9fe0de77566d4f0813b0820a7a780946f4a043ab3c558f6ded9a3499f967",
+      "model": "manual",
+      "translatedAt": "2026-10-27T04:24:57.883580Z",
+      "reviewedHash": "069d9fe0de77566d4f0813b0820a7a780946f4a043ab3c558f6ded9a3499f967",
+      "needsMarkupReview": false
+    },
+    "chrome.proBarText": {
+      "sourceHash": "ff9b90028c747f712a108ac1e184639276583c5032111b13f989fd9a94b37d0b",
+      "machineHash": "94008652673fd7aa0c575fa00803618478c94cc38e0567816c1bee07f242f1b3",
+      "model": "manual",
+      "translatedAt": "2026-10-27T04:24:57.883580Z",
+      "reviewedHash": "94008652673fd7aa0c575fa00803618478c94cc38e0567816c1bee07f242f1b3",
+      "needsMarkupReview": false
+    },
+    "chrome.proBarCta": {
+      "sourceHash": "ad15bb5a7b458a8929f40e30d83a46c78f3927e73890380ef79d3f2b4605ae00",
+      "machineHash": "96e3489080764ac9681bcabf02bee3216170038b149fcdc7961cdf094ce1cdf1",
+      "model": "manual",
+      "translatedAt": "2026-10-27T04:24:57.883580Z",
+      "reviewedHash": "96e3489080764ac9681bcabf02bee3216170038b149fcdc7961cdf094ce1cdf1",
+      "needsMarkupReview": false
+    },
+    "chrome.proCalloutText": {
+      "sourceHash": "fd0d5d9612b934300947e85def3e287f29cbe55f7c72d10a5fd36d54b47169ac",
+      "machineHash": "1cc988283a0bf0f65a2ce257584bde586456f0cd772f3b868163726601eb281b",
+      "model": "manual",
+      "translatedAt": "2026-10-27T04:25:37.621044Z",
+      "reviewedHash": "1cc988283a0bf0f65a2ce257584bde586456f0cd772f3b868163726601eb281b",
+      "needsMarkupReview": false
     }
   }
 }

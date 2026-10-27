@@ -31,7 +31,7 @@ test('Pro early-access answers are forwarded as enums, tagged so they can be tol
   const { status, data, sent } = await submit({
     email: 'Synthetic.Test@example.com',
     source: 'website_pro_early_access',
-    context: 'teams_page',
+    context: 'pro_page',
     team_size: '2_5',
     tools: 'chatgpt,claude_code,codex',
     model_access: 'api_key'
@@ -44,7 +44,7 @@ test('Pro early-access answers are forwarded as enums, tagged so they can be tol
   // The Apps Script does not accept the new source yet, so it rides as
   // website_homepage with the true source in context.
   assert.equal(payload.source, 'website_homepage');
-  assert.equal(payload.context, 'website_pro_early_access:teams_page');
+  assert.equal(payload.context, 'website_pro_early_access:pro_page');
   assert.equal(payload.team_size, '2_5');
   assert.equal(payload.tools, 'chatgpt,claude_code,codex');
   assert.equal(payload.model_access, 'api_key');
@@ -55,7 +55,7 @@ test('off-enum and duplicate answers never reach the sheet as free text', async 
   const { sent } = await submit({
     email: 'synthetic@example.com',
     source: 'website_pro_early_access',
-    context: 'teams_page',
+    context: 'pro_page',
     team_size: 'a hundred',
     tools: 'codex,<script>,codex, gemini ',
     model_access: 'yes please',
@@ -84,8 +84,8 @@ test('other sources are unchanged and carry no Pro fields', async () => {
   assert.equal('team_size' in payload, false);
 });
 
-test('the /teams page copy has no em dashes and no banned claims', () => {
-  const files = ['app/teams/page.js', 'app/components/pro-early-access-form.js', 'app/components/pro-board-demo.js', 'app/components/pro-callout.js'];
+test('the /pro page copy has no em dashes and no banned claims', () => {
+  const files = ['app/pro/page.js', 'app/components/pro-early-access-form.js', 'app/components/pro-board-demo.js', 'app/components/pro-callout.js'];
   for (const file of files) {
     const text = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
     assert.equal(text.includes(String.fromCharCode(0x2014)), false, `${file} contains an em dash`);

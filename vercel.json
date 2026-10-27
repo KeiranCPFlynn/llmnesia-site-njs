@@ -40,6 +40,11 @@
       "permanent": true
     },
     {
+      "source": "/teams",
+      "destination": "/pro",
+      "permanent": true
+    },
+    {
       "source": "/privacy",
       "destination": "/privacy-policy",
       "permanent": true

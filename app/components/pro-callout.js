@@ -1,25 +1,26 @@
-// Small "Pro early access" band for pages whose visitors already work across
-// several AI tools (MCP, Claude Code). English only: /teams is not translated.
-// `slug` tags the click so we can see which page sends people to /teams.
+import { siteText } from '../../lib/site-copy';
 
-export default function ProCallout({ slug }) {
+// "Pro early access" band placed just under the hero on pages whose visitors
+// already work across several AI tools (MCP, Claude Code). /pro is English
+// only, so translated pages link to the English page with translated copy.
+// `slug` tags the click so we can see which page sends people to /pro.
+
+export default function ProCallout({ slug, language = 'en' }) {
+  const t = (id) => siteText(`chrome.${id}`, language);
   return (
-    <aside className="pro-callout" aria-label="LLMnesia Pro early access">
+    <aside className="pro-callout" aria-label="LLMnesia Pro">
       <div className="container pro-callout-inner">
         <div className="pro-callout-copy">
-          <p className="pro-callout-tag">New · LLMnesia Pro</p>
-          <p className="pro-callout-text">
-            Working across several AIs? Pro keeps track of every project for you: what’s decided,
-            what’s in progress, what’s next.
-          </p>
+          <p className="pro-callout-tag">{t('proBarTag')} · LLMnesia Pro</p>
+          <p className="pro-callout-text">{t('proCalloutText')}</p>
         </div>
         <a
           className="pro-callout-link"
-          href="/teams"
+          href="/pro"
           data-analytics="pro_callout_click"
           data-analytics-slug={slug}
         >
-          Join early access <span aria-hidden="true">→</span>
+          {t('proBarCta')} <span aria-hidden="true">→</span>
         </a>
       </div>
     </aside>

@@ -130,6 +130,8 @@ export default function McpPage({ language = 'en' }) {
         </section>
 
         {/* Setup — the three steps, extension → command → search */}
+        <ProCallout slug="mcp" language={language} />
+
         <section className="section mcp-setup" id="guided-setup">
           <div className="container">
             <div className="mcp-section-head">
@@ -269,8 +271,6 @@ export default function McpPage({ language = 'en' }) {
           </div>
         </section>
       </main>
-      {/* Outside <main> so translated pages keep the same main layout; /teams is English only. */}
-      {language === 'en' ? <ProCallout slug="mcp" /> : null}
     </SiteChrome>
   );
 

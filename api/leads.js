@@ -18,7 +18,7 @@ const ALLOWED_SOURCES = new Set([
 const ALLOWED_AUDIENCE = new Set(['just_me', 'my_team', 'a_community', 'not_sure']);
 const ALLOWED_SEARCH_FROM = new Set(['desktop', 'phone', 'browser', 'all']);
 
-// Fixed-enum answers from the Pro early-access form on /teams. `tools` is a
+// Fixed-enum answers from the Pro early-access form on /pro. `tools` is a
 // multi-select sent as a comma-separated list; unknown entries are dropped.
 const ALLOWED_TEAM_SIZE = new Set(['just_me', '2_5', '6_20', 'more_20']);
 const ALLOWED_TOOLS = new Set([

@@ -15,7 +15,7 @@ export const metadata = buildPageMetadata({
   title: 'LLMnesia Pro: stop re-explaining your project to every AI chat (early access)',
   description:
     'LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for each project: what is decided, what is in progress and what is next, each linked to the chat it came from. Use it alone or with your team. Join early access.',
-  canonicalPath: '/teams'
+  canonicalPath: '/pro'
 });
 
 // Keep in step with the Decisions table (decision 2) before publishing.
@@ -116,9 +116,9 @@ function PromiseIcon({ name }) {
   );
 }
 
-export default function TeamsPage() {
+export default function ProPage() {
   return (
-    <SiteChrome pagePath="/teams">
+    <SiteChrome pagePath="/pro">
       <JsonLd data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))} />
       <main id="main-content" className="pro-page">
         <section className="pro-hero">
@@ -272,7 +272,7 @@ export default function TeamsPage() {
             <div className="pro-join-form">
               <h2>Get early access.</h2>
               <p className="pro-join-sub">A few quick questions, then your email.</p>
-              <ProEarlyAccessForm context="teams_page" />
+              <ProEarlyAccessForm context="pro_page" />
             </div>
           </div>
         </section>
