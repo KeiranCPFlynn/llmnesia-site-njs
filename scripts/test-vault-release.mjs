@@ -50,15 +50,14 @@ assert.match(vault, /NEXT_PUBLIC_VAULT_ANNUAL_PRICE_LABEL \|\| '£88'/);
 assert.match(vault, /NEXT_PUBLIC_VAULT_ANNUAL_MONTHLY_LABEL \|\| '£7\.33'/);
 assert.doesNotMatch(homepage, /Coming soon · LLMnesia Vault/);
 assert.doesNotMatch(homepage, /Get founding access/);
-assert.match(homepage, /Now available · LLMnesia Vault/);
-assert.match(homepage, /href="\/pricing#vault-purchase">Subscribe to Vault/);
+assert.match(homepage, /more-card-name">LLMnesia Vault<[\s\S]*?£8 a month/);
+assert.match(homepage, /more-card--vault[\s\S]*?href="\/vault"/);
 assert.doesNotMatch(homepage, /Nothing is uploaded, synced, or sent to the cloud\. Ever\./);
 assert.doesNotMatch(homepage, />0 bytes leave your device</);
 assert.match(homepage, /Vault data encrypted before upload/);
 assert.match(homepage, /end-to-end encrypted backup that we cannot read/);
 assert.doesNotMatch(homepage, /history together for local MCP search/);
 assert.match(homepage, /Vault web app beta/);
-assert.match(homepage, /Ask Vault is a built-in beta feature/);
 // Platform chips and the agent chips (separate group since the platform-section
 // redesign) must both be present on the homepage.
 assert.match(homepage, /platform-chip-list">\{\{PLATFORM_CHIPS\}\}/);

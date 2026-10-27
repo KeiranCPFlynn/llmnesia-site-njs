@@ -68,7 +68,6 @@
     <section class="hero container" id="top">
       <div class="hero-grid">
         <div class="hero-copy">
-          <a class="hero-announce" href="/mcp">{{t:homepage.top.a.1}}</a>
           <p class="eyebrow">{{t:homepage.top.p.1}}</p>
           <h1>{{t:homepage.top.h1.1}}</h1>
           <p class="subheadline">{{t:homepage.top.p.2}}</p>
@@ -503,54 +502,30 @@
       </div>
     </section>
 
-    <section class="section section-mcp-teaser" id="mcp-teaser" data-reveal>
-      <div class="container teaser-split">
-        <div class="teaser-copy">
-          <p class="section-eyebrow">{{t:homepage.mcp-teaser.p.1}}</p>
-          <h2>{{t:homepage.mcp-teaser.h2.1}}</h2>
-          <p class="section-intro">{{t:homepage.mcp-teaser.p.2}}</p>
-          <div class="vault-teaser-cta teaser-cta-left">
-            <a class="button button-large" href="/mcp">{{t:homepage.mcp-teaser.a.1}}</a>
-            <a class="hero-secondary-link" href="/mcp">{{t:homepage.mcp-teaser.a.2}}</a>
-          </div>
-        </div>
-        <div class="term-card" aria-hidden="true">
-          <div class="term-bar">{{t:homepage.mcp-teaser.div.1}}</div>
-          <div class="term-body">
-            <p class="term-welcome">{{t:homepage.mcp-teaser.p.3}}</p>
-            <div class="term-prompt-box">{{t:homepage.mcp-teaser.div.2}}</div>
-            <p class="term-act">{{t:homepage.mcp-teaser.p.4}}</p>
-            <p class="term-act">{{t:homepage.mcp-teaser.p.5}}</p>
-            <div class="term-src">{{t:homepage.mcp-teaser.div.3}}</div>
-            <div class="term-src">{{t:homepage.mcp-teaser.div.4}}</div>
-            <p class="term-answer">{{t:homepage.mcp-teaser.p.6}}</p>
-            <div class="term-prompt-box term-prompt-next"><span class="term-gt">&gt;</span> <span class="term-caret"></span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-vault-teaser" id="vault-teaser" data-reveal>
-      <div class="container teaser-split teaser-split-vault">
-        <div class="teaser-copy">
-          <p class="section-eyebrow">{{t:homepage.vault-teaser.p.1}}</p>
-          <h2>{{t:homepage.vault-teaser.h2.1}}</h2>
-          <p class="section-intro">{{t:homepage.vault-teaser.p.2}}</p>
-          <div class="vault-teaser-cta teaser-cta-left">
-            <a class="button button-large" href="/vault">{{t:homepage.vault-teaser.a.1}}</a>
-            <a class="hero-secondary-link" href="/pricing#vault-purchase">{{t:homepage.vault-teaser.a.2}}</a>
-          </div>
-        </div>
-        <div class="vv-panel" aria-hidden="true">
-          <div class="vv-devices">
-            <div class="vv-device">{{t:homepage.vault-teaser.div.1}}</div>
-            <div class="vv-sync">
-              <span class="vv-badge">E2E</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 13a8 8 0 0 0 14.9 3" /><path d="M5 4v4h4M19 20v-4h-4" /></svg>
-            </div>
-            <div class="vv-device vv-device-phone">{{t:homepage.vault-teaser.div.2}}</div>
-          </div>
-          <p class="vv-caption">{{t:homepage.vault-teaser.p.3}}</p>
+    <section class="section section-more" id="more" data-reveal>
+      <div class="container">
+        <p class="section-eyebrow">{{t:homepage.more.eyebrow}}</p>
+        <h2>{{t:homepage.more.h2}}</h2>
+        <p class="section-intro">{{t:homepage.more.intro}}</p>
+        <div class="more-grid">
+        <article class="more-card more-card--mcp">
+          <p class="more-card-head"><span class="more-card-name">{{t:homepage.more.mcp.name}}</span> <span class="more-card-tag">{{t:homepage.more.mcp.tag}}</span></p>
+          <h3>{{t:homepage.more.mcp.title}}</h3>
+          <p>{{t:homepage.more.mcp.body}}</p>
+          <a class="more-card-link" href="/mcp" data-analytics="home_more_click" data-analytics-slug="mcp">{{t:homepage.more.mcp.link}} <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="more-card more-card--vault">
+          <p class="more-card-head"><span class="more-card-name">{{t:homepage.more.vault.name}}</span> <span class="more-card-tag">{{t:homepage.more.vault.tag}}</span></p>
+          <h3>{{t:homepage.more.vault.title}}</h3>
+          <p>{{t:homepage.more.vault.body}}</p>
+          <a class="more-card-link" href="/vault" data-analytics="home_more_click" data-analytics-slug="vault">{{t:homepage.more.vault.link}} <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="more-card more-card--pro">
+          <p class="more-card-head"><span class="more-card-name">{{t:homepage.more.pro.name}}</span> <span class="more-card-tag">{{t:homepage.more.pro.tag}}</span></p>
+          <h3>{{t:homepage.more.pro.title}}</h3>
+          <p>{{t:homepage.more.pro.body}}</p>
+          <a class="more-card-link" href="/pro" data-analytics="home_more_click" data-analytics-slug="pro">{{t:homepage.more.pro.link}} <span aria-hidden="true">→</span></a>
+        </article>
         </div>
       </div>
     </section>

@@ -6544,70 +6544,6 @@ figure.vault-mock {
 }
 
 /* ============================================================
-   HOMEPAGE → VAULT FUNNEL (announcement pill + teaser band)
-   ============================================================ */
-
-/* Hero announcement pill */
-.hero-announce {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: var(--s-2);
-  padding: 0.4rem 0.85rem 0.4rem 0.4rem;
-  border: 1px solid var(--t-teal-edge);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--t-teal-soft) 70%, var(--t-card));
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--t-ink-2);
-  text-decoration: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.hero-announce:hover {
-  border-color: var(--t-teal);
-  box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--t-teal) 55%, transparent);
-  transform: translateY(-1px);
-}
-
-.hero-announce-tag {
-  flex: none;
-  padding: 0.16rem 0.5rem;
-  border-radius: 999px;
-  background: var(--t-teal);
-  color: var(--on-cta);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero-announce-arrow {
-  flex: none;
-  color: var(--t-teal);
-  font-weight: 600;
-  transition: transform 0.2s ease;
-}
-
-.hero-announce:hover .hero-announce-arrow {
-  transform: translateX(3px);
-}
-
-/* Teaser bands (near the foot of the homepage).
-   The MCP and Vault teasers used to share one identical card; they are now
-   distinct: MCP pairs copy with a dark terminal mock (.term-card), Vault pairs
-   copy with an encrypted device-sync panel on a gradient band. Styles live in
-   the homepage design pass block at the end of this file. */
-.vault-teaser-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-}
-
-/* ============================================================
    HOMEPAGE DESIGN PASS
    Keep the hero's editorial split, then give every supporting section the
    same balanced heading rhythm used by the MCP landing page.
@@ -8151,302 +8087,78 @@ figure.vault-mock {
   color: color-mix(in srgb, var(--pc-accent) 75%, var(--t-ink));
 }
 
-/* --- Teasers: shared split layout ----------------------------- */
-.teaser-split {
+/* --- "Do more with your history": MCP, Vault and Pro in one row --- */
+.more-grid {
   display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+  text-align: left;
 }
 
-.teaser-copy h2 {
-  max-width: 17ch;
-}
-
-.teaser-copy .section-intro {
-  margin-bottom: var(--s-3);
-}
-
-.teaser-cta-left {
-  justify-content: flex-start;
-}
-
-/* --- MCP teaser: paper section + dark terminal mock ----------- */
-.section-mcp-teaser {
-  position: relative;
-  border-top: 1px solid var(--t-rule);
-  overflow: hidden;
-}
-
-.section-mcp-teaser::before {
-  content: "";
-  position: absolute;
-  width: 34rem;
-  height: 34rem;
-  left: -12rem;
-  top: -18rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(47, 127, 153, 0.12), transparent 68%);
-  pointer-events: none;
-}
-
-.term-card {
-  width: 100%;
-  border-radius: 14px;
-  background: var(--t-ink);
-  box-shadow:
-    0 26px 55px -30px rgba(20, 36, 48, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  overflow: hidden;
-  font-family: var(--font-mono);
-}
-
-.term-bar {
+.more-card {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0.65rem 0.9rem;
-  border-bottom: 1px solid rgba(235, 245, 203, 0.14);
-}
-
-.term-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(235, 245, 203, 0.22);
-}
-
-.term-dot:first-child { background: rgba(198, 87, 47, 0.65); }
-.term-dot:nth-child(2) { background: rgba(154, 180, 88, 0.55); }
-.term-dot:nth-child(3) { background: rgba(47, 127, 153, 0.75); }
-
-.term-title {
-  margin-left: auto;
-  color: rgba(235, 245, 203, 0.55);
-  font-size: 0.66rem;
-  letter-spacing: 0.07em;
-}
-
-.term-body {
-  display: grid;
-  gap: 0.55rem;
-  padding: 1.05rem 1.15rem 1.2rem;
-  font-size: 0.8rem;
-}
-
-.term-body > * {
-  min-width: 0;
-}
-
-.term-welcome {
-  margin: 0 0 0.25rem;
-  color: rgba(235, 245, 203, 0.55);
-  font-size: 0.72rem;
-}
-
-.term-spark {
-  color: #d98e5f;
-}
-
-.term-prompt-box {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid rgba(235, 245, 203, 0.22);
-  border-radius: 8px;
-  background: rgba(235, 245, 203, 0.05);
-  color: #ebf5cb;
-}
-
-.term-gt {
-  flex: none;
-  color: rgba(235, 245, 203, 0.5);
-}
-
-.term-prompt-next {
-  margin-top: 0.35rem;
-  border-style: dashed;
-  background: transparent;
-}
-
-.term-act {
-  margin: 0;
-  color: rgba(235, 245, 203, 0.6);
-  font-size: 0.75rem;
-}
-
-.term-bullet {
-  color: #d98e5f;
-  margin-right: 0.45rem;
-}
-
-.term-src {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0;
-  padding-left: 1.05rem;
-  color: rgba(235, 245, 203, 0.85);
-  font-size: 0.75rem;
-}
-
-.term-src-mark {
-  flex: none;
-  color: rgba(235, 245, 203, 0.4);
-}
-
-.term-src-text {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.term-answer {
-  margin: 0.15rem 0 0;
-  color: #ebf5cb;
-  font-size: 0.78rem;
-  line-height: 1.55;
-}
-
-.term-cite {
-  color: #d98e5f;
-  white-space: nowrap;
-}
-
-.term-pill {
-  --tp-accent: var(--t-teal);
-  flex: none;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--tp-accent) 24%, var(--t-ink));
-  border: 1px solid color-mix(in srgb, var(--tp-accent) 50%, transparent);
-  color: color-mix(in srgb, var(--tp-accent) 40%, white);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-}
-
-.term-date {
-  flex: none;
-  margin-left: auto;
-  color: rgba(235, 245, 203, 0.4);
-  font-size: 0.64rem;
-}
-
-.term-caret {
-  display: inline-block;
-  width: 8px;
-  height: 1.05em;
-  background: #ebf5cb;
-  vertical-align: text-bottom;
-  animation: kp-cursor 1s steps(2) infinite;
-}
-
-/* --- Vault teaser: olive band + encrypted device sync --------- */
-.section-vault-teaser {
-  border-top: 1px solid var(--t-rule);
-  background:
-    radial-gradient(
-      70% 120% at 18% -10%,
-      color-mix(in srgb, var(--t-on-edge) 18%, transparent),
-      transparent 62%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--t-on-bg) 40%, var(--bg)),
-      var(--bg) 88%
-    );
-}
-
-.section-vault-teaser .section-eyebrow {
-  color: var(--t-rust);
-}
-
-.vv-panel {
-  padding: 1.75rem 1.5rem 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--t-on-edge) 42%, var(--t-rule));
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 24px 55px -38px rgba(20, 36, 48, 0.55);
-}
-
-.vv-devices {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.75rem, 2.5vw, 1.5rem);
-}
-
-.vv-device {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: center;
-  padding: 1rem 1.35rem;
-  border-radius: 12px;
-  background: var(--t-card);
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
   border: 1px solid var(--t-rule);
-  color: var(--t-ink-2);
-  font-size: 0.78rem;
+  border-radius: var(--radius-lg);
+  background: var(--t-card);
+}
+
+.more-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.more-card-name {
+  color: var(--t-ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.vv-device svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: var(--t-teal);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.vv-device-phone svg {
-  stroke: var(--t-rust);
-}
-
-.vv-sync {
-  display: grid;
-  justify-items: center;
-  gap: 0.45rem;
-}
-
-.vv-sync svg {
-  width: 36px;
-  height: 36px;
-  fill: none;
-  stroke: color-mix(in srgb, var(--t-on-edge) 85%, var(--t-ink));
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  animation: vv-spin 7s linear infinite;
-}
-
-.vv-badge {
-  padding: 0.2rem 0.5rem;
+.more-card-tag {
+  padding: 0.15rem 0.6rem;
   border-radius: 999px;
-  background: var(--t-on-bg);
-  border: 1px solid var(--t-on-edge);
-  color: var(--t-on-ink);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
+  background: var(--t-teal-soft);
+  color: var(--t-teal);
+  font-size: 0.76rem;
+  font-weight: 700;
 }
 
-.vv-caption {
-  margin: 1.1rem 0 0;
-  text-align: center;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
+.more-card--pro .more-card-tag {
+  background: #fbe3d6;
+  color: #9a4a22;
 }
 
-@keyframes vv-spin {
-  to {
-    transform: rotate(360deg);
+.more-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.more-card p:not(.more-card-head) {
+  flex: 1;
+  margin: 0;
+  color: var(--t-ink-2);
+  line-height: 1.6;
+}
+
+.more-card-link {
+  color: var(--t-teal);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .more-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -8454,15 +8166,6 @@ figure.vault-mock {
 @media (max-width: 960px) {
   .feature-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .teaser-split {
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
-  }
-
-  .teaser-copy h2 {
-    max-width: 22ch;
   }
 
   .prv-flow {
@@ -8488,34 +8191,14 @@ figure.vault-mock {
     grid-template-columns: 1fr;
   }
 
-  .term-src .term-date {
-    display: none;
-  }
-
   .fc-tag {
     position: static;
     width: fit-content;
-  }
-
-  .vv-devices {
-    gap: 0.6rem;
-  }
-
-  .vv-device {
-    padding: 0.85rem 1rem;
   }
 }
 
 /* --- Reduced motion: keep the colour, drop the movement ------- */
 @media (prefers-reduced-motion: reduce) {
-  .term-caret {
-    animation: none;
-  }
-
-  .vv-sync svg {
-    animation: none;
-  }
-
   .pf-chip,
   .pf-chip:hover,
   .feature-card,
@@ -9201,45 +8884,8 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   line-height: 1.4;
 }
 
-.pro-price-list-label {
-  margin: 1.1rem 0 0.6rem;
-  color: var(--pro-teal);
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.pro-price-list {
-  display: grid;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pro-price-list li {
-  position: relative;
-  padding-left: 1.6rem;
-  font-size: 1.08rem;
-  font-weight: 500;
-}
-
-.pro-price-list li::before {
-  content: "";
-  position: absolute;
-  left: 0.15rem;
-  top: 0.4em;
-  width: 0.7rem;
-  height: 0.38rem;
-  border-left: 2px solid var(--pro-teal);
-  border-bottom: 2px solid var(--pro-teal);
-  transform: rotate(-45deg);
-}
-
 .pro-price-foot {
-  margin: 1.5rem 0 0;
+  margin: 1rem 0 0;
   color: var(--pro-muted);
   font-size: 0.85rem;
   line-height: 1.55;
@@ -9262,34 +8908,6 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
   max-width: 34rem;
 }
 
-.teams-form-hint {
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.teams-form-note {
-  max-width: 32rem;
-  margin: -0.1rem 0 0.15rem;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  line-height: 1.5;
-}
-
-.teams-tool-group {
-  display: grid;
-  gap: 0.35rem;
-  margin-top: 0.2rem;
-}
-
-.teams-tool-group-label {
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .teams-form-other {
   margin-top: 0.35rem;
   padding: 0.55rem 0.8rem;
@@ -9304,6 +8922,44 @@ main.pro-page > section.pro-promises:nth-of-type(n) {
 .teams-form-other:focus-visible {
   outline: 2px solid var(--t-teal);
   outline-offset: 1px;
+}
+
+/* Optional questions shown after a successful signup. */
+.pro-followup {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--t-rule);
+  text-align: left;
+}
+
+.pro-followup-title {
+  margin: 0;
+  color: var(--t-ink);
+  font-weight: 700;
+}
+
+.pro-followup-title span {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pro-followup .teams-form-other {
+  max-width: 20rem;
+  margin-top: -0.3rem;
+}
+
+.pro-followup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pro-followup-thanks {
+  margin-top: 1rem;
+  font-weight: 600;
 }
 
 /* --- Entrance: the page arrives light, then the dark hero spreads in from

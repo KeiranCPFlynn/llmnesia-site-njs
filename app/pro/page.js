@@ -59,14 +59,6 @@ const PROMISES = [
   { icon: 'undo', title: 'Take it back', body: 'Withdraw anything you shared, any time.' }
 ];
 
-// Written as what the reader gets, in their words, not as feature names.
-const PRICE_POINTS = [
-  'Know where every project stands',
-  'Never re-explain a project',
-  'Share with your team, on your terms',
-  'Vault backup and sync included'
-];
-
 const FAQS = [
   {
     q: 'When can I use it?',
@@ -260,18 +252,12 @@ export default function ProPage() {
               </p>
               <p className="pro-price-sub">or {PRICE_ANNUAL} a year, one month free</p>
               <p className="pro-price-for">For anyone working across more than one AI.</p>
-              <p className="pro-price-list-label">What you get</p>
-              <ul className="pro-price-list">
-                {PRICE_POINTS.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-              <p className="pro-price-foot">Alone or with a team. Uses your own AI account.</p>
+              <p className="pro-price-foot">Alone or with a team. Uses your own AI account. Vault included.</p>
             </div>
 
             <div className="pro-join-form">
               <h2>Get early access.</h2>
-              <p className="pro-join-sub">A few quick questions, then your email.</p>
+              <p className="pro-join-sub">Just your email. We’ll tell you when your spot opens.</p>
               <ProEarlyAccessForm context="pro_page" />
             </div>
           </div>

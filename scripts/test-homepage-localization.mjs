@@ -41,7 +41,7 @@ for (const {code, path} of SITE_LANGUAGES) {
   assert.deepEqual(designSkeleton(html), designSkeleton(englishHtml), `${code}: homepage drifted from the English page design`);
   assert.equal(/\{\{(?:t:|[A-Z_])/.test(html), false, 'Unresolved page copy');
   const root = parser.parse(html);
-  assert.equal(root.querySelectorAll('main > section').length, 18, 'Homepage sections were removed');
+  assert.equal(root.querySelectorAll('main > section').length, 17, 'Homepage sections were removed');
   assert.ok(root.querySelector('.hero-demo .kinetic-panel [data-kp-input]'), 'Kinetic animation hook is missing');
   assert.ok(root.querySelector('.feature-overlay .kinetic-panel'), 'Feature overlay is missing');
   assert.ok(root.querySelector('.hero-grid .hero-support'), 'Shared hero alignment is missing');

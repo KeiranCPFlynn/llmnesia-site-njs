@@ -26,7 +26,6 @@ const ALLOWED_TOOLS = new Set([
   'deepseek', 'mistral', 'meta_ai', 'qwen', 'kimi', 'zai',
   'claude_code', 'codex', 'zcode', 'cursor', 'github_copilot', 'windsurf', 'gemini_cli'
 ]);
-const ALLOWED_MODEL_ACCESS = new Set(['api_key', 'coding_agent', 'neither', 'not_sure']);
 
 function jsonResponse(body, status = 200) {
   return Response.json(body, {
@@ -68,12 +67,11 @@ function normalizeEnumList(value, allowed) {
 
 // The Apps Script has no columns for the Pro answers yet, so they also travel
 // in `feedback` as one readable line. Remove once the sheet has its own columns.
-function proAnswersSummary({ team_size, tools, tools_other, model_access }) {
+function proAnswersSummary({ team_size, tools, tools_other }) {
   return [
     team_size && `team_size=${team_size}`,
     tools && `tools=${tools}`,
-    tools_other && `tools_other=${tools_other}`,
-    model_access && `model_access=${model_access}`
+    tools_other && `tools_other=${tools_other}`
   ].filter(Boolean).join('; ');
 }
 
@@ -147,7 +145,6 @@ function normalizeLeadBody(body) {
     team_size: body.team_size,
     tools: body.tools,
     tools_other: body.tools_other,
-    model_access: body.model_access,
     captured_at: body.captured_at,
     install_id: body.install_id,
     install_ts: body.install_ts,
@@ -249,8 +246,7 @@ export async function POST(request) {
         team_size: normalizeEnum(lead.team_size, ALLOWED_TEAM_SIZE),
         tools: normalizeEnumList(lead.tools, ALLOWED_TOOLS),
         // The one free-text answer: which unlisted tools they use.
-        tools_other: normalizeString(lead.tools_other, 120),
-        model_access: normalizeEnum(lead.model_access, ALLOWED_MODEL_ACCESS)
+        tools_other: normalizeString(lead.tools_other, 120)
       }
     : null;
 

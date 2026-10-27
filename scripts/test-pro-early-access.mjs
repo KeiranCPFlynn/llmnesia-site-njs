@@ -33,8 +33,7 @@ test('Pro early-access answers are forwarded as enums, tagged so they can be tol
     source: 'website_pro_early_access',
     context: 'pro_page',
     team_size: '2_5',
-    tools: 'chatgpt,claude_code,codex',
-    model_access: 'api_key'
+    tools: 'chatgpt,claude_code,codex'
   });
   assert.equal(status, 200);
   assert.equal(data.success, true);
@@ -47,8 +46,22 @@ test('Pro early-access answers are forwarded as enums, tagged so they can be tol
   assert.equal(payload.context, 'website_pro_early_access:pro_page');
   assert.equal(payload.team_size, '2_5');
   assert.equal(payload.tools, 'chatgpt,claude_code,codex');
-  assert.equal(payload.model_access, 'api_key');
-  assert.equal(payload.feedback, 'team_size=2_5; tools=chatgpt,claude_code,codex; model_access=api_key');
+  assert.equal('model_access' in payload, false);
+  assert.equal(payload.feedback, 'team_size=2_5; tools=chatgpt,claude_code,codex');
+});
+
+test('the optional follow-up answers attach to the same email under their own context', async () => {
+  const { sent } = await submit({
+    email: 'synthetic@example.com',
+    source: 'website_pro_early_access',
+    context: 'pro_page_answers',
+    team_size: 'just_me',
+    tools_other: 'Lovable'
+  });
+  const payload = sent[0].payload;
+  assert.equal(payload.context, 'website_pro_early_access:pro_page_answers');
+  assert.equal(payload.team_size, 'just_me');
+  assert.equal(payload.feedback, 'team_size=just_me; tools_other=Lovable');
 });
 
 test('off-enum and duplicate answers never reach the sheet as free text', async () => {
@@ -58,14 +71,12 @@ test('off-enum and duplicate answers never reach the sheet as free text', async 
     context: 'pro_page',
     team_size: 'a hundred',
     tools: 'codex,<script>,codex, gemini ',
-    model_access: 'yes please',
     tools_other: '  Lovable and Bolt  ',
     feedback: 'ignored free text'
   });
   const payload = sent[0].payload;
   assert.equal(payload.team_size, '');
   assert.equal(payload.tools, 'codex,gemini');
-  assert.equal(payload.model_access, '');
   assert.equal(payload.tools_other, 'Lovable and Bolt');
   assert.equal(payload.feedback, 'tools=codex,gemini; tools_other=Lovable and Bolt');
 });
