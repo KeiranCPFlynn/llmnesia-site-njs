@@ -144,7 +144,6 @@ export default function TeamsPage() {
           </div>
 
           <div className="container pro-demo-wrap">
-            <p className="pro-demo-hint">Try it: click any card to see the chats behind it.</p>
             <ProBoardDemo />
           </div>
 
@@ -199,7 +198,7 @@ export default function TeamsPage() {
           </div>
         </section>
 
-        <section className="pro-team">
+        <section className="pro-team" id="for-teams">
           <div className="container pro-team-inner">
             <div className="pro-team-copy">
               <p className="pro-kicker">For teams</p>
