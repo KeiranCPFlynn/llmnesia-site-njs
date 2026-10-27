@@ -1,6 +1,7 @@
 import SiteChrome from '../components/site-chrome';
 import InstallLink from '../components/install-link';
 import JsonLd from '../components/json-ld';
+import ProCallout from '../components/pro-callout';
 import { buildPageMetadata } from '../../lib/metadata';
 import { softwareApplicationSchema, homepageFaqSchema } from '../../lib/schema';
 
@@ -164,6 +165,8 @@ export default function ClaudeCodePage() {
             </div>
           </div>
         </section>
+
+        <ProCallout slug="claude_code" />
 
         {/* FAQ — the three questions people actually ask */}
         <section className="section cc-faq">

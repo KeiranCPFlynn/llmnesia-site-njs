@@ -1,6 +1,7 @@
 import SiteChrome from './site-chrome';
 import InstallLink from './install-link';
 import JsonLd from './json-ld';
+import ProCallout from './pro-callout';
 import { softwareApplicationSchema, homepageFaqSchema } from '../../lib/schema';
 import { formatSiteText, siteHtml } from '../../lib/site-copy';
 import { languageCampaign } from '../../lib/site-language';
@@ -268,6 +269,8 @@ export default function McpPage({ language = 'en' }) {
           </div>
         </section>
       </main>
+      {/* Outside <main> so translated pages keep the same main layout; /teams is English only. */}
+      {language === 'en' ? <ProCallout slug="mcp" /> : null}
     </SiteChrome>
   );
 
