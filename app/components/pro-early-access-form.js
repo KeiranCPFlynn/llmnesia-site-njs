@@ -256,7 +256,7 @@ export default function ProEarlyAccessForm({ context = 'pro_page' }) {
         </p>
       ) : (
         <p className="vault-form-note">
-          Free to join, no card needed. We’ll only email you about Pro and its launch.
+          We’ll only email you about Pro and its launch. Nothing else.
         </p>
       )}
     </form>
