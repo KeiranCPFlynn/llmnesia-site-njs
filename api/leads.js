@@ -75,19 +75,16 @@ function proAnswersSummary({ team_size, tools, tools_other }) {
   ].filter(Boolean).join('; ');
 }
 
-// The upstream Apps Script keeps its own source allowlist that lags behind
-// ALLOWED_SOURCES above — blog_mobile_capture is valid here but the script
-// rejects it with `invalid_source`, so every mobile lead was silently lost.
-// Until the script's allowlist is updated in the Google editor, forward these
-// sources under one it accepts; the true source is preserved in `variant` for
+// The upstream Apps Script keeps its own source allowlist that can lag behind
+// ALLOWED_SOURCES above. Until the script accepts a source, forward it under
+// one it does accept; the true source is preserved in `context` for
 // sheet-side segmentation. Remove an entry once the script accepts it.
+//
+// Since script version 7 (2026-10-27), blog_mobile_capture routes to the
+// Mobile tab and website_pro_early_access to the Pro tab, so neither needs a
+// fallback. Deploy the script version before shipping a site that sends them.
 const WEBHOOK_SOURCE_FALLBACK = {
-  extension_vault_updates: 'extension_vault_waitlist',
-  blog_mobile_capture: 'website_homepage',
-  // Pro early-access consent covers Pro email only. Until the script accepts
-  // this source, these rows land as website_homepage with a context starting
-  // `website_pro_early_access:`, so mailouts must filter on context.
-  website_pro_early_access: 'website_homepage'
+  extension_vault_updates: 'extension_vault_waitlist'
 };
 
 // Sources whose form copy promises the reader an email ("Email me the link").

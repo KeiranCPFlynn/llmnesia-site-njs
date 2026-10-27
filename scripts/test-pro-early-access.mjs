@@ -40,10 +40,9 @@ test('Pro early-access answers are forwarded as enums, tagged so they can be tol
   assert.equal(sent.length, 1);
   const payload = sent[0].payload;
   assert.equal(payload.email, 'synthetic.test@example.com');
-  // The Apps Script does not accept the new source yet, so it rides as
-  // website_homepage with the true source in context.
-  assert.equal(payload.source, 'website_homepage');
-  assert.equal(payload.context, 'website_pro_early_access:pro_page');
+  // The Apps Script routes this source to its own Pro tab, so it is sent as is.
+  assert.equal(payload.source, 'website_pro_early_access');
+  assert.equal(payload.context, 'pro_page');
   assert.equal(payload.team_size, '2_5');
   assert.equal(payload.tools, 'chatgpt,claude_code,codex');
   assert.equal('model_access' in payload, false);
@@ -59,7 +58,7 @@ test('the optional follow-up answers attach to the same email under their own co
     tools_other: 'Lovable'
   });
   const payload = sent[0].payload;
-  assert.equal(payload.context, 'website_pro_early_access:pro_page_answers');
+  assert.equal(payload.context, 'pro_page_answers');
   assert.equal(payload.team_size, 'just_me');
   assert.equal(payload.feedback, 'team_size=just_me; tools_other=Lovable');
 });
