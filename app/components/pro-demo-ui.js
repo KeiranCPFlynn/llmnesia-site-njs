@@ -30,10 +30,12 @@ export function Icon({ name }) {
   );
 }
 
-// The coloured dot and sentence saying how current a card is.
-export function Fresh({ tone, text }) {
+// The coloured dot and sentence saying how current a card is. The app hides
+// the green line on board rows; the demo still shows it on a card it has just
+// rewritten (recent), so the update is visible.
+export function Fresh({ tone, text, recent }) {
   return (
-    <p className={c(`freshness freshness-${tone}`)}>
+    <p className={`${c(`freshness freshness-${tone}`)}${recent ? ' pjx-recent' : ''}`}>
       <span className={c(`status-dot status-dot-${tone}`)} aria-hidden="true" />
       <span>{text}</span>
     </p>

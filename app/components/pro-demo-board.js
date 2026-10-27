@@ -21,7 +21,7 @@ export function cardNow(card, run) {
   if (!UPDATING.includes(card.id) || run.phase === 'idle') return card;
   const index = UPDATING.indexOf(card.id);
   if (run.phase === 'done' || (run.phase === 'rewriting' && index < run.cards)) {
-    return { ...card, ...card.updated, fresh: { tone: 'green', text: 'Updated just now' } };
+    return { ...card, ...card.updated, fresh: { tone: 'green', text: 'Updated just now', recent: true } };
   }
   const updatingNow = run.phase === 'rewriting' && index === run.cards;
   return { ...card, fresh: { tone: 'blue', text: updatingNow ? 'Updating now' : 'Update queued' } };
@@ -57,10 +57,14 @@ function RowAsk({ ask, onOpen }) {
   );
 }
 
+// The whole row opens the card, except the row's own buttons and disclosures.
 function CardRow({ card, onOpen }) {
   const paused = card.status === 'parked';
+  const openFromRow = (event) => {
+    if (!event.target.closest('button, summary, details')) onOpen(card.id);
+  };
   return (
-    <article className={c(`card-row open-row border-${card.status}${card.ask ? ' needs-you-row' : ''}${paused ? ' card-row-paused' : ''}`)}>
+    <article className={c(`card-row open-row border-${card.status}${card.ask ? ' needs-you-row' : ''}${paused ? ' card-row-paused' : ''}`)} onClick={openFromRow} data-live>
       <div className={c('card-row-head')}>
         <button type="button" className={c('work-link')} onClick={() => onOpen(card.id)} data-live>{card.title}</button>
         {card.ask

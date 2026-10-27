@@ -125,9 +125,8 @@ export default function ProPage() {
               <span className="pro-title-accent">across every AI.</span>
             </h1>
             <p className="pro-lede">
-              LLMnesia saves your ChatGPT, Claude and coding-agent chats, then keeps a simple board for
-              each project: what’s decided, what’s in progress, what’s next. Every item links back to
-              the chat it came from.
+              LLMnesia turns your ChatGPT, Claude and coding-agent chats into a board for every
+              project. Each card links back to the chats behind it.
             </p>
             <div className="pro-hero-actions">
               <a className="pro-cta" href="#waitlist">Join the waitlist</a>

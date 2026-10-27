@@ -9250,6 +9250,14 @@ a.pro-btn {
   transform: none;
 }
 
+.pro-app .pjx .pj-card-row[data-live] {
+  cursor: pointer;
+}
+
+.pro-app .pjx .pj-card-row .pj-freshness.pjx-recent {
+  display: flex;
+}
+
 /* On a phone the app opens a card as a full-screen panel; in the demo it
    stays inside the window. */
 .pro-app .pjx .pj-story-panel:not([hidden]) {
@@ -9265,10 +9273,12 @@ a.pro-btn {
 }
 
 /* While the board updates, its progress panel stays in view above the cards. */
+/* A band of page colour around it hides the cards scrolling underneath. */
 .pro-app .pjx .pj-activity-card {
   position: sticky;
-  top: 12px;
+  top: 0;
   z-index: 2;
+  box-shadow: 0 0 0 12px var(--canvas), var(--shadow-surface);
 }
 
 .pro-app .pjx h1,

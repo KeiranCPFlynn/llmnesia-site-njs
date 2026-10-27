@@ -22,18 +22,18 @@ import './pro-projects-app.css';
 const STEPS = [
   {
     title: 'See where every project stands',
-    body: 'Each project gets a board: what needs you, what’s in progress, what’s waiting and what’s done, sorted into topics.',
+    body: 'One board per project, sorted into topics.',
     hint: 'An example project. Click any card to open it, or pick another project on the left.'
   },
   {
     title: 'It keeps itself up to date',
-    body: 'LLMnesia reads your new chats from ChatGPT, Claude, Claude Code and Codex, matches them to cards and rewrites them. No tagging or copying.',
+    body: 'New chats update the cards for you.',
     hint: 'Watch the two cards with new chat activity update from the latest chats.',
     doneHint: 'Both cards were rewritten from the new chats. Refund flow is now ready to check.'
   },
   {
     title: 'Pick up where you left off',
-    body: 'Open any card to see where it stands and the chats behind it, then carry on in Claude Code, Codex or a web chat.',
+    body: 'Open a card and carry on in any AI.',
     hint: 'In the app, Resume reopens the latest session for this card. Here, try Next card, or go back to the board.'
   }
 ];
