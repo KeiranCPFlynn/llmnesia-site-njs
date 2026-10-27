@@ -9,7 +9,8 @@ import { siteText } from '../../lib/site-copy';
 // act on one CTA and the full site nav is just a distraction. `headerCtaUtm`
 // attributes clicks on that button to the page. The footer is left intact — a
 // landing page still wants its footer links and copyright. The Pro bar above
-// the header links every page except /pro itself to the Pro waitlist.
+// the header (on every page except /pro itself) links to /pro, and its
+// button to the waitlist on that page.
 export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/' }) {
   const t = (id) => siteText(`chrome.${id}`, language);
   const href = (path) => localizedHref(path, language);
@@ -20,14 +21,18 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       </a>
 
       {pagePath !== '/pro' && (
-        <a className="pro-bar" href="/pro#waitlist" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>
-          <span className="container pro-bar-inner">
-            <span className="pro-bar-tag">{t('proBarTag')}</span>{' '}
-            <strong>LLMnesia Pro</strong>{' '}
-            <span className="pro-bar-text">{t('proBarText')}</span>{' '}
-            <span className="pro-bar-cta">{t('proBarCta')} <span aria-hidden="true">→</span></span>
-          </span>
-        </a>
+        <div className="pro-bar">
+          <div className="container pro-bar-inner">
+            <a className="pro-bar-link" href="/pro" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>
+              <span className="pro-bar-tag">{t('proBarTag')}</span>{' '}
+              <strong>LLMnesia Pro</strong>{' '}
+              <span className="pro-bar-text">{t('proBarText')}</span>
+            </a>{' '}
+            <a className="pro-bar-cta" href="/pro#waitlist" data-analytics="pro_bar_waitlist_click" data-analytics-slug={pagePath}>
+              {t('proBarCta')} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
       )}
 
       <header className={`site-header${minimalHeader ? ' site-header--minimal' : ' site-header--language'}`}>

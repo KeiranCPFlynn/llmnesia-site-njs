@@ -9406,8 +9406,11 @@ a.pro-btn {
   opacity: 0.92;
 }
 
-/* Site-wide Pro early-access bar above the header (hidden on /pro itself). */
+/* Site-wide Pro early-access bar above the header (hidden on /pro itself).
+   The whole bar opens /pro (the link's ::after covers it); only the button
+   goes to the waitlist. */
 .pro-bar {
+  position: relative;
   display: block;
   background:
     radial-gradient(40% 180% at 0% 50%, rgba(102, 189, 214, 0.28), transparent 70%),
@@ -9419,9 +9422,27 @@ a.pro-btn {
   text-decoration: none;
 }
 
-.pro-bar:hover,
-.pro-bar:focus-visible {
+.pro-bar-link,
+.pro-bar-link:hover,
+.pro-bar-link:focus-visible {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.75rem;
   color: #eef4f2;
+  text-decoration: none;
+}
+
+.pro-bar-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.pro-bar-link:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .pro-bar-inner {
@@ -9452,12 +9473,17 @@ a.pro-btn {
 }
 
 .pro-bar-cta {
+  position: relative;
+  z-index: 1;
   color: #f2a27c;
   font-weight: 700;
+  text-decoration: none;
   white-space: nowrap;
 }
 
-.pro-bar:hover .pro-bar-cta {
+.pro-bar-cta:hover,
+.pro-bar-cta:focus-visible {
+  color: #f2a27c;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
