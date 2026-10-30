@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.4.23",
+    "date": "2026-10-31",
+    "published": false,
+    "curated": true,
+    "title": "Recover missing Character.AI chats and a quicker route to Vault",
+    "summary": "Character.AI imports can now try to recover missing chats after you confirm. This update also shortens checkout for people already signed in to Vault and adds a short setup guide by email.",
+    "highlights": [
+      "Recover missing chats is a new optional Character.AI action. It tries every chat not yet saved on this device and, after you confirm, unarchives archived chats that can't be read, then tries them again. This can unarchive hundreds of chats, and they stay unarchived even if saving fails. Some chats may still be refused by Character.AI, and the result shows how many could not be saved.",
+      "If you are signed in to Vault, the Vault offer card goes straight to checkout for the plan you choose. If you are not signed in, it still opens the website.",
+      "The welcome page offers an optional short setup guide by email, covering the steps most people miss.",
+      "LLMnesia can set up new Vaults directly on R2 storage once that option is switched on. Existing Vaults stay where they are."
+    ]
+  },
+  {
     "version": "0.4.21",
     "date": "2026-10-26",
     "published": true,

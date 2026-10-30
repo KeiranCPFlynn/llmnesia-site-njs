@@ -3,7 +3,7 @@ title: "Export Character.AI Chat History, Step by Step"
 slug: "how-to-export-character-ai-conversation-history"
 description: "Character.AI has no per-chat export, only a full account data export. Here is where to find it on web and mobile, plus a free way to keep chats searchable."
 publishDate: "2026-07-22"
-updatedDate: "2026-10-22"
+updatedDate: "2026-10-31"
 author: "Keiran Flynn"
 primaryKeyword: "export character ai conversation history"
 secondaryKeywords:
@@ -60,7 +60,7 @@ Record the character's name and the chat's date. If you created the character, s
 
 ## Read and search chats with LLMnesia
 
-LLMnesia supports Character.AI live capture and history import from a signed-in desktop browser. Version 0.4.19 includes discovery of older sessions with the same character and archived chats. Source availability, authentication and request failures can still leave gaps. Check the saved count and inspect important chats rather than assuming everything was captured.
+LLMnesia supports Character.AI live capture and history import from a signed-in desktop browser. History import includes older sessions with the same character and archived chats. Version 0.4.23 adds an optional Recover missing chats action, which tries every chat not yet saved on this device. After you confirm, it can unarchive archived chats that cannot be read, and they stay unarchived even if saving fails. This can affect hundreds of chats, and Character.AI may still refuse some. Source availability, authentication and request failures can still leave gaps. Check the saved count and inspect important chats rather than assuming everything was captured.
 
 Saved copies can be read in LLMnesia and copied as transcripts. LLMnesia saves and searches captured text locally. Optional Vault sync uploads encrypted copies when you enable it. Neither capture nor import can recover messages the source no longer provides. A search index is not a substitute for a separate backup: removing an extension or clearing its storage can remove local copies.
 
@@ -69,6 +69,6 @@ Saved copies can be read in LLMnesia and copied as transcripts. LLMnesia saves a
 
 Compatibility depends on the exact format. CAI Tools character cards describe a character; they are not the same as chat history. A destination that accepts Tavern chat files may still reject an official account archive.
 
-LLMnesia's saved-file importer and Markdown download are in development and are not included in the Chrome Web Store version checked on October 22 (0.4.19). The planned account-message reader is experimental, so this guide does not promise official-export compatibility. Keep your original download and verify any imported copy before relying on it.
+LLMnesia can import saved Character.AI transcripts from CAI Tools Tavern JSONL, supported transcript JSON and unencrypted ZIP files, and can download saved conversations as Markdown. Official Character.AI account exports are not supported. Keep your original download and verify any imported copy before relying on it.
 
 For ongoing retrieval, see [searching saved Character.AI chats](/blog/search-character-ai-conversation-history). For organisation, see [keeping separate stories easy to find](/blog/how-to-organize-character-ai-conversation-history).
