@@ -529,6 +529,7 @@ export default function SiteBehavior() {
         }
         const store = installLink.getAttribute('data-install-store') || installStore;
         const ctaPosition = installLink.getAttribute('data-install-position');
+        if (placement === 'other' && ctaPosition) placement = ctaPosition;
         trackEvent('install_click', { platform, placement, store, ...(ctaPosition && { cta_position: ctaPosition }) });
 
         const ctaEl = installLink.closest('[data-cta-placement]');

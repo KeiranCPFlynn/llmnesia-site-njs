@@ -11,7 +11,7 @@ import { siteText } from '../../lib/site-copy';
 // landing page still wants its footer links and copyright. The Pro bar above
 // the header (on every page except /pro itself) links to /pro, and its
 // button to the waitlist on that page.
-export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/' }) {
+export default function SiteChrome({ children, minimalHeader = false, headerCtaUtm, language = 'en', pagePath = '/', hideProBar = false }) {
   const t = (id) => siteText(`chrome.${id}`, language);
   const href = (path) => localizedHref(path, language);
   return (
@@ -20,7 +20,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
         {t('skip')}
       </a>
 
-      {pagePath !== '/pro' && (
+      {pagePath !== '/pro' && !hideProBar && (
         <div className="pro-bar">
           <div className="container pro-bar-inner">
             <a className="pro-bar-link" href="/pro" data-analytics="pro_bar_click" data-analytics-slug={pagePath}>

@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function AccountPage() {
   return (
-    <SiteChrome>
+    <SiteChrome hideProBar>
       <main id="main-content" className="pricing-page">
         <Suspense fallback={<p className="vault-account-loading">Loading your Vault account…</p>}>
           <VaultAccountExperience />
