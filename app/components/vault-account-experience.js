@@ -67,8 +67,9 @@ function CheckoutSuccess() {
                 <div>
                   <strong>Open LLMnesia on your computer</strong>
                   <p>
-                    Vault is set up in the extension for Chrome or Edge. It doesn’t run on phones
-                    or tablets, so this step needs a computer.
+                    Your first Vault is created in the extension for Chrome or Edge. The extension
+                    doesn’t run on phones or tablets, and the Vault web app can’t create a Vault,
+                    so this step needs a computer.
                   </p>
                   <div
                     className="vault-account-install"
@@ -92,8 +93,9 @@ function CheckoutSuccess() {
                 <div>
                   <strong>Go to Vault in LLMnesia Settings</strong>
                   <p>
-                    Sign in with the same email. Returning there confirms your subscription
-                    automatically. If it hasn’t appeared yet, click “I’ve subscribed, check again”.
+                    Sign in with the same email, using the code we send you. This confirms your
+                    subscription automatically. If it hasn’t appeared yet, click
+                    “I’ve subscribed, check again”.
                   </p>
                 </div>
               </li>
@@ -101,13 +103,21 @@ function CheckoutSuccess() {
                 <span aria-hidden="true">4</span>
                 <div>
                   <strong>Create or unlock your private Vault</strong>
-                  <p>Your passphrase stays on your device and is never shared with LLMnesia.</p>
+                  <p>
+                    Choose a passphrase and save your recovery key. Your passphrase stays on your
+                    device and is never shared with LLMnesia.
+                  </p>
                 </div>
               </li>
             </ol>
             <p className="vault-account-done">
               You’re finished when Settings says “Vault subscription active”. You can close this
               tab then.
+            </p>
+            <p className="vault-account-done">
+              Once your chats have synced, you can search and read them on your phone at{' '}
+              <a href="https://vault.llmnesia.com/">vault.llmnesia.com</a>, using the same email
+              and passphrase.
             </p>
           </section>
 

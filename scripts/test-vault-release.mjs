@@ -137,6 +137,7 @@ assert.match(accountExperience, /What to do next/);
 assert.match(accountExperience, /Open LLMnesia on your computer/);
 assert.match(accountExperience, /InstallLink/);
 assert.match(accountExperience, /ComputerLinkCapture/);
+assert.match(accountExperience, /vault\.llmnesia\.com/);
 assert.match(accountExperience, /I’ve subscribed, check again/);
 assert.match(accountExperience, /Vault subscription active/);
 
