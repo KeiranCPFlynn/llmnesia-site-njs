@@ -2,7 +2,7 @@
   {
     "version": "0.4.23",
     "date": "2026-10-31",
-    "published": false,
+    "published": true,
     "curated": true,
     "title": "Recover missing Character.AI chats and a quicker route to Vault",
     "summary": "Character.AI imports can now try to recover missing chats after you confirm. This update also shortens checkout for people already signed in to Vault and adds a short setup guide by email.",
