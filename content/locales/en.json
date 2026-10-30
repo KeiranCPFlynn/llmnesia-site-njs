@@ -531,7 +531,7 @@
   "pricing.copy042": "Can you read my conversations?",
   "pricing.copy043": "No. Everything is encrypted on your device with a key we never see, so what we store is meaningless without it. We cannot read your conversations and we cannot hand over what we do not have.",
   "pricing.copy044": "Does Vault work on my phone?",
-  "pricing.copy045": "Yes. The installable Vault web app beta works on phone and desktop, where you can search and read your synced history. It is included in the subscription.",
+  "pricing.copy045": "Yes, once it is set up. You set up Vault once on a computer, in the LLMnesia extension for Chrome or Edge. After your chats have synced, the installable Vault web app beta lets you search and read them on your phone. It is included in the subscription.",
   "pricing.copy046": "Does Ask Vault send my whole archive to an AI provider?",
   "pricing.copy047": "No. Ask Vault selects a bounded set of relevant material for the question and sends that directly from your browser to the provider you chose using your own API key. It does not send the whole archive, and the request does not pass through LLMnesia.",
   "pricing.copy048": "<span class=\"eyebrow-dot\" aria-hidden=\"true\"></span>Pricing",
@@ -554,7 +554,7 @@
   "pricing.copy065": "Example content shown in the current popup result format.",
   "pricing.copy066": "Your archive shouldn’t stop at this laptop.",
   "pricing.copy067": "The extension already finds what you asked, in the browser profile that captured it. The gap is everything captured somewhere else: the other laptop, the work profile, the model you were using that week. The more you use AI, the wider that gap gets. Vault closes it: one encrypted archive that every connected browser and computer writes into and reads from.",
-  "pricing.copy068": "Install the Vault web app on phone or desktop to search and read the whole synced archive.",
+  "pricing.copy068": "After setup on a computer, install the Vault web app on phone or desktop to search and read the whole synced archive.",
   "pricing.copy069": "Ask Vault can answer across that history and link back to its source conversations.",
   "pricing.copy070": "Cancel any time. Conversations already on each device stay searchable. Renew Vault whenever you want to sync or restore the encrypted backup again.",
   "pricing.copy071": "Vault pricing",
@@ -840,6 +840,7 @@
   "purchase.copy070": "Something went wrong. Please try again.",
   "purchase.copy071": "Manage Vault",
   "purchase.copy072": "Get Vault",
+  "purchase.copy073": "Setup needs a computer. You create your Vault once in the LLMnesia extension for Chrome or Edge, then you can open it on your phone.",
   "purchase.codePlaceholder": "8-digit code",
   "homepage.top.compatibility": "Works in Chrome or Edge on a laptop or desktop, not on phones or tablets."
 }

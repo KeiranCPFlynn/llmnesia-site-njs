@@ -433,6 +433,7 @@ export default function VaultPurchase({
               </span>
             </label>
           </fieldset>
+          <p className="vault-purchase-note">{t("Setup needs a computer. You create your Vault once in the LLMnesia extension for Chrome or Edge, then you can open it on your phone.")}</p>
           <button className="button vault-purchase-primary" type="button" onClick={startCheckout} disabled={busy !== ''}>
             {busy === 'checkout' ? t("Opening secure checkout…") : t("Start Vault securely")}
           </button>

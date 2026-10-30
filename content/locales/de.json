@@ -531,7 +531,7 @@
   "pricing.copy042": "Kannst du meine Unterhaltungen lesen?",
   "pricing.copy043": "Nein. Alles wird auf deinem Gerät mit einem Schlüssel verschlüsselt, den wir nie zu Gesicht bekommen – daher sind die von uns gespeicherten Daten ohne diesen Schlüssel bedeutungslos. Wir können deine Unterhaltungen nicht lesen und wir können nichts weitergeben, was wir gar nicht haben.",
   "pricing.copy044": "Funktioniert Vault auf meinem Handy?",
-  "pricing.copy045": "Ja. Die installierbare Vault-Web-App (Beta) funktioniert auf dem Smartphone und am Desktop, wo du deinen synchronisierten Verlauf durchsuchen und lesen kannst. Sie ist im Abonnement enthalten.",
+  "pricing.copy045": "Ja, sobald er eingerichtet ist. Du richtest Vault einmalig auf einem Computer ein, in der LLMnesia-Erweiterung für Chrome oder Edge. Sobald deine Chats synchronisiert sind, kannst du sie mit der installierbaren Vault-Web-App (Beta) auf deinem Handy durchsuchen und lesen. Sie ist im Abonnement enthalten.",
   "pricing.copy046": "Schickt Ask Vault mein gesamtes Archiv an einen KI-Anbieter?",
   "pricing.copy047": "Nein. Ask Vault wählt eine begrenzte Menge an relevantem Material für die Frage aus und sendet diese direkt von deinem Browser an den von dir gewählten Anbieter unter Verwendung deines eigenen API-Schlüssels. Es wird nicht das gesamte Archiv gesendet, und die Anfrage läuft nicht über LLMnesia.",
   "pricing.copy048": "<span class=\"eyebrow-dot\" aria-hidden=\"true\"></span>Preise",
@@ -554,7 +554,7 @@
   "pricing.copy065": "Beispielinhalt im aktuellen Popup-Ergebnisformat.",
   "pricing.copy066": "Dein Archiv sollte nicht bei diesem Laptop enden.",
   "pricing.copy067": "Die Erweiterung findet bereits das, wonach du gefragt hast – im Browserprofil, in dem es erfasst wurde. Die Lücke besteht aus allem, was anderswo erfasst wurde: auf dem anderen Laptop, im Arbeitsprofil, mit dem KI-Modell, das du in dieser Woche benutzt hast. Je mehr du KI nutzt, desto größer wird diese Lücke. Vault schließt sie: ein verschlüsseltes Archiv, in das jeder verbundene Browser und Computer schreibt und aus dem er liest.",
-  "pricing.copy068": "Installiere die Vault-Web-App auf deinem Handy oder Desktop, um das gesamte synchronisierte Archiv zu durchsuchen und zu lesen.",
+  "pricing.copy068": "Installiere nach der Einrichtung auf einem Computer die Vault-Web-App auf deinem Handy oder Desktop, um das gesamte synchronisierte Archiv zu durchsuchen und zu lesen.",
   "pricing.copy069": "Ask Vault kann Fragen über den gesamten Verlauf hinweg beantworten und auf die entsprechenden Quellkonversationen verweisen.",
   "pricing.copy070": "Du kannst jederzeit kündigen. Bereits auf den einzelnen Geräten gespeicherte Unterhaltungen bleiben durchsuchbar. Erneuere Vault, wann immer du die verschlüsselte Sicherung wieder synchronisieren oder wiederherstellen möchtest.",
   "pricing.copy071": "Preise für Vault",
@@ -840,6 +840,7 @@
   "purchase.copy070": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut.",
   "purchase.copy071": "Vault verwalten",
   "purchase.copy072": "Vault holen",
+  "purchase.copy073": "Für die Einrichtung brauchst du einen Computer. Du erstellst deinen Vault einmalig in der LLMnesia-Erweiterung für Chrome oder Edge und kannst ihn danach auf deinem Handy öffnen.",
   "purchase.codePlaceholder": "8-stelliger Code",
   "homepage.top.compatibility": "Funktioniert in Chrome oder Edge auf Laptop oder Desktop-PC, nicht auf Smartphones oder Tablets."
 }

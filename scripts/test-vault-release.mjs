@@ -138,6 +138,7 @@ assert.match(accountExperience, /Open LLMnesia on your computer/);
 assert.match(accountExperience, /InstallLink/);
 assert.match(accountExperience, /ComputerLinkCapture/);
 assert.match(accountExperience, /vault\.llmnesia\.com/);
+assert.match(purchase, /Setup needs a computer/);
 assert.match(accountExperience, /I’ve subscribed, check again/);
 assert.match(accountExperience, /Vault subscription active/);
 

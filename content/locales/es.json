@@ -531,7 +531,7 @@
   "pricing.copy042": "¿Puedes leer mis conversaciones?",
   "pricing.copy043": "No. Todo está cifrado en tu dispositivo con una clave que nunca vemos, así que lo que almacenamos no tiene sentido sin ella. No podemos leer tus conversaciones y no podemos entregar lo que no tenemos.",
   "pricing.copy044": "¿Funciona Vault en mi móvil?",
-  "pricing.copy045": "Sí. La versión beta de la aplicación web de Vault, que se puede instalar, funciona tanto en el móvil como en el ordenador, donde puedes buscar y leer tu historial sincronizado. Está incluida en la suscripción.",
+  "pricing.copy045": "Sí, una vez configurado. Configuras Vault una sola vez en un ordenador, en la extensión de LLMnesia para Chrome o Edge. Cuando tus chats se hayan sincronizado, la versión beta de la aplicación web de Vault, que se puede instalar, te permite buscarlos y leerlos en el móvil. Está incluida en la suscripción.",
   "pricing.copy046": "¿Ask Vault envía todo mi archivo a un proveedor de IA?",
   "pricing.copy047": "No. Ask Vault selecciona un conjunto delimitado de material relevante para la pregunta y lo envía directamente desde tu navegador al proveedor que hayas elegido utilizando tu propia clave API. No envía todo el archivo, y la solicitud no pasa por LLMnesia.",
   "pricing.copy048": "<span class=\"eyebrow-dot\" aria-hidden=\"true\"></span>Precios",
@@ -554,7 +554,7 @@
   "pricing.copy065": "Contenido de ejemplo mostrado en el formato actual de los resultados de la ventana emergente.",
   "pricing.copy066": "Tu archivo no debería quedarse solo en este portátil.",
   "pricing.copy067": "La extensión ya encuentra lo que has buscado, en el perfil del navegador que lo capturó. La brecha es todo lo que se ha capturado en otro sitio: el otro portátil, el perfil de trabajo, el modelo que usabas esa semana. Cuanto más uses la IA, más se amplía esa brecha. Vault la cierra: un archivo cifrado en el que todos los navegadores y ordenadores conectados escriben y del que leen.",
-  "pricing.copy068": "Instala la aplicación web de Vault en el móvil o en el ordenador para buscar y leer todo el archivo sincronizado.",
+  "pricing.copy068": "Tras configurarlo en un ordenador, instala la aplicación web de Vault en el móvil o en el ordenador para buscar y leer todo el archivo sincronizado.",
   "pricing.copy069": "Ask Vault puede responder basándose en ese historial y enlazar con las conversaciones originales.",
   "pricing.copy070": "Puedes cancelarlo en cualquier momento. Las conversaciones que ya estén en cada dispositivo seguirán siendo consultables. Renueva Vault cuando quieras sincronizar o restaurar de nuevo la copia de seguridad cifrada.",
   "pricing.copy071": "Precios de Vault",
@@ -840,6 +840,7 @@
   "purchase.copy070": "Ha surgido un error. Inténtalo de nuevo.",
   "purchase.copy071": "Gestionar Vault",
   "purchase.copy072": "Consigue Vault",
+  "purchase.copy073": "La configuración requiere un ordenador. Creas tu Vault una sola vez en la extensión de LLMnesia para Chrome o Edge y después puedes abrirlo en el móvil.",
   "purchase.codePlaceholder": "Código de 8 dígitos",
   "homepage.top.compatibility": "Funciona en Chrome o Edge en un portátil o un ordenador de sobremesa, no en teléfonos ni tabletas."
 }

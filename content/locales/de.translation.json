@@ -4802,14 +4802,14 @@
       "reviewedAt": "2026-10-09T08:36:17.030Z"
     },
     "pricing.copy045": {
-      "sourceHash": "eb95d9abf66d501d9ee727097faa354ea60347a9da1547e4f91ac51b83a192b6",
-      "machineHash": "450b052e5a2b2ab2f4deb5964e8138831e24c2d3c7dbf39b47099fcc39355f01",
-      "model": "quality_optimized",
-      "billedCharacters": 154,
+      "sourceHash": "9973141bac6b755222d22241201d94c725981baa42c522c42b0708384e33ee7e",
+      "machineHash": "353dcecb022f4cfad4d7eae831cf0163dd54d15c60fa663da58142948a1dc3fc",
+      "model": "claude-opus-5-5",
+      "billedCharacters": 0,
       "needsMarkupReview": false,
-      "translatedAt": "2026-10-09T08:32:12.140Z",
-      "reviewedHash": "450b052e5a2b2ab2f4deb5964e8138831e24c2d3c7dbf39b47099fcc39355f01",
-      "reviewedAt": "2026-10-09T08:36:17.030Z"
+      "translatedAt": "2026-10-30T09:00:00.000Z",
+      "reviewedHash": "353dcecb022f4cfad4d7eae831cf0163dd54d15c60fa663da58142948a1dc3fc",
+      "reviewedAt": "2026-10-30T09:00:00.000Z"
     },
     "pricing.copy046": {
       "sourceHash": "ab350bdd5298ddd17e7334359f842ee1efbfad4641854dff1077d85eecd62a59",
@@ -5032,14 +5032,14 @@
       "reviewedAt": "2026-10-09T08:36:17.030Z"
     },
     "pricing.copy068": {
-      "sourceHash": "5d538940279287823ad16c2a0757307fd3248f7b98e4834b79508144bd53177f",
-      "machineHash": "069b8663efff5f428921c1db9b9f4a26f24a2b543eadd751609eddc7d0279996",
-      "model": "quality_optimized",
-      "billedCharacters": 90,
+      "sourceHash": "c86a936c59666cc64b9af1fff88b9aa39b4b6d37c3758e27a5254401d8f4c1d4",
+      "machineHash": "38806877f385826e99dfb8d5d19d22bbb3ecb8430e8fcba4407ea71c8787de2d",
+      "model": "claude-opus-5-5",
+      "billedCharacters": 0,
       "needsMarkupReview": false,
-      "translatedAt": "2026-10-09T08:32:12.140Z",
-      "reviewedHash": "069b8663efff5f428921c1db9b9f4a26f24a2b543eadd751609eddc7d0279996",
-      "reviewedAt": "2026-10-09T08:36:17.030Z"
+      "translatedAt": "2026-10-30T09:00:00.000Z",
+      "reviewedHash": "38806877f385826e99dfb8d5d19d22bbb3ecb8430e8fcba4407ea71c8787de2d",
+      "reviewedAt": "2026-10-30T09:00:00.000Z"
     },
     "pricing.copy069": {
       "sourceHash": "948f27a53428e8b25c077022ac3e64b17e5d8469bfa514618d466463770c004d",
@@ -8044,6 +8044,16 @@
       "translatedAt": "2026-10-27T06:00:42.102Z",
       "reviewedHash": "43e08b5c907d6365d4de761ca6f110428097d5baee3c17b1c5cf57f4aa30d625",
       "needsMarkupReview": false
+    },
+    "purchase.copy073": {
+      "sourceHash": "385e05599f9aea5c7fb529c4c34946f759216313dd6d157fae00e1b723c37d52",
+      "machineHash": "a35b02039236a3690c392c5c8e9ba6597ce7ecc748553673465622cd406dd3ee",
+      "model": "claude-opus-5-5",
+      "billedCharacters": 0,
+      "needsMarkupReview": false,
+      "translatedAt": "2026-10-30T09:00:00.000Z",
+      "reviewedHash": "a35b02039236a3690c392c5c8e9ba6597ce7ecc748553673465622cd406dd3ee",
+      "reviewedAt": "2026-10-30T09:00:00.000Z"
     }
   }
 }
