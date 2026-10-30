@@ -134,6 +134,9 @@ assert.match(accountExperience, /searchParams\.get\('checkout'\) === 'success'/)
 assert.match(accountExperience, /Sign in with the email you used at checkout so we can confirm your subscription/);
 assert.doesNotMatch(accountExperience, /Your payment went through|You’re subscribed to Vault\./, 'query parameters cannot prove payment');
 assert.match(accountExperience, /What to do next/);
+assert.match(accountExperience, /Open LLMnesia on your computer/);
+assert.match(accountExperience, /InstallLink/);
+assert.match(accountExperience, /ComputerLinkCapture/);
 assert.match(accountExperience, /I’ve subscribed, check again/);
 assert.match(accountExperience, /Vault subscription active/);
 

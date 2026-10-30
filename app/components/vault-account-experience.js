@@ -1,7 +1,15 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import ComputerLinkCapture from './computer-link-capture';
+import InstallLink from './install-link';
 import VaultPurchase from './vault-purchase';
+
+const SETUP_UTM = {
+  utm_source: 'vault',
+  utm_medium: 'post_purchase',
+  utm_campaign: 'vault_setup'
+};
 
 function AccountManagement() {
   return (
@@ -37,7 +45,8 @@ function CheckoutSuccess() {
           <h1 id="vault-success-title">Finish your Vault setup.</h1>
           <p>
             Sign in with the email you used at checkout so we can confirm your subscription.
-            Once Vault is active, finish setup in the LLMnesia extension to switch on encrypted sync.
+            Once Vault is active, finish setup in the LLMnesia extension on a computer to switch on
+            encrypted sync.
           </p>
         </header>
 
@@ -56,15 +65,40 @@ function CheckoutSuccess() {
               <li>
                 <span aria-hidden="true">2</span>
                 <div>
-                  <strong>Return to LLMnesia Settings</strong>
+                  <strong>Open LLMnesia on your computer</strong>
                   <p>
-                    Find Vault. Returning there confirms your subscription automatically. If it
-                    hasn’t appeared yet, click “I’ve subscribed, check again”.
+                    Vault is set up in the extension for Chrome or Edge. It doesn’t run on phones
+                    or tablets, so this step needs a computer.
                   </p>
+                  <div
+                    className="vault-account-install"
+                    data-cta-placement="vault_setup"
+                    data-cta-family="vault_setup"
+                    data-cta-slug="vault-post-purchase"
+                  >
+                    <div className="inline-install-cta__desktop">
+                      <p>Don’t have LLMnesia on this computer yet?</p>
+                      <InstallLink className="button" utm={SETUP_UTM}>Add to Chrome, free</InstallLink>
+                    </div>
+                    <ComputerLinkCapture
+                      lead="On your phone? Email yourself the install link to open on your computer."
+                      utm={{ ...SETUP_UTM, utm_medium: 'mobile_capture_fallback' }}
+                    />
+                  </div>
                 </div>
               </li>
               <li>
                 <span aria-hidden="true">3</span>
+                <div>
+                  <strong>Go to Vault in LLMnesia Settings</strong>
+                  <p>
+                    Sign in with the same email. Returning there confirms your subscription
+                    automatically. If it hasn’t appeared yet, click “I’ve subscribed, check again”.
+                  </p>
+                </div>
+              </li>
+              <li>
+                <span aria-hidden="true">4</span>
                 <div>
                   <strong>Create or unlock your private Vault</strong>
                   <p>Your passphrase stays on your device and is never shared with LLMnesia.</p>

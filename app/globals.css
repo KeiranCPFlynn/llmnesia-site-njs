@@ -5945,6 +5945,14 @@ p.vault-price-badge {
   line-height: 1.55;
 }
 
+.vault-account-install {
+  margin-top: 0.75rem;
+}
+
+.vault-account-install .inline-install-cta__desktop p {
+  margin: 0 0 0.5rem;
+}
+
 .vault-account-done {
   margin: 0;
   padding: 0.85rem 1rem;
