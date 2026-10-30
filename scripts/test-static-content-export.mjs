@@ -34,8 +34,8 @@ const categoryRoutes = [...new Set(entriesByType.blog.map((entry) => entry.categ
 const routes = [...contentRoutes, ...categoryRoutes];
 
 const conversionCopyByRoute = {
-  '/blog/recover-deleted-chatgpt-conversation': 'Protect future ChatGPT chats, free',
-  '/blog/recover-deleted-claude-conversation': 'Protect future Claude chats, free',
+  '/blog/recover-deleted-chatgpt-conversation': 'Save my ChatGPT history, free',
+  '/blog/recover-deleted-claude-conversation': 'Save my Claude history, free',
   '/blog/google-ai-mode-history': 'Search AI Mode history, free',
   '/blog/how-to-find-old-character-ai-conversations': 'Search Character.AI history, free',
   '/blog/search-character-ai-conversation-history': 'Search Character.AI chats, free'
