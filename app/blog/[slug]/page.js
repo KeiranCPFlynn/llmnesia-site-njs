@@ -13,7 +13,6 @@ import {
   articleSchema,
   breadcrumbSchema,
   faqSchema,
-  softwareApplicationSchema,
   howToSchema
 } from '../../../lib/schema';
 
@@ -63,8 +62,7 @@ export default async function BlogArticlePage({ params }) {
 
   const schemas = [
     articleSchema(entry),
-    breadcrumbSchema(breadcrumb),
-    softwareApplicationSchema()
+    breadcrumbSchema(breadcrumb)
   ];
 
   if (Array.isArray(entry.faq) && entry.faq.length > 0) {

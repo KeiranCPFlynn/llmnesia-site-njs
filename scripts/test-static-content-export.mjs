@@ -28,6 +28,7 @@ const entriesByType = Object.fromEntries(
 const contentRoutes = contentTypes.flatMap((type) =>
   entriesByType[type].map((entry) => entry.canonicalPath)
 );
+const blogRoutes = new Set(entriesByType.blog.map((entry) => entry.canonicalPath));
 const categoryRoutes = [...new Set(entriesByType.blog.map((entry) => entry.category))].map(
   (category) => `/blog/category/${category}`
 );
@@ -44,6 +45,21 @@ const conversionCopyByRoute = {
 for (const route of routes) {
   const outputPath = path.join(projectRoot, 'out', `${route.slice(1)}.html`);
   const html = await readFile(outputPath, 'utf8');
+
+  if (blogRoutes.has(route)) {
+    const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]));
+    const types = schemas.flatMap((schema) => [schema, ...(schema['@graph'] || [])])
+      .flatMap((schema) => [schema['@type']].flat());
+    for (const expected of ['Article', 'BreadcrumbList', 'FAQPage']) {
+      assert.ok(types.includes(expected), `${route} is missing ${expected} structured data`);
+    }
+    assert.equal(
+      types.includes('SoftwareApplication'),
+      false,
+      `${route} contains promotional software-app rich-result markup`
+    );
+  }
 
   assert.equal(
     html.includes('<meta name="robots" content="noindex"/>'),
