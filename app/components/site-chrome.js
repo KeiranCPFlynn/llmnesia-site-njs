@@ -38,7 +38,7 @@ export default function SiteChrome({ children, minimalHeader = false, headerCtaU
       <header className={`site-header${minimalHeader ? ' site-header--minimal' : ' site-header--language'}`}>
         <div className="container header-inner">
           <a className="brand" href={href('/')} aria-label={t('home')}>
-            <img src="/logo.svg" alt="" width="28" height="28" />
+            <svg viewBox="0 0 128 128" width="28" height="28" aria-hidden="true" focusable="false"><defs><linearGradient id="llm-logo-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#3193ad"/><stop offset="100%" stopColor="#23687d"/></linearGradient><radialGradient id="llm-logo-lens" cx="0.4" cy="0.35" r="0.65"><stop offset="0%" stopColor="#ffffff" stopOpacity="0.25"/><stop offset="100%" stopColor="#ffffff" stopOpacity="0.05"/></radialGradient><linearGradient id="llm-logo-spark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#c5d97f"/><stop offset="100%" stopColor="#9ab458"/></linearGradient></defs><rect x="4" y="4" width="120" height="120" rx="26" ry="26" fill="url(#llm-logo-bg)"/><circle cx="50" cy="48" r="27" fill="url(#llm-logo-lens)" stroke="#f0f6fa" strokeWidth="7"/><path d="M34 38 A22 22 0 0 1 54 30" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" opacity="0.45"/><line x1="70" y1="68" x2="100" y2="98" stroke="#f0f6fa" strokeWidth="10" strokeLinecap="round"/><line x1="72" y1="66" x2="96" y2="90" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" opacity="0.2"/><path d="M50 32 L53 44 L65 47 L53 50 L50 62 L47 50 L35 47 L47 44 Z" fill="url(#llm-logo-spark)"/></svg>
             <span>LLMnesia</span>
           </a>
 

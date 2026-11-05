@@ -19,24 +19,50 @@ export default function PostHogInit() {
 
     const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
 
+    const config = {
+      api_host: host,
+      autocapture: false,
+      capture_pageview: false,
+      capture_pageleave: false,
+      disable_session_recording: true,
+      person_profiles: 'identified_only'
+    };
+    const ready = () => {
+      // Let components that depend on flag evaluation (the demo/CTA experiment)
+      // know PostHog is available, even if they mounted first.
+      window.dispatchEvent(new Event('posthog:ready'));
+    };
+    const fail = () => {
+      window.__posthogReady = false;
+    };
+
+    // For PostHog Cloud, load the SDK from PostHog's own asset CDN rather than
+    // as bundled chunks. Same SDK and config, but it keeps ~3 requests per new
+    // visitor off this site's Vercel CDN request quota. A custom/proxy host
+    // falls back to the bundled package.
+    const cloud = host.match(/^https:\/\/(us|eu)\.i\.posthog\.com\/?$/);
+    if (cloud) {
+      const script = document.createElement('script');
+      script.src = `https://${cloud[1]}-assets.i.posthog.com/static/array.js`;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.onload = () => {
+        if (typeof window.posthog?.init !== 'function') return fail();
+        window.posthog.init(key, config);
+        ready();
+      };
+      script.onerror = fail;
+      document.head.appendChild(script);
+      return;
+    }
+
     import('posthog-js')
       .then(({ default: posthog }) => {
-        posthog.init(key, {
-          api_host: host,
-          autocapture: false,
-          capture_pageview: false,
-          capture_pageleave: false,
-          disable_session_recording: true,
-          person_profiles: 'identified_only'
-        });
+        posthog.init(key, config);
         window.posthog = posthog;
-        // Let components that depend on flag evaluation (the demo/CTA experiment)
-        // know PostHog is available, even if they mounted first.
-        window.dispatchEvent(new Event('posthog:ready'));
+        ready();
       })
-      .catch(() => {
-        window.__posthogReady = false;
-      });
+      .catch(fail);
   }, []);
 
   return null;
