@@ -1,9 +1,9 @@
 ---
-title: "Google AI Mode History: Find and Resume Past Chats"
+title: "Google AI Mode History: Find, Resume or Delete Past Chats"
 slug: "google-ai-mode-history"
-description: "See where Google AI Mode history is stored, why a past chat may be missing, and how to resume, export, or delete AI Mode conversations."
+description: "Find Google AI Mode history, see why a chat is missing, and resume, delete or export it. Plus where Gemini and AI Studio keep their own chat history."
 publishDate: "2026-09-10"
-updatedDate: "2026-10-15"
+updatedDate: "2026-11-05"
 author: "Keiran Flynn"
 ctaHeadline: "Import the conversations available in your Google AI Mode history and search them alongside ChatGPT, Claude, Gemini and more. LLMnesia keeps your searchable copy on this device."
 ctaButtonLabel: "Search AI Mode history, free"
@@ -14,8 +14,12 @@ secondaryKeywords:
   - "delete ai mode history"
   - "export google ai mode history"
   - "resume ai mode conversation"
+  - "google ai chat history"
+  - "where is my google ai history"
 intent: "how-to"
 faq:
+  - question: "Is Google AI Mode history the same as Gemini history?"
+    answer: "No. AI Mode is part of Google Search, so its conversations are saved with your Search history and appear under AI Mode history. Chats in the Gemini app are kept in Gemini's own recent chats and controlled by Gemini Apps Activity, which Google lists as a separate setting. Google AI Studio keeps its own History and Library, and can save chats to Google Drive."
   - question: "Where is my Google AI Mode history?"
     answer: "Open Google AI Mode and select AI Mode history in the left sidebar. Saved conversations appear there when your Search history setting is enabled. You can also inspect AI Mode activity through Google's Search Services History or My Activity controls."
   - question: "Can I continue an old Google AI Mode conversation?"
@@ -46,6 +50,19 @@ relatedSlugs:
 **Open AI Mode history first when you want to find or resume a past Google AI Mode chat.** Use **Search Services History** or **My Activity** for account-level controls, date filters, deletion, and exports. These surfaces overlap, but they do not show the same information or serve the same purpose.
 
 Google is gradually moving Search accounts from the older Web & App Activity wording to Search Services History. That means two people can follow the same instructions and see different setting names. The underlying question is the same: is Google allowed to save signed-in Search activity for this account?
+
+## Which Google AI history are you looking for?
+
+"Google AI history" can mean several different products, and each keeps its own record. Start by matching where you had the conversation:
+
+| Where you chatted | Where the history lives | Guide |
+|---|---|---|
+| AI Mode in Google Search (google.com/ai, or the AI Mode tab on a results page) | AI Mode history, backed by your Search history | This page |
+| An AI Overview at the top of ordinary search results | Your Search history, as part of that search | This page |
+| The Gemini app or gemini.google.com | Gemini's recent chats, controlled by Gemini Apps Activity | [Find old Gemini conversations](/blog/how-to-find-old-gemini-conversations) |
+| Google AI Studio | AI Studio's History or Library, often with a copy in Google Drive | [Google AI Studio conversation history](/blog/google-ai-studio-conversation-history) |
+
+If you cannot find a chat in AI Mode history, check whether it actually happened in Gemini or AI Studio before assuming it was deleted.
 
 ## The four history surfaces are not the same
 
@@ -97,7 +114,7 @@ Google’s account history is useful for finding activity, but it is not the sam
 
 1. Open AI Mode.
 2. Select **AI Mode history**.
-3. Open the menu beside the conversation.
+3. Open **More** beside the conversation.
 4. Choose **Delete**.
 
 Google says the item may remain visible in My Activity for a short period and should be automatically removed there in less than 24 hours. You can remove it manually from My Activity if you do not want to wait.
@@ -106,9 +123,9 @@ There is one extra edge case: if you started with an AI Overview and selected **
 
 ## How to delete all AI Mode history
 
-Open the menu at the top of AI Mode history and choose **Delete all**. If your goal is broader data deletion rather than simply clearing the AI Mode list, review Search Services History or My Activity as well. Those account controls let you delete a custom date range, all time, or configure automatic deletion.
+Open **More** at the top of AI Mode history and choose **Delete all**. If your goal is broader data deletion rather than simply clearing the AI Mode list, review Search Services History or My Activity as well. Those account controls let you delete a custom date range, all time, or configure automatic deletion.
 
-Deletion and disabling future history are separate actions. Deleting old items does not automatically stop Google from saving new ones, and turning history off does not necessarily delete activity that is already stored.
+Deletion and disabling future history are separate actions. Deleting old items does not automatically stop Google from saving new ones, and turning history off does not necessarily delete activity that is already stored. On accounts with the new controls, turning off Search Services History offers **Turn off** or **Turn off and delete activity**, so choose the second if you want both.
 
 ## How to export AI Mode and Search history
 
@@ -132,7 +149,7 @@ Google’s Search Services History documentation says saved activity can include
 - Sites viewed through Search services
 - Device, language, referrer, and approximate-location context associated with the activity
 
-The same documentation explains that saved Search history can be used for personalisation and product improvement, including generative-AI model training. Turning Search Services History off stops future account-linked activity from being used for that model training unless you explicitly submit feedback; it does not erase past activity automatically.
+The same documentation explains that saved Search history can be used for personalisation and product improvement, including generative-AI model training. Google says data used for model training is disconnected from your account and kept for up to four years, and that human reviewers may see some of it. Turning Search Services History off stops future account-linked activity from being used for that model training unless you explicitly submit feedback; it does not erase past activity automatically.
 
 ## Import AI Mode history into LLMnesia
 
