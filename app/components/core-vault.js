@@ -6,6 +6,8 @@ import { homepageFaqSchema } from '../../lib/schema';
 import { platformListSentence } from '../../lib/platforms';
 import { formatSiteText, siteHtml, clientCopy } from '../../lib/site-copy';
 import { localizedHref } from '../../lib/site-language';
+import ProductVideo from './product-video';
+import { VIDEOS, videoObjectSchema } from '../../lib/videos';
 
 const CHECKOUT_ENABLED = process.env.NEXT_PUBLIC_VAULT_CHECKOUT_ENABLED === 'true';
 const MONTHLY_PRICE_LABEL = process.env.NEXT_PUBLIC_VAULT_MONTHLY_PRICE_LABEL || '£8';
@@ -80,6 +82,7 @@ export default function VaultPage({ language = 'en' }) {
   return (
     <SiteChrome language={language} pagePath="/vault" >
       <JsonLd data={homepageFaqSchema(FAQS.map((item) => ({ question: item.q, answer: item.a })))} />
+      {language === 'en' && VIDEOS.vault.id && <JsonLd data={videoObjectSchema(VIDEOS.vault)} />}
       <VaultPageView />
       <main lang={language} id="main-content" className="vault-page">
         <section className="section vault-hero">
@@ -89,6 +92,7 @@ export default function VaultPage({ language = 'en' }) {
             <p className="subheadline vault-hero-sub" dangerouslySetInnerHTML={{ __html: html('vault.copy032') }} ></p>
             <div className="vault-hero-actions" dangerouslySetInnerHTML={{ __html: html('vault.copy033') }} ></div>
             <p className="vault-hero-note" dangerouslySetInnerHTML={{ __html: html('vault.copy034', { VALUE_A: ANNUAL_PRICE_LABEL, VALUE_B: MONTHLY_PRICE_LABEL }) }} ></p>
+            {language === 'en' && <ProductVideo video={VIDEOS.vault} name="vault" label="Play the Vault video" />}
           </div>
         </section>
 
