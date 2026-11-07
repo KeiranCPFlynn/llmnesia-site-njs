@@ -1,6 +1,7 @@
 import JsonLd from './json-ld';
 import { homepageMarkup, resolveHomepageText } from '../../lib/homepage';
 import { siteText } from '../../lib/site-copy';
+import { VIDEOS, videoObjectSchema } from '../../lib/videos';
 import { organizationSchema, softwareApplicationSchema, homepageFaqSchema } from '../../lib/schema';
 
 export default function Homepage({ language = 'en' }) {
@@ -11,6 +12,7 @@ export default function Homepage({ language = 'en' }) {
   return (
     <>
       <div lang={language} dangerouslySetInnerHTML={{ __html: homepageMarkup(language) }} />
+      {VIDEOS.main.id && <JsonLd data={videoObjectSchema(VIDEOS.main)} />}
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd data={organizationSchema()} />
       <JsonLd data={{ ...homepageFaqSchema(faqs), inLanguage: language }} />

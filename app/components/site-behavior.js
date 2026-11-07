@@ -7,6 +7,7 @@ import {
   installStoreForUserAgent
 } from '../../lib/site';
 import { trackEvent } from '../../lib/analytics';
+import { embedUrl } from '../../lib/videos';
 import { siteText } from '../../lib/site-copy';
 import { languageForPath } from '../../lib/site-language';
 
@@ -554,6 +555,18 @@ export default function SiteBehavior() {
         if (campaign === 'blog_install_cta' && slug) {
           trackEvent('blog_install_cta_clicked', { slug, placement: ctaPlacement, store });
         }
+        return;
+      }
+
+      const videoButton = target.closest('button[data-video-id]');
+      if (videoButton) {
+        const frame = document.createElement('iframe');
+        frame.src = embedUrl(videoButton.getAttribute('data-video-id'));
+        frame.title = videoButton.getAttribute('data-video-title') || '';
+        frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        frame.allowFullscreen = true;
+        videoButton.replaceWith(frame);
+        trackEvent('product_video_play', { video: videoButton.getAttribute('data-video-name') });
         return;
       }
 

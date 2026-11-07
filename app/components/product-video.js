@@ -6,11 +6,12 @@
 
 import { useState } from 'react';
 import { trackEvent } from '../../lib/analytics';
+import { embedUrl } from '../../lib/videos';
 
 export default function ProductVideo({ video, name, label = 'Play the video' }) {
   const [playing, setPlaying] = useState(false);
   if (!video?.id) return null;
-  const src = `https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0`;
+  const src = embedUrl(video.id);
   return (
     <figure className="product-video">
       {playing ? (
@@ -31,7 +32,7 @@ export default function ProductVideo({ video, name, label = 'Play the video' }) 
           <span className="product-video-play" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="30" height="30"><path d="M8 5.5v13l11-6.5z" fill="currentColor" /></svg>
           </span>
-          <span className="product-video-length" aria-hidden="true">0:51</span>
+          <span className="product-video-length" aria-hidden="true">{video.length}</span>
         </button>
       )}
     </figure>
