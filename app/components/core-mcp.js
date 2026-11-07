@@ -2,6 +2,8 @@ import SiteChrome from './site-chrome';
 import InstallLink from './install-link';
 import JsonLd from './json-ld';
 import ProCallout from './pro-callout';
+import ProductVideo from './product-video';
+import { VIDEOS, videoObjectSchema } from '../../lib/videos';
 import { softwareApplicationSchema, homepageFaqSchema } from '../../lib/schema';
 import { formatSiteText, siteHtml } from '../../lib/site-copy';
 import { languageCampaign } from '../../lib/site-language';
@@ -108,6 +110,7 @@ export default function McpPage({ language = 'en' }) {
   return (
     <SiteChrome headerCtaUtm={{ ...CTA_UTM, utm_medium: 'header_cta' }} language={language} pagePath="/mcp" >
       <JsonLd data={softwareApplicationSchema()} />
+      {VIDEOS.mcp.id && <JsonLd data={videoObjectSchema(VIDEOS.mcp)} />}
       <JsonLd
         data={homepageFaqSchema(
           FAQS.map((item) => ({ question: item.q, answer: item.a }))
@@ -126,6 +129,7 @@ export default function McpPage({ language = 'en' }) {
               <a className="mcp-hero-secondary" href="#guided-setup" dangerouslySetInnerHTML={{ __html: html('mcp.copy049') }} ></a>
             </div>
             <p className="mcp-hero-note" dangerouslySetInnerHTML={{ __html: html('mcp.copy050') }} ></p>
+            <ProductVideo video={VIDEOS.mcp} name="mcp" label="Play the MCP video" />
           </div>
         </section>
 
