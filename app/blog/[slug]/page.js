@@ -4,6 +4,7 @@ import {
   getContentBySlug,
   getCtaProps,
   getDemoForEntry,
+  getVideoForEntry,
   getRelatedLinks,
   getStaticParamsForType,
   renderMdxWithCta
@@ -15,6 +16,7 @@ import {
   faqSchema,
   howToSchema
 } from '../../../lib/schema';
+import { videoObjectSchema } from '../../../lib/videos';
 
 export function generateStaticParams() {
   return getStaticParamsForType('blog');
@@ -51,8 +53,10 @@ export default async function BlogArticlePage({ params }) {
 
   const ctaProps = getCtaProps(entry);
   const demo = getDemoForEntry(entry);
+  const video = getVideoForEntry(entry);
   const body = await renderMdxWithCta(entry.content, ctaProps, {
-    demoScenes: demo ? demo.scenes : null
+    demoScenes: demo ? demo.scenes : null,
+    video
   });
   const breadcrumb = [
     { name: 'Home', path: '/' },
@@ -67,6 +71,10 @@ export default async function BlogArticlePage({ params }) {
 
   if (Array.isArray(entry.faq) && entry.faq.length > 0) {
     schemas.push(faqSchema(entry));
+  }
+
+  if (video) {
+    schemas.push(videoObjectSchema(video));
   }
 
   const howTo = howToSchema(entry);
