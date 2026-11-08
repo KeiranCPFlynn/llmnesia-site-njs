@@ -3,7 +3,7 @@ title: "How to Resume an Old Claude Code Session"
 slug: "how-to-resume-an-old-claude-code-session"
 description: "Resume a past Claude Code session with --resume, --continue, or /resume. How each option works, what the picker's search does, and how to reopen any session."
 publishDate: "2026-07-23"
-updatedDate: "2026-07-23"
+updatedDate: "2026-11-08"
 author: "Keiran Flynn"
 primaryKeyword: "resume old claude code session"
 secondaryKeywords:
@@ -15,31 +15,29 @@ secondaryKeywords:
 intent: "how-to"
 faq:
   - question: "How do I resume a previous Claude Code session?"
-    answer: "cd into the project directory the session belongs to, then run claude --resume (or -r) to open a picker of that project's saved sessions, filter it with a search term, and choose one — or claude --continue (or -c) to jump straight into the most recent session there. From inside a running session you can also use the /resume command."
+    answer: "Run claude --resume (or -r) to open the session picker, filter it with a search term, and choose a session. Press Ctrl+A to show sessions from other projects. Use claude --continue (or -c) to return to the most recent session in your current directory. Inside Claude Code, use /resume."
   - question: "What is the difference between --resume and --continue?"
-    answer: "claude --continue (or -c) reopens the most recent session in the current directory without asking. claude --resume (or -r) opens a picker of that directory's saved sessions that you can filter with a search term, then reopen the one you pick. Use --continue to get back to what you were just doing, and --resume to choose an earlier session in the same project."
+    answer: "claude --continue reopens the most recent eligible session in the current directory. claude --resume opens a picker you can filter and widen across worktrees or projects. Pass a session ID to resume a known session directly."
   - question: "How do I reopen a session that isn't the most recent one?"
-    answer: "From the project directory it belongs to, run claude --resume <session-id> — the ID is the filename (minus .jsonl) under that project's folder in ~/.claude/projects — to skip straight past the picker. Find the ID by searching the files with ripgrep, or with a tool like LLMnesia that indexes them by keyword."
+    answer: "Run claude --resume <session-id> to skip the picker. For a saved local session, the ID is the filename without .jsonl. Claude Code checks the current project and its worktrees first, then looks for a unique match in other projects on the machine."
   - question: "Can I resume a Claude Code session from a different folder?"
-    answer: "Not directly. Both claude --continue and claude --resume — even with a session ID — only operate on the current directory's sessions; the reliable way is to cd into the project the session belongs to first, then resume it there. If you do not know which project that is, a tool like LLMnesia can find the session and hand you a ready-to-run command for the correct folder."
+    answer: "Yes. In the session picker, Ctrl+W shows worktrees for the same repository, and Ctrl+A shows all projects on the machine. Selecting a session from an unrelated project may copy a terminal command to your clipboard. If you know the session ID, claude --resume <session-id> can find it from another directory."
   - question: "How does LLMnesia help me resume a Claude Code session?"
-    answer: "LLMnesia indexes your Claude Code sessions and makes them searchable by keyword. When you find the one you want, it reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command that resumes that exact session in the correct project folder — so you never have to remember which directory it lived in."
+    answer: "After you import the local session folder and indexing finishes, search for a phrase you remember. A saved result can show the matching session and give you a terminal resume command."
 sources:
-  - label: "Claude Code documentation"
-    url: "https://docs.claude.com/en/docs/claude-code/overview"
-  - label: "LLMnesia — AI conversation search"
-    url: "https://www.llmnesia.com/"
+  - label: "Anthropic documentation on Claude Code sessions"
+    url: "https://code.claude.com/docs/en/sessions"
 canonicalPath: "/blog/how-to-resume-an-old-claude-code-session"
 category: "how-to"
 howto:
   name: "How to resume an old Claude Code session"
   steps:
     - name: "Open your terminal in the right project"
-      text: "Open a terminal and cd into the project directory the session belongs to — both claude --resume and claude --continue only see sessions for the directory you are in."
+      text: "Start Claude Code from the project directory if you know it. The session picker starts with sessions associated with the current worktree."
     - name: "Open the resume picker"
       text: "Run claude --resume (or claude -r) to open a picker of that project's saved sessions."
     - name: "Find and pick the session"
-      text: "Filter the picker by typing a search term, then select the session to reopen it with its context restored."
+      text: "Filter the picker by typing a search term. Press Ctrl+A if the session belongs to another project. Select it, then run the copied command if the picker provides one."
     - name: "Or jump to the most recent with --continue"
       text: "To reopen the most recent session in that directory without the picker, run claude --continue (or claude -c)."
 relatedSlugs:
@@ -49,41 +47,39 @@ relatedSlugs:
   - "ai-chat-history-broken-native-search"
 ---
 
-**To resume a Claude Code session, `cd` into the project it belongs to, then run `claude --resume` and pick it from the picker — or `claude --continue` for the most recent one.** Both commands only see sessions for the directory you are standing in, even `--resume` when you pass a specific session ID, so resuming an *old* session from a different project starts with knowing (or finding) which directory it lived in. Here is how each option works, and what to do when you can't place it.
+**Run `claude --resume` to choose a saved Claude Code session or `claude --continue` to reopen the most recent eligible session in your current directory.** If the session belongs to another project, press **Ctrl+A** in the picker. If you know its ID, run `claude --resume <session-id>`.
 
 ## The three built-in ways to resume
 
-**`claude --continue` (or `-c`)** — reopens the most recent session in the current directory, no questions asked. This is the "get me back to what I was just doing" option.
+**`claude --continue` (or `-c`)** reopens the most recent eligible session in the current directory.
 
-**`claude --resume` (or `-r`)** — opens a picker of your saved sessions that you can filter by typing a search term, so you can choose which one to reopen. Use this when the session you want is not the most recent. You can also pass a session ID (`claude --resume <id>`) to jump straight to a specific one — but like the picker, this only finds sessions belonging to the current directory.
+**`claude --resume` (or `-r`)** opens the session picker. Type to filter it, or pass a session ID to jump straight to a specific session.
 
-**`/resume`** — the same picker, available from inside a running session, so you can switch to another conversation without leaving Claude Code.
+**`/resume`** opens the picker from inside a running Claude Code session.
 
 All three restore the session's context so Claude picks up with the history intact, rather than starting cold.
 
-## The one thing to know about directories
+## Resume a session from another worktree or project
 
-Both `claude --continue` and `claude --resume` only operate on the current directory's sessions — and that holds even when you pass a specific session ID to `--resume`. Try to resume a session from the wrong directory and Claude Code reports it as not found, even though the file is sitting right there [under `~/.claude/projects`](/blog/where-does-claude-code-store-history).
+The picker initially shows sessions associated with the current worktree. Press **Ctrl+W** to include the repository's other worktrees or **Ctrl+A** to show all projects on the machine. When you pick a session from an unrelated project, Claude Code can copy a command that changes to that project and resumes the session.
 
-So resuming an old session always starts the same way: `cd` into the project directory it belongs to, then run `--continue` or `--resume` there.
+If you pass an ID from a different directory, Claude Code searches the current project and its worktrees first, then looks for a unique match elsewhere. If an older build cannot find it, run the command from the original project directory. See [where Claude Code stores its transcript files](/blog/where-does-claude-code-store-history) to locate the ID.
 
 ## Resuming a session you can't place
 
-The built-in tools assume you can recognise the session yourself — by its entry in the picker, or by knowing the directory to run `--continue` in. Often you can't — you remember *what* you were doing (a tricky migration, a bug you finally cracked) but not enough to pick it out of a list.
+If you remember a line from the conversation but cannot identify it in the picker, search the saved transcript files by content.
 
 Two ways through it:
 
-- **Search the files by content.** Every session is a plain file under `~/.claude/projects`, named by its session ID. `rg -i "something you remember" ~/.claude/projects` will point you at the file — its parent folder is the project, and the filename (minus `.jsonl`) is the ID. `cd` into that folder and run `claude --resume <that-id>` to reopen it.
-- **Let a tool find it and hand you the command.** [LLMnesia](/claude-code) indexes your Claude Code sessions and makes them searchable by keyword across every project. Find the session by a phrase you remember, and it either reopens it in the Claude Desktop app in one click, or copies a ready-to-run terminal command — for the right folder — that resumes that exact session.
+- **Search the files.** With the default location and ripgrep installed, run `rg -il --glob '*.jsonl' -- 'something you remember' ~/.claude/projects`. For a matching session transcript, use the filename without `.jsonl` as the ID.
+- **Search your saved sessions with LLMnesia.** [LLMnesia for Claude Code](/claude-code) builds a local keyword index from the supported session files you import. Find a saved conversation by a phrase you remember and copy its resume command.
 
 If you cannot place the session at all, work through the [methods for finding an old Claude Code conversation](/blog/how-to-find-an-old-claude-code-conversation) first, then come back and resume it.
 
 ## Keeping sessions easy to return to
 
-The friction with resuming is almost never the resume command itself — it is finding the right session first. A few habits help:
+These habits make a session easier to find later.
 
-- **Use `--continue` for same-day work** so you never lose the thread of an active task.
+- **Use `--continue` for recent work** in the same project.
 - **Keep projects in stable directories.** Moving or renaming a project directory means its future sessions land in a new folder, splitting your history.
-- **Index your sessions for search** if you regularly return to work from weeks ago. Once every session is searchable by keyword, "which project was that in?" stops being a question you have to answer from memory.
-
-Once you find the session, resuming it is one command — the work is in surfacing the right one, and that is exactly the gap search fills.
+- **Name or index sessions you expect to revisit.** A meaningful session name helps in the picker. A local index helps when you remember the conversation's contents.
