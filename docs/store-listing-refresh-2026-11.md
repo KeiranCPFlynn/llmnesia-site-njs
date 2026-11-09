@@ -32,10 +32,12 @@ All three parts go live together as one listing refresh.
    deleted before installation. All Vault, MCP, privacy and analytics
    disclosures from the current description are kept word for word.
 3. **Summary (extension package).** The store summary comes from the manifest
-   `description`. It was changed on extension `main` in `a10f4815`:
-   "Find old chats from ChatGPT, Claude, Gemini, Google AI Mode, Character.AI
-   and more in one search. Free and private, on your device." (131 of 132
-   characters). It ships with the next release built from that commit or later.
+   `description`. It ships in the repackaged 0.4.24
+   (`codex/extension-0.4.24-release` at `4d2c5fe2`, also on extension `main`
+   as `a10f4815`): "Find old chats from ChatGPT, Claude, Gemini, Google AI
+   Mode, Character.AI and more in one search. Free and private, on your
+   device." (131 of 132 characters). Publish the screenshots and description
+   on the day 0.4.24 goes live so all three change together.
 
 The store title is unchanged. `package-release.mjs` sets it, and it carries the
 listing's search ranking.
