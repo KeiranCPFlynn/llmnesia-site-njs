@@ -4,14 +4,14 @@ You have had hundreds of chats across ChatGPT, Claude, Gemini, Google AI Mode, C
 
 WHAT IT DOES
 - Search every message across all your AI chats at once, by keyword or meaning. Semantic search finds the right conversation even when you cannot remember the exact words.
-- Import existing history from supported platforms, including Google AI Mode and Character.AI, or load an export file when a live import is unavailable or too slow.
+- Import existing history from supported platforms, or load an export file when a live import is unavailable or too slow.
 - Open the toolbar popup and search immediately, without first visiting an AI platform. Your recent conversations appear as soon as it opens.
 - See the exact AI model used for indexed replies whenever the provider reports it, including mixed-model conversations.
 - Highlight any passage and save it as a memory. Insert saved memories into a future chat in one keystroke.
 - Star conversations, bookmark results, and return to the exact point where a saved memory originated.
 
 SUPPORTED PLATFORMS
-ChatGPT, Claude, Gemini, Google AI Mode, Character.AI, Perplexity, DeepSeek, Grok, Microsoft Copilot, Meta AI, Mistral, Kimi, Qwen, Z.ai and Google AI Studio, with more added regularly. Google AI Mode uses optional Google site access that you approve in Settings. Do not see yours? Email hello@llmnesia.com and we will look into it.
+More than a dozen AI platforms are supported today, with more added regularly. Google AI Mode uses optional Google site access that you approve in Settings. Do not see yours? Email hello@llmnesia.com and we will look into it.
 
 PRIVATE BY DESIGN
 Local search remains the default. Your conversations are indexed on your device, no account is required for the free extension, and LLMnesia does not receive your conversation content when Vault is off. Search runs locally in your browser.

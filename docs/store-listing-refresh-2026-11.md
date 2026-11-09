@@ -25,8 +25,9 @@ All three parts go live together as one listing refresh.
    4. Your desktop AI can use them too (MCP)
    5. Guided first import (the welcome page)
 2. **Description (Developer Dashboard).** Paste
-   `docs/store-assets/chrome-store-description.txt`. It names the platforms
-   (Google AI Mode and Character.AI included), moves "What it does" to the top,
+   `docs/store-assets/chrome-store-description.txt`. The opening names five
+   platforms (ChatGPT, Claude, Gemini, Google AI Mode, Character.AI), moves
+   "What it does" to the top,
    puts Vault last, and adds one line that LLMnesia cannot bring back chats
    deleted before installation. All Vault, MCP, privacy and analytics
    disclosures from the current description are kept word for word.
@@ -40,6 +41,15 @@ The store title is unchanged. `package-release.mjs` sets it, and it carries the
 listing's search ranking.
 
 ## Content rules followed
+
+- Keyword spam (the earlier rejection): Chrome allows at most five named
+  supported sites or brands in the description and asks that a keyword appear
+  fewer than five times. The description names five platforms once, keeps the
+  "More than a dozen AI platforms" wording instead of a list, and uses every
+  brand and keyword no more often than the approved live description does
+  ("Vault" 6 vs 7 live, "search" 7 vs 9). The full platform list lives in the
+  screenshots, which is where Google suggests putting it. Do not paste the
+  Edge description's long platform list into Chrome.
 
 - The UI images come from the real build (`extension/prod`, 0.4.23 composition)
   with the video pipeline's `chrome.*` demo stub. All chats and the terminal
