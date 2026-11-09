@@ -1,0 +1,43 @@
+Find any old AI chat in seconds.
+
+You have had hundreds of chats across ChatGPT, Claude, Gemini, Google AI Mode, Character.AI and other AI tools. Each one keeps its history in its own silo, so the answer you need is hard to find again. LLMnesia saves your conversations as you use them, imports the history you already have, and lets you search everything in one place.
+
+WHAT IT DOES
+- Search every message across all your AI chats at once, by keyword or meaning. Semantic search finds the right conversation even when you cannot remember the exact words.
+- Import existing history from supported platforms, including Google AI Mode and Character.AI, or load an export file when a live import is unavailable or too slow.
+- Open the toolbar popup and search immediately, without first visiting an AI platform. Your recent conversations appear as soon as it opens.
+- See the exact AI model used for indexed replies whenever the provider reports it, including mixed-model conversations.
+- Highlight any passage and save it as a memory. Insert saved memories into a future chat in one keystroke.
+- Star conversations, bookmark results, and return to the exact point where a saved memory originated.
+
+SUPPORTED PLATFORMS
+ChatGPT, Claude, Gemini, Google AI Mode, Character.AI, Perplexity, DeepSeek, Grok, Microsoft Copilot, Meta AI, Mistral, Kimi, Qwen, Z.ai and Google AI Studio, with more added regularly. Google AI Mode uses optional Google site access that you approve in Settings. Do not see yours? Email hello@llmnesia.com and we will look into it.
+
+PRIVATE BY DESIGN
+Local search remains the default. Your conversations are indexed on your device, no account is required for the free extension, and LLMnesia does not receive your conversation content when Vault is off. Search runs locally in your browser.
+
+LLMnesia can only save what a platform still shows you. It cannot bring back chats that were deleted before you installed it.
+
+CONNECT YOUR HISTORY TO DESKTOP AI
+Use your existing chat history from Claude Desktop, Claude Code, Cursor, Codex and other MCP-compatible tools. Ask questions across conversations from different AI platforms, retrieve the relevant context, and open linked sources back to the original chats whenever source URLs are available. Setup is guided from LLMnesia Settings under "Connect desktop AI."
+
+The MCP connector and search index run locally. When you ask a connected desktop AI app to use your history, the relevant results are passed to that app on your computer. How the app subsequently processes those results is governed by that AI provider's own terms and privacy policy.
+
+OPTIONAL: VAULT ENCRYPTED BACKUP
+Vault is an optional paid add-on that keeps an encrypted backup of your AI conversation history and syncs it across your browsers and computers. Set it up from LLMnesia Settings with your email address and a private passphrase.
+
+Your conversation content is encrypted on your device before it is uploaded. Your passphrase and encryption key never reach LLMnesia, so we cannot read the conversations or memories stored in your Vault.
+
+Vault costs £8/month or £88/year, plus applicable tax. Payments are handled by Stripe; LLMnesia never receives your card details. The extension, local search and MCP connection remain free and require no account.
+
+If your subscription ends, conversations already stored on each device remain searchable. Remote Vault sync and restore pause until you renew; the encrypted backup is not deleted merely because the subscription ended.
+
+Vault is off until you set it up. If you enable it, encrypted conversation and memory payloads are stored on LLMnesia's Supabase backend. The service also receives the account information, record identifiers and sync metadata needed to authenticate you and keep your encrypted records in sync. Message text, conversation titles, URLs, previews and saved-memory text remain inside ciphertext that LLMnesia cannot decrypt.
+
+Questions or feature requests? Email hello@llmnesia.com. We read everything and ship fixes regularly.
+
+If LLMnesia saves you time, a Chrome Web Store rating helps more than you might think.
+
+Actively maintained. Full changelog: llmnesia.com/changelog
+Privacy policy: llmnesia.com/privacy-policy
+Optional product analytics measure feature usage only. They never include conversation content, titles, URLs, prompts or responses.
