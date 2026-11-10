@@ -5,7 +5,14 @@
     "published": true,
     "curated": true,
     "title": "Background saving for Claude and older chats in search",
-    "summary": "Connect Claude to save recent chats in the background and refresh saved Claude chats from the viewer. Search now suggests older conversations across assistants, and saved transcripts preserve more of their original formatting. The welcome page links to a short import video, and Settings makes it easier to check your local session connection. This update also improves ChatGPT import recovery, keeps the complete Gemini chat when an earlier copy overlaps, saves Character.AI chats that only contain a greeting, and helps Vault sync resume after outages."
+    "summary": "LLMnesia can now save recent Claude chats in the background. Search helps you rediscover older chats, and this release improves saved transcripts, history imports and Vault sync.",
+    "highlights": [
+      "Connect Claude in Settings to save recent chats in the background. You can also refresh a saved Claude chat from the viewer.",
+      "Search suggests older chats from across your assistants. Suggestions return when you clear a search that found nothing.",
+      "Saved transcripts preserve more of their original formatting and show ChatGPT product cards as readable text.",
+      "ChatGPT imports retry after interruptions and keep fuller saved copies. Gemini keeps the complete chat when captures overlap, Character.AI saves chats that only contain a greeting, and Vault sync resumes more reliably after outages.",
+      "The welcome page links to a short import video, and Settings makes it easier to check the connection for local coding sessions."
+    ]
   },
   {
     "version": "0.4.23",

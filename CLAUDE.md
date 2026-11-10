@@ -7,14 +7,13 @@ the extension repo's dev-facing `CHANGELOG.md` in verbatim. A sync script may
 paste raw paragraph-length bullets straight in; treat that as a draft, not a
 publish-ready entry, and always do a manual lean pass afterward.
 
-- Default to `curated: true` + a single `summary` paragraph, no `highlights`
-  array. Only use bulleted `highlights` when a release has 2+ genuinely
-  headline-worthy features and itemized detail is explicitly wanted.
+- Match the format of recent public patch releases. Use `curated: true`, a
+  short `summary` paragraph, and a concise list of `highlights`.
 - One tight sentence per real feature — no setup/CLI instructions, command
   names, troubleshooting steps, or "here's how the fix works" narration. That
   belongs in docs, not release notes.
-- Fold every reliability fix into one trailing clause naming 2-4 standouts,
-  not one bullet per fix.
+- Group related reliability fixes in a highlight and focus on changes users
+  are most likely to notice.
 - Cut minor UI polish and growth nudges entirely (pixel tweaks, redesigned
   pills, "leave a review" prompts, new waitlist form fields) — not a user
   benefit, don't mention them even folded into a sentence.
@@ -22,8 +21,7 @@ publish-ready entry, and always do a manual lean pass afterward.
   desktop MCP integration, Vault) in the public changelog, even inside an
   otherwise-legitimate fix description. Describe the fix by its visible
   surface instead of the internal product name.
-- Title = the headline in plain language. No "& N fixes" bullet-counting when
-  there's no `highlights` array.
+- Use a plain-language title that names the main improvements.
 - Drafts arrive via the extension repo's release cut (`cut-release.mjs`,
   synced by a commit hook) and hold exactly one release's bullets. If a draft
   repeats already-published releases, the cut was missed: reconcile against
