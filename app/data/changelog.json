@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.24",
+    "date": "2026-11-10",
+    "published": true,
+    "curated": true,
+    "title": "Background saving for Claude and older chats in search",
+    "summary": "Connect Claude to save recent chats in the background and refresh saved Claude chats from the viewer. Search now suggests older conversations across assistants, and saved transcripts preserve more of their original formatting. The welcome page links to a short import video, and Settings makes it easier to check your local session connection. This update also improves ChatGPT import recovery, keeps the complete Gemini chat when an earlier copy overlaps, saves Character.AI chats that only contain a greeting, and helps Vault sync resume after outages."
+  },
+  {
     "version": "0.4.23",
     "date": "2026-10-31",
     "published": true,
