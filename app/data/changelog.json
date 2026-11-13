@@ -1,5 +1,13 @@
 [
   {
+    "version": "0.4.25",
+    "date": "2026-11-13",
+    "published": true,
+    "curated": true,
+    "title": "ChatGPT conversations are saving again",
+    "summary": "This update fixes a ChatGPT layout change that prevented LLMnesia from saving messages in some regular chats and Project conversations. After updating to 0.4.25, reopen any affected chat to save it to your searchable history."
+  },
+  {
     "version": "0.4.24",
     "date": "2026-11-10",
     "published": true,
