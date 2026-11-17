@@ -8,21 +8,28 @@ import { useEffect, useState } from 'react';
 import { trackEvent } from '../../lib/analytics';
 import { embedUrl, isPublished } from '../../lib/videos';
 
-export default function ProductVideo({ video, name, label = 'Play the video' }) {
+// The video to show now: the video itself if it is live, else its fallback if
+// that is live, else nothing.
+const pickLive = (video) => [video, video?.fallback].find((v) => v?.id && isPublished(v)) || null;
+
+export default function ProductVideo({ video: wanted, name, label = 'Play the video' }) {
   const [playing, setPlaying] = useState(false);
-  // A video with publishAt stays hidden until then. Start hidden (so server and
-  // client markup agree) and switch on after mount, or when the time arrives.
-  const [live, setLive] = useState(!video?.publishAt);
+  // A video with publishAt stays hidden until then. Start with only videos that
+  // have no publishAt (so server and client markup agree), then switch after
+  // mount, or when a go-live time arrives.
+  const [current, setCurrent] = useState(() => [wanted, wanted?.fallback].find((v) => v?.id && !v.publishAt) || null);
   useEffect(() => {
-    if (!video?.publishAt) return undefined;
-    if (isPublished(video)) { setLive(true); return undefined; }
-    const wait = Date.parse(video.publishAt) - Date.now();
-    // setTimeout caps near 24.8 days; a longer wait just re-checks on next visit.
-    if (wait > 2 ** 31 - 1) return undefined;
-    const timer = setTimeout(() => setLive(true), wait);
-    return () => clearTimeout(timer);
-  }, [video]);
-  if (!video?.id || !live) return null;
+    setCurrent(pickLive(wanted));
+    const timers = [wanted, wanted?.fallback]
+      .filter((v) => v?.publishAt && !isPublished(v))
+      .map((v) => Date.parse(v.publishAt) - Date.now())
+      // setTimeout caps near 24.8 days; a longer wait just re-checks on next visit.
+      .filter((wait) => wait <= 2 ** 31 - 1)
+      .map((wait) => setTimeout(() => setCurrent(pickLive(wanted)), wait));
+    return () => timers.forEach(clearTimeout);
+  }, [wanted]);
+  const video = current;
+  if (!video?.id) return null;
   const src = embedUrl(video.id);
   return (
     <figure className="product-video">
