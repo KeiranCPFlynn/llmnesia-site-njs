@@ -4,13 +4,25 @@
 // YouTube player (privacy-enhanced youtube-nocookie.com) loads only when the
 // visitor presses play.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trackEvent } from '../../lib/analytics';
-import { embedUrl } from '../../lib/videos';
+import { embedUrl, isPublished } from '../../lib/videos';
 
 export default function ProductVideo({ video, name, label = 'Play the video' }) {
   const [playing, setPlaying] = useState(false);
-  if (!video?.id) return null;
+  // A video with publishAt stays hidden until then. Start hidden (so server and
+  // client markup agree) and switch on after mount, or when the time arrives.
+  const [live, setLive] = useState(!video?.publishAt);
+  useEffect(() => {
+    if (!video?.publishAt) return undefined;
+    if (isPublished(video)) { setLive(true); return undefined; }
+    const wait = Date.parse(video.publishAt) - Date.now();
+    // setTimeout caps near 24.8 days; a longer wait just re-checks on next visit.
+    if (wait > 2 ** 31 - 1) return undefined;
+    const timer = setTimeout(() => setLive(true), wait);
+    return () => clearTimeout(timer);
+  }, [video]);
+  if (!video?.id || !live) return null;
   const src = embedUrl(video.id);
   return (
     <figure className="product-video">

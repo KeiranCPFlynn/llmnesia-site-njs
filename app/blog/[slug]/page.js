@@ -73,8 +73,9 @@ export default async function BlogArticlePage({ params }) {
     schemas.push(faqSchema(entry));
   }
 
-  if (video) {
-    schemas.push(videoObjectSchema(video));
+  const videoSchema = video ? videoObjectSchema(video) : null;
+  if (videoSchema) {
+    schemas.push(videoSchema);
   }
 
   const howTo = howToSchema(entry);
