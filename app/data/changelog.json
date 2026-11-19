@@ -5,10 +5,10 @@
     "published": true,
     "curated": true,
     "title": "Better chat imports, a simpler popup and PDF export",
-    "summary": "Gemini and Qwen imports work with the account you have open. This update also makes it easier to save the ChatGPT chat you’re reading, revisit older conversations and export saved transcripts.",
+    "summary": "LLMnesia saves chats automatically while indexing is on. This update improves Gemini and Qwen imports, makes older chats easier to find, and adds PDF export for saved transcripts.",
     "highlights": [
       "Gemini imports and links to original chats keep the Google account you selected. Qwen uses your active session and tells you when access is refused.",
-      "Use Save this chat under Quick controls to save the open ChatGPT conversation. Saved transcripts leave out internal tool output, and Temporary Chats respect your capture setting.",
+      "Saved ChatGPT transcripts leave out internal tool output, and Temporary Chats follow your capture setting.",
       "DeepSeek updates the full saved conversation as new messages appear.",
       "The compact popup gives you clearer import controls and a link to your yearly activity. Search suggestions are easier to scan on narrow screens.",
       "Open a saved conversation in the viewer to save it as a PDF, download Markdown or copy the transcript.",
