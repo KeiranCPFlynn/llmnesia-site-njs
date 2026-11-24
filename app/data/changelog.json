@@ -1,5 +1,20 @@
 [
   {
+    "version": "0.4.27",
+    "date": "2026-11-24",
+    "published": true,
+    "curated": true,
+    "title": "Search suggestions, Vault reminders and a nudge to save your chats",
+    "summary": "An empty search box now suggests topics from your own chats, and Vault tells you when it needs a hand. New installs get a gentle prompt to save their chats, and several search and Mistral Vibe fixes make everyday use smoother.",
+    "highlights": [
+      "When the search box is empty, it suggests a topic from your own chats as faint text that changes every few seconds. Press Enter to search it, or Tab to edit it first. It goes away as soon as you start typing.",
+      "If you haven't saved any chats yet, a small card on a supported chat site offers to save them so you can search them later. It shows at most once per site and three times in total.",
+      "Vault reminds you if your subscription is active but this device hasn't synced yet, or if it hasn't synced for over a week, with a button to finish setup or sync now. When it can't reach the server, it now waits longer between retries instead of trying again constantly.",
+      "Mistral Vibe sessions that were cut off mid-reply now import in full. Update your LLMnesia desktop helper to get this fix.",
+      "Typing in search on a chat site no longer triggers that site's own shortcuts, platform filters no longer cut off names like Mistral, and you can hide the search suggestions and bring them back later."
+    ]
+  },
+  {
     "version": "0.4.26",
     "date": "2026-11-20",
     "published": true,
