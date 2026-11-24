@@ -1,5 +1,16 @@
 [
   {
+    "version": "0.4.28",
+    "date": "2026-11-25",
+    "published": true,
+    "curated": true,
+    "title": "Fresher coding-agent status in your AI apps",
+    "summary": "If you use LLMnesia with an MCP client, Claude Code and Codex no longer show as out of date when your chats are current, and syncing stops resending recent changes.",
+    "highlights": [
+      "Fixes a 0.4.27 problem where older versions of the LLMnesia desktop helper turned away LLMnesia's sync status, so your AI app could report Claude Code and Codex as stale and recent chats were sent again on every sync."
+    ]
+  },
+  {
     "version": "0.4.27",
     "date": "2026-11-24",
     "published": true,
