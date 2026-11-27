@@ -1,5 +1,18 @@
 [
   {
+    "version": "0.4.29",
+    "date": "2026-11-27",
+    "published": true,
+    "curated": true,
+    "title": "Import older Perplexity chats",
+    "summary": "LLMnesia now looks through your Perplexity Library for older chats. This update also improves Vault backups and Mistral Vibe sync status.",
+    "highlights": [
+      "If your Perplexity import stopped after 20 chats, open Perplexity and choose Import history again after updating. You can keep the chats you already saved.",
+      "If a large chat fails to back up to Vault, the other chats can still back up. The large chat stays queued for retry.",
+      "Mistral Vibe sync status stays current in MCP clients when you use LLMnesia helper 0.3.6."
+    ]
+  },
+  {
     "version": "0.4.28",
     "date": "2026-11-25",
     "published": true,
